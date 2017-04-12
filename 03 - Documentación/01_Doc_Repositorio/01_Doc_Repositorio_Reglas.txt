@@ -1,0 +1,23 @@
+Mantenimiento del Repositorio
+
+Para mantener el repositorio mantengamos una consistencia en el nombrado tanto como para los detalles de los commits como para el nombrado de los archivos, a esto lo vamos a ir completando:
+
+PARA LOS COMMITS, ETIQUETAS
+	[E] - 	TIENE ERROR
+	[N] - 	NUEVO
+	[C] - 	CORREGIDO
+	[?] - 	AYUDA
+	[I] - 	FUNCIONALIDAD INCOMPLETA
+	[OK] - "TODO LISTO"
+	[m-] - 	SE HIZO UN MERGE MODIFICANDO LA VERSION ANTERIOR Y 			EL - ES CUALQUIERA DE LAS OTRAS LETRAS (indicando 			el estado actual en el que quedo) 
+Siempre que haya que hacer un merge con conflictos tratemos de comunicarnos, sino tengamos en cuenta dicha etiqueta.
+Descripcion corta en el titulo o sumario del commit y algo mas detallado abajo, si "tenes" pensado hacer varios commits seguidos para estar seguro, traten que el último cumpla con estos requisitos
+
+PARA EL NOMBRADO DE LAS CARPETAS
+A medida que se van creando carpetas numerarlas dentro de la mismo, e indicando en su nombre su padre
+
+NOMBRADO DE ARCHIVOS
+Los documentos de codigo quedan excentos de las reglas por ser, obviamente, de codigo y sabemos de que se trata y donde esta, podemos diferenciarlos del resto, pero igual hay que tener cuidado con los tipos de archivos que son comunes entre los dos proyectos (Movil y Web)
+
+El resto, documentacion, imagenes, txts, etc, igual que las carpetas.
+
