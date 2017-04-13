@@ -8,6 +8,7 @@ PARA LOS COMMITS, ETIQUETAS
 	[C] - 	CORREGIDO
 	[?] - 	AYUDA
 	[I] - 	FUNCIONALIDAD INCOMPLETA
+	[R] - 	REMOVE ALGO (ELIMINADO ALGO)
 	[OK] - "TODO LISTO"
 	[m-] - 	SE HIZO UN MERGE MODIFICANDO LA VERSION ANTERIOR Y 			EL - ES CUALQUIERA DE LAS OTRAS LETRAS (indicando 			el estado actual en el que quedo) 
 Siempre que haya que hacer un merge con conflictos tratemos de comunicarnos, sino tengamos en cuenta dicha etiqueta.
