@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace JJSS.Presentacion
 {
-    public partial class Torneo : System.Web.UI.Page
+    public partial class CrearTorneo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

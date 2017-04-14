@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
 
-    <title>NYC - Design Studio</title>
+    <title>JJSS</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet" />
@@ -26,6 +26,28 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+      <script>
+      $(document).ready(
+          function () {
+              $("#datepicker").datepicker({
+                  dateFormat: "dd/mm/yy",
+                  monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                  dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
+              });
+          }
+      );
+       </script>
+
   </head>
 
   <body data-spy="scroll" data-offset="0" data-target="#theMenu">
@@ -65,6 +87,8 @@
     <script src="../js/jquery.stellar.min.js"></script>
     <script src="../js/fancybox/jquery.fancybox.js"></script>  
     <script src="../js/main.js"></script>
+    <script src="../js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+
 		<script>
 		$(function(){
 			$.stellar({
@@ -80,6 +104,20 @@
           jQuery(".fancybox").fancybox();
       });
 	   </script>
+
+       <script>
+           $(document).ready(
+               function () {
+                   $("#datepicker").datepicker({
+                       dateFormat: "dd/mm/yy",
+                       monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                       dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]                   
+                   });
+               }
+           );
+       </script>
+
+  
 
   </body>
 </html>

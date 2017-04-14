@@ -57,6 +57,6 @@ E:\Melina\JJSS\Repositorio\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\
 E:\Melina\JJSS\Repositorio\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\Microsoft.AI.Web.xml
 E:\Melina\JJSS\Repositorio\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\es\System.Web.Optimization.resources.dll
 E:\Melina\JJSS\Repositorio\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-E:\Melina\JJSS\Repositorio\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\obj\Debug\JJSS.csprojResolveAssemblyReference.cache
 E:\Melina\JJSS\Repositorio\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\obj\Debug\JJSS.dll
 E:\Melina\JJSS\Repositorio\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\obj\Debug\JJSS.pdb
+E:\Melina\JJSS\Repositorio\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\obj\Debug\JJSS.csprojResolveAssemblyReference.cache
