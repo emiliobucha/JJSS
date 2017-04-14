@@ -35,11 +35,9 @@
 		<div class="menu-wrap">
 			<h1 class="logo"><a href="index.html#home">MENU</a></h1>
 			<i class="fa fa-times menu-close"></i>
-			<a href="#home" class="smoothScroll">Home</a>
-			<a href="#about" class="smoothScroll">About</a>
-			<a href="#torneos" class="smoothScroll">Torneos</a>
-			<a href="#services" class="smoothScroll">Services</a>
-			<a href="#contact" class="smoothScroll">Contact</a>
+
+            <asp:ContentPlaceHolder ID="cphMenu" runat="server"></asp:ContentPlaceHolder>
+
 			<a href="#"><i class="fa fa-facebook"></i></a>
 			<a href="#"><i class="fa fa-twitter"></i></a>
 			<a href="#"><i class="fa fa-dribbble"></i></a>
@@ -49,17 +47,9 @@
 		<!-- Menu button -->
 		<div id="menuToggle"><i class="fa fa-bars"></i></div>
 	</nav>
-
-	<section id="home"  title="home"></section>
-	<div id="headerwrap">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<h1>JJSS</h1>
-				</div>
-			</div><! --/row -->
-		</div><! --/container -->
-	</div><! --/headerwrap -->
+      
+      <asp:ContentPlaceHolder ID="cphEncabezado" runat="server">
+      </asp:ContentPlaceHolder>	
 	
 	
       <asp:ContentPlaceHolder ID="cphContenido" runat="server">

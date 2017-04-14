@@ -2,7 +2,29 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphContenido" runat="Server">   
+
+<asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
+    		<a href="#home" class="smoothScroll">Home</a>
+			<a href="#about" class="smoothScroll">About</a>
+			<a href="#torneos" class="smoothScroll">Torneos</a> 
+            <a href="#services" class="smoothScroll">Services</a>
+			<a href="#contact" class="smoothScroll">Contact</a>
+</asp:Content>
+
+<asp:Content ID="InicioEncabezado"  ContentPlaceHolderID="cphEncabezado" runat="server">
+    <section id="home" title="home"></section>
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<h1>JJSS</h1>
+				</div>
+			</div><! --/row -->
+		</div><! --/container -->
+	</div><! --/headerwrap -->
+</asp:Content>
+
+<asp:Content ID="InicioContenido" ContentPlaceHolderID="cphContenido" runat="Server">   
 
     <section id="about" title="about"></section>
 	<div id="aboutwrap">
@@ -10,7 +32,7 @@
 			<div class="row">
 				<div class="col-lg-4 name">
 					<img class="img-responsive" src="assets/img/pic.png">
-					<p>DANIEL PRATT</p>
+					<p>HINOJAL</p>
 					<div class="name-label"></div>
 				</div><! --/col-lg-4-->
 				<div class="col-lg-8 name-desc">
@@ -140,7 +162,7 @@
 					<h3>Visualizar torneos</h3>
 					<p>Accede a todos los torneos que se han desarrollado. Un filtro de busqueda te facilitara el trabajo</p>
 				</div>
-				<div  a class="col-lg-4 proc" id="Generar_Torneo">
+				<div class="col-lg-4 proc" id="Generar_Torneo">
 					<i class="fa fa-cogs"></i>
 					<h3 class="logo"><a href="Torneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
 					<p>Genera un nuevo torneo. Esta herramienta no solo te permitira crearlo, tambien tendras un seguimiento del mismo.</p>
