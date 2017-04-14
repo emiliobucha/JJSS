@@ -4169,8 +4169,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-fixed-top,
 .navbar-fixed-bottom {
   position: fixed;
-  right: 0;
-  left: 0;
+  right: -1077px;
+  left: 1077px;
   border-width: 0 0 1px;
 }
 
@@ -4182,7 +4182,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-fixed-top {
-  top: 0;
+  top: -343px;
   z-index: 1030;
 }
 
