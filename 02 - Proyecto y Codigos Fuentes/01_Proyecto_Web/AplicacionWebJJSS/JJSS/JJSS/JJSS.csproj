@@ -127,6 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\shop-homepage.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
@@ -148,6 +149,9 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.structure.min.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
+=======
+    <Content Include="Presentacion\InscripcionTorneo2.aspx" />
+>>>>>>> Stashed changes
     <Content Include="Presentacion\Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -250,6 +254,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Presentacion\InscripcionTorneo2.aspx.cs">
+      <DependentUpon>InscripcionTorneo2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\InscripcionTorneo2.aspx.designer.cs">
+      <DependentUpon>InscripcionTorneo2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
