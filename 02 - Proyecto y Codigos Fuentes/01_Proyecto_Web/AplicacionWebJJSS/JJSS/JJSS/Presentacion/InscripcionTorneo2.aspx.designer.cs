@@ -13,6 +13,15 @@ namespace JJSS {
     public partial class InscripcionTorneo {
         
         /// <summary>
+        /// Control pnlFormulario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
+        
+        /// <summary>
         /// Control lbl_Inscripcion.
         /// </summary>
         /// <remarks>
@@ -20,15 +29,6 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Inscripcion;
-        
-        /// <summary>
-        /// Control pnl_ingreso_datos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_ingreso_datos;
         
         /// <summary>
         /// Control ddl_torneos.
@@ -112,13 +112,13 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.Button btn_cancelar;
         
         /// <summary>
-        /// Control pnl_inscripcion_correcta.
+        /// Control inscripcionCorrecta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_inscripcion_correcta;
+        protected global::System.Web.UI.WebControls.Panel inscripcionCorrecta;
         
         /// <summary>
         /// Control btn_cod_barra.

@@ -24,12 +24,15 @@ textarea {
     color: #222;
 }
 
+#inscripcionCorrecta {
+    visibility: hidden;
+    display: none
+}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
  * Customize the background color to match your design.
  */
-
 ::-moz-selection {
     background: #f2c2c9;
     color: #a4003a;

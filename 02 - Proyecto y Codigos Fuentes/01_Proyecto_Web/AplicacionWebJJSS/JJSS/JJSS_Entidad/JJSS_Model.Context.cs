@@ -12,7 +12,8 @@ namespace JJSS_Entidad
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
+
     public partial class JJSSEntities : DbContext
     {
         public JJSSEntities()

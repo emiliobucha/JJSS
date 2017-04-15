@@ -32,3 +32,37 @@ E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\obj\Debug\JJSSWSMobile.csprojResolveAssemblyReference.cache
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\obj\Debug\JJSSWSMobile.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\obj\Debug\JJSSWSMobile.pdb
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\csc.exe.config
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\csc.rsp
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\csi.rsp
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\vbc.exe.config
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\vbc.rsp
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\VBCSCompiler.exe.config
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\csc.exe
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\csi.exe
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\System.AppContext.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\System.Collections.Immutable.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\System.IO.FileSystem.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\System.Reflection.Metadata.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\vbc.exe
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\roslyn\VBCSCompiler.exe
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\JJSSWSMobile.dll.config
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\JJSSWSMobile.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\JJSSWSMobile.pdb
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\obj\Debug\JJSSWSMobile.csprojResolveAssemblyReference.cache
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\obj\Debug\JJSSWSMobile.dll
+D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSSWSMobile\obj\Debug\JJSSWSMobile.pdb
