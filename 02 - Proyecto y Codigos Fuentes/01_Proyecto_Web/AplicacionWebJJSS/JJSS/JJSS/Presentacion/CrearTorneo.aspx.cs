@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using JJSS_Negocio;
+
+
+
 
 namespace JJSS.Presentacion
 {
@@ -13,5 +17,16 @@ namespace JJSS.Presentacion
         {
 
         }
+
+
+ 
+
+        protected void btnCrearNuevoTorneo_Click(object sender, EventArgs e)
+        {
+            GestorTorneos gestorTorneos = new GestorTorneos();
+            gestorTorneos.GenerarNuevoTorneo(DateTime.Today, "Hola", (float)1.5, "aho", 1);
+        }
     }
+
+
 }

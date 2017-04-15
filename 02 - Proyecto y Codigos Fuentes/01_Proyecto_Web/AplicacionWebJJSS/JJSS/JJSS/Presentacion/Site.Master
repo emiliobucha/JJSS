@@ -73,7 +73,9 @@
       <asp:ContentPlaceHolder ID="cphEncabezado" runat="server">
       </asp:ContentPlaceHolder>	
 	
-	
+	  <asp:ContentPlaceHolder ID="cphP" runat="server">
+      </asp:ContentPlaceHolder>
+
       <asp:ContentPlaceHolder ID="cphContenido" runat="server">
       </asp:ContentPlaceHolder>
 	

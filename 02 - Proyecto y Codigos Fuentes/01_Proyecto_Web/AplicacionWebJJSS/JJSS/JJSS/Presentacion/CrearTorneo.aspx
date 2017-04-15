@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CrearTorneo.aspx.cs" Inherits="JJSS.Presentacion.CrearTorneo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeFile="CrearTorneo.aspx.cs" CodeBehind="CrearTorneo.aspx.cs" Inherits="JJSS.Presentacion.CrearTorneo" %>
 
 <asp:Content ID="crearTorneoMenu" ContentPlaceHolderID="cphMenu" runat="server">
     <a href="Inicio.aspx" class="smoothScroll">Home</a>			
@@ -6,7 +6,8 @@
 </asp:Content>
 
 <asp:Content ID="crearTorneoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
-	<div id="headerwrap">
+	<script type="text/javascript" src="../js/funciones.js"> </script>
+    <div id="headerwrap">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
@@ -18,8 +19,9 @@
 </asp:Content>
 
 
-<asp:Content ID="crearTorneoContenido" ContentPlaceHolderID="cphContenido" runat="server">
 
+<asp:Content ID="crearTorneoContenido" ContentPlaceHolderID="cphContenido" runat="server">
+   
     <section id="crearTorneo" title="crearTorneo"></section>
 	<div id="crearTorneowrap">
 		<div class="container">
@@ -42,13 +44,14 @@
                           <input class="form-control" id="lblPrecio" placeholder="Enter precio">
 
 					      <label for="exampleInputName1">Your Name</label>					    
-                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
+                          <input type="email" class="form-control" id="exampleInputEmail12" placeholder="Enter name">
 					    <label for="exampleInputEmail1">Email address</label>
 					    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
 					    <label for="exampleInputText1">Message</label>
 					    <textarea class="form-control" rows="3"></textarea>
 					  </div>
-					  <button type="submit" class="btn btn-default">Submit</button>
+					  <button class="btn btn-default" onclick="CrearNuevoTorneo">Submit</button>
+                        
 					</form>
 
 		
@@ -59,5 +62,5 @@
 	</div><!-- /aboutwrap -->
 
 
-
+        
 </asp:Content>

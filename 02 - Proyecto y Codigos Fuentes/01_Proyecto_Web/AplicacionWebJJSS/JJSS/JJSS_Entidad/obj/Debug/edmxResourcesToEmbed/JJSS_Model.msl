@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JJSSModelStoreContainer" CdmEntityContainer="JJSSEntities">
+    <EntitySetMapping Name="academia">
+      <EntityTypeMapping TypeName="JJSSModel.academia">
+        <MappingFragment StoreEntitySet="academia">
+          <ScalarProperty Name="id_academia" ColumnName="id_academia" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="barrio">
+      <EntityTypeMapping TypeName="JJSSModel.barrio">
+        <MappingFragment StoreEntitySet="barrio">
+          <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="calle">
+      <EntityTypeMapping TypeName="JJSSModel.calle">
+        <MappingFragment StoreEntitySet="calle">
+          <ScalarProperty Name="id_calle" ColumnName="id_calle" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categoria">
+      <EntityTypeMapping TypeName="JJSSModel.categoria">
+        <MappingFragment StoreEntitySet="categoria">
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="peso_desde" ColumnName="peso_desde" />
+          <ScalarProperty Name="peso_hasta" ColumnName="peso_hasta" />
+          <ScalarProperty Name="edad_desde" ColumnName="edad_desde" />
+          <ScalarProperty Name="edad_hasta" ColumnName="edad_hasta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categoria_torneo">
+      <EntityTypeMapping TypeName="JJSSModel.categoria_torneo">
+        <MappingFragment StoreEntitySet="categoria_torneo">
+          <ScalarProperty Name="id_categoria_torneo" ColumnName="id_categoria_torneo" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="id_faja" ColumnName="id_faja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ciudad">
+      <EntityTypeMapping TypeName="JJSSModel.ciudad">
+        <MappingFragment StoreEntitySet="ciudad">
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="direccion">
+      <EntityTypeMapping TypeName="JJSSModel.direccion">
+        <MappingFragment StoreEntitySet="direccion">
+          <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="id_calle" ColumnName="id_calle" />
+          <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estado">
+      <EntityTypeMapping TypeName="JJSSModel.estado">
+        <MappingFragment StoreEntitySet="estado">
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="faja">
+      <EntityTypeMapping TypeName="JJSSModel.faja">
+        <MappingFragment StoreEntitySet="faja">
+          <ScalarProperty Name="id_faja" ColumnName="id_faja" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="grado" ColumnName="grado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="inscripcion">
+      <EntityTypeMapping TypeName="JJSSModel.inscripcion">
+        <MappingFragment StoreEntitySet="inscripcion">
+          <ScalarProperty Name="id_inscripcion" ColumnName="id_inscripcion" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="codigo_barra" ColumnName="codigo_barra" />
+          <ScalarProperty Name="id_participante" ColumnName="id_participante" />
+          <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
+          <ScalarProperty Name="id_categoria_torneo" ColumnName="id_categoria_torneo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lucha">
+      <EntityTypeMapping TypeName="JJSSModel.lucha">
+        <MappingFragment StoreEntitySet="lucha">
+          <ScalarProperty Name="id_lucha" ColumnName="id_lucha" />
+          <ScalarProperty Name="id_participante1" ColumnName="id_participante1" />
+          <ScalarProperty Name="id_participante2" ColumnName="id_participante2" />
+          <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
+          <ScalarProperty Name="ronda" ColumnName="ronda" />
+          <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pais">
+      <EntityTypeMapping TypeName="JJSSModel.pais">
+        <MappingFragment StoreEntitySet="pais">
+          <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="participante">
+      <EntityTypeMapping TypeName="JJSSModel.participante">
+        <MappingFragment StoreEntitySet="participante">
+          <ScalarProperty Name="id_participante" ColumnName="id_participante" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="id_faja" ColumnName="id_faja" />
+          <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+          <ScalarProperty Name="id_academia" ColumnName="id_academia" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resultado">
+      <EntityTypeMapping TypeName="JJSSModel.resultado">
+        <MappingFragment StoreEntitySet="resultado">
+          <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
+          <ScalarProperty Name="tipo_finalizacion" ColumnName="tipo_finalizacion" />
+          <ScalarProperty Name="tiempo" ColumnName="tiempo" />
+          <ScalarProperty Name="punto_participante_1" ColumnName="punto_participante_1" />
+          <ScalarProperty Name="punto_participante_2" ColumnName="punto_participante_2" />
+          <ScalarProperty Name="id_ganador" ColumnName="id_ganador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sede">
+      <EntityTypeMapping TypeName="JJSSModel.sede">
+        <MappingFragment StoreEntitySet="sede">
+          <ScalarProperty Name="id_sede" ColumnName="id_sede" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="torneo">
+      <EntityTypeMapping TypeName="JJSSModel.torneo">
+        <MappingFragment StoreEntitySet="torneo">
+          <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="id_sede" ColumnName="id_sede" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
