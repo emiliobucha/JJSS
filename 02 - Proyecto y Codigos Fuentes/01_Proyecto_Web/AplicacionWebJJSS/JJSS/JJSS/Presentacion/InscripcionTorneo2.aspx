@@ -21,10 +21,10 @@
         <div id="crearTorneowrap">
             <div class="container">
                 <div class="row mt centered">
-
+                    <div>
                     <asp:Label ID="lbl_Inscripcion" runat="server" Text="Inscripción Torneo" Font-Size="XX-Large" CssClass=""></asp:Label>
-                    <p>&nbsp;</p>
-
+                        </div>
+                    
                     <div class="col-lg-5 mt centered">
                         <form role="form">
                             <div class="form-group ">
