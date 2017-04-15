@@ -127,7 +127,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\shop-homepage.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
@@ -149,9 +148,6 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.structure.min.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
-=======
-    <Content Include="Presentacion\InscripcionTorneo2.aspx" />
->>>>>>> Stashed changes
     <Content Include="Presentacion\Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -217,6 +213,7 @@
     <Content Include="js\smoothscroll.js" />
     <Content Include="Presentacion\CrearTorneo.aspx" />
     <Content Include="Presentacion\Inicio.aspx" />
+    <Content Include="Presentacion\InscripcionTorneo2.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -254,13 +251,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Presentacion\InscripcionTorneo2.aspx.cs">
-      <DependentUpon>InscripcionTorneo2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\InscripcionTorneo2.aspx.designer.cs">
-      <DependentUpon>InscripcionTorneo2.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -284,6 +274,13 @@
     </Compile>
     <Compile Include="Presentacion\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\InscripcionTorneo2.aspx.cs">
+      <DependentUpon>InscripcionTorneo2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\InscripcionTorneo2.aspx.designer.cs">
+      <DependentUpon>InscripcionTorneo2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presentacion\Site.Master.cs">

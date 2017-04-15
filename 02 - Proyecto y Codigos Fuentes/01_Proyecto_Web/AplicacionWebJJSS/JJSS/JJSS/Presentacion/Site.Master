@@ -39,7 +39,7 @@
       <script>
       $(document).ready(
           function () {
-              $("#datepicker").datepicker({
+              $("#datepicker1,#datepicker2").datepicker({
                   dateFormat: "dd/mm/yy",
                   monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                   dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
