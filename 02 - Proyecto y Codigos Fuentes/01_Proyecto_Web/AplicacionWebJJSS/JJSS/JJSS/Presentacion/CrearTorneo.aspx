@@ -30,7 +30,7 @@
                 <p>&nbsp;</p>                            
 
                 <div class="col-lg-5 mt centered">
-                    <form role="form">
+                    <form id="form1" runat="server">
                         <div class="form-group ">
                             <p><label class="pull-left">Nombre</label></p>
                             <p><input class="form-control" id="lblNombre" placeholder="Ingrese nombre"></p>
@@ -51,10 +51,12 @@
                             <textarea class="form-control"  rows="3"></textarea>
                         </div>
                         
-                          <p> <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1"  /></p>
+                          <p> <asp:Button ID="btn_aceptar"  class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1" OnClientClick="btn_aceptar_Click1"/></p>
+
+
                     </form>
                 </div>
-                <! --/row -->		
+                <!--/row -->		
             </div>
             <!-- /row -->
         </div>
