@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="InscripcionTorneo2.aspx.cs" Inherits="JJSS.InscripcionTorneo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="InscripcionTorneo.aspx.cs" Inherits="JJSS.InscripcionTorneo" %>
 
 <asp:Content ID="crearTorneoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
     <div id="headerwrap">
@@ -36,11 +36,11 @@
 
                                 <p>
                                     <label class="pull-left">Ingresar nombre:</label>
-                                    <asp:TextBox ID="txt_nombre" class="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_nombre" class="form-control" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
                                 </p>
                                 <p>
                                     <label class="pull-left">Ingresar apellido:</label>
-                                    <asp:TextBox ID="txt_apellido" class="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_apellido" class="form-control" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
                                 </p>
                                 <p>
                                     <label class="pull-left">Sexo:</label>
@@ -51,11 +51,11 @@
                                 </p>
                                 <p>
                                     <label class="pull-left">Peso:</label>
-                                    <asp:TextBox class="form-control" ID="txt_peso" runat="server"></asp:TextBox>
+                                    <asp:TextBox class="form-control" ID="txt_peso" runat="server" placeholder="Ingrese peso"></asp:TextBox>
                                 </p>
                                 <p>
                                     <label class="pull-left">Edad</label>
-                                    <asp:TextBox class="form-control" ID="txt_edad" runat="server"></asp:TextBox>
+                                    <asp:TextBox class="form-control" ID="txt_edad" runat="server" placeholder="Ingrese edad"></asp:TextBox>
                                 </p>
                                 <p>
                                     <label class="pull-left">Faja:</label>
@@ -63,8 +63,8 @@
                                     </asp:DropDownList>
                                 </p>
                                 <p>
-                                    <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />
-                                    &nbsp;
+                                    <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" />
+                                    
                                     <asp:Button ID="btn_cancelar" class="btn btn-default" runat="server" Text="Cancelar" />
                                 </p>
                                 </div>

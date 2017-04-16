@@ -50,7 +50,8 @@
                             <p><label class="pull-left">Comentarios</label></p>
                             <textarea class="form-control"  rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        
+                          <p> <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1"  /></p>
                     </form>
                 </div>
                 <! --/row -->		

@@ -149,7 +149,7 @@
 				<h1>ADMINISTRACION DE TORNEOS</h1>
                 <div class="col-lg-4 proc">                    
 					<i class="fa fa-pencil" id="Insrcibir_Torneo"></i>               
-					<h3><a href="InscripcionTorneo2.aspx" style="color: #000000">Inscripciones </a></h3>
+					<h3><a href="InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
 					<p>Accede a los torneos que estan pronto a desarrollar e inscribete.</p>
 				</div>
 				<div class="col-lg-4 proc">                    

@@ -17,14 +17,23 @@ namespace JJSS.Presentacion
         {
 
         }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
 
-
- 
-
-        protected void btnCrearNuevoTorneo_Click(object sender, EventArgs e)
+        
+        protected void btn_aceptar_Click(object sender, EventArgs e)
         {
             GestorTorneos gestorTorneos = new GestorTorneos();
-            gestorTorneos.GenerarNuevoTorneo(DateTime.Today, "Hola", (float)1.5, "aho", 1);
+            gestorTorneos.GenerarNuevoTorneo(DateTime.Today  , "Hola", (float)1.5, (float)2, "11:00", 1, DateTime.Today, "15:00");
+        }
+
+        protected void btn_aceptar_Click1(object sender, EventArgs e)
+        {
+            GestorTorneos gestorTorneos = new GestorTorneos();
+            gestorTorneos.GenerarNuevoTorneo(DateTime.Today, "Hola", (float)1.5, (float)2, "11:00", 1, DateTime.Today, "15:00");
         }
     }
 

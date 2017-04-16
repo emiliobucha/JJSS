@@ -23,6 +23,11 @@ namespace JJSS
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
                server control at run time. */
         }
+
+        protected void btn_aceptar_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
     
 }
