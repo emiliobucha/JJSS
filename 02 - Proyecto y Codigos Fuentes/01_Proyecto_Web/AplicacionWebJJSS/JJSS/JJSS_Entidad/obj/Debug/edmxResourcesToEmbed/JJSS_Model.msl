@@ -164,9 +164,12 @@
           <ScalarProperty Name="fecha" ColumnName="fecha" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="hora" ColumnName="hora" />
-          <ScalarProperty Name="precio" ColumnName="precio" />
           <ScalarProperty Name="id_estado" ColumnName="id_estado" />
           <ScalarProperty Name="id_sede" ColumnName="id_sede" />
+          <ScalarProperty Name="fecha_cierre" ColumnName="fecha_cierre" />
+          <ScalarProperty Name="hora_cierre" ColumnName="hora_cierre" />
+          <ScalarProperty Name="precio_absoluto" ColumnName="precio_absoluto" />
+          <ScalarProperty Name="precio_categoria" ColumnName="precio_categoria" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

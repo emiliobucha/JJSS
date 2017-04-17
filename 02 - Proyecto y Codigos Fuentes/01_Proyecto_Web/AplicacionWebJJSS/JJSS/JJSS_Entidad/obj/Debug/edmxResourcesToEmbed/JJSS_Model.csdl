@@ -187,9 +187,12 @@
     <Property Name="fecha" Type="DateTime" Precision="0" />
     <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="precio" Type="Single" />
     <Property Name="id_estado" Type="Int32" />
     <Property Name="id_sede" Type="Int32" />
+    <Property Name="fecha_cierre" Type="DateTime" Precision="0" />
+    <Property Name="hora_cierre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="precio_absoluto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="precio_categoria" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="estado" Relationship="Self.torneo_torneo_id_estado_fk" FromRole="torneo" ToRole="estado" />
     <NavigationProperty Name="inscripcion" Relationship="Self.inscripcion_inscripcion_id_torneo_fk" FromRole="torneo" ToRole="inscripcion" />
     <NavigationProperty Name="lucha" Relationship="Self.lucha_lucha_id_torneo_fk" FromRole="torneo" ToRole="lucha" />

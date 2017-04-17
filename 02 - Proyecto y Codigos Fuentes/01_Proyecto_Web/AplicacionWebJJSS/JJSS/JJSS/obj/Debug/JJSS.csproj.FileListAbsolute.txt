@@ -128,7 +128,6 @@ E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\JJSS_Entidad.dll.config
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\JJSS_Negocio.pdb
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\JJSS_Negocio.dll.config
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\EntityFramework.xml
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\obj\Debug\JJSS.csprojResolveAssemblyReference.cache
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\obj\Debug\JJSS.csprojResolveAssemblyReference.cache
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\obj\Debug\JJSS.dll
@@ -208,3 +207,12 @@ D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\Aplica
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\ru\EntityFramework.resources.dll
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\zh-Hans\EntityFramework.resources.dll
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\zh-Hant\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\de\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\es\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\fr\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\it\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\ja\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\ko\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\ru\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\zh-Hans\EntityFramework.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\zh-Hant\EntityFramework.resources.dll

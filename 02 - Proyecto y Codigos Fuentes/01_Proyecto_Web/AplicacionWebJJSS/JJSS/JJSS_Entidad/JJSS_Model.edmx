@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -154,9 +154,12 @@
           <Property Name="fecha" Type="date" />
           <Property Name="nombre" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="hora" Type="varchar" MaxLength="10" />
-          <Property Name="precio" Type="real" />
           <Property Name="id_estado" Type="int" />
           <Property Name="id_sede" Type="int" />
+          <Property Name="fecha_cierre" Type="date" />
+          <Property Name="hora_cierre" Type="varchar" MaxLength="50" />
+          <Property Name="precio_absoluto" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio_categoria" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <Association Name="academia$academia_id_direccion_fk">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
@@ -512,8 +515,7 @@
             <End Role="torneo" EntitySet="torneo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -704,9 +706,12 @@
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="precio" Type="Single" />
           <Property Name="id_estado" Type="Int32" />
           <Property Name="id_sede" Type="Int32" />
+          <Property Name="fecha_cierre" Type="DateTime" Precision="0" />
+          <Property Name="hora_cierre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precio_absoluto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio_categoria" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="estado" Relationship="Self.torneo_torneo_id_estado_fk" FromRole="torneo" ToRole="estado" />
           <NavigationProperty Name="inscripcion" Relationship="Self.inscripcion_inscripcion_id_torneo_fk" FromRole="torneo" ToRole="inscripcion" />
           <NavigationProperty Name="lucha" Relationship="Self.lucha_lucha_id_torneo_fk" FromRole="torneo" ToRole="lucha" />
@@ -1235,9 +1240,12 @@
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="id_estado" ColumnName="id_estado" />
                 <ScalarProperty Name="id_sede" ColumnName="id_sede" />
+                <ScalarProperty Name="fecha_cierre" ColumnName="fecha_cierre" />
+                <ScalarProperty Name="hora_cierre" ColumnName="hora_cierre" />
+                <ScalarProperty Name="precio_absoluto" ColumnName="precio_absoluto" />
+                <ScalarProperty Name="precio_categoria" ColumnName="precio_categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

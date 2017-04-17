@@ -23,14 +23,14 @@ namespace JJSS_Entidad
     
         public int id_torneo { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<System.DateTime> fecha_cierre { get; set; }
         public string nombre { get; set; }
         public string hora { get; set; }
-        public string hora_cierre { get; set; }
-        public Nullable<float> precio_categoria { get; set; }
-        public Nullable<float> precio_absoluto { get; set; }
         public Nullable<int> id_estado { get; set; }
         public Nullable<int> id_sede { get; set; }
+        public Nullable<System.DateTime> fecha_cierre { get; set; }
+        public string hora_cierre { get; set; }
+        public Nullable<decimal> precio_absoluto { get; set; }
+        public Nullable<decimal> precio_categoria { get; set; }
     
         public virtual estado estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

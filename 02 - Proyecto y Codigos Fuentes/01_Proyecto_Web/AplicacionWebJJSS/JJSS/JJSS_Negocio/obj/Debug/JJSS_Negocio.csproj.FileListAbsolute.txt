@@ -3,7 +3,6 @@ E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Negocio.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Negocio.pdb
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.SqlServer.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Entidad.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.Data.Edm.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.Data.Entity.Design.Extensibility.dll
@@ -11,8 +10,6 @@ E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\stdole.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Entidad.pdb
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Entidad.dll.config
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.xml
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.SqlServer.xml
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.Data.Edm.xml
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\es\Microsoft.Data.Edm.resources.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\es\Microsoft.Data.Entity.Design.Extensibility.resources.dll
@@ -43,3 +40,6 @@ D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\Aplica
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\es\Microsoft.Data.Entity.Design.Extensibility.resources.dll
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\obj\Debug\JJSS_Negocio.dll
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\obj\Debug\JJSS_Negocio.pdb
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.SqlServer.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.xml
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.SqlServer.xml
