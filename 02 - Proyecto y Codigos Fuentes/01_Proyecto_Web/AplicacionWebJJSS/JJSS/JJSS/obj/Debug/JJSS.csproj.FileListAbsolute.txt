@@ -195,7 +195,6 @@ D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\Aplica
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\Microsoft.AI.WindowsServer.xml
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\Microsoft.AI.Web.xml
-D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\EntityFramework.xml
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\es\System.Web.Optimization.resources.dll
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS\bin\de\EntityFramework.resources.dll
