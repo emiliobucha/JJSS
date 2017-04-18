@@ -31,6 +31,15 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.Label lbl_Inscripcion;
         
         /// <summary>
+        /// Control form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
         /// Control ddl_torneos.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.TextBox txt_nombre;
         
         /// <summary>
+        /// Control requeridoNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoNombre;
+        
+        /// <summary>
         /// Control txt_apellido.
         /// </summary>
         /// <remarks>
@@ -58,13 +76,22 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.TextBox txt_apellido;
         
         /// <summary>
-        /// Control RadioButtonList1.
+        /// Control requeridoApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoApellido;
+        
+        /// <summary>
+        /// Control rbSexo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
         
         /// <summary>
         /// Control txt_peso.
@@ -76,6 +103,15 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.TextBox txt_peso;
         
         /// <summary>
+        /// Control requeridoPeso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPeso;
+        
+        /// <summary>
         /// Control txt_edad.
         /// </summary>
         /// <remarks>
@@ -83,6 +119,15 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_edad;
+        
+        /// <summary>
+        /// Control requeridoEdad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoEdad;
         
         /// <summary>
         /// Control ddl_fajas.
@@ -101,15 +146,6 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
-        
-        /// <summary>
-        /// Control btn_cancelar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar;
         
         /// <summary>
         /// Control inscripcionCorrecta.

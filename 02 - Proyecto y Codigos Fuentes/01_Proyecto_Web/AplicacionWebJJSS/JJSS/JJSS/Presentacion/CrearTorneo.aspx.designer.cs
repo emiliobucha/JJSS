@@ -40,13 +40,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_nombre;
         
         /// <summary>
-        /// Control rfv_nombre.
+        /// Control requeridoNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_nombre;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoNombre;
         
         /// <summary>
         /// Control dp_fecha.
@@ -103,6 +103,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_precio_cat;
         
         /// <summary>
+        /// Control requeridoPrecioCat.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPrecioCat;
+        
+        /// <summary>
         /// Control txt_precio_abs.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_precio_abs;
+        
+        /// <summary>
+        /// Control requeridoPrecioAbs.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPrecioAbs;
         
         /// <summary>
         /// Control ddl_hora.
