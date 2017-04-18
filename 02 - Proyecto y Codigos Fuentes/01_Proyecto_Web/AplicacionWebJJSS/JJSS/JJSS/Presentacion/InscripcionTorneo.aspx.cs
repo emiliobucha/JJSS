@@ -26,7 +26,17 @@ namespace JJSS
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
-            
+            int idTorneo = ddl_torneos.SelectedIndex;
+            string nombre = txt_nombre.Text;
+            string apellido = txt_apellido.Text;
+            float peso = float.Parse(txt_peso.Text);
+            int edad = int.Parse(txt_edad.Text);
+            int idFaja = ddl_fajas.SelectedIndex;
+            short sexo=0; 
+            if (rbSexo.SelectedIndex == 0) sexo = 0; //femenino
+            if (rbSexo.SelectedIndex == 1) sexo = 1; //masculino
+
+
         }
     }
     

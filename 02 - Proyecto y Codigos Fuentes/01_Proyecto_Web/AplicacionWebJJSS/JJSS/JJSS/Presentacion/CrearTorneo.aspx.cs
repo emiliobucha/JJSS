@@ -38,25 +38,29 @@ namespace JJSS.Presentacion
 
         protected void btn_aceptar_Click1(object sender, EventArgs e)
         {
-            string nombre = txt_nombre.Text;
-            DateTime fecha = new DateTime(99, 01, 01);
-            DateTime fecha_cierre=fecha;
-            if (dp_fecha.Text != "")
+            Page.Validate();
+            if (Page.IsValid)
             {
-                fecha = DateTime.Parse(dp_fecha.Text);
-            }
-            if (dp_fecha_cierre.Text != "")
-            {
-                fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
-            }
-            decimal precio_abs = decimal.Parse(txt_precio_abs.Text.Replace(".",","));
-            decimal precio_cat = decimal.Parse(txt_precio_cat.Text.Replace(".", ","));
-            string hora = ddl_hora.SelectedValue;
-            string hora_cierre = ddl_hora_cierre.SelectedValue;
+                string nombre = txt_nombre.Text;
+                DateTime fecha = new DateTime(99, 01, 01);
+                DateTime fecha_cierre = fecha;
+                if (dp_fecha.Text != "")
+                {
+                    fecha = DateTime.Parse(dp_fecha.Text);
+                }
+                if (dp_fecha_cierre.Text != "")
+                {
+                    fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
+                }
+                decimal precio_abs = decimal.Parse(txt_precio_abs.Text.Replace(".", ","));
+                decimal precio_cat = decimal.Parse(txt_precio_cat.Text.Replace(".", ","));
+                string hora = ddl_hora.SelectedValue;
+                string hora_cierre = ddl_hora_cierre.SelectedValue;
 
-            
-            string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, 2, fecha_cierre, hora_cierre);
-        }
+
+                string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, 2, fecha_cierre, hora_cierre);
+            }
+            }
 
         protected void CargarComboSedes() {
             List<sede> sedes = gestorTorneos.ObtenerSedes();
