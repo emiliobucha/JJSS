@@ -12,8 +12,9 @@ namespace JJSS_Negocio
     public class GestorTorneos
     {
         /*Ya con este codigo te genera el torneo y lo guarda en la base de datos y todo*/
-        public void GenerarNuevoTorneo(DateTime pFecha, String pNombre, Decimal pPrecio_categoria, Decimal pPrecio_absoluto, String pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre)
+        public String GenerarNuevoTorneo(DateTime pFecha, String pNombre, Decimal pPrecio_categoria, Decimal pPrecio_absoluto, String pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre)
         {
+            String sReturn = "";
             using (var db = new JJSSEntities())
             {
                 var transaction = db.Database.BeginTransaction();
@@ -37,10 +38,13 @@ namespace JJSS_Negocio
 
                     db.SaveChanges();
                     transaction.Commit();
+                    return sReturn;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    
                     transaction.Rollback();
+                    return ex.Message;
                 }
             }
 
@@ -65,7 +69,25 @@ namespace JJSS_Negocio
             return encontradoTorneo.inscripcion.ToList();
         }
 
+        public List<torneo> ObtenerTorneos()
+        {
+            
+            using (var db = new JJSSEntities())
+            {
+                var torneosDisponibles =
+                    from torneo in db.torneo
+                    where torneo.estado.nombre == "DISPONIBLE"
+                    select torneo;
+                return torneosDisponibles.ToList();
+            }
+        }
 
-
+        public List<sede> ObtenerSedes()
+        {
+            using (var db = new JJSSEntities())
+            {
+                return db.sede.ToList();
+            }
+        }
     }
 }

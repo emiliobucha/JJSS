@@ -1,0 +1,8 @@
+Primero un pequeño panorama 
+https://nicolocodev.wordpress.com/2012/01/04/primera-aplicacion-con-entity-framework/
+
+Segundo, errores comunes:
+-SqlClient, algún error que nombre el proveedor de serivcio SQL, vuelven a instalar en referencias, con NuGet el EntityFramework y solo les tomaria. Siempre y cuando en el app.config esté el proveedor.
+-Cadena de conexion, poner la cadena de conexion en ambos app.config(basicamente ambos tienen la cadena, el entity framework y el proveedor), y si sigue en el web.config solamente la cadena de conexion
+
+-

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Negocio;
+using JJSS_Entidad;
 
 
 
@@ -14,11 +15,16 @@ namespace JJSS.Presentacion
 {
     public partial class CrearTorneo : System.Web.UI.Page
     {
+        GestorTorneos gestorTorneos;
+        
 
-       
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            gestorTorneos = new GestorTorneos();
+
+            CargarComboSedes();
+           
+
 
         }
         public override void VerifyRenderingInServerForm(Control control)
@@ -43,13 +49,21 @@ namespace JJSS.Presentacion
             {
                 fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
             }
-            decimal precio_abs = decimal.Parse(txt_precio_abs.Text);
-            decimal precio_cat = decimal.Parse(txt_precio_cat.Text);
+            decimal precio_abs = decimal.Parse(txt_precio_abs.Text.Replace(".",","));
+            decimal precio_cat = decimal.Parse(txt_precio_cat.Text.Replace(".", ","));
             string hora = ddl_hora.SelectedValue;
             string hora_cierre = ddl_hora_cierre.SelectedValue;
 
-            GestorTorneos gestorTorneos = new GestorTorneos();
-            gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, 1, fecha_cierre, hora_cierre);
+            
+            string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, 2, fecha_cierre, hora_cierre);
+        }
+
+        protected void CargarComboSedes() {
+            List<sede> sedes = gestorTorneos.ObtenerSedes();
+            cboSedes.DataSource = sedes;
+            cboSedes.DataTextField = "nombre";
+            cboSedes.DataValueField = "id_sede";
+            cboSedes.DataBind();
         }
 
 

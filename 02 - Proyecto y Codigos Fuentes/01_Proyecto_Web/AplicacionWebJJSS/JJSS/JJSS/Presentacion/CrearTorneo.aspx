@@ -79,7 +79,9 @@
                                 <asp:ListItem>19:00</asp:ListItem>
                                 </asp:DropDownList></p>
 
-                            <p><label class="pull-left">Comentarios</label></p>
+                            <p><label class="pull-left">Comentarios<asp:DropDownList ID="cboSedes" runat="server">
+                                </asp:DropDownList>
+                                </label></p>
                             <textarea class="form-control"  rows="3"></textarea>
                         </div>
                         
@@ -87,6 +89,7 @@
 
 
                     </form>
+
                 </div>
                 <!--/row -->		
             </div>

@@ -1,0 +1,2 @@
+-Error en el webConfig, que te indica algo de una ruta fija, esta en la carpeta oculta dentro de  JJSS/.vs/config/applicationhost.config, alli poner la ruta del index
+-Seleccionar siempre por las dudas el inicio.aspx como pagina de inicio, al igual que siempre compilar
