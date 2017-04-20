@@ -47,7 +47,7 @@
                                 </p>
                                 <p>
                                     <label class="pull-left">Sexo:</label>
-                                    <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+                                    <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False"  OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
                                         <asp:ListItem>Femenino</asp:ListItem>
                                         <asp:ListItem>Masculino</asp:ListItem>
                                     </asp:RadioButtonList>

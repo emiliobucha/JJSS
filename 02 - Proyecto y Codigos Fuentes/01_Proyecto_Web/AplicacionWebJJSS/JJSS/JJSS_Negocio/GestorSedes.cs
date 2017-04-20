@@ -68,11 +68,11 @@ namespace JJSS_Negocio
             
             using (var db = new JJSSEntities())
             {
-                var torneosDisponibles =
+                var torneosAbiertos =
                     from torneo in db.torneo
-                    where torneo.estado.nombre == "DISPONIBLE"
+                    where torneo.estado.nombre == "InscripcionAbierta"
                     select torneo;
-                return torneosDisponibles.ToList();
+                return torneosAbiertos.ToList();
             }
         }
 

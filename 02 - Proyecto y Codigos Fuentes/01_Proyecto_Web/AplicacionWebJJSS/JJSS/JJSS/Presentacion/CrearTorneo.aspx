@@ -100,9 +100,11 @@
                                 <asp:ListItem>00:00</asp:ListItem>
                                 </asp:DropDownList></p>
 
-                            <p><label class="pull-left">Comentarios<asp:DropDownList ID="cboSedes" runat="server">
-                                </asp:DropDownList>
-                                </label></p>
+                             <p><label class="pull-left">Sede</label></p>
+                           <p> <asp:DropDownList ID="ddl_sedes" runat="server"></asp:DropDownList></p>
+
+
+                            <p><label class="pull-left">Comentarios </label></p>
                             <textarea class="form-control"  rows="3"></textarea>
                         </div>
                         

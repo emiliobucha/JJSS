@@ -22,3 +22,5 @@ Los documentos de codigo quedan excentos de las reglas por ser, obviamente, de c
 
 El resto, documentacion, imagenes, txts, etc, igual que las carpetas.
 
+Dentro del código comentarios
+//+ son cosas para reveer

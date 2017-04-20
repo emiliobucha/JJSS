@@ -35,10 +35,11 @@
           </Key>
           <Property Name="id_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="45" />
-          <Property Name="peso_desde" Type="int" />
-          <Property Name="peso_hasta" Type="int" />
+          <Property Name="peso_desde" Type="float" />
+          <Property Name="peso_hasta" Type="float" />
           <Property Name="edad_desde" Type="int" />
           <Property Name="edad_hasta" Type="int" />
+          <Property Name="sexo" Type="smallint" />
         </EntityType>
         <EntityType Name="categoria_torneo">
           <Key>
@@ -157,7 +158,7 @@
           <Property Name="id_estado" Type="int" />
           <Property Name="id_sede" Type="int" />
           <Property Name="fecha_cierre" Type="date" />
-          <Property Name="hora_cierre" Type="varchar" MaxLength="50" />
+          <Property Name="hora_cierre" Type="varchar" MaxLength="10" />
           <Property Name="precio_absoluto" Type="decimal" Precision="18" Scale="0" />
           <Property Name="precio_categoria" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
@@ -560,6 +561,7 @@
           <Property Name="edad_hasta" Type="Int32" />
           <NavigationProperty Name="categoria_torneo" Relationship="Self.categoria_torneo_categoria_torneo_id_categoria_fk" FromRole="categoria" ToRole="categoria_torneo" />
           <NavigationProperty Name="participante" Relationship="Self.participante_participante_id_categoria_fk" FromRole="categoria" ToRole="participante" />
+          <Property Name="sexo" Type="Int16" />
         </EntityType>
         <EntityType Name="categoria_torneo">
           <Key>
@@ -709,7 +711,7 @@
           <Property Name="id_estado" Type="Int32" />
           <Property Name="id_sede" Type="Int32" />
           <Property Name="fecha_cierre" Type="DateTime" Precision="0" />
-          <Property Name="hora_cierre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hora_cierre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="precio_absoluto" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="precio_categoria" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="estado" Relationship="Self.torneo_torneo_id_estado_fk" FromRole="torneo" ToRole="estado" />
@@ -1107,6 +1109,7 @@
           <EntitySetMapping Name="categoria">
             <EntityTypeMapping TypeName="JJSSModel.categoria">
               <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="peso_desde" ColumnName="peso_desde" />

@@ -16,14 +16,14 @@ namespace JJSS.Presentacion
     public partial class CrearTorneo : System.Web.UI.Page
     {
         GestorTorneos gestorTorneos;
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorTorneos = new GestorTorneos();
 
             CargarComboSedes();
-           
+
 
 
         }
@@ -34,7 +34,7 @@ namespace JJSS.Presentacion
         }
 
 
-       
+
 
         protected void btn_aceptar_Click1(object sender, EventArgs e)
         {
@@ -56,22 +56,24 @@ namespace JJSS.Presentacion
                 decimal precio_cat = decimal.Parse(txt_precio_cat.Text.Replace(".", ","));
                 string hora = ddl_hora.SelectedValue;
                 string hora_cierre = ddl_hora_cierre.SelectedValue;
-
-
-                string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, 2, fecha_cierre, hora_cierre);
+                int sede = 0;
+                int.TryParse(ddl_sedes.SelectedValue, out sede);
+                string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre);
             }
-            }
 
-        protected void CargarComboSedes() {
-            List<sede> sedes = gestorTorneos.ObtenerSedes();
-            cboSedes.DataSource = sedes;
-            cboSedes.DataTextField = "nombre";
-            cboSedes.DataValueField = "id_sede";
-            cboSedes.DataBind();
+            
         }
+    
 
-
+    protected void CargarComboSedes() {
+        List<sede> sedes = gestorTorneos.ObtenerSedes();
+        ddl_sedes.DataSource = sedes;
+        ddl_sedes.DataTextField = "nombre";
+        ddl_sedes.DataValueField = "id_sede";
+        ddl_sedes.DataBind();
+     }
     }
 
+ }
 
-}
+

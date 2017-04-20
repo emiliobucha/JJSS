@@ -9,14 +9,19 @@ using System.Data.Entity;
 
 namespace JJSS_Negocio
 {
+
     public class GestorTorneos
     {
+        private const int InscripcionAbierta = 1;
+
+
         /*Ya con este codigo te genera el torneo y lo guarda en la base de datos y todo*/
         public String GenerarNuevoTorneo(DateTime pFecha, String pNombre, Decimal pPrecio_categoria, Decimal pPrecio_absoluto, String pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre)
         {
             String sReturn = "";
             using (var db = new JJSSEntities())
             {
+                estado estadoTorneo = db.estado.Find(InscripcionAbierta);
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
@@ -29,12 +34,13 @@ namespace JJSS_Negocio
                         precio_absoluto = pPrecio_absoluto,
                         hora = pHora,
                         hora_cierre = pHora_cierre,
-                        id_sede = pSede
+                        id_sede = pSede, 
+                        estado = estadoTorneo
                     };
 
                     db.torneo.Add(nuevoTorneo);
 
-                    /*Acá puede ser asincrono, asi que puede quedar guardandose y seguir ejecutandose lo demas */
+                    //+Acá puede ser asincrono, asi que puede quedar guardandose y seguir ejecutandose lo demas /
 
                     db.SaveChanges();
                     transaction.Commit();
@@ -74,11 +80,11 @@ namespace JJSS_Negocio
 
             using (var db = new JJSSEntities())
             {
-                var torneosDisponibles =
+                var torneosAbiertos =
                     from torneo in db.torneo
-                    where torneo.estado.nombre == "DISPONIBLE"
+                    where torneo.estado.nombre == "InscripcionAbierta"
                     select torneo;
-                return torneosDisponibles.ToList();
+                return torneosAbiertos.ToList();
             }
         }
 
@@ -124,9 +130,9 @@ namespace JJSS_Negocio
 
         public string GenerarDuelos(torneo pTorneo)
         {
-            //Lógica que usamos?, random entre la cantidad de participantes?
+            //+Lógica que usamos?, random entre la cantidad de participantes?
 
-            //1. Generamos la cantidad de duelos 
+            //+1. Generamos la cantidad de duelos 
             //
             String sReturn = "";
             using (var db = new JJSSEntities())

@@ -148,13 +148,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_hora_cierre;
         
         /// <summary>
-        /// Control cboSedes.
+        /// Control ddl_sedes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboSedes;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_sedes;
         
         /// <summary>
         /// Control btn_aceptar.
