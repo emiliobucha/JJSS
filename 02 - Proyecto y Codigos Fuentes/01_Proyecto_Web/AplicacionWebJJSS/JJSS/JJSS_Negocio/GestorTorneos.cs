@@ -42,7 +42,7 @@ namespace JJSS_Negocio
                 }
                 catch (Exception ex)
                 {
-                    
+
                     transaction.Rollback();
                     return ex.Message;
                 }
@@ -54,7 +54,7 @@ namespace JJSS_Negocio
         {
             torneo encontradoTorneo = null;
             using (var db = new JJSSEntities()) {
-                encontradoTorneo= db.torneo.Find(pID);
+                encontradoTorneo = db.torneo.Find(pID);
             }
             return encontradoTorneo;
         }
@@ -71,7 +71,7 @@ namespace JJSS_Negocio
 
         public List<torneo> ObtenerTorneos()
         {
-            
+
             using (var db = new JJSSEntities())
             {
                 var torneosDisponibles =
@@ -84,9 +84,71 @@ namespace JJSS_Negocio
 
         public List<sede> ObtenerSedes()
         {
+            GestorSedes gestorSede = new GestorSedes();
+            return gestorSede.ObtenerSedes();
+        }
+
+        public String EliminarTorneoPorID(int pID) {
+            String sReturn = "";
             using (var db = new JJSSEntities())
             {
-                return db.sede.ToList();
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    db.torneo.Remove(db.torneo.Find(pID));
+
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
+        public List<participante> ObtenerParticipantesATorneo(int pID) {
+            List<inscripcion> inscripcionesTorneo = ObtenerInscripcionesATorneo(pID);
+            List<participante> participantes = new List<participante>();
+
+            foreach (var auxInscripcion in inscripcionesTorneo)
+            {
+                    participantes.Add(auxInscripcion.participante);
+            }
+
+            return participantes;
+        }
+
+        public string GenerarDuelos(torneo pTorneo)
+        {
+            //Lógica que usamos?, random entre la cantidad de participantes?
+
+            //1. Generamos la cantidad de duelos 
+            //
+            String sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    lucha nuevaLucha = new lucha() {
+                        torneo = pTorneo,
+                    };
+                    db.lucha.Add(nuevaLucha);
+
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+
+                    transaction.Rollback();
+                    return ex.Message;
+                }
             }
         }
     }

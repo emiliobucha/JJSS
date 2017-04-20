@@ -36,7 +36,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <EntityDeploy Include="JJSS_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JJSS_Model.Designer.cs</LastGenOutput>

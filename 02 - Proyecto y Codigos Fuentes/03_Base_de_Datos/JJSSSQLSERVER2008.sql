@@ -455,9 +455,7 @@ ALTER TABLE [dbo].[torneo] ADD  CONSTRAINT [DF__torneo__fecha__47DBAE45]  DEFAUL
 GO
 /****** Object:  Default [DF__torneo__hora__48CFD27E]    Script Date: 04/16/2017 19:55:18 ******/
 ALTER TABLE [dbo].[torneo] ADD  CONSTRAINT [DF__torneo__hora__48CFD27E]  DEFAULT (NULL) FOR [hora]
-GO
-/****** Object:  Default [DF__torneo__precio__49C3F6B7]    Script Date: 04/16/2017 19:55:18 ******/
-ALTER TABLE [dbo].[torneo] ADD  CONSTRAINT [DF__torneo__precio__49C3F6B7]  DEFAULT (NULL) FOR [precio]
+
 GO
 /****** Object:  Default [DF__torneo__id_estad__4AB81AF0]    Script Date: 04/16/2017 19:55:18 ******/
 ALTER TABLE [dbo].[torneo] ADD  CONSTRAINT [DF__torneo__id_estad__4AB81AF0]  DEFAULT (NULL) FOR [id_estado]
@@ -590,4 +588,8 @@ ALTER TABLE [dbo].[torneo]  WITH CHECK ADD  CONSTRAINT [torneo$torneo_id_sede_fk
 REFERENCES [dbo].[sede] ([id_sede])
 GO
 ALTER TABLE [dbo].[torneo] CHECK CONSTRAINT [torneo$torneo_id_sede_fk]
+GO
+DBCC CHECKIDENT (estado, RESEED, 0)
+GO
+INSERT INTO [dbo].[estado] (nombre) VALUES ('InscripcionAbierta'),('InscripcionCerrada'),('EnCurso'),('Finalizado')
 GO
