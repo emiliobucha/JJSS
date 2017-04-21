@@ -7,8 +7,8 @@
     		<a href="#home" class="smoothScroll">Home</a>
 			<a href="#about" class="smoothScroll">About</a>
 			<a href="#torneos" class="smoothScroll">Torneos</a> 
-            <a href="#services" class="smoothScroll">Services</a>
-			<a href="#contact" class="smoothScroll">Contact</a>
+            <a href="#services" class="smoothScroll">Clases</a>
+			<a href="#contact" class="smoothScroll">Seminarios</a>
 </asp:Content>
 
 <asp:Content ID="InicioEncabezado"  ContentPlaceHolderID="cphEncabezado" runat="server">

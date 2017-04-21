@@ -9,7 +9,7 @@
 
 
 <asp:Content ID="crearTorneoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
-    <div id="headerwrap">
+    <div id="headerwrap3">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -74,7 +74,7 @@
                                 </div>  
 
                                 <!--Direccion-->
-                                 <div class="row centered"><p>&nbsp;</p></div>
+                               <!--  <div class="row centered"><p>&nbsp;</p></div>
 
                                     <div class="row centered">
                                     <div class="col-md-2"></div>
@@ -83,7 +83,7 @@
                                         <asp:Label ID="lbl_Direccion" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                     </div>
                                 </div>
-                                
+                                -->
                                 <!--Fecha-->
                                  <div class="row centered"><p>&nbsp;</p></div>
 

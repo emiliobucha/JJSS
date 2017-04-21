@@ -21,8 +21,9 @@ namespace JJSS
             pnl_Inscripcion.Visible = false;
             btn_aceptar.Visible = false;
             gestorInscripciones = new GestorInscripciones();
+            if (!IsPostBack) { 
             CargarComboTorneos();
-            CargarComboFajas();
+            CargarComboFajas(); }
             gestorDeTorneos = new GestorTorneos();
         }
 
@@ -60,11 +61,16 @@ namespace JJSS
 
         protected void CargarComboTorneos()
         {
-            List<torneo> torneos = gestorInscripciones.ObtenerTorneos();
-            ddl_torneos.DataSource = torneos;
-            ddl_torneos.DataTextField = "nombre";
-            ddl_torneos.DataValueField = "id_torneo";
-            ddl_torneos.DataBind();
+            var x = ddl_torneos.SelectedValue;
+            if (ddl_torneos.DataSource == null)
+            { 
+
+                List<torneo> torneos = gestorInscripciones.ObtenerTorneos();
+                ddl_torneos.DataSource = torneos;
+                ddl_torneos.DataTextField = "nombre";
+                ddl_torneos.DataValueField = "id_torneo";
+                ddl_torneos.DataBind();
+            }
         }
 
         protected void CargarComboFajas()

@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="crearTorneoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
-    <div id="headerwrap">
+    <div id="headerwrap3">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
