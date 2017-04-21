@@ -22,8 +22,8 @@ namespace JJSS.Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorTorneos = new GestorTorneos();
+            if(!IsPostBack) CargarComboSedes();
 
-            CargarComboSedes();
 
 
 
