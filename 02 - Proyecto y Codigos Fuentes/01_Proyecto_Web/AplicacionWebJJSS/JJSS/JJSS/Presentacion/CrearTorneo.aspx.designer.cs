@@ -121,13 +121,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_fecha_cierre;
         
         /// <summary>
-        /// Control Compare_fechas.
+        /// Control val_fechas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator Compare_fechas;
+        protected global::System.Web.UI.WebControls.CustomValidator val_fechas;
         
         /// <summary>
         /// Control txt_precio_cat.

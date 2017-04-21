@@ -18,6 +18,7 @@ namespace JJSS.Presentacion
         GestorTorneos gestorTorneos;
 
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorTorneos = new GestorTorneos();
@@ -52,6 +53,9 @@ namespace JJSS.Presentacion
                 {
                     fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
                 }
+
+                
+
                 decimal precio_abs = decimal.Parse(txt_precio_abs.Text.Replace(".", ","));
                 decimal precio_cat = decimal.Parse(txt_precio_cat.Text.Replace(".", ","));
                 string hora = ddl_hora.SelectedValue;
@@ -65,14 +69,42 @@ namespace JJSS.Presentacion
         }
     
 
-    protected void CargarComboSedes() {
-        List<sede> sedes = gestorTorneos.ObtenerSedes();
-        ddl_sedes.DataSource = sedes;
-        ddl_sedes.DataTextField = "nombre";
-        ddl_sedes.DataValueField = "id_sede";
-        ddl_sedes.DataBind();
-     }
+        protected void CargarComboSedes()
+        {
+            List<sede> sedes = gestorTorneos.ObtenerSedes();
+            ddl_sedes.DataSource = sedes;
+            ddl_sedes.DataTextField = "nombre";
+            ddl_sedes.DataValueField = "id_sede";
+            ddl_sedes.DataBind();
+        }
+
+      
+      
+
+        protected void val_fechas_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            try
+            {
+                DateTime fecha = DateTime.Parse(dp_fecha.Text);
+                DateTime fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
+                if (fecha_cierre <= fecha)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }
+            }
+            catch
+            {
+                args.IsValid = false;
+            }
+        }
+
+
     }
+    
 
  }
 

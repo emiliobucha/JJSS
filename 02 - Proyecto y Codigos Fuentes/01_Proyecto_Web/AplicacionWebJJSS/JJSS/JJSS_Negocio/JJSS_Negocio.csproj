@@ -45,12 +45,6 @@
     <Compile Include="GestorTorneos.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJSS_Entidad\JJSS_Entidad.csproj">
-      <Project>{4ecc85fe-afad-4f73-8d5d-e5866bfaf404}</Project>
-      <Name>JJSS_Entidad</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -70,6 +64,12 @@
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Entity" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JJSS_Entidad\JJSS_Entidad.csproj">
+      <Project>{4ecc85fe-afad-4f73-8d5d-e5866bfaf404}</Project>
+      <Name>JJSS_Entidad</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

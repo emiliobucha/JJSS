@@ -56,7 +56,7 @@
                                 <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                             </div>
                             <div class="col-md-1">
-                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  />
+                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  OnClientClick="javascript:alert('Próximamente');" />
                             </div>
                         </div>
                                                 
@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-md-3">
                                 <asp:RequiredFieldValidator ID="rfv_fecha_cierre" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar fecha de cierre de inscripciones" ControlToValidate="dp_fecha_cierre"></asp:RequiredFieldValidator>
-                                <asp:CompareValidator ID="Compare_fechas" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="La fecha de cierre no puede ser posterior a la del torneo" ControlToValidate="dp_fecha" ControlToCompare="dp_fecha_cierre" Operator="LessThanEqual"></asp:CompareValidator>
+                                <asp:CustomValidator ID="val_fechas" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha de cierre de inscripción no puede ser mayor a la fecha de comienzo del torneo" OnServerValidate="val_fechas_ServerValidate"></asp:CustomValidator>
                             </div>
                         </div>
 
@@ -219,4 +219,5 @@
             }
             );
     </script>
+
 </asp:Content>
