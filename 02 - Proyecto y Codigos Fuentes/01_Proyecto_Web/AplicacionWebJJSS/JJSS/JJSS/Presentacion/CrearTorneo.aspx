@@ -22,112 +22,193 @@
 
     <section id="crearTorneo" title="crearTorneo"></section>
     <asp:Panel ID="pnlFormulario" runat="server">
-    <div id="crearTorneowrap">
-        <div class="container">
-            <div class="row mt centered">
+        <div id="crearTorneowrap">
+            <div class="container">
+                <div class="row mt centered">
 
-                <h1>FORMULARIO DE ALTA</h1>
-                <p>&nbsp;</p>                            
-
-                <div class="col-lg-5 mt centered">
-                    <form id="form1" runat="server">
-                        <div class="form-group ">
-                            <p><label class="pull-left">Nombre</label></p>
-                            <p><asp:TextBox ID="txt_nombre" runat="server" onblur="ValidatorOnChange(event)" placeholder="Ingrese nombre" CssClass="form-control"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="requeridoNombre" CssClass="text-danger" runat="server" ErrorMessage="Debe ingresar un nombre" ControlToValidate="txt_nombre" EnableClientScript="false"></asp:RequiredFieldValidator>
-                            </p>
-                            
-                            
-                            <p><label class="pull-left">Fecha a producirse</label></p>
-                            <p><asp:TextBox ID="dp_fecha" placeholder="Seleccione fecha del torneo" CssClass="datepicker" runat="server"></asp:TextBox></p>
-                            <asp:RequiredFieldValidator ID="rfv_fecha" runat="server"  Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar fecha del torneo" ControlToValidate="dp_fecha"></asp:RequiredFieldValidator>
-                            
-                            <p><label class="pull-left">Fecha de cierre de inscripciones</label></p>
-                            <p><asp:TextBox ID="dp_fecha_cierre" placeholder="Seleccione fecha de cierre de inscripciones" CssClass="datepicker" runat="server"></asp:TextBox></p>
-                            <asp:RequiredFieldValidator ID="rfv_fecha_cierre" runat="server"  Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar fecha de cierre de inscripciones" ControlToValidate="dp_fecha_cierre"></asp:RequiredFieldValidator>
-                            <asp:CompareValidator ID="Compare_fechas" runat="server"  Display="Dynamic" CssClass="text-danger" ErrorMessage="La fecha de cierre no puede ser posterior a la del torneo" ControlToValidate="dp_fecha" ControlToCompare="dp_fecha_cierre" Operator="LessThanEqual"></asp:CompareValidator>
-
-                            <p><label class="pull-left">Precio de inscripcion categoria</label></p>
-                            <p><asp:TextBox ID="txt_precio_cat" CssClass="form-control" placeholder="Ingrese precio de inscripcion categoria" runat="server"></asp:TextBox></p>
-                            <asp:RequiredFieldValidator ID="requeridoPrecioCat" runat="server"  Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de categoria" ControlToValidate="txt_precio_cat"></asp:RequiredFieldValidator>
-
-                            <p><label class="pull-left">Precio de inscripcion absoluta</label></p>
-                            <p><asp:TextBox ID="txt_precio_abs" CssClass="form-control" placeholder="Ingrese precio de inscripcion absoluta" runat="server"></asp:TextBox></p>
-                            <asp:RequiredFieldValidator ID="requeridoPrecioAbs" runat="server"  Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio absoluto" ControlToValidate="txt_precio_abs"></asp:RequiredFieldValidator>
-
-                            <p><label class="pull-left">Hora de inicio del torneo</label></p>
-                            <p><asp:DropDownList ID="ddl_hora" CssClass="form-control" runat="server">
-                                <asp:ListItem>06:00</asp:ListItem>
-                                <asp:ListItem>07:00</asp:ListItem>
-                                <asp:ListItem>08:00</asp:ListItem>
-                                <asp:ListItem>09:00</asp:ListItem>
-                                <asp:ListItem>10:00</asp:ListItem>
-                                <asp:ListItem>11:00</asp:ListItem>
-                                <asp:ListItem Selected="True">12:00</asp:ListItem>
-                                <asp:ListItem>13:00</asp:ListItem>
-                                <asp:ListItem>14:00</asp:ListItem>
-                                <asp:ListItem>15:00</asp:ListItem>
-                                <asp:ListItem>16:00</asp:ListItem>
-                                <asp:ListItem>17:00</asp:ListItem>
-                                <asp:ListItem>18:00</asp:ListItem>
-                                <asp:ListItem>19:00</asp:ListItem>
-                                <asp:ListItem>20:00</asp:ListItem>
-                                <asp:ListItem>21:00</asp:ListItem>
-                                <asp:ListItem>22:00</asp:ListItem>
-                                <asp:ListItem>23:00</asp:ListItem>
-                                </asp:DropDownList></p>
-
-                            <p><label class="pull-left">Hora de cierre de inscripciones</label></p>
-                            <p><asp:DropDownList ID="ddl_hora_cierre" CssClass="form-control" runat="server">
-                                <asp:ListItem>06:00</asp:ListItem>
-                                <asp:ListItem>07:00</asp:ListItem>
-                                <asp:ListItem>08:00</asp:ListItem>
-                                <asp:ListItem>09:00</asp:ListItem>
-                                <asp:ListItem>10:00</asp:ListItem>
-                                <asp:ListItem>11:00</asp:ListItem>
-                                <asp:ListItem Selected="True">12:00</asp:ListItem>
-                                <asp:ListItem>13:00</asp:ListItem>
-                                <asp:ListItem>14:00</asp:ListItem>
-                                <asp:ListItem>15:00</asp:ListItem>
-                                <asp:ListItem>16:00</asp:ListItem>
-                                <asp:ListItem>17:00</asp:ListItem>
-                                <asp:ListItem>18:00</asp:ListItem>
-                                <asp:ListItem>19:00</asp:ListItem>
-                                <asp:ListItem>20:00</asp:ListItem>
-                                <asp:ListItem>21:00</asp:ListItem>
-                                <asp:ListItem>22:00</asp:ListItem>
-                                <asp:ListItem>23:00</asp:ListItem>
-                                <asp:ListItem>00:00</asp:ListItem>
-                                </asp:DropDownList></p>
-
-                             <p><label class="pull-left">Sede</label></p>
-                           <p> <asp:DropDownList ID="ddl_sedes" runat="server"></asp:DropDownList></p>
-
-
-                            <p><label class="pull-left">Comentarios </label></p>
-                            <textarea class="form-control"  rows="3"></textarea>
-                        </div>
-                        
-                          <p> <asp:Button ID="btn_aceptar" class="btn btn-default"  ValidationGroup="vgTorneo" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1" OnClientClick="btn_aceptar_Click1" CausesValidation="true"/></p>
-
-
-                    </form>
-
+                    <h1>FORMULARIO DE ALTA</h1>
+                    <p>&nbsp;</p>
                 </div>
-                <!--/row -->		
+
+                <form id="form1" runat="server">
+                    <div class="form-group ">
+                        <!--Nombre-->
+                        <div class="row centered">
+                            <div class="col-md-2">
+                                <label class="pull-left 4">Nombre</label>
+                            </div>
+                            <div class="col-md-5">
+                                <asp:TextBox ID="txt_nombre" runat="server" onblur="ValidatorOnChange(event)" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:RequiredFieldValidator ID="requeridoNombre" CssClass="text-danger" runat="server" ErrorMessage="Debe ingresar un nombre" ControlToValidate="txt_nombre" EnableClientScript="false"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+
+                        <div class="row centered">    <p>&nbsp;</p> </div>
+
+                        <!--Sedes-->
+                        <div class="row centered">
+                            <div class="col-md-2">
+                                <label class="pull-left 4">Sede</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
+                            </div>
+                            <div class="col-md-1">
+                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  />
+                            </div>
+                        </div>
+                                                
+                        <div class="row centered">    <p>&nbsp;</p> </div>
+
+                        <!--Fecha de torneo-->
+                        <div class="row centered">
+                            <div class="col-md-2">
+                                <label class="pull-left">Fecha a producirse</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="dp_fecha" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha del torneo"></asp:TextBox>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="pull-left">Hora de inicio</label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <asp:DropDownList ID="ddl_hora" runat="server" CssClass="caja2 ">
+                                    <asp:ListItem>06:00</asp:ListItem>
+                                    <asp:ListItem>07:00</asp:ListItem>
+                                    <asp:ListItem>08:00</asp:ListItem>
+                                    <asp:ListItem>09:00</asp:ListItem>
+                                    <asp:ListItem>10:00</asp:ListItem>
+                                    <asp:ListItem>11:00</asp:ListItem>
+                                    <asp:ListItem Selected="True">12:00</asp:ListItem>
+                                    <asp:ListItem>13:00</asp:ListItem>
+                                    <asp:ListItem>14:00</asp:ListItem>
+                                    <asp:ListItem>15:00</asp:ListItem>
+                                    <asp:ListItem>16:00</asp:ListItem>
+                                    <asp:ListItem>17:00</asp:ListItem>
+                                    <asp:ListItem>18:00</asp:ListItem>
+                                    <asp:ListItem>19:00</asp:ListItem>
+                                    <asp:ListItem>20:00</asp:ListItem>
+                                    <asp:ListItem>21:00</asp:ListItem>
+                                    <asp:ListItem>22:00</asp:ListItem>
+                                    <asp:ListItem>23:00</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:RequiredFieldValidator ID="rfv_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe ingresar fecha del torneo"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+
+                        <div class="row centered"><p>&nbsp;</p></div>
+
+                        <!--Fecha de cierre de inscripcion-->
+                        <div class="row centered">
+                            <div class="col-md-2">
+                                <label class="pull-left ">Cierre de inscripcion</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="dp_fecha_cierre" placeholder="Seleccione fecha de cierre de inscripciones" CssClass="datepicker caja2" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="pull-left">Hora de cierre</label>
+                            </div>
+                            <div class="col-md-2">
+                                <asp:DropDownList ID="ddl_hora_cierre" CssClass="form-control" runat="server">
+                                    <asp:ListItem>06:00</asp:ListItem>
+                                    <asp:ListItem>07:00</asp:ListItem>
+                                    <asp:ListItem>08:00</asp:ListItem>
+                                    <asp:ListItem>09:00</asp:ListItem>
+                                    <asp:ListItem>10:00</asp:ListItem>
+                                    <asp:ListItem>11:00</asp:ListItem>
+                                    <asp:ListItem Selected="True">12:00</asp:ListItem>
+                                    <asp:ListItem>13:00</asp:ListItem>
+                                    <asp:ListItem>14:00</asp:ListItem>
+                                    <asp:ListItem>15:00</asp:ListItem>
+                                    <asp:ListItem>16:00</asp:ListItem>
+                                    <asp:ListItem>17:00</asp:ListItem>
+                                    <asp:ListItem>18:00</asp:ListItem>
+                                    <asp:ListItem>19:00</asp:ListItem>
+                                    <asp:ListItem>20:00</asp:ListItem>
+                                    <asp:ListItem>21:00</asp:ListItem>
+                                    <asp:ListItem>22:00</asp:ListItem>
+                                    <asp:ListItem>23:00</asp:ListItem>
+                                    <asp:ListItem>00:00</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:RequiredFieldValidator ID="rfv_fecha_cierre" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar fecha de cierre de inscripciones" ControlToValidate="dp_fecha_cierre"></asp:RequiredFieldValidator>
+                                <asp:CompareValidator ID="Compare_fechas" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="La fecha de cierre no puede ser posterior a la del torneo" ControlToValidate="dp_fecha" ControlToCompare="dp_fecha_cierre" Operator="LessThanEqual"></asp:CompareValidator>
+                            </div>
+                        </div>
+
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
+
+                        <!--Precio por categoria-->
+                        <div class="row centered">
+                            <div class="col-md-3">
+                                <label class="pull-left left">Precio de inscripcion categoria</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txt_precio_cat" CssClass="form-control" placeholder="Ingrese precio de inscripcion categoria" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:RequiredFieldValidator ID="requeridoPrecioCat" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de categoria" ControlToValidate="txt_precio_cat"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+
+                         <div class="row centered"><p>&nbsp;</p></div>
+
+                        <!--Precio absoluto-->
+                        <div class="row centered">
+                            <div class="col-md-3">
+                                <label class="pull-left">Precio de inscripcion absoluta</label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txt_precio_abs" CssClass="form-control" placeholder="Ingrese precio de inscripcion absoluta" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:RequiredFieldValidator ID="requeridoPrecioAbs" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio absoluto" ControlToValidate="txt_precio_abs"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+
+                          <div class="row centered"><p>&nbsp;</p></div>
+
+                         <!--Comentarios-->
+                        <div class="row centered">
+                            <div class="col-md-2">
+                                <label class="pull-left">Comentarios </label>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                         <div class="row centered"><p>&nbsp;</p></div>
+
+                        <!--Boton-->
+                        <div class="row centered">                         
+                                <asp:Button ID="btn_aceptar" class="btn btn-default" ValidationGroup="vgTorneo" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1" OnClientClick="btn_aceptar_Click1" CausesValidation="true" />                         
+                        </div>
+                    </div>
+
+                </form>              
+
             </div>
-            <!-- /row -->
+
         </div>
-        <!-- /container -->
-    </div>
-    <!-- /aboutwrap -->
+        <!-- /row -->
     </asp:Panel>
 
 
 </asp:Content>
 
 <asp:Content  ID="cphP" ContentPlaceHolderID="cphP"  runat="server">
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(
             function () {
                 $(".datepicker").datepicker({

@@ -272,6 +272,45 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
 }
 
+#headerwrap2 {
+    background: url(../img/FondoLogo.jpg) no-repeat center top;
+    margin-top: 0px;
+    padding-top: 120px;
+    text-align: center;
+    background-attachment: relative;
+    background-position: center center;
+    min-height: 700px;
+    width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#headerwrap3 {
+    background: url(../img/Torneo1.jpg) no-repeat center top;
+    margin-top: 0px;
+    padding-top: 120px;
+    text-align: center;
+    background-attachment: relative;
+    background-position: center center;
+    min-height: 700px;
+    width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
 #headerwrap h1 {
 	color:#ffffff;
 	margin-top: 90px;
@@ -281,6 +320,52 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 	text-shadow: 2px 2px 2px #000;
 }
+
+
+/*#headerwrap2 h1 {
+    color: #222;
+    margin-top: 90px;
+    padding-bottom: 30px;
+    letter-spacing: 8px;
+    font-size: 300px;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #000;
+    background: transparent;
+}*/
+
+#headerwrap2 h1 {
+    color: #ff0000;
+    width: 100%;
+    background: transparent;
+    filter: alpha(opacity= 25);
+    opacity: .70;
+    text-align:center;
+    font-size: 300px;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-transform: uppercase;
+    /*
+    text-shadow: 2px 2px 0 black, -2px -2px black, 2px -2px black, -2px 2px black, 0 2px black, 2px 0 black, -2px 0 black, 0 -2px black;
+        */
+}
+
+#headerwrap3 h1 {
+    color: #ff0000;
+    width: 100%;
+    background: transparent;
+    filter: alpha(opacity= 25);
+    opacity: .40;
+    text-align: center;
+    font-size: 300px;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-transform: uppercase;
+    /*
+    text-shadow: 2px 2px 0 black, -2px -2px black, 2px -2px black, -2px 2px black, 0 2px black, 2px 0 black, -2px 0 black, 0 -2px black;
+        */
+}
+
+
 
 /* About Wrap & Conf */
 #aboutwrap {
@@ -334,6 +419,11 @@ h1, h2, h3, h4, h5, h6 {
 	background-image: url(../img/about-sep.jpg);
 }
 
+/*Sperador de Torneo*/
+.torneo {
+    background-image: url(../img/Torneo1.jpg);
+}
+
 /* Portfolio Wrap Section */
 #portfoliowrap {
 	display: block;
@@ -348,6 +438,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 .mt {
 	margin-top: 50px;
+    top: -35px;
+    left: 215px;
 }
 
 .mb {

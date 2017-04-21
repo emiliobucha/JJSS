@@ -13,10 +13,10 @@
 
 <asp:Content ID="InicioEncabezado"  ContentPlaceHolderID="cphEncabezado" runat="server">
     <section id="home" title="home"></section>
-	<div id="headerwrap">
+	<div id="headerwrap2">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-3 col-md-offset-1">
 					<h1>JJSS</h1>
 				</div>
 			</div><! --/row -->
@@ -31,12 +31,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 name">
-					<img class="img-responsive" src="assets/img/pic.png">
-					<p>HINOJAL</p>
+					<img class="img-responsive" src="../img/Mariano.jpg">
+					<p>MARIANO HINOJAL</p>
 					<div class="name-label"></div>
 				</div><! --/col-lg-4-->
 				<div class="col-lg-8 name-desc">
-					<h2>TALENTED DESIGNER & <br/>FRONT-END DEVELOPER <br/>ENJOYING THE BEAUTIFUL NYC</h2>
+					<h2>THE JIU JITSU <br/>LIFESTILE</h2>
 					<div class="name-zig"></div>
 					
 					<div class="col-md-6">
@@ -55,7 +55,7 @@
 	</div><!-- /aboutwrap -->
 	
 	<! -- ABOUT SEPARATOR -->
-	<div class="sep about" data-stellar-background-ratio="0.5"></div>
+	<div class="sep torneo" data-stellar-background-ratio="0.5"></div>
 	
 	<! -- TORNEOS SECTION -->
 	<section id="torneos" title="torneos"></section>
@@ -68,7 +68,7 @@
 	                    <div class="project">
 	                        <div class="photo-wrapper">
 	                            <div class="photo">
-	                            	<a class="fancybox" href="assets/img/portfolio/port04.jpg"><img class="img-responsive" src="assets/img/portfolio/port04.jpg" alt=""></a>
+	                            	<a class="fancybox" href="../img/torneo01.jpg"><img class="img-responsive" src="../img/torneo01.jpg" alt=""></a>
 	                            </div>
 	                            <div class="overlay"></div>
 	                        </div>
@@ -81,7 +81,7 @@
 	                    <div class="project">
 	                        <div class="photo-wrapper">
 	                            <div class="photo">
-	                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
+	                            	<a class="fancybox" href="../img/torneo02.jpg"><img class="img-responsive" src="../img/torneo02.jpg" alt=""></a>
 	                            </div>
 	                            <div class="overlay"></div>
 	                        </div>
@@ -94,7 +94,7 @@
 	                    <div class="project">
 	                        <div class="photo-wrapper">
 	                            <div class="photo">
-	                            	<a class="fancybox" href="assets/img/portfolio/port06.jpg"><img class="img-responsive" src="assets/img/portfolio/port06.jpg" alt=""></a>
+	                            	<a class="fancybox" href="../img/torneo03.jpg"><img class="img-responsive" src="../img/torneo03.jpg" alt=""></a>
 	                            </div>
 	                            <div class="overlay"></div>
 	                        </div>
@@ -103,45 +103,7 @@
 				</div><!-- col-lg-4 -->
 			</div><!-- /row -->
 	
-			<div class="row mt">
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-					<div class="project-wrapper">
-	                    <div class="project">
-	                        <div class="photo-wrapper">
-	                            <div class="photo">
-	                            	<a class="fancybox" href="assets/img/portfolio/port01.jpg"><img class="img-responsive" src="assets/img/portfolio/port01.jpg" alt=""></a>
-	                            </div>
-	                            <div class="overlay"></div>
-	                        </div>
-	                    </div>
-	                </div>
-				</div><!-- col-lg-4 -->
-				
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-					<div class="project-wrapper">
-	                    <div class="project">
-	                        <div class="photo-wrapper">
-	                            <div class="photo">
-	                            	<a class="fancybox" href="assets/img/portfolio/port02.jpg"><img class="img-responsive" src="assets/img/portfolio/port02.jpg" alt=""></a>
-	                            </div>
-	                            <div class="overlay"></div>
-	                        </div>
-	                    </div>
-	                </div>
-				</div><!-- col-lg-4 -->
-				
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-					<div class="project-wrapper">
-	                    <div class="project">
-	                        <div class="photo-wrapper">
-	                            <div class="photo">
-	                            	<a class="fancybox" href="assets/img/portfolio/port03.jpg"><img class="img-responsive" src="assets/img/portfolio/port03.jpg" alt=""></a>
-	                            </div>
-	                            <div class="overlay"></div>
-	                        </div>
-	                    </div>
-	                </div>
-				</div><!-- col-lg-4 -->
+			
 			</div><!-- /row -->
 		</div><! --/container -->
 		<div class="container">
