@@ -102,5 +102,18 @@ namespace JJSS
 
 
         }
+        protected void btnGenerarListado_Click(object sender, EventArgs e)
+        {
+            int idTorneo = 0;
+            int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+            String sFile = gestorDeTorneos.GenararListado(idTorneo);
+
+            Response.Clear();
+            Response.AddHeader("Content-Type", "Application/octet-stream");
+            Response.AddHeader("Content-Disposition", "attachment; filename=\"\"" + System.IO.Path.GetFileName(sFile) + "\"\"");
+            Response.WriteFile(sFile);
+           
+
+        }
     }
 }

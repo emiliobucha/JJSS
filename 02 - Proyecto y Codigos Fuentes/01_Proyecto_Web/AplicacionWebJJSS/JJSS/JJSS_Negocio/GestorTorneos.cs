@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data.Entity;
-
+using System.Data;
+using System.Configuration;
 
 namespace JJSS_Negocio
 {
@@ -128,6 +129,31 @@ namespace JJSS_Negocio
             return participantes;
         }
 
+        public List<Object> ListadoParticipantes(int pID)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var participantes = from inscr in db.inscripcion
+                                    join part in db.participante on inscr.id_participante equals part.id_participante
+                                    join cat_tor in db.categoria_torneo on inscr.id_categoria_torneo equals cat_tor.id_categoria_torneo
+                                    where inscr.id_torneo == pID
+                                    select new 
+                                    {
+                                        par_nombre = part.nombre,
+                                        par_apellido = part.apellido,
+                                        par_fecha_nac = part.fecha_nacimiento,
+                                        par_sexo = part.sexo,
+                                        par_peso = part.peso,
+                                        par_academia = part.academia.nombre,
+                                        par_faja = cat_tor.faja.color,
+                                        par_categoria = cat_tor.categoria.nombre,
+                                        
+                                    };
+                
+                return  participantes.ToList<Object>();
+            }
+        }
+
         public string GenerarDuelos(torneo pTorneo)
         {
             //+Lógica que usamos?, random entre la cantidad de participantes?
@@ -156,6 +182,15 @@ namespace JJSS_Negocio
                     return ex.Message;
                 }
             }
+        }
+
+        public String GenararListado(int pID)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+
+            return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID));
+
+
         }
     }
 }

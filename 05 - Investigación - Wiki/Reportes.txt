@@ -1,0 +1,7 @@
+El manejo de reportes es un tanto diferente a lo ya visto en PAV.
+El formato visual del reporte si es lo mismo, las diferencias son:
+	Para agregar cosas al datasource del reporte se edita por XML (Abrir con...editor XML)
+	El archivo se genera en una carpeta temporal en el servidor en la cual revisa si hay archivos viejos como para no se llene de archivos al vicio (GetTempFileName)
+	Un reporte puede tener parametros fijos, el cual se pasan al metodo creando un arreglo de parametros de reporte.( En este caso seria el torneo,por ejemplo)
+	
+	
