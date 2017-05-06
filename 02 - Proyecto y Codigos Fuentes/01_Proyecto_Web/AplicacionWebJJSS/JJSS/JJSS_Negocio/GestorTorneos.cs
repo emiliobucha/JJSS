@@ -193,7 +193,7 @@ namespace JJSS_Negocio
                 return  participantes.ToList<Object>();
             }
         }
-
+        
         /*
          * Aun no aplica
          */

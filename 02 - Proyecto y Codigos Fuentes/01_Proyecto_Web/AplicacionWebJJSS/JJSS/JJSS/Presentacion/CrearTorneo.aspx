@@ -157,7 +157,9 @@
                                 <asp:TextBox ID="txt_precio_cat" CssClass="form-control" placeholder="Ingrese precio de inscripcion categoria" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-4">
-                                <asp:RequiredFieldValidator ID="requeridoPrecioCat" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de categoria" ControlToValidate="txt_precio_cat"></asp:RequiredFieldValidator>
+                                 <asp:RequiredFieldValidator ID="requeridoPrecioCat" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de categoria" ControlToValidate="txt_precio_cat"></asp:RequiredFieldValidator>
+                                <asp:CompareValidator ID="positivoPrecioCat" runat="server" ErrorMessage="El precio debe ser un valor mayor a 0" ControlToValidate="txt_precio_cat" CssClass="text-danger" ValueToCompare="0" Type="Double" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
+                                <asp:CompareValidator ID="tipoPrecioCat" runat="server" ErrorMessage="El precio debe ser un valor numérico" ControlToValidate="txt_precio_cat" CssClass="text-danger" Type="Double" Operator="DataTypeCheck" Display="Dynamic"></asp:CompareValidator>
                             </div>
                         </div>
 
@@ -173,6 +175,9 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:RequiredFieldValidator ID="requeridoPrecioAbs" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio absoluto" ControlToValidate="txt_precio_abs"></asp:RequiredFieldValidator>
+                                <asp:CompareValidator ID="positivoPrecioAbs" runat="server" ErrorMessage="El precio debe ser un valor mayor a 0" ControlToValidate="txt_precio_abs" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
+                                <asp:CompareValidator ID="tipoPrecioAbs" runat="server" ErrorMessage="El precio debe ser un valor numérico" ControlToValidate="txt_precio_abs" CssClass="text-danger" Type="Double" Operator="DataTypeCheck" Display="Dynamic"></asp:CompareValidator>
+
                             </div>
                         </div>
 

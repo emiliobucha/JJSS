@@ -39,7 +39,7 @@ namespace JJSS.Presentacion
 
         protected void btn_aceptar_Click1(object sender, EventArgs e)
         {
-            Page.Validate();
+            //Page.Validate();
             if (Page.IsValid)
             {
                 string nombre = txt_nombre.Text;

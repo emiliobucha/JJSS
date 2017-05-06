@@ -149,5 +149,6 @@ namespace JJSS_Negocio
                 return db.faja.ToList();
             }
         }
+
     }
 }
