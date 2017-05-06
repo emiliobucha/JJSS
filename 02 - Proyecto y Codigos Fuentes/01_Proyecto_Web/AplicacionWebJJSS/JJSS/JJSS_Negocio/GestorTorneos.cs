@@ -10,13 +10,29 @@ using System.Configuration;
 
 namespace JJSS_Negocio
 {
-
+    /*
+     * Clase que nos permite gestionar Torneos
+     */
     public class GestorTorneos
     {
         private const int InscripcionAbierta = 1;
 
+        /*
+         * Generar Nuevo torneo nos permite crear un nuevo torneo 
+         * Parametros: 
+         *              pFecha : DateTime que nos indica en que fecha se va a realizar el torneo
+         *              pNombre: String indica el nombre del torneo
+         *              pPrecio_categoria: Decimal precio segun la categoria
+         *              pPrecio_absoluto: Decimal precio de la inscripcion al torneo
+         *              pHora: String Hora en la cual se va a realizar el torneo
+         *              pSede: Entero Id de la sede en el cual se va a realizar
+         *              pFecha_cierre: DateTime que indica la fecha de cierre de inscripciones
+         *              pHora_cierre: String que indica la hora de cierre de inscripciones
+         * Retorno: String 
+         *          "" Resultado exitoso de la transacciones
+         *          ex.message Resultado erroneo indicando el mensaje de la excepcion
+         */
 
-        /*Ya con este codigo te genera el torneo y lo guarda en la base de datos y todo*/
         public String GenerarNuevoTorneo(DateTime pFecha, String pNombre, Decimal pPrecio_categoria, Decimal pPrecio_absoluto, String pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre)
         {
             String sReturn = "";
@@ -57,6 +73,9 @@ namespace JJSS_Negocio
 
         }
 
+        /*
+         * Buscamos un torneo en particular por su ID
+         */
         public torneo BuscarTorneoPorID(int pID)
         {
             torneo encontradoTorneo = null;
@@ -66,6 +85,10 @@ namespace JJSS_Negocio
             return encontradoTorneo;
         }
 
+        /*
+         * Obtenemos todas las inscripciones que estan un particular torneo
+         * 
+         */
         public List<inscripcion> ObtenerInscripcionesATorneo(int pID)
         {
             torneo encontradoTorneo = null;
@@ -76,6 +99,9 @@ namespace JJSS_Negocio
             return encontradoTorneo.inscripcion.ToList();
         }
 
+        /*
+         * Lista de todos los torneos que están disponibles a inscribirse
+         */
         public List<torneo> ObtenerTorneos()
         {
 
@@ -89,12 +115,19 @@ namespace JJSS_Negocio
             }
         }
 
+        /*
+         * Obtener todas las sedes de los disponibles para que se realicen los torneos
+         */
         public List<sede> ObtenerSedes()
         {
             GestorSedes gestorSede = new GestorSedes();
             return gestorSede.ObtenerSedes();
         }
 
+
+        /*
+         * Eliminar un torneo indicando el ID
+         */
         public String EliminarTorneoPorID(int pID) {
             String sReturn = "";
             using (var db = new JJSSEntities())
@@ -117,6 +150,9 @@ namespace JJSS_Negocio
             }
         }
 
+        /*
+         * Obtenemos un listado de los paticipantes a un torneo 
+         */
         public List<participante> ObtenerParticipantesATorneo(int pID) {
             List<inscripcion> inscripcionesTorneo = ObtenerInscripcionesATorneo(pID);
             List<participante> participantes = new List<participante>();
@@ -129,6 +165,10 @@ namespace JJSS_Negocio
             return participantes;
         }
 
+        /*
+         * Obtenemos un listado de todos los participantes que estan en un torneo con datos de su categoria a la cual esta inscripto, la faja, y datos
+         * propios del participante
+         */
         public List<Object> ListadoParticipantes(int pID)
         {
             using (var db = new JJSSEntities())
@@ -153,6 +193,10 @@ namespace JJSS_Negocio
                 return  participantes.ToList<Object>();
             }
         }
+
+        /*
+         * Aun no aplica
+         */
 
         public string GenerarDuelos(torneo pTorneo)
         {
@@ -184,6 +228,11 @@ namespace JJSS_Negocio
             }
         }
 
+
+        /*
+         * Genera listado de participantes a un torneo con su reporte.
+         * Retorno: String del archivo resultante de la generacion del reporte en PDF
+         */
         public String GenararListado(int pID)
         {
             GestorReportes gestorReportes = new GestorReportes();

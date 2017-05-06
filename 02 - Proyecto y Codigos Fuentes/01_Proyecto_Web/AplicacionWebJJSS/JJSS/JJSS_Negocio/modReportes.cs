@@ -6,11 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace JJSS_Negocio
-{
+{ /*
+    *   Modulo estatico con metodos Auxliares
+    */
     public static class ModReportes
     {
 
-           
+           /*
+            * Obtiene una referencia de la ubicacion de la generacion del reporte
+            */
         public static System.IO.Stream ObtenerReporte(String pReporte)
         {
             System.Reflection.Assembly oCurrentAssembly;
@@ -19,6 +23,11 @@ namespace JJSS_Negocio
             return oCurrentAssembly.GetManifestResourceStream(name + "." + pReporte + ".rdlc");
 
         }
+
+        /*
+         * Obtiene archivo temporal donde se va a generar el reporte dentro del servidor
+         * Tambien se encarga de limpiar si este poseen 2 dias de antigüedad, para evitar sobrecargas
+         */
         public static String GetTempFileName(String pTempDir, String pNombre, String pExt)
         {
 
