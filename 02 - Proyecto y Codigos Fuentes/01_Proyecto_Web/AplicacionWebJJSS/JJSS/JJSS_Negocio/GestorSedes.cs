@@ -8,10 +8,16 @@ using System.Data.Entity;
 
 
 namespace JJSS_Negocio
-{
+{   /*
+    * Clase para gestionar sedes de los torneos
+    */
     public class GestorSedes
     {
-        /*Ya con este codigo te genera el torneo y lo guarda en la base de datos y todo*/
+        /*Genera una nueva sede para el torneo
+         * Parametros: 
+         *              pNombre : String que indica el nombre de la nueva sede
+         *              pDireccion: String que indica la direccion de esta nueva sede
+         */
         public String GenerarNuevaSede(string pNombre, direccion pDireccion)
         {
             String sReturn = "";
@@ -44,6 +50,11 @@ namespace JJSS_Negocio
 
         }
 
+        /*
+         * Busca una sede por ID
+         * Parametros: ID de la sede
+         * Retorno: Entidad sede escogida
+         */
         public sede BuscarSedePorID(int pID)
         {
             sede sedeEncontrada = null;
@@ -53,6 +64,11 @@ namespace JJSS_Negocio
             return sedeEncontrada;
         }
 
+        /*
+         * Lista todos los torneos que posee una sede
+         * Parametros: ID de la sede 
+         * Retorno: Lista de Torneos los cuales tienen su participacion en esa sede
+         */
         public List<torneo> ObtenerTorneoEnSede(int pID)
         {
             sede sedeEncontrada = null;
@@ -63,19 +79,12 @@ namespace JJSS_Negocio
             return sedeEncontrada.torneo.ToList();
         }
 
-        public List<torneo> ObtenerTorneos()
-        {
-            
-            using (var db = new JJSSEntities())
-            {
-                var torneosAbiertos =
-                    from torneo in db.torneo
-                    where torneo.estado.nombre == "InscripcionAbierta"
-                    select torneo;
-                return torneosAbiertos.ToList();
-            }
-        }
 
+       
+        /*
+         * Obtenemos todas las sedes
+         * Retorno: Listado total de todas las sedes
+         */
         public List<sede> ObtenerSedes()
         {
             using (var db = new JJSSEntities())
