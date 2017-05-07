@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
 
 
-
-
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
     		<a href="#home" class="smoothScroll">Home</a>
 			<a href="#about" class="smoothScroll">About</a>
@@ -24,9 +22,11 @@
 	</div><! --/headerwrap -->
 </asp:Content>
 
-<asp:Content ID="InicioContenido" ContentPlaceHolderID="cphContenido" runat="Server">   
 
+<asp:Content ID="InicioContenido" ContentPlaceHolderID="cphContenido" runat="Server">  
     <section id="about" title="about"></section>
+
+    <!--PRESENTACION DE LA ACADEMIA-->
 	<div id="aboutwrap">
 		<div class="container">
 			<div class="row">
@@ -54,86 +54,113 @@
 		</div><!-- /container -->
 	</div><!-- /aboutwrap -->
 	
-	<! -- ABOUT SEPARATOR -->
+	<!-- ABOUT SEPARATOR -->
 	<div class="sep torneo" data-stellar-background-ratio="0.5"></div>
-	
-	<! -- TORNEOS SECTION -->
-	<section id="torneos" title="torneos"></section>
-	<div id="torneoswrap">
-		<div class="container">
-			<div class="row mt centered">
-				<h1>ULTIMOS TORNEOS</h1>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-					<div class="project-wrapper">
-	                    <div class="project">
-	                        <div class="photo-wrapper">
-	                            <div class="photo">
-	                            	<a class="fancybox" href="../img/torneo01.jpg"><img class="img-responsive" src="../img/torneo01.jpg" alt=""></a>
-	                            </div>
-	                            <div class="overlay"></div>
-	                        </div>
-	                    </div>
-	                </div>
-				</div><!-- col-lg-4 -->
-				
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-					<div class="project-wrapper">
-	                    <div class="project">
-	                        <div class="photo-wrapper">
-	                            <div class="photo">
-	                            	<a class="fancybox" href="../img/torneo02.jpg"><img class="img-responsive" src="../img/torneo02.jpg" alt=""></a>
-	                            </div>
-	                            <div class="overlay"></div>
-	                        </div>
-	                    </div>
-	                </div>
-				</div><!-- col-lg-4 -->
-				
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-					<div class="project-wrapper">
-	                    <div class="project">
-	                        <div class="photo-wrapper">
-	                            <div class="photo">
-	                            	<a class="fancybox" href="../img/torneo03.jpg"><img class="img-responsive" src="../img/torneo03.jpg" alt=""></a>
-	                            </div>
-	                            <div class="overlay"></div>
-	                        </div>
-	                    </div>
-	                </div>
-				</div><!-- col-lg-4 -->
-			</div><!-- /row -->
-	
-			
-			</div><!-- /row -->
-		</div><! --/container -->
-		<div class="container">
-			<div class="row mt centered">
-				<h1>ADMINISTRACION DE TORNEOS</h1>
-                <div class="col-lg-4 proc">                    
-					<i class="fa fa-pencil" id="Insrcibir_Torneo"></i>               
-					<h3><a href="InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
-					<p>Accede a los torneos que estan pronto a desarrollar e inscribete.</p>
-				</div>
-				<div class="col-lg-4 proc">                    
-					<i class="fa fa-heart"></i>
-					<h3>Mis torneos</h3>
-					<p>Pudes ver aqui el historial de los torneos en que has competido.</p>
-				</div>
-				<div class="col-lg-4 proc">
-					<i class="fa fa-eye"></i>
-					<h3>Visualizar torneos</h3>
-					<p>Accede a todos los torneos que se han desarrollado. Un filtro de busqueda te facilitara el trabajo</p>
-				</div>
-				<div class="col-lg-4 proc" id="Generar_Torneo">
-					<i class="fa fa-cogs"></i>
-					<h3 class="logo"><a href="CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
-					<p>Genera un nuevo torneo. Esta herramienta no solo te permitira crearlo, tambien tendras un seguimiento del mismo.</p>
-				</div>				
-			</div><! --/row -->
-		</div><! --/container -->
-	</div><! --/Portfoliowrap -->
 
-	<! -- PORTFOLIO SEPARATOR -->
+    <!-- TORNEOS SECTION -->
+    <section id="torneos" title="torneos"></section>
+    <div id="torneoswrap">
+
+        <!--APARTADO DE TORNEOS FUTUROS-->
+        <div class="container">
+            <div class="row mt centered">
+
+                <h1>ULTIMOS TORNEOS</h1>
+                <!--Primer Torneo-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                    <div class="project-wrapper">
+                        <div class="project">
+                            <div class="photo-wrapper">
+                                <div class="photo">
+                                    <a class="fancybox" href="../img/torneo01.jpg">
+                                        <img class="img-responsive" src="../img/torneo01.jpg" alt=""></a>
+                                </div>
+                                <div class="overlay"></div>
+                            </div>
+                        </div>
+                    </div>                    
+                <button type="button" class="btn" data-toggle="modal" data-target="#inscripcionTorneo" data-whatever="@mdo">Inscribir</button>
+                </div>
+                <!--/col-->
+
+                <!--Segundo Torneo-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                    <div class="project-wrapper">
+                        <div class="project">
+                            <div class="photo-wrapper">
+                                <div class="photo">
+                                    <a class="fancybox" href="../img/torneo02.jpg">
+                                        <img class="img-responsive" src="../img/torneo02.jpg" alt=""></a>
+                                </div>
+                                <div class="overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+
+                <!--Tercer Torneo-->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                    <div class="project-wrapper">
+                        <div class="project">
+                            <div class="photo-wrapper">
+                                <div class="photo">
+                                    <a class="fancybox" href="../img/torneo03.jpg">
+                                        <img class="img-responsive" src="../img/torneo03.jpg" alt=""></a>
+                                </div>
+                                <div class="overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+            </div>
+            <!-- /row -->
+        </div>
+        <!--/container -->
+
+
+        <!--APARTADO DE ADMINISTRACION DE TORNEOS -->
+        <div class="container">
+            <div class="row mt centered">
+                <h1>ADMINISTRACION DE TORNEOS</h1>
+
+                <!--col insrcibir_Torneo-->
+                <div class="col-lg-4 proc">
+                    <i class="fa fa-pencil" id="insrcibir_Torneo"></i>
+                    <h3><a href="InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
+                    <p>Accede a los torneos que estan pronto a desarrollar e inscribete.</p>
+                </div><!--/col-->
+
+                <!--col mis_Torneos-->
+                <div class="col-lg-4 proc" id="mis_Torneos">
+                    <i class="fa fa-heart"></i>
+                    <h3>Mis torneos</h3>
+                    <p>Pudes ver aqui el historial de los torneos en que has competido.</p>
+                </div><!--/col-->
+
+                <!--col visualizar_Torneo-->
+                <div class="col-lg-4 proc" id="visualizar_Torneo">
+                    <i class="fa fa-eye"></i>
+                    <h3>Visualizar torneos</h3>
+                    <p>Accede a todos los torneos que se han desarrollado. Un filtro de busqueda te facilitara el trabajo</p>
+                </div><!--/col-->
+
+                <!--col Generar_Torneo-->
+                <div class="col-lg-4 proc" id="Generar_Torneo">
+                    <i class="fa fa-cogs"></i>
+                    <h3 class="logo"><a href="CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
+                    <p>Genera un nuevo torneo. Esta herramienta no solo te permitira crearlo, tambien tendras un seguimiento del mismo.</p>
+                </div><!--/col-->
+            </div>
+            <!--/row -->
+        </div>
+        <!--/container -->
+    </div>
+    <!--/Portfoliowrap -->
+
+
+	<!-- PORTFOLIO SEPARATOR -->
 	<div class="sep portfolio" data-stellar-background-ratio="0.5"></div>
 	
 	
@@ -229,9 +256,9 @@
 		</div><! --/container -->
 	</div><! --/testimonials -->
 	
-	<! -- SERVICE SECTION -->
+	<!-- SERVICE SECTION -->
 	<section id="contact" title="contact"></section>
-	<! -- CONTACT SEPARATOR -->
+	<!-- CONTACT SEPARATOR -->
 	<div class="sep contact" data-stellar-background-ratio="0.5"></div>
 	
 	<div id="contactwrap">
@@ -258,8 +285,6 @@
 					  <div class="form-group">
 					    <label for="exampleInputName1">Your Name</label>
 					    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
-					    <label for="exampleInputEmail1">Email address</label>
-					    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
 					    <label for="exampleInputText1">Message</label>
 					    <textarea class="form-control" rows="3"></textarea>
 					  </div>
@@ -267,8 +292,178 @@
 					</form>
 				</div>
 			
-			</div><! --/row -->
+			</div><!--/row -->
 		</div><!-- /container -->
 	</div>
-    
+
+    <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE-->
+    <div class="modal fade" id="inscripcionTorneo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <form runat="server">
+                    <!--Cabezera-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Inscripción</h4>
+                    </div>
+
+                    <!--Cuerpo-->
+
+                    <div class="modal-body">
+                        <div class="form-group">
+
+                            <!--Ingresar DNI-->
+                            <div class="row center-block">
+                                <div class="col-lg-3"></div>
+                                <div class=" col-lg-1">
+                                    <label for="recipient-name" class="control-label">DNI:</label>
+                                </div>
+                                <div class="col-lg-5">
+                                    <input type="text" class="form-control" id="inscribir_dni">
+                                </div>
+                            </div>
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
+                            <!--Panel de info de usuarios extra-->
+                            <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server">
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--Ingresar nombre-->
+
+                                <div class="row centered">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4">
+                                        <label class="pull-left">Ingresar nombre:</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <asp:TextBox ID="txt_nombre" class="caja2" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" CssClass="text-danger" Text="*" ></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                 <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--Ingresar apellido-->
+                                <div class="row centered">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4">
+                                        <label class="pull-left">Ingresar apellido:</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <asp:TextBox ID="txt_apellido" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <asp:RequiredFieldValidator ID="requeridoApellido" runat="server" ErrorMessage="Debe ingresar el apellido" ControlToValidate="txt_apellido" CssClass="text-danger" Text="*"  ></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                 <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--Sexo-->
+
+                                <div class="row centered">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4">
+                                        <label class="pull-left">Sexo:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+                                            <asp:ListItem>Femenino</asp:ListItem>
+                                            <asp:ListItem>Masculino</asp:ListItem>
+                                        </asp:RadioButtonList>
+                                    </div>
+                                </div>
+
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--Peso-->
+
+                                <div class="row centered">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4">
+                                        <label class="pull-left">Peso:</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <asp:TextBox class="caja2" ID="txt_peso" runat="server" placeholder="Ingrese peso"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Text="*" ></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                 <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--Edad-->
+
+                                <div class="row centered">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4">
+                                        <label class="pull-left">Edad</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <asp:TextBox class="caja2" ID="txt_edad" runat="server" placeholder="Ingrese edad"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger" Text="*" ></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                 <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--Faja-->
+
+                                <div class="row centered">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4">
+                                        <label class="pull-left">Faja:</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                             </asp:Panel>
+
+                            <!--Seccion de Errores-->
+                            <asp:Panel ID="panel_errores"  CssClass="panel panel-default" runat="server">
+                                      <asp:ValidationSummary ID="ValidationSummary1" runat="server"  HeaderText="Han ocurrido los siguientes errores..." ShowMessageBox="false" DisplayMode="BulletList" ShowSummary="true" CssClass="text-danger" />  
+                            </asp:Panel>
+                        </div>
+                    </div>
+                    
+
+                    <!--Botonero-->
+                    <div class="modal-footer" runat="server">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--SCRIPT-->
+    <script>
+        $('#inscripcionTorneo').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    </script>
 </asp:Content>
