@@ -30,7 +30,7 @@ namespace JJSS.Presentacion
         }
         protected void CargarComboFajas()
         {
-            List<faja> fajas = gestorInscripciones.ObtenerFajas();            
+            List<faja> fajas = gestorInscripciones.ObtenerFajas();
             ddl_fajas.DataSource = fajas;
             ddl_fajas.DataTextField = "color";
             ddl_fajas.DataValueField = "id_faja";
@@ -40,14 +40,15 @@ namespace JJSS.Presentacion
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
 
-            //+Ver Bien el SelectedValue del combo
-            int idTorneo = 0;
-            int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+            //+Acá tendria que entrar como parametro el id del torneo, cuando generemos dinamicamente las imagenes y las cosas de los torneos, el mismo boton ya tiene que tener el id del torneo
+            int idTorneo = 1;
+            //int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
 
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
             float peso = float.Parse(txt_peso.Text);
             int edad = int.Parse(txt_edad.Text);
+            int dni = int.Parse(txt_dni.Text);
 
             int idFaja = 0;
             int.TryParse(ddl_fajas.SelectedValue, out idFaja);
@@ -55,7 +56,29 @@ namespace JJSS.Presentacion
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
-            gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo);
+            gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo, dni);
+
+        }
+
+        protected void btn_confirmarDni_Click(object sender, EventArgs e)
+        {
+           
+
+            participante participanteEncontrado = gestorInscripciones.ObtenerParticipanteporDNI(int.Parse(txt_dni.Text));
+
+            //Partipante ya estaba inscripto con ese dni
+            if (participanteEncontrado != null) return;
+
+            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txt_dni.Text));
+            if (alumnoEncontrado != null)
+            {
+                //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
+                txt_apellido.ReadOnly = true;
+                txt_nombre.ReadOnly = true;
+                txt_edad.ReadOnly = true;
+                txt_apellido.Text = alumnoEncontrado.apellido;
+                txt_nombre.Text = alumnoEncontrado.nombre;
+            }
 
         }
     }

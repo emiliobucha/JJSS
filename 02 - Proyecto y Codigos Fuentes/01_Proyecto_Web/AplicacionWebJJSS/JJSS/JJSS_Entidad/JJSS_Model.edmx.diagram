@@ -42,6 +42,8 @@
         <AssociationConnector Association="JJSSModel.lucha_lucha_id_resultado_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.lucha_lucha_id_torneo_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.torneo_torneo_id_sede_fk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="8.375" PointY="9" />
+        <AssociationConnector Association="JJSSModel.FK__particapa_id_al__48DE5BA8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

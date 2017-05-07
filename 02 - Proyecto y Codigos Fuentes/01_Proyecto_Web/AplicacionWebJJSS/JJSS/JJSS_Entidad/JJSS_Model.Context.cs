@@ -41,5 +41,6 @@ namespace JJSS_Entidad
         public virtual DbSet<resultado> resultado { get; set; }
         public virtual DbSet<sede> sede { get; set; }
         public virtual DbSet<torneo> torneo { get; set; }
+        public virtual DbSet<alumno> alumno { get; set; }
     }
 }

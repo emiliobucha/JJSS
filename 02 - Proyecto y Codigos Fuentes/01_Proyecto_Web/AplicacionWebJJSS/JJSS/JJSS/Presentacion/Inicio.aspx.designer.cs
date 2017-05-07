@@ -13,6 +13,33 @@ namespace JJSS.Presentacion {
     public partial class Inicio {
         
         /// <summary>
+        /// Control pnl_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_dni;
+        
+        /// <summary>
+        /// Control txt_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_dni;
+        
+        /// <summary>
+        /// Control btn_confirmarDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_confirmarDni;
+        
+        /// <summary>
         /// Control pnl_Inscripcion.
         /// </summary>
         /// <remarks>

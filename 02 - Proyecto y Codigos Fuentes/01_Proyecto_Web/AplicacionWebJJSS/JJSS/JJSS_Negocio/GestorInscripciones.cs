@@ -11,6 +11,8 @@ namespace JJSS_Negocio
     /*Clase que se encarga de gestionar las inscripciones a Torneos*/
     public class GestorInscripciones
     {
+        private alumno alumnoExistente;
+
         /*Método que permite crear un objeto de Entidad de la clase Inscripción
          * Como asi tambien genera una nueva categoria si esta no estaba 
          * Y si el participante no estaba ya inscripto
@@ -23,6 +25,7 @@ namespace JJSS_Negocio
          *              pEdad : Entero edad del participante
          *              pFaja : Entero id de la faja que posee el participante
          *              pSexo : Short 0 Mujer 1 Hombre
+         *              pDni : 
          *  Retornos: String
          *              "" : Transaccion Correcta
          *              ex.Message : Mensaje de error provocado por una excepción
@@ -30,7 +33,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, float pPeso, int pEdad, int pFaja, short pSexo)
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, float pPeso, int pEdad, int pFaja, short pSexo, int pDni)
         {
 
             String sReturn = "";
@@ -57,18 +60,21 @@ namespace JJSS_Negocio
 
                     //Nuevos
                     //+Reveer la edad
-                    var participanteExistente = from part in db.participante
-                                                         where (part.nombre == pNombre)
-                                                         && (part.apellido == pApellido)
-                                                         && (part.peso == pPeso)
-                                                         select part;
+                   
 
-                    if (participanteExistente.Count() > 0)
+                    if (ObtenerParticipanteporDNI(pDni) != null)
                     {
                         return "Participante exitente";
                     }
 
-                    participante nuevoParticipante = new participante()
+                   //alumnoExistente = ObtenerAlumnoPorDNI(pDni);
+
+                    participante nuevoParticipante;
+
+
+
+
+                    nuevoParticipante = new participante()
                     {
                         nombre = pNombre,
                         apellido = pApellido,
@@ -149,5 +155,18 @@ namespace JJSS_Negocio
                 return db.faja.ToList();
             }
         }
+
+        public alumno ObtenerAlumnoPorDNI(int pDni)
+        {
+            GestorAlumnos gestorAlumnos = new GestorAlumnos();
+
+            return  gestorAlumnos.ObtenerAlumnoPorDNI(pDni);
+        }
+        public participante ObtenerParticipanteporDNI(int pDni)
+        {
+            GestorParticipantes gestorParticipantes = new GestorParticipantes();
+            return gestorParticipantes.ObtenerParticipantePorDNI(pDni);
+        }
+
     }
 }

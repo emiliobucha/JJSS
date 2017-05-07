@@ -33,6 +33,8 @@ namespace JJSS_Entidad
         public Nullable<int> id_categoria { get; set; }
         public Nullable<short> sexo { get; set; }
         public Nullable<float> peso { get; set; }
+        public int dni { get; set; }
+        public Nullable<int> id_alumno { get; set; }
     
         public virtual academia academia { get; set; }
         public virtual categoria categoria { get; set; }
@@ -44,5 +46,6 @@ namespace JJSS_Entidad
         public virtual ICollection<lucha> lucha { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lucha> lucha1 { get; set; }
+        public virtual alumno alumno { get; set; }
     }
 }

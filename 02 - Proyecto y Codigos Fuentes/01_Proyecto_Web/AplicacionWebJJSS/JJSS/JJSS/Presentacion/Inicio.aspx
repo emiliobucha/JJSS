@@ -314,18 +314,24 @@
                         <div class="form-group">
 
                             <!--Ingresar DNI-->
+                            <asp:Panel ID="pnl_dni" CssClass="panel panel-default" runat="server">
                             <div class="row center-block">
                                 <div class="col-lg-3"></div>
                                 <div class=" col-lg-1">
                                     <label for="recipient-name" class="control-label">DNI:</label>
                                 </div>
                                 <div class="col-lg-5">
-                                    <input type="text" class="form-control" id="inscribir_dni">
+                                     <asp:TextBox ID="txt_dni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
+                            <div class="modal-footer" runat="server">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <asp:Button ID="btn_confirmarDni" onServerClick="btn_confirmarDni_Click" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />
+                            </div>
+                            </asp:Panel>
 
                             <!--Panel de info de usuarios extra-->
                             <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server">
