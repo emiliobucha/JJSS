@@ -21,9 +21,11 @@ namespace JJSS
             pnl_Inscripcion.Visible = false;
             btn_aceptar.Visible = false;
             gestorInscripciones = new GestorInscripciones();
-            if (!IsPostBack) { 
-            CargarComboTorneos();
-            CargarComboFajas(); }
+            if (!IsPostBack)
+            {
+                CargarComboTorneos();
+                CargarComboFajas();
+            }
             gestorDeTorneos = new GestorTorneos();
         }
 
@@ -63,7 +65,7 @@ namespace JJSS
         {
             var x = ddl_torneos.SelectedValue;
             if (ddl_torneos.DataSource == null)
-            { 
+            {
 
                 List<torneo> torneos = gestorInscripciones.ObtenerTorneos();
                 ddl_torneos.DataSource = torneos;
@@ -112,8 +114,27 @@ namespace JJSS
             Response.AddHeader("Content-Type", "Application/octet-stream");
             Response.AddHeader("Content-Disposition", "attachment; filename=\"\"" + System.IO.Path.GetFileName(sFile) + "\"\"");
             Response.WriteFile(sFile);
-           
 
+
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            int dni = 0;
+            int.TryParse(txtDni.Text, out dni);
+
+
+
+            // aca tiene que tomar el dni y buscarlo para ver si existe como alumno, si existe le pide el peso y lo inscribe 
+            // sino abre el pnl_inscripcion
+
+
+
+
+
+
+
+            btn_aceptar.Visible = true;
         }
     }
 }
