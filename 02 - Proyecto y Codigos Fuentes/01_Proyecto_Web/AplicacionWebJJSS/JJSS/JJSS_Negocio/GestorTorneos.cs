@@ -198,6 +198,10 @@ namespace JJSS_Negocio
          * Aun no aplica
          */
 
+        /*
+         * Aun no aplica
+         */
+
         public string GenerarDuelos(torneo pTorneo)
         {
             //+Lógica que usamos?, random entre la cantidad de participantes?
