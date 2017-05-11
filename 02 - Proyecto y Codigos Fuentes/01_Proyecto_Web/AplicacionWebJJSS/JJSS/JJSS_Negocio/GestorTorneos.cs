@@ -241,10 +241,20 @@ namespace JJSS_Negocio
         public String GenararListado(int pID)
         {
             GestorReportes gestorReportes = new GestorReportes();
+            torneo torneoAListar = BuscarTorneoPorID(pID);
+            GestorSedes gestorSedes = new GestorSedes();
+            gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
+            gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
 
-            return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID));
+
+
+            return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID), torneoAListar.nombre, gestorSedes.BuscarSedePorID(torneoAListar.id_sede).nombre, gestorSedes.ObtenerDireccion(torneoAListar.id_sede), torneoAListar.fecha.ToString(),torneoAListar.hora);
 
 
         }
+
+        
+
+
     }
 }
