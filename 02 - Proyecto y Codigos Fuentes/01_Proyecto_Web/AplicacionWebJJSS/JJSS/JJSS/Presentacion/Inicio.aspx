@@ -303,12 +303,13 @@
 		</div><!-- /container -->
 	</div>
 
-    <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE-->
-    <div class="modal fade" id="inscripcionTorneo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+    <form runat="server">
 
-                <form runat="server">
+        <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE-->
+        <div class="modal fade" id="inscripcionTorneo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
                     <!--Cabecera-->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -320,69 +321,100 @@
                     <div class="modal-body">
                         <div class="form-group">
 
-                            <!--Ingresar DNI-->
-                            <asp:Panel ID="pnl_dni" CssClass="panel panel-default" runat="server">
-                            <div class="row center-block">
-                                <div class="col-lg-3"></div>
-                                <div class=" col-lg-1">
-                                    <label for="recipient-name" class="control-label">DNI:</label>
-                                </div>
-                                <div class="col-lg-5">
-                                     <asp:TextBox ID="txt_dni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="row centered">
-                                <p>&nbsp;</p>
-                            </div>
-                            <div class="modal-footer" runat="server">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <%--<asp:Button ID="btn_confirmarDni" onClick="btn_confirmarDni_Click" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />--%>
-                                <asp:Button ID="btn_confirmar" runat="server" OnClick="btn_confirmarDni_Click" CssClass="btn btn-default" Text="Aceptar" type="submit" />
-                            </div>
-                            </asp:Panel>
-
-                            <!--Panel de info de usuarios extra-->
-                            <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server"  Enabled="false">
+                            <!-- PANEL DNI-->
+                            <asp:Panel ID="pnl_dni" CssClass="panel panel-default" runat="server" Visible="false">
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <!--Ingresar DNI-->
+
+                                <div class="row centered">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-1">
+                                        <label class="pull-left"> DNI:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:TextBox ID="txtDni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click"  UseSubmitBehavior="false" />
+                                    </div>
+                                    
+                                </div>
+                                <div class="row centered">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ValidationGroup="grupoDni" ControlToValidate="txtDni" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                            </asp:Panel>
+
+                            <!--PANEL DE INSCRIPCION-->
+
+                            <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server" Visible="false">
+
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="row centered">
+                                    <div class="col centered">
+                                        <asp:Label ID="Label6" runat="server" Text="Datos del Participante" Font-Bold="true" Font-Size="Large"></asp:Label>
+                                    </div>
+                                </div>
+
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+
                                 <!--Ingresar nombre-->
 
                                 <div class="row centered">
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2"></div>
                                     <div class="col-md-4">
                                         <label class="pull-left">Ingresar nombre:</label>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-4  pull-left">
                                         <asp:TextBox ID="txt_nombre" class="caja2" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1">
-                                        <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" CssClass="text-danger" Text="*" ></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" Text="*" ControlToValidate="txt_nombre" CssClass="text-danger"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
-                                 <div class="row centered">
+
+                                <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
                                 <!--Ingresar apellido-->
+
                                 <div class="row centered">
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2"></div>
                                     <div class="col-md-4">
                                         <label class="pull-left">Ingresar apellido:</label>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <asp:TextBox ID="txt_apellido" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1">
-                                        <asp:RequiredFieldValidator ID="requeridoApellido" runat="server" ErrorMessage="Debe ingresar el apellido" ControlToValidate="txt_apellido" CssClass="text-danger" Text="*"  ></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoApellido" runat="server" ErrorMessage="Debe ingresar el apellido" ControlToValidate="txt_apellido" CssClass="text-danger" Text="*"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
-                                 <div class="row centered">
+
+                                <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
                                 <!--Sexo-->
 
                                 <div class="row centered">
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2"></div>
                                     <div class="col-md-4">
                                         <label class="pull-left">Sexo:</label>
                                     </div>
@@ -394,83 +426,167 @@
                                     </div>
                                 </div>
 
+
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
                                 <!--Peso-->
 
                                 <div class="row centered">
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2"></div>
                                     <div class="col-md-4">
                                         <label class="pull-left">Peso:</label>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <asp:TextBox class="caja2" ID="txt_peso" runat="server" placeholder="Ingrese peso"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1">
-                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Text="*" ></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Text="*"></asp:RequiredFieldValidator>
+                                        <%--<asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
+                                        <asp:CompareValidator ID="positivoPeso" runat="server" ErrorMessage="El peso debe ser un valor mayor a 0" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" Text="*"></asp:CompareValidator>
+
                                     </div>
                                 </div>
-                                 <div class="row centered">
+
+                                <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
                                 <!--Edad-->
 
                                 <div class="row centered">
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2"></div>
                                     <div class="col-md-4">
                                         <label class="pull-left">Edad</label>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <asp:TextBox class="caja2" ID="txt_edad" runat="server" placeholder="Ingrese edad"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1">
-                                        <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger" Text="*" ></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger" Text="*"></asp:RequiredFieldValidator>
+                                        <%--<asp:CompareValidator ID="tipoEdad" runat="server" ErrorMessage="La edad debe ser un valor numérico" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
+                                        <asp:CompareValidator ID="positivoEdad" runat="server" ErrorMessage="La edad debe ser un valor mayor a 0" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" Text="*"></asp:CompareValidator>
+
                                     </div>
                                 </div>
-                                 <div class="row centered">
+
+                                <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
                                 <!--Faja-->
 
                                 <div class="row centered">
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2"></div>
                                     <div class="col-md-4">
                                         <label class="pull-left">Faja:</label>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
 
+
                                 <div class="row centered">
                                     <p>&nbsp;</p>
-                                </div>
-                             </asp:Panel>
-
-                            <!--Seccion de Errores-->
-                            <asp:Panel ID="panel_errores"  CssClass="panel panel-default" runat="server">
-                                      <asp:ValidationSummary ID="ValidationSummary1" runat="server"  HeaderText="Han ocurrido los siguientes errores..." ShowMessageBox="false" DisplayMode="BulletList" ShowSummary="true" CssClass="text-danger" />  
+                                </div>                               
                             </asp:Panel>
+                            <!-- Panel de errores -->
+                             <asp:Panel ID="pnl_Errores" CssClass="panel panel-default" runat="server" Visible="true"> 
+                                 <asp:ValidationSummary ID="ValidationSummary1"  HeaderText="Han ocurrido los siguentes errores:" ShowMessageBox="false" DisplayMode="BulletList" ShowSummary="true" CssClass="text-danger"  runat="server" />
+                             </asp:Panel>                             
                         </div>
                     </div>
-                    
 
                     <!--Botonero-->
                     <div class="modal-footer" runat="server">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" />
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+
+        <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE         ***DNI***       -->
+        <div class="modal fade" id="inscripcionTorneoDNI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2" >
+            <div class="modal-dialog" role="document" >
+                <div class="modal-content" >
 
 
+                    <!--Cabecera-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabe2">Inscripción</h4>
+                    </div>
+
+                    <!--Cuerpo-->
+
+                    <div class="modal-body">
+                        <div class="form-group">
+
+                            <!--Ingresar DNI-->
+                            <asp:Panel ID="pnl_dni1" CssClass="panel panel-default" runat="server">
+                                  <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <div class="row center-block">
+                                    <div class="col-lg-3"></div>
+                                    <div class=" col-lg-1">
+                                        <label for="recipient-name" class="control-label">DNI:</label>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <asp:TextBox ID="txt_dni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </div>
+
+                    <!--Botonero-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <%--<asp:Button ID="btn_confirmarDni" onClick="btn_confirmarDni_Click" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />--%>
+                        
+                       <!-- <asp:Button ID="btn_confirmar_" runat="server" CssClass="btn btn-default" Text="Aceptar" type="submit" />
+                        -->
+
+                       <!--
+                      <asp:Button ID="btn_confirmar_dni" runat="server" Text="Aceptar" OnClick="btn_confirmar_dni_Click" CssClass="btn btn-default" />
+                       -->
+                        <!--
+                        <INPUT  type="button" NAME="confirmarDNI" id="btn_confirmar_dni" value="aceptar" onclick="btn_confirmar_dni_onclick()">
+                        -->
+                        <!--
+                            <asp:Button ID="btn_confirmar_dni1" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btn_confirmar_dni_Click"  type="submit" />
+                      -->
+                       <!--
+                        <button id="btn_confirmar_dni" onclick="btn_confirmar_dni_Click()" type="button" class="btn" data-toggle="modal" data-target="#inscripcionTorneo" data-dismiss="modal" data-whatever="@mdo">Inscribir</button>
+                         -->               
+                        <!--
+                        <a id="btn_confirmar_dni" class="btn btn-default" href="javascript:__doPostBack('btn_confirmar_dni_Click','')"  >Aceptar</a>
+                        -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      
     <!--SCRIPT-->
-    <script>
+
+
+    <script> 
         $('#inscripcionTorneo').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) 
+            var recipient = button.data('whatever') 
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+        
+
+        $('#inscripcionTorneoDNI').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var recipient = button.data('whatever') // Extract info from data-* attributes
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -480,4 +596,7 @@
             modal.find('.modal-body input').val(recipient)
         })
     </script>
-</asp:Content>
+        
+    </form>
+
+    </asp:Content>

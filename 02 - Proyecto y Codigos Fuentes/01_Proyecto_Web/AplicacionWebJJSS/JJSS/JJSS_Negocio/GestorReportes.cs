@@ -19,9 +19,17 @@ namespace JJSS_Negocio
          * Parámetros: Listado de Participantes
          * Retorno: String ruta y nombre completo del archivo generado en PDF
          */
-        public string GenerarReporteListadoParticipantes(List<Object> pListado)
+        public string GenerarReporteListadoParticipantes(List<Object> pListado, String pTorneoNombre, String pSede, String pDireccion, String pFecha , String pHora)
         {
-            Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
+            Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[6];
+
+            oPar[0] = new Microsoft.Reporting.WinForms.ReportParameter("pTorneoNombre", pTorneoNombre);
+            oPar[1] = new Microsoft.Reporting.WinForms.ReportParameter("pCantidad", pListado.Count.ToString());
+            oPar[2] = new Microsoft.Reporting.WinForms.ReportParameter("pSede", pSede);
+            oPar[3] = new Microsoft.Reporting.WinForms.ReportParameter("pDireccion", pDireccion);
+            oPar[4] = new Microsoft.Reporting.WinForms.ReportParameter("pFecha", pFecha.Substring(0,10));
+            oPar[5] = new Microsoft.Reporting.WinForms.ReportParameter("pHora", pHora);
+
 
             String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "Listado", "pdf");
             System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptListadoTorneo"));
@@ -57,7 +65,7 @@ namespace JJSS_Negocio
                 oReportViewer.LocalReport.LoadReportDefinition(ModReportes.ObtenerReporte(pReporte));
 
                 oReportViewer.LocalReport.DataSources.Add(dataSource);
-                //oReportViewer.LocalReport.SetParameters(pPar);
+                oReportViewer.LocalReport.SetParameters(pPar.ToList());
                 Byte[] memoryBuffer = oReportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
 
                 return memoryBuffer;
