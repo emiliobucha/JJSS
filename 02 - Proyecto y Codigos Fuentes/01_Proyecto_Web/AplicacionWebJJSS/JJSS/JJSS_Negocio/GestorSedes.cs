@@ -55,7 +55,7 @@ namespace JJSS_Negocio
          * Parametros: ID de la sede
          * Retorno: Entidad sede escogida
          */
-        public sede BuscarSedePorID(int pID)
+        public sede BuscarSedePorID(int? pID)
         {
             sede sedeEncontrada = null;
             using (var db = new JJSSEntities()) {
@@ -91,6 +91,18 @@ namespace JJSS_Negocio
             {
                 return db.sede.ToList();
             }
+        }
+
+
+        public String ObtenerDireccion(int? pID)
+        {
+            String direccion = "";
+            using (var db = new JJSSEntities())
+            {
+                sede sedeEncontrada = db.sede.Find(pID);
+                direccion = sedeEncontrada.direccion.calle.nombre + " " + sedeEncontrada.direccion.numero;
+            }
+            return direccion;
         }
     }
 }
