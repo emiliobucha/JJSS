@@ -171,9 +171,7 @@ namespace JJSS
                 txt_apellido.Text = alumnoEncontrado.apellido;
                 txt_nombre.Text = alumnoEncontrado.nombre;
 
-                DateTime fechaNac = Convert.ToDateTime(alumnoEncontrado.fecha_nacimiento);
-                int edad = DateTime.Today.Year - fechaNac.Year;
-                txt_edad.Text = edad.ToString();
+                txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 
                 ddl_fajas.SelectedValue = alumnoEncontrado.id_faja.ToString();
 
@@ -182,6 +180,14 @@ namespace JJSS
 
                 idAlumno = alumnoEncontrado.id_alumno;
             }
+        }
+
+        private string calcularEdad(DateTime? pFechaNacimiento)
+        {
+            //+habria que ver como calcularla mejor porque si estuviera calculando mi edad daria 22 pero todavia tengo 21
+            DateTime fechaNac = Convert.ToDateTime(pFechaNacimiento);
+            int edad = DateTime.Today.Year - fechaNac.Year;
+            return edad.ToString();
         }
     }
 }
