@@ -28,7 +28,6 @@ namespace JJSS_Entidad
         public virtual DbSet<academia> academia { get; set; }
         public virtual DbSet<barrio> barrio { get; set; }
         public virtual DbSet<calle> calle { get; set; }
-        public virtual DbSet<categoria> categoria { get; set; }
         public virtual DbSet<categoria_torneo> categoria_torneo { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
         public virtual DbSet<direccion> direccion { get; set; }
@@ -37,10 +36,11 @@ namespace JJSS_Entidad
         public virtual DbSet<inscripcion> inscripcion { get; set; }
         public virtual DbSet<lucha> lucha { get; set; }
         public virtual DbSet<pais> pais { get; set; }
-        public virtual DbSet<participante> participante { get; set; }
         public virtual DbSet<resultado> resultado { get; set; }
         public virtual DbSet<sede> sede { get; set; }
         public virtual DbSet<torneo> torneo { get; set; }
         public virtual DbSet<alumno> alumno { get; set; }
+        public virtual DbSet<participante> participante { get; set; }
+        public virtual DbSet<categoria> categoria { get; set; }
     }
 }

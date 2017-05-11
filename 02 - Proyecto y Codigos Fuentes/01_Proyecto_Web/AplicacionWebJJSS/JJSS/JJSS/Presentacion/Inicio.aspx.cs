@@ -14,6 +14,7 @@ namespace JJSS.Presentacion
         private GestorInscripciones gestorInscripciones;
         private GestorTorneos gestorDeTorneos;
         private torneo torneoSeleccionado;
+        private int? idAlumno=null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,6 +24,7 @@ namespace JJSS.Presentacion
                 CargarComboFajas();
             }
             gestorDeTorneos = new GestorTorneos();
+
         }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -44,11 +46,13 @@ namespace JJSS.Presentacion
             int idTorneo = 1;
             //int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
 
+            //solo para invitados
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
             float peso = float.Parse(txt_peso.Text);
             int edad = int.Parse(txt_edad.Text);
             int dni = int.Parse(txt_dni.Text);
+            
 
             int idFaja = 0;
             int.TryParse(ddl_fajas.SelectedValue, out idFaja);
@@ -56,14 +60,16 @@ namespace JJSS.Presentacion
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
-            gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo, dni);
+
+            //para todos
+            gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo, dni, idAlumno);
 
         }
 
         protected void btn_confirmarDni_Click(object sender, EventArgs e)
         {
-           
 
+            pnl_Inscripcion.Visible = true;
             participante participanteEncontrado = gestorInscripciones.ObtenerParticipanteporDNI(int.Parse(txt_dni.Text));
 
             //Partipante ya estaba inscripto con ese dni
@@ -76,8 +82,22 @@ namespace JJSS.Presentacion
                 txt_apellido.ReadOnly = true;
                 txt_nombre.ReadOnly = true;
                 txt_edad.ReadOnly = true;
+                ddl_fajas.Enabled = false;
+                rbSexo.Enabled = false;
+
                 txt_apellido.Text = alumnoEncontrado.apellido;
                 txt_nombre.Text = alumnoEncontrado.nombre;
+
+                DateTime fechaNac = Convert.ToDateTime(alumnoEncontrado.fecha_nacimiento);
+                int edad =DateTime.Today.Year - fechaNac.Year;
+                txt_edad.Text = edad.ToString();
+
+                ddl_fajas.SelectedValue = alumnoEncontrado.id_faja.ToString();
+
+                if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
+                if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex= 1;
+
+                idAlumno = alumnoEncontrado.id_alumno;
             }
 
         }

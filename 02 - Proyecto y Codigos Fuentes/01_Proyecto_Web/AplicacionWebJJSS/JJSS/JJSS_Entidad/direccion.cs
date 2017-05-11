@@ -18,7 +18,6 @@ namespace JJSS_Entidad
         public direccion()
         {
             this.academia = new HashSet<academia>();
-            this.participante = new HashSet<participante>();
             this.sede = new HashSet<sede>();
         }
     
@@ -31,8 +30,6 @@ namespace JJSS_Entidad
         public virtual ICollection<academia> academia { get; set; }
         public virtual barrio barrio { get; set; }
         public virtual calle calle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<participante> participante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sede> sede { get; set; }
     }

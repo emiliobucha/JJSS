@@ -16,7 +16,7 @@ namespace JJSS_Negocio
                 var alumnoEncontrado = from alu in db.alumno
                                        where alu.dni == pDni
                                        select alu;
-                return alumnoEncontrado.First();            
+                return alumnoEncontrado.FirstOrDefault();            
             }
         }
     }

@@ -26,19 +26,12 @@ namespace JJSS_Entidad
         public string nombre { get; set; }
         public string apellido { get; set; }
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
-        public Nullable<int> telefono { get; set; }
         public Nullable<int> id_faja { get; set; }
-        public Nullable<int> id_direccion { get; set; }
-        public Nullable<int> id_academia { get; set; }
         public Nullable<int> id_categoria { get; set; }
         public Nullable<short> sexo { get; set; }
-        public Nullable<float> peso { get; set; }
         public int dni { get; set; }
         public Nullable<int> id_alumno { get; set; }
     
-        public virtual academia academia { get; set; }
-        public virtual categoria categoria { get; set; }
-        public virtual direccion direccion { get; set; }
         public virtual faja faja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion> inscripcion { get; set; }
@@ -46,6 +39,6 @@ namespace JJSS_Entidad
         public virtual ICollection<lucha> lucha { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lucha> lucha1 { get; set; }
-        public virtual alumno alumno { get; set; }
+        public virtual categoria categoria { get; set; }
     }
 }

@@ -40,6 +40,15 @@ namespace JJSS {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Control pnl_elegirTorneo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_elegirTorneo;
+        
+        /// <summary>
         /// Control ddl_torneos.
         /// </summary>
         /// <remarks>
@@ -202,13 +211,13 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.TextBox txtDni;
         
         /// <summary>
-        /// Control txtBuscar.
+        /// Control btnBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button txtBuscar;
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
         /// Control requeridoDni.
@@ -301,15 +310,6 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPeso;
         
         /// <summary>
-        /// Control tipoPeso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator tipoPeso;
-        
-        /// <summary>
         /// Control positivoPeso.
         /// </summary>
         /// <remarks>
@@ -335,15 +335,6 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoEdad;
-        
-        /// <summary>
-        /// Control tipoEdad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator tipoEdad;
         
         /// <summary>
         /// Control positivoEdad.

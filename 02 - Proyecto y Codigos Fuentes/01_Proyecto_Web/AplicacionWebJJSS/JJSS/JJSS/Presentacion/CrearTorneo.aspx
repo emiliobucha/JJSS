@@ -56,7 +56,7 @@
                                 <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                             </div>
                             <div class="col-md-1">
-                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  OnClientClick="javascript:alert('Próximamente');" />
+                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
                             </div>
                         </div>
                                                 

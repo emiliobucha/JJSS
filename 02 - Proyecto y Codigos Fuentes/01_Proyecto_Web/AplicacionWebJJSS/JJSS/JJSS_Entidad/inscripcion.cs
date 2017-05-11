@@ -21,9 +21,10 @@ namespace JJSS_Entidad
         public Nullable<int> id_participante { get; set; }
         public Nullable<int> id_torneo { get; set; }
         public Nullable<int> id_categoria_torneo { get; set; }
+        public Nullable<double> peso { get; set; }
     
         public virtual categoria_torneo categoria_torneo { get; set; }
-        public virtual participante participante { get; set; }
         public virtual torneo torneo { get; set; }
+        public virtual participante participante { get; set; }
     }
 }

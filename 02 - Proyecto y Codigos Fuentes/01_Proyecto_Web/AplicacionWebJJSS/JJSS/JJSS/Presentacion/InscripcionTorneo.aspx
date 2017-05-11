@@ -40,7 +40,7 @@
                             </div>
 
                             <!--Elegir torneo-->
-
+                             <asp:Panel ID="pnl_elegirTorneo" CssClass="panel panel-default" runat="server">
                             <div class="row centered">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-2">
@@ -58,7 +58,7 @@
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
-
+                                 </asp:Panel>
                             <!--PANEL DE INFORMACION DEL TORNEO-->
 
                             <asp:Panel ID="pnl_InfoTorneo" CssClass="panel panel-default" runat="server">
@@ -141,7 +141,7 @@
                                 </div>
 
                             <!-- PANEL DNI-->
-                            <asp:Panel ID="pnl_dni" CssClass="panel panel-default" runat="server">
+                            <asp:Panel ID="pnl_dni" CssClass="panel panel-default" runat="server" Visible="false">
                                 <div class="row centered"><p>&nbsp;</p></div>
                                 <div class="row centered">
                                     <p>&nbsp;</p>
@@ -158,7 +158,7 @@
                                         <asp:TextBox ID="txtDni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1">
-                                    <asp:Button ID="txtBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscar_Click" />
+                                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
                                     </div>
                                     <div class="col-md-3">
                                         <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ValidationGroup="grupoDni" ControlToValidate="txtDni" CssClass="text-danger"></asp:RequiredFieldValidator>
@@ -172,7 +172,7 @@
 
                             <!--PANEL DE INSCRIPCION-->
 
-                            <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server">
+                            <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server" Visible="false">
 
                                 <div class="row centered"><p>&nbsp;</p></div>
 
@@ -254,7 +254,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>
+                                        <%--<asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
                                         <asp:CompareValidator ID="positivoPeso" runat="server" ErrorMessage="El peso debe ser un valor mayor a 0" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double"  ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
                                     
                                     </div>
@@ -275,7 +275,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="tipoEdad" runat="server" ErrorMessage="La edad debe ser un valor numérico" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>
+                                        <%--<asp:CompareValidator ID="tipoEdad" runat="server" ErrorMessage="La edad debe ser un valor numérico" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
                                         <asp:CompareValidator ID="positivoEdad" runat="server" ErrorMessage="La edad debe ser un valor mayor a 0" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
                                     
                                     </div>
@@ -301,13 +301,13 @@
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
-                                
-                            </asp:Panel>
-                            <!--Boton Aceptar-->
+                                <!--Boton Aceptar-->
                                 <div class="row centered">
-                                        <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" />
+                                        <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click"  OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
                                   
                                 </div>
+                            </asp:Panel>
+                            
                         </div>
                     </form>
                 </div>

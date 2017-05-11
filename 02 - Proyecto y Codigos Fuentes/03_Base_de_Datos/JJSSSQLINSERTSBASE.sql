@@ -1,10 +1,7 @@
-DBCC CHECKIDENT (estado, RESEED, 0)
-GO
-INSERT INTO [dbo].[estado] (nombre) VALUES ('InscripcionAbierta'),('InscripcionCerrada'),('EnCurso'),('Finalizado')
-GO
+
 DBCC CHECKIDENT (categoria, RESEED, 0)
 GO
-INSERT INTO [dbo].[categoria] (nombre,peso_desde,peso_hasta,edad_desde,edad_hasta) 
+INSERT INTO [dbo].[categoria] (nombre,peso_desde,peso_hasta,edad_desde,edad_hasta,sexo) 
 VALUES
 ('Rooster Juvenile Male',0,53.50,0,16,1),
 ('Light Feather Juvenile Male',53.50,58.50,0,16,1),
