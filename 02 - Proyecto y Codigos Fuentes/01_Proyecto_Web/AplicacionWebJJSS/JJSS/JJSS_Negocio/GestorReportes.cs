@@ -67,9 +67,12 @@ namespace JJSS_Negocio
 
                 oReportViewer.LocalReport.DataSources.Add(dataSource);
                 //oReportViewer.LocalReport.SetParameters(pPar);
+                String deviceInfo = "<DeviceInfo>" +
+                 "<OutputFormat>PDF</OutputFormat>" +
+                 "<HumanReadablePDF>True</HumanReadablePDF>" +
+                  "</DeviceInfo>";
 
-
-                Byte[] memoryBuffer = oReportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
+                Byte[] memoryBuffer = oReportViewer.LocalReport.Render("PDF", deviceInfo, out mimeType, out encoding, out extension, out streamids, out warnings);
 
                 return memoryBuffer;
             }
