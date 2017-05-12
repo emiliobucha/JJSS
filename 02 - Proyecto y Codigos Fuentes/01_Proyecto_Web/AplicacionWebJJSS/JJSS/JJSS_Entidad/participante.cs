@@ -40,5 +40,6 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lucha> lucha1 { get; set; }
         public virtual categoria categoria { get; set; }
+        public virtual alumno alumno { get; set; }
     }
 }
