@@ -179,13 +179,15 @@ namespace JJSS_Negocio
                                     where inscr.id_torneo == pID
                                     select new 
                                     {
-                                        
+                                        tor_nombre = inscr.torneo.nombre,
+                                        tor_sede = inscr.torneo.sede.nombre,
+                                        tor_direccion = inscr.torneo.sede.direccion.calle.nombre + " " + inscr.torneo.sede.direccion.numero.ToString(),
+                                        tor_fecha = inscr.torneo.fecha,
+                                        tor_hora = inscr.torneo.hora,
                                         par_nombre = part.nombre,
                                         par_apellido = part.apellido,
                                         par_fecha_nac = part.fecha_nacimiento,
-                                        par_sexo = part.sexo,
-                                        //par_peso = part.peso,
-                                        //par_academia = part.academia.nombre,
+                                        par_sexo = part.sexo,   
                                         par_faja = cat_tor.faja.color,
                                         par_categoria = cat_tor.categoria.nombre,
                                         
@@ -248,7 +250,7 @@ namespace JJSS_Negocio
 
 
 
-            return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID), torneoAListar.nombre, gestorSedes.BuscarSedePorID(torneoAListar.id_sede).nombre, gestorSedes.ObtenerDireccion(torneoAListar.id_sede), torneoAListar.fecha.ToString(),torneoAListar.hora);
+            return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID));
 
 
         }
