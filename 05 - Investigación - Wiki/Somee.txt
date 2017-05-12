@@ -1,0 +1,16 @@
+jjss.somee.com
+
+Usuario: emiliobucha
+Contraseña: @JJSSSomee
+
+Base de Datos
+Connection String = workstation id=JJSSDB1.mssql.somee.com;packet size=4096;user id=emiliobucha_SQLLogin_1;pwd=lvb64ht8bh;data source=JJSSDB1.mssql.somee.com;persist security info=False;initial catalog=JJSSDB1
+
+Se puede crear una conexión desde Navicat o MS SQL, es 2012 la base de datos, pero si despues la vamos a alojar definitivamente donde creo, donweb, es 2008 por eso.
+
+Somee es momentaneo, no va a entrar, ya ocupamos el 20 % con solamente una porción de las tablas
+
+FileZilla FTP para subir el proyecto con ese usuario y contraseña
+Los Proyectos de Negocio y Entidad generan un dll dentro de JJSS que es el proyecto web, el cual es el que se sube y configura.
+
+
