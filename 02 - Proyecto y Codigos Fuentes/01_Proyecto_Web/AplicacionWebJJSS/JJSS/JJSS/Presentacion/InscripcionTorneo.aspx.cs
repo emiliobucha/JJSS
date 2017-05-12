@@ -50,21 +50,22 @@ namespace JJSS
             txt_nombre.Text = "";
             txt_peso.Text = "";
             //ya se que no usamos el index pero solo tiene que setearlo en el primer valor que haya en el combo
-            ddl_fajas.SelectedIndex = 1;
+            ddl_fajas.SelectedIndex = 0;
             
             if (limpiaTodo == true)
             {
                 txtDni.Text = "";
-                ddl_torneos.SelectedIndex = 1;
+                ddl_torneos.SelectedIndex = 0;
             }
 
         }
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
+            
 
             //+Ver Bien el SelectedValue del combo
-            
+
             int idTorneo = 0;
             int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
 
@@ -84,9 +85,17 @@ namespace JJSS
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
 
             //para todos
-            gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo, dni, idAlumno);
+            string sReturn=gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo, dni, idAlumno);
             limpiar(true);
-            Response.Redirect("Inicio.aspx");
+
+            if (sReturn.CompareTo("") == 0)
+            {
+                mensaje("Creación exitosa", "Inicio.aspx");
+            }
+            else
+            {
+                mensaje(sReturn, "InscripcionTorneo.aspx");
+            }
 
         }
 
@@ -115,6 +124,8 @@ namespace JJSS
 
         protected void btnAceptarTorneo_Click(object sender, EventArgs e)
         {
+            
+
             int idTorneo = 0;
             int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
             if (idTorneo.CompareTo(0) > 0)
@@ -156,7 +167,11 @@ namespace JJSS
             participante participanteEncontrado = gestorInscripciones.ObtenerParticipanteporDNI(int.Parse(txtDni.Text));
 
             //Partipante ya estaba inscripto con ese dni
-            if (participanteEncontrado != null) return;
+            if (participanteEncontrado != null)
+            {
+                mensaje("Este participante ya está inscripto", "InscripcionTorneo.aspx");
+                return;
+            }
 
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
             if (alumnoEncontrado != null)
@@ -188,6 +203,19 @@ namespace JJSS
             DateTime fechaNac = Convert.ToDateTime(pFechaNacimiento);
             int edad = DateTime.Today.Year - fechaNac.Year;
             return edad.ToString();
+            
+        }
+
+        /*Resumen:
+         * Muestra un cuadro de texto en la pantalla
+         * 
+         * Paramétros: 
+         *              pMensaje: el mensaje que se va a mostrar
+         *              pRef: la pagina .aspx que va a redireccionar
+         **/
+        private void mensaje(string pMensaje, string pRef)
+        {
+            Response.Write("<script>window.alert('"+pMensaje.Trim()+"');</script>" + "<script>window.setTimeout(location.href='"+pRef+"', 2000);</script>");
         }
     }
 }

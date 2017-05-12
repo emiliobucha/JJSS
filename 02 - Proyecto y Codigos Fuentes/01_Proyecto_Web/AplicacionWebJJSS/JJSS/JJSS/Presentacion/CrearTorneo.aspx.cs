@@ -40,6 +40,7 @@ namespace JJSS.Presentacion
         protected void btn_aceptar_Click1(object sender, EventArgs e)
         {
             //Page.Validate();
+            //string sReturn;
             if (Page.IsValid)
             {
                 string nombre = txt_nombre.Text;
@@ -63,12 +64,31 @@ namespace JJSS.Presentacion
                 int sede = 0;
                 int.TryParse(ddl_sedes.SelectedValue, out sede);
                 string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre);
+                if (sReturn.CompareTo("") == 0) {
+                    mensaje("Creación exitosa", "Inicio.aspx");
+                }
+                else
+                {
+                    mensaje(sReturn, "CrearTorneo.aspx");
+                }
+                    
             }
-            Response.Redirect("Inicio.aspx");
-
-
+            
+            
         }
-    
+
+        /*Resumen:
+         * Muestra un cuadro de texto en la pantalla
+         * 
+         * Paramétros: 
+         *              pMensaje: el mensaje que se va a mostrar
+         *              pRef: la pagina .aspx que va a redireccionar
+         **/
+        private void mensaje(string pMensaje, string pRef)
+        {
+            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
+        }
+
 
         protected void CargarComboSedes()
         {
