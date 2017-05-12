@@ -23,8 +23,8 @@ namespace JJSS_Entidad
     
         public int id_categoria { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> peso_desde { get; set; }
-        public Nullable<int> peso_hasta { get; set; }
+        public Nullable<double> peso_desde { get; set; }
+        public Nullable<double> peso_hasta { get; set; }
         public Nullable<int> edad_desde { get; set; }
         public Nullable<int> edad_hasta { get; set; }
         public Nullable<short> sexo { get; set; }

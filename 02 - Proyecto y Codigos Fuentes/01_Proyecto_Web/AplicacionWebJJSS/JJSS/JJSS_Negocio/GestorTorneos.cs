@@ -248,7 +248,7 @@ namespace JJSS_Negocio
             gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
             gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
 
-
+            
 
             return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID));
 

@@ -72,7 +72,7 @@ namespace JJSS
             //solo para invitados
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
-            float peso = float.Parse(txt_peso.Text);
+            double peso = float.Parse(txt_peso.Text);
             int edad = int.Parse(txt_edad.Text);
             int dni = int.Parse(txtDni.Text);
 
@@ -154,7 +154,7 @@ namespace JJSS
 
             Response.Clear();
             Response.AddHeader("Content-Type", "Application/octet-stream");
-            Response.AddHeader("Content-Disposition", "attachment; filename=\"\"" + System.IO.Path.GetFileName(sFile) + "\"\"");
+            Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
             Response.WriteFile(sFile);
 
 

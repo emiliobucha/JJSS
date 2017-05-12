@@ -33,7 +33,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, float pPeso, int pEdad, int pFaja, short pSexo, int pDni, int? pIDAlumno)
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, int pEdad, int pFaja, short pSexo, int pDni, int? pIDAlumno)
         {
 
             String sReturn = "";
@@ -82,50 +82,56 @@ namespace JJSS_Negocio
                         apellido = pApellido,
                         //peso = pPeso,
                         faja = fajaElegida,
+                        id_faja = fajaElegida.id_faja,
                         sexo = pSexo,
                         fecha_nacimiento = new DateTime(DateTime.Now.Year - pEdad, 1, 1), //Invento fecha de nacimiento con la edad que le pasamos por parametro
                         dni = pDni,
                         id_alumno=pIDAlumno
 
                     };
-
+                    db.participante.Add(nuevoParticipante);
+                    db.SaveChanges();
                     var catTorneoExistente = from catTor in db.categoria_torneo
-                                             where (catTor.categoria == categoriaPerteneciente)
-                                             && (catTor.faja == fajaElegida)
+                                             where (catTor.id_categoria == categoriaPerteneciente.id_categoria)
+                                             && (catTor.faja.id_faja == fajaElegida.id_faja)
                                              && (catTor.sexo == pSexo)
                                              select catTor;
                     categoria_torneo nuevaCategoriaTorneo;
                     //+rever esto
-                    //if (catTorneoExistente.Count() == 0)
+                    if (catTorneoExistente.Count() == 0)
 
-                    //{
-                    //    nuevaCategoriaTorneo = new categoria_torneo()
-                    //    {
-                    //        categoria = categoriaPerteneciente,
-                    //        faja = fajaElegida,
-                    //        sexo = pSexo,
+                    {
+                        nuevaCategoriaTorneo = new categoria_torneo()
+                        {
+                            id_categoria = categoriaPerteneciente.id_categoria,
+                            faja = fajaElegida,
+                            sexo = pSexo,
 
-                    //    };
-                    //}
-                    //else
-                    //{
-                    //    nuevaCategoriaTorneo = catTorneoExistente.First();
-                    //}
-                    
+                        };
+                    }
+                    else
+                    {
+                        nuevaCategoriaTorneo = catTorneoExistente.First();
+                    }
+                    db.categoria_torneo.Add(nuevaCategoriaTorneo);
+                    db.SaveChanges();
                     inscripcion nuevaInscripcion = new inscripcion()
                     {
                         hora = DateTime.Now.ToString("hh:mm tt"),
                         fecha = DateTime.Now.Date,
                         codigo_barra = 123456789,
                         participante = nuevoParticipante,
+                        id_participante = nuevoParticipante.id_participante,
+                        id_torneo = torneoInscripto.id_torneo,
                         torneo = torneoInscripto,
-                        //categoria_torneo = nuevaCategoriaTorneo,
+                        categoria_torneo = nuevaCategoriaTorneo,
+                        id_categoria_torneo = nuevaCategoriaTorneo.id_categoria_torneo,
                         peso = pPeso
 
                     };
 
-                    db.participante.Add(nuevoParticipante);
-                    //db.categoria_torneo.Add(nuevaCategoriaTorneo);
+                   
+                  
                     db.inscripcion.Add(nuevaInscripcion);
                     db.SaveChanges();
                     transaction.Commit();
