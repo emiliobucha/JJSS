@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
-    		<a href="#home" class="smoothScroll">Home</a>
+            <a href="#home" class="smoothScroll">Home</a>
 			<a href="#about" class="smoothScroll">About</a>
 			<a href="#torneos" class="smoothScroll">Torneos</a> 
             <a href="#services" class="smoothScroll">Clases</a>
@@ -151,6 +151,13 @@
                     <i class="fa fa-cogs"></i>
                     <h3 class="logo"><a href="CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
                     <p>Genera un nuevo torneo. Esta herramienta no solo te permitira crearlo, tambien tendras un seguimiento del mismo.</p>
+                </div><!--/col-->
+
+                <!--col Generar_Torneo-->
+                <div class="col-lg-4 proc" id="Generar_Listado_inscriptos">
+                    <i class="fa fa-cogs"></i>
+                    <h3 class="logo"><a href="" style="color: #000000">Generar listado de inscriptos</a></h3>
+                    <p>Genera un listado de los inscriptos a un torneo. Con esta herramienta podrás imprimir un listados con los inscriptos a un torneo.</p>
                 </div><!--/col-->
             </div>
             <!--/row -->
@@ -302,7 +309,7 @@
             <div class="modal-content">
 
                 <form runat="server">
-                    <!--Cabezera-->
+                    <!--Cabecera-->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="exampleModalLabel">Inscripción</h4>
@@ -329,12 +336,13 @@
                             </div>
                             <div class="modal-footer" runat="server">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <asp:Button ID="btn_confirmarDni" onServerClick="btn_confirmarDni_Click" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />
+                                    <%--<asp:Button ID="btn_confirmarDni" onClick="btn_confirmarDni_Click" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />--%>
+                                <asp:Button ID="btn_confirmar" runat="server" OnClick="btn_confirmarDni_Click" CssClass="btn btn-default" Text="Aceptar" type="submit" />
                             </div>
                             </asp:Panel>
 
                             <!--Panel de info de usuarios extra-->
-                            <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server">
+                            <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server"  Enabled="false">
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
@@ -452,7 +460,7 @@
                     <!--Botonero-->
                     <div class="modal-footer" runat="server">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />
+                        <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" />
                     </div>
                 </form>
             </div>

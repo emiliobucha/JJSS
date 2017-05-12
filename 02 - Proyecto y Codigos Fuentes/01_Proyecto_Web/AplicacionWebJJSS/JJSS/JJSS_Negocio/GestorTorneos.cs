@@ -109,7 +109,7 @@ namespace JJSS_Negocio
             {
                 var torneosAbiertos =
                     from torneo in db.torneo
-                    where torneo.estado.nombre == "InscripcionAbierta"
+                    where torneo.id_estado == 1
                     select torneo;
                 return torneosAbiertos.ToList();
             }
@@ -179,12 +179,13 @@ namespace JJSS_Negocio
                                     where inscr.id_torneo == pID
                                     select new 
                                     {
+                                        
                                         par_nombre = part.nombre,
                                         par_apellido = part.apellido,
                                         par_fecha_nac = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
-                                        par_peso = part.peso,
-                                        par_academia = part.academia.nombre,
+                                        //par_peso = part.peso,
+                                        //par_academia = part.academia.nombre,
                                         par_faja = cat_tor.faja.color,
                                         par_categoria = cat_tor.categoria.nombre,
                                         
@@ -240,10 +241,20 @@ namespace JJSS_Negocio
         public String GenararListado(int pID)
         {
             GestorReportes gestorReportes = new GestorReportes();
+            torneo torneoAListar = BuscarTorneoPorID(pID);
+            GestorSedes gestorSedes = new GestorSedes();
+            gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
+            gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
 
-            return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID));
+
+
+            return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID), torneoAListar.nombre, gestorSedes.BuscarSedePorID(torneoAListar.id_sede).nombre, gestorSedes.ObtenerDireccion(torneoAListar.id_sede), torneoAListar.fecha.ToString(),torneoAListar.hora);
 
 
         }
+
+        
+
+
     }
 }

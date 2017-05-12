@@ -33,7 +33,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, float pPeso, int pEdad, int pFaja, short pSexo, int pDni)
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, float pPeso, int pEdad, int pFaja, short pSexo, int pDni, int? pIDAlumno)
         {
 
             String sReturn = "";
@@ -58,6 +58,8 @@ namespace JJSS_Negocio
 
                     categoria categoriaPerteneciente = cat.First();
 
+                    
+
                     //Nuevos
                     //+Reveer la edad
                    
@@ -78,10 +80,12 @@ namespace JJSS_Negocio
                     {
                         nombre = pNombre,
                         apellido = pApellido,
-                        peso = pPeso,
+                        //peso = pPeso,
                         faja = fajaElegida,
                         sexo = pSexo,
-                        fecha_nacimiento =  new DateTime(DateTime.Now.Year - pEdad,1,1) //Invento fecha de nacimiento con la edad que le pasamos por parametro
+                        fecha_nacimiento = new DateTime(DateTime.Now.Year - pEdad, 1, 1), //Invento fecha de nacimiento con la edad que le pasamos por parametro
+                        dni = pDni,
+                        id_alumno=pIDAlumno
 
                     };
 
@@ -91,35 +95,37 @@ namespace JJSS_Negocio
                                              && (catTor.sexo == pSexo)
                                              select catTor;
                     categoria_torneo nuevaCategoriaTorneo;
-                    if (catTorneoExistente.Count() == 0)
+                    //+rever esto
+                    //if (catTorneoExistente.Count() == 0)
 
-                    {
-                        nuevaCategoriaTorneo = new categoria_torneo()
-                        {
-                            categoria = categoriaPerteneciente,
-                            faja = fajaElegida,
-                            sexo = pSexo,
+                    //{
+                    //    nuevaCategoriaTorneo = new categoria_torneo()
+                    //    {
+                    //        categoria = categoriaPerteneciente,
+                    //        faja = fajaElegida,
+                    //        sexo = pSexo,
 
-                        };
-                    }
-                    else
-                    {
-                        nuevaCategoriaTorneo = catTorneoExistente.First();
-                    }
-                    //+Reveer la hora
+                    //    };
+                    //}
+                    //else
+                    //{
+                    //    nuevaCategoriaTorneo = catTorneoExistente.First();
+                    //}
+                    
                     inscripcion nuevaInscripcion = new inscripcion()
                     {
-                        hora = "12:00",
+                        hora = DateTime.Now.ToString("hh:mm tt"),
                         fecha = DateTime.Now.Date,
                         codigo_barra = 123456789,
-                        participante=nuevoParticipante,
+                        participante = nuevoParticipante,
                         torneo = torneoInscripto,
-                        categoria_torneo = nuevaCategoriaTorneo
+                        //categoria_torneo = nuevaCategoriaTorneo,
+                        peso = pPeso
 
                     };
 
                     db.participante.Add(nuevoParticipante);
-                    db.categoria_torneo.Add(nuevaCategoriaTorneo);
+                    //db.categoria_torneo.Add(nuevaCategoriaTorneo);
                     db.inscripcion.Add(nuevaInscripcion);
                     db.SaveChanges();
                     transaction.Commit();

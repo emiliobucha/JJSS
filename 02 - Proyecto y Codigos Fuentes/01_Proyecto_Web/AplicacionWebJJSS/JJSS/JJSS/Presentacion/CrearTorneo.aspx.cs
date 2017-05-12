@@ -64,8 +64,9 @@ namespace JJSS.Presentacion
                 int.TryParse(ddl_sedes.SelectedValue, out sede);
                 string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre);
             }
+            Response.Redirect("Inicio.aspx");
 
-            
+
         }
     
 
@@ -102,7 +103,10 @@ namespace JJSS.Presentacion
             }
         }
 
+        protected void btn_mas_Click(object sender, EventArgs e)
+        {
 
+        }
     }
     
 

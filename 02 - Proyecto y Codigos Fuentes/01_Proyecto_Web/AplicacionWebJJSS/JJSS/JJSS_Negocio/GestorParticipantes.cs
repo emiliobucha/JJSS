@@ -16,7 +16,7 @@ namespace JJSS_Negocio
                 var participanteEncontrado = from part in db.participante
                                        where part.dni == pDni
                                        select part;
-                return participanteEncontrado.First();            
+                return participanteEncontrado.FirstOrDefault();            
             }
         }
     }

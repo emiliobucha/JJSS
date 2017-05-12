@@ -25,9 +25,9 @@ namespace JJSS_Entidad
         public Nullable<short> sexo { get; set; }
         public Nullable<int> id_faja { get; set; }
     
-        public virtual categoria categoria { get; set; }
         public virtual faja faja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion> inscripcion { get; set; }
+        public virtual categoria categoria { get; set; }
     }
 }
