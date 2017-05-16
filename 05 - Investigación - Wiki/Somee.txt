@@ -13,4 +13,7 @@ Somee es momentaneo, no va a entrar, ya ocupamos el 20 % con solamente una porci
 FileZilla FTP para subir el proyecto con ese usuario y contraseña
 Los Proyectos de Negocio y Entidad generan un dll dentro de JJSS que es el proyecto web, el cual es el que se sube y configura.
 
+Se Publica desde Visual Studio, configurando FTP con los mismos datos
+	Al publicar se ve que genera un problema las imagenes, se suben manualmente a /img,
+	En la carpeta /bin hay que agregar las dll de EntityFramework.dll EntityFramework.SqlClient, System.Data.SqlClient y sus xml de configuracion
 
