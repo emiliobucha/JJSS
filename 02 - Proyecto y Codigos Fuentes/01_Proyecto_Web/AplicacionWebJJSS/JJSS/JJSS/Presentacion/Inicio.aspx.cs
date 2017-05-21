@@ -34,13 +34,12 @@ namespace JJSS.Presentacion
             //   this.btn_confirmar_dni.ServerClick += MetodoClick;
 
 
-            /*ClientScript.GetPostBackEventReference(this, string.Empty);
-
-            if (Request.Form["__EVENTTARGET"] == "btn_confirmar_dni_Click")
+            ClientScript.GetPostBackEventReference(this, string.Empty);
+            if (Request.Form["__EVENTTARGET"] == "btnGenerarListado_Click")
             {
                 //llamamos el metodo que queremos ejecutar, en este caso el evento onclick del boton Button2
-                btn_confirmar_dni_Click(this, new EventArgs());
-            }*/
+                btnGenerarListado_Click(this, new EventArgs());
+            }
             btn_aceptar.Visible = false;
         }
         
@@ -191,6 +190,19 @@ namespace JJSS.Presentacion
                 idAlumno = alumnoEncontrado.id_alumno;
                // ClientScript.RegisterStartupScript(this.GetType(), "myScript", "mostraPanelInscripcion();", false);
             }
+        }
+
+        protected void btnGenerarListado_Click(object sender, EventArgs e)
+        {
+            int idTorneo = 1;
+           // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+            String sFile = gestorDeTorneos.GenararListado(idTorneo);
+
+            Response.Clear();
+            Response.AddHeader("Content-Type", "Application/octet-stream");
+            Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+            Response.WriteFile(sFile);        
+
         }
     }
 }

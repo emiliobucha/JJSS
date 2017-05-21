@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3 col-md-offset-1">
-					<h1>JJSS</h1>
+					<h1></h1>
 				</div>
 			</div><! --/row -->
 		</div><! --/container -->
@@ -153,10 +153,10 @@
                     <p>Genera un nuevo torneo. Esta herramienta no solo te permitira crearlo, tambien tendras un seguimiento del mismo.</p>
                 </div><!--/col-->
 
-                <!--col Generar_Torneo-->
+                <!--col Generar_Listado_inscriptos-->
                 <div class="col-lg-4 proc" id="Generar_Listado_inscriptos">
                     <i class="fa fa-cogs"></i>
-                    <h3 class="logo"><a href="" style="color: #000000">Generar listado de inscriptos</a></h3>
+                    <h3 class="logo"><a id="btn_generar_Listado_inscriptos" href="javascript:__doPostBack('btnGenerarListado_Click','')" style="color: #000000">Generar listado de inscriptos</a></h3>
                     <p>Genera un listado de los inscriptos a un torneo. Con esta herramienta podrás imprimir un listados con los inscriptos a un torneo.</p>
                 </div><!--/col-->
             </div>
