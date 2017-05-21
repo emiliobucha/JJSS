@@ -12,7 +12,8 @@
    
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="cphContenido" runat="server">
+<asp:Content ID="crearTorneoContenido" ContentPlaceHolderID="cphContenido" runat="server">
+
     <section id="inscripcionTorneo" title="inscripcionTorneo"></section>
     <asp:Panel ID="pnlFormulario" runat="server">
         <div id="crearTorneowrap">
