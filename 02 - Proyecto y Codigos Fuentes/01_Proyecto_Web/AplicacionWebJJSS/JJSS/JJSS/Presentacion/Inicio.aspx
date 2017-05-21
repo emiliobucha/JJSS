@@ -128,7 +128,7 @@
                 <!--col insrcibir_Torneo-->
                 <div class="col-lg-4 proc">
                     <i class="fa fa-pencil" id="insrcibir_Torneo"></i>
-                    <h3><a href="InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
+                    <h3><a href="../Presentacion/InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
                     <p>Accede a los torneos que estan pronto a desarrollar e inscribete.</p>
                 </div><!--/col-->
 
@@ -149,7 +149,7 @@
                 <!--col Generar_Torneo-->
                 <div class="col-lg-4 proc" id="Generar_Torneo">
                     <i class="fa fa-cogs"></i>
-                    <h3 class="logo"><a href="CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
+                    <h3 class="logo"><a href="../Presentacion/CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
                     <p>Genera un nuevo torneo. Esta herramienta no solo te permitira crearlo, tambien tendras un seguimiento del mismo.</p>
                 </div><!--/col-->
 
