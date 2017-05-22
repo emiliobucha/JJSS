@@ -5,8 +5,8 @@
             <a href="#home" class="smoothScroll">Home</a>
 			<a href="#about" class="smoothScroll">About</a>
 			<a href="#torneos" class="smoothScroll">Torneos</a> 
-            <a href="#services" class="smoothScroll">Clases</a>
-			<a href="#contact" class="smoothScroll">Seminarios</a>
+            <a href="#clases" class="smoothScroll">Clases</a>
+			<a href="#alumnos" class="smoothScroll">Alumnos</a>
 </asp:Content>
 
 <asp:Content ID="InicioEncabezado"  ContentPlaceHolderID="cphEncabezado" runat="server">
@@ -57,7 +57,7 @@
 	<!-- ABOUT SEPARATOR -->
 	<div class="sep torneo" data-stellar-background-ratio="0.5"></div>
 
-    <!-- TORNEOS SECTION -->
+    <!--SECTOR TORNEOS -->
     <section id="torneos" title="torneos"></section>
     <div id="torneoswrap">
 
@@ -167,11 +167,95 @@
     <!--/Portfoliowrap -->
 
 
-	<!-- PORTFOLIO SEPARATOR -->
-	<div class="sep portfolio" data-stellar-background-ratio="0.5"></div>
+    <!-- ABOUT SEPARATOR -->
+	<div class="sep torneo" data-stellar-background-ratio="0.5"></div>
+
+    	
+     <!--SECTOR CLASES -->
+    <section id="clases" title="clases"></section>
+    <div id="claseswrap">
+
+      <!--APARTADO DE ADMINISTRACION DE CLASES -->
+        <div class="container">
+            <div class="row mt centered">
+                <h1>ADMINISTRACION DE CLASES</h1>
+
+                <!--col crear_nueva_clase-->
+                <div class="col-lg-4 proc">
+                    <i class="fa fa-pencil" id="crear_nueva_clase"></i>
+                    <h3><a href="CrearClase.aspx"  style="color: #000000">Crear nueva clase</a></h3>
+                    <p>Crea una nueva clase con sus respectivos horarios para administrarla.</p>
+                </div><!--/col-->
+
+                <!--col mis_Clases-->
+                <div class="col-lg-4 proc" id="mis_Clases">
+                    <i class="fa fa-heart"></i>
+                    <h3>Mis clases</h3>
+                    <p>Pudes ver aqui las clases en las que te has inscripto.</p>
+                </div><!--/col-->
+
+                <!--col visualizar_Clase-->
+                <div class="col-lg-4 proc" id="">
+                    <i class="fa fa-eye"></i>
+                    <h3>Visualizar horarios</h3>
+                    <p>Consulta los horarios en que se desarrollan las diferentes clases que se dictan en la academia</p>
+                </div><!--/col-->
+
+                <!--col inscribir_Alumno_Clase-->
+                <div class="col-lg-4 proc" id="inscribir_Alumno_Clase">
+                    <i class="fa fa-cogs"></i>
+                    <h3 class="logo"><a style="color: #000000">Inscribir a un alumno</a></h3>
+                    <p>Podras inscribir a un alumno a una determinada clase. Esto te permitira realizar una administracion del mismo.</p>
+                </div><!--/col-->
+             
+            </div>
+            <!--/row -->
+        </div>
+        <!--/container -->
+    </div>
+    <!--/Portfoliowrap -->
+
+
+    <!-- ABOUT SEPARATOR -->
+	<div class="sep torneo" data-stellar-background-ratio="0.5"></div>
+    	
+     <!--SECTOR ALUMNOS -->
+    <section id="alumnos" title="clases"></section>
+    <div id="alumnoswrap">
+
+        <!--APARTADO DE ADMINISTRACION DE ALUMNOS -->
+        <div class="container">
+            <div class="row mt centered">
+                <h1>ADMINISTRACION DE ALUMNNOS</h1>
+
+                <!--col registrar_alumno-->
+                <div class="col-lg-4 proc">
+                    <i class="fa fa-pencil" id="registrar_alumno"></i>
+                    <h3><a href="RegistrarAlumno.aspx" style="color: #000000">Registrar Alumno</a></h3>
+                    <p>Registra un nuevo alumno. De esta forma podras contar con sus informacion para la posterior administracion del mismo.</p>
+                </div>
+                <!--/col-->
+
+                  <!--col administrar_alumnos-->
+                <div class="col-lg-4 proc">
+                    <i class="fa fa-cogs" id="administrar_alumnos"></i>
+                    <h3><a style="color: #000000">Administrar Alumnos</a></h3>
+                    <p>Podras visualizar todos tus alumnos. Darlos de bajo. Modificar su perfil.</p>
+                </div>
+                <!--/col-->
+
+            </div>
+        </div>
+
+    </div>
+    <!--/Portfoliowrap -->
+
+
+
+
+
 	
-	
-	<! -- SERVICE SECTION -->
+	<!-- SERVICE SECTION -->
 	<section id="services" title="services"></section>
 	<div id="servicewrap">
 		<div class="container">
