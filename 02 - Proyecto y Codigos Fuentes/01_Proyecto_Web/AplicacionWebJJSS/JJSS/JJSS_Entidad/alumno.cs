@@ -18,6 +18,7 @@ namespace JJSS_Entidad
         public alumno()
         {
             this.participante = new HashSet<participante>();
+            this.inscripcion_clase = new HashSet<inscripcion_clase>();
         }
     
         public int id_alumno { get; set; }
@@ -31,9 +32,16 @@ namespace JJSS_Entidad
         public Nullable<int> telefono { get; set; }
         public string mail { get; set; }
         public Nullable<int> id_direccion { get; set; }
-        public Nullable<System.DateTime> fecha_ingreso { get; set; }
+        public System.DateTime fecha_ingreso { get; set; }
+        public byte[] foto_perfil { get; set; }
+        public Nullable<int> telefono_emergencia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }
+        public virtual categoria categoria { get; set; }
+        public virtual direccion direccion { get; set; }
+        public virtual faja faja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
     }
 }

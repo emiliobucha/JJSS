@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarAlumno.aspx.cs" Inherits="JJSS.Presentacion.RegistrarAlumno" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" codefile="RegistrarAlumno.aspx.cs" CodeBehind="RegistrarAlumno.aspx.cs" Inherits="JJSS.Presentacion.RegistrarAlumno" %>
 <asp:Content ID="registrarAlumnoMenu" ContentPlaceHolderID="cphMenu" runat="server">
     <a href="Inicio.aspx" class="smoothScroll">Home</a>	
 </asp:Content>
@@ -248,7 +248,7 @@
                         <!--Boton-->
                         <div class="row centered">
                             <asp:Button ID="btn_cancelar" runat="server" CssClass="btn btn-default" Text="Cancelar" CausesValidation="false" />
-                            <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Guardar" />
+                            <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Guardar" OnClick="btn_guardar_click" />
 
                         </div>
                     </div>
