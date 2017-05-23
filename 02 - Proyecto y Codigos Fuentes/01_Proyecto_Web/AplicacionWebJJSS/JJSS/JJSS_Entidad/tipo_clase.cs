@@ -12,25 +12,18 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class faja
+    public partial class tipo_clase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public faja()
+        public tipo_clase()
         {
-            this.categoria_torneo = new HashSet<categoria_torneo>();
-            this.participante = new HashSet<participante>();
-            this.alumno = new HashSet<alumno>();
+            this.clase = new HashSet<clase>();
         }
     
-        public int id_faja { get; set; }
-        public string color { get; set; }
-        public Nullable<int> grado { get; set; }
+        public int id_tipo_clase { get; set; }
+        public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<participante> participante { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alumno> alumno { get; set; }
+        public virtual ICollection<clase> clase { get; set; }
     }
 }

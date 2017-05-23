@@ -12,25 +12,25 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class faja
+    public partial class clase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public faja()
+        public clase()
         {
-            this.categoria_torneo = new HashSet<categoria_torneo>();
-            this.participante = new HashSet<participante>();
-            this.alumno = new HashSet<alumno>();
+            this.inscripcion_clase = new HashSet<inscripcion_clase>();
         }
     
-        public int id_faja { get; set; }
-        public string color { get; set; }
-        public Nullable<int> grado { get; set; }
+        public int id_clase { get; set; }
+        public Nullable<int> id_tipo_clase { get; set; }
+        public Nullable<double> precio { get; set; }
+        public Nullable<int> id_horario { get; set; }
+        public Nullable<int> id_profe { get; set; }
+        public Nullable<int> id_direccion { get; set; }
     
+        public virtual direccion direccion { get; set; }
+        public virtual horario horario { get; set; }
+        public virtual tipo_clase tipo_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<participante> participante { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alumno> alumno { get; set; }
+        public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
     }
 }

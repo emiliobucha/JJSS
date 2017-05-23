@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CrearClase.aspx.cs" Inherits="JJSS.Presentacion.CrearClase" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true"  CodeBehind="~/Presentacion/CrearClase.aspx.cs" Inherits="JJSS.Presentacion.CrearClase" %>
 <asp:Content ID="crearClaseMenu" ContentPlaceHolderID="cphMenu" runat="server">
     <a href="Inicio.aspx" class="smoothScroll">Home</a>		
 </asp:Content>
@@ -62,28 +62,46 @@
                         </div>
                     </div>
                     <div class="row centered">
-                        <input type="checkbox" />
-                        <div class="col-md-1">
-                            <asp:CheckBox ID="chk_lunes" runat="server" Text="Lunes" CssClass="text pull-left" />
+                        <div class="col-xs-1">
+                            <asp:CheckBox ID="chk_lunes" runat="server" Text="Lunes" OnCheckedChanged="chk_lunes_CheckedChanged" CssClass="text pull-left" />
                         </div>
-                        <div class="col-xs-3 ventanaHorario" id="lunes_1">
+                        <div class="col-xs-4 ">
+           
+                            <asp:DataGrid ID="dt_lunes" runat="server" CssClass="table table-responsive">
+                                <Columns>
+                                    <asp:BoundColumn HeaderStyle-CssClass="text-center" HeaderText="Desde">                                      
+                                    </asp:BoundColumn>
+                                    <asp:BoundColumn HeaderText="Hasta">
+                                    </asp:BoundColumn>
+                                    <asp:ButtonColumn CommandName="Delete" Text="Eliminar"></asp:ButtonColumn>                                   
+                                </Columns>  
+                            </asp:DataGrid>
+                        </div>
+                        <div class="col-xs-1">
+                            <asp:Button ID="btnLunesMas" runat="server" Text="+" CssClass="btn bottom" CausesValidation="false" OnClick="btnLunesMas_Click" />
+                        </div>
+
+                        <%--<asp:Table ID="table_lunes" CssClass="table table-responsive" runat="server">
+                                <asp:TableHeaderRow>
+                                    <asp:TableHeaderCell><a class=" text-center">Desde</a></asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>Hasta</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell></asp:TableHeaderCell>
+                                </asp:TableHeaderRow>
+                                <asp:TableRow>
+                                    <asp:TableCell><input type="time"/></asp:TableCell>
+                                    <asp:TableCell><input type="time"/></asp:TableCell>
+                                    <asp:TableCell><button>x</button></asp:TableCell>
+                                </asp:TableRow>
+                            </asp:Table>--%>
+
+                  <%--      <div class="col-xs-3 ventanaHorario" id="lunes_1">
                             <a href="#" class=" close-thin"></a>
                             <a  style="color:black">Horario:</a>   
                             <input type="time" id="txt_lunes_desde_1" runat="server" class=" panel panel-default " />                          
                             <label >-</label>
                             <input type="time" id="txt_lunes_hasta_1" runat="server" class=" panel panel-default" />
-                            <%--<input type="button" id="btn_lunes_cancel_1" runat="server" value="x"  style=" color:red;"  class="panel "/>--%>
-                            <%-- <asp:TextBox ID="txt_lunes_1" runat="server" CssClass="caja2"></asp:TextBox>--%>
-                        </div>
-                        <div class="col-xs-3 ventanaHorario" id="lunes_2">
-                            <a href="#" class=" close-thin"></a>
-                            <a  style="color:black">Horario:</a>
-                            <input type="time" id="txt_lunes_desde_2" runat="server" class=" panel panel-default " />                          
-                            <label >-</label>
-                            <input type="time" id="txt_lunes_hasta_2" runat="server" class=" panel panel-default" />
-                         <%--   <input type="button" id="btn_lunes_cancel_2" runat="server" value="x"  style=" color:red;"  class="close panel"/>--%>
-                            <%-- <asp:TextBox ID="txt_lunes_1" runat="server" CssClass="caja2"></asp:TextBox>--%>
-                        </div>
+                           <input type="button" id="btn_lunes_cancel_1" runat="server" value="x"  style=" color:red;"  class="panel "/>                      
+                        </div> --%>                       
                     </div>
 
 

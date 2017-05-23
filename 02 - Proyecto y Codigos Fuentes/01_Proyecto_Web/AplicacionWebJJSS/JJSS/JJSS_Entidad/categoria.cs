@@ -19,6 +19,7 @@ namespace JJSS_Entidad
         {
             this.categoria_torneo = new HashSet<categoria_torneo>();
             this.participante = new HashSet<participante>();
+            this.alumno = new HashSet<alumno>();
         }
     
         public int id_categoria { get; set; }
@@ -33,5 +34,7 @@ namespace JJSS_Entidad
         public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<alumno> alumno { get; set; }
     }
 }

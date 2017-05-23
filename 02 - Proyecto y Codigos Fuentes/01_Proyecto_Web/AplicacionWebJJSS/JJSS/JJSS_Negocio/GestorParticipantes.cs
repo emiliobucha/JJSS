@@ -7,7 +7,7 @@ using JJSS_Entidad;
 
 namespace JJSS_Negocio
 {
-    class GestorParticipantes
+   public  class GestorParticipantes
     {
         public participante ObtenerParticipantePorDNI(int pDni)
         {

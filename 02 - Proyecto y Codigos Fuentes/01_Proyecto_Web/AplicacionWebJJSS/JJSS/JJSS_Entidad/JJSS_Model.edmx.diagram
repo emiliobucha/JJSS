@@ -42,6 +42,18 @@
         <AssociationConnector Association="JJSSModel.categoria_torneo_categoria_torneo_id_categoria_fk" />
         <AssociationConnector Association="JJSSModel.participante_participante_id_categoria_fk" />
         <AssociationConnector Association="JJSSModel.FK__particapa_id_al__48DE5BA8" />
+        <EntityTypeShape EntityType="JJSSModel.clase" Width="1.5" PointX="6.75" PointY="10.625" />
+        <EntityTypeShape EntityType="JJSSModel.horario" Width="1.5" PointX="4.5" PointY="23.25" />
+        <EntityTypeShape EntityType="JJSSModel.inscripcion_clase" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="4.5" PointY="20.875" />
+        <AssociationConnector Association="JJSSModel.FK_alumno_id_categoria" />
+        <AssociationConnector Association="JJSSModel.FK_alumno_id_direccion" />
+        <AssociationConnector Association="JJSSModel.FK_alumno_id_faja" />
+        <AssociationConnector Association="JJSSModel.FK_ins_clase_id_alumno" />
+        <AssociationConnector Association="JJSSModel.FK_clase_id_direccion" />
+        <AssociationConnector Association="JJSSModel.FK_clase_id_horario" />
+        <AssociationConnector Association="JJSSModel.FK_clase_id_tipo_clase" />
+        <AssociationConnector Association="JJSSModel.FK_ins_clase_id_clase" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

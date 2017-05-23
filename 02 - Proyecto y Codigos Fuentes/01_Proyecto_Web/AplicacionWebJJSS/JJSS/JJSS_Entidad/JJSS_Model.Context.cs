@@ -42,5 +42,9 @@ namespace JJSS_Entidad
         public virtual DbSet<alumno> alumno { get; set; }
         public virtual DbSet<participante> participante { get; set; }
         public virtual DbSet<categoria> categoria { get; set; }
+        public virtual DbSet<clase> clase { get; set; }
+        public virtual DbSet<horario> horario { get; set; }
+        public virtual DbSet<inscripcion_clase> inscripcion_clase { get; set; }
+        public virtual DbSet<tipo_clase> tipo_clase { get; set; }
     }
 }

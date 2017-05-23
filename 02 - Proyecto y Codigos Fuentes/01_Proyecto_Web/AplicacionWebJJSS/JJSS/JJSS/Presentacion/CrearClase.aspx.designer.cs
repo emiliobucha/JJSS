@@ -76,39 +76,21 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.CheckBox chk_lunes;
         
         /// <summary>
-        /// Control txt_lunes_desde_1.
+        /// Control dt_lunes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_lunes_desde_1;
+        protected global::System.Web.UI.WebControls.DataGrid dt_lunes;
         
         /// <summary>
-        /// Control txt_lunes_hasta_1.
+        /// Control btnLunesMas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_lunes_hasta_1;
-        
-        /// <summary>
-        /// Control txt_lunes_desde_2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_lunes_desde_2;
-        
-        /// <summary>
-        /// Control txt_lunes_hasta_2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_lunes_hasta_2;
+        protected global::System.Web.UI.WebControls.Button btnLunesMas;
     }
 }
