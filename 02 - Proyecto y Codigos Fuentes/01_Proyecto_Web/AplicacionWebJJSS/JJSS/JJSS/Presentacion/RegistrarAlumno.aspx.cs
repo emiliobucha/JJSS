@@ -24,7 +24,22 @@ namespace JJSS.Presentacion
             if (!IsPostBack)
             {
                 CargarComboFajas();
+
+                //carga de grilla
+                ViewState["gvAlumnosOrden"] = "dni";
+                gvAlumnos.AllowPaging = true;
+                gvAlumnos.AllowSorting = true;
+                gvAlumnos.AutoGenerateColumns = false;
+                gvAlumnos.PageSize = 10;
+                CargarGrilla();
+                gvAlumnos.DataBind();
             }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -39,6 +54,30 @@ namespace JJSS.Presentacion
             ddl_fajas.DataTextField = "color";
             ddl_fajas.DataValueField = "id_faja";
             ddl_fajas.DataBind();
+        }
+
+        protected void CargarGrilla()
+        {
+            String orden = ViewState["gvAlumnosOrden"].ToString();
+            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(txt_filtro_apellido.Text,orden);
+            gvAlumnos.DataBind();
+        }
+
+        protected void gvAlumnos_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            ViewState["gvAlumnosOrden"] = e.SortExpression;  //titulo de la columna que hizo click, la base de datos es mas optima para ordenarlos.
+            CargarGrilla();
+        }
+
+        protected void gvAlumnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAlumnos.PageIndex = e.NewPageIndex;
+            CargarGrilla();
+        }
+
+        protected void gvAlumnos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //int IdAuto = (int)gvAlumnos.SelectedValue;
         }
 
         protected void btn_guardar_click(object sender, EventArgs e)

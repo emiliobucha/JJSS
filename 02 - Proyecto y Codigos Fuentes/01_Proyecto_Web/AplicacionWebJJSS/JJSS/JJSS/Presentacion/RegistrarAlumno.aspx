@@ -262,6 +262,39 @@
     </asp:Panel>
 
 
+    <asp:Panel ID="pnl_mostrar_alumnos" runat="server">
+
+        <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
+        <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar alumnos" />
+
+        <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_alumno" OnSelectedIndexChanged="gvAlumnos_SelectedIndexChanged" OnPageIndexChanging="gvAlumnos_PageIndexChanging" OnSorting="gvAlumnos_Sorting" ForeColor="#333333" GridLines="None">
+            
+            <Columns>
+                <asp:CommandField ShowDeleteButton="True" />
+            </Columns>
+            
+        </asp:GridView>
+        <!--<AlternatingRowStyle BackColor="White" ForeColor="#284775" />-->
+            <!--<Columns>
+                <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="IdAutomovil" HeaderText="Id     " SortExpression="idAuto" />
+                <asp:BoundField DataField="Patente" HeaderText="Patente     " SortExpression="patente" />
+                <asp:BoundField DataField="modelo" HeaderText="Modelo     " SortExpression="modelo" />
+                <asp:BoundField DataField="tipoAuto" HeaderText="Tipo de Auto" SortExpression="nombre" />
+                <asp:BoundField DataField="marca" HeaderText="Marca" SortExpression="descripcion" />
+            </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle ForeColor="#333333" BackColor="#F7F6F3" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />-->
+    </asp:Panel>
+
 </asp:Content>
 
 <asp:Content ID="cphP" ContentPlaceHolderID="cphP" runat="server">

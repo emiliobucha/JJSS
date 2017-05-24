@@ -67,5 +67,36 @@ namespace JJSS_Negocio
             }
             
         }
+
+        public List<alumno> BuscarAlumnoPorApellido(string pApellido, string pOrden)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    var alumnosPorApellido =
+                        from alumno in db.alumno
+                            //where alumno.apellido pApellido+"%"
+                        orderby pOrden
+                        select alumno;
+                        //select new {
+                        //    alu_dni =alumno.dni,
+                        //    alu_apellido =alumno.apellido,
+                        //    alu_nombre =alumno.nombre,
+                        //};
+
+                    return alumnosPorApellido.ToList();
+                    //return alumnosPorApellido.ToList<Object>();
+
+
+                }
+                catch (Exception ex)
+                {
+                    sReturn=ex.Message;
+                    return null;
+                }
+            }
+        }
     }
 }
