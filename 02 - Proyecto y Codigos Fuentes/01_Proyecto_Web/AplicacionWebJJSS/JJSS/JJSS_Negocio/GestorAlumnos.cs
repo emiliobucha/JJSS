@@ -9,6 +9,8 @@ namespace JJSS_Negocio
 {
     public class GestorAlumnos
     {
+
+
         public alumno ObtenerAlumnoPorDNI(int pDni)
         {
             using (var db = new JJSSEntities())
@@ -16,11 +18,34 @@ namespace JJSS_Negocio
                 var alumnoEncontrado = from alu in db.alumno
                                        where alu.dni == pDni
                                        select alu;
-                return alumnoEncontrado.FirstOrDefault();            
+                return alumnoEncontrado.FirstOrDefault();
             }
         }
 
-        public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria, short? pSexo, int pDni, int? pTelefono, string pMail, int? pIdDireccion, int? pTelEmergencia)
+        /*Método que permite crear un nuevo alumno
+         * Valida si el alumno ya fue creado comparando por DNI
+         * 
+         * Parametros: 
+         *              pNombre : String nombre del alumno
+         *              pApellido : String apellido del alumno
+         *              pFechaNacimiento : DateTime fecha de nacimiento del alumno
+         *              pIdFaja : Entero id de la faja del alumno
+         *              pIdCategoria : Entero id de la categoria a la que pertenece el alumno
+         *              pSexo : Short 0 Mujer 1 Hombre
+         *              pDni : Entero numero de DNI del alumno
+         *              pTelefono : Entero numero de telefono del alumno
+         *              pMail : String mail del alumno
+         *              pIdDireccion : Entero id de la direccion del alumno
+         *              pTelEmergencia : Entero numero de telefono de emergencia del alumno
+         *  Retornos: String
+         *              "" : Transaccion Correcta
+         *              ex.Message : Mensaje de error provocado por una excepción
+         *              Alumno existente
+         *          
+         * 
+         */
+        public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria, 
+            short? pSexo, int pDni, int? pTelefono, string pMail, int? pIdDireccion, int? pTelEmergencia)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -65,36 +90,88 @@ namespace JJSS_Negocio
                     return ex.Message;
                 }
             }
-            
+
         }
 
-        public List<alumno> BuscarAlumnoPorApellido(string pApellido, string pOrden)
+
+        /*Método que busca un alumno con filtro de apellido
+         * 
+         * Parametros: 
+         *              
+         *              pApellido : String filtro para buscar alumnos
+         *  Retornos: List<Object>
+         *              "" : Transaccion Correcta
+         *              null : Error en la transaccion
+         *          
+         * 
+         */
+        public List<Object> BuscarAlumnoPorApellido(string pApellido)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
             {
                 try
                 {
-                    var alumnosPorApellido =
-                        from alumno in db.alumno
-                            //where alumno.apellido pApellido+"%"
-                        orderby pOrden
-                        select alumno;
-                        //select new {
-                        //    alu_dni =alumno.dni,
-                        //    alu_apellido =alumno.apellido,
-                        //    alu_nombre =alumno.nombre,
-                        //};
-
-                    return alumnosPorApellido.ToList();
-                    //return alumnosPorApellido.ToList<Object>();
-
-
+                    if (pApellido.CompareTo("") == 0) //sin filtro
+                    {
+                        var alumnosPorApellido = from alumno in db.alumno
+                                                 select new
+                                                 {
+                                                     alu_nombre = alumno.nombre,
+                                                     alu_apellido = alumno.apellido,
+                                                     alu_dni = alumno.dni,
+                                                 };
+                        return alumnosPorApellido.ToList<Object>();
+                    }
+                    else //con filtro de apellido
+                    {
+                        var alumnosPorApellido = from alumno in db.alumno
+                                                 where alumno.apellido == pApellido + "%"
+                                                 select new
+                                                 {
+                                                     alu_nombre = alumno.nombre,
+                                                     alu_apellido = alumno.apellido,
+                                                     alu_dni = alumno.dni,
+                                                 };
+                        return alumnosPorApellido.ToList<Object>();
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
-                    sReturn=ex.Message;
+                    sReturn = ex.Message;
                     return null;
+                }
+            }
+        }
+
+        /*Método que permite eliminar alumno
+         * 
+         * Parametros: 
+         *              pDni : Entero numero de DNI del alumno a eliminar
+         *  Retornos: String
+         *              "" : Transaccion Correcta
+         *              ex.Message : Mensaje de error provocado por una excepción
+         *          
+         * 
+         */
+        public string EliminarAlumno(int pDni)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    db.alumno.Remove(ObtenerAlumnoPorDNI(pDni));
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
                 }
             }
         }
