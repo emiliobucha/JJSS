@@ -32,7 +32,6 @@ namespace JJSS.Presentacion
                 gvAlumnos.AutoGenerateColumns = false;
                 gvAlumnos.PageSize = 10;
                 CargarGrilla();
-                gvAlumnos.DataBind();
             }
         }
 
@@ -58,15 +57,8 @@ namespace JJSS.Presentacion
 
         protected void CargarGrilla()
         {
-            String orden = ViewState["gvAlumnosOrden"].ToString();
-            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(txt_filtro_apellido.Text,orden);
+            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(txt_filtro_apellido.Text);
             gvAlumnos.DataBind();
-        }
-
-        protected void gvAlumnos_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            ViewState["gvAlumnosOrden"] = e.SortExpression;  //titulo de la columna que hizo click, la base de datos es mas optima para ordenarlos.
-            CargarGrilla();
         }
 
         protected void gvAlumnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -77,7 +69,18 @@ namespace JJSS.Presentacion
 
         protected void gvAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //int IdAuto = (int)gvAlumnos.SelectedValue;
+
+            int dni = (int)gvAlumnos.SelectedValue;
+            string sReturn = gestorAlumnos.EliminarAlumno(dni);
+
+            if (sReturn.CompareTo("") == 0)
+            {
+                mensaje("Se ha eliminado el alumno correctamente", "RegistrarAlumno.aspx");
+            }
+            else
+            {
+                mensaje(sReturn, "RegistrarAlumno.aspx");
+            }
         }
 
         protected void btn_guardar_click(object sender, EventArgs e)
@@ -94,8 +97,8 @@ namespace JJSS.Presentacion
             int tel = int.Parse(txt_telefono.Text);
             string mail = txt_email.Text;
             int telEmergencia = int.Parse(txt_telefono_urgencia.Text);
-            
-            string sReturn = gestorAlumnos.RegistrarAlumno(nombre,apellido,fechaNac,idFaja,1,sexo,dni,tel,mail,1,telEmergencia);
+
+            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia);
 
             if (sReturn.CompareTo("") == 0)
             {
@@ -112,6 +115,34 @@ namespace JJSS.Presentacion
             Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
         }
 
+        protected void btn_buscar_alumno_Click(object sender, EventArgs e)
+        {
+            CargarGrilla();
+        }
 
+        protected void gvAlumnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Eliminar")
+            {
+                int dni = (int)gvAlumnos.SelectedValue;
+                string sReturn = gestorAlumnos.EliminarAlumno(dni);
+
+                if (sReturn.CompareTo("") == 0)
+                {
+                    mensaje("Se ha eliminado el alumno correctamente", "RegistrarAlumno.aspx");
+                }
+                else
+                {
+                    mensaje(sReturn, "RegistrarAlumno.aspx");
+                }
+            }
+        }
+
+       
     }
 }

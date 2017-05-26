@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="~/Presentacion/RegistrarAlumno.aspx.cs" Inherits="JJSS.Presentacion.RegistrarAlumno" %>
+
 <asp:Content ID="registrarAlumnoMenu" ContentPlaceHolderID="cphMenu" runat="server">
-    <a href="Inicio.aspx" class="smoothScroll">Home</a>	
+    <a href="Inicio.aspx" class="smoothScroll">Home</a>
 </asp:Content>
 
 <asp:Content ID="registrarAlumnoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
@@ -9,18 +10,18 @@
 <asp:Content ID="registrarAlumnoContenido" ContentPlaceHolderID="cphContenido" runat="server">
 
     <section id="registrarAlumno" title="registrarAlumno"></section>
+    <form id="formRegAlumno" runat="server">
+        <asp:Panel ID="pnlFormulario" runat="server">
 
-    <asp:Panel ID="pnlFormulario" runat="server">
+            <div id="registrarAlumnowrap">
 
-        <div id="registrarAlumnowrap">
+                <div class="container">
+                    <div class="row mt centered">
+                        <h1>FORMULARIO DE REGISTRO DE ALUMNO</h1>
+                        <p>&nbsp;</p>
+                    </div>
 
-            <div class="container">
-                <div class="row mt centered">
-                    <h1>FORMULARIO DE REGISTRO DE ALUMNO</h1>
-                    <p>&nbsp;</p>
-                </div>
 
-                <form id="formRegAlumno" runat="server">
                     <div class="form-group ">
 
                         <asp:Panel ID="pnl_datos_personales" CssClass="panel panel-footer" runat="server">
@@ -103,7 +104,7 @@
                                 </div>
                                 <div class="col-xs-1">
                                 </div>
-                            <!--Foto-->
+                                <!--Foto-->
                                 <div class="col-xs-2">
                                     <asp:Panel ID="Panel1" runat="server">
 
@@ -249,52 +250,46 @@
                         <div class="row centered">
                             <asp:Button ID="btn_cancelar" runat="server" CssClass="btn btn-default" Text="Cancelar" CausesValidation="false" />
                             <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Guardar" OnClick="btn_guardar_click" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /row -->
+        </asp:Panel>
+
+
+        <asp:Panel ID="pnl_mostrar_alumnos" runat="server">
+
+            <div id="mostrarAlumnowrap">
+
+                <div class="container">
+                    <div class="row mt centered">
+                        <h1>LISTADO DE ALUMNOS</h1>
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="form-group ">
+                        <!--Boton-->
+                        <div class="row centered">
+                            Apellido a buscar: <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
+                            <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar alumnos" OnClick="btn_buscar_alumno_Click" CausesValidation="false" />
+
+                            <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnSelectedIndexChanged="gvAlumnos_SelectedIndexChanged" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:CommandField ShowSelectButton="True" />
+                                    <asp:CommandField HeaderText="Eliminar" SelectText="Eliminar" ShowCancelButton="True" ShowDeleteButton="False" ShowSelectButton="True" />
+                                    <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
+                                    <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
+                                    <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
+                                </Columns>
+                            </asp:GridView>
 
                         </div>
                     </div>
-
-                </form>
-
+                </div>
             </div>
-
-        </div>
-        <!-- /row -->
-    </asp:Panel>
-
-
-    <asp:Panel ID="pnl_mostrar_alumnos" runat="server">
-
-        <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
-        <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar alumnos" />
-
-        <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_alumno" OnSelectedIndexChanged="gvAlumnos_SelectedIndexChanged" OnPageIndexChanging="gvAlumnos_PageIndexChanging" OnSorting="gvAlumnos_Sorting" ForeColor="#333333" GridLines="None">
-            
-            <Columns>
-                <asp:CommandField ShowDeleteButton="True" />
-            </Columns>
-            
-        </asp:GridView>
-        <!--<AlternatingRowStyle BackColor="White" ForeColor="#284775" />-->
-            <!--<Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="IdAutomovil" HeaderText="Id     " SortExpression="idAuto" />
-                <asp:BoundField DataField="Patente" HeaderText="Patente     " SortExpression="patente" />
-                <asp:BoundField DataField="modelo" HeaderText="Modelo     " SortExpression="modelo" />
-                <asp:BoundField DataField="tipoAuto" HeaderText="Tipo de Auto" SortExpression="nombre" />
-                <asp:BoundField DataField="marca" HeaderText="Marca" SortExpression="descripcion" />
-            </Columns>
-            <EditRowStyle BackColor="#999999" />
-            <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle ForeColor="#333333" BackColor="#F7F6F3" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />-->
-    </asp:Panel>
-
+        </asp:Panel>
+    </form>
 </asp:Content>
 
 <asp:Content ID="cphP" ContentPlaceHolderID="cphP" runat="server">
@@ -312,7 +307,7 @@
     <script type="text/javascript">
         function previewFile() {
             var preview = document.querySelector('#<%=Avatar.ClientID %>');
-              var file = document.querySelector('#<%=avatarUpload.ClientID %>').files[0];
+            var file = document.querySelector('#<%=avatarUpload.ClientID %>').files[0];
             var reader = new FileReader();
 
             reader.onloadend = function () {
