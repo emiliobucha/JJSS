@@ -100,7 +100,7 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 sede sedeEncontrada = db.sede.Find(pID);
-                direccion = sedeEncontrada.direccion.calle.nombre + " " + sedeEncontrada.direccion.numero;
+               // direccion = sedeEncontrada.direccion.calle + " " + sedeEncontrada.direccion.numero;
             }
             return direccion;
         }

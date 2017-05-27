@@ -174,7 +174,19 @@
                         </div>
 
                           <div class="row centered"><p>&nbsp;</p></div>
+                         <!--Foto-->
+                        <div class="row centered">
+                                <div class="col-xs-2">
+                                    <asp:Panel ID="Panel1" runat="server">
 
+                                        <label class=" pull-left">Imagen</label>
+                                        <input id="avatarUpload" type="file" name="file" onchange="previewFile()" runat="server" />
+                                        <%--<asp:FileUpload ID="avatarUpload" runat="server" />--%>
+                                        <asp:Image ID="Avatar" runat="server" Height="225px" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
+                                    </asp:Panel>
+                                </div>
+                            </div>
+                        <div class="row centered"><p>&nbsp;</p></div>
                          <!--Comentarios-->
                         <div class="row centered">
                             <div class="col-md-2">
@@ -215,6 +227,24 @@
                 });
             }
             );
+    </script>
+
+    <script type="text/javascript">
+        function previewFile() {
+            var preview = document.querySelector('#<%=Avatar.ClientID %>');
+            var file = document.querySelector('#<%=avatarUpload.ClientID %>').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
     </script>
 
 </asp:Content>

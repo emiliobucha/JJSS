@@ -45,7 +45,7 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria, 
-            short? pSexo, int pDni, int? pTelefono, string pMail, int? pIdDireccion, int? pTelEmergencia)
+            short? pSexo, int pDni, int? pTelefono, string pMail, int? pIdDireccion, int? pTelEmergencia, byte[] pImagen)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -75,11 +75,19 @@ namespace JJSS_Negocio
                         mail = pMail,
                         //direccion
                         fecha_ingreso = DateTime.Today,
-                        //foto_perfil = pFotoPerfil,
+                        
                         telefono_emergencia = pTelEmergencia
                     };
                     db.alumno.Add(nuevoAlumno);
                     db.SaveChanges();
+                    alumno_imagen nuevoAlumno_imagen = new alumno_imagen()
+                    {
+                        id_alumno = nuevoAlumno.id_alumno,
+                        imagen = pImagen
+                    };
+                    db.alumno_imagen.Add(nuevoAlumno_imagen);
+                    db.SaveChanges();
+                        
                     transaction.Commit();
                     return sReturn;
 

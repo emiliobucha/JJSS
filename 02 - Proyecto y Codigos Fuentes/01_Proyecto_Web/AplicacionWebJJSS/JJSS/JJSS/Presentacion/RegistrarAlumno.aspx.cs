@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
-
+using System.IO;
 
 namespace JJSS.Presentacion
 {
@@ -96,9 +96,17 @@ namespace JJSS.Presentacion
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
             int tel = int.Parse(txt_telefono.Text);
             string mail = txt_email.Text;
+            System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
+            byte[] imagenByte;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imagen.CopyTo(ms);
+                imagenByte = ms.ToArray();
+            }
             int telEmergencia = int.Parse(txt_telefono_urgencia.Text);
+            //Image imagenPerfil = Avatar;
 
-            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia);
+            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia, imagenByte);
 
             if (sReturn.CompareTo("") == 0)
             {

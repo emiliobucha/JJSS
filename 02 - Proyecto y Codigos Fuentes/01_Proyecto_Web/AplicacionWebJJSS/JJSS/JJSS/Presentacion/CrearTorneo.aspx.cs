@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Negocio;
 using JJSS_Entidad;
+using System.IO;
 
 
 
@@ -63,7 +64,14 @@ namespace JJSS.Presentacion
                 string hora_cierre = ddl_hora_cierre.SelectedValue;
                 int sede = 0;
                 int.TryParse(ddl_sedes.SelectedValue, out sede);
-                string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre);
+                System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
+                byte[] imagenByte;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    imagen.CopyTo(ms);
+                    imagenByte = ms.ToArray();
+                }
+                string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre, imagenByte);
                 if (sReturn.CompareTo("") == 0) {
                     mensaje("Creación exitosa", "Inicio.aspx");
                 }

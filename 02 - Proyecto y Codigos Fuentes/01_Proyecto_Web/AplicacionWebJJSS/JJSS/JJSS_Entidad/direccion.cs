@@ -25,18 +25,20 @@ namespace JJSS_Entidad
     
         public int id_direccion { get; set; }
         public Nullable<int> numero { get; set; }
-        public Nullable<int> id_calle { get; set; }
-        public Nullable<int> id_barrio { get; set; }
+        public string calle1 { get; set; }
+        public string barrio1 { get; set; }
+        public string departamento { get; set; }
+        public Nullable<int> piso { get; set; }
+        public Nullable<int> id_ciudad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<academia> academia { get; set; }
-        public virtual barrio barrio { get; set; }
-        public virtual calle calle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sede> sede { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno> alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<clase> clase { get; set; }
+        public virtual ciudad ciudad { get; set; }
     }
 }

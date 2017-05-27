@@ -26,27 +26,20 @@
           <Property Name="id_categoria" Type="int" />
           <Property Name="sexo" Type="smallint" />
           <Property Name="dni" Type="int" Nullable="false" />
-          <Property Name="telefono" Type="int" />
+          <Property Name="telefono" Type="bigint" />
           <Property Name="mail" Type="nvarchar" MaxLength="80" />
           <Property Name="id_direccion" Type="int" />
           <Property Name="fecha_ingreso" Type="date" Nullable="false" />
           <Property Name="foto_perfil" Type="image" />
-          <Property Name="telefono_emergencia" Type="int" />
+          <Property Name="telefono_emergencia" Type="bigint" />
         </EntityType>
-        <EntityType Name="barrio">
+        <EntityType Name="alumno_imagen">
           <Key>
-            <PropertyRef Name="id_barrio" />
+            <PropertyRef Name="id_alumnoimagen" />
           </Key>
-          <Property Name="id_barrio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="45" />
-        </EntityType>
-        <EntityType Name="calle">
-          <Key>
-            <PropertyRef Name="id_calle" />
-          </Key>
-          <Property Name="id_calle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="45" />
-          <Property Name="id_ciudad" Type="int" />
+          <Property Name="id_alumno" Type="int" Nullable="false" />
+          <Property Name="imagen" Type="binary" MaxLength="8000" />
+          <Property Name="id_alumnoimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="categoria">
           <Key>
@@ -94,8 +87,11 @@
           </Key>
           <Property Name="id_direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="numero" Type="int" />
-          <Property Name="id_calle" Type="int" />
-          <Property Name="id_barrio" Type="int" />
+          <Property Name="calle" Type="nvarchar" MaxLength="50" />
+          <Property Name="barrio" Type="nvarchar" MaxLength="50" />
+          <Property Name="departamento" Type="nvarchar" MaxLength="20" />
+          <Property Name="piso" Type="int" />
+          <Property Name="id_ciudad" Type="int" />
         </EntityType>
         <EntityType Name="estado">
           <Key>
@@ -217,6 +213,14 @@
           <Property Name="precio_absoluto" Type="decimal" Precision="18" Scale="0" />
           <Property Name="precio_categoria" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
+        <EntityType Name="torneo_imagen">
+          <Key>
+            <PropertyRef Name="id_torneo_imagen" />
+          </Key>
+          <Property Name="id_torneo_imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_torneo" Type="int" Nullable="false" />
+          <Property Name="imagen" Type="binary" MaxLength="8000" />
+        </EntityType>
         <Association Name="FK__academia__id_dir__4D5F7D71">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="academia" Type="Self.academia" Multiplicity="*" />
@@ -250,42 +254,6 @@
             </Principal>
             <Dependent Role="academia">
               <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__calle__id_ciudad__503BEA1C">
-          <End Role="ciudad" Type="Self.ciudad" Multiplicity="0..1" />
-          <End Role="calle" Type="Self.calle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ciudad">
-              <PropertyRef Name="id_ciudad" />
-            </Principal>
-            <Dependent Role="calle">
-              <PropertyRef Name="id_ciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__calle__id_ciudad__51300E55">
-          <End Role="ciudad" Type="Self.ciudad" Multiplicity="0..1" />
-          <End Role="calle" Type="Self.calle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ciudad">
-              <PropertyRef Name="id_ciudad" />
-            </Principal>
-            <Dependent Role="calle">
-              <PropertyRef Name="id_ciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__calle__id_ciudad__5224328E">
-          <End Role="ciudad" Type="Self.ciudad" Multiplicity="0..1" />
-          <End Role="calle" Type="Self.calle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ciudad">
-              <PropertyRef Name="id_ciudad" />
-            </Principal>
-            <Dependent Role="calle">
-              <PropertyRef Name="id_ciudad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -394,30 +362,6 @@
             </Principal>
             <Dependent Role="ciudad">
               <PropertyRef Name="id_pais" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__direccion__id_ba__5BAD9CC8">
-          <End Role="barrio" Type="Self.barrio" Multiplicity="0..1" />
-          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="barrio">
-              <PropertyRef Name="id_barrio" />
-            </Principal>
-            <Dependent Role="direccion">
-              <PropertyRef Name="id_barrio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__direccion__id_ca__5E8A0973">
-          <End Role="calle" Type="Self.calle" Multiplicity="0..1" />
-          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="calle">
-              <PropertyRef Name="id_calle" />
-            </Principal>
-            <Dependent Role="direccion">
-              <PropertyRef Name="id_calle" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -613,6 +557,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_alumnoimagen_id_alumno">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="alumno_imagen" Type="Self.alumno_imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="id_alumno" />
+            </Principal>
+            <Dependent Role="alumno_imagen">
+              <PropertyRef Name="id_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_clase_id_direccion">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
@@ -649,6 +607,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_direccion_id_ciudad">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="0..1" />
+          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="direccion">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ins_clase_id_alumno">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="inscripcion_clase" Type="Self.inscripcion_clase" Multiplicity="*" />
@@ -676,8 +646,7 @@
         <EntityContainer Name="JJSSModelStoreContainer">
           <EntitySet Name="academia" EntityType="Self.academia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="barrio" EntityType="Self.barrio" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="calle" EntityType="Self.calle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="alumno_imagen" EntityType="Self.alumno_imagen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categoria_torneo" EntityType="Self.categoria_torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ciudad" EntityType="Self.ciudad" Schema="dbo" store:Type="Tables" />
@@ -695,6 +664,7 @@
           <EntitySet Name="sede" EntityType="Self.sede" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_clase" EntityType="Self.tipo_clase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="torneo" EntityType="Self.torneo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="torneo_imagen" EntityType="Self.torneo_imagen" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__academia__id_dir__4D5F7D71" Association="Self.FK__academia__id_dir__4D5F7D71">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="academia" EntitySet="academia" />
@@ -706,18 +676,6 @@
           <AssociationSet Name="FK__academia__id_dir__4F47C5E3" Association="Self.FK__academia__id_dir__4F47C5E3">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="academia" EntitySet="academia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__calle__id_ciudad__503BEA1C" Association="Self.FK__calle__id_ciudad__503BEA1C">
-            <End Role="ciudad" EntitySet="ciudad" />
-            <End Role="calle" EntitySet="calle" />
-          </AssociationSet>
-          <AssociationSet Name="FK__calle__id_ciudad__51300E55" Association="Self.FK__calle__id_ciudad__51300E55">
-            <End Role="ciudad" EntitySet="ciudad" />
-            <End Role="calle" EntitySet="calle" />
-          </AssociationSet>
-          <AssociationSet Name="FK__calle__id_ciudad__5224328E" Association="Self.FK__calle__id_ciudad__5224328E">
-            <End Role="ciudad" EntitySet="ciudad" />
-            <End Role="calle" EntitySet="calle" />
           </AssociationSet>
           <AssociationSet Name="FK__categoria__id_ca__531856C7" Association="Self.FK__categoria__id_ca__531856C7">
             <End Role="categoria" EntitySet="categoria" />
@@ -754,14 +712,6 @@
           <AssociationSet Name="FK__ciudad__id_pais__5AB9788F" Association="Self.FK__ciudad__id_pais__5AB9788F">
             <End Role="pais" EntitySet="pais" />
             <End Role="ciudad" EntitySet="ciudad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__direccion__id_ba__5BAD9CC8" Association="Self.FK__direccion__id_ba__5BAD9CC8">
-            <End Role="barrio" EntitySet="barrio" />
-            <End Role="direccion" EntitySet="direccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__direccion__id_ca__5E8A0973" Association="Self.FK__direccion__id_ca__5E8A0973">
-            <End Role="calle" EntitySet="calle" />
-            <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
           <AssociationSet Name="FK__inscripci__id_ca__6166761E" Association="Self.FK__inscripci__id_ca__6166761E">
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
@@ -827,6 +777,10 @@
             <End Role="faja" EntitySet="faja" />
             <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
+          <AssociationSet Name="FK_alumnoimagen_id_alumno" Association="Self.FK_alumnoimagen_id_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumno_imagen" EntitySet="alumno_imagen" />
+          </AssociationSet>
           <AssociationSet Name="FK_clase_id_direccion" Association="Self.FK_clase_id_direccion">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="clase" EntitySet="clase" />
@@ -838,6 +792,10 @@
           <AssociationSet Name="FK_clase_id_tipo_clase" Association="Self.FK_clase_id_tipo_clase">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="clase" EntitySet="clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_direccion_id_ciudad" Association="Self.FK_direccion_id_ciudad">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
           <AssociationSet Name="FK_ins_clase_id_alumno" Association="Self.FK_ins_clase_id_alumno">
             <End Role="alumno" EntitySet="alumno" />
@@ -862,24 +820,6 @@
           <Property Name="id_direccion" Type="Int32" />
           <NavigationProperty Name="direccion" Relationship="Self.academia_academia_id_direccion_fk" FromRole="academia" ToRole="direccion" />
         </EntityType>
-        <EntityType Name="barrio">
-          <Key>
-            <PropertyRef Name="id_barrio" />
-          </Key>
-          <Property Name="id_barrio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="direccion" Relationship="Self.direccion_direccion_id_barrio_fk" FromRole="barrio" ToRole="direccion" />
-        </EntityType>
-        <EntityType Name="calle">
-          <Key>
-            <PropertyRef Name="id_calle" />
-          </Key>
-          <Property Name="id_calle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="id_ciudad" Type="Int32" />
-          <NavigationProperty Name="ciudad" Relationship="Self.calle_calle_id_ciudad_fk" FromRole="calle" ToRole="ciudad" />
-          <NavigationProperty Name="direccion" Relationship="Self.direccion_direccion_id_calle_fk" FromRole="calle" ToRole="direccion" />
-        </EntityType>
         <EntityType Name="categoria_torneo">
           <Key>
             <PropertyRef Name="id_categoria_torneo" />
@@ -899,8 +839,8 @@
           <Property Name="id_ciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="id_pais" Type="Int32" />
-          <NavigationProperty Name="calle" Relationship="Self.calle_calle_id_ciudad_fk" FromRole="ciudad" ToRole="calle" />
           <NavigationProperty Name="pais" Relationship="Self.ciudad_ciudad_id_pais_fk" FromRole="ciudad" ToRole="pais" />
+          <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_direccion_id_ciudad" FromRole="ciudad" ToRole="direccion" />
         </EntityType>
         <EntityType Name="direccion">
           <Key>
@@ -908,14 +848,16 @@
           </Key>
           <Property Name="id_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="numero" Type="Int32" />
-          <Property Name="id_calle" Type="Int32" />
-          <Property Name="id_barrio" Type="Int32" />
           <NavigationProperty Name="academia" Relationship="Self.academia_academia_id_direccion_fk" FromRole="direccion" ToRole="academia" />
-          <NavigationProperty Name="barrio" Relationship="Self.direccion_direccion_id_barrio_fk" FromRole="direccion" ToRole="barrio" />
-          <NavigationProperty Name="calle" Relationship="Self.direccion_direccion_id_calle_fk" FromRole="direccion" ToRole="calle" />
           <NavigationProperty Name="sede" Relationship="Self.sede_sede_id_direccion_fk" FromRole="direccion" ToRole="sede" />
           <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_alumno_id_direccion" FromRole="direccion" ToRole="alumno" />
           <NavigationProperty Name="clase" Relationship="JJSSModel.FK_clase_id_direccion" FromRole="direccion" ToRole="clase" />
+          <Property Name="calle1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="barrio1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="departamento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="piso" Type="Int32" />
+          <Property Name="id_ciudad" Type="Int32" />
+          <NavigationProperty Name="ciudad" Relationship="JJSSModel.FK_direccion_id_ciudad" FromRole="direccion" ToRole="ciudad" />
         </EntityType>
         <EntityType Name="estado">
           <Key>
@@ -1025,42 +967,6 @@
             </Principal>
             <Dependent Role="academia">
               <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="direccion_direccion_id_barrio_fk">
-          <End Role="barrio" Type="Self.barrio" Multiplicity="0..1" />
-          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="barrio">
-              <PropertyRef Name="id_barrio" />
-            </Principal>
-            <Dependent Role="direccion">
-              <PropertyRef Name="id_barrio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="calle_calle_id_ciudad_fk">
-          <End Role="ciudad" Type="Self.ciudad" Multiplicity="0..1" />
-          <End Role="calle" Type="Self.calle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ciudad">
-              <PropertyRef Name="id_ciudad" />
-            </Principal>
-            <Dependent Role="calle">
-              <PropertyRef Name="id_ciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="direccion_direccion_id_calle_fk">
-          <End Role="calle" Type="Self.calle" Multiplicity="0..1" />
-          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="calle">
-              <PropertyRef Name="id_calle" />
-            </Principal>
-            <Dependent Role="direccion">
-              <PropertyRef Name="id_calle" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1174,8 +1080,6 @@
         </Association>
         <EntityContainer Name="JJSSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="academia" EntityType="Self.academia" />
-          <EntitySet Name="barrio" EntityType="Self.barrio" />
-          <EntitySet Name="calle" EntityType="Self.calle" />
           <EntitySet Name="categoria_torneo" EntityType="Self.categoria_torneo" />
           <EntitySet Name="ciudad" EntityType="Self.ciudad" />
           <EntitySet Name="direccion" EntityType="Self.direccion" />
@@ -1190,18 +1094,6 @@
           <AssociationSet Name="academia_academia_id_direccion_fk" Association="Self.academia_academia_id_direccion_fk">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="academia" EntitySet="academia" />
-          </AssociationSet>
-          <AssociationSet Name="direccion_direccion_id_barrio_fk" Association="Self.direccion_direccion_id_barrio_fk">
-            <End Role="barrio" EntitySet="barrio" />
-            <End Role="direccion" EntitySet="direccion" />
-          </AssociationSet>
-          <AssociationSet Name="calle_calle_id_ciudad_fk" Association="Self.calle_calle_id_ciudad_fk">
-            <End Role="ciudad" EntitySet="ciudad" />
-            <End Role="calle" EntitySet="calle" />
-          </AssociationSet>
-          <AssociationSet Name="direccion_direccion_id_calle_fk" Association="Self.direccion_direccion_id_calle_fk">
-            <End Role="calle" EntitySet="calle" />
-            <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
           <AssociationSet Name="categoria_torneo_categoria_torneo_id_faja_fk" Association="Self.categoria_torneo_categoria_torneo_id_faja_fk">
             <End Role="faja" EntitySet="faja" />
@@ -1306,6 +1198,16 @@
             <End Role="clase" EntitySet="clase" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
           </AssociationSet>
+          <EntitySet Name="alumno_imagen" EntityType="JJSSModel.alumno_imagen" />
+          <AssociationSet Name="FK_alumnoimagen_id_alumno" Association="JJSSModel.FK_alumnoimagen_id_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumno_imagen" EntitySet="alumno_imagen" />
+          </AssociationSet>
+          <EntitySet Name="torneo_imagen" EntityType="JJSSModel.torneo_imagen" />
+          <AssociationSet Name="FK_direccion_id_ciudad" Association="JJSSModel.FK_direccion_id_ciudad">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="direccion" EntitySet="direccion" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="alumno">
           <Key>
@@ -1330,6 +1232,7 @@
           <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_alumno_id_direccion" FromRole="alumno" ToRole="direccion" />
           <NavigationProperty Name="faja" Relationship="JJSSModel.FK_alumno_id_faja" FromRole="alumno" ToRole="faja" />
           <NavigationProperty Name="inscripcion_clase" Relationship="JJSSModel.FK_ins_clase_id_alumno" FromRole="alumno" ToRole="inscripcion_clase" />
+          <NavigationProperty Name="alumno_imagen" Relationship="JJSSModel.FK_alumnoimagen_id_alumno" FromRole="alumno" ToRole="alumno_imagen" />
         </EntityType>
         <EntityType Name="participante">
           <Key>
@@ -1591,6 +1494,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="alumno_imagen">
+          <Key>
+            <PropertyRef Name="id_alumnoimagen" />
+          </Key>
+          <Property Name="id_alumnoimagen" Type="Int32" Nullable="false" />
+          <Property Name="id_alumno" Type="Int32" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
+          <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_alumnoimagen_id_alumno" FromRole="alumno_imagen" ToRole="alumno" />
+        </EntityType>
+        <Association Name="FK_alumnoimagen_id_alumno">
+          <End Type="JJSSModel.alumno" Role="alumno" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="JJSSModel.alumno_imagen" Role="alumno_imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="id_alumno" />
+            </Principal>
+            <Dependent Role="alumno_imagen">
+              <PropertyRef Name="id_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="torneo_imagen">
+          <Key>
+            <PropertyRef Name="id_torneo_imagen" />
+          </Key>
+          <Property Name="id_torneo_imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_torneo" Type="Int32" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
+        </EntityType>
+        <Association Name="FK_direccion_id_ciudad">
+          <End Type="JJSSModel.ciudad" Role="ciudad" Multiplicity="0..1" />
+          <End Type="JJSSModel.direccion" Role="direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="direccion">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1604,23 +1550,6 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="barrio">
-            <EntityTypeMapping TypeName="JJSSModel.barrio">
-              <MappingFragment StoreEntitySet="barrio">
-                <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="calle">
-            <EntityTypeMapping TypeName="JJSSModel.calle">
-              <MappingFragment StoreEntitySet="calle">
-                <ScalarProperty Name="id_calle" ColumnName="id_calle" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1646,11 +1575,14 @@
           <EntitySetMapping Name="direccion">
             <EntityTypeMapping TypeName="JJSSModel.direccion">
               <MappingFragment StoreEntitySet="direccion">
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="piso" ColumnName="piso" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="barrio1" ColumnName="barrio" />
+                <ScalarProperty Name="calle1" ColumnName="calle" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
                 <ScalarProperty Name="numero" ColumnName="numero" />
-                <ScalarProperty Name="id_calle" ColumnName="id_calle" />
-                <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="estado">
@@ -1827,6 +1759,24 @@
               <MappingFragment StoreEntitySet="tipo_clase">
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alumno_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.alumno_imagen">
+              <MappingFragment StoreEntitySet="alumno_imagen">
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+                <ScalarProperty Name="id_alumnoimagen" ColumnName="id_alumnoimagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="torneo_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.torneo_imagen">
+              <MappingFragment StoreEntitySet="torneo_imagen">
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
+                <ScalarProperty Name="id_torneo_imagen" ColumnName="id_torneo_imagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

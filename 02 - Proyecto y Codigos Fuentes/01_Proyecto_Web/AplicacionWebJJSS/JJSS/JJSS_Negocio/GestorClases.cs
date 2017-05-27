@@ -13,9 +13,9 @@ namespace JJSS_Negocio
     /*
      * Clase que nos permite gestionar Torneos
      */
-    public class GestorTorneos
+    public class GestorClases
     {
-        private const int InscripcionAbierta = 1;
+        
 
         /*
          * Generar Nuevo torneo nos permite crear un nuevo torneo 
@@ -33,41 +33,25 @@ namespace JJSS_Negocio
          *          ex.message Resultado erroneo indicando el mensaje de la excepcion
          */
 
-        public String GenerarNuevoTorneo(DateTime pFecha, String pNombre, Decimal pPrecio_categoria, Decimal pPrecio_absoluto, String pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre, byte[] pImagen)
+        public String GenerarNuevaClase(int pTipo, double pPrecio, int pHorario, int pProfe, int pDireccion)
         {
             String sReturn = "";
             using (var db = new JJSSEntities())
             {
-                estado estadoTorneo = db.estado.Find(InscripcionAbierta);
+                
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    torneo nuevoTorneo = new torneo()
+                    clase nuevaClase = new clase()
                     {
-                        fecha = pFecha,
-                        fecha_cierre = pFecha_cierre,
-                        nombre = pNombre,
-                        precio_categoria = pPrecio_categoria,
-                        precio_absoluto = pPrecio_absoluto,
-                        hora = pHora,
-                        hora_cierre = pHora_cierre,
-                        id_sede = pSede, 
-                        estado = estadoTorneo
-                    };
-                    db.torneo.Add(nuevoTorneo);
-                    db.SaveChanges();
-
-                    torneo_imagen nuevoTorneoImagen = new torneo_imagen()
-                    {
-                        id_torneo = nuevoTorneo.id_torneo,
-                        imagen = pImagen
+                       
                     };
 
-                    db.torneo_imagen.Add(nuevoTorneoImagen);
-                    db.SaveChanges();
+                    db.clase.Add(nuevaClase);
+
                     //+Acá puede ser asincrono, asi que puede quedar guardandose y seguir ejecutandose lo demas /
 
-
+                    db.SaveChanges();
                     transaction.Commit();
                     return sReturn;
                 }
