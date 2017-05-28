@@ -49,6 +49,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoNombre;
         
         /// <summary>
+        /// Control caracteres_nombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator caracteres_nombre;
+        
+        /// <summary>
         /// Control ddl_sedes.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_fecha;
         
         /// <summary>
+        /// Control rev_fecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_fecha;
+        
+        /// <summary>
         /// Control dp_fecha_cierre.
         /// </summary>
         /// <remarks>
@@ -128,6 +146,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator val_fechas;
+        
+        /// <summary>
+        /// Control rev_fecha_cierre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_fecha_cierre;
         
         /// <summary>
         /// Control txt_precio_cat.
@@ -166,6 +193,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.CompareValidator tipoPrecioCat;
         
         /// <summary>
+        /// Control regex_peso_cat.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_peso_cat;
+        
+        /// <summary>
         /// Control txt_precio_abs.
         /// </summary>
         /// <remarks>
@@ -200,6 +236,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator tipoPrecioAbs;
+        
+        /// <summary>
+        /// Control regex_precio_abs.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_precio_abs;
         
         /// <summary>
         /// Control Panel1.

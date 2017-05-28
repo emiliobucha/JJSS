@@ -49,6 +49,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoNombre;
         
         /// <summary>
+        /// Control caracteres_nombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator caracteres_nombre;
+        
+        /// <summary>
         /// Control txt_precio.
         /// </summary>
         /// <remarks>

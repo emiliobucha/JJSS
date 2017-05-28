@@ -151,7 +151,9 @@
                                     <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ValidationGroup="grupoDni" ControlToValidate="txtDni" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ValidationGroup="grupoDni" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ID="positivoDni" runat="server" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El dni debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValueToCompare="0"></asp:CompareValidator>
+                                        <asp:RangeValidator ID="maximo_dni" runat="server" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El dni debe ser un valor menor" MaximumValue="2147483647" MinimumValue="0" Type="Integer"></asp:RangeValidator>
                                     </div>
                                 </div>
                                 <div class="row centered">
@@ -188,7 +190,8 @@
                                         <asp:TextBox ID="txt_nombre" class="caja2" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$"></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
 
@@ -206,7 +209,8 @@
                                         <asp:TextBox ID="txt_apellido" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoApellido" runat="server" ErrorMessage="Debe ingresar el apellido" ControlToValidate="txt_apellido" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoApellido" runat="server" ErrorMessage="Debe ingresar el apellido" ControlToValidate="txt_apellido" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="caracteres_apellido" runat="server" ControlToValidate="txt_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$"></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
 
@@ -243,9 +247,11 @@
                                         <asp:TextBox class="caja2" ID="txt_peso" runat="server" placeholder="Ingrese peso"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                                         <%--<asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
                                         <asp:CompareValidator ID="positivoPeso" runat="server" ErrorMessage="El peso debe ser un valor mayor a 0" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double"  ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
+                                    
+                                        <asp:RegularExpressionValidator ID="regex_peso" runat="server" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,18}([,][0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
                                     
                                     </div>
                                 </div>
@@ -264,9 +270,11 @@
                                         <asp:TextBox class="caja2" ID="txt_edad" runat="server" placeholder="Ingrese edad"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                                         <%--<asp:CompareValidator ID="tipoEdad" runat="server" ErrorMessage="La edad debe ser un valor numérico" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
                                         <asp:CompareValidator ID="positivoEdad" runat="server" ErrorMessage="La edad debe ser un valor mayor a 0" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
+                                    
+                                        <asp:RangeValidator ID="maximo_edad" runat="server" ControlToValidate="txt_edad" CssClass="text-danger" Display="Dynamic" ErrorMessage="La edad debe ser un valor menor" MaximumValue="2147483647" MinimumValue="0" Type="Integer"></asp:RangeValidator>
                                     
                                     </div>
                                 </div>
@@ -308,8 +316,7 @@
     <asp:Panel ID="inscripcionCorrecta" hidden="true" runat="server">
         <div class="container">
             <p>
-                <label class="pull-left">La inscripción se ha realizado correctamente</label>
-                <asp:Button ID="btn_cod_barra" class="btn btn-default" runat="server" Text="Imprimir codigo de barra" Height="32px" />
+                &nbsp;<asp:Button ID="btn_cod_barra" class="btn btn-default" runat="server" Text="Imprimir codigo de barra" Height="32px" />
             </p>
         </div>
 

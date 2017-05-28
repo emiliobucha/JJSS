@@ -23,7 +23,7 @@ namespace JJSS.Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorTorneos = new GestorTorneos();
-            if(!IsPostBack) CargarComboSedes();
+            if (!IsPostBack) CargarComboSedes();
 
 
 
@@ -56,7 +56,7 @@ namespace JJSS.Presentacion
                     fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
                 }
 
-                
+
 
                 decimal precio_abs = decimal.Parse(txt_precio_abs.Text.Replace(".", ","));
                 decimal precio_cat = decimal.Parse(txt_precio_cat.Text.Replace(".", ","));
@@ -72,17 +72,12 @@ namespace JJSS.Presentacion
                     imagenByte = ms.ToArray();
                 }
                 string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre, imagenByte);
-                if (sReturn.CompareTo("") == 0) {
-                    mensaje("Creación exitosa", "Inicio.aspx");
-                }
-                else
-                {
-                    mensaje(sReturn, "CrearTorneo.aspx");
-                }
-                    
+
+                if (sReturn.CompareTo("") == 0) sReturn = "El torneo se ha creado exitosamente";
+                mensaje(sReturn, "CrearTorneo.aspx");
             }
-            
-            
+
+
         }
 
         /*Resumen:
@@ -107,8 +102,8 @@ namespace JJSS.Presentacion
             ddl_sedes.DataBind();
         }
 
-      
-      
+
+
 
         protected void val_fechas_ServerValidate(object source, ServerValidateEventArgs args)
         {
@@ -136,8 +131,8 @@ namespace JJSS.Presentacion
 
         }
     }
-    
 
- }
+
+}
 
 

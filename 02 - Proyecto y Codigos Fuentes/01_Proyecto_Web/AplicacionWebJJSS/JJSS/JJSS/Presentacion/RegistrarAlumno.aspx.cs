@@ -16,22 +16,18 @@ namespace JJSS.Presentacion
     {
         private GestorInscripciones gestorInscripciones;
         private GestorAlumnos gestorAlumnos;
+        private GestorCiudades gestorCiudades;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorAlumnos = new GestorAlumnos();
             gestorInscripciones = new GestorInscripciones();
+            gestorCiudades = new GestorCiudades();
+
             if (!IsPostBack)
             {
                 CargarComboFajas();
-
-                //carga de grilla
-                ViewState["gvAlumnosOrden"] = "dni";
-                gvAlumnos.AllowPaging = true;
-                gvAlumnos.AllowSorting = true;
-                gvAlumnos.AutoGenerateColumns = false;
-                gvAlumnos.PageSize = 10;
-                CargarGrilla();
+                CargarComboCiudades();
             }
         }
 
@@ -55,33 +51,15 @@ namespace JJSS.Presentacion
             ddl_fajas.DataBind();
         }
 
-        protected void CargarGrilla()
+        protected void CargarComboCiudades()
         {
-            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(txt_filtro_apellido.Text);
-            gvAlumnos.DataBind();
+            List<ciudad> ciudades = gestorCiudades.ObtenerCiudades();
+            ddl_localidad.DataSource = ciudades;
+            ddl_localidad.DataTextField = "nombre";
+            ddl_localidad.DataValueField = "id_ciudad";
+            ddl_localidad.DataBind();
         }
 
-        protected void gvAlumnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvAlumnos.PageIndex = e.NewPageIndex;
-            CargarGrilla();
-        }
-
-        protected void gvAlumnos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            int dni = (int)gvAlumnos.SelectedValue;
-            string sReturn = gestorAlumnos.EliminarAlumno(dni);
-
-            if (sReturn.CompareTo("") == 0)
-            {
-                mensaje("Se ha eliminado el alumno correctamente", "RegistrarAlumno.aspx");
-            }
-            else
-            {
-                mensaje(sReturn, "RegistrarAlumno.aspx");
-            }
-        }
 
         protected void btn_guardar_click(object sender, EventArgs e)
         {
@@ -96,6 +74,10 @@ namespace JJSS.Presentacion
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
             int tel = int.Parse(txt_telefono.Text);
             string mail = txt_email.Text;
+            string calle = txt_calle.Text;
+            string departamento = txt_nro_dpto.Text;
+            int piso = int.Parse(txt_piso.Text);
+            int numero = int.Parse(txt_numero.Text);
             System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
             byte[] imagenByte;
             using (MemoryStream ms = new MemoryStream())
@@ -106,16 +88,11 @@ namespace JJSS.Presentacion
             int telEmergencia = int.Parse(txt_telefono_urgencia.Text);
             //Image imagenPerfil = Avatar;
 
-            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia, imagenByte);
+            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia, imagenByte, calle, numero, departamento, piso);
 
-            if (sReturn.CompareTo("") == 0)
-            {
-                mensaje("Creación exitosa", "Inicio.aspx");
-            }
-            else
-            {
-                mensaje(sReturn, "RegistrarAlumno.aspx");
-            }
+            if (sReturn.CompareTo("") == 0) sReturn = "Se ha creado el alumno exitosamente";
+            mensaje(sReturn, "RegistrarAlumno.aspx");
+
         }
 
         private void mensaje(string pMensaje, string pRef)
@@ -123,34 +100,8 @@ namespace JJSS.Presentacion
             Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
         }
 
-        protected void btn_buscar_alumno_Click(object sender, EventArgs e)
-        {
-            CargarGrilla();
-        }
 
-        protected void gvAlumnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
 
-        }
 
-        protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Eliminar")
-            {
-                int dni = (int)gvAlumnos.SelectedValue;
-                string sReturn = gestorAlumnos.EliminarAlumno(dni);
-
-                if (sReturn.CompareTo("") == 0)
-                {
-                    mensaje("Se ha eliminado el alumno correctamente", "RegistrarAlumno.aspx");
-                }
-                else
-                {
-                    mensaje(sReturn, "RegistrarAlumno.aspx");
-                }
-            }
-        }
-
-       
     }
 }

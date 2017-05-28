@@ -229,6 +229,24 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoDni;
         
         /// <summary>
+        /// Control positivoDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator positivoDni;
+        
+        /// <summary>
+        /// Control maximo_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator maximo_dni;
+        
+        /// <summary>
         /// Control pnl_Inscripcion.
         /// </summary>
         /// <remarks>
@@ -265,6 +283,15 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoNombre;
         
         /// <summary>
+        /// Control caracteres_nombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator caracteres_nombre;
+        
+        /// <summary>
         /// Control txt_apellido.
         /// </summary>
         /// <remarks>
@@ -281,6 +308,15 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoApellido;
+        
+        /// <summary>
+        /// Control caracteres_apellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator caracteres_apellido;
         
         /// <summary>
         /// Control rbSexo.
@@ -319,6 +355,15 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.CompareValidator positivoPeso;
         
         /// <summary>
+        /// Control regex_peso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_peso;
+        
+        /// <summary>
         /// Control txt_edad.
         /// </summary>
         /// <remarks>
@@ -344,6 +389,15 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator positivoEdad;
+        
+        /// <summary>
+        /// Control maximo_edad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator maximo_edad;
         
         /// <summary>
         /// Control ddl_fajas.

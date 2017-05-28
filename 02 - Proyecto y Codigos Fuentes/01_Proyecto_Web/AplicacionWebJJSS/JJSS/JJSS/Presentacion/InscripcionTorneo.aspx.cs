@@ -19,7 +19,7 @@ namespace JJSS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             gestorInscripciones = new GestorInscripciones();
             if (!IsPostBack)
             {
@@ -51,7 +51,7 @@ namespace JJSS
             txt_peso.Text = "";
             //ya se que no usamos el index pero solo tiene que setearlo en el primer valor que haya en el combo
             ddl_fajas.SelectedIndex = 0;
-            
+
             if (limpiaTodo == true)
             {
                 txtDni.Text = "";
@@ -62,7 +62,7 @@ namespace JJSS
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
-            
+
 
             //+Ver Bien el SelectedValue del combo
 
@@ -85,17 +85,12 @@ namespace JJSS
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
 
             //para todos
-            string sReturn=gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo, dni, idAlumno);
+            string sReturn = gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo, dni, idAlumno);
             limpiar(true);
 
-            if (sReturn.CompareTo("") == 0)
-            {
-                mensaje("Creación exitosa", "Inicio.aspx");
-            }
-            else
-            {
-                mensaje(sReturn, "InscripcionTorneo.aspx");
-            }
+            if (sReturn.CompareTo("") == 0) sReturn = "La inscripción se ha realizado exitosamente";
+            mensaje(sReturn, "InscripcionTorneo.aspx");
+
 
         }
 
@@ -124,7 +119,7 @@ namespace JJSS
 
         protected void btnAceptarTorneo_Click(object sender, EventArgs e)
         {
-            
+
 
             int idTorneo = 0;
             int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
@@ -203,7 +198,7 @@ namespace JJSS
             DateTime fechaNac = Convert.ToDateTime(pFechaNacimiento);
             int edad = DateTime.Today.Year - fechaNac.Year;
             return edad.ToString();
-            
+
         }
 
         /*Resumen:
@@ -215,7 +210,7 @@ namespace JJSS
          **/
         private void mensaje(string pMensaje, string pRef)
         {
-            Response.Write("<script>window.alert('"+pMensaje.Trim()+"');</script>" + "<script>window.setTimeout(location.href='"+pRef+"', 2000);</script>");
+            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
         }
     }
 }

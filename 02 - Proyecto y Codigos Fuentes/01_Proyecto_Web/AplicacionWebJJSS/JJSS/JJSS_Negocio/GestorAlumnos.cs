@@ -45,7 +45,8 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria, 
-            short? pSexo, int pDni, int? pTelefono, string pMail, int? pIdDireccion, int? pTelEmergencia, byte[] pImagen)
+            short? pSexo, int pDni, int? pTelefono, string pMail, int? pIdDireccion, int? pTelEmergencia, byte[] pImagen, 
+            string pCalle, int? pNumero, string pDpto, int? pPiso)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -62,6 +63,20 @@ namespace JJSS_Negocio
                         return "Alumno existente";
                     }
                     alumno nuevoAlumno;
+                    direccion nuevaDireccion;
+
+                    
+                    ciudad ciudadElegida = db.ciudad.Find(1);
+
+                    nuevaDireccion = new direccion()
+                    {
+                        calle1 = pCalle,
+                        departamento = pDpto,
+                        numero = pNumero,
+                        piso = pPiso,
+                        ciudad = ciudadElegida
+                    };
+
                     nuevoAlumno = new alumno()
                     {
                         nombre = pNombre,
@@ -73,12 +88,13 @@ namespace JJSS_Negocio
                         dni = pDni,
                         telefono = pTelefono,
                         mail = pMail,
-                        //direccion
+                        direccion=nuevaDireccion,
                         fecha_ingreso = DateTime.Today,
-                        
                         telefono_emergencia = pTelEmergencia
                     };
+
                     db.alumno.Add(nuevoAlumno);
+                    db.direccion.Add(nuevaDireccion);
                     db.SaveChanges();
                     alumno_imagen nuevoAlumno_imagen = new alumno_imagen()
                     {
@@ -171,7 +187,9 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    db.alumno.Remove(ObtenerAlumnoPorDNI(pDni));
+                    alumno alumnoBorrar = ObtenerAlumnoPorDNI(pDni);
+                    db.alumno.Attach(alumnoBorrar);
+                    db.alumno.Remove(alumnoBorrar);
                     db.SaveChanges();
                     transaction.Commit();
                     return sReturn;

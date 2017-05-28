@@ -239,7 +239,7 @@
                   <!--col administrar_alumnos-->
                 <div class="col-lg-4 proc">
                     <i class="fa fa-cogs" id="administrar_alumnos"></i>
-                    <h3><a style="color: #000000">Administrar Alumnos</a></h3>
+                    <h3><a href="GestionarAlumnos.aspx" style="color: #000000">Administrar Alumnos</a></h3>
                     <p>Podras visualizar todos tus alumnos. Darlos de bajo. Modificar su perfil.</p>
                 </div>
                 <!--/col-->
