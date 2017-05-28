@@ -13,6 +13,24 @@ namespace JJSS.Presentacion {
     public partial class Inicio {
         
         /// <summary>
+        /// Control gv_torneosAbiertos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_torneosAbiertos;
+        
+        /// <summary>
+        /// Control gv_clasesDisponibles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_clasesDisponibles;
+        
+        /// <summary>
         /// Control pnl_dni.
         /// </summary>
         /// <remarks>

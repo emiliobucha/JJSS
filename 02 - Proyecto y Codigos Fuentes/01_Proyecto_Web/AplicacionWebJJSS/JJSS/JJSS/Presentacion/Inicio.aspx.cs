@@ -18,15 +18,17 @@ namespace JJSS.Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            gestorDeTorneos = new GestorTorneos();
             gestorInscripciones = new GestorInscripciones();
             if (!IsPostBack)
             {
+                cargarTorneosAbiertos();
                 CargarComboFajas();
                 pnl_Inscripcion.Visible = false;
                 pnl_dni.Visible = true;
                 limpiar(true);
             }
-            gestorDeTorneos = new GestorTorneos();
 
 
 
@@ -202,6 +204,31 @@ namespace JJSS.Presentacion
             Response.AddHeader("Content-Type", "Application/octet-stream");
             Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
             Response.WriteFile(sFile);        
+
+        }
+
+        protected void cargarTorneosAbiertos()
+        {
+            gv_torneosAbiertos.DataSource = gestorDeTorneos.ObtenerTorneos();
+            gv_torneosAbiertos.DataBind();
+           
+        }
+
+        protected void gv_torneosAbiertos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gv_torneosAbiertos.Rows[index];
+
+            int id = Convert.ToInt32(row.Cells[0].Text);
+
+
+                // int id = (int)Convert.ToInt64(gv_torneosAbiertos.SelectedRow.Cells[1].Text);
+                //int id = (int)gv_torneosAbiertos.SelectedDataKey.Value;
+               
+           // int id = (int)this.gv_torneosAbiertos.SelectedValue;
+            Session["torneoSeleccionado"] = id;
+            Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
 
         }
     }

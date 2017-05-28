@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeFile="~/Presentacion/Inicio.aspx.cs" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
 
 
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
@@ -57,6 +57,8 @@
 	<!-- ABOUT SEPARATOR -->
 	<div class="sep torneo" data-stellar-background-ratio="0.5"></div>
 
+    <form runat="server">
+
     <!--SECTOR TORNEOS -->
     <section id="torneos" title="torneos"></section>
     <div id="torneoswrap">
@@ -66,7 +68,20 @@
             <div class="row mt centered">
 
                 <h1>ULTIMOS TORNEOS</h1>
-                <!--Primer Torneo-->
+                <div class="row centered">
+                    <p>&nbsp;</p>
+                </div>
+
+                <asp:GridView ID="gv_torneosAbiertos" runat="server" ShowHeader="false" DataKeyNames="id_torneo" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos por el momento" OnRowCommand="gv_torneosAbiertos_RowCommand" >
+                    <Columns>
+                        <asp:BoundField DataField="id_torneo"  />
+                        <asp:BoundField DataField="nombre" />
+                        <asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True"   />
+                    </Columns>
+                </asp:GridView>
+
+
+           <%--     <!--Primer Torneo-->
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
                     <div class="project-wrapper">
                         <div class="project">
@@ -113,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-                <!--/col-->
+                <!--/col-->--%>
             </div>
             <!-- /row -->
         </div>
@@ -175,7 +190,28 @@
     <section id="clases" title="clases"></section>
     <div id="claseswrap">
 
-      <!--APARTADO DE ADMINISTRACION DE CLASES -->
+        <!--APARTADO DE CLASES DISPONIBLES-->
+        <div class="container">
+            <div class="row mt centered">
+
+                <h1>CLASES DISPONIBLES</h1>
+                <div class="row centered">
+                    <p>&nbsp;</p>
+                </div>
+
+                <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="false" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos por el momento" OnRowCommand="gv_torneosAbiertos_RowCommand">
+                    <Columns>
+                        <asp:BoundField DataField="id_clase" />
+                        <asp:BoundField DataField="nombre" />
+                        <asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </div>
+
+
+
+        <!--APARTADO DE ADMINISTRACION DE CLASES -->
         <div class="container">
             <div class="row mt centered">
                 <h1>ADMINISTRACION DE CLASES</h1>
@@ -387,7 +423,7 @@
 		</div><!-- /container -->
 	</div>
 
-    <form runat="server">
+    
 
         <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE-->
         <div class="modal fade" id="inscripcionTorneo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">

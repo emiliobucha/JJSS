@@ -21,16 +21,32 @@ namespace JJSS
         {
 
             gestorInscripciones = new GestorInscripciones();
+            gestorDeTorneos = new GestorTorneos();
             if (!IsPostBack)
             {
-                CargarComboTorneos();
+               
                 CargarComboFajas();
-                pnl_InfoTorneo.Visible = false;
-                pnl_Inscripcion.Visible = false;
-                pnl_dni.Visible = false;
+                if (Session["torneoSeleccionado"] != null)
+                {
+                    int id = (int)Session["torneoSeleccionado"];
+                    cargarInfoTorneo(id);
+                    pnl_elegirTorneo.Visible = false;
+                    pnl_InfoTorneo.Visible = true;
+                    pnl_Inscripcion.Visible = false;
+                    pnl_dni.Visible = true;
+                }
+                else
+                {
+                    pnl_elegirTorneo.Visible = true;
+                    pnl_InfoTorneo.Visible = false;
+                    pnl_Inscripcion.Visible = false;
+                    pnl_dni.Visible = false;
+                    CargarComboTorneos();
+                }
+               
                 limpiar(true);
             }
-            gestorDeTorneos = new GestorTorneos();
+            
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,10 +135,15 @@ namespace JJSS
 
         protected void btnAceptarTorneo_Click(object sender, EventArgs e)
         {
-
-
             int idTorneo = 0;
             int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+            cargarInfoTorneo(idTorneo);
+
+        }
+
+        protected void cargarInfoTorneo(int idTorneo)
+        {
+           
             if (idTorneo.CompareTo(0) > 0)
             {
                 torneoSeleccionado = gestorDeTorneos.BuscarTorneoPorID(idTorneo);
@@ -139,8 +160,8 @@ namespace JJSS
             limpiar(true);
             pnl_dni.Visible = true;
             pnl_Inscripcion.Visible = false;
-
         }
+
         protected void btnGenerarListado_Click(object sender, EventArgs e)
         {
             int idTorneo = 0;

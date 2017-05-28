@@ -6,9 +6,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
-     <section id="registrarAlumno" title="registrarAlumno"></section>
+    <section id="registrarAlumno" title="registrarAlumno"></section>
+
     <form id="formRegAlumno" runat="server">
-        
+
         <asp:Panel ID="pnl_mostrar_alumnos" runat="server">
 
             <div id="mostrarAlumnowrap">
@@ -27,7 +28,7 @@
 
                             <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnSelectedIndexChanged="gvAlumnos_SelectedIndexChanged" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
                                 <Columns>
-                                    
+
                                     <asp:CommandField HeaderText="Eliminar" SelectText="Eliminar" ShowCancelButton="True" ShowDeleteButton="False" ShowSelectButton="True" />
                                     <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
                                     <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
