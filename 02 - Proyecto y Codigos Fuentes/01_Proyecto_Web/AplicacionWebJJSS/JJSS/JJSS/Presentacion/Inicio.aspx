@@ -67,6 +67,8 @@
         <div class="container">
             <div class="row mt centered">
 
+                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+
                 <h1>ULTIMOS TORNEOS</h1>
                 <div class="row centered">
                     <p>&nbsp;</p>
@@ -81,7 +83,7 @@
                 </asp:GridView>
 
 
-           <%--     <!--Primer Torneo-->
+                <%--<!--Primer Torneo-->
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
                     <div class="project-wrapper">
                         <div class="project">
@@ -94,7 +96,7 @@
                             </div>
                         </div>
                     </div>                    
-                <button type="button" class="btn" data-toggle="modal" data-target="#inscripcionTorneo" data-whatever="@mdo">Inscribir</button>
+                <button id="btn_emergente" type="button" class="btn" data-toggle="modal" data-target="#inscripcionTorneo">Inscribir</button>
                 </div>
                 <!--/col-->
 
@@ -128,9 +130,9 @@
                         </div>
                     </div>
                 </div>
-                <!--/col-->--%>
+                <!--/col-->
             </div>
-            <!-- /row -->
+            <!-- /row -->--%>
         </div>
         <!--/container -->
 
@@ -171,7 +173,7 @@
                 <!--col Generar_Listado_inscriptos-->
                 <div class="col-lg-4 proc" id="Generar_Listado_inscriptos">
                     <i class="fa fa-cogs"></i>
-                    <h3 class="logo"><a id="btn_generar_Listado_inscriptos" href="javascript:__doPostBack('btnGenerarListado_Click','')" style="color: #000000">Generar listado de inscriptos</a></h3>
+                    <h3 class="logo"><a id="btn_generar_Listado_inscriptos" href="" data-toggle="modal" data-target="#exportarListado" style="color: #000000">Generar listado de inscriptos</a></h3>
                     <p>Genera un listado de los inscriptos a un torneo. Con esta herramienta podrás imprimir un listados con los inscriptos a un torneo.</p>
                 </div><!--/col-->
             </div>
@@ -199,10 +201,11 @@
                     <p>&nbsp;</p>
                 </div>
 
-                <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="false" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos por el momento" OnRowCommand="gv_torneosAbiertos_RowCommand">
+                <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="false" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="id_clase" />
                         <asp:BoundField DataField="nombre" />
+                        <asp:BoundField DataField="precio" />
                         <asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />
                     </Columns>
                 </asp:GridView>
@@ -285,6 +288,7 @@
 
     </div>
     <!--/Portfoliowrap -->
+
 
 
 
@@ -422,8 +426,7 @@
 			</div><!--/row -->
 		</div><!-- /container -->
 	</div>
-
-    
+         
 
         <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE-->
         <div class="modal fade" id="inscripcionTorneo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -625,17 +628,18 @@
                 </div>
             </div>
         </div>
-
-        <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE         ***DNI***       -->
-        <div class="modal fade" id="inscripcionTorneoDNI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2" >
+        
+        
+        
+        <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE --------------------***Exportar Listado***--------------------->
+        <div class="modal fade" id="exportarListado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2" >
             <div class="modal-dialog" role="document" >
                 <div class="modal-content" >
-
 
                     <!--Cabecera-->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabe2">Inscripción</h4>
+                        <h4 class="modal-title" id="exampleModalLabe2">Exportar listado de inscriptos</h4>
                     </div>
 
                     <!--Cuerpo-->
@@ -643,18 +647,18 @@
                     <div class="modal-body">
                         <div class="form-group">
 
-                            <!--Ingresar DNI-->
-                            <asp:Panel ID="pnl_dni1" CssClass="panel panel-default" runat="server">
+                            <!--Seleccione Torneo-->
+                            <asp:Panel ID="pnl_torneoExportarListado" CssClass="panel panel-default" runat="server">
                                   <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
                                 <div class="row center-block">
-                                    <div class="col-lg-3"></div>
-                                    <div class=" col-lg-1">
-                                        <label for="recipient-name" class="control-label">DNI:</label>
+                                    <div class=" col-xs-2"></div>
+                                    <div class=" col-xs-2">
+                                        <label for="recipient-name" class="control-label">Torneo:</label>
                                     </div>
-                                    <div class="col-lg-5">
-                                        <asp:TextBox ID="txt_dni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
+                                    <div class="col-xs-5">
+                                        <asp:DropDownList ID="ddl_torneoExportarListado" CssClass="caja2" runat="server"></asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="row centered">
@@ -667,56 +671,31 @@
                     <!--Botonero-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <%--<asp:Button ID="btn_confirmarDni" onClick="btn_confirmarDni_Click" type="submit" class="btn btn-default" runat="server" Text="Aceptar" />--%>
-                        
-                       <!-- <asp:Button ID="btn_confirmar_" runat="server" CssClass="btn btn-default" Text="Aceptar" type="submit" />
-                        -->
-
-                       <!--
-                      <asp:Button ID="btn_confirmar_dni" runat="server" Text="Aceptar" OnClick="btn_confirmar_dni_Click" CssClass="btn btn-default" />
-                       -->
-                        <!--
-                        <INPUT  type="button" NAME="confirmarDNI" id="btn_confirmar_dni" value="aceptar" onclick="btn_confirmar_dni_onclick()">
-                        -->
-                        <!--
-                            <asp:Button ID="btn_confirmar_dni1" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btn_confirmar_dni_Click"  type="submit" />
-                      -->
-                       <!--
-                        <button id="btn_confirmar_dni" onclick="btn_confirmar_dni_Click()" type="button" class="btn" data-toggle="modal" data-target="#inscripcionTorneo" data-dismiss="modal" data-whatever="@mdo">Inscribir</button>
-                         -->               
-                        <!--
-                        <a id="btn_confirmar_dni" class="btn btn-default" href="javascript:__doPostBack('btn_confirmar_dni_Click','')"  >Aceptar</a>
-                        -->
+                        <asp:Button ID="btn_acpetarTorneoExportarLista" CssClass="btn btn-default" runat="server" Text="Acceptar" OnClick="btn_acpetarTorneoExportarLista_Click" />
                     </div>
 
                 </div>
             </div>
         </div>
-      
+          </form>
     <!--SCRIPT-->
+
+        <script type="text/javascript">
+                       
+            function openModal() {
+                $('#inscripcionTorneo').modal('show');
+            }
+            function ShowPopup() {
+                $("#btn_emergente").click();
+            }
+        </script>
 
 
     <script> 
-        $('#inscripcionTorneo').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) 
-            var recipient = button.data('whatever') 
-            var modal = $(this)
-            modal.find('.modal-title').text('New message to ' + recipient)
-            modal.find('.modal-body input').val(recipient)
-        })
-        
 
-        $('#inscripcionTorneoDNI').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('whatever') // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this)
-            modal.find('.modal-title').text('New message to ' + recipient)
-            modal.find('.modal-body input').val(recipient)
-        })
+
     </script>
         
-    </form>
+
 
     </asp:Content>

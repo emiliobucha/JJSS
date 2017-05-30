@@ -123,6 +123,20 @@ namespace JJSS_Negocio
             }
         }
 
+
+        public List<torneo> ObtenerTorneosAbiertosCerrados()
+        {
+
+            using (var db = new JJSSEntities())
+            {
+                var torneosAbiertos =
+                    from torneo in db.torneo
+                    where torneo.id_estado == 1 || torneo.id_estado == 2
+                    select torneo;
+                return torneosAbiertos.ToList();
+            }
+        }
+
         /*
          * Obtener todas las sedes de los disponibles para que se realicen los torneos
          */

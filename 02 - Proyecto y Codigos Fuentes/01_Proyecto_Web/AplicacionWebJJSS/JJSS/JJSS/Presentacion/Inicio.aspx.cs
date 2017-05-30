@@ -13,7 +13,9 @@ namespace JJSS.Presentacion
     {
         private GestorInscripciones gestorInscripciones;
         private GestorTorneos gestorDeTorneos;
+        private GestorClases gestorDeClases;
         private torneo torneoSeleccionado;
+        private int claseSeleccionada;
         private int? idAlumno=null;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,27 +23,29 @@ namespace JJSS.Presentacion
 
             gestorDeTorneos = new GestorTorneos();
             gestorInscripciones = new GestorInscripciones();
+            gestorDeClases = new GestorClases();
             if (!IsPostBack)
             {
+                cargarTorneosExportarListado();
+                cargarClases();
                 cargarTorneosAbiertos();
                 CargarComboFajas();
                 pnl_Inscripcion.Visible = false;
                 pnl_dni.Visible = true;
                 limpiar(true);
             }
-
-
+            
 
 
             //   this.btn_confirmar_dni.ServerClick += MetodoClick;
 
 
-            ClientScript.GetPostBackEventReference(this, string.Empty);
-            if (Request.Form["__EVENTTARGET"] == "btnGenerarListado_Click")
-            {
-                //llamamos el metodo que queremos ejecutar, en este caso el evento onclick del boton Button2
-                btnGenerarListado_Click(this, new EventArgs());
-            }
+            //ClientScript.GetPostBackEventReference(this, string.Empty);
+            //if (Request.Form["__EVENTTARGET"] == "btnGenerarListado_Click")
+            //{
+            //    //llamamos el metodo que queremos ejecutar, en este caso el evento onclick del boton Button2
+            //    btnGenerarListado_Click(this, new EventArgs());
+            //}
             btn_aceptar.Visible = false;
         }
         
@@ -153,50 +157,52 @@ namespace JJSS.Presentacion
 
         }
 
-        protected void btn_confirmar_dni_Click(object sender, EventArgs e)
+        //protected void btn_confirmar_dni_Click(object sender, EventArgs e)
+        //{
+        //    txt_apellido.ReadOnly = false;
+        //    txt_nombre.ReadOnly = false;
+        //    txt_edad.ReadOnly = false;
+        //    ddl_fajas.Enabled = true;
+        //    rbSexo.Enabled = true;
+
+        //    pnl_Inscripcion.Visible = true;
+        //    participante participanteEncontrado = gestorInscripciones.ObtenerParticipanteporDNI(int.Parse(txt_dni.Text));
+
+        //    //Partipante ya estaba inscripto con ese dni
+        //    if (participanteEncontrado != null) return;
+
+        //    alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txt_dni.Text));
+        //    if (alumnoEncontrado != null)
+        //    {
+        //        //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
+        //        txt_apellido.ReadOnly = true;
+        //        txt_nombre.ReadOnly = true;
+        //        txt_edad.ReadOnly = true;
+        //        ddl_fajas.Enabled = false;
+        //        rbSexo.Enabled = false;
+
+        //        txt_apellido.Text = alumnoEncontrado.apellido;
+        //        txt_nombre.Text = alumnoEncontrado.nombre;
+
+        //        DateTime fechaNac = Convert.ToDateTime(alumnoEncontrado.fecha_nacimiento);
+        //        int edad = DateTime.Today.Year - fechaNac.Year;
+        //        txt_edad.Text = edad.ToString();
+
+        //        ddl_fajas.SelectedValue = alumnoEncontrado.id_faja.ToString();
+
+        //        if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
+        //        if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
+
+        //        idAlumno = alumnoEncontrado.id_alumno;
+        //       // ClientScript.RegisterStartupScript(this.GetType(), "myScript", "mostraPanelInscripcion();", false);
+        //    }
+        //}
+
+        protected void btnGenerarListado()
         {
-            txt_apellido.ReadOnly = false;
-            txt_nombre.ReadOnly = false;
-            txt_edad.ReadOnly = false;
-            ddl_fajas.Enabled = true;
-            rbSexo.Enabled = true;
-
-            pnl_Inscripcion.Visible = true;
-            participante participanteEncontrado = gestorInscripciones.ObtenerParticipanteporDNI(int.Parse(txt_dni.Text));
-
-            //Partipante ya estaba inscripto con ese dni
-            if (participanteEncontrado != null) return;
-
-            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txt_dni.Text));
-            if (alumnoEncontrado != null)
-            {
-                //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
-                txt_apellido.ReadOnly = true;
-                txt_nombre.ReadOnly = true;
-                txt_edad.ReadOnly = true;
-                ddl_fajas.Enabled = false;
-                rbSexo.Enabled = false;
-
-                txt_apellido.Text = alumnoEncontrado.apellido;
-                txt_nombre.Text = alumnoEncontrado.nombre;
-
-                DateTime fechaNac = Convert.ToDateTime(alumnoEncontrado.fecha_nacimiento);
-                int edad = DateTime.Today.Year - fechaNac.Year;
-                txt_edad.Text = edad.ToString();
-
-                ddl_fajas.SelectedValue = alumnoEncontrado.id_faja.ToString();
-
-                if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
-                if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
-
-                idAlumno = alumnoEncontrado.id_alumno;
-               // ClientScript.RegisterStartupScript(this.GetType(), "myScript", "mostraPanelInscripcion();", false);
-            }
-        }
-
-        protected void btnGenerarListado_Click(object sender, EventArgs e)
-        {
-            int idTorneo = 1;
+            int idTorneo = 0;
+            int.TryParse(ddl_torneoExportarListado.SelectedValue, out idTorneo);
+            
            // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
             String sFile = gestorDeTorneos.GenararListado(idTorneo);
 
@@ -227,9 +233,48 @@ namespace JJSS.Presentacion
                 //int id = (int)gv_torneosAbiertos.SelectedDataKey.Value;
                
            // int id = (int)this.gv_torneosAbiertos.SelectedValue;
-            Session["torneoSeleccionado"] = id;
+
+            Session["torneoSeleccionado"] = id;         
+
             Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
 
+        }
+        protected void cargarClases()
+        {
+            gv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClases();
+            gv_clasesDisponibles.DataBind();
+        }
+
+        protected void gv_clasesDisponibles_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gv_clasesDisponibles.Rows[index];
+
+            int id = Convert.ToInt32(row.Cells[0].Text);
+           
+            claseSeleccionada = id;
+            //Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
+             
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            // ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "ShowPopup();", true);
+            // ClientScript.RegisterStartupScript(GetType(), "alert", "ShowPopup();", true);
+        }
+
+        protected void cargarTorneosExportarListado()
+        {
+            List<torneo> torneosExportar = gestorDeTorneos.ObtenerTorneosAbiertosCerrados();
+            ddl_torneoExportarListado.DataSource = torneosExportar;
+            ddl_torneoExportarListado.DataTextField = "nombre";
+            ddl_torneoExportarListado.DataValueField = "id_torneo";
+            ddl_torneoExportarListado.DataBind();
+        }
+
+        protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
+        {
+            btnGenerarListado();
         }
     }
 }

@@ -13,6 +13,15 @@ namespace JJSS.Presentacion {
     public partial class Inicio {
         
         /// <summary>
+        /// Control Button1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
         /// Control gv_torneosAbiertos.
         /// </summary>
         /// <remarks>
@@ -220,48 +229,30 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
         
         /// <summary>
-        /// Control pnl_dni1.
+        /// Control pnl_torneoExportarListado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_dni1;
+        protected global::System.Web.UI.WebControls.Panel pnl_torneoExportarListado;
         
         /// <summary>
-        /// Control txt_dni.
+        /// Control ddl_torneoExportarListado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_dni;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_torneoExportarListado;
         
         /// <summary>
-        /// Control btn_confirmar_.
+        /// Control btn_acpetarTorneoExportarLista.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_confirmar_;
-        
-        /// <summary>
-        /// Control btn_confirmar_dni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_confirmar_dni;
-        
-        /// <summary>
-        /// Control btn_confirmar_dni1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_confirmar_dni1;
+        protected global::System.Web.UI.WebControls.Button btn_acpetarTorneoExportarLista;
     }
 }
