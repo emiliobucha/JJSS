@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="75f5d254ec584e4cbefc10966b8e4418" Name="Diagram1" ZoomLevel="65">
+      <Diagram DiagramId="75f5d254ec584e4cbefc10966b8e4418" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.categoria_torneo" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.ciudad" Width="1.5" PointX="1.5" PointY="19.375" IsExpanded="true" />
@@ -28,7 +28,7 @@
         <AssociationConnector Association="JJSSModel.lucha_lucha_id_torneo_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.torneo_torneo_id_sede_fk" ManuallyRouted="false" />
         <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.participante" Width="1.5" PointX="6" PointY="3" IsExpanded="false" />
+        <EntityTypeShape EntityType="JJSSModel.participante" Width="1.5" PointX="6" PointY="3.25" IsExpanded="false" />
         <AssociationConnector Association="JJSSModel.participante_participante_id_faja_fk" />
         <AssociationConnector Association="JJSSModel.inscripcion_inscripcion_id_participante_fk" />
         <AssociationConnector Association="JJSSModel.lucha_lucha_id_participante_1_fk" />

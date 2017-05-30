@@ -16,7 +16,7 @@ namespace JJSS_Entidad
     {
         public int id_inscripcion { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<System.TimeSpan> hora { get; set; }
+        public string hora { get; set; }
         public Nullable<int> id_clase { get; set; }
         public Nullable<int> id_alumno { get; set; }
     

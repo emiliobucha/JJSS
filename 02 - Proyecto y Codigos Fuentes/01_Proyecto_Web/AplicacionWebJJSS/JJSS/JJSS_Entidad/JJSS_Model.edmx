@@ -137,7 +137,7 @@
           </Key>
           <Property Name="id_inscripcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
-          <Property Name="hora" Type="time" Precision="7" />
+          <Property Name="hora" Type="varchar" MaxLength="7" />
           <Property Name="id_clase" Type="int" />
           <Property Name="id_alumno" Type="int" />
         </EntityType>
@@ -1407,7 +1407,7 @@
           </Key>
           <Property Name="id_inscripcion" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="hora" Type="Time" Precision="7" />
+          <Property Name="hora" Type="String" />
           <Property Name="id_clase" Type="Int32" />
           <Property Name="id_alumno" Type="Int32" />
           <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_ins_clase_id_alumno" FromRole="inscripcion_clase" ToRole="alumno" />
