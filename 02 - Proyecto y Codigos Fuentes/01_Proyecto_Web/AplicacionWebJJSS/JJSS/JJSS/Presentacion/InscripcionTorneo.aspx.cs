@@ -71,7 +71,7 @@ namespace JJSS
             if (limpiaTodo == true)
             {
                 txtDni.Text = "";
-                ddl_torneos.SelectedIndex = 0;
+               // ddl_torneos.SelectedIndex = 1;
             }
 
         }

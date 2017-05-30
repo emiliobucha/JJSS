@@ -39,7 +39,8 @@
                             <asp:TextBox ID="txt_precio" runat="server" placeholder="Ingrese precio" CssClass="caja2"></asp:TextBox>
                         </div>
                         <div class="col-xs-2">
-                            <asp:RequiredFieldValidator ID="requeridoPrecio" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un precio" ControlToValidate="txt_precio"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="requeridoPrecio" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un precio" ControlToValidate="txt_precio" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regex_precio" runat="server" ControlToValidate="txt_precio" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
                         </div>
 
                     </div>

@@ -155,7 +155,7 @@
                                  <asp:RequiredFieldValidator ID="requeridoPrecioCat" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de categoria" ControlToValidate="txt_precio_cat"></asp:RequiredFieldValidator>
                                 <asp:CompareValidator ID="positivoPrecioCat" runat="server" ErrorMessage="El precio debe ser un valor mayor a 0" ControlToValidate="txt_precio_cat" CssClass="text-danger" ValueToCompare="0" Type="Double" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
                                 <asp:CompareValidator ID="tipoPrecioCat" runat="server" ErrorMessage="El precio debe ser un valor numérico" ControlToValidate="txt_precio_cat" CssClass="text-danger" Type="Double" Operator="DataTypeCheck" Display="Dynamic"></asp:CompareValidator>
-                                 <asp:RegularExpressionValidator ID="regex_peso_cat" runat="server" ControlToValidate="txt_precio_cat" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,18}([,.][0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
+                                 <asp:RegularExpressionValidator ID="regex_peso_cat" runat="server" ControlToValidate="txt_precio_cat" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
                             </div>
                         </div>
 
@@ -174,7 +174,7 @@
                                 <asp:CompareValidator ID="positivoPrecioAbs" runat="server" ErrorMessage="El precio debe ser un valor mayor a 0" ControlToValidate="txt_precio_abs" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
                                 <asp:CompareValidator ID="tipoPrecioAbs" runat="server" ErrorMessage="El precio debe ser un valor numérico" ControlToValidate="txt_precio_abs" CssClass="text-danger" Type="Double" Operator="DataTypeCheck" Display="Dynamic"></asp:CompareValidator>
 
-                                <asp:RegularExpressionValidator ID="regex_precio_abs" runat="server" ControlToValidate="txt_precio_abs" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,18}([,.][0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
+                                <asp:RegularExpressionValidator ID="regex_precio_abs" runat="server" ControlToValidate="txt_precio_abs" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
 
                             </div>
                         </div>

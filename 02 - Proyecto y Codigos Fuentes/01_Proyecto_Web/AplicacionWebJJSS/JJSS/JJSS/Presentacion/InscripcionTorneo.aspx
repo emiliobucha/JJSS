@@ -251,7 +251,7 @@
                                         <%--<asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
                                         <asp:CompareValidator ID="positivoPeso" runat="server" ErrorMessage="El peso debe ser un valor mayor a 0" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double"  ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
                                     
-                                        <asp:RegularExpressionValidator ID="regex_peso" runat="server" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,18}([,][0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="regex_peso" runat="server" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
                                     
                                     </div>
                                 </div>
