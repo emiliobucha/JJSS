@@ -91,5 +91,13 @@ namespace JJSS_Negocio
                 return modUtilidadesTablas.ToDataTable(horarios.ToList());
             }
         }
+
+        public List<clase> ObtenerClases()
+        {
+            using (var db = new JJSSEntities())
+            {
+                return db.clase.ToList();
+            }
+            }
     }
 }
