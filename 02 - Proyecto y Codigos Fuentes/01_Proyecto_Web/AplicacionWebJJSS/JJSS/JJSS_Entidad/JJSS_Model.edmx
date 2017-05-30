@@ -74,12 +74,12 @@
           <Key>
             <PropertyRef Name="id_clase" />
           </Key>
-          <Property Name="id_clase" Type="int" Nullable="false" />
+          <Property Name="id_clase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_tipo_clase" Type="int" />
           <Property Name="precio" Type="float" />
-          <Property Name="id_horario" Type="int" />
           <Property Name="id_profe" Type="int" />
           <Property Name="id_direccion" Type="int" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="direccion">
           <Key>
@@ -112,10 +112,11 @@
           <Key>
             <PropertyRef Name="id_horario" />
           </Key>
-          <Property Name="id_horario" Type="int" Nullable="false" />
+          <Property Name="id_horario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_dia" Type="varchar" MaxLength="9" />
           <Property Name="hora_desde" Type="varchar" MaxLength="20" />
           <Property Name="hora_hasta" Type="varchar" MaxLength="20" />
+          <Property Name="id_clase" Type="int" />
         </EntityType>
         <EntityType Name="inscripcion">
           <Key>
@@ -134,7 +135,7 @@
           <Key>
             <PropertyRef Name="id_inscripcion" />
           </Key>
-          <Property Name="id_inscripcion" Type="int" Nullable="false" />
+          <Property Name="id_inscripcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
           <Property Name="hora" Type="time" Precision="7" />
           <Property Name="id_clase" Type="int" />
@@ -583,18 +584,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_clase_id_horario">
-          <End Role="horario" Type="Self.horario" Multiplicity="0..1" />
-          <End Role="clase" Type="Self.clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="horario">
-              <PropertyRef Name="id_horario" />
-            </Principal>
-            <Dependent Role="clase">
-              <PropertyRef Name="id_horario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_clase_id_tipo_clase">
           <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
@@ -619,7 +608,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ins_clase_id_alumno">
+        <Association Name="FK_horario_id_clase">
+          <End Role="clase" Type="Self.clase" Multiplicity="0..1" />
+          <End Role="horario" Type="Self.horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="id_clase" />
+            </Principal>
+            <Dependent Role="horario">
+              <PropertyRef Name="id_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inscripcion_clase_id_alumno">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="inscripcion_clase" Type="Self.inscripcion_clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -631,7 +632,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ins_clase_id_clase">
+        <Association Name="FK_inscripcion_clase_id_clase">
           <End Role="clase" Type="Self.clase" Multiplicity="0..1" />
           <End Role="inscripcion_clase" Type="Self.inscripcion_clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -640,6 +641,18 @@
             </Principal>
             <Dependent Role="inscripcion_clase">
               <PropertyRef Name="id_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_torneo_imagen_id_torneo">
+          <End Role="torneo" Type="Self.torneo" Multiplicity="1" />
+          <End Role="torneo_imagen" Type="Self.torneo_imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="torneo">
+              <PropertyRef Name="id_torneo" />
+            </Principal>
+            <Dependent Role="torneo_imagen">
+              <PropertyRef Name="id_torneo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -785,10 +798,6 @@
             <End Role="direccion" EntitySet="direccion" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
-          <AssociationSet Name="FK_clase_id_horario" Association="Self.FK_clase_id_horario">
-            <End Role="horario" EntitySet="horario" />
-            <End Role="clase" EntitySet="clase" />
-          </AssociationSet>
           <AssociationSet Name="FK_clase_id_tipo_clase" Association="Self.FK_clase_id_tipo_clase">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="clase" EntitySet="clase" />
@@ -797,13 +806,21 @@
             <End Role="ciudad" EntitySet="ciudad" />
             <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
-          <AssociationSet Name="FK_ins_clase_id_alumno" Association="Self.FK_ins_clase_id_alumno">
+          <AssociationSet Name="FK_horario_id_clase" Association="Self.FK_horario_id_clase">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="horario" EntitySet="horario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inscripcion_clase_id_alumno" Association="Self.FK_inscripcion_clase_id_alumno">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK_ins_clase_id_clase" Association="Self.FK_ins_clase_id_clase">
+          <AssociationSet Name="FK_inscripcion_clase_id_clase" Association="Self.FK_inscripcion_clase_id_clase">
             <End Role="clase" EntitySet="clase" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_torneo_imagen_id_torneo" Association="Self.FK_torneo_imagen_id_torneo">
+            <End Role="torneo" EntitySet="torneo" />
+            <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -957,6 +974,7 @@
           <NavigationProperty Name="inscripcion" Relationship="Self.inscripcion_inscripcion_id_torneo_fk" FromRole="torneo" ToRole="inscripcion" />
           <NavigationProperty Name="lucha" Relationship="Self.lucha_lucha_id_torneo_fk" FromRole="torneo" ToRole="lucha" />
           <NavigationProperty Name="sede" Relationship="Self.torneo_torneo_id_sede_fk" FromRole="torneo" ToRole="sede" />
+          <NavigationProperty Name="torneo_imagen" Relationship="JJSSModel.FK_torneo_imagen_id_torneo" FromRole="torneo" ToRole="torneo_imagen" />
         </EntityType>
         <Association Name="academia_academia_id_direccion_fk">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
@@ -1186,10 +1204,6 @@
             <End Role="direccion" EntitySet="direccion" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
-          <AssociationSet Name="FK_clase_id_horario" Association="JJSSModel.FK_clase_id_horario">
-            <End Role="horario" EntitySet="horario" />
-            <End Role="clase" EntitySet="clase" />
-          </AssociationSet>
           <AssociationSet Name="FK_clase_id_tipo_clase" Association="JJSSModel.FK_clase_id_tipo_clase">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="clase" EntitySet="clase" />
@@ -1207,6 +1221,14 @@
           <AssociationSet Name="FK_direccion_id_ciudad" Association="JJSSModel.FK_direccion_id_ciudad">
             <End Role="ciudad" EntitySet="ciudad" />
             <End Role="direccion" EntitySet="direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumno_id_clase_clase_id_clase" Association="JJSSModel.FK_alumno_id_clase_clase_id_clase">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="horario" EntitySet="horario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_torneo_imagen_id_torneo" Association="JJSSModel.FK_torneo_imagen_id_torneo">
+            <End Role="torneo" EntitySet="torneo" />
+            <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="alumno">
@@ -1360,13 +1382,13 @@
           <Property Name="id_clase" Type="Int32" Nullable="false" />
           <Property Name="id_tipo_clase" Type="Int32" />
           <Property Name="precio" Type="Double" />
-          <Property Name="id_horario" Type="Int32" />
           <Property Name="id_profe" Type="Int32" />
           <Property Name="id_direccion" Type="Int32" />
           <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_clase_id_direccion" FromRole="clase" ToRole="direccion" />
-          <NavigationProperty Name="horario" Relationship="JJSSModel.FK_clase_id_horario" FromRole="clase" ToRole="horario" />
           <NavigationProperty Name="tipo_clase" Relationship="JJSSModel.FK_clase_id_tipo_clase" FromRole="clase" ToRole="tipo_clase" />
           <NavigationProperty Name="inscripcion_clase" Relationship="JJSSModel.FK_ins_clase_id_clase" FromRole="clase" ToRole="inscripcion_clase" />
+          <NavigationProperty Name="horario" Relationship="JJSSModel.FK_alumno_id_clase_clase_id_clase" FromRole="clase" ToRole="horario" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="horario">
           <Key>
@@ -1376,7 +1398,8 @@
           <Property Name="nombre_dia" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="hora_desde" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="hora_hasta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="clase" Relationship="JJSSModel.FK_clase_id_horario" FromRole="horario" ToRole="clase" />
+          <Property Name="id_clase" Type="Int32" />
+          <NavigationProperty Name="clase" Relationship="JJSSModel.FK_alumno_id_clase_clase_id_clase" FromRole="horario" ToRole="clase" />
         </EntityType>
         <EntityType Name="inscripcion_clase">
           <Key>
@@ -1458,18 +1481,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_clase_id_horario">
-          <End Type="JJSSModel.horario" Role="horario" Multiplicity="0..1" />
-          <End Type="JJSSModel.clase" Role="clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="horario">
-              <PropertyRef Name="id_horario" />
-            </Principal>
-            <Dependent Role="clase">
-              <PropertyRef Name="id_horario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_clase_id_tipo_clase">
           <End Type="JJSSModel.tipo_clase" Role="tipo_clase" Multiplicity="0..1" />
           <End Type="JJSSModel.clase" Role="clase" Multiplicity="*" />
@@ -1524,6 +1535,7 @@
           <Property Name="id_torneo_imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_torneo" Type="Int32" Nullable="false" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
+          <NavigationProperty Name="torneo" Relationship="JJSSModel.FK_torneo_imagen_id_torneo" FromRole="torneo_imagen" ToRole="torneo" />
         </EntityType>
         <Association Name="FK_direccion_id_ciudad">
           <End Type="JJSSModel.ciudad" Role="ciudad" Multiplicity="0..1" />
@@ -1534,6 +1546,32 @@
             </Principal>
             <Dependent Role="direccion">
               <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alumno_id_clase_clase_id_clase">
+          <End Type="JJSSModel.clase" Role="clase" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="JJSSModel.horario" Role="horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="id_clase" />
+            </Principal>
+            <Dependent Role="horario">
+              <PropertyRef Name="id_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_torneo_imagen_id_torneo">
+          <End Type="JJSSModel.torneo" Role="torneo" Multiplicity="1" />
+          <End Type="JJSSModel.torneo_imagen" Role="torneo_imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="torneo">
+              <PropertyRef Name="id_torneo" />
+            </Principal>
+            <Dependent Role="torneo_imagen">
+              <PropertyRef Name="id_torneo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1724,9 +1762,9 @@
           <EntitySetMapping Name="clase">
             <EntityTypeMapping TypeName="JJSSModel.clase">
               <MappingFragment StoreEntitySet="clase">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
                 <ScalarProperty Name="id_profe" ColumnName="id_profe" />
-                <ScalarProperty Name="id_horario" ColumnName="id_horario" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
                 <ScalarProperty Name="id_clase" ColumnName="id_clase" />
@@ -1736,6 +1774,7 @@
           <EntitySetMapping Name="horario">
             <EntityTypeMapping TypeName="JJSSModel.horario">
               <MappingFragment StoreEntitySet="horario">
+                <ScalarProperty Name="id_clase" ColumnName="id_clase" />
                 <ScalarProperty Name="hora_hasta" ColumnName="hora_hasta" />
                 <ScalarProperty Name="hora_desde" ColumnName="hora_desde" />
                 <ScalarProperty Name="nombre_dia" ColumnName="nombre_dia" />

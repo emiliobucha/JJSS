@@ -17,5 +17,7 @@ namespace JJSS_Entidad
         public int id_torneo_imagen { get; set; }
         public int id_torneo { get; set; }
         public byte[] imagen { get; set; }
+    
+        public virtual torneo torneo { get; set; }
     }
 }

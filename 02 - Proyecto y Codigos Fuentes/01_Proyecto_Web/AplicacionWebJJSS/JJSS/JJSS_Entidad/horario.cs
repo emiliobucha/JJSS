@@ -14,18 +14,12 @@ namespace JJSS_Entidad
     
     public partial class horario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public horario()
-        {
-            this.clase = new HashSet<clase>();
-        }
-    
         public int id_horario { get; set; }
         public string nombre_dia { get; set; }
         public string hora_desde { get; set; }
         public string hora_hasta { get; set; }
+        public Nullable<int> id_clase { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<clase> clase { get; set; }
+        public virtual clase clase { get; set; }
     }
 }

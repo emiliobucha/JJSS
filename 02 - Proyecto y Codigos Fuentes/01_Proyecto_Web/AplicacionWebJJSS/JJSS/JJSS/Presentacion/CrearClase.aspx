@@ -32,15 +32,6 @@
                             <asp:RequiredFieldValidator ID="requeridoNombre" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$"></asp:RegularExpressionValidator>
                         </div>
-                    </div>
-
-                    <div class="row centered">
-                        <p>&nbsp;</p>
-                    </div>
-
-
-                    <!--Precio-->
-                    <div class="row centered">
                         <div class="col-xs-2">
                             <label class="pull-left">Precio</label>
                         </div>
@@ -50,62 +41,68 @@
                         <div class="col-xs-2">
                             <asp:RequiredFieldValidator ID="requeridoPrecio" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un precio" ControlToValidate="txt_precio"></asp:RequiredFieldValidator>
                         </div>
+
                     </div>
 
                     <div class="row centered">
-                        <p>&nbsp;</p>
+                        <p>Horarios&nbsp;</p>
                     </div>
 
                      <!--Horarios-->
                     <div class="row centered">
+                       <div class="col-xs-2">
+                           <asp:DropDownList runat="server" ID="ddl_dia" CausesValidation="true">
+                               <asp:ListItem Value="Lunes">Lunes</asp:ListItem>
+                               <asp:ListItem Value="Martes">Martes</asp:ListItem>
+                               <asp:ListItem Value="Miércoles">Miércoles</asp:ListItem>
+                               <asp:ListItem Value="Jueves">Jueves</asp:ListItem>
+                               <asp:ListItem Value="Viernes">Viernes</asp:ListItem>
+                               <asp:ListItem Value="Sábado">Sábado</asp:ListItem>
+                               <asp:ListItem Value="Domingo">Domingo</asp:ListItem>
+                           </asp:DropDownList>
+
+                       </div>
                         <div class="col-xs-2">
-                            <label class="pull-left">Horarios</label>
+                            <label class="pull-left">Hora Desde:</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <asp:TextBox ID="txt_horadesde" runat="server"></asp:TextBox>
+                        </div>
+                         <div class="col-xs-2">
+                            <label class="pull-left">Hora Hasta:</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <asp:TextBox ID="txt_horahasta" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="col-xs-2">
+                            <asp:Button ID="btn_agregar" runat="server" OnClick="btn_agregar_Click" Text="Agregar"></asp:Button>
                         </div>
                     </div>
+
                     <div class="row centered">
-                        <div class="col-xs-1">
-                            <asp:CheckBox ID="chk_lunes" runat="server" Text="Lunes" OnCheckedChanged="chk_lunes_CheckedChanged" CssClass="text pull-left" />
-                        </div>
-                        <div class="col-xs-4 ">
+    
            
-                            <asp:DataGrid ID="dt_lunes" runat="server" CssClass="table table-responsive">
+                            <asp:GridView ID="dg_horarios" runat="server" CssClass="table table-responsive" OnItemDataBound="dg_horarios_ItemDataBound" OnRowDataBound="dg_horarios_RowDataBound">
                                 <Columns>
-                                    <asp:BoundColumn HeaderStyle-CssClass="text-center" HeaderText="Desde">                                      
-                                    </asp:BoundColumn>
-                                    <asp:BoundColumn HeaderText="Hasta">
-                                    </asp:BoundColumn>
-                                    <asp:ButtonColumn CommandName="Delete" Text="Eliminar"></asp:ButtonColumn>                                   
+                                     <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Día" DataField="nombre_dia"/> 
+                                         
+                                    
+                                    <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Desde" DataField="hora_desde"/>                                      
+                                       
+                              
+                                    <asp:BoundField HeaderText="Hasta" DataField="hora_hasta"/>
+                                    
+                                    <asp:CommandField SelectText="Eliminar" ShowCancelButton="True" ShowDeleteButton="False" ShowSelectButton="True" />                               
                                 </Columns>  
-                            </asp:DataGrid>
+                            </asp:GridView>
+
                         </div>
-                        <div class="col-xs-1">
-                            <asp:Button ID="btnLunesMas" runat="server" Text="+" CssClass="btn bottom" CausesValidation="false" OnClick="btnLunesMas_Click" />
-                        </div>
+                       
+              
 
-                        <%--<asp:Table ID="table_lunes" CssClass="table table-responsive" runat="server">
-                                <asp:TableHeaderRow>
-                                    <asp:TableHeaderCell><a class=" text-center">Desde</a></asp:TableHeaderCell>
-                                    <asp:TableHeaderCell>Hasta</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell></asp:TableHeaderCell>
-                                </asp:TableHeaderRow>
-                                <asp:TableRow>
-                                    <asp:TableCell><input type="time"/></asp:TableCell>
-                                    <asp:TableCell><input type="time"/></asp:TableCell>
-                                    <asp:TableCell><button>x</button></asp:TableCell>
-                                </asp:TableRow>
-                            </asp:Table>--%>
-
-                  <%--      <div class="col-xs-3 ventanaHorario" id="lunes_1">
-                            <a href="#" class=" close-thin"></a>
-                            <a  style="color:black">Horario:</a>   
-                            <input type="time" id="txt_lunes_desde_1" runat="server" class=" panel panel-default " />                          
-                            <label >-</label>
-                            <input type="time" id="txt_lunes_hasta_1" runat="server" class=" panel panel-default" />
-                           <input type="button" id="btn_lunes_cancel_1" runat="server" value="x"  style=" color:red;"  class="panel "/>                      
-                        </div> --%>                       
-                    </div>
-
-
+                     <div class="row centered">
+                          <asp:Button ID="btn_aceptar" runat="server" OnClick="btn_aceptar_Click" Text="Aceptar"></asp:Button>
+                     </div>
                 </form>
             </div>
         </div>

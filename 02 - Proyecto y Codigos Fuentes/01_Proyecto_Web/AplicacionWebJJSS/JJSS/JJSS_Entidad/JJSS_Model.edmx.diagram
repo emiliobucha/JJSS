@@ -46,13 +46,14 @@
         <AssociationConnector Association="JJSSModel.FK_alumno_id_faja" />
         <AssociationConnector Association="JJSSModel.FK_ins_clase_id_alumno" />
         <AssociationConnector Association="JJSSModel.FK_clase_id_direccion" />
-        <AssociationConnector Association="JJSSModel.FK_clase_id_horario" />
         <AssociationConnector Association="JJSSModel.FK_clase_id_tipo_clase" />
         <AssociationConnector Association="JJSSModel.FK_ins_clase_id_clase" />
         <EntityTypeShape EntityType="JJSSModel.alumno_imagen" Width="1.5" PointX="6" PointY="4.25" />
         <AssociationConnector Association="JJSSModel.FK_alumnoimagen_id_alumno" />
         <EntityTypeShape EntityType="JJSSModel.torneo_imagen" Width="1.5" PointX="5.375" PointY="7.75" />
         <AssociationConnector Association="JJSSModel.FK_direccion_id_ciudad" />
+        <AssociationConnector Association="JJSSModel.FK_alumno_id_clase_clase_id_clase" />
+        <AssociationConnector Association="JJSSModel.FK_torneo_imagen_id_torneo" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

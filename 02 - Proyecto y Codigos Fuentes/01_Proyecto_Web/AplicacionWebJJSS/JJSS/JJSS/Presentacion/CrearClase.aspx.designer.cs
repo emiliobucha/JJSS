@@ -76,30 +76,57 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPrecio;
         
         /// <summary>
-        /// Control chk_lunes.
+        /// Control ddl_dia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chk_lunes;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_dia;
         
         /// <summary>
-        /// Control dt_lunes.
+        /// Control txt_horadesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dt_lunes;
+        protected global::System.Web.UI.WebControls.TextBox txt_horadesde;
         
         /// <summary>
-        /// Control btnLunesMas.
+        /// Control txt_horahasta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLunesMas;
+        protected global::System.Web.UI.WebControls.TextBox txt_horahasta;
+        
+        /// <summary>
+        /// Control btn_agregar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_agregar;
+        
+        /// <summary>
+        /// Control dg_horarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dg_horarios;
+        
+        /// <summary>
+        /// Control btn_aceptar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_aceptar;
     }
 }
