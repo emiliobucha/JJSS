@@ -67,8 +67,8 @@
             <PropertyRef Name="id_ciudad" />
           </Key>
           <Property Name="id_ciudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="45" />
-          <Property Name="id_pais" Type="int" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="40" />
+          <Property Name="id_provincia" Type="int" />
         </EntityType>
         <EntityType Name="clase">
           <Key>
@@ -156,8 +156,8 @@
           <Key>
             <PropertyRef Name="id_pais" />
           </Key>
+          <Property Name="nombre" Type="nvarchar" MaxLength="30" />
           <Property Name="id_pais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="participante">
           <Key>
@@ -172,6 +172,14 @@
           <Property Name="sexo" Type="smallint" />
           <Property Name="dni" Type="int" Nullable="false" />
           <Property Name="id_alumno" Type="int" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="id_provincia" />
+          </Key>
+          <Property Name="id_provincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="45" />
+          <Property Name="id_pais" Type="int" />
         </EntityType>
         <EntityType Name="resultado">
           <Key>
@@ -327,42 +335,6 @@
             </Principal>
             <Dependent Role="categoria_torneo">
               <PropertyRef Name="id_faja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ciudad__id_pais__58D1301D">
-          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
-          <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="pais">
-              <PropertyRef Name="id_pais" />
-            </Principal>
-            <Dependent Role="ciudad">
-              <PropertyRef Name="id_pais" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ciudad__id_pais__59C55456">
-          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
-          <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="pais">
-              <PropertyRef Name="id_pais" />
-            </Principal>
-            <Dependent Role="ciudad">
-              <PropertyRef Name="id_pais" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ciudad__id_pais__5AB9788F">
-          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
-          <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="pais">
-              <PropertyRef Name="id_pais" />
-            </Principal>
-            <Dependent Role="ciudad">
-              <PropertyRef Name="id_pais" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -572,6 +544,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ciudad_id_provincia">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="0..1" />
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="id_provincia" />
+            </Principal>
+            <Dependent Role="ciudad">
+              <PropertyRef Name="id_provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_clase_id_direccion">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
@@ -644,6 +628,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_provincia_id_pais">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="provincia" Type="Self.provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="provincia">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_torneo_imagen_id_torneo">
           <End Role="torneo" Type="Self.torneo" Multiplicity="1" />
           <End Role="torneo_imagen" Type="Self.torneo_imagen" Multiplicity="*" />
@@ -673,6 +669,7 @@
           <EntitySet Name="lucha" EntityType="Self.lucha" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pais" EntityType="Self.pais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="participante" EntityType="Self.participante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="resultado" EntityType="Self.resultado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sede" EntityType="Self.sede" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_clase" EntityType="Self.tipo_clase" Schema="dbo" store:Type="Tables" />
@@ -713,18 +710,6 @@
           <AssociationSet Name="FK__categoria__id_fa__57DD0BE4" Association="Self.FK__categoria__id_fa__57DD0BE4">
             <End Role="faja" EntitySet="faja" />
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ciudad__id_pais__58D1301D" Association="Self.FK__ciudad__id_pais__58D1301D">
-            <End Role="pais" EntitySet="pais" />
-            <End Role="ciudad" EntitySet="ciudad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ciudad__id_pais__59C55456" Association="Self.FK__ciudad__id_pais__59C55456">
-            <End Role="pais" EntitySet="pais" />
-            <End Role="ciudad" EntitySet="ciudad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ciudad__id_pais__5AB9788F" Association="Self.FK__ciudad__id_pais__5AB9788F">
-            <End Role="pais" EntitySet="pais" />
-            <End Role="ciudad" EntitySet="ciudad" />
           </AssociationSet>
           <AssociationSet Name="FK__inscripci__id_ca__6166761E" Association="Self.FK__inscripci__id_ca__6166761E">
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
@@ -794,6 +779,10 @@
             <End Role="alumno" EntitySet="alumno" />
             <End Role="alumno_imagen" EntitySet="alumno_imagen" />
           </AssociationSet>
+          <AssociationSet Name="FK_ciudad_id_provincia" Association="Self.FK_ciudad_id_provincia">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="ciudad" EntitySet="ciudad" />
+          </AssociationSet>
           <AssociationSet Name="FK_clase_id_direccion" Association="Self.FK_clase_id_direccion">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="clase" EntitySet="clase" />
@@ -817,6 +806,10 @@
           <AssociationSet Name="FK_inscripcion_clase_id_clase" Association="Self.FK_inscripcion_clase_id_clase">
             <End Role="clase" EntitySet="clase" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provincia_id_pais" Association="Self.FK_provincia_id_pais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="provincia" EntitySet="provincia" />
           </AssociationSet>
           <AssociationSet Name="FK_torneo_imagen_id_torneo" Association="Self.FK_torneo_imagen_id_torneo">
             <End Role="torneo" EntitySet="torneo" />
@@ -848,16 +841,6 @@
           <NavigationProperty Name="faja" Relationship="Self.categoria_torneo_categoria_torneo_id_faja_fk" FromRole="categoria_torneo" ToRole="faja" />
           <NavigationProperty Name="inscripcion" Relationship="Self.inscripcion_inscripcion_id_categoria_torneo_fk" FromRole="categoria_torneo" ToRole="inscripcion" />
           <NavigationProperty Name="categoria" Relationship="JJSSModel.categoria_torneo_categoria_torneo_id_categoria_fk" FromRole="categoria_torneo" ToRole="categoria" />
-        </EntityType>
-        <EntityType Name="ciudad">
-          <Key>
-            <PropertyRef Name="id_ciudad" />
-          </Key>
-          <Property Name="id_ciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="id_pais" Type="Int32" />
-          <NavigationProperty Name="pais" Relationship="Self.ciudad_ciudad_id_pais_fk" FromRole="ciudad" ToRole="pais" />
-          <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_direccion_id_ciudad" FromRole="ciudad" ToRole="direccion" />
         </EntityType>
         <EntityType Name="direccion">
           <Key>
@@ -931,8 +914,8 @@
             <PropertyRef Name="id_pais" />
           </Key>
           <Property Name="id_pais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ciudad" Relationship="Self.ciudad_ciudad_id_pais_fk" FromRole="pais" ToRole="ciudad" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="provincia" Relationship="JJSSModel.FK_provincia_id_pais" FromRole="pais" ToRole="provincia" />
         </EntityType>
         <EntityType Name="resultado">
           <Key>
@@ -1012,18 +995,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ciudad_ciudad_id_pais_fk">
-          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
-          <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="pais">
-              <PropertyRef Name="id_pais" />
-            </Principal>
-            <Dependent Role="ciudad">
-              <PropertyRef Name="id_pais" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="sede_sede_id_direccion_fk">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="sede" Type="Self.sede" Multiplicity="*" />
@@ -1099,7 +1070,6 @@
         <EntityContainer Name="JJSSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="academia" EntityType="Self.academia" />
           <EntitySet Name="categoria_torneo" EntityType="Self.categoria_torneo" />
-          <EntitySet Name="ciudad" EntityType="Self.ciudad" />
           <EntitySet Name="direccion" EntityType="Self.direccion" />
           <EntitySet Name="estado" EntityType="Self.estado" />
           <EntitySet Name="faja" EntityType="Self.faja" />
@@ -1120,10 +1090,6 @@
           <AssociationSet Name="inscripcion_inscripcion_id_categoria_torneo_fk" Association="Self.inscripcion_inscripcion_id_categoria_torneo_fk">
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
             <End Role="inscripcion" EntitySet="inscripcion" />
-          </AssociationSet>
-          <AssociationSet Name="ciudad_ciudad_id_pais_fk" Association="Self.ciudad_ciudad_id_pais_fk">
-            <End Role="pais" EntitySet="pais" />
-            <End Role="ciudad" EntitySet="ciudad" />
           </AssociationSet>
           <AssociationSet Name="sede_sede_id_direccion_fk" Association="Self.sede_sede_id_direccion_fk">
             <End Role="direccion" EntitySet="direccion" />
@@ -1218,10 +1184,6 @@
             <End Role="alumno_imagen" EntitySet="alumno_imagen" />
           </AssociationSet>
           <EntitySet Name="torneo_imagen" EntityType="JJSSModel.torneo_imagen" />
-          <AssociationSet Name="FK_direccion_id_ciudad" Association="JJSSModel.FK_direccion_id_ciudad">
-            <End Role="ciudad" EntitySet="ciudad" />
-            <End Role="direccion" EntitySet="direccion" />
-          </AssociationSet>
           <AssociationSet Name="FK_alumno_id_clase_clase_id_clase" Association="JJSSModel.FK_alumno_id_clase_clase_id_clase">
             <End Role="clase" EntitySet="clase" />
             <End Role="horario" EntitySet="horario" />
@@ -1229,6 +1191,20 @@
           <AssociationSet Name="FK_torneo_imagen_id_torneo" Association="JJSSModel.FK_torneo_imagen_id_torneo">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
+          </AssociationSet>
+          <EntitySet Name="provincia" EntityType="JJSSModel.provincia" />
+          <AssociationSet Name="FK_provincia_id_pais" Association="JJSSModel.FK_provincia_id_pais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="provincia" EntitySet="provincia" />
+          </AssociationSet>
+          <EntitySet Name="ciudad" EntityType="JJSSModel.ciudad" />
+          <AssociationSet Name="FK_ciudad_id_provincia" Association="JJSSModel.FK_ciudad_id_provincia">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="ciudad" EntitySet="ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_direccion_id_ciudad" Association="JJSSModel.FK_direccion_id_ciudad">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="alumno">
@@ -1407,7 +1383,7 @@
           </Key>
           <Property Name="id_inscripcion" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="hora" Type="String" />
+          <Property Name="hora" Type="String" MaxLength="7" Unicode="false" FixedLength="false" />
           <Property Name="id_clase" Type="Int32" />
           <Property Name="id_alumno" Type="Int32" />
           <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_ins_clase_id_alumno" FromRole="inscripcion_clase" ToRole="alumno" />
@@ -1537,18 +1513,6 @@
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <NavigationProperty Name="torneo" Relationship="JJSSModel.FK_torneo_imagen_id_torneo" FromRole="torneo_imagen" ToRole="torneo" />
         </EntityType>
-        <Association Name="FK_direccion_id_ciudad">
-          <End Type="JJSSModel.ciudad" Role="ciudad" Multiplicity="0..1" />
-          <End Type="JJSSModel.direccion" Role="direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ciudad">
-              <PropertyRef Name="id_ciudad" />
-            </Principal>
-            <Dependent Role="direccion">
-              <PropertyRef Name="id_ciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_alumno_id_clase_clase_id_clase">
           <End Type="JJSSModel.clase" Role="clase" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -1575,6 +1539,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="id_provincia" />
+          </Key>
+          <Property Name="id_provincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="id_pais" Type="Int32" />
+          <NavigationProperty Name="pais" Relationship="JJSSModel.FK_provincia_id_pais" FromRole="provincia" ToRole="pais" />
+          <NavigationProperty Name="ciudad" Relationship="JJSSModel.FK_ciudad_id_provincia" FromRole="provincia" ToRole="ciudad" />
+        </EntityType>
+        <Association Name="FK_provincia_id_pais">
+          <End Type="JJSSModel.pais" Role="pais" Multiplicity="0..1" />
+          <End Type="JJSSModel.provincia" Role="provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="provincia">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ciudad">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+          </Key>
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="id_provincia" Type="Int32" />
+          <NavigationProperty Name="provincia" Relationship="JJSSModel.FK_ciudad_id_provincia" FromRole="ciudad" ToRole="provincia" />
+          <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_direccion_id_ciudad" FromRole="ciudad" ToRole="direccion" />
+        </EntityType>
+        <Association Name="FK_ciudad_id_provincia">
+          <End Type="JJSSModel.provincia" Role="provincia" Multiplicity="0..1" />
+          <End Type="JJSSModel.ciudad" Role="ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="id_provincia" />
+            </Principal>
+            <Dependent Role="ciudad">
+              <PropertyRef Name="id_provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_direccion_id_ciudad">
+          <End Type="JJSSModel.ciudad" Role="ciudad" Multiplicity="0..1" />
+          <End Type="JJSSModel.direccion" Role="direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="direccion">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1598,15 +1618,6 @@
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="id_faja" ColumnName="id_faja" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ciudad">
-            <EntityTypeMapping TypeName="JJSSModel.ciudad">
-              <MappingFragment StoreEntitySet="ciudad">
-                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1816,6 +1827,24 @@
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="id_torneo_imagen" ColumnName="id_torneo_imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provincia">
+            <EntityTypeMapping TypeName="JJSSModel.provincia">
+              <MappingFragment StoreEntitySet="provincia">
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ciudad">
+            <EntityTypeMapping TypeName="JJSSModel.ciudad">
+              <MappingFragment StoreEntitySet="ciudad">
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

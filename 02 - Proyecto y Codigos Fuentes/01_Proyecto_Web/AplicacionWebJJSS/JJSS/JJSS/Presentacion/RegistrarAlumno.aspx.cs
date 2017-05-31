@@ -17,17 +17,41 @@ namespace JJSS.Presentacion
         private GestorInscripciones gestorInscripciones;
         private GestorAlumnos gestorAlumnos;
         private GestorCiudades gestorCiudades;
+        private GestorProvincias gestorProvincias;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorAlumnos = new GestorAlumnos();
             gestorInscripciones = new GestorInscripciones();
             gestorCiudades = new GestorCiudades();
+            gestorProvincias = new GestorProvincias();
+            pnl_mostrar_alumnos.Visible = false;
+            
 
             if (!IsPostBack)
             {
+                if (Session["alumnos"] == null)
+                {
+                    pnl_mostrar_alumnos.Visible = false;
+                    pnlFormulario.Visible = true;
+                } else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
+                {
+                    pnl_mostrar_alumnos.Visible = true;
+                    pnlFormulario.Visible = false;
+                }
+
+
+
                 CargarComboFajas();
-                CargarComboCiudades();
+                CargarComboCiudades(1);
+                CargarComboProvincias();
+                //carga de grilla
+                ViewState["gvAlumnosOrden"] = "dni";
+                gvAlumnos.AllowPaging = true;
+                gvAlumnos.AllowSorting = true;
+                gvAlumnos.AutoGenerateColumns = false;
+                gvAlumnos.PageSize = 20;
+                CargarGrilla();
             }
         }
 
@@ -51,9 +75,18 @@ namespace JJSS.Presentacion
             ddl_fajas.DataBind();
         }
 
-        protected void CargarComboCiudades()
+        protected void CargarComboProvincias()
         {
-            List<ciudad> ciudades = gestorCiudades.ObtenerCiudades();
+            List<provincia> provincias =gestorProvincias.ObtenerProvincias();
+            ddl_provincia.DataSource = provincias;
+            ddl_provincia.DataTextField = "nombre";
+            ddl_provincia.DataValueField = "id_provincia";
+            ddl_provincia.DataBind();
+        }
+
+        protected void CargarComboCiudades(int pProvincia)
+        {
+            List<ciudad> ciudades = gestorCiudades.ObtenerCiudadesPorProvincia(pProvincia);
             ddl_localidad.DataSource = ciudades;
             ddl_localidad.DataTextField = "nombre";
             ddl_localidad.DataValueField = "id_ciudad";
@@ -92,6 +125,8 @@ namespace JJSS.Presentacion
 
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha creado el alumno exitosamente";
             mensaje(sReturn, "RegistrarAlumno.aspx");
+            pnlFormulario.Visible = false;
+            pnl_mostrar_alumnos.Visible = true;
 
         }
 
@@ -100,8 +135,60 @@ namespace JJSS.Presentacion
             Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
         }
 
+        protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarComboCiudades(int.Parse(ddl_localidad.SelectedValue));
+        }
 
+        protected void CargarGrilla()
+        {
+            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(txt_filtro_apellido.Text);
+            gvAlumnos.DataBind();
+        }
 
+        protected void gvAlumnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAlumnos.PageIndex = e.NewPageIndex;
+            CargarGrilla();
+            pnlFormulario.Visible = false;
+            pnl_mostrar_alumnos.Visible = true;
+        }
 
+        protected void gvAlumnos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int dni = (int)gvAlumnos.SelectedValue;
+            string sReturn = gestorAlumnos.EliminarAlumno(dni);
+
+            if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
+
+            mensaje(sReturn, "RegistrarAlumno.aspx");
+
+        }
+
+        protected void btn_buscar_alumno_Click(object sender, EventArgs e)
+        {
+            CargarGrilla();
+        }
+
+        protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Delete")
+            {
+                int dni = (int)gvAlumnos.SelectedValue;
+                string sReturn = gestorAlumnos.EliminarAlumno(dni);
+
+                if (sReturn.CompareTo("") == 0)
+                {
+                    mensaje("Se ha eliminado el alumno correctamente", "RegistrarAlumno.aspx");
+                }
+                else
+                {
+                    mensaje(sReturn, "RegistrarAlumno.aspx");
+                }
+            }
+        }
+        
+            
     }
 }

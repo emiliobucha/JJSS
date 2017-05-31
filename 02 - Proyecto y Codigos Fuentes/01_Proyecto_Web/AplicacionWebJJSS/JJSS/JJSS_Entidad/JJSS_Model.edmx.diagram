@@ -4,23 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="75f5d254ec584e4cbefc10966b8e4418" Name="Diagram1" ZoomLevel="97">
+      <Diagram DiagramId="75f5d254ec584e4cbefc10966b8e4418" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.categoria_torneo" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.ciudad" Width="1.5" PointX="1.5" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.direccion" Width="1.5" PointX="1.5" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.estado" Width="1.5" PointX="3.75" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.faja" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.inscripcion" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.lucha" Width="1.5" PointX="11.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.pais" Width="1.5" PointX="1.5" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.pais" Width="1.5" PointX="3.75" PointY="21" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.resultado" Width="1.5" PointX="9" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.sede" Width="1.5" PointX="3.75" PointY="16.25" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.torneo" Width="1.5" PointX="6" PointY="14.125" IsExpanded="true" />
         <AssociationConnector Association="JJSSModel.academia_academia_id_direccion_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.categoria_torneo_categoria_torneo_id_faja_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.inscripcion_inscripcion_id_categoria_torneo_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.ciudad_ciudad_id_pais_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.sede_sede_id_direccion_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.torneo_torneo_id_estado_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.inscripcion_inscripcion_id_torneo_fk" ManuallyRouted="false" />
@@ -38,9 +36,9 @@
         <AssociationConnector Association="JJSSModel.participante_participante_id_categoria_fk" />
         <AssociationConnector Association="JJSSModel.FK__particapa_id_al__48DE5BA8" />
         <EntityTypeShape EntityType="JJSSModel.clase" Width="1.5" PointX="6.75" PointY="10.625" />
-        <EntityTypeShape EntityType="JJSSModel.horario" Width="1.5" PointX="4.5" PointY="23.25" />
+        <EntityTypeShape EntityType="JJSSModel.horario" Width="1.5" PointX="5.625" PointY="20.75" />
         <EntityTypeShape EntityType="JJSSModel.inscripcion_clase" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="4.5" PointY="20.875" />
+        <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="8.625" PointY="20.5" />
         <AssociationConnector Association="JJSSModel.FK_alumno_id_categoria" />
         <AssociationConnector Association="JJSSModel.FK_alumno_id_direccion" />
         <AssociationConnector Association="JJSSModel.FK_alumno_id_faja" />
@@ -51,9 +49,13 @@
         <EntityTypeShape EntityType="JJSSModel.alumno_imagen" Width="1.5" PointX="6" PointY="4.25" />
         <AssociationConnector Association="JJSSModel.FK_alumnoimagen_id_alumno" />
         <EntityTypeShape EntityType="JJSSModel.torneo_imagen" Width="1.5" PointX="5.375" PointY="7.75" />
-        <AssociationConnector Association="JJSSModel.FK_direccion_id_ciudad" />
         <AssociationConnector Association="JJSSModel.FK_alumno_id_clase_clase_id_clase" />
         <AssociationConnector Association="JJSSModel.FK_torneo_imagen_id_torneo" />
+        <EntityTypeShape EntityType="JJSSModel.provincia" Width="1.5" PointX="1.625" PointY="22" />
+        <AssociationConnector Association="JJSSModel.FK_provincia_id_pais" />
+        <EntityTypeShape EntityType="JJSSModel.ciudad" Width="1.5" PointX="1.875" PointY="18.75" />
+        <AssociationConnector Association="JJSSModel.FK_ciudad_id_provincia" />
+        <AssociationConnector Association="JJSSModel.FK_direccion_id_ciudad" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

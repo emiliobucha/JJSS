@@ -17,13 +17,13 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public pais()
         {
-            this.ciudad = new HashSet<ciudad>();
+            this.provincia = new HashSet<provincia>();
         }
     
         public int id_pais { get; set; }
         public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ciudad> ciudad { get; set; }
+        public virtual ICollection<provincia> provincia { get; set; }
     }
 }

@@ -21,5 +21,17 @@ namespace JJSS_Negocio
                 return db.ciudad.ToList();
             }
         }
+
+        public List<ciudad> ObtenerCiudadesPorProvincia(int pProvincia)
+        {
+            using (var db=new JJSSEntities())
+            {
+                var ciudadesPorProvincia = from ciudad in db.ciudad
+                                           where ciudad.id_provincia == pProvincia
+                                           select ciudad;
+
+                return ciudadesPorProvincia.ToList();
+            }
+        }
     }
 }

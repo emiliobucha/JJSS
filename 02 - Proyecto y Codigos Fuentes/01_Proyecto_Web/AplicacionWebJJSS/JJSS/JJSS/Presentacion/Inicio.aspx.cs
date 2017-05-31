@@ -245,6 +245,18 @@ namespace JJSS.Presentacion
             gv_clasesDisponibles.DataBind();
         }
 
+        protected void registrarAlumno_Click(object sender, EventArgs e)
+        {
+            Session["alumnos"] = "Registrar";
+            Response.Redirect("RegistrarAlumno.aspx");
+        }
+
+        protected void administrarAlumnos_Click(object sender, EventArgs e)
+        {
+            Session["alumnos"] = "Administrar";
+            Response.Redirect("RegistrarAlumno.aspx");
+        }
+
         protected void gv_clasesDisponibles_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);

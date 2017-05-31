@@ -12,20 +12,20 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class ciudad
+    public partial class provincia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ciudad()
+        public provincia()
         {
-            this.direccion = new HashSet<direccion>();
+            this.ciudad = new HashSet<ciudad>();
         }
     
-        public int id_ciudad { get; set; }
+        public int id_provincia { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> id_provincia { get; set; }
+        public Nullable<int> id_pais { get; set; }
     
-        public virtual provincia provincia { get; set; }
+        public virtual pais pais { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<direccion> direccion { get; set; }
+        public virtual ICollection<ciudad> ciudad { get; set; }
     }
 }

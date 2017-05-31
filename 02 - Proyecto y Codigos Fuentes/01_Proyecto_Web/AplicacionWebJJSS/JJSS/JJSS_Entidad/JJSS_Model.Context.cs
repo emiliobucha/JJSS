@@ -27,7 +27,6 @@ namespace JJSS_Entidad
     
         public virtual DbSet<academia> academia { get; set; }
         public virtual DbSet<categoria_torneo> categoria_torneo { get; set; }
-        public virtual DbSet<ciudad> ciudad { get; set; }
         public virtual DbSet<direccion> direccion { get; set; }
         public virtual DbSet<estado> estado { get; set; }
         public virtual DbSet<faja> faja { get; set; }
@@ -46,5 +45,7 @@ namespace JJSS_Entidad
         public virtual DbSet<tipo_clase> tipo_clase { get; set; }
         public virtual DbSet<alumno_imagen> alumno_imagen { get; set; }
         public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }
+        public virtual DbSet<provincia> provincia { get; set; }
+        public virtual DbSet<ciudad> ciudad { get; set; }
     }
 }
