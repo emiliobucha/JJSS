@@ -108,7 +108,16 @@ namespace JJSS.Presentacion
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
             gestorClases = new GestorClases();
-            gestorClases.GenerarNuevaClase(1, Double.Parse(txt_precio.Text), (DataTable)Session["dtHorarios"], txt_nombre.Text);
+            string sReturn = gestorClases.GenerarNuevaClase(1, Double.Parse(txt_precio.Text), (DataTable)Session["dtHorarios"], txt_nombre.Text);
+
+            if (sReturn.CompareTo("") == 0) sReturn = "La Clase se ha creado exitosamente";
+            mensaje(sReturn, "CrearClase.aspx");
+            //Response.Redirect("Inicio.aspx");
+        }
+
+        private void mensaje(string pMensaje, string pRef)
+        {
+            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
         }
     }
 }

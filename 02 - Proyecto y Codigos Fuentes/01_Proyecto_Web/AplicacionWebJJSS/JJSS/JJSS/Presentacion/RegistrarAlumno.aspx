@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeFile="~/Presentacion/RegistrarAlumno.aspx.cs" CodeBehind="~/Presentacion/RegistrarAlumno.aspx.cs" Inherits="JJSS.Presentacion.RegistrarAlumno" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarAlumno.aspx.cs" Inherits="JJSS.Presentacion.RegistrarAlumno" %>
 
 <asp:Content ID="registrarAlumnoMenu" ContentPlaceHolderID="cphMenu" runat="server">
     <a href="Inicio.aspx" class="smoothScroll">Home</a>
