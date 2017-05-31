@@ -22,39 +22,46 @@ namespace JJSS_Negocio
         public String InscribirAlumnoAClase(int pAlumno, int pClase, string pHora, DateTime pFecha)
         {
             String sReturn = "";
-            using (var db = new JJSSEntities())
+            if (modUtilidadesTablas.ToDataTable(ObtenerInscripcionesClase()).Select("id_alumno = " + pAlumno + " and fecha ='" + pFecha + "' and hora = '" + pHora + "' and id_clase = " + pClase).Length > 0)
             {
-                /*Probando esta otra forma para luego ver cual forma tiene mayor rendimiento*/
-                if (modUtilidadesTablas.ToDataTable(ObtenerInscripcionesClase()).Select("id_alumno = " + pAlumno + " and fecha ='" +pFecha+"' and hora = '"+ pHora + "' and id_clase = " + pClase ).Length >0)
+                throw new Exception("Ya se ha inscripto a esa clase");
+            }
+            try
+            {
+                using (var db = new JJSSEntities())
                 {
-                    return "Ya se ha inscripto a esa clase";
-                }
+                    /*Probando esta otra forma para luego ver cual forma tiene mayor rendimiento*/
 
-                var transaction = db.Database.BeginTransaction();
-                try
-                {
-                    inscripcion_clase nuevaInscripcion = new inscripcion_clase()
+
+                    var transaction = db.Database.BeginTransaction();
+                    try
                     {
-                        id_alumno = pAlumno,
-                        id_clase = pClase,
-                        fecha = pFecha,
-                        hora = pHora
-                    };
-                    db.inscripcion_clase.Add(nuevaInscripcion);
-                    db.SaveChanges();
+                        inscripcion_clase nuevaInscripcion = new inscripcion_clase()
+                        {
+                            id_alumno = pAlumno,
+                            id_clase = pClase,
+                            fecha = pFecha,
+                            hora = pHora
+                        };
+                        db.inscripcion_clase.Add(nuevaInscripcion);
+                        db.SaveChanges();
 
-                    transaction.Commit();
-                    return sReturn;
-                }
-                catch(Exception ex)
-                {
-                    transaction.Rollback();
-                    return ex.Message;
-                }
+                        transaction.Commit();
+                        return sReturn;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return ex.Message;
+                    }
 
+                }
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
             }
         }
-
-        
+ 
     }
 }

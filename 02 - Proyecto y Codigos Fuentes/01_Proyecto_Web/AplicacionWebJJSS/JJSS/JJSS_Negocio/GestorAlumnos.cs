@@ -7,6 +7,10 @@ using JJSS_Entidad;
 
 namespace JJSS_Negocio
 {
+
+    /*
+     * Clase que nos permite gestionar alumnos
+     */
     public class GestorAlumnos
     {
 

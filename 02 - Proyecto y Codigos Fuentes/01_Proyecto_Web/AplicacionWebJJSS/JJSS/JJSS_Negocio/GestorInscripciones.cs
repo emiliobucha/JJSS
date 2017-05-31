@@ -180,5 +180,13 @@ namespace JJSS_Negocio
             return gestorParticipantes.ObtenerParticipantePorDNI(pDni);
         }
 
+        public string calcularEdad(DateTime? pFechaNacimiento)
+        {
+            //+habria que ver como calcularla mejor porque si estuviera calculando mi edad daria 22 pero todavia tengo 21
+            DateTime fechaNac = Convert.ToDateTime(pFechaNacimiento);
+            int edad = DateTime.Today.Year - fechaNac.Year;
+            return edad.ToString();
+        }
+
     }
 }

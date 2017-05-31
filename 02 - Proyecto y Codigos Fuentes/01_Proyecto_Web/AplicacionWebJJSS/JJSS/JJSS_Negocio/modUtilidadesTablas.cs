@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Collections;
-using System.Collections.Generic;
+
 using System.Reflection;
 
 namespace JJSS_Negocio
@@ -33,7 +33,7 @@ namespace JJSS_Negocio
                 dt.Columns[i].AllowDBNull = true;
             }
 
-            //Populate the table
+            //Llenamos la tabla con la colección
             foreach (T item in collection)
             {
                 dr = dt.NewRow();
