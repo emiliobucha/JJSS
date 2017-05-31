@@ -204,7 +204,7 @@ namespace JJSS.Presentacion
             int.TryParse(ddl_torneoExportarListado.SelectedValue, out idTorneo);
             
            // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
-            String sFile = gestorDeTorneos.GenararListado(idTorneo);
+            String sFile = gestorDeTorneos.GenerarListado(idTorneo);
 
             Response.Clear();
             Response.AddHeader("Content-Type", "Application/octet-stream");

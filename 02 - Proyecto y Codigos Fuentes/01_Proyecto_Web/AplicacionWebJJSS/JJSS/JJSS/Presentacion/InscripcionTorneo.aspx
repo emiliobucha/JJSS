@@ -41,7 +41,6 @@
                                 </div>
                                 <div class="col-md-1">
                                     <asp:Button ID="btnAceptarTorneo" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnAceptarTorneo_Click" />
-                                    <asp:Button ID="btnGenerarListado" runat="server" Text="GenerarListado" CssClass="btn btn-default" OnClick="btnGenerarListado_Click" />
                                 </div>
                             </div>
 

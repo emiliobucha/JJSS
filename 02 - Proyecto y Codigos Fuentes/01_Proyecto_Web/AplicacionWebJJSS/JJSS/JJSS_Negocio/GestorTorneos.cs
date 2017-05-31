@@ -262,18 +262,20 @@ namespace JJSS_Negocio
          * Genera listado de participantes a un torneo con su reporte.
          * Retorno: String del archivo resultante de la generacion del reporte en PDF
          */
-        public String GenararListado(int pID)
+        public String GenerarListado(int pID)
         {
             GestorReportes gestorReportes = new GestorReportes();
-            torneo torneoAListar = BuscarTorneoPorID(pID);
-            GestorSedes gestorSedes = new GestorSedes();
-            gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
-            gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
+            //torneo torneoAListar = BuscarTorneoPorID(pID);
+            //GestorSedes gestorSedes = new GestorSedes();
+            //gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
+            //gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
+            List<object> listado = ListadoParticipantes(pID);
 
-            
+            if (listado.Count == 0)
+                return "ERROR: No posee ningún Inscripto";
 
-            return gestorReportes.GenerarReporteListadoParticipantes(ListadoParticipantes(pID));
-
+            return gestorReportes.GenerarReporteListadoParticipantes(listado);
+                
 
         }
 

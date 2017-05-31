@@ -166,7 +166,7 @@ namespace JJSS
         {
             int idTorneo = 0;
             int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
-            String sFile = gestorDeTorneos.GenararListado(idTorneo);
+            String sFile = gestorDeTorneos.GenerarListado(idTorneo);
 
             Response.Clear();
             Response.AddHeader("Content-Type", "Application/octet-stream");
