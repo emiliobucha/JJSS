@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 using System.IO;
+using System.Globalization;
 
 namespace JJSS.Presentacion
 {
@@ -100,7 +101,8 @@ namespace JJSS.Presentacion
             int dni = int.Parse(txtDni.Text);
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
-            DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
+            string[] formats = { "MM/dd/yyyy" };
+            DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text,formats,new CultureInfo("en-US"),System.Globalization.DateTimeStyles.None);
             int idFaja = int.Parse(ddl_fajas.SelectedValue);
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
@@ -124,15 +126,21 @@ namespace JJSS.Presentacion
             string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia, imagenByte, calle, numero, departamento, piso);
 
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha creado el alumno exitosamente";
-            mensaje(sReturn, "RegistrarAlumno.aspx");
+            mensaje(sReturn);
+            CargarGrilla();
             pnlFormulario.Visible = false;
             pnl_mostrar_alumnos.Visible = true;
 
         }
 
-        private void mensaje(string pMensaje, string pRef)
+        private void mensaje(string pMensaje)
         {
-            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
+            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
+        }
+
+        private void confirmar(string pMensaje)
+        {
+            Response.Write("<script>window.confirm('" + pMensaje.Trim() + "');</script>");
         }
 
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
@@ -142,7 +150,10 @@ namespace JJSS.Presentacion
 
         protected void CargarGrilla()
         {
-            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(txt_filtro_apellido.Text);
+            int dni = 0;
+            if (txt_filtro_dni.Text == "") dni = int.Parse(txt_filtro_dni.Text);
+
+            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(dni);
             gvAlumnos.DataBind();
         }
 
@@ -156,13 +167,13 @@ namespace JJSS.Presentacion
 
         protected void gvAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //if (confirmar("¿Está seguro de eliminar este alumno?") == true) { }
             int dni = (int)gvAlumnos.SelectedValue;
             string sReturn = gestorAlumnos.EliminarAlumno(dni);
 
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
 
-            mensaje(sReturn, "RegistrarAlumno.aspx");
+            mensaje(sReturn);
 
         }
 
@@ -180,11 +191,11 @@ namespace JJSS.Presentacion
 
                 if (sReturn.CompareTo("") == 0)
                 {
-                    mensaje("Se ha eliminado el alumno correctamente", "RegistrarAlumno.aspx");
+                    mensaje("Se ha eliminado el alumno correctamente");
                 }
                 else
                 {
-                    mensaje(sReturn, "RegistrarAlumno.aspx");
+                    mensaje(sReturn);
                 }
             }
         }

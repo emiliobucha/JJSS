@@ -112,22 +112,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoDni;
         
         /// <summary>
-        /// Control positivoDni.
+        /// Control mayor_dni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator positivoDni;
+        protected global::System.Web.UI.WebControls.CompareValidator mayor_dni;
         
         /// <summary>
-        /// Control maximo_dni.
+        /// Control menor_dni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator maximo_dni;
+        protected global::System.Web.UI.WebControls.CompareValidator menor_dni;
         
         /// <summary>
         /// Control dp_fecha.
@@ -211,13 +211,40 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_telefono;
         
         /// <summary>
-        /// Control maximo_telefono.
+        /// Control RequiredFieldValidator2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator maximo_telefono;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        
+        /// <summary>
+        /// Control numerico_telefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator numerico_telefono;
+        
+        /// <summary>
+        /// Control mayor_telefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator mayor_telefono;
+        
+        /// <summary>
+        /// Control menor_telefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator menor_telefono;
         
         /// <summary>
         /// Control txt_telefono_urgencia.
@@ -229,22 +256,31 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_telefono_urgencia;
         
         /// <summary>
-        /// Control RequiredFieldValidator2.
+        /// Control numerico_telemergencia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.CompareValidator numerico_telemergencia;
         
         /// <summary>
-        /// Control maximo_telefono0.
+        /// Control mayor_telemergencia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator maximo_telefono0;
+        protected global::System.Web.UI.WebControls.CompareValidator mayor_telemergencia;
+        
+        /// <summary>
+        /// Control menor_telemergencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator menor_telemergencia;
         
         /// <summary>
         /// Control txt_email.
@@ -310,13 +346,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_numero;
         
         /// <summary>
-        /// Control maximo_numero.
+        /// Control mayor_numero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator maximo_numero;
+        protected global::System.Web.UI.WebControls.CompareValidator mayor_numero;
+        
+        /// <summary>
+        /// Control menor_numero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator menor_numero;
         
         /// <summary>
         /// Control txt_piso.
@@ -328,13 +373,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_piso;
         
         /// <summary>
-        /// Control maximo_piso.
+        /// Control mayor_piso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator maximo_piso;
+        protected global::System.Web.UI.WebControls.CompareValidator mayor_piso;
+        
+        /// <summary>
+        /// Control menor_piso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator menor_piso;
         
         /// <summary>
         /// Control txt_nro_dpto.
@@ -427,13 +481,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Panel pnl_mostrar_alumnos;
         
         /// <summary>
-        /// Control txt_filtro_apellido.
+        /// Control txt_filtro_dni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
+        protected global::System.Web.UI.WebControls.TextBox txt_filtro_dni;
         
         /// <summary>
         /// Control btn_buscar_alumno.

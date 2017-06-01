@@ -148,6 +148,42 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_inscripcionClase_dni;
         
         /// <summary>
+        /// Control requeridoDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoDni;
+        
+        /// <summary>
+        /// Control formato_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator formato_dni;
+        
+        /// <summary>
+        /// Control mayor_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator mayor_dni;
+        
+        /// <summary>
+        /// Control menor_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator menor_dni;
+        
+        /// <summary>
         /// Control btn_inscripcionClase_aceptar.
         /// </summary>
         /// <remarks>

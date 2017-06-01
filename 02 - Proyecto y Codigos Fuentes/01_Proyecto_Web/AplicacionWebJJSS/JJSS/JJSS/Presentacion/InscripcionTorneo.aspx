@@ -151,8 +151,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ValidationGroup="grupoDni" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="positivoDni" runat="server" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El dni debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValueToCompare="0"></asp:CompareValidator>
-                                        <asp:RangeValidator ID="maximo_dni" runat="server" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El dni debe ser un valor menor" MaximumValue="2147483647" MinimumValue="0" Type="Integer"></asp:RangeValidator>
+                                        <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                 </div>
                                 <div class="row centered">

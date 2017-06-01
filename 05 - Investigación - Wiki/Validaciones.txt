@@ -1,0 +1,23 @@
+VALIDACIONES
+
+------------------- Integer
+<asp:RegularExpressionValidator ID="formato_dni" runat="server" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El DNI debe contener solo valores numéricos" ValidationExpression="^[0-9]*$"></asp:RegularExpressionValidator>
+
+<asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+
+<asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El dni debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
+
+------------------- Double
+<asp:RegularExpressionValidator ID="regex_precio" runat="server" ControlToValidate="txt_precio" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
+
+------------------- String
+<asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$"></asp:RegularExpressionValidator>
+
+------------------- Mail
+
+
+------------------- Fecha
+
+
+------------------- Hora
+<asp:RegularExpressionValidator ID="regex_horadesde" runat="server" ControlToValidate="txt_horadesde" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^([0-1][0-9])|([2][0-4])\:[0-5][0-9]$"></asp:RegularExpressionValidator>

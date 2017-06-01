@@ -133,14 +133,14 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public List<Object> BuscarAlumnoPorApellido(string pApellido)
+        public List<Object> BuscarAlumnoPorApellido(int pDni)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
             {
                 try
                 {
-                    if (pApellido.CompareTo("") == 0) //sin filtro
+                    if (pDni == 0) //sin filtro
                     {
                         var alumnosPorApellido = from alumno in db.alumno
                                                  select new
@@ -154,7 +154,7 @@ namespace JJSS_Negocio
                     else //con filtro de apellido
                     {
                         var alumnosPorApellido = from alumno in db.alumno
-                                                 where alumno.apellido == pApellido + "%"
+                                                 where alumno.dni == pDni
                                                  select new
                                                  {
                                                      alu_nombre = alumno.nombre,

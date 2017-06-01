@@ -220,22 +220,22 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoDni;
         
         /// <summary>
-        /// Control positivoDni.
+        /// Control mayor_dni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator positivoDni;
+        protected global::System.Web.UI.WebControls.CompareValidator mayor_dni;
         
         /// <summary>
-        /// Control maximo_dni.
+        /// Control menor_dni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator maximo_dni;
+        protected global::System.Web.UI.WebControls.CompareValidator menor_dni;
         
         /// <summary>
         /// Control pnl_Inscripcion.
