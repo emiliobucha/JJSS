@@ -27,7 +27,21 @@ namespace JJSS.Presentacion
             gestorCiudades = new GestorCiudades();
             gestorProvincias = new GestorProvincias();
             pnl_mostrar_alumnos.Visible = false;
-            
+            if (Session["alumnos"] == null)
+            {
+                pnl_mostrar_alumnos.Visible = false;
+                pnlFormulario.Visible = true;
+            }
+            else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
+            {
+                pnl_mostrar_alumnos.Visible = true;
+                pnlFormulario.Visible = false;
+            }
+            else
+            {
+                pnl_mostrar_alumnos.Visible = false;
+                pnlFormulario.Visible = true;
+            }
 
             if (!IsPostBack)
             {
@@ -35,7 +49,8 @@ namespace JJSS.Presentacion
                 {
                     pnl_mostrar_alumnos.Visible = false;
                     pnlFormulario.Visible = true;
-                } else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
+                }
+                else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
                 {
                     pnl_mostrar_alumnos.Visible = true;
                     pnlFormulario.Visible = false;
@@ -78,7 +93,7 @@ namespace JJSS.Presentacion
 
         protected void CargarComboProvincias()
         {
-            List<provincia> provincias =gestorProvincias.ObtenerProvincias();
+            List<provincia> provincias = gestorProvincias.ObtenerProvincias();
             ddl_provincia.DataSource = provincias;
             ddl_provincia.DataTextField = "nombre";
             ddl_provincia.DataValueField = "id_provincia";
@@ -102,7 +117,7 @@ namespace JJSS.Presentacion
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
             string[] formats = { "MM/dd/yyyy" };
-            DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text,formats,new CultureInfo("en-US"),System.Globalization.DateTimeStyles.None);
+            DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
             int idFaja = int.Parse(ddl_fajas.SelectedValue);
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
@@ -125,11 +140,18 @@ namespace JJSS.Presentacion
 
             string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia, imagenByte, calle, numero, departamento, piso);
 
-            if (sReturn.CompareTo("") == 0) sReturn = "Se ha creado el alumno exitosamente";
+            if (sReturn.CompareTo("") == 0)
+            {
+                sReturn = "Se ha creado el alumno exitosamente";
+                Session["alumnos"] = "Administrar";
+                pnlFormulario.Visible = false;
+                pnl_mostrar_alumnos.Visible = true;
+            }
+            else Session["alumnos"] = "Registrar";
+            
             mensaje(sReturn);
             CargarGrilla();
-            pnlFormulario.Visible = false;
-            pnl_mostrar_alumnos.Visible = true;
+
 
         }
 
@@ -151,7 +173,7 @@ namespace JJSS.Presentacion
         protected void CargarGrilla()
         {
             int dni = 0;
-            if (txt_filtro_dni.Text == "") dni = int.Parse(txt_filtro_dni.Text);
+            if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
 
             gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(dni);
             gvAlumnos.DataBind();
@@ -172,7 +194,7 @@ namespace JJSS.Presentacion
             string sReturn = gestorAlumnos.EliminarAlumno(dni);
 
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
-
+            Session["alumnos"] = "Administrar";
             mensaje(sReturn);
 
         }
@@ -180,6 +202,7 @@ namespace JJSS.Presentacion
         protected void btn_buscar_alumno_Click(object sender, EventArgs e)
         {
             CargarGrilla();
+            Session["alumnos"] = "Administrar";
         }
 
         protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -199,7 +222,7 @@ namespace JJSS.Presentacion
                 }
             }
         }
-        
-            
+
+
     }
 }
