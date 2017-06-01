@@ -215,13 +215,21 @@
                         <div class="row centered">
                             <p>&nbsp;</p>
                         </div>
+<!---------------------------------**************Grilla de clase************---------------------------------------->
 
-                        <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="false" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
+                        <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="False" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento">
                             <Columns>
                                 <asp:BoundField DataField="id_clase" />
                                 <asp:BoundField DataField="nombre" />
                                 <asp:BoundField DataField="precio" />
-                                <asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />
+                                <%--<asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />--%>
+
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <input type="button" id="btn_inscribirClase" class="btn btn-link " onclick="seleccionarClaseInscripcion(this)" value="Inscribir" />
+                                    </ItemTemplate>                                    
+                                </asp:TemplateField>
+
                             </Columns>
                         </asp:GridView>
                     </div>
@@ -479,9 +487,164 @@
                 </div>
                 <!-- /container -->
             </div>
+               
 
 
-            <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE-->
+
+<!--Implementando ventana emergente --------------------*********     Exportar Listado     *********--------------------->
+            <div class="modal fade" id="exportarListado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <!--Cabecera-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabe2">Exportar listado de inscriptos</h4>
+                        </div>
+
+                        <!--Cuerpo-->
+
+                        <div class="modal-body">
+                            <div class="form-group">
+
+                                <!--Seleccione Torneo-->
+                                <asp:Panel ID="pnl_torneoExportarListado" CssClass="panel panel-default" runat="server">
+                                    <div class="row centered">
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <div class="row center-block">
+                                        <div class=" col-xs-2"></div>
+                                        <div class=" col-xs-2">
+                                            <label for="recipient-name" class="control-label">Torneo:</label>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <asp:DropDownList ID="ddl_torneoExportarListado" CssClass="caja2" runat="server"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="row centered">
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </asp:Panel>
+                            </div>
+                        </div>
+
+                        <!--Botonero-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <asp:Button ID="btn_acpetarTorneoExportarLista" CssClass="btn btn-default" runat="server" Text="Acceptar" OnClick="btn_acpetarTorneoExportarLista_Click" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+<!--Implementando ventana emergente --------------------*********     Inscribir alumno a Clase     *********--------------------->
+            <div class="modal fade" id="modal_inscribirAlumunoClase" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <!--Cabecera-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" >Inscribir alumno a clase</h4>
+                        </div>
+
+                        <!--Cuerpo-->
+
+                        <div class="modal-body">
+                            <div class="form-group">
+
+                                <!--Ingresar DNI para inscribir alumno-->
+                                <asp:Panel ID="pnl_inscribirClase" CssClass="panel panel-default" runat="server">
+                                    <div class="row centered">
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <div class="row centered">
+                                        <div class=" col-xs-2"></div>
+                                        <div class=" col-xs-8">
+                                            <asp:Label ID="Label1" runat="server" Text="Clase"></asp:Label>
+                                    
+                                            <!--Nombre Clase-->
+                                            <asp:Label ID="lbl_claseSeleccionada_nombre" runat="server" Text=""></asp:Label>
+
+                                            <!--Id Clase-->
+                                            <asp:Label ID="Label2" runat="server" Text="("></asp:Label>
+                                            <asp:Label ID="lbl_claseSeleccionada_id" runat="server" Text=""></asp:Label>
+                                            <asp:Label ID="Label3" runat="server" Text=")"></asp:Label>                                     
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row centered">
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <div class="row center-block">
+                                        <div class=" col-xs-2"></div>
+                                        <div class=" col-xs-2">
+                                            <label for="recipient-name" class="control-label">DNI:</label>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <asp:TextBox ID="txt_inscripcionClase_dni" runat="server"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="row centered">
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </asp:Panel>
+                            </div>
+                        </div>
+
+                        <!--Botonero-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <asp:Button ID="btn_inscripcionClase_aceptar" CssClass="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_inscripcionClase_aceptar_Click"  />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </form>
+
+
+
+
+
+<!---------------------------************              SCRIPTS              **************---------------------------->
+
+    <script type="text/javascript">
+
+        var popup;
+
+        function seleccionarClaseInscripcion(row) {
+            var rowData = row.parentNode.parentNode;
+            var rowId = rowData.rowIndex;
+            var gridView = document.getElementById('<%=gv_clasesDisponibles.ClientID %>')
+            var idClase = gridView.rows[rowId].cells[0].innerHTML;
+            var nombre = gridView.rows[rowId].cells[1].innerHTML;
+
+            //alert(rowId + idClase + nombre);   
+
+            
+            document.getElementById('<%=lbl_claseSeleccionada_id.ClientID %>').innerText = idClase;
+            document.getElementById('<%=lbl_claseSeleccionada_nombre.ClientID %>').textContent = nombre;
+
+            popup = $("#modal_inscribirAlumunoClase").modal('show');
+            //popup.focus();
+
+        }
+
+
+
+        function openModal() {
+            $('#modal_inscribirAlumunoClase').modal('show');
+        }
+        function ShowPopup() {
+            $("#btn_emergente").click();
+        }
+    </script>
+
+
+        <%-- <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE-->
             <div class="modal fade" id="inscripcionTorneo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -618,7 +781,7 @@
                                         </div>
                                         <div class="col-md-1">
                                             <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Text="*"></asp:RequiredFieldValidator>
-                                            <%--<asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
+                                            <asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>
                                             <asp:CompareValidator ID="positivoPeso" runat="server" ErrorMessage="El peso debe ser un valor mayor a 0" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" Text="*"></asp:CompareValidator>
 
                                         </div>
@@ -639,7 +802,7 @@
                                         </div>
                                         <div class="col-md-1">
                                             <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger" Text="*"></asp:RequiredFieldValidator>
-                                            <%--<asp:CompareValidator ID="tipoEdad" runat="server" ErrorMessage="La edad debe ser un valor numérico" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
+                                            <asp:CompareValidator ID="tipoEdad" runat="server" ErrorMessage="La edad debe ser un valor numérico" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>
                                             <asp:CompareValidator ID="positivoEdad" runat="server" ErrorMessage="La edad debe ser un valor mayor a 0" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" Text="*"></asp:CompareValidator>
 
                                         </div>
@@ -680,74 +843,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
 
 
-            <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE --------------------***Exportar Listado***--------------------->
-            <div class="modal fade" id="exportarListado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
 
-                        <!--Cabecera-->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabe2">Exportar listado de inscriptos</h4>
-                        </div>
-
-                        <!--Cuerpo-->
-
-                        <div class="modal-body">
-                            <div class="form-group">
-
-                                <!--Seleccione Torneo-->
-                                <asp:Panel ID="pnl_torneoExportarListado" CssClass="panel panel-default" runat="server">
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                    <div class="row center-block">
-                                        <div class=" col-xs-2"></div>
-                                        <div class=" col-xs-2">
-                                            <label for="recipient-name" class="control-label">Torneo:</label>
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <asp:DropDownList ID="ddl_torneoExportarListado" CssClass="caja2" runat="server"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                </asp:Panel>
-                            </div>
-                        </div>
-
-                        <!--Botonero-->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <asp:Button ID="btn_acpetarTorneoExportarLista" CssClass="btn btn-default" runat="server" Text="Acceptar" OnClick="btn_acpetarTorneoExportarLista_Click" />
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-    </form>
-    <!--SCRIPT-->
-
-    <script type="text/javascript">
-
-        function openModal() {
-            $('#inscripcionTorneo').modal('show');
-        }
-        function ShowPopup() {
-            $("#btn_emergente").click();
-        }
-    </script>
-
-
-    <script> 
-
-
-</script>
 
 
 
