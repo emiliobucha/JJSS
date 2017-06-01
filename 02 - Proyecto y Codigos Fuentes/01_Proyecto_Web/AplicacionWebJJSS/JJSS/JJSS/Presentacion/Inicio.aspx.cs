@@ -126,12 +126,7 @@ namespace JJSS.Presentacion
             Response.Redirect("RegistrarAlumno.aspx");
         }
                
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            // ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "ShowPopup();", true);
-            // ClientScript.RegisterStartupScript(GetType(), "alert", "ShowPopup();", true);
-        }
+     
 
         protected void cargarTorneosExportarListado()
         {
@@ -150,28 +145,18 @@ namespace JJSS.Presentacion
         protected void btn_inscripcionClase_aceptar_Click(object sender, EventArgs e)
         {
             int idClase = 0;
-            int.TryParse(lbl_claseSeleccionada_id.Text, out idClase);
+            int.TryParse(hf_claseSeleccionada_id.Value, out idClase);
 
             //int idClase = Convert.ToInt32(lbl_claseSeleccionada_id.Text);
             int dniAlumno = int.Parse(txt_inscripcionClase_dni.Text);
-            DateTime pfecha = DateTime.Today;
-            string phora =Convert.ToString(DateTime.Today.Hour);
+            DateTime pfecha = DateTime.Now;
+
+            string phora = pfecha.ToShortTimeString();
 
             gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno,idClase,phora,pfecha);
         }
 
-
-        //protected void gv_clasesDisponibles_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    int index = Convert.ToInt32(e.CommandArgument);
-        //    GridViewRow row = gv_clasesDisponibles.Rows[index];
-
-        //    int id = Convert.ToInt32(row.Cells[0].Text);
-
-        //    claseSeleccionada = id;
-        //    //Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
-
-        //}
+        
         
     }
 }

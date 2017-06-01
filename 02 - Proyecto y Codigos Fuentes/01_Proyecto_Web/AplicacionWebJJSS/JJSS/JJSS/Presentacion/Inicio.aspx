@@ -77,7 +77,6 @@
             <div class="container">
                 <div class="row mt centered">
 
-                    <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
 
                     <h1>ULTIMOS TORNEOS</h1>
                     <div class="row centered">
@@ -571,7 +570,7 @@
                                             <asp:Label ID="Label2" runat="server" Text="("></asp:Label>
                                             <asp:Label ID="lbl_claseSeleccionada_id" runat="server" Text=""></asp:Label>
                                             <asp:Label ID="Label3" runat="server" Text=")"></asp:Label>                                     
-                                            
+                                            <asp:HiddenField ID="hf_claseSeleccionada_id" runat="server" />
                                         </div>
                                     </div>
                                     <div class="row centered">
@@ -624,7 +623,7 @@
 
             //alert(rowId + idClase + nombre);   
 
-            
+            document.getElementById("<%=hf_claseSeleccionada_id.ClientID%>").value = idClase;      
             document.getElementById('<%=lbl_claseSeleccionada_id.ClientID %>').innerText = idClase;
             document.getElementById('<%=lbl_claseSeleccionada_nombre.ClientID %>').textContent = nombre;
 
