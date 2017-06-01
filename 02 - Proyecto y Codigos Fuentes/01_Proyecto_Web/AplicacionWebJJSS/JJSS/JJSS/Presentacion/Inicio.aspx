@@ -237,7 +237,7 @@
                         <!--col crear_nueva_clase-->
                         <div class="col-lg-4 proc">
                             <i class="fa fa-pencil" id="crear_nueva_clase"></i>
-                            <h3><a href="CrearClase.aspx" style="color: #000000">Crear nueva clase</a></h3>
+                            <h3><a href="../Presentacion/CrearClase.aspx" style="color: #000000">Crear nueva clase</a></h3>
                             <p>Crea una nueva clase con sus respectivos horarios para administrarla.</p>
                         </div>
                         <!--/col-->

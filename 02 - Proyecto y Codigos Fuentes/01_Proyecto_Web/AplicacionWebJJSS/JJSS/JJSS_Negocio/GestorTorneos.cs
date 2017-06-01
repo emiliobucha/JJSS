@@ -199,26 +199,35 @@ namespace JJSS_Negocio
                                     join part in db.participante on inscr.id_participante equals part.id_participante
                                     join cat_tor in db.categoria_torneo on inscr.id_categoria_torneo equals cat_tor.id_categoria_torneo
                                     where inscr.id_torneo == pID
-                                    select new 
+                                    select new
                                     {
                                         tor_nombre = inscr.torneo.nombre,
                                         tor_sede = inscr.torneo.sede.nombre,
-                                        tor_direccion = inscr.torneo.sede.direccion,
+                                        tor_direccion = inscr.torneo.sede.direccion.calle1 + " " + inscr.torneo.sede.direccion.numero,
                                         tor_fecha = inscr.torneo.fecha,
                                         tor_hora = inscr.torneo.hora,
                                         par_nombre = part.nombre,
                                         par_apellido = part.apellido,
                                         par_fecha_nac = part.fecha_nacimiento,
-                                        par_sexo = part.sexo,   
+                                        par_sexo = part.sexo,
                                         par_faja = cat_tor.faja.color,
                                         par_categoria = cat_tor.categoria.nombre,
-                                        
+
                                     };
-                
-                return  participantes.ToList<Object>();
+                List<Object> participantesList = participantes.ToList<Object>();
+              
+                return participantesList;
             }
         }
-        
+
+
+        private string Sexo(string pSexo)
+        {
+            if (pSexo == "0")
+                return  "Femenino";
+            else
+                return "Masculino";
+        }
         /*
          * Aun no aplica
          */
@@ -269,10 +278,10 @@ namespace JJSS_Negocio
             //GestorSedes gestorSedes = new GestorSedes();
             //gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
             //gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
-            List<object> listado = ListadoParticipantes(pID);
+            List<Object> listado = ListadoParticipantes(pID);
 
             if (listado.Count == 0)
-                return "ERROR: No posee ningún Inscripto";
+                throw new Exception("No posee inscriptos el torneo seleccionado");
 
             return gestorReportes.GenerarReporteListadoParticipantes(listado);
                 

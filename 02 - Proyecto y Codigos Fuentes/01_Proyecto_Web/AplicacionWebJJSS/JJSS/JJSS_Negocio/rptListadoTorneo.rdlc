@@ -861,7 +861,7 @@
         </Field>
         <Field Name="tor_fecha">
           <DataField>tor_fecha</DataField>
-          <rd:TypeName>System.Date</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="tor_hora">
           <DataField>tor_hora</DataField>
