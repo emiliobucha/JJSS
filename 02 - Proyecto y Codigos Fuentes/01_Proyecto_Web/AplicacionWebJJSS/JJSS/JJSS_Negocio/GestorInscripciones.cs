@@ -117,9 +117,9 @@ namespace JJSS_Negocio
                     db.SaveChanges();
                     inscripcion nuevaInscripcion = new inscripcion()
                     {
-                        hora = DateTime.Now.ToString("hh:mm tt"),
-                        fecha = DateTime.Now.Date,
-                        codigo_barra = 123456789,
+                        //hora = DateTime.Now.ToString("hh:mm tt"),
+                        //fecha = DateTime.Now.Date,
+                        //codigo_barra = 123456789,
                         participante = nuevoParticipante,
                         id_participante = nuevoParticipante.id_participante,
                         id_torneo = torneoInscripto.id_torneo,

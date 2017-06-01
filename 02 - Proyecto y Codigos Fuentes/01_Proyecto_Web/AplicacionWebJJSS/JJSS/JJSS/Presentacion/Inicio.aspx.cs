@@ -65,15 +65,21 @@ namespace JJSS.Presentacion
         {
             int idTorneo = 0;
             int.TryParse(ddl_torneoExportarListado.SelectedValue, out idTorneo);
-            
-           // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
-            String sFile = gestorDeTorneos.GenerarListado(idTorneo);
 
-            Response.Clear();
-            Response.AddHeader("Content-Type", "Application/octet-stream");
-            Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
-            Response.WriteFile(sFile);        
+            // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+            try
+            {
+                String sFile = gestorDeTorneos.GenerarListado(idTorneo);
 
+                Response.Clear();
+                Response.AddHeader("Content-Type", "Application/octet-stream");
+                Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                Response.WriteFile(sFile);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + "No se encuentran alumnos inscriptos a ese torneo".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "Inicio.aspx"  + "', 2000);</script>");
+            }
         }
 
         protected void cargarTorneosAbiertos()

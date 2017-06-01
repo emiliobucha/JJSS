@@ -19,13 +19,20 @@ namespace JJSS_Negocio
             }
         }
 
-        public String InscribirAlumnoAClase(int pAlumno, int pClase, string pHora, DateTime pFecha)
+        public String InscribirAlumnoAClase(int pDNIAlumno, int pClase, string pHora, DateTime pFecha)
         {
             String sReturn = "";
-            if (modUtilidadesTablas.ToDataTable(ObtenerInscripcionesClase()).Select("id_alumno = " + pAlumno + " and fecha ='" + pFecha + "' and hora = '" + pHora + "' and id_clase = " + pClase).Length > 0)
+            GestorAlumnos gestorAlumnos = new GestorAlumnos();
+            alumno pAlumno = gestorAlumnos.ObtenerAlumnoPorDNI(pDNIAlumno);
+            if (pAlumno.id_alumno == 0)
+            {
+                throw new Exception("El alumno no esta registrado");
+            }
+            if (modUtilidadesTablas.ToDataTable(ObtenerInscripcionesClase()).Select("id_alumno = " + pAlumno.id_alumno + " and id_clase = " + pClase).Length > 0)
             {
                 throw new Exception("Ya se ha inscripto a esa clase");
             }
+
             try
             {
                 using (var db = new JJSSEntities())
@@ -38,7 +45,7 @@ namespace JJSS_Negocio
                     {
                         inscripcion_clase nuevaInscripcion = new inscripcion_clase()
                         {
-                            id_alumno = pAlumno,
+                            id_alumno = pAlumno.id_alumno,
                             id_clase = pClase,
                             fecha = pFecha,
                             hora = pHora
