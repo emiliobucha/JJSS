@@ -20,12 +20,13 @@ namespace JJSS_Negocio
         /*
          * Genera una nueva clase
          * Parametros:
-         *              int pTipo: Indica el tipo de clase a la que pertenece
-         *              double pPrecio: Indica el precio que cuesta inscribirse a esa clase en particular
-         *              DataTable pHorarios: los horarios que han sido cargados en la grilla de horarios de clase
-         *              string pNombre: nombre indentificatorio para la clase
-         * Retornos:
+         *              pTipo: Entero Indica el tipo de clase a la que pertenece
+         *              pPrecio: Double Indica el precio que cuesta inscribirse a esa clase en particular
+         *              pHorarios: DataTable los horarios que han sido cargados en la grilla de horarios de clase
+         *               pNombre: string nombre indentificatorio para la clase
+         * Retornos:String 
          *          "" - Todo salió bien
+         *          mensaje de excepcion
          *          
          */
 
@@ -86,7 +87,8 @@ namespace JJSS_Negocio
         }
         /*
          *Método que devuelve los tipos de clases 
-         *
+         *Retornos:List <tipo_clase>
+         *          Listado de todos los tipos de clases
          *
       */
         public List<tipo_clase> ObtenerTipos()
@@ -120,6 +122,8 @@ namespace JJSS_Negocio
 
         /*
          * Obtiene un listado de todas las clases
+         * Retorno: List<clase> 
+         *          Listado de todas las clases
          */
         public List<clase> ObtenerClases()
         {

@@ -115,11 +115,15 @@ namespace JJSS_Negocio
                     }
                     db.categoria_torneo.Add(nuevaCategoriaTorneo);
                     db.SaveChanges();
+
+                    string hora = hora = DateTime.Now.ToString("hh:mm tt");
+                    DateTime fecha = DateTime.Now.Date;
                     inscripcion nuevaInscripcion = new inscripcion()
                     {
-                        //hora = DateTime.Now.ToString("hh:mm tt"),
-                        //fecha = DateTime.Now.Date,
-                        //codigo_barra = 123456789,
+                        
+                        hora = hora,
+                        fecha = fecha,
+                        codigo_barra = 123456789,
                         participante = nuevoParticipante,
                         id_participante = nuevoParticipante.id_participante,
                         id_torneo = torneoInscripto.id_torneo,
@@ -174,12 +178,25 @@ namespace JJSS_Negocio
 
             return  gestorAlumnos.ObtenerAlumnoPorDNI(pDni);
         }
+
+        /*
+         * Método que busca un participante por DNI, permite bajar el acoplamiente delegando la tarea a su gestor correspondiente
+         * Parámetros:
+         *              pDni: entero que representa el dni a buscar
+         */
+
         public participante ObtenerParticipanteporDNI(int pDni)
         {
             GestorParticipantes gestorParticipantes = new GestorParticipantes();
             return gestorParticipantes.ObtenerParticipantePorDNI(pDni);
         }
 
+
+        /*
+         * Método que calcula la edad
+         * Paramétro: 
+         *          pFechaNacimiento: Datetime, que puede ser nulo, que representa la fecha de nacimiento del participante a inscribirse
+         */
         public string calcularEdad(DateTime? pFechaNacimiento)
         {
             //+habria que ver como calcularla mejor porque si estuviera calculando mi edad daria 22 pero todavia tengo 21

@@ -9,9 +9,14 @@ using System.Collections;
 using System.Reflection;
 
 namespace JJSS_Negocio
-{
+{   /*
+    *Módulo statico que contiene metodos de utilidades para el manejo de tablas
+    */
     public static class modUtilidadesTablas
     {
+        /*
+         * Metodo que retorna una datatable a partir de una coleccion generica como por ejemplo una List<T>
+         */
         public static DataTable ToDataTable<T>(this IEnumerable<T> collection, string tableName)
         {
             DataTable tbl = ToDataTable(collection);

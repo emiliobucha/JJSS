@@ -12,7 +12,11 @@ namespace JJSS_Negocio
 {
     public class GestorProvincias
     {
-
+        /*
+         * Método que nos permite obtener todas las provincias registradoas
+         * Retorno: List<provincia>
+         *          Listado de todas las provincias registradas
+         */
         public List<provincia> ObtenerProvincias()
         {
             using (var db = new JJSSEntities())

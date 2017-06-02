@@ -13,7 +13,11 @@ namespace JJSS_Negocio
     public class GestorCiudades
     {
 
-
+        /*
+         * Método que devuelve un listado de todas las ciudades cargadas
+         * Retorno: List<ciudad>
+         *          Retorna toda lista de ciudades
+         */
         public List<ciudad> ObtenerCiudades()
         {
             using (var db = new JJSSEntities())
@@ -22,6 +26,13 @@ namespace JJSS_Negocio
             }
         }
 
+        /*
+         * Metodo que nos permite encontrar todas las ciudades que pertenecen a una provincia en particular
+         * Parámetros;
+         *              pProvincia: entero que indica el id de provincia a cual pertenece esa ciudad
+         * Retorno: List<ciudad>
+         *          Retorna una lista de todas las ciudades que pertenecen a esa provincia
+         */
         public List<ciudad> ObtenerCiudadesPorProvincia(int pProvincia)
         {
             using (var db=new JJSSEntities())

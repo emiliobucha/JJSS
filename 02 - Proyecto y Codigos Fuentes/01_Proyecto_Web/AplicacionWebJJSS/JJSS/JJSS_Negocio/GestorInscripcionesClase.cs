@@ -9,8 +9,17 @@ using System.Data;
 
 namespace JJSS_Negocio
 {
+    /*
+     * Clase que nos permite gestionar las incripciones a una clase por parte de un participante
+     */
     public class GestorInscripcionesClase
     {
+        /*
+         * Método que nos permite obtener un listado de todas las inscripciones a clases
+         * Retorno:List<incripcion_clase>
+         *          Listado de todas las inscripciones a las distintas clases
+         *          
+         */
         public List<inscripcion_clase> ObtenerInscripcionesClase()
         {
             using (var db = new JJSSEntities())
@@ -19,6 +28,21 @@ namespace JJSS_Negocio
             }
         }
 
+        /*
+         * Método que nos permite inscribir un alumno a una clase
+         * Paramétros:
+         *              pDNIAlumno: entero que representa el dni del alumno a inscribir
+         *              pClase: entero que indica el id de la clase a la que se va a inscribir
+         *              pHora: Hora de la transacción, en que se generó la inscripción
+         *              pFecha: datetime de la fecha en la que se inscribió
+         * Retornos:String  
+         *          "" - Transacción completada correctamente
+         *          Mensaje de Excepcion de transaccion
+         * Excepciones:
+         *              Alumno no Registrado
+         *              Ya esta inscripto el alumno
+         *  
+         */
         public String InscribirAlumnoAClase(int pDNIAlumno, int pClase, string pHora, DateTime pFecha)
         {
             String sReturn = "";
@@ -70,6 +94,16 @@ namespace JJSS_Negocio
             }
         }
 
+
+        /*
+         * Obtener inscripcion de un alumno a una clase
+         * Parametros:
+         *              pID: entero que representa el id del alumno
+         *              pIDClase: entero que representa el id de la clase 
+         * Retornos:Inscripcion_clase
+         *          Inscripcion del alumno a dicha clase pudiendo ser nulo el resultado si no estaba inscripto
+         *              
+         */
         public inscripcion_clase ObtenerAlumnoInscripto(int pID,int pIDClase)
         {
             using (var db = new JJSSEntities())

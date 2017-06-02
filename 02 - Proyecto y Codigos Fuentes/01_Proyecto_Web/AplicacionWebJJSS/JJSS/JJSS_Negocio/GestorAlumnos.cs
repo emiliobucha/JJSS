@@ -14,7 +14,13 @@ namespace JJSS_Negocio
     public class GestorAlumnos
     {
 
-
+        /*
+         * Método que nos permite obtener a un alumno buscandolo por DNI
+         * Parámetros:
+         *              pDni:entero que indica el dni del alumno a buscar
+         * Retornos:
+         *              Alumno encontrado, o si no estaba devuelve null
+         */
         public alumno ObtenerAlumnoPorDNI(int pDni)
         {
             using (var db = new JJSSEntities())

@@ -7,9 +7,14 @@ using JJSS_Entidad;
 using System.Data;
 
 namespace JJSS_Negocio
-{
+{        /*
+         * Modulo estatico que con diferentes herramientas utiles
+         */
     public static class modUtilidades
     {
+        /*
+         * Metodo que devuelve si una conexion al EntityFramwork es exitoso o no
+         */
         public static bool TestConnectionEF()
         {
             using (var db = new JJSSEntities())
