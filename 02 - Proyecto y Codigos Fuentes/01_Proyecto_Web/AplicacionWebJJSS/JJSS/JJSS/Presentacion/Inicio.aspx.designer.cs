@@ -31,22 +31,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.GridView gv_clasesDisponibles;
         
         /// <summary>
-        /// Control LinkButton1.
+        /// Control lnk_registrar_alumno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton lnk_registrar_alumno;
         
         /// <summary>
-        /// Control LinkButton2.
+        /// Control lnk_administrar_alumnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.LinkButton lnk_administrar_alumnos;
         
         /// <summary>
         /// Control pnl_torneoExportarListado.

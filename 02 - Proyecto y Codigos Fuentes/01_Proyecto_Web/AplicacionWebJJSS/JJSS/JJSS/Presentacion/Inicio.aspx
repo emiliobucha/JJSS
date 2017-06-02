@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
 
 
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
@@ -261,8 +261,7 @@
                         <div class="col-lg-4 proc" id="mis_Clases">
                             <i class="fa fa-heart"></i>
                             <h3>Mis clases</h3>
-                            <asp:LinkButton ID="LinkButton1" OnClick="registrarAlumno_Click" runat="server" Style="color: #000000">Registrar Alumno</asp:LinkButton></h3>
-                            <p>Pudes ver aqui las clases en las que te has inscripto.</p>
+                            <p>Puedes ver aquí las clases en las que te has inscripto.</p>
                         </div>
                         <!--/col-->
 
@@ -306,9 +305,9 @@
                         <div class="col-lg-4 proc">
                             <i class="fa fa-pencil" id="registrar_alumno"></i>
                             
-                            <h3><a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Registrar Alumno</a></h3>
-                            <%--<h3>
-                                <asp:LinkButton ID="LinkButton1" OnClick="registrarAlumno_Click" runat="server" Style="color: #000000">Registrar Alumno</asp:LinkButton></h3>--%>
+                            <h3><%--<a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Registrar Alumno</a>--%></h3>
+                            <h3>
+                                <asp:LinkButton ID="lnk_registrar_alumno" OnClick="registrarAlumno_Click" runat="server" Style="color: #000000">Registrar Alumno</asp:LinkButton></h3>
                             <p>Registra un nuevo alumno. De esta forma podras contar con sus informacion para la posterior administracion del mismo.</p>
                         </div>
                         <!--/col-->
@@ -317,7 +316,7 @@
                         <div class="col-lg-4 proc">
                             <i class="fa fa-cogs" id="administrar_alumnos"></i>
 
-                            <h3><asp:LinkButton ID="LinkButton2" OnClick="administrarAlumnos_Click" runat="server" Style="color: #000000">Administrar Alumnos</asp:LinkButton></h3>
+                            <h3><asp:LinkButton ID="lnk_administrar_alumnos" OnClick="administrarAlumnos_Click" runat="server" Style="color: #000000">Administrar Alumnos</asp:LinkButton></h3>
                             <p>Podras visualizar todos tus alumnos. Darlos de bajo. Modificar su perfil.</p>
                         </div>
                         <!--/col-->
@@ -527,7 +526,7 @@
                                             <label for="recipient-name" class="control-label">Torneo:</label>
                                         </div>
                                         <div class="col-xs-5">
-                                            <asp:DropDownList ID="ddl_torneoExportarListado" CssClass="caja2" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddl_torneoExportarListado" CssClass="caja2" runat="server" AutoPostBack="false"></asp:DropDownList>
                                         </div>
                                     </div>
                                     <div class="row centered">
@@ -540,7 +539,8 @@
                         <!--Botonero-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <asp:Button ID="btn_acpetarTorneoExportarLista" CssClass="btn btn-default" runat="server" Text="Acceptar" OnClick="btn_acpetarTorneoExportarLista_Click" />
+                            <asp:Button ID="btn_acpetarTorneoExportarLista" OnCommand="btn_acpetarTorneoExportarLista_Click" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Acceptar" OnClick="btn_acpetarTorneoExportarLista_Click"/>
+                            
                         </div>
 
                     </div>
@@ -593,10 +593,10 @@
                                         </div>
                                         <div class="col-xs-5">
                                             <asp:TextBox ID="txt_inscripcionClase_dni" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic"></asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="formato_dni" runat="server" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El DNI debe contener solo valores numéricos" ValidationExpression="^[0-9]*$"></asp:RegularExpressionValidator>
-                                            <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
-                                            <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El dni debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
+                                            <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic" ValidationGroup="inscripcionClase"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="formato_dni" runat="server" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El DNI debe contener solo valores numéricos" ValidationExpression="^[0-9]*$" ValidationGroup="inscripcionClase"></asp:RegularExpressionValidator>
+                                            <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan" ValidationGroup="inscripcionClase"></asp:CompareValidator>
+                                            <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El dni debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan" ValidationGroup="inscripcionClase"></asp:CompareValidator>
                                         </div>
                                     </div>
 
@@ -610,7 +610,7 @@
                         <!--Botonero-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <asp:Button ID="btn_inscripcionClase_aceptar" CssClass="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_inscripcionClase_aceptar_Click"  />
+                            <asp:Button ID="btn_inscripcionClase_aceptar" CssClass="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_inscripcionClase_aceptar_Click" ValidationGroup="inscripcionClase" />
                         </div>
 
                     </div>

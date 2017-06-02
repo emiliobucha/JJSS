@@ -137,10 +137,12 @@ namespace JJSS.Presentacion
             ddl_torneoExportarListado.DataBind();
         }
 
-        protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
-        {
-            btnGenerarListado();
-        }
+        //protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
+        //{
+        //    btnGenerarListado();
+        //}
+
+
 
         protected void btn_inscripcionClase_aceptar_Click(object sender, EventArgs e)
         {
@@ -170,7 +172,13 @@ namespace JJSS.Presentacion
             }
         }
 
-        
-        
+        protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
+        {
+            btnGenerarListado();
+        }
+
+
+
+
     }
 }
