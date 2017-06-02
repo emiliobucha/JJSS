@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true"  CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
 
 
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
@@ -85,8 +85,8 @@
 
                     <asp:GridView ID="gv_torneosAbiertos" runat="server" ShowHeader="false" DataKeyNames="id_torneo" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos por el momento" OnRowCommand="gv_torneosAbiertos_RowCommand">
                         <Columns>
-                            <asp:BoundField DataField="id_torneo" />
-                            <asp:BoundField DataField="nombre" />
+                            <asp:BoundField DataField="id_torneo" HeaderText="ID de torneo" />
+                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                             <asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />
                         </Columns>
                     </asp:GridView>
@@ -218,9 +218,9 @@
 
                         <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="False" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento">
                             <Columns>
-                                <asp:BoundField DataField="id_clase" />
-                                <asp:BoundField DataField="nombre" />
-                                <asp:BoundField DataField="precio" />
+                                <asp:BoundField DataField="id_clase"  HeaderText="ID de clase"/>
+                                <asp:BoundField DataField="nombre"  HeaderText="Nombre"/>
+                                <asp:BoundField DataField="precio" HeaderText="Precio" />
                                 <%--<asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />--%>
 
                                 <asp:TemplateField>
@@ -583,6 +583,10 @@
                                         </div>
                                         <div class="col-xs-5">
                                             <asp:TextBox ID="txt_inscripcionClase_dni" runat="server"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="formato_dni" runat="server" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El DNI debe contener solo valores numéricos" ValidationExpression="^[0-9]*$"></asp:RegularExpressionValidator>
+                                            <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                            <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El dni debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                         </div>
                                     </div>
 

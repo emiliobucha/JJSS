@@ -72,8 +72,8 @@
                                     </div>
                                     <div class="col-xs-3">
                                         <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="positivoDni" runat="server" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El dni debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValueToCompare="0"></asp:CompareValidator>
-                                        <asp:RangeValidator ID="maximo_dni" runat="server" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El dni debe ser un valor menor" MaximumValue="2147483647" MinimumValue="0" Type="Integer"></asp:RangeValidator>
+                                        <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                 </div>
                                 <div class="row centered">
@@ -148,8 +148,11 @@
                                         <label class="pull-left">Teléfono</label>
                                     </div>
                                     <div class="col-xs-3">
-                                        <asp:TextBox ID="txt_telefono" CssClass="caja2" runat="server" placeholder="Ingrese telefono"></asp:TextBox>
-                                        <asp:RangeValidator ID="maximo_telefono" runat="server" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic" ErrorMessage="El teléfono debe ser un valor menor" MaximumValue="9223372036854775807" MinimumValue="0" Type="Double"></asp:RangeValidator>
+                                        <asp:TextBox ID="txt_telefono" CssClass="caja2" runat="server" placeholder="Ingrese télefono"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el teléfono" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ID="numerico_telefono" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El telefono tiene que ser un valor numérico" Operator="DataTypeCheck"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="mayor_telefono" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El teléfono debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="menor_telefono" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El teléfono debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                     <div class="col-xs-2">
 
@@ -157,11 +160,12 @@
                                         <label class=" pull-right">Teléfono de urgencia</label>
                                     </div>
                                     <div class="col-xs-3">
-                                        <asp:TextBox ID="txt_telefono_urgencia" CssClass="caja2" runat="server" placeholder="Ingrese telefono en caso de urgencia"></asp:TextBox>
+                                        <asp:TextBox ID="txt_telefono_urgencia" CssClass="caja2" runat="server" placeholder="Ingrese teléfono en caso de urgencia"></asp:TextBox>
                                     </div>
                                     <div class="col-xs-3">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el telefono" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:RangeValidator ID="maximo_telefono0" runat="server" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ErrorMessage="El teléfono debe ser un valor menor" MaximumValue="9223372036854775807" MinimumValue="0" Type="Double"></asp:RangeValidator>
+                                        <asp:CompareValidator ID="numerico_telemergencia" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El telefono tiene que ser un valor numérico" Operator="DataTypeCheck"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="mayor_telemergencia" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El teléfono de urgencia debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="menor_telemergencia" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El teléfono de urgencia debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                 </div>
 
@@ -195,14 +199,16 @@
                                     </div>
                                     <div class="col-xs-1">
                                         <asp:TextBox ID="txt_numero" class="caja2" runat="server"></asp:TextBox>
-                                        <asp:RangeValidator ID="maximo_numero" runat="server" ControlToValidate="txt_numero" CssClass="text-danger" Display="Dynamic" ErrorMessage="El número debe ser un valor menor" MaximumValue="2147483647" MinimumValue="0" Type="Integer"></asp:RangeValidator>
+                                        <asp:CompareValidator ID="mayor_numero" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_numero" Type="Integer" ErrorMessage="El numéro debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="menor_numero" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_numero" Type="Integer" ErrorMessage="El numéro debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                     <div class="col-xs-1">
                                         <label class="pull-right">Piso</label>
                                     </div>
                                     <div class="col-xs-1">
                                         <asp:TextBox ID="txt_piso" class="caja2" runat="server"></asp:TextBox>
-                                        <asp:RangeValidator ID="maximo_piso" runat="server" ControlToValidate="txt_piso" CssClass="text-danger" Display="Dynamic" ErrorMessage="El piso debe ser un valor menor" MaximumValue="2147483647" MinimumValue="0" Type="Integer"></asp:RangeValidator>
+                                        <asp:CompareValidator ID="mayor_piso" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_piso" Type="Integer" ErrorMessage="El numéro debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="menor_piso" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_piso" Type="Integer" ErrorMessage="El numéro debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                     <div class="col-xs-1">
                                         <label class=" pull-right">Dpto</label>
@@ -299,8 +305,8 @@
                         <div class="form-group ">
                             <!--Boton-->
                             <div class="row centered">
-                                <strong>Apellido a buscar:</strong>
-                                <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
+                                <strong>DNI a buscar:</strong>
+                                <asp:TextBox ID="txt_filtro_dni" runat="server"></asp:TextBox>
                                 <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar alumnos" OnClick="btn_buscar_alumno_Click" CausesValidation="false" CssClass="btn btn-default" />
 
                                 <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnSelectedIndexChanged="gvAlumnos_SelectedIndexChanged" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">

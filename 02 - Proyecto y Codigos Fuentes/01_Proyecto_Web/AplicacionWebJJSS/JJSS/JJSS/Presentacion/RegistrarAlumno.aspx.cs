@@ -27,7 +27,21 @@ namespace JJSS.Presentacion
             gestorCiudades = new GestorCiudades();
             gestorProvincias = new GestorProvincias();
             pnl_mostrar_alumnos.Visible = false;
-            
+            if (Session["alumnos"] == null)
+            {
+                pnl_mostrar_alumnos.Visible = false;
+                pnlFormulario.Visible = true;
+            }
+            else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
+            {
+                pnl_mostrar_alumnos.Visible = true;
+                pnlFormulario.Visible = false;
+            }
+            else
+            {
+                pnl_mostrar_alumnos.Visible = false;
+                pnlFormulario.Visible = true;
+            }
 
             if (!IsPostBack)
             {
@@ -35,7 +49,8 @@ namespace JJSS.Presentacion
                 {
                     pnl_mostrar_alumnos.Visible = false;
                     pnlFormulario.Visible = true;
-                } else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
+                }
+                else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
                 {
                     pnl_mostrar_alumnos.Visible = true;
                     pnlFormulario.Visible = false;
@@ -78,7 +93,7 @@ namespace JJSS.Presentacion
 
         protected void CargarComboProvincias()
         {
-            List<provincia> provincias =gestorProvincias.ObtenerProvincias();
+            List<provincia> provincias = gestorProvincias.ObtenerProvincias();
             ddl_provincia.DataSource = provincias;
             ddl_provincia.DataTextField = "nombre";
             ddl_provincia.DataValueField = "id_provincia";
@@ -101,11 +116,15 @@ namespace JJSS.Presentacion
             int dni = int.Parse(txtDni.Text);
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
-            DateTime fechaNac = DateTime.Parse(dp_fecha.Text, CultureInfo.CreateSpecificCulture("en-US"));
+           
+            string[] formats = { "MM/dd/yyyy" };
+            
+            DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
             int idFaja = int.Parse(ddl_fajas.SelectedValue);
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
+         
             int? tel = null;
             if (txt_telefono.Text!="")
             {
@@ -115,6 +134,7 @@ namespace JJSS.Presentacion
             string mail = txt_email.Text;
             string calle = txt_calle.Text;
             string departamento = txt_nro_dpto.Text;
+
             int? piso = null;
             if (txt_piso.Text != "")
             { 
@@ -137,16 +157,29 @@ namespace JJSS.Presentacion
 
             string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia, imagenByte, calle, numero, departamento, piso);
 
-            if (sReturn.CompareTo("") == 0) sReturn = "Se ha creado el alumno exitosamente";
-            mensaje(sReturn, "RegistrarAlumno.aspx");
-            pnlFormulario.Visible = false;
-            pnl_mostrar_alumnos.Visible = true;
+            if (sReturn.CompareTo("") == 0)
+            {
+                sReturn = "Se ha creado el alumno exitosamente";
+                Session["alumnos"] = "Administrar";
+                pnlFormulario.Visible = false;
+                pnl_mostrar_alumnos.Visible = true;
+            }
+            else Session["alumnos"] = "Registrar";
+            
+            mensaje(sReturn);
+            CargarGrilla();
+
 
         }
 
-        private void mensaje(string pMensaje, string pRef)
+        private void mensaje(string pMensaje)
         {
-            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
+            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
+        }
+
+        private void confirmar(string pMensaje)
+        {
+            Response.Write("<script>window.confirm('" + pMensaje.Trim() + "');</script>");
         }
 
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,7 +189,10 @@ namespace JJSS.Presentacion
 
         protected void CargarGrilla()
         {
-            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(txt_filtro_apellido.Text);
+            int dni = 0;
+            if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
+
+            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorApellido(dni);
             gvAlumnos.DataBind();
         }
 
@@ -170,19 +206,20 @@ namespace JJSS.Presentacion
 
         protected void gvAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //if (confirmar("¿Está seguro de eliminar este alumno?") == true) { }
             int dni = (int)gvAlumnos.SelectedValue;
             string sReturn = gestorAlumnos.EliminarAlumno(dni);
 
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
-
-            mensaje(sReturn, "RegistrarAlumno.aspx");
+            Session["alumnos"] = "Administrar";
+            mensaje(sReturn);
 
         }
 
         protected void btn_buscar_alumno_Click(object sender, EventArgs e)
         {
             CargarGrilla();
+            Session["alumnos"] = "Administrar";
         }
 
         protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -194,15 +231,15 @@ namespace JJSS.Presentacion
 
                 if (sReturn.CompareTo("") == 0)
                 {
-                    mensaje("Se ha eliminado el alumno correctamente", "RegistrarAlumno.aspx");
+                    mensaje("Se ha eliminado el alumno correctamente");
                 }
                 else
                 {
-                    mensaje(sReturn, "RegistrarAlumno.aspx");
+                    mensaje(sReturn);
                 }
             }
         }
-        
-            
+
+
     }
 }

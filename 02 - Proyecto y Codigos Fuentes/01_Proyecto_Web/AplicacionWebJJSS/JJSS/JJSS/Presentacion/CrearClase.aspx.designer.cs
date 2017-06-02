@@ -103,6 +103,24 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_horadesde;
         
         /// <summary>
+        /// Control requerido_horadesde.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requerido_horadesde;
+        
+        /// <summary>
+        /// Control regex_horadesde.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_horadesde;
+        
+        /// <summary>
         /// Control txt_horahasta.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,24 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_horahasta;
+        
+        /// <summary>
+        /// Control requerido_horahasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requerido_horahasta;
+        
+        /// <summary>
+        /// Control regex_horahasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_horahasta;
         
         /// <summary>
         /// Control btn_agregar.
