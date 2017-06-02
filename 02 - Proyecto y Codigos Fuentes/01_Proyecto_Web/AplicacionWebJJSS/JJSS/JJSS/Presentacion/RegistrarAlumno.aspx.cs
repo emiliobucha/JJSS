@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 using System.IO;
+using System.Globalization;
 
 namespace JJSS.Presentacion
 {
@@ -100,17 +101,30 @@ namespace JJSS.Presentacion
             int dni = int.Parse(txtDni.Text);
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
-            DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
+            DateTime fechaNac = DateTime.Parse(dp_fecha.Text, CultureInfo.CreateSpecificCulture("en-US"));
             int idFaja = int.Parse(ddl_fajas.SelectedValue);
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
-            int tel = int.Parse(txt_telefono.Text);
+            int? tel = null;
+            if (txt_telefono.Text!="")
+            {
+                tel = int.Parse(txt_telefono.Text);
+            }
+ 
             string mail = txt_email.Text;
             string calle = txt_calle.Text;
             string departamento = txt_nro_dpto.Text;
-            int piso = int.Parse(txt_piso.Text);
-            int numero = int.Parse(txt_numero.Text);
+            int? piso = null;
+            if (txt_piso.Text != "")
+            { 
+                 piso = int.Parse(txt_piso.Text);
+            }
+            int? numero = null;
+            if (txt_numero.Text != "")
+            {
+                numero = int.Parse(txt_numero.Text);
+            }
             System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
             byte[] imagenByte;
             using (MemoryStream ms = new MemoryStream())
