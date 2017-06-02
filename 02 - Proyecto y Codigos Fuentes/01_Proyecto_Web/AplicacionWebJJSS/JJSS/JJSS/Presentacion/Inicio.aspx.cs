@@ -78,7 +78,7 @@ namespace JJSS.Presentacion
             }
             catch (Exception ex)
             {
-                Response.Write("<script>window.alert('" + "No se encuentran alumnos inscriptos a ese torneo".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "Inicio.aspx"  + "', 2000);</script>");
+                Response.Write("<script>window.alert('" + "No se encuentran alumnos inscriptos a ese torneo".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
             }
         }
 
@@ -117,13 +117,13 @@ namespace JJSS.Presentacion
         protected void registrarAlumno_Click(object sender, EventArgs e)
         {
             Session["alumnos"] = "Registrar";
-            Response.Redirect("RegistrarAlumno.aspx");
+            Response.Redirect("~/Presentacion/RegistrarAlumno.aspx");
         }
 
         protected void administrarAlumnos_Click(object sender, EventArgs e)
         {
             Session["alumnos"] = "Administrar";
-            Response.Redirect("RegistrarAlumno.aspx");
+            Response.Redirect("~/Presentacion/RegistrarAlumno.aspx");
         }
                
      
@@ -159,16 +159,16 @@ namespace JJSS.Presentacion
                 string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, idClase, phora, pfecha);
                 if (sReturn != "")
                 {
-                    Response.Write("<script>window.alert('" + sReturn.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "Inicio.aspx" + "', 2000);</script>");
+                    Response.Write("<script>window.alert('" + sReturn.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
                 }
                 else
                 {
-                    Response.Write("<script>window.alert('" + "Alumno Inscripto".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "Inicio.aspx" + "', 2000);</script>");
+                    Response.Write("<script>window.alert('" + "Alumno Inscripto".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
                 }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>window.alert('" + ex.Message.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "Inicio.aspx" + "', 2000);</script>");
+                Response.Write("<script>window.alert('" + ex.Message.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
             }
         }
 

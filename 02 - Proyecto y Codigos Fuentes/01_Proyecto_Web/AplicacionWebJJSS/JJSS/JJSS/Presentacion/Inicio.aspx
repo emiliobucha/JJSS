@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
 
 
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
@@ -539,7 +539,7 @@
                         <!--Botonero-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <asp:Button ID="btn_acpetarTorneoExportarLista" OnCommand="btn_acpetarTorneoExportarLista_Click" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Acceptar" OnClick="btn_acpetarTorneoExportarLista_Click"/>
+                            <asp:Button ID="btn_acpetarTorneoExportarLista"  CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Acceptar" OnClick="btn_acpetarTorneoExportarLista_Click"/>
                             
                         </div>
 
@@ -593,7 +593,7 @@
                                         </div>
                                         <div class="col-xs-5">
                                             <asp:TextBox ID="txt_inscripcionClase_dni" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic" ValidationGroup="inscripcionClase"></asp:RequiredFieldValidator>
+                                           <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic" ValidationGroup="inscripcionClase"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="formato_dni" runat="server" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El DNI debe contener solo valores numéricos" ValidationExpression="^[0-9]*$" ValidationGroup="inscripcionClase"></asp:RegularExpressionValidator>
                                             <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan" ValidationGroup="inscripcionClase"></asp:CompareValidator>
                                             <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El dni debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan" ValidationGroup="inscripcionClase"></asp:CompareValidator>
