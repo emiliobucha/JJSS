@@ -24,11 +24,11 @@ namespace JJSS_Negocio
             String sReturn = "";
             GestorAlumnos gestorAlumnos = new GestorAlumnos();
             alumno pAlumno = gestorAlumnos.ObtenerAlumnoPorDNI(pDNIAlumno);
-            if (pAlumno.id_alumno == 0)
+           if (pAlumno == null)
             {
                 throw new Exception("El alumno no esta registrado");
             }
-            if (modUtilidadesTablas.ToDataTable(ObtenerInscripcionesClase()).Select("id_alumno = " + pAlumno.id_alumno + " and id_clase = " + pClase).Length > 0)
+            if (ObtenerAlumnoInscripto(pAlumno.id_alumno, pClase) !=null)
             {
                 throw new Exception("Ya se ha inscripto a esa clase");
             }
@@ -69,6 +69,17 @@ namespace JJSS_Negocio
                 return ex.Message;
             }
         }
- 
+
+        public inscripcion_clase ObtenerAlumnoInscripto(int pID,int pIDClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var inscripcion = from ic in db.inscripcion_clase
+                                  where ic.id_clase == pIDClase &&
+                                         ic.id_alumno == pID
+                                  select ic;
+                return inscripcion.FirstOrDefault();
+            }
+        }
     }
 }

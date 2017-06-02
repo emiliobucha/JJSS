@@ -63,23 +63,23 @@
                            </asp:DropDownList>
 
                        </div>
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 col-md-2">
                             <label class="pull-left">Hora Desde:</label>
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 col-md-2">
                             <asp:TextBox ID="txt_horadesde" runat="server" CssClass="caja2"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="requerido_horadesde" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un horario de inicio" ControlToValidate="txt_horadesde" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="regex_horadesde" runat="server" ControlToValidate="txt_horadesde" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"></asp:RegularExpressionValidator>
                         </div>
-                         <div class="col-xs-2">
+                         <div class="col-xs-2 col-md-2">
                             <label class="pull-left">Hora Hasta:</label>
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 col-md-2">
                             <asp:TextBox ID="txt_horahasta" runat="server" CssClass="caja2"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="requerido_horahasta" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un horario de fin" ControlToValidate="txt_horahasta" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="regex_horahasta" runat="server" ControlToValidate="txt_horahasta" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"></asp:RegularExpressionValidator>
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 col-md-2" >
                             <asp:Button ID="btn_agregar" runat="server" OnClick="btn_agregar_Click" Text="Agregar" CssClass="btn btn-default"></asp:Button>
                         </div>
                     </div>

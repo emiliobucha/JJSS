@@ -152,8 +152,22 @@ namespace JJSS.Presentacion
             DateTime pfecha = DateTime.Now;
 
             string phora = pfecha.ToShortTimeString();
-
-            gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno,idClase,phora,pfecha);
+            try
+            {
+                string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, idClase, phora, pfecha);
+                if (sReturn != "")
+                {
+                    Response.Write("<script>window.alert('" + sReturn.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "Inicio.aspx" + "', 2000);</script>");
+                }
+                else
+                {
+                    Response.Write("<script>window.alert('" + "Alumno Inscripto".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "Inicio.aspx" + "', 2000);</script>");
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + ex.Message.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "Inicio.aspx" + "', 2000);</script>");
+            }
         }
 
         
