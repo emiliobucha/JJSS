@@ -27,37 +27,10 @@ namespace JJSS.Presentacion
             gestorCiudades = new GestorCiudades();
             gestorProvincias = new GestorProvincias();
             pnl_mostrar_alumnos.Visible = false;
-            if (Session["alumnos"] == null)
-            {
-                pnl_mostrar_alumnos.Visible = false;
-                pnlFormulario.Visible = true;
-            }
-            else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
-            {
-                pnl_mostrar_alumnos.Visible = true;
-                pnlFormulario.Visible = false;
-            }
-            else
-            {
-                pnl_mostrar_alumnos.Visible = false;
-                pnlFormulario.Visible = true;
-            }
+            mostrarPaneles();
 
             if (!IsPostBack)
             {
-                if (Session["alumnos"] == null)
-                {
-                    pnl_mostrar_alumnos.Visible = false;
-                    pnlFormulario.Visible = true;
-                }
-                else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
-                {
-                    pnl_mostrar_alumnos.Visible = true;
-                    pnlFormulario.Visible = false;
-                }
-
-
-
                 CargarComboFajas();
                 CargarComboCiudades(1);
                 CargarComboProvincias();
@@ -68,6 +41,20 @@ namespace JJSS.Presentacion
                 gvAlumnos.AutoGenerateColumns = false;
                 gvAlumnos.PageSize = 20;
                 CargarGrilla();
+            }
+        }
+
+        protected void mostrarPaneles()
+        {
+            if (Session["alumnos"] == null || Session["alumnos"].ToString().CompareTo("Registrar")==0)
+            {
+                pnl_mostrar_alumnos.Visible = false;
+                pnlFormulario.Visible = true;
+            }
+            else
+            {
+                pnl_mostrar_alumnos.Visible = true;
+                pnlFormulario.Visible = false;
             }
         }
 
@@ -161,8 +148,7 @@ namespace JJSS.Presentacion
             {
                 sReturn = "Se ha creado el alumno exitosamente";
                 Session["alumnos"] = "Administrar";
-                pnlFormulario.Visible = false;
-                pnl_mostrar_alumnos.Visible = true;
+                mostrarPaneles();
             }
             else Session["alumnos"] = "Registrar";
             
@@ -222,23 +208,23 @@ namespace JJSS.Presentacion
             Session["alumnos"] = "Administrar";
         }
 
-        protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Delete")
-            {
-                int dni = (int)gvAlumnos.SelectedValue;
-                string sReturn = gestorAlumnos.EliminarAlumno(dni);
+        //protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "Delete")
+        //    {
+        //        int dni = (int)gvAlumnos.SelectedValue;
+        //        string sReturn = gestorAlumnos.EliminarAlumno(dni);
 
-                if (sReturn.CompareTo("") == 0)
-                {
-                    mensaje("Se ha eliminado el alumno correctamente");
-                }
-                else
-                {
-                    mensaje(sReturn);
-                }
-            }
-        }
+        //        if (sReturn.CompareTo("") == 0)
+        //        {
+        //            mensaje("Se ha eliminado el alumno correctamente");
+        //        }
+        //        else
+        //        {
+        //            mensaje(sReturn);
+        //        }
+        //    }
+        //}
 
 
     }

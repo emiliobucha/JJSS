@@ -226,7 +226,7 @@
                                     </div>
                                     <div class="col-xs-3">
                                         <%--<asp:TextBox ID="txt_localidad" class="caja2" runat="server" placeholder="Ingrese localidad"></asp:TextBox>--%>
-                                        <asp:DropDownList class="caja2" ID="ddl_provincia" runat="server" OnSelectedIndexChanged="ddl_provincia_SelectedIndexChanged">
+                                        <asp:DropDownList class="caja2" ID="ddl_provincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_provincia_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
