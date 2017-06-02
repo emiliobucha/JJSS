@@ -27,7 +27,8 @@ namespace JJSS.Presentacion
             gestorCiudades = new GestorCiudades();
             gestorProvincias = new GestorProvincias();
             pnl_mostrar_alumnos.Visible = false;
-            mostrarPaneles();
+            //mostrarPaneles();
+            CargarGrilla();
 
             if (!IsPostBack)
             {
@@ -40,7 +41,8 @@ namespace JJSS.Presentacion
                 gvAlumnos.AllowSorting = true;
                 gvAlumnos.AutoGenerateColumns = false;
                 gvAlumnos.PageSize = 20;
-                CargarGrilla();
+                
+                
             }
         }
 
@@ -147,10 +149,18 @@ namespace JJSS.Presentacion
             if (sReturn.CompareTo("") == 0)
             {
                 sReturn = "Se ha creado el alumno exitosamente";
-                Session["alumnos"] = "Administrar";
+                //Session["alumnos"] = "Administrar";
+                pnl_mostrar_alumnos.Visible = true;
+                pnlFormulario.Visible = false;
                 mostrarPaneles();
             }
-            else Session["alumnos"] = "Registrar";
+            else
+            {
+                //Session["alumnos"] = "Registrar";
+                pnl_mostrar_alumnos.Visible = false;
+                pnlFormulario.Visible = true;
+            }
+
             
             mensaje(sReturn);
             CargarGrilla();
@@ -197,7 +207,9 @@ namespace JJSS.Presentacion
             string sReturn = gestorAlumnos.EliminarAlumno(dni);
 
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
-            Session["alumnos"] = "Administrar";
+            //Session["alumnos"] = "Administrar";
+            pnl_mostrar_alumnos.Visible = true;
+            pnlFormulario.Visible = false;
             mensaje(sReturn);
 
         }
@@ -205,9 +217,49 @@ namespace JJSS.Presentacion
         protected void btn_buscar_alumno_Click(object sender, EventArgs e)
         {
             CargarGrilla();
-            Session["alumnos"] = "Administrar";
+            //Session["alumnos"] = "Administrar";
+            pnl_mostrar_alumnos.Visible = true;
+            pnlFormulario.Visible = false;
         }
 
+        protected void btn_ver_alumnos_Click(object sender, EventArgs e)
+        {
+            //Session["alumnos"] = "Administrar";
+            pnl_mostrar_alumnos.Visible = true;
+            pnlFormulario.Visible = false;
+        }
+
+        protected void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+            Response.Redirect("Presentacion/Inicio.aspx");
+        }
+
+        private void limpiar()
+        {
+            txtDni.Text = "";
+            txt_apellido.Text = "";
+            txt_calle.Text = "";
+            txt_email.Text = "";
+            txt_filtro_dni.Text = "";
+            txt_nombres.Text = "";
+            txt_nro_dpto.Text = "";
+            txt_numero.Text = "";
+            txt_piso.Text = "";
+            txt_telefono.Text = "";
+            txt_telefono_urgencia.Text = "";
+            ddl_categoria.SelectedIndex = 0;
+            ddl_fajas.SelectedIndex = 0;
+            ddl_localidad.SelectedIndex = 0;
+            ddl_provincia.SelectedIndex = 0;
+        }
+
+        protected void btn_registro_Click(object sender, EventArgs e)
+        {
+            //Session["alumnos"] = "Registrar";
+            pnl_mostrar_alumnos.Visible = false;
+            pnlFormulario.Visible = true;
+        }
         //protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
         //{
         //    if (e.CommandName == "Delete")

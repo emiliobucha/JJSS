@@ -16,6 +16,14 @@
             <div class="row">
                 <div class="col-md-3 col-md-offset-1">
                     <h1></h1>
+                    <script language="C#" runat="server">
+
+      void LinkButton_Click(Object sender, EventArgs e) 
+      {
+         Label1.Text="You clicked the link button";
+      }
+
+   </script>
                 </div>
             </div>
             <! --/row -->
@@ -253,6 +261,7 @@
                         <div class="col-lg-4 proc" id="mis_Clases">
                             <i class="fa fa-heart"></i>
                             <h3>Mis clases</h3>
+                            <asp:LinkButton ID="LinkButton1" OnClick="registrarAlumno_Click" runat="server" Style="color: #000000">Registrar Alumno</asp:LinkButton></h3>
                             <p>Pudes ver aqui las clases en las que te has inscripto.</p>
                         </div>
                         <!--/col-->
@@ -296,9 +305,10 @@
                         <!--col registrar_alumno-->
                         <div class="col-lg-4 proc">
                             <i class="fa fa-pencil" id="registrar_alumno"></i>
-
-                            <h3>
-                                <asp:LinkButton ID="LinkButton1" OnClick="registrarAlumno_Click" runat="server" Style="color: #000000">Registrar Alumno</asp:LinkButton></h3>
+                            
+                            <h3><a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Registrar Alumno</a></h3>
+                            <%--<h3>
+                                <asp:LinkButton ID="LinkButton1" OnClick="registrarAlumno_Click" runat="server" Style="color: #000000">Registrar Alumno</asp:LinkButton></h3>--%>
                             <p>Registra un nuevo alumno. De esta forma podras contar con sus informacion para la posterior administracion del mismo.</p>
                         </div>
                         <!--/col-->

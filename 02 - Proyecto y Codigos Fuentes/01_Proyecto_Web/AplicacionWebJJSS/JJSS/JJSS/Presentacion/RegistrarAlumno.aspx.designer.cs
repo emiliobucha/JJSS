@@ -472,6 +472,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_guardar;
         
         /// <summary>
+        /// Control btn_ver_alumnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_ver_alumnos;
+        
+        /// <summary>
         /// Control pnl_mostrar_alumnos.
         /// </summary>
         /// <remarks>
@@ -497,6 +506,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_buscar_alumno;
+        
+        /// <summary>
+        /// Control btn_registro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_registro;
         
         /// <summary>
         /// Control gvAlumnos.
