@@ -66,11 +66,11 @@ namespace JJSSUnitTest
                 DataRow drNuevoHorario = pHorarios.NewRow();
                 drNuevoHorario["hora_desde"] = "10:00";
                 drNuevoHorario["hora_hasta"] = "11:00";
-                drNuevoHorario["nombre_dia"] = "Test Dia ficticio " + i;
+                drNuevoHorario["nombre_dia"] = "D" + i;
                 pHorarios.Rows.Add(drNuevoHorario);
             }
           
-            string pNombre = "Test Clase Longaniza";
+            string pNombre = "Test Clase Longaniza 2";
             string retorno = GC.GenerarNuevaClase(pTipo, pPrecio, pHorarios, pNombre);
             string esperado = "";
             Assert.AreEqual(esperado, retorno);
