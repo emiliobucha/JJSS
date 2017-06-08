@@ -16,14 +16,7 @@
             <div class="row">
                 <div class="col-md-3 col-md-offset-1">
                     <h1></h1>
-                    <script language="C#" runat="server">
-
-      void LinkButton_Click(Object sender, EventArgs e) 
-      {
-         Label1.Text="You clicked the link button";
-      }
-
-   </script>
+                    
                 </div>
             </div>
             <! --/row -->

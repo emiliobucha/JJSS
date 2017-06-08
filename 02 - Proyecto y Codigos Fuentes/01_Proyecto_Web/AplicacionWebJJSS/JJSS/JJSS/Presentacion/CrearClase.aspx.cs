@@ -43,10 +43,12 @@ namespace JJSS.Presentacion
             {
                 if (dtHorarios.Select("dia = " + ddl_dia.SelectedIndex + " and hora_desde <= '" + txt_horadesde.Text + "' and hora_hasta > '" + txt_horadesde.Text + "'").Length > 0)
                 {
+                    mensaje("Ya hay una clase en ese horario");
                     return;
                 }
                 if (dtHorarios.Select("dia = " + ddl_dia.SelectedIndex + " and hora_desde < '" + txt_horahasta.Text + "' and hora_hasta >= '" + txt_horahasta.Text + "'").Length > 0)
                 {
+                    mensaje("Ya hay una clase en ese horario");
                     return;
                 }
             }
@@ -77,28 +79,28 @@ namespace JJSS.Presentacion
             switch (dia)
             {
                 case 0:
-                    e.Row.BackColor = System.Drawing.Color.Cyan;
+                    e.Row.BackColor = System.Drawing.Color.Lavender;
                     break;
                 case 1:
-                    e.Row.BackColor = System.Drawing.Color.Red;
+                    e.Row.BackColor = System.Drawing.Color.PaleTurquoise;
                     break;
                 case 2:
-                    e.Row.BackColor = System.Drawing.Color.Yellow;
+                    e.Row.BackColor = System.Drawing.Color.PowderBlue;
                     break;
                 case 3:
-                    e.Row.BackColor = System.Drawing.Color.Green;
+                    e.Row.BackColor = System.Drawing.Color.LightBlue;
                     break;
                 case 4:
-                    e.Row.BackColor = System.Drawing.Color.Gold;
+                    e.Row.BackColor = System.Drawing.Color.LightSkyBlue;
                     break;
                 case 5:
-                    e.Row.BackColor = System.Drawing.Color.Gray;
+                    e.Row.BackColor = System.Drawing.Color.Turquoise;
                     break;
                 case 6:
-                    e.Row.BackColor = System.Drawing.Color.Firebrick;
+                    e.Row.BackColor = System.Drawing.Color.MediumTurquoise;
                     break;
-                case 7:
-                    e.Row.BackColor = System.Drawing.Color.Lime;
+                default:
+                    e.Row.BackColor = System.Drawing.Color.Black;
                     break;
             }
 
@@ -111,13 +113,13 @@ namespace JJSS.Presentacion
             string sReturn = gestorClases.GenerarNuevaClase(1, Double.Parse(txt_precio.Text), (DataTable)Session["dtHorarios"], txt_nombre.Text);
 
             if (sReturn.CompareTo("") == 0) sReturn = "La Clase se ha creado exitosamente";
-            mensaje(sReturn, "CrearClase.aspx");
+            mensaje(sReturn);
             //Response.Redirect("Inicio.aspx");
         }
 
-        private void mensaje(string pMensaje, string pRef)
+        private void mensaje(string pMensaje)
         {
-            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
+            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
         }
     }
 }
