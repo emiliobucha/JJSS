@@ -29,6 +29,7 @@ namespace JJSS_Negocio
          *              pFecha_cierre: DateTime que indica la fecha de cierre de inscripciones
          *              pHora_cierre: String que indica la hora de cierre de inscripciones
          * Retorno: String 
+         *          El torneo ya ha sido creado
          *          "" Resultado exitoso de la transacciones
          *          ex.message Resultado erroneo indicando el mensaje de la excepcion
          */
@@ -42,6 +43,13 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
+                    torneo torneoEncontrado= BuscarTorneoPorNombreFecha(pNombre, pFecha);
+                    if (torneoEncontrado != null)
+                    {
+                        sReturn = "El torneo ya ha sido creado";
+                        return sReturn;
+                    }
+
                     torneo nuevoTorneo = new torneo()
                     {
                         fecha = pFecha,
@@ -79,6 +87,26 @@ namespace JJSS_Negocio
                 }
             }
 
+        }
+
+        /*
+         * Busca un torneo a partir de su nombre y fecha
+         * Parametros: 
+         *              pFecha : DateTime que nos indica en que fecha se va a realizar el torneo
+         *              pNombre: String indica el nombre del torneo
+         * Retorno: torneo 
+         *          torneo encontrado, si no existe devuelve null
+         */
+        public torneo BuscarTorneoPorNombreFecha(string pNombre,DateTime pFecha)
+        {
+            
+            using (var db=new JJSSEntities())
+            {
+                var encontradoTorneo = from torneo in db.torneo
+                                       where torneo.nombre == pNombre && torneo.fecha == pFecha
+                                       select torneo;
+                return encontradoTorneo.FirstOrDefault();
+            }
         }
 
         /*

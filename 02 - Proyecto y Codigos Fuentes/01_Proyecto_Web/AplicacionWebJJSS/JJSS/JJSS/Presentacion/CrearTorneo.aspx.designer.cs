@@ -148,6 +148,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.CustomValidator val_fechas;
         
         /// <summary>
+        /// Control val_fecha_actual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator val_fecha_actual;
+        
+        /// <summary>
         /// Control rev_fecha_cierre.
         /// </summary>
         /// <remarks>

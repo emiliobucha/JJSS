@@ -47,10 +47,11 @@
                             </div>
                             <div class="col-md-3">
                                 <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
-                            </div>
-                            <div class="col-md-1">
                                 <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
                             </div>
+                            <%--<div class="col-md-1">
+                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
+                            </div>--%>
                         </div>
                                                 
                         <div class="row centered">    <p>&nbsp;</p> </div>
@@ -135,6 +136,7 @@
                             <div class="col-md-3">
                                 <asp:RequiredFieldValidator ID="rfv_fecha_cierre" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar fecha de cierre de inscripciones" ControlToValidate="dp_fecha_cierre"></asp:RequiredFieldValidator>
                                 <asp:CustomValidator ID="val_fechas" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha de cierre de inscripción no puede ser mayor a la fecha de comienzo del torneo" OnServerValidate="val_fechas_ServerValidate"></asp:CustomValidator>
+                                <asp:CustomValidator ID="val_fecha_actual" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha no puede ser anterior a la actual" OnServerValidate="val_fecha_actual_ServerValidate"></asp:CustomValidator>
                                 <asp:RegularExpressionValidator ID="rev_fecha_cierre" runat="server" ControlToValidate="dp_fecha_cierre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Fecha mal Ingresada" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$"></asp:RegularExpressionValidator>
                             </div>
                         </div>

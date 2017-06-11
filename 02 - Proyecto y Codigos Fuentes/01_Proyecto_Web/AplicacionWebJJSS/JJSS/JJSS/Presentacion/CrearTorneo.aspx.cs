@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using JJSS_Negocio;
 using JJSS_Entidad;
 using System.IO;
-
+using System.Globalization;
 
 
 
@@ -47,13 +47,14 @@ namespace JJSS.Presentacion
                 string nombre = txt_nombre.Text;
                 DateTime fecha = new DateTime(99, 01, 01);
                 DateTime fecha_cierre = fecha;
+                string[] formats = { "MM/dd/yyyy" };
                 if (dp_fecha.Text != "")
                 {
-                    fecha = DateTime.Parse(dp_fecha.Text);
+                    fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 }
                 if (dp_fecha_cierre.Text != "")
                 {
-                    fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
+                    fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 }
 
 
@@ -103,14 +104,37 @@ namespace JJSS.Presentacion
         }
 
 
-
+        protected void val_fecha_actual_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            try
+            {
+                string[] formats = { "MM/dd/yyyy" };
+                DateTime fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+                DateTime fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+                string fecha_act = DateTime.Now.ToString("MM/dd/yyyy");
+                DateTime fecha_actual = DateTime.ParseExact(fecha_act, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+                if (fecha >= fecha_actual && fecha_cierre >= fecha_actual)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }
+            }
+            catch
+            {
+                args.IsValid = false;
+            }
+        }
 
         protected void val_fechas_ServerValidate(object source, ServerValidateEventArgs args)
         {
             try
             {
-                DateTime fecha = DateTime.Parse(dp_fecha.Text);
-                DateTime fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
+                string[] formats = { "MM/dd/yyyy" };
+                DateTime fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+                DateTime fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 if (fecha_cierre <= fecha)
                 {
                     args.IsValid = true;

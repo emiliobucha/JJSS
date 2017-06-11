@@ -300,7 +300,7 @@
                                 </div>
                                 <!--Boton Aceptar-->
                                 <div class="row centered">
-                                        <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click"  OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
+                                        <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click"  />
                                   
                                 </div>
                             </asp:Panel>

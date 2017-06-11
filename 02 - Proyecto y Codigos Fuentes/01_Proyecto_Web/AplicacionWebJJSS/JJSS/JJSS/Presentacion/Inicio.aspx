@@ -531,8 +531,8 @@
 
                         <!--Botonero-->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <asp:Button ID="btn_acpetarTorneoExportarLista"  CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Acceptar" OnClick="btn_acpetarTorneoExportarLista_Click"/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <asp:Button ID="btn_acpetarTorneoExportarLista"  CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_acpetarTorneoExportarLista_Click"/>
                             
                         </div>
 
@@ -602,7 +602,7 @@
 
                         <!--Botonero-->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                             <asp:Button ID="btn_inscripcionClase_aceptar" CssClass="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_inscripcionClase_aceptar_Click" ValidationGroup="inscripcionClase" />
                         </div>
 

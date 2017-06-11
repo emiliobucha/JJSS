@@ -178,38 +178,42 @@ namespace JJSS
 
         protected void btnBuscarDni_Click(object sender, EventArgs e)
         {
-            limpiar(false);
-            pnl_Inscripcion.Visible = true;
-            participante participanteEncontrado = gestorInscripciones.ObtenerParticipanteporDNI(int.Parse(txtDni.Text));
-
-            //Partipante ya estaba inscripto con ese dni
-            if (participanteEncontrado != null)
+            Page.Validate();
+            if (Page.IsValid)
             {
-                mensaje("Este participante ya está inscripto", "InscripcionTorneo.aspx");
-                return;
-            }
+                limpiar(false);
+                pnl_Inscripcion.Visible = true;
+                participante participanteEncontrado = gestorInscripciones.ObtenerParticipanteporDNI(int.Parse(txtDni.Text));
 
-            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
-            if (alumnoEncontrado != null)
-            {
-                //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
-                txt_apellido.ReadOnly = true;
-                txt_nombre.ReadOnly = true;
-                txt_edad.ReadOnly = true;
-                ddl_fajas.Enabled = false;
-                rbSexo.Enabled = false;
+                //Partipante ya estaba inscripto con ese dni
+                if (participanteEncontrado != null)
+                {
+                    mensaje("Este participante ya está inscripto", "InscripcionTorneo.aspx");
+                    return;
+                }
 
-                txt_apellido.Text = alumnoEncontrado.apellido;
-                txt_nombre.Text = alumnoEncontrado.nombre;
+                alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
+                if (alumnoEncontrado != null)
+                {
+                    //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
+                    txt_apellido.ReadOnly = true;
+                    txt_nombre.ReadOnly = true;
+                    txt_edad.ReadOnly = true;
+                    ddl_fajas.Enabled = false;
+                    rbSexo.Enabled = false;
 
-                txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
+                    txt_apellido.Text = alumnoEncontrado.apellido;
+                    txt_nombre.Text = alumnoEncontrado.nombre;
 
-                ddl_fajas.SelectedValue = alumnoEncontrado.id_faja.ToString();
+                    txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 
-                if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
-                if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
+                    ddl_fajas.SelectedValue = alumnoEncontrado.id_faja.ToString();
 
-                idAlumno = alumnoEncontrado.id_alumno;
+                    if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
+                    if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
+
+                    idAlumno = alumnoEncontrado.id_alumno;
+                }
             }
         }
 
