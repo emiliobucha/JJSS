@@ -217,7 +217,7 @@
                         </div>
 <!---------------------------------**************Grilla de clase************---------------------------------------->
 
-                        <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="False" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento">
+                        <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="False" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnSelectedIndexChanged="gv_clasesDisponibles_SelectedIndexChanged" OnRowCommand="gv_clasesDisponibles_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="id_clase"  HeaderText="ID de clase"/>
                                 <asp:BoundField DataField="nombre"  HeaderText="Nombre"/>
@@ -229,6 +229,11 @@
                                         <input type="button" id="btn_inscribirClase" class="btn btn-link " onclick="seleccionarClaseInscripcion(this)" value="Inscribir" />
                                     </ItemTemplate>                                    
                                 </asp:TemplateField>
+                                
+
+                                <asp:CommandField ShowSelectButton="True" />
+                                <asp:ButtonField Text="Eliminar" CommandName="Eliminar" />
+                                
 
                             </Columns>
                         </asp:GridView>
@@ -649,6 +654,7 @@
         }
     </script>
 
+    
 
         <%-- <!--IMPLEMENTANDO PRUEBA DE VENTANA EMERGENTE-->
             <div class="modal fade" id="inscripcionTorneo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">

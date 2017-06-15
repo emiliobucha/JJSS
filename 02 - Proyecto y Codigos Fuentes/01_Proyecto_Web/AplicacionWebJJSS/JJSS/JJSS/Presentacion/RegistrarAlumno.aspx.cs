@@ -114,7 +114,7 @@ namespace JJSS.Presentacion
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
          
-            int? tel = null;
+            int tel = 0;
             if (txt_telefono.Text!="")
             {
                 tel = int.Parse(txt_telefono.Text);
@@ -145,32 +145,43 @@ namespace JJSS.Presentacion
             //Image imagenPerfil = Avatar;
 
             string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia, imagenByte, calle, numero, departamento, piso);
-
+            Boolean estado = true;
             if (sReturn.CompareTo("") == 0)
             {
                 sReturn = "Se ha creado el alumno exitosamente";
+                estado = true;
                 Session["alumnos"] = "Administrar";
                 //pnl_mostrar_alumnos.Visible = true;
                 //pnlFormulario.Visible = false;
                 mostrarPaneles();
+                limpiar();
             }
             else
             {
+                estado = false;
                 Session["alumnos"] = "Registrar";
                 //pnl_mostrar_alumnos.Visible = false;
                 //pnlFormulario.Visible = true;
             }
-
-            
-            mensaje(sReturn);
+            mensaje(sReturn,estado);
             CargarGrilla();
-
-
         }
 
-        private void mensaje(string pMensaje)
+        private void mensaje(string pMensaje, Boolean pEstado)
         {
-            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
+           // Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
+           if (pEstado == true)
+            {
+                pnl_mensaje_exito.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = pMensaje;
+            }
+            else
+            {
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = true;
+                lbl_error.Text = pMensaje;
+            }
         }
 
         private void confirmar(string pMensaje)
@@ -205,12 +216,14 @@ namespace JJSS.Presentacion
             //if (confirmar("¿Está seguro de eliminar este alumno?") == true) { }
             int dni = (int)gvAlumnos.SelectedValue;
             string sReturn = gestorAlumnos.EliminarAlumno(dni);
-
+            Boolean estado = true;
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
+            else estado = false;
             Session["alumnos"] = "Administrar";
             //pnl_mostrar_alumnos.Visible = true;
             //pnlFormulario.Visible = false;
-            mensaje(sReturn);
+            mensaje(sReturn,estado);
+            CargarGrilla();
 
         }
 
@@ -218,6 +231,8 @@ namespace JJSS.Presentacion
         {
             CargarGrilla();
             Session["alumnos"] = "Administrar";
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
             //pnl_mostrar_alumnos.Visible = true;
             //pnlFormulario.Visible = false;
         }
@@ -225,6 +240,8 @@ namespace JJSS.Presentacion
         protected void btn_ver_alumnos_Click(object sender, EventArgs e)
         {
             Session["alumnos"] = "Administrar";
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
             //pnl_mostrar_alumnos.Visible = true;
             //pnlFormulario.Visible = false;
         }
@@ -257,6 +274,8 @@ namespace JJSS.Presentacion
         protected void btn_registro_Click(object sender, EventArgs e)
         {
             Session["alumnos"] = "Registrar";
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
             //pnl_mostrar_alumnos.Visible = false;
             //pnlFormulario.Visible = true;
         }

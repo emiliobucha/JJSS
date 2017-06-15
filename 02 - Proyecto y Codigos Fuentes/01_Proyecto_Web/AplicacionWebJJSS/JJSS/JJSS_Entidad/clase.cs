@@ -27,6 +27,7 @@ namespace JJSS_Entidad
         public Nullable<int> id_profe { get; set; }
         public Nullable<int> id_direccion { get; set; }
         public string nombre { get; set; }
+        public Nullable<int> baja_logica { get; set; }
     
         public virtual direccion direccion { get; set; }
         public virtual tipo_clase tipo_clase { get; set; }

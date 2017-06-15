@@ -177,8 +177,29 @@ namespace JJSS.Presentacion
             btnGenerarListado();
         }
 
+        protected void gv_clasesDisponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idClase = int.Parse(gv_clasesDisponibles.SelectedValue.ToString());
+            Session["clase"] = idClase;
+            Response.Redirect("~/Presentacion/CrearClase");
+        }
 
-
-
+        protected void gv_clasesDisponibles_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.CompareTo("Eliminar") == 0)
+            {
+                // int idClase = int.Parse(gv_clasesDisponibles.SelectedValue.ToString());
+                int id = Convert.ToInt32(e.CommandArgument);
+                int index = Convert.ToInt32(gv_clasesDisponibles.DataKeys[id].Value);
+                string sReturn=gestorDeClases.eliminarClase(index);
+                if (sReturn.CompareTo("") == 0) sReturn = "Se eliminó la clase correctamente";
+                mensaje(sReturn);
+                cargarClases();
+            }
+        }
+        private void mensaje(string pMensaje)
+        {
+            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
+        }
     }
 }
