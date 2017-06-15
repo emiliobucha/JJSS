@@ -149,7 +149,6 @@ namespace JJSS.Presentacion
             {
                 int idClase = 0;
                 idClase = int.Parse(Session["clase"].ToString());
-                sReturn=gestorClases.eliminarHorarios(idClase);
                 sReturn = gestorClases.modificarClase(idClase, (DataTable)Session["dtHorarios"], double.Parse(txt_precio.Text));
                 if (sReturn.CompareTo("") == 0) sReturn = "La clase se actualizó correctamente";
             }

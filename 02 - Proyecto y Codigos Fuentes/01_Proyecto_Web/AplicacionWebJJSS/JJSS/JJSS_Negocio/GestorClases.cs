@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data.Entity;
 using System.Data;
+using System.Data.Linq;
 using System.Configuration;
 
 namespace JJSS_Negocio
@@ -152,43 +153,6 @@ namespace JJSS_Negocio
             }
         }
 
-        public string eliminarHorarios(int pId)
-        {
-            String sReturn = "";
-            try
-            {
-                using (var db = new JJSSEntities())
-                {
-                    var transaction = db.Database.BeginTransaction();
-                    try
-                    {
-                        
-                        var horarioEncontrado = from hor in db.horario
-                                                where hor.id_clase == pId
-                                                select hor;
-                        for (int i = 0; i < horarioEncontrado.Count(); i++)
-                        {
-                            db.horario.Attach(horarioEncontrado.First());
-                            db.horario.Remove(horarioEncontrado.First());
-                        }
-
-                        db.SaveChanges();
-                        transaction.Commit();
-                        return sReturn;
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        return ex.Message;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-
         public string modificarClase(int pId, DataTable pHorarios, double pPrecio)
         {
             string sReturn = "";
@@ -199,10 +163,25 @@ namespace JJSS_Negocio
                     var transaction = db.Database.BeginTransaction();
                     try
                     {
-                        clase claseEncontrada=db.clase.Find(pId);
+                        //eliminar los horarios de esa clase
+                        var horarioEncontrado = from hor in db.horario
+                                                where hor.id_clase == pId
+                                                select hor;
+                        while (horarioEncontrado.Count()>0)
+                        {
+                            db.horario.Remove(horarioEncontrado.First());
+                            db.SaveChanges();
+                            horarioEncontrado = from hor in db.horario
+                                                where hor.id_clase == pId
+                                                select hor;
+                        }
+
+                        //busca la clase y actualiza el precio
+                        clase claseEncontrada = db.clase.Find(pId);
                         claseEncontrada.precio = pPrecio;
                         db.SaveChanges();
 
+                        //agrega los nuevos horarios
                         foreach (DataRow drAux in pHorarios.Rows)
                         {
                             horario nuevoHorario = new horario()
@@ -228,7 +207,8 @@ namespace JJSS_Negocio
                         return ex.Message;
                     }
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return ex.Message;
             }
@@ -241,7 +221,7 @@ namespace JJSS_Negocio
 
             try
             {
-                using (var db=new JJSSEntities())
+                using (var db = new JJSSEntities())
                 {
                     var transaction = db.Database.BeginTransaction();
                     try
@@ -253,13 +233,15 @@ namespace JJSS_Negocio
                         transaction.Commit();
                         return sReturn;
 
-                    }catch (Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         transaction.Rollback();
                         return ex.Message;
                     }
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return ex.Message;
             }
