@@ -22,6 +22,42 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlForm formRegAlumno;
         
         /// <summary>
+        /// Control pnl_mensaje_exito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_mensaje_exito;
+        
+        /// <summary>
+        /// Control lbl_exito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_exito;
+        
+        /// <summary>
+        /// Control pnl_mensaje_error.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_mensaje_error;
+        
+        /// <summary>
+        /// Control lbl_error.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_error;
+        
+        /// <summary>
         /// Control pnlFormulario.
         /// </summary>
         /// <remarks>

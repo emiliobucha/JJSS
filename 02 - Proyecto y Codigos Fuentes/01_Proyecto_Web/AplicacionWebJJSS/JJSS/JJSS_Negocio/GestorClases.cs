@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data.Entity;
 using System.Data;
+using System.Data.Linq;
 using System.Configuration;
 
 namespace JJSS_Negocio
@@ -64,7 +65,7 @@ namespace JJSS_Negocio
                             };
 
                             db.horario.Add(nuevoHorario);
-                           
+
                         }
 
                         db.SaveChanges();
@@ -108,7 +109,7 @@ namespace JJSS_Negocio
          *          Datatable con todos los horarios
          */
         public DataTable ObtenerTablaHorarios(int pID)
-        { 
+        {
             using (var db = new JJSSEntities())
             {
                 var horarios = from hor in db.horario
@@ -121,7 +122,7 @@ namespace JJSS_Negocio
 
 
         /*
-         * Obtiene un listado de todas las clases
+         * Obtiene un listado de todas las clases que están disponibles
          * Retorno: List<clase> 
          *          Listado de todas las clases
          */
@@ -129,7 +130,120 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
-                return db.clase.ToList();
+                var clasesDisponibles = from clases in db.clase
+                                        where clases.baja_logica == 1
+                                        select clases;
+                return clasesDisponibles.ToList();
+            }
+        }
+
+        /*
+         * Obtiene los datos de una clase dado un id
+         * Parametros: 
+         *              pId : id de la clase a buscar
+         * Retorno
+         *              la clase encontrada
+         *              null si no encuentra
+         * */
+        public clase ObtenerClasePorId(int pId)
+        {
+            using (var db = new JJSSEntities())
+            {
+                return db.clase.Find(pId);
+            }
+        }
+
+        public string modificarClase(int pId, DataTable pHorarios, double pPrecio)
+        {
+            string sReturn = "";
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    var transaction = db.Database.BeginTransaction();
+                    try
+                    {
+                        //eliminar los horarios de esa clase
+                        var horarioEncontrado = from hor in db.horario
+                                                where hor.id_clase == pId
+                                                select hor;
+                        while (horarioEncontrado.Count()>0)
+                        {
+                            db.horario.Remove(horarioEncontrado.First());
+                            db.SaveChanges();
+                            horarioEncontrado = from hor in db.horario
+                                                where hor.id_clase == pId
+                                                select hor;
+                        }
+
+                        //busca la clase y actualiza el precio
+                        clase claseEncontrada = db.clase.Find(pId);
+                        claseEncontrada.precio = pPrecio;
+                        db.SaveChanges();
+
+                        //agrega los nuevos horarios
+                        foreach (DataRow drAux in pHorarios.Rows)
+                        {
+                            horario nuevoHorario = new horario()
+                            {
+                                hora_desde = drAux["hora_desde"].ToString(),
+                                hora_hasta = drAux["hora_hasta"].ToString(),
+                                id_clase = pId,
+                                nombre_dia = drAux["nombre_dia"].ToString()
+
+                            };
+
+                            db.horario.Add(nuevoHorario);
+
+                        }
+
+                        db.SaveChanges();
+                        transaction.Commit();
+                        return sReturn;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return ex.Message;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+
+        public string eliminarClase(int pIdClase)
+        {
+            string sReturn = "";
+
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    var transaction = db.Database.BeginTransaction();
+                    try
+                    {
+                        clase claseEncontrada = db.clase.Find(pIdClase);
+                        claseEncontrada.baja_logica = 0;
+
+                        db.SaveChanges();
+                        transaction.Commit();
+                        return sReturn;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return ex.Message;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
     }

@@ -14,6 +14,37 @@
     <section id="registrarAlumno" title="registrarAlumno"></section>
     <form id="formRegAlumno" runat="server">
         <div id="registrowrap">
+            
+            <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <a class="ui-icon ui-icon-check"></a>
+                        <strong>
+                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                    </div>
+                </div>
+                <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+            </asp:Panel>
+
+            <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <a class="ui-icon ui-icon-alert"></a>
+                        <strong>Error! </strong>
+                        <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+                <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+            </asp:Panel>
+
             <asp:Panel ID="pnlFormulario" runat="server">
 
                 <div id="registrarAlumnowrap">
@@ -72,7 +103,7 @@
                                     </div>
                                     <div class="col-xs-3">
                                         <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
                                         <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                 </div>
@@ -150,8 +181,8 @@
                                     <div class="col-xs-3">
                                         <asp:TextBox ID="txt_telefono" CssClass="caja2" runat="server" placeholder="Ingrese télefono"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el teléfono" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="numerico_telefono" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El telefono tiene que ser un valor numérico" Operator="DataTypeCheck"></asp:CompareValidator>
-                                        <asp:CompareValidator ID="mayor_telefono" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El teléfono debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="numerico_telefono" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El telefono tiene que ser un valor numérico" Operator="DataTypeCheck"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="mayor_telefono" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El teléfono debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
                                         <asp:CompareValidator ID="menor_telefono" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El teléfono debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                     <div class="col-xs-2">
@@ -163,8 +194,8 @@
                                         <asp:TextBox ID="txt_telefono_urgencia" CssClass="caja2" runat="server" placeholder="Ingrese teléfono en caso de urgencia"></asp:TextBox>
                                     </div>
                                     <div class="col-xs-3">
-                                        <asp:CompareValidator ID="numerico_telemergencia" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El telefono tiene que ser un valor numérico" Operator="DataTypeCheck"></asp:CompareValidator>
-                                        <asp:CompareValidator ID="mayor_telemergencia" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El teléfono de urgencia debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="numerico_telemergencia" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El telefono tiene que ser un valor numérico" Operator="DataTypeCheck"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="mayor_telemergencia" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El teléfono de urgencia debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
                                         <asp:CompareValidator ID="menor_telemergencia" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El teléfono de urgencia debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                 </div>
@@ -199,7 +230,7 @@
                                     </div>
                                     <div class="col-xs-1">
                                         <asp:TextBox ID="txt_numero" class="caja2" runat="server"></asp:TextBox>
-                                        <asp:CompareValidator ID="mayor_numero" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_numero" Type="Integer" ErrorMessage="El numéro debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="mayor_numero" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_numero" Type="Integer" ErrorMessage="El numéro debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
                                         <asp:CompareValidator ID="menor_numero" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_numero" Type="Integer" ErrorMessage="El numéro debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                     <div class="col-xs-1">
@@ -207,7 +238,7 @@
                                     </div>
                                     <div class="col-xs-1">
                                         <asp:TextBox ID="txt_piso" class="caja2" runat="server"></asp:TextBox>
-                                        <asp:CompareValidator ID="mayor_piso" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_piso" Type="Integer" ErrorMessage="El numéro debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="mayor_piso" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_piso" Type="Integer" ErrorMessage="El numéro debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
                                         <asp:CompareValidator ID="menor_piso" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_piso" Type="Integer" ErrorMessage="El numéro debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
                                     </div>
                                     <div class="col-xs-1">
@@ -284,7 +315,7 @@
                             <div class="row centered">
                                 <asp:Button ID="btn_cancelar" runat="server" CssClass="btn btn-default" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
                                 <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Guardar" OnClick="btn_guardar_click" />
-                                <asp:Button ID="btn_ver_alumnos" runat="server" CssClass="btn btn-default" Text="Ver Alumnos" CausesValidation="False" OnClick="btn_ver_alumnos_Click"/>
+                                <asp:Button ID="btn_ver_alumnos" runat="server" CssClass="btn btn-default" Text="Ver Alumnos" CausesValidation="False" OnClick="btn_ver_alumnos_Click" />
                             </div>
                         </div>
                     </div>
@@ -327,6 +358,8 @@
                     </div>
                 </div>
             </asp:Panel>
+
+
         </div>
     </form>
 </asp:Content>

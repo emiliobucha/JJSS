@@ -30,12 +30,12 @@ namespace JJSS_Entidad
         public Nullable<int> id_categoria { get; set; }
         public Nullable<short> sexo { get; set; }
         public int dni { get; set; }
-        public Nullable<int> telefono { get; set; }
+        public int telefono { get; set; }
         public string mail { get; set; }
         public Nullable<int> id_direccion { get; set; }
         public System.DateTime fecha_ingreso { get; set; }
         public byte[] foto_perfil { get; set; }
-        public Nullable<int> telefono_emergencia { get; set; }
+        public int telefono_emergencia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }

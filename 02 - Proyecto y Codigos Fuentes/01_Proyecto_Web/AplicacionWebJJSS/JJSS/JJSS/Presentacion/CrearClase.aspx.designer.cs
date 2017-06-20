@@ -31,6 +31,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Control pnl_datosClase.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_datosClase;
+        
+        /// <summary>
         /// Control txt_nombre.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_precio;
         
         /// <summary>
+        /// Control pnl_horariosClase.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_horariosClase;
+        
+        /// <summary>
         /// Control ddl_dia.
         /// </summary>
         /// <remarks>
@@ -112,15 +130,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requerido_horadesde;
         
         /// <summary>
-        /// Control regex_horadesde.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_horadesde;
-        
-        /// <summary>
         /// Control txt_horahasta.
         /// </summary>
         /// <remarks>
@@ -137,15 +146,6 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requerido_horahasta;
-        
-        /// <summary>
-        /// Control regex_horahasta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_horahasta;
         
         /// <summary>
         /// Control btn_agregar.
@@ -173,5 +173,14 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
+        
+        /// <summary>
+        /// Control btn_nueva_clase.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_nueva_clase;
     }
 }

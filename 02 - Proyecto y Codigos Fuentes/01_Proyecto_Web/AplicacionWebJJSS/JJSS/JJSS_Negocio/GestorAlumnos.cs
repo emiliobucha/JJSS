@@ -55,7 +55,7 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria, 
-            short? pSexo, int pDni, int? pTelefono, string pMail, int? pIdDireccion, int? pTelEmergencia, byte[] pImagen, 
+            short? pSexo, int pDni, int pTelefono, string pMail, int? pIdDireccion, int pTelEmergencia, byte[] pImagen, 
             string pCalle, int? pNumero, string pDpto, int? pPiso)
         {
             string sReturn = "";
