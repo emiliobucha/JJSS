@@ -77,7 +77,7 @@
 
                         <!--Boton-->
                         <div class="row centered">
-                            <asp:Button ID="btn_iniciar_sesion" CssClass="btn btn-default" runat="server" Text="Iniciar Sesión" ValidationGroup="val_inicio_sesion" />
+                            <asp:Button ID="btn_iniciar_sesion" CssClass="btn btn-default" runat="server" Text="Iniciar Sesión" ValidationGroup="val_inicio_sesion" OnClick="btn_iniciar_sesion_Click" />
                         </div>
                     </div>
                 </div>
