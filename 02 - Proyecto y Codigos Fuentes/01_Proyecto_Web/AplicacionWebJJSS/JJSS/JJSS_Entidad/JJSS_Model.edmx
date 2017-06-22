@@ -11,8 +11,8 @@
           </Key>
           <Property Name="id_academia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="45" />
-          <Property Name="telefono" Type="int" />
           <Property Name="id_direccion" Type="int" />
+          <Property Name="telefono" Type="bigint" />
         </EntityType>
         <EntityType Name="alumno">
           <Key>
@@ -26,12 +26,12 @@
           <Property Name="id_categoria" Type="int" />
           <Property Name="sexo" Type="smallint" />
           <Property Name="dni" Type="int" Nullable="false" />
-          <Property Name="telefono" Type="bigint" />
-          <Property Name="mail" Type="nvarchar" MaxLength="80" />
+          <Property Name="telefono" Type="bigint" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="id_direccion" Type="int" />
           <Property Name="fecha_ingreso" Type="date" Nullable="false" />
           <Property Name="foto_perfil" Type="image" />
-          <Property Name="telefono_emergencia" Type="bigint" />
+          <Property Name="telefono_emergencia" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="alumno_imagen">
           <Key>
@@ -78,8 +78,9 @@
           <Property Name="id_tipo_clase" Type="int" />
           <Property Name="precio" Type="float" />
           <Property Name="id_profe" Type="int" />
-          <Property Name="id_direccion" Type="int" />
+          <Property Name="id_ubicacion" Type="int" />
           <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="baja_logica" Type="int" />
         </EntityType>
         <EntityType Name="direccion">
           <Key>
@@ -117,6 +118,7 @@
           <Property Name="hora_desde" Type="varchar" MaxLength="20" />
           <Property Name="hora_hasta" Type="varchar" MaxLength="20" />
           <Property Name="id_clase" Type="int" />
+          <Property Name="dia" Type="int" />
         </EntityType>
         <EntityType Name="inscripcion">
           <Key>
@@ -200,6 +202,51 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="45" />
           <Property Name="id_direccion" Type="int" />
         </EntityType>
+        <EntityType Name="seguridad_grupo">
+          <Key>
+            <PropertyRef Name="id_grupo" />
+          </Key>
+          <Property Name="id_grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="seguridad_grupoxopcion">
+          <Key>
+            <PropertyRef Name="id_grupoxopcion" />
+          </Key>
+          <Property Name="id_grupoxopcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_grupo" Type="int" Nullable="false" />
+          <Property Name="clave_opcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ejecutar" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="modificar" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="eliminar" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ver" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="agregar" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="seguridad_opcion">
+          <Key>
+            <PropertyRef Name="clave_opcion" />
+          </Key>
+          <Property Name="clave_opcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="seguridad_usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="mail" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="seguridad_usuarioxgrupo">
+          <Key>
+            <PropertyRef Name="id_usuarioxgrupo" />
+          </Key>
+          <Property Name="id_usuarioxgrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="id_grupo" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tipo_clase">
           <Key>
             <PropertyRef Name="id_tipo_clase" />
@@ -231,30 +278,6 @@
           <Property Name="imagen" Type="binary" MaxLength="8000" />
         </EntityType>
         <Association Name="FK__academia__id_dir__4D5F7D71">
-          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
-          <End Role="academia" Type="Self.academia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="direccion">
-              <PropertyRef Name="id_direccion" />
-            </Principal>
-            <Dependent Role="academia">
-              <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__academia__id_dir__4E53A1AA">
-          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
-          <End Role="academia" Type="Self.academia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="direccion">
-              <PropertyRef Name="id_direccion" />
-            </Principal>
-            <Dependent Role="academia">
-              <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__academia__id_dir__4F47C5E3">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="academia" Type="Self.academia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -557,14 +580,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_clase_id_direccion">
-          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
+          <End Role="academia" Type="Self.academia" Multiplicity="0..1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="direccion">
-              <PropertyRef Name="id_direccion" />
+            <Principal Role="academia">
+              <PropertyRef Name="id_academia" />
             </Principal>
             <Dependent Role="clase">
-              <PropertyRef Name="id_direccion" />
+              <PropertyRef Name="id_ubicacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -592,6 +615,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_grupoxopcion_clave_opcion">
+          <End Role="seguridad_opcion" Type="Self.seguridad_opcion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="seguridad_grupoxopcion" Type="Self.seguridad_grupoxopcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_opcion">
+              <PropertyRef Name="clave_opcion" />
+            </Principal>
+            <Dependent Role="seguridad_grupoxopcion">
+              <PropertyRef Name="clave_opcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_grupoxopcion_grupo">
+          <End Role="seguridad_grupo" Type="Self.seguridad_grupo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="seguridad_grupoxopcion" Type="Self.seguridad_grupoxopcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Principal>
+            <Dependent Role="seguridad_grupoxopcion">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_horario_id_clase">
           <End Role="clase" Type="Self.clase" Multiplicity="0..1" />
           <End Role="horario" Type="Self.horario" Multiplicity="*" />
@@ -613,18 +664,6 @@
             </Principal>
             <Dependent Role="inscripcion_clase">
               <PropertyRef Name="id_alumno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_inscripcion_clase_id_clase">
-          <End Role="clase" Type="Self.clase" Multiplicity="0..1" />
-          <End Role="inscripcion_clase" Type="Self.inscripcion_clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clase">
-              <PropertyRef Name="id_clase" />
-            </Principal>
-            <Dependent Role="inscripcion_clase">
-              <PropertyRef Name="id_clase" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -652,6 +691,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_usuarioxgrupo_id_grupo">
+          <End Role="seguridad_grupo" Type="Self.seguridad_grupo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="seguridad_usuarioxgrupo" Type="Self.seguridad_usuarioxgrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Principal>
+            <Dependent Role="seguridad_usuarioxgrupo">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuarioxgrupo_id_usuario">
+          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="seguridad_usuarioxgrupo" Type="Self.seguridad_usuarioxgrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="seguridad_usuarioxgrupo">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="JJSSModelStoreContainer">
           <EntitySet Name="academia" EntityType="Self.academia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
@@ -672,18 +739,15 @@
           <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="resultado" EntityType="Self.resultado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sede" EntityType="Self.sede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seguridad_grupo" EntityType="Self.seguridad_grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seguridad_grupoxopcion" EntityType="Self.seguridad_grupoxopcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seguridad_opcion" EntityType="Self.seguridad_opcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seguridad_usuario" EntityType="Self.seguridad_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seguridad_usuarioxgrupo" EntityType="Self.seguridad_usuarioxgrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_clase" EntityType="Self.tipo_clase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="torneo" EntityType="Self.torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="torneo_imagen" EntityType="Self.torneo_imagen" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__academia__id_dir__4D5F7D71" Association="Self.FK__academia__id_dir__4D5F7D71">
-            <End Role="direccion" EntitySet="direccion" />
-            <End Role="academia" EntitySet="academia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__academia__id_dir__4E53A1AA" Association="Self.FK__academia__id_dir__4E53A1AA">
-            <End Role="direccion" EntitySet="direccion" />
-            <End Role="academia" EntitySet="academia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__academia__id_dir__4F47C5E3" Association="Self.FK__academia__id_dir__4F47C5E3">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="academia" EntitySet="academia" />
           </AssociationSet>
@@ -784,7 +848,7 @@
             <End Role="ciudad" EntitySet="ciudad" />
           </AssociationSet>
           <AssociationSet Name="FK_clase_id_direccion" Association="Self.FK_clase_id_direccion">
-            <End Role="direccion" EntitySet="direccion" />
+            <End Role="academia" EntitySet="academia" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
           <AssociationSet Name="FK_clase_id_tipo_clase" Association="Self.FK_clase_id_tipo_clase">
@@ -795,16 +859,20 @@
             <End Role="ciudad" EntitySet="ciudad" />
             <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
+          <AssociationSet Name="fk_grupoxopcion_clave_opcion" Association="Self.fk_grupoxopcion_clave_opcion">
+            <End Role="seguridad_opcion" EntitySet="seguridad_opcion" />
+            <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_grupoxopcion_grupo" Association="Self.fk_grupoxopcion_grupo">
+            <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
+            <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
+          </AssociationSet>
           <AssociationSet Name="FK_horario_id_clase" Association="Self.FK_horario_id_clase">
             <End Role="clase" EntitySet="clase" />
             <End Role="horario" EntitySet="horario" />
           </AssociationSet>
           <AssociationSet Name="FK_inscripcion_clase_id_alumno" Association="Self.FK_inscripcion_clase_id_alumno">
             <End Role="alumno" EntitySet="alumno" />
-            <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_inscripcion_clase_id_clase" Association="Self.FK_inscripcion_clase_id_clase">
-            <End Role="clase" EntitySet="clase" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
           </AssociationSet>
           <AssociationSet Name="FK_provincia_id_pais" Association="Self.FK_provincia_id_pais">
@@ -814,6 +882,14 @@
           <AssociationSet Name="FK_torneo_imagen_id_torneo" Association="Self.FK_torneo_imagen_id_torneo">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuarioxgrupo_id_grupo" Association="Self.fk_usuarioxgrupo_id_grupo">
+            <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
+            <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuarioxgrupo_id_usuario" Association="Self.fk_usuarioxgrupo_id_usuario">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -829,6 +905,7 @@
           <Property Name="telefono" Type="Int32" />
           <Property Name="id_direccion" Type="Int32" />
           <NavigationProperty Name="direccion" Relationship="Self.academia_academia_id_direccion_fk" FromRole="academia" ToRole="direccion" />
+          <NavigationProperty Name="clase" Relationship="JJSSModel.FK_clase_id_direccion1" FromRole="academia" ToRole="clase" />
         </EntityType>
         <EntityType Name="categoria_torneo">
           <Key>
@@ -851,7 +928,6 @@
           <NavigationProperty Name="academia" Relationship="Self.academia_academia_id_direccion_fk" FromRole="direccion" ToRole="academia" />
           <NavigationProperty Name="sede" Relationship="Self.sede_sede_id_direccion_fk" FromRole="direccion" ToRole="sede" />
           <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_alumno_id_direccion" FromRole="direccion" ToRole="alumno" />
-          <NavigationProperty Name="clase" Relationship="JJSSModel.FK_clase_id_direccion" FromRole="direccion" ToRole="clase" />
           <Property Name="calle1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="barrio1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="departamento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -1166,10 +1242,6 @@
             <End Role="alumno" EntitySet="alumno" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK_clase_id_direccion" Association="JJSSModel.FK_clase_id_direccion">
-            <End Role="direccion" EntitySet="direccion" />
-            <End Role="clase" EntitySet="clase" />
-          </AssociationSet>
           <AssociationSet Name="FK_clase_id_tipo_clase" Association="JJSSModel.FK_clase_id_tipo_clase">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="clase" EntitySet="clase" />
@@ -1206,6 +1278,31 @@
             <End Role="ciudad" EntitySet="ciudad" />
             <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
+          <EntitySet Name="seguridad_grupo" EntityType="JJSSModel.seguridad_grupo" />
+          <EntitySet Name="seguridad_grupoxopcion" EntityType="JJSSModel.seguridad_grupoxopcion" />
+          <EntitySet Name="seguridad_opcion" EntityType="JJSSModel.seguridad_opcion" />
+          <EntitySet Name="seguridad_usuario" EntityType="JJSSModel.seguridad_usuario" />
+          <EntitySet Name="seguridad_usuarioxgrupo" EntityType="JJSSModel.seguridad_usuarioxgrupo" />
+          <AssociationSet Name="FK_clase_id_direccion1" Association="JJSSModel.FK_clase_id_direccion1">
+            <End Role="academia" EntitySet="academia" />
+            <End Role="clase" EntitySet="clase" />
+          </AssociationSet>
+          <AssociationSet Name="fk_grupoxopcion_grupo" Association="JJSSModel.fk_grupoxopcion_grupo">
+            <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
+            <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuarioxgrupo_id_grupo" Association="JJSSModel.fk_usuarioxgrupo_id_grupo">
+            <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
+            <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_grupoxopcion_clave_opcion" Association="JJSSModel.fk_grupoxopcion_clave_opcion">
+            <End Role="seguridad_opcion" EntitySet="seguridad_opcion" />
+            <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuarioxgrupo_id_usuario" Association="JJSSModel.fk_usuarioxgrupo_id_usuario">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="alumno">
           <Key>
@@ -1219,13 +1316,13 @@
           <Property Name="id_categoria" Type="Int32" />
           <Property Name="sexo" Type="Int16" />
           <Property Name="dni" Type="Int32" Nullable="false" />
-          <Property Name="telefono" Type="Int32" />
-          <Property Name="mail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="Int32" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id_direccion" Type="Int32" />
           <Property Name="fecha_ingreso" Type="DateTime" Precision="0" Nullable="false" />
           <NavigationProperty Name="participante" Relationship="JJSSModel.FK__particapa_id_al__48DE5BA8" FromRole="alumno" ToRole="participante" />
           <Property Name="foto_perfil" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="telefono_emergencia" Type="Int32" />
+          <Property Name="telefono_emergencia" Type="Int32" Nullable="false" />
           <NavigationProperty Name="categoria" Relationship="JJSSModel.FK_alumno_id_categoria" FromRole="alumno" ToRole="categoria" />
           <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_alumno_id_direccion" FromRole="alumno" ToRole="direccion" />
           <NavigationProperty Name="faja" Relationship="JJSSModel.FK_alumno_id_faja" FromRole="alumno" ToRole="faja" />
@@ -1359,12 +1456,13 @@
           <Property Name="id_tipo_clase" Type="Int32" />
           <Property Name="precio" Type="Double" />
           <Property Name="id_profe" Type="Int32" />
-          <Property Name="id_direccion" Type="Int32" />
-          <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_clase_id_direccion" FromRole="clase" ToRole="direccion" />
           <NavigationProperty Name="tipo_clase" Relationship="JJSSModel.FK_clase_id_tipo_clase" FromRole="clase" ToRole="tipo_clase" />
           <NavigationProperty Name="inscripcion_clase" Relationship="JJSSModel.FK_ins_clase_id_clase" FromRole="clase" ToRole="inscripcion_clase" />
           <NavigationProperty Name="horario" Relationship="JJSSModel.FK_alumno_id_clase_clase_id_clase" FromRole="clase" ToRole="horario" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_ubicacion" Type="Int32" />
+          <Property Name="baja_logica" Type="Int32" />
+          <NavigationProperty Name="academia" Relationship="JJSSModel.FK_clase_id_direccion1" FromRole="clase" ToRole="academia" />
         </EntityType>
         <EntityType Name="horario">
           <Key>
@@ -1376,6 +1474,7 @@
           <Property Name="hora_hasta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_clase" Type="Int32" />
           <NavigationProperty Name="clase" Relationship="JJSSModel.FK_alumno_id_clase_clase_id_clase" FromRole="horario" ToRole="clase" />
+          <Property Name="dia" Type="Int32" />
         </EntityType>
         <EntityType Name="inscripcion_clase">
           <Key>
@@ -1442,18 +1541,6 @@
             </Principal>
             <Dependent Role="inscripcion_clase">
               <PropertyRef Name="id_alumno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_clase_id_direccion">
-          <End Type="JJSSModel.direccion" Role="direccion" Multiplicity="0..1" />
-          <End Type="JJSSModel.clase" Role="clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="direccion">
-              <PropertyRef Name="id_direccion" />
-            </Principal>
-            <Dependent Role="clase">
-              <PropertyRef Name="id_direccion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1592,6 +1679,127 @@
             </Principal>
             <Dependent Role="direccion">
               <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="seguridad_grupo">
+          <Key>
+            <PropertyRef Name="id_grupo" />
+          </Key>
+          <Property Name="id_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="seguridad_grupoxopcion" Relationship="JJSSModel.fk_grupoxopcion_grupo" FromRole="seguridad_grupo" ToRole="seguridad_grupoxopcion" />
+          <NavigationProperty Name="seguridad_usuarioxgrupo" Relationship="JJSSModel.fk_usuarioxgrupo_id_grupo" FromRole="seguridad_grupo" ToRole="seguridad_usuarioxgrupo" />
+        </EntityType>
+        <EntityType Name="seguridad_grupoxopcion">
+          <Key>
+            <PropertyRef Name="id_grupoxopcion" />
+          </Key>
+          <Property Name="id_grupoxopcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_grupo" Type="Int32" Nullable="false" />
+          <Property Name="clave_opcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ejecutar" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="modificar" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="eliminar" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ver" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="agregar" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="seguridad_grupo" Relationship="JJSSModel.fk_grupoxopcion_grupo" FromRole="seguridad_grupoxopcion" ToRole="seguridad_grupo" />
+          <NavigationProperty Name="seguridad_opcion" Relationship="JJSSModel.fk_grupoxopcion_clave_opcion" FromRole="seguridad_grupoxopcion" ToRole="seguridad_opcion" />
+        </EntityType>
+        <EntityType Name="seguridad_opcion">
+          <Key>
+            <PropertyRef Name="clave_opcion" />
+          </Key>
+          <Property Name="clave_opcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="seguridad_grupoxopcion" Relationship="JJSSModel.fk_grupoxopcion_clave_opcion" FromRole="seguridad_opcion" ToRole="seguridad_grupoxopcion" />
+        </EntityType>
+        <EntityType Name="seguridad_usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="seguridad_usuarioxgrupo" Relationship="JJSSModel.fk_usuarioxgrupo_id_usuario" FromRole="seguridad_usuario" ToRole="seguridad_usuarioxgrupo" />
+        </EntityType>
+        <EntityType Name="seguridad_usuarioxgrupo">
+          <Key>
+            <PropertyRef Name="id_usuarioxgrupo" />
+          </Key>
+          <Property Name="id_usuarioxgrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="id_grupo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="seguridad_grupo" Relationship="JJSSModel.fk_usuarioxgrupo_id_grupo" FromRole="seguridad_usuarioxgrupo" ToRole="seguridad_grupo" />
+          <NavigationProperty Name="seguridad_usuario" Relationship="JJSSModel.fk_usuarioxgrupo_id_usuario" FromRole="seguridad_usuarioxgrupo" ToRole="seguridad_usuario" />
+        </EntityType>
+        <Association Name="FK_clase_id_direccion1">
+          <End Type="JJSSModel.academia" Role="academia" Multiplicity="0..1" />
+          <End Type="JJSSModel.clase" Role="clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academia">
+              <PropertyRef Name="id_academia" />
+            </Principal>
+            <Dependent Role="clase">
+              <PropertyRef Name="id_ubicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_grupoxopcion_grupo">
+          <End Type="JJSSModel.seguridad_grupo" Role="seguridad_grupo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="JJSSModel.seguridad_grupoxopcion" Role="seguridad_grupoxopcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Principal>
+            <Dependent Role="seguridad_grupoxopcion">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuarioxgrupo_id_grupo">
+          <End Type="JJSSModel.seguridad_grupo" Role="seguridad_grupo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="JJSSModel.seguridad_usuarioxgrupo" Role="seguridad_usuarioxgrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Principal>
+            <Dependent Role="seguridad_usuarioxgrupo">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_grupoxopcion_clave_opcion">
+          <End Type="JJSSModel.seguridad_opcion" Role="seguridad_opcion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="JJSSModel.seguridad_grupoxopcion" Role="seguridad_grupoxopcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_opcion">
+              <PropertyRef Name="clave_opcion" />
+            </Principal>
+            <Dependent Role="seguridad_grupoxopcion">
+              <PropertyRef Name="clave_opcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuarioxgrupo_id_usuario">
+          <End Type="JJSSModel.seguridad_usuario" Role="seguridad_usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="JJSSModel.seguridad_usuarioxgrupo" Role="seguridad_usuarioxgrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="seguridad_usuarioxgrupo">
+              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1773,8 +1981,9 @@
           <EntitySetMapping Name="clase">
             <EntityTypeMapping TypeName="JJSSModel.clase">
               <MappingFragment StoreEntitySet="clase">
+                <ScalarProperty Name="baja_logica" ColumnName="baja_logica" />
+                <ScalarProperty Name="id_ubicacion" ColumnName="id_ubicacion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
                 <ScalarProperty Name="id_profe" ColumnName="id_profe" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
@@ -1785,6 +1994,7 @@
           <EntitySetMapping Name="horario">
             <EntityTypeMapping TypeName="JJSSModel.horario">
               <MappingFragment StoreEntitySet="horario">
+                <ScalarProperty Name="dia" ColumnName="dia" />
                 <ScalarProperty Name="id_clase" ColumnName="id_clase" />
                 <ScalarProperty Name="hora_hasta" ColumnName="hora_hasta" />
                 <ScalarProperty Name="hora_desde" ColumnName="hora_desde" />
@@ -1845,6 +2055,56 @@
                 <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seguridad_grupo">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_grupo">
+              <MappingFragment StoreEntitySet="seguridad_grupo">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seguridad_grupoxopcion">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_grupoxopcion">
+              <MappingFragment StoreEntitySet="seguridad_grupoxopcion">
+                <ScalarProperty Name="agregar" ColumnName="agregar" />
+                <ScalarProperty Name="ver" ColumnName="ver" />
+                <ScalarProperty Name="eliminar" ColumnName="eliminar" />
+                <ScalarProperty Name="modificar" ColumnName="modificar" />
+                <ScalarProperty Name="ejecutar" ColumnName="ejecutar" />
+                <ScalarProperty Name="clave_opcion" ColumnName="clave_opcion" />
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+                <ScalarProperty Name="id_grupoxopcion" ColumnName="id_grupoxopcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seguridad_opcion">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_opcion">
+              <MappingFragment StoreEntitySet="seguridad_opcion">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="clave_opcion" ColumnName="clave_opcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seguridad_usuario">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_usuario">
+              <MappingFragment StoreEntitySet="seguridad_usuario">
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seguridad_usuarioxgrupo">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_usuarioxgrupo">
+              <MappingFragment StoreEntitySet="seguridad_usuarioxgrupo">
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_usuarioxgrupo" ColumnName="id_usuarioxgrupo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

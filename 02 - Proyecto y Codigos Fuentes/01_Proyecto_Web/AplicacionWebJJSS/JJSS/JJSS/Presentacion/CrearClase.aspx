@@ -13,12 +13,45 @@
 
             <div class="container">
 
-                <div class="row mt centered">
+                
+
+                <form id="form1" runat="server">
+
+
+                    <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <a class="ui-icon ui-icon-check"></a>
+                        <strong>
+                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                    </div>
+                </div>
+                <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+            </asp:Panel>
+
+            <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <a class="ui-icon ui-icon-alert"></a>
+                        <strong>Error! </strong>
+                        <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+                <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+            </asp:Panel>
+
+                    <div class="row mt centered">
                     <h1>FORMULARIO DE ALTA DE CLASE</h1>
                     <p>&nbsp;</p>
                 </div>
-
-                <form id="form1" runat="server">
 
                     <!--Nombre-->
                     <asp:Panel ID="pnl_datosClase" CssClass="panel panel-default" runat="server">
@@ -63,6 +96,38 @@
                             &nbsp;
                         </div>
 
+                        <!-- tipoclase-->
+                        <div class="row centered">
+                            <div class="col-xs-2">
+                                <label class="pull-left">Tipo de Clase</label>
+                            </div>
+                            <div class="col-xs-3">
+                                <asp:DropDownList ID="ddl_tipo_clase" runat="server" CssClass="caja2"></asp:DropDownList>
+                            </div>
+                            <div class="col-xs-3">
+                            </div>
+                        </div>
+
+                        <div class="row centered">
+                            &nbsp;
+                        </div>
+
+                        <!-- ubicacion-->
+                        <div class="row centered">
+                            <div class="col-xs-2">
+                                <label class="pull-left">Ubicación</label>
+                            </div>
+                            <div class="col-xs-3">
+                                <asp:DropDownList ID="ddl_ubicacion" runat="server" CssClass="caja2"></asp:DropDownList>
+                            </div>
+                            <div class="col-xs-3">
+                            </div>
+                        </div>
+
+                        <div class="row centered">
+                            &nbsp;
+                        </div>
+
                     </asp:Panel>
 
                     <asp:Panel ID="pnl_horariosClase" CssClass="panel panel-default" runat="server">
@@ -92,6 +157,7 @@
                             <div class="col-xs-2 col-md-2">
                                 <asp:TextBox ID="txt_horadesde" runat="server" TextMode="Time" CssClass="caja2"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="requerido_horadesde" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un horario de inicio" ControlToValidate="txt_horadesde" Display="Dynamic" ValidationGroup="vg_agregar_horario"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="regex_horadesde" runat="server" ControlToValidate="txt_horadesde" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"></asp:RegularExpressionValidator>
                             </div>
                             <div class="col-xs-2 col-md-2">
                                 <label class="pull-left">Hora Hasta:</label>
@@ -99,6 +165,7 @@
                             <div class="col-xs-2 col-md-2">
                                 <asp:TextBox ID="txt_horahasta" TextMode="Time" runat="server" CssClass="caja2"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="requerido_horahasta" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un horario de fin" ControlToValidate="txt_horahasta" ValidationGroup="vg_agregar_horario" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="regex_horahasta" runat="server" ControlToValidate="txt_horahasta" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"></asp:RegularExpressionValidator>
                             </div>
                             <div class="col-xs-2 col-md-2">
                                 <asp:Button ID="btn_agregar" runat="server" OnClick="btn_agregar_Click" Text="Agregar" CssClass="btn btn-default" ValidationGroup="vg_agregar_horario"></asp:Button>
@@ -111,7 +178,7 @@
                         <div class="row centered">
 
                             <!--OnRowDataBound="dg_horarios_RowDataBound"-->
-                            <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" CssClass="table table-responsive" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_horarios_RowCommand">
+                            <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" CssClass="table table-responsive" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_horarios_RowCommand" OnRowDataBound="dg_horarios_RowDataBound" BorderColor="Black" BorderStyle="Double">
 
                                 <Columns>
                                     <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Día" DataField="nombre_dia">

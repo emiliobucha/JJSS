@@ -25,13 +25,14 @@ namespace JJSS_Negocio
          *              pPrecio: Double Indica el precio que cuesta inscribirse a esa clase en particular
          *              pHorarios: DataTable los horarios que han sido cargados en la grilla de horarios de clase
          *               pNombre: string nombre indentificatorio para la clase
+         *              pUbicacion: Entero indica la ubicacion donde se da la clase
          * Retornos:String 
          *          "" - Todo salió bien
          *          mensaje de excepcion
          *          
          */
 
-        public String GenerarNuevaClase(int pTipo, double pPrecio, DataTable pHorarios, string pNombre)
+        public String GenerarNuevaClase(int pTipo, double pPrecio, DataTable pHorarios, string pNombre, int pUbicacion)
         {
             String sReturn = "";
             try
@@ -46,8 +47,9 @@ namespace JJSS_Negocio
                         {
                             id_tipo_clase = pTipo,
                             precio = pPrecio,
-                            nombre = pNombre
-
+                            nombre = pNombre,
+                            id_ubicacion = pUbicacion,
+                            baja_logica=1 //clase disponible
                         };
 
                         db.clase.Add(nuevaClase);
@@ -153,6 +155,17 @@ namespace JJSS_Negocio
             }
         }
 
+        /*
+         * Actualiza el precio y los horarios de una clase
+         * Parametros: 
+         *              pId : Entero id de la clase que se va a actualizar
+         *              pHorarios : DataTable tabla con los nuevos horarios
+         *              pPrecio : Double precio a actualizar
+         * Retorno: 
+         *          string con el mensaje de error de la BD
+         *          "" si esta correcto
+         * 
+         * */
         public string modificarClase(int pId, DataTable pHorarios, double pPrecio)
         {
             string sReturn = "";
@@ -189,8 +202,8 @@ namespace JJSS_Negocio
                                 hora_desde = drAux["hora_desde"].ToString(),
                                 hora_hasta = drAux["hora_hasta"].ToString(),
                                 id_clase = pId,
-                                nombre_dia = drAux["nombre_dia"].ToString()
-
+                                nombre_dia = drAux["nombre_dia"].ToString(),
+                                dia= int.Parse(drAux["dia"].ToString())
                             };
 
                             db.horario.Add(nuevoHorario);
@@ -245,6 +258,19 @@ namespace JJSS_Negocio
             {
                 return ex.Message;
             }
+        }
+
+
+        public List<tipo_clase> ObtenerTipoClases()
+        {
+            GestorTipoClase gestorTipoClase = new GestorTipoClase();
+            return gestorTipoClase.ObtenerTipoClase();
+        }
+
+        public List<academia> ObtenerAcademias()
+        {
+            GestorAcademias gestorAcademias = new GestorAcademias();
+            return gestorAcademias.ObtenerAcademias();
         }
     }
 }

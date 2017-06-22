@@ -47,5 +47,10 @@ namespace JJSS_Entidad
         public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }
         public virtual DbSet<provincia> provincia { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
+        public virtual DbSet<seguridad_grupo> seguridad_grupo { get; set; }
+        public virtual DbSet<seguridad_grupoxopcion> seguridad_grupoxopcion { get; set; }
+        public virtual DbSet<seguridad_opcion> seguridad_opcion { get; set; }
+        public virtual DbSet<seguridad_usuario> seguridad_usuario { get; set; }
+        public virtual DbSet<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
     }
 }

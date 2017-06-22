@@ -26,8 +26,8 @@ namespace JJSS_Entidad
         public Nullable<double> precio { get; set; }
         public Nullable<int> id_profe { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> baja_logica { get; set; }
         public Nullable<int> id_ubicacion { get; set; }
+        public Nullable<int> baja_logica { get; set; }
     
         public virtual tipo_clase tipo_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

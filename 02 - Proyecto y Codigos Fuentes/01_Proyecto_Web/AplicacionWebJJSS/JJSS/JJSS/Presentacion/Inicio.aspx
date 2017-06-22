@@ -84,7 +84,7 @@
                         <p>&nbsp;</p>
                     </div>
 
-                    <asp:GridView ID="gv_torneosAbiertos" runat="server" ShowHeader="false" DataKeyNames="id_torneo" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos por el momento" OnRowCommand="gv_torneosAbiertos_RowCommand">
+                    <asp:GridView ID="gv_torneosAbiertos" runat="server" ShowHeader="true" DataKeyNames="id_torneo" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos por el momento" OnRowCommand="gv_torneosAbiertos_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="id_torneo" HeaderText="ID de torneo" />
                             <asp:BoundField DataField="nombre" HeaderText="Nombre" />
@@ -217,7 +217,7 @@
                         </div>
 <!---------------------------------**************Grilla de clase************---------------------------------------->
 
-                        <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="False" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnSelectedIndexChanged="gv_clasesDisponibles_SelectedIndexChanged" OnRowCommand="gv_clasesDisponibles_RowCommand">
+                        <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="true" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="id_clase"  HeaderText="ID de clase"/>
                                 <asp:BoundField DataField="nombre"  HeaderText="Nombre"/>
@@ -231,7 +231,8 @@
                                 </asp:TemplateField>
                                 
 
-                                <asp:CommandField ShowSelectButton="True" />
+                                
+                                <asp:ButtonField Text="Seleccionar" CommandName="Seleccionar" />
                                 <asp:ButtonField Text="Eliminar" CommandName="Eliminar" />
                                 
 
