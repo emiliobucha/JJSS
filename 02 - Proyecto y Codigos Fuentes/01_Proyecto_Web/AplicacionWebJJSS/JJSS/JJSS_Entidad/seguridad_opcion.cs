@@ -12,28 +12,18 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class clase
+    public partial class seguridad_opcion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public clase()
+        public seguridad_opcion()
         {
-            this.inscripcion_clase = new HashSet<inscripcion_clase>();
-            this.horario = new HashSet<horario>();
+            this.seguridad_grupoxopcion = new HashSet<seguridad_grupoxopcion>();
         }
     
-        public int id_clase { get; set; }
-        public Nullable<int> id_tipo_clase { get; set; }
-        public Nullable<double> precio { get; set; }
-        public Nullable<int> id_profe { get; set; }
+        public string clave_opcion { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> baja_logica { get; set; }
-        public Nullable<int> id_ubicacion { get; set; }
     
-        public virtual tipo_clase tipo_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<horario> horario { get; set; }
-        public virtual academia academia { get; set; }
+        public virtual ICollection<seguridad_grupoxopcion> seguridad_grupoxopcion { get; set; }
     }
 }

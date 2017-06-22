@@ -12,15 +12,18 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class horario
+    public partial class seguridad_grupoxopcion
     {
-        public int id_horario { get; set; }
-        public string nombre_dia { get; set; }
-        public string hora_desde { get; set; }
-        public string hora_hasta { get; set; }
-        public Nullable<int> id_clase { get; set; }
-        public Nullable<int> dia { get; set; }
+        public int id_grupoxopcion { get; set; }
+        public int id_grupo { get; set; }
+        public string clave_opcion { get; set; }
+        public string ejecutar { get; set; }
+        public string modificar { get; set; }
+        public string eliminar { get; set; }
+        public string ver { get; set; }
+        public string agregar { get; set; }
     
-        public virtual clase clase { get; set; }
+        public virtual seguridad_grupo seguridad_grupo { get; set; }
+        public virtual seguridad_opcion seguridad_opcion { get; set; }
     }
 }

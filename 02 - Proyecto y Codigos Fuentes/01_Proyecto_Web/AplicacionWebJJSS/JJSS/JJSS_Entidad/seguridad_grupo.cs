@@ -12,30 +12,21 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class direccion
+    public partial class seguridad_grupo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public direccion()
+        public seguridad_grupo()
         {
-            this.academia = new HashSet<academia>();
-            this.sede = new HashSet<sede>();
-            this.alumno = new HashSet<alumno>();
+            this.seguridad_grupoxopcion = new HashSet<seguridad_grupoxopcion>();
+            this.seguridad_usuarioxgrupo = new HashSet<seguridad_usuarioxgrupo>();
         }
     
-        public int id_direccion { get; set; }
-        public Nullable<int> numero { get; set; }
-        public string calle1 { get; set; }
-        public string barrio1 { get; set; }
-        public string departamento { get; set; }
-        public Nullable<int> piso { get; set; }
-        public Nullable<int> id_ciudad { get; set; }
+        public int id_grupo { get; set; }
+        public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<academia> academia { get; set; }
+        public virtual ICollection<seguridad_grupoxopcion> seguridad_grupoxopcion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sede> sede { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alumno> alumno { get; set; }
-        public virtual ciudad ciudad { get; set; }
+        public virtual ICollection<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
     }
 }
