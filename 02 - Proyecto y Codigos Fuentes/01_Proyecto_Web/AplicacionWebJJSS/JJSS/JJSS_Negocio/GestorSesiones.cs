@@ -87,7 +87,7 @@ namespace JJSS_Negocio
 
 
                         try
-                        {
+                      {
                             var Lista = permisosUsuario.ToList();
 
                             sesionAux.permisos = modUtilidadesTablas.ToDataTable(permisosUsuario.ToList());

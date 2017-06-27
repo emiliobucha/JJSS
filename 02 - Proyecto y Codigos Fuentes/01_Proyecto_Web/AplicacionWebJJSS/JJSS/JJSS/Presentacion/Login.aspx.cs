@@ -37,12 +37,16 @@ namespace JJSS.Presentacion
                 Sesion nueva = gestorSesion.IniciarSesion(login, pass);
                 if (nueva.estado == "INGRESO ACEPTADO")
                 {
-                    Response.Redirect("~/Presentacion/Inicio.aspx",false);
+                    Response.Redirect("~/Presentacion/Inicio.aspx", false);
+                }
+                else
+                {
+                    Response.Write("<script>window.alert('" + "No se ha podido ingresar porque usuario o contraseña son incorrectas".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
                 }
             }
             catch (Exception ex)
             {
-               
+                Response.Write("<script>window.alert('" + "Ha ocurrido un error, por favor intentelo mas tarde".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
             }
         }
     }

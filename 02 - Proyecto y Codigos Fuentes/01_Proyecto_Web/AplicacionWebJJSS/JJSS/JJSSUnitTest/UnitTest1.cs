@@ -50,30 +50,30 @@ namespace JJSSUnitTest
         //    Assert.AreEqual(esperado, edadTexto);
         //}
 
-        [TestMethod]
-        public void UTGenerarNuevaClaseFalla()
-        {
-            GestorClases GC = new GestorClases();
-            int pTipo = 1;
-            double pPrecio = 2.2;
-            DataTable pHorarios = new DataTable();
-            pHorarios.Columns.Add("hora_desde");
-            pHorarios.Columns.Add("hora_hasta");
-            pHorarios.Columns.Add("nombre_dia");
+        //[TestMethod]
+        //public void UTGenerarNuevaClaseFalla()
+        //{
+        //    GestorClases GC = new GestorClases();
+        //    int pTipo = 1;
+        //    double pPrecio = 2.2;
+        //    DataTable pHorarios = new DataTable();
+        //    pHorarios.Columns.Add("hora_desde");
+        //    pHorarios.Columns.Add("hora_hasta");
+        //    pHorarios.Columns.Add("nombre_dia");
 
-            for (int i = 0; i < 7; i++)
-            {
-                DataRow drNuevoHorario = pHorarios.NewRow();
-                drNuevoHorario["hora_desde"] = "10:00";
-                drNuevoHorario["hora_hasta"] = "11:00";
-                drNuevoHorario["nombre_dia"] = "D" + i;
-                pHorarios.Rows.Add(drNuevoHorario);
-            }
+        //    for (int i = 0; i < 7; i++)
+        //    {
+        //        DataRow drNuevoHorario = pHorarios.NewRow();
+        //        drNuevoHorario["hora_desde"] = "10:00";
+        //        drNuevoHorario["hora_hasta"] = "11:00";
+        //        drNuevoHorario["nombre_dia"] = "D" + i;
+        //        pHorarios.Rows.Add(drNuevoHorario);
+        //    }
           
-            string pNombre = "Test Clase Longaniza 2";
-            string retorno = GC.GenerarNuevaClase(pTipo, pPrecio, pHorarios, pNombre);
-            string esperado = "";
-            Assert.AreEqual(esperado, retorno);
-        }
+        //    string pNombre = "Test Clase Longaniza 2";
+        //    string retorno = GC.GenerarNuevaClase(pTipo, pPrecio, pHorarios, pNombre);
+        //    string esperado = "";
+        //    Assert.AreEqual(esperado, retorno);
+        //}
     }
 }
