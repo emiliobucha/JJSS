@@ -3,18 +3,48 @@
 
 
 <asp:Content ID="crearTorneoMenu" ContentPlaceHolderID="cphMenu" runat="server">
-    <a href="Inicio.aspx" class="smoothScroll">Home</a>			
+    <a href="Inicio.aspx" class="smoothScroll">Home</a>
     <a href="#inscripcionTorneo" class="smoothScroll">Inscripcion</a>
 </asp:Content>
 
 
 <asp:Content ID="crearTorneoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
-   
 </asp:Content>
 
 <asp:Content ID="crearTorneoContenido" ContentPlaceHolderID="cphContenido" runat="server">
 
     <section id="inscripcionTorneo" title="inscripcionTorneo"></section>
+
+    <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a class="ui-icon ui-icon-check"></a>
+                <strong>
+                    <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+            </div>
+        </div>
+        <div class="row centered">
+            <p>&nbsp;</p>
+        </div>
+    </asp:Panel>
+
+    <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a class="ui-icon ui-icon-alert"></a>
+                <strong>Error! </strong>
+                <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+            </div>
+        </div>
+        <div class="row centered">
+            <p>&nbsp;</p>
+        </div>
+    </asp:Panel>
+
     <asp:Panel ID="pnlFormulario" runat="server">
         <div id="crearTorneowrap">
             <div class="container">
@@ -30,41 +60,43 @@
                             </div>
 
                             <!--Elegir torneo-->
-                             <asp:Panel ID="pnl_elegirTorneo" CssClass="panel panel-default" runat="server">
-                            <div class="row centered">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-2">
-                                    <label class="pull-left">Elegir torneo:</label>
+                            <asp:Panel ID="pnl_elegirTorneo" CssClass="panel panel-default" runat="server">
+                                <div class="row centered">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-2">
+                                        <label class="pull-left">Elegir torneo:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:DropDownList ID="ddl_torneos" class="caja2" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <asp:Button ID="btnAceptarTorneo" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnAceptarTorneo_Click" />
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <asp:DropDownList ID="ddl_torneos" class="caja2" runat="server"></asp:DropDownList>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:Button ID="btnAceptarTorneo" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnAceptarTorneo_Click" />
-                                </div>
-                            </div>
 
-                            <div class="row centered">
-                                <p>&nbsp;</p>
-                            </div>
-                                 </asp:Panel>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                            </asp:Panel>
                             <!--PANEL DE INFORMACION DEL TORNEO-->
 
                             <asp:Panel ID="pnl_InfoTorneo" CssClass="panel panel-default" runat="server">
-                               
+
                                 <!--Nombre-->
-                                <div class="row centered"><p>&nbsp;</p></div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
 
                                 <div class="row centered">
                                     <div class="col centered">
-                                        
-                                        <asp:Label ID="Label5" runat="server" Text="Informacion del Evento " Font-Bold="true" Font-Size="Large"></asp:Label> 
+
+                                        <asp:Label ID="Label5" runat="server" Text="Informacion del Evento " Font-Bold="true" Font-Size="Large"></asp:Label>
                                         <asp:Label ID="lbl_NombreTorneo" CssClass="centered" runat="server" Text="" Font-Bold="true" Font-Size="Large"></asp:Label>
                                     </div>
-                                </div>  
+                                </div>
 
                                 <!--Direccion-->
-                               <!--  <div class="row centered"><p>&nbsp;</p></div>
+                                <!--  <div class="row centered"><p>&nbsp;</p></div>
 
                                     <div class="row centered">
                                     <div class="col-md-2"></div>
@@ -75,7 +107,9 @@
                                 </div>
                                 -->
                                 <!--Fecha-->
-                                 <div class="row centered"><p>&nbsp;</p></div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
 
                                 <div class="row centered">
                                     <div class="col-md-2"></div>
@@ -87,29 +121,33 @@
                                         <asp:Label ID="Label2" CssClass="pull-left" runat="server" Text=" hs"></asp:Label>
                                     </div>
                                 </div>
-                            
+
                                 <!--Cierre Inscripciones-->
-                                 <div class="row centered"><p>&nbsp;</p></div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
 
                                 <div class="row centered">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-6">
-                                        <label class="pull-left">Cierre de Inscripciones:&nbsp;</label>  
-                                        <asp:Label ID="lbl_FechaCierreInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>                                  
+                                        <label class="pull-left">Cierre de Inscripciones:&nbsp;</label>
+                                        <asp:Label ID="lbl_FechaCierreInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                     </div>
                                 </div>
-                                
+
                                 <!--Precio-->
-                                 <div class="row centered"><p>&nbsp;</p></div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
 
                                 <div class="row centered">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-5">
-                                        <label class="pull-left">El costo de inscripcion:&nbsp; </label>                                        
-                                        <asp:Label ID="Label4" CssClass="pull-left" runat="server" Text="$"></asp:Label>  
+                                        <label class="pull-left">El costo de inscripcion:&nbsp; </label>
+                                        <asp:Label ID="Label4" CssClass="pull-left" runat="server" Text="$"></asp:Label>
                                         <asp:Label ID="lbl_CostoInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
-                                        <label class="pull-left">&nbsp; Precio Absoluto:&nbsp;</label>                                        
-                                        <asp:Label ID="Label3" CssClass="pull-left" runat="server" Text="$"></asp:Label>  
+                                        <label class="pull-left">&nbsp; Precio Absoluto:&nbsp;</label>
+                                        <asp:Label ID="Label3" CssClass="pull-left" runat="server" Text="$"></asp:Label>
                                         <asp:Label ID="lbl_CostoInscripcionAbsoluto" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                     </div>
                                 </div>
@@ -125,13 +163,15 @@
 
                             </asp:Panel>
 
-                             <div class="row centered">
-                                    <p>&nbsp;</p>
-                                </div>
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
 
                             <!-- PANEL DNI-->
                             <asp:Panel ID="pnl_dni" CssClass="panel panel-default" runat="server" Visible="false">
-                                <div class="row centered"><p>&nbsp;</p></div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
@@ -147,12 +187,12 @@
                                         <asp:TextBox ID="txtDni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1">
-                                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
+                                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
                                     </div>
                                     <div class="col-md-3">
                                         <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ValidationGroup="grupoDni" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
-                                        <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan" ValidationGroup="grupoDni"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txtDni" Type="Integer" ErrorMessage="DNI demasiado largo" ValueToCompare="2147483647" Operator="LessThan" ValidationGroup="grupoDni"></asp:CompareValidator>
                                     </div>
                                 </div>
                                 <div class="row centered">
@@ -165,13 +205,15 @@
 
                             <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default" runat="server" Visible="false">
 
-                                <div class="row centered"><p>&nbsp;</p></div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
 
-                                   <div class="row centered">
-                                    <div class="col centered">                                        
+                                <div class="row centered">
+                                    <div class="col centered">
                                         <asp:Label ID="Label6" runat="server" Text="Datos del Participante" Font-Bold="true" Font-Size="Large"></asp:Label>
                                     </div>
-                                </div>  
+                                </div>
 
 
                                 <div class="row centered">
@@ -189,8 +231,8 @@
                                         <asp:TextBox ID="txt_nombre" class="caja2" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$"></asp:RegularExpressionValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgDatos">*</asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgDatos">*</asp:RegularExpressionValidator>
                                     </div>
                                 </div>
 
@@ -208,8 +250,8 @@
                                         <asp:TextBox ID="txt_apellido" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoApellido" runat="server" ErrorMessage="Debe ingresar el apellido" ControlToValidate="txt_apellido" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="caracteres_apellido" runat="server" ControlToValidate="txt_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$"></asp:RegularExpressionValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoApellido" runat="server" ErrorMessage="Debe ingresar el apellido" ControlToValidate="txt_apellido" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgDatos">*</asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="caracteres_apellido" runat="server" ControlToValidate="txt_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgDatos">*</asp:RegularExpressionValidator>
                                     </div>
                                 </div>
 
@@ -246,12 +288,12 @@
                                         <asp:TextBox class="caja2" ID="txt_peso" runat="server" placeholder="Ingrese peso"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic">*</asp:RequiredFieldValidator>
                                         <%--<asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
-                                        <asp:CompareValidator ID="positivoPeso" runat="server" ErrorMessage="El peso debe ser un valor mayor a 0" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double"  ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
-                                    
-                                        <asp:RegularExpressionValidator ID="regex_peso" runat="server" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
-                                    
+                                        <asp:CompareValidator ID="positivoPeso" runat="server" ErrorMessage="El peso debe ser un valor mayor a 0" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic">*</asp:CompareValidator>
+
+                                        <asp:RegularExpressionValidator ID="regex_peso" runat="server" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del peso" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$">*</asp:RegularExpressionValidator>
+
                                     </div>
                                 </div>
 
@@ -269,12 +311,12 @@
                                         <asp:TextBox class="caja2" ID="txt_edad" runat="server" placeholder="Ingrese edad"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgDatos">*</asp:RequiredFieldValidator>
                                         <%--<asp:CompareValidator ID="tipoEdad" runat="server" ErrorMessage="La edad debe ser un valor numérico" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
-                                        <asp:CompareValidator ID="positivoEdad" runat="server" ErrorMessage="La edad debe ser un valor mayor a 0" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"></asp:CompareValidator>
-                                    
-                                        <asp:RangeValidator ID="maximo_edad" runat="server" ControlToValidate="txt_edad" CssClass="text-danger" Display="Dynamic" ErrorMessage="La edad debe ser un valor menor" MaximumValue="2147483647" MinimumValue="0" Type="Integer"></asp:RangeValidator>
-                                    
+                                        <asp:CompareValidator ID="positivoEdad" runat="server" ErrorMessage="La edad debe ser un valor mayor a 0" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" ValidationGroup="vgDatos">*</asp:CompareValidator>
+
+                                        <asp:RangeValidator ID="maximo_edad" runat="server" ControlToValidate="txt_edad" CssClass="text-danger" Display="Dynamic" ErrorMessage="Edad demasiado grande" MaximumValue="200" MinimumValue="0" Type="Integer" ValidationGroup="vgDatos">*</asp:RangeValidator>
+
                                     </div>
                                 </div>
 
@@ -298,13 +340,20 @@
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
+
+
+                                <div class="row centered">
+                                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="false" ShowSummary="true" EnableClientScript="true" CssClass="text-danger" BorderStyle="Double" ValidationGroup="vgDatos" HeaderText="Se han producido los siguientes errores:" />
+                                </div>
+
+
                                 <!--Boton Aceptar-->
                                 <div class="row centered">
-                                        <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click"  />
-                                  
+                                    <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
+
                                 </div>
                             </asp:Panel>
-                            
+
                         </div>
                     </form>
                 </div>

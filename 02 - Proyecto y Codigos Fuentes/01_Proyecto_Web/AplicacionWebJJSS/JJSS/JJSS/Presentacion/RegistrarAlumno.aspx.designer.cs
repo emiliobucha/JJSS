@@ -490,6 +490,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_categoria;
         
         /// <summary>
+        /// Control ValidationSummary1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
         /// Control btn_cancelar.
         /// </summary>
         /// <remarks>
@@ -533,6 +542,24 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_filtro_dni;
+        
+        /// <summary>
+        /// Control mayor_dni0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator mayor_dni0;
+        
+        /// <summary>
+        /// Control menor_dni0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator menor_dni0;
         
         /// <summary>
         /// Control btn_buscar_alumno.

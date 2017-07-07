@@ -91,8 +91,13 @@ namespace JJSS.Presentacion
                 }
                 string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre, imagenByte);
 
-                if (sReturn.CompareTo("") == 0) sReturn = "El torneo se ha creado exitosamente";
-                mensaje(sReturn, "CrearTorneo.aspx");
+                if (sReturn.CompareTo("") == 0)
+                {
+                    sReturn = "El torneo se ha creado exitosamente";
+                    mensaje(sReturn, true);
+                }
+                else mensaje(sReturn, false);
+                
             }
 
 
@@ -103,11 +108,22 @@ namespace JJSS.Presentacion
          * 
          * Paramétros: 
          *              pMensaje: el mensaje que se va a mostrar
-         *              pRef: la pagina .aspx que va a redireccionar
+         *              pEstado: true si es exito - false si es error
          **/
-        private void mensaje(string pMensaje, string pRef)
+        private void mensaje(string pMensaje, Boolean pEstado)
         {
-            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
+            if (pEstado == true)
+            {
+                pnl_mensaje_exito.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = pMensaje;
+            }
+            else
+            {
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = true;
+                lbl_error.Text = pMensaje;
+            }
         }
 
 
@@ -171,6 +187,8 @@ namespace JJSS.Presentacion
         {
 
         }
+
+
     }
 
 

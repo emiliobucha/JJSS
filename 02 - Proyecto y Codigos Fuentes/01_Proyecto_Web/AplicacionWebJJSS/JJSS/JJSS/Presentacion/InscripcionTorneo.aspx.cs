@@ -120,8 +120,9 @@ namespace JJSS
             string sReturn = gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, edad, idFaja, sexo, dni, idAlumno);
             limpiar(true);
 
-            if (sReturn.CompareTo("") == 0) sReturn = "La inscripción se ha realizado exitosamente";
-            mensaje(sReturn, "InscripcionTorneo.aspx");
+            if (sReturn.CompareTo("") == 0) mensaje("La inscripción se ha realizado exitosamente", true);
+            else mensaje(sReturn, false);
+
 
 
         }
@@ -204,7 +205,7 @@ namespace JJSS
                 //Partipante ya estaba inscripto con ese dni
                 if (participanteEncontrado != null)
                 {
-                    mensaje("Este participante ya está inscripto", "InscripcionTorneo.aspx");
+                    mensaje("Este participante ya está inscripto", false);
                     return;
                 }
 
@@ -247,11 +248,22 @@ namespace JJSS
          * 
          * Paramétros: 
          *              pMensaje: el mensaje que se va a mostrar
-         *              pRef: la pagina .aspx que va a redireccionar
+         *              pEstado: true si es exito - false si es error
          **/
-        private void mensaje(string pMensaje, string pRef)
+        private void mensaje(string pMensaje, Boolean pEstado)
         {
-            Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + pRef + "', 2000);</script>");
+            if (pEstado == true)
+            {
+                pnl_mensaje_exito.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = pMensaje;
+            }
+            else
+            {
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = true;
+                lbl_error.Text = pMensaje;
+            }
         }
     }
 }
