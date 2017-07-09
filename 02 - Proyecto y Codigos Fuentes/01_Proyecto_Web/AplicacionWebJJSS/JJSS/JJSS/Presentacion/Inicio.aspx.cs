@@ -21,20 +21,20 @@ namespace JJSS.Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            try
-            { 
-                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-                if (sesionActiva.estado != "INGRESO ACEPTADO")
-                {
-                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+            //try
+            //{ 
+            //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+            //    if (sesionActiva.estado != "INGRESO ACEPTADO")
+            //    {
+            //        Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
                    
-                }
-            }
-            catch(Exception ex)
-            {
-                Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
-            }
+            //}
 
             gestorDeTorneos = new GestorTorneos();
             gestorInscripciones = new GestorInscripciones();
@@ -161,6 +161,24 @@ namespace JJSS.Presentacion
 
         protected void btn_inscripcionClase_aceptar_Click(object sender, EventArgs e)
         {
+
+            try
+            {
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                if (sesionActiva.estado != "INGRESO ACEPTADO")
+                {
+                    if ((int?)sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'")[0]["perm_ejecutar"] != 1)
+                    { 
+                        Response.Write("<script>window.alert('" + "Debe estar logueado como alumno para inscribirse".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+            }
+
             int idClase = 0;
             int.TryParse(hf_claseSeleccionada_id.Value, out idClase);
 

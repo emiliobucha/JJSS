@@ -17,11 +17,11 @@ namespace JJSS_Entidad
         public int id_grupoxopcion { get; set; }
         public int id_grupo { get; set; }
         public string clave_opcion { get; set; }
-        public string ejecutar { get; set; }
-        public string modificar { get; set; }
-        public string eliminar { get; set; }
-        public string ver { get; set; }
-        public string agregar { get; set; }
+        public Nullable<short> ejecutar { get; set; }
+        public Nullable<short> modificar { get; set; }
+        public Nullable<short> eliminar { get; set; }
+        public Nullable<short> ver { get; set; }
+        public Nullable<short> agregar { get; set; }
     
         public virtual seguridad_grupo seguridad_grupo { get; set; }
         public virtual seguridad_opcion seguridad_opcion { get; set; }

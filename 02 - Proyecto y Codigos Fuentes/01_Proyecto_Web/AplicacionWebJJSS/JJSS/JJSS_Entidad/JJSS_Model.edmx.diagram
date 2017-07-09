@@ -25,7 +25,7 @@
         <AssociationConnector Association="JJSSModel.lucha_lucha_id_resultado_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.lucha_lucha_id_torneo_fk" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.torneo_torneo_id_sede_fk" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="false" />
         <EntityTypeShape EntityType="JJSSModel.participante" Width="1.5" PointX="6" PointY="3.25" IsExpanded="false" />
         <AssociationConnector Association="JJSSModel.participante_participante_id_faja_fk" />
         <AssociationConnector Association="JJSSModel.inscripcion_inscripcion_id_participante_fk" />
@@ -65,6 +65,7 @@
         <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_grupo" />
         <AssociationConnector Association="JJSSModel.fk_grupoxopcion_clave_opcion" />
         <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_usuario" />
+        <AssociationConnector Association="JJSSModel.FK_alumno_id_usuario" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -36,6 +36,7 @@ namespace JJSS_Entidad
         public System.DateTime fecha_ingreso { get; set; }
         public byte[] foto_perfil { get; set; }
         public int telefono_emergencia { get; set; }
+        public Nullable<int> id_usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }
@@ -46,5 +47,6 @@ namespace JJSS_Entidad
         public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno_imagen> alumno_imagen { get; set; }
+        public virtual seguridad_usuario seguridad_usuario { get; set; }
     }
 }

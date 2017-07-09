@@ -18,6 +18,7 @@ namespace JJSS_Entidad
         public seguridad_usuario()
         {
             this.seguridad_usuarioxgrupo = new HashSet<seguridad_usuarioxgrupo>();
+            this.alumno = new HashSet<alumno>();
         }
     
         public int id_usuario { get; set; }
@@ -28,5 +29,7 @@ namespace JJSS_Entidad
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<alumno> alumno { get; set; }
     }
 }

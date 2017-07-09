@@ -39,9 +39,68 @@ namespace JJSS_Negocio
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                sReturn = ex.Message;
+            }
+            return sReturn;
+        }
 
+        /*
+         * Grupos: 
+         * 1 Admin
+         * 2 Profe
+         * 3 Alumno
+         */
+        public string GenerarNuevoUsuario(string pLogin, string pClave, int pGrupo, string pMail, string pNombre)
+        {
+            String sReturn = "";
+
+            try
+            {
+                string claveMD5 = modUtilidades.GetMd5Hash(pClave);
+                using (var db = new JJSSEntities())
+                {
+                    var transaction = db.Database.BeginTransaction();
+                    try
+                    {
+                        seguridad_usuario nuevoUsuario = new seguridad_usuario()
+                        {
+                            login = pLogin,
+                            clave = claveMD5,
+                            mail= pMail,
+                            nombre = pNombre
+                        };
+
+                        db.seguridad_usuario.Add(nuevoUsuario);
+
+                        db.SaveChanges();
+
+
+                        seguridad_usuarioxgrupo usuarioXGrupo = new seguridad_usuarioxgrupo()
+                        {
+                            id_usuario = nuevoUsuario.id_usuario,
+                            id_grupo = pGrupo
+                        };
+
+                        db.seguridad_usuarioxgrupo.Add(usuarioXGrupo);
+
+                        db.SaveChanges();
+
+                        transaction.Commit();
+                        return sReturn;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        sReturn = ex.Message;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                sReturn = ex.Message;
             }
             return sReturn;
         }
