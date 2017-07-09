@@ -162,7 +162,9 @@ namespace JJSS.Presentacion
             int telEmergencia = int.Parse(txt_telefono_urgencia.Text);
             //Image imagenPerfil = Avatar;
 
-            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail, 1, telEmergencia, imagenByte, calle, numero, departamento, piso);
+            int ciudad = int.Parse(ddl_localidad.SelectedValue);
+
+            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, idFaja, 1, sexo, dni, tel, mail,  telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
             Boolean estado = true;
             if (sReturn.CompareTo("") == 0)
             {

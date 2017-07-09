@@ -176,6 +176,32 @@
           <Property Name="dni" Type="int" Nullable="false" />
           <Property Name="id_alumno" Type="int" />
         </EntityType>
+        <EntityType Name="profesor">
+          <Key>
+            <PropertyRef Name="id_profesor" />
+          </Key>
+          <Property Name="id_profesor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="id_faja" Type="int" />
+          <Property Name="sexo" Type="smallint" />
+          <Property Name="dni" Type="int" />
+          <Property Name="telefono" Type="bigint" />
+          <Property Name="mail" Type="nvarchar" MaxLength="80" />
+          <Property Name="telefono_emergencia" Type="bigint" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="fecha_ingreso" Type="date" />
+          <Property Name="id_direccion" Type="int" />
+        </EntityType>
+        <EntityType Name="profesor_imagen">
+          <Key>
+            <PropertyRef Name="id_profesorimagen" />
+          </Key>
+          <Property Name="id_profesorimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imagen" Type="binary" MaxLength="8000" />
+          <Property Name="id_profesor" Type="int" />
+        </EntityType>
         <EntityType Name="provincia">
           <Key>
             <PropertyRef Name="id_provincia" />
@@ -680,6 +706,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_profesor_id_direccion">
+          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profesor_id_faja">
+          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faja">
+              <PropertyRef Name="id_faja" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_faja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profesor_id_usuario">
+          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profesorimagen_id_profesor">
+          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="profesor_imagen" Type="Self.profesor_imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profesor">
+              <PropertyRef Name="id_profesor" />
+            </Principal>
+            <Dependent Role="profesor_imagen">
+              <PropertyRef Name="id_profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_provincia_id_pais">
           <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
           <End Role="provincia" Type="Self.provincia" Multiplicity="*" />
@@ -749,6 +825,8 @@
           <EntitySet Name="lucha" EntityType="Self.lucha" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pais" EntityType="Self.pais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="participante" EntityType="Self.participante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profesor" EntityType="Self.profesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profesor_imagen" EntityType="Self.profesor_imagen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="resultado" EntityType="Self.resultado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sede" EntityType="Self.sede" Schema="dbo" store:Type="Tables" />
@@ -892,6 +970,22 @@
             <End Role="alumno" EntitySet="alumno" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
           </AssociationSet>
+          <AssociationSet Name="FK_profesor_id_direccion" Association="Self.FK_profesor_id_direccion">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profesor_id_faja" Association="Self.FK_profesor_id_faja">
+            <End Role="faja" EntitySet="faja" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profesor_id_usuario" Association="Self.FK_profesor_id_usuario">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profesorimagen_id_profesor" Association="Self.FK_profesorimagen_id_profesor">
+            <End Role="profesor" EntitySet="profesor" />
+            <End Role="profesor_imagen" EntitySet="profesor_imagen" />
+          </AssociationSet>
           <AssociationSet Name="FK_provincia_id_pais" Association="Self.FK_provincia_id_pais">
             <End Role="pais" EntitySet="pais" />
             <End Role="provincia" EntitySet="provincia" />
@@ -951,6 +1045,7 @@
           <Property Name="piso" Type="Int32" />
           <Property Name="id_ciudad" Type="Int32" />
           <NavigationProperty Name="ciudad" Relationship="JJSSModel.FK_direccion_id_ciudad" FromRole="direccion" ToRole="ciudad" />
+          <NavigationProperty Name="profesor" Relationship="JJSSModel.FK_profesor_id_direccion" FromRole="direccion" ToRole="profesor" />
         </EntityType>
         <EntityType Name="estado">
           <Key>
@@ -970,6 +1065,7 @@
           <NavigationProperty Name="categoria_torneo" Relationship="Self.categoria_torneo_categoria_torneo_id_faja_fk" FromRole="faja" ToRole="categoria_torneo" />
           <NavigationProperty Name="participante" Relationship="JJSSModel.participante_participante_id_faja_fk" FromRole="faja" ToRole="participante" />
           <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_alumno_id_faja" FromRole="faja" ToRole="alumno" />
+          <NavigationProperty Name="profesor" Relationship="JJSSModel.FK_profesor_id_faja" FromRole="faja" ToRole="profesor" />
         </EntityType>
         <EntityType Name="inscripcion">
           <Key>
@@ -1323,6 +1419,24 @@
           <AssociationSet Name="FK_alumno_id_usuario" Association="JJSSModel.FK_alumno_id_usuario">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <EntitySet Name="profesor" EntityType="JJSSModel.profesor" />
+          <EntitySet Name="profesor_imagen" EntityType="JJSSModel.profesor_imagen" />
+          <AssociationSet Name="FK_profesor_id_direccion" Association="JJSSModel.FK_profesor_id_direccion">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profesor_id_faja" Association="JJSSModel.FK_profesor_id_faja">
+            <End Role="faja" EntitySet="faja" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profesor_id_usuario" Association="JJSSModel.FK_profesor_id_usuario">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profesorimagen_id_profesor" Association="JJSSModel.FK_profesorimagen_id_profesor">
+            <End Role="profesor" EntitySet="profesor" />
+            <End Role="profesor_imagen" EntitySet="profesor_imagen" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="alumno">
@@ -1748,6 +1862,7 @@
           <Property Name="mail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="seguridad_usuarioxgrupo" Relationship="JJSSModel.fk_usuarioxgrupo_id_usuario" FromRole="seguridad_usuario" ToRole="seguridad_usuarioxgrupo" />
           <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_alumno_id_usuario" FromRole="seguridad_usuario" ToRole="alumno" />
+          <NavigationProperty Name="profesor" Relationship="JJSSModel.FK_profesor_id_usuario" FromRole="seguridad_usuario" ToRole="profesor" />
         </EntityType>
         <EntityType Name="seguridad_usuarioxgrupo">
           <Key>
@@ -1836,6 +1951,87 @@
             </Principal>
             <Dependent Role="alumno">
               <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="profesor">
+          <Key>
+            <PropertyRef Name="id_profesor" />
+          </Key>
+          <Property Name="id_profesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="id_faja" Type="Int32" />
+          <Property Name="sexo" Type="Int16" />
+          <Property Name="dni" Type="Int32" />
+          <Property Name="telefono" Type="Int64" />
+          <Property Name="mail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="telefono_emergencia" Type="Int64" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="fecha_ingreso" Type="DateTime" Precision="0" />
+          <Property Name="id_direccion" Type="Int32" />
+          <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_profesor_id_direccion" FromRole="profesor" ToRole="direccion" />
+          <NavigationProperty Name="faja" Relationship="JJSSModel.FK_profesor_id_faja" FromRole="profesor" ToRole="faja" />
+          <NavigationProperty Name="seguridad_usuario" Relationship="JJSSModel.FK_profesor_id_usuario" FromRole="profesor" ToRole="seguridad_usuario" />
+          <NavigationProperty Name="profesor_imagen" Relationship="JJSSModel.FK_profesorimagen_id_profesor" FromRole="profesor" ToRole="profesor_imagen" />
+        </EntityType>
+        <EntityType Name="profesor_imagen">
+          <Key>
+            <PropertyRef Name="id_profesorimagen" />
+          </Key>
+          <Property Name="id_profesorimagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
+          <Property Name="id_profesor" Type="Int32" />
+          <NavigationProperty Name="profesor" Relationship="JJSSModel.FK_profesorimagen_id_profesor" FromRole="profesor_imagen" ToRole="profesor" />
+        </EntityType>
+        <Association Name="FK_profesor_id_direccion">
+          <End Type="JJSSModel.direccion" Role="direccion" Multiplicity="0..1" />
+          <End Type="JJSSModel.profesor" Role="profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profesor_id_faja">
+          <End Type="JJSSModel.faja" Role="faja" Multiplicity="0..1" />
+          <End Type="JJSSModel.profesor" Role="profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faja">
+              <PropertyRef Name="id_faja" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_faja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profesor_id_usuario">
+          <End Type="JJSSModel.seguridad_usuario" Role="seguridad_usuario" Multiplicity="0..1" />
+          <End Type="JJSSModel.profesor" Role="profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profesorimagen_id_profesor">
+          <End Type="JJSSModel.profesor" Role="profesor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="JJSSModel.profesor_imagen" Role="profesor_imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profesor">
+              <PropertyRef Name="id_profesor" />
+            </Principal>
+            <Dependent Role="profesor_imagen">
+              <PropertyRef Name="id_profesor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2142,6 +2338,34 @@
                 <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="id_usuarioxgrupo" ColumnName="id_usuarioxgrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profesor">
+            <EntityTypeMapping TypeName="JJSSModel.profesor">
+              <MappingFragment StoreEntitySet="profesor">
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="telefono_emergencia" ColumnName="telefono_emergencia" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="id_faja" ColumnName="id_faja" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profesor_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.profesor_imagen">
+              <MappingFragment StoreEntitySet="profesor_imagen">
+                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="id_profesorimagen" ColumnName="id_profesorimagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

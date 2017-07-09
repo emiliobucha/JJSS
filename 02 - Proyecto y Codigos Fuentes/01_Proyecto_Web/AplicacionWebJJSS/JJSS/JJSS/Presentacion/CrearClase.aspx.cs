@@ -42,6 +42,7 @@ namespace JJSS.Presentacion
                 CargarComboTipos();
                 CargarComboUbicacion();
                 cargarDatosClase();
+                CargarComboProfes();
             }
         }
 
@@ -58,6 +59,7 @@ namespace JJSS.Presentacion
                 txt_precio.Text = claseSeleccionada.precio.ToString();
                 ddl_tipo_clase.SelectedValue = claseSeleccionada.id_tipo_clase.ToString();
                 ddl_ubicacion.SelectedValue = claseSeleccionada.id_ubicacion.ToString();
+                ddl_profesor.SelectedValue = claseSeleccionada.id_profe.ToString();
                 txt_nombre.Enabled = false;
                 ddl_tipo_clase.Enabled = false;
                 ddl_ubicacion.Enabled = false;
@@ -70,10 +72,7 @@ namespace JJSS.Presentacion
             dv_horarios.Sort = "dia asc, hora_desde asc";
             dg_horarios.DataSource = dv_horarios;
             dg_horarios.DataBind();
-
-
-
-
+            
             //Session.Add("dtHorarios", dtHorarios);
             Session["dtHorarios"] = dtHorarios;
         }
@@ -132,6 +131,15 @@ namespace JJSS.Presentacion
             ddl_ubicacion.DataBind();
         }
 
+        private void CargarComboProfes()
+        {
+            List<profesor> profesor = gestorClases.ObtenerProfesores();
+            ddl_profesor.DataSource = profesor;
+            ddl_profesor.DataTextField = "apellido";
+            ddl_profesor.DataValueField = "id_profesor";
+            ddl_profesor.DataBind();
+        }
+
         protected void dg_horarios_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             int dia = Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "dia"));
@@ -175,7 +183,8 @@ namespace JJSS.Presentacion
             {
                 int idClase = 0;
                 idClase = int.Parse(Session["clase"].ToString());
-                sReturn = gestorClases.modificarClase(idClase, (DataTable)Session["dtHorarios"], double.Parse(txt_precio.Text));
+                int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
+                sReturn = gestorClases.modificarClase(idClase, (DataTable)Session["dtHorarios"], double.Parse(txt_precio.Text),profe);
                 if (sReturn.CompareTo("") == 0)
                 {
                     estado = true;
@@ -186,7 +195,8 @@ namespace JJSS.Presentacion
             {
                 int tipo = int.Parse(ddl_tipo_clase.SelectedValue.ToString());
                 int ubicacion = int.Parse(ddl_ubicacion.SelectedValue.ToString());
-                sReturn = gestorClases.GenerarNuevaClase(tipo, Double.Parse(txt_precio.Text), (DataTable)Session["dtHorarios"], txt_nombre.Text, ubicacion);
+                int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
+                sReturn = gestorClases.GenerarNuevaClase(tipo, Double.Parse(txt_precio.Text), (DataTable)Session["dtHorarios"], txt_nombre.Text, ubicacion, profe);
                 if (sReturn.CompareTo("") == 0)
                 {
                     estado = true;

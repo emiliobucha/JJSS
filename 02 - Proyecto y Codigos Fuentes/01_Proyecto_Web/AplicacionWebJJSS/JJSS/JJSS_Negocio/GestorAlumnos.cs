@@ -55,8 +55,8 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria, 
-            short? pSexo, int pDni, int pTelefono, string pMail, int? pIdDireccion, int pTelEmergencia, byte[] pImagen, 
-            string pCalle, int? pNumero, string pDpto, int? pPiso)
+            short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen, 
+            string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -64,6 +64,18 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
+                    GestorUsuarios nuevoUsuario = new GestorUsuarios();
+                    string nombreUsuario = pNombre + " " + pApellido;
+                    string login = pNombre.Substring(0, 1).ToLower();
+                    login += pApellido.ToLower();
+                    string iduser = nuevoUsuario.GenerarNuevoUsuario(login, pDni.ToString(), 3, pMail, nombreUsuario);
+                    int idUsuario;
+                    if (int.TryParse(iduser, out idUsuario) == false)
+                    {
+                        return iduser;
+                    }
+                    seguridad_usuario usuario = db.seguridad_usuario.Find(idUsuario);
+
                     faja fajaElegida = db.faja.Find(pIdFaja);
                     //+Rever categorias en la BD
                     //categoria catElegida = db.categoria.Find(pIdCategoria);
@@ -73,38 +85,60 @@ namespace JJSS_Negocio
                         return "Alumno existente";
                     }
                     alumno nuevoAlumno;
-                    direccion nuevaDireccion;
-
                     
-                    ciudad ciudadElegida = db.ciudad.Find(1);
-
-                    nuevaDireccion = new direccion()
+                    ciudad ciudadElegida = db.ciudad.Find(pIdCiudad);
+                    
+                    if (pCalle!="" && pNumero != null) //si ingresa direccion
                     {
-                        calle1 = pCalle,
-                        departamento = pDpto,
-                        numero = pNumero,
-                        piso = pPiso,
-                        ciudad = ciudadElegida
-                    };
+                        direccion nuevaDireccion;
+                        nuevaDireccion = new direccion()
+                        {
+                            calle1 = pCalle,
+                            departamento = pDpto,
+                            numero = pNumero,
+                            piso = pPiso,
+                            ciudad = ciudadElegida
+                        };
+                        db.direccion.Add(nuevaDireccion);
 
-                    nuevoAlumno = new alumno()
+                        nuevoAlumno = new alumno()
+                        {
+                            nombre = pNombre,
+                            apellido = pApellido,
+                            fecha_nacimiento = pFechaNacimiento,
+                            faja = fajaElegida,
+                            //categoria
+                            sexo = pSexo,
+                            dni = pDni,
+                            telefono = pTelefono,
+                            mail = pMail,
+                            direccion = nuevaDireccion,
+                            fecha_ingreso = DateTime.Today,
+                            telefono_emergencia = pTelEmergencia,
+                            seguridad_usuario = usuario
+                        };
+                    }
+                    else //no ingresa direccion
                     {
-                        nombre = pNombre,
-                        apellido = pApellido,
-                        fecha_nacimiento = pFechaNacimiento,
-                        faja = fajaElegida,
-                        //categoria
-                        sexo = pSexo,
-                        dni = pDni,
-                        telefono = pTelefono,
-                        mail = pMail,
-                        direccion=nuevaDireccion,
-                        fecha_ingreso = DateTime.Today,
-                        telefono_emergencia = pTelEmergencia
-                    };
-
+                        nuevoAlumno = new alumno()
+                        {
+                            nombre = pNombre,
+                            apellido = pApellido,
+                            fecha_nacimiento = pFechaNacimiento,
+                            faja = fajaElegida,
+                            //categoria
+                            sexo = pSexo,
+                            dni = pDni,
+                            telefono = pTelefono,
+                            mail = pMail,
+                            fecha_ingreso = DateTime.Today,
+                            telefono_emergencia = pTelEmergencia,
+                            seguridad_usuario = usuario
+                        };
+                    }
+                    
                     db.alumno.Add(nuevoAlumno);
-                    db.direccion.Add(nuevaDireccion);
+                    
                     db.SaveChanges();
                     alumno_imagen nuevoAlumno_imagen = new alumno_imagen()
                     {

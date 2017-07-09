@@ -10,16 +10,16 @@
 namespace JJSS.Presentacion {
     
     
-    public partial class RegistrarAlumno {
+    public partial class RegistrarProfe {
         
         /// <summary>
-        /// Control formRegAlumno.
+        /// Control formRegProfe.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formRegAlumno;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formRegProfe;
         
         /// <summary>
         /// Control pnl_mensaje_exito.
@@ -490,15 +490,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_fajas;
         
         /// <summary>
-        /// Control ddl_categoria.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_categoria;
-        
-        /// <summary>
         /// Control ValidationSummary1.
         /// </summary>
         /// <remarks>
@@ -526,22 +517,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_guardar;
         
         /// <summary>
-        /// Control btn_ver_alumnos.
+        /// Control btn_ver_profes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_ver_alumnos;
+        protected global::System.Web.UI.WebControls.Button btn_ver_profes;
         
         /// <summary>
-        /// Control pnl_mostrar_alumnos.
+        /// Control pnl_mostrar_profes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_mostrar_alumnos;
+        protected global::System.Web.UI.WebControls.Panel pnl_mostrar_profes;
         
         /// <summary>
         /// Control txt_filtro_dni.
@@ -571,13 +562,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.CompareValidator menor_dni0;
         
         /// <summary>
-        /// Control btn_buscar_alumno.
+        /// Control btn_buscar_profe.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_buscar_alumno;
+        protected global::System.Web.UI.WebControls.Button btn_buscar_profe;
         
         /// <summary>
         /// Control btn_registro.
@@ -589,12 +580,12 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_registro;
         
         /// <summary>
-        /// Control gvAlumnos.
+        /// Control gvprofes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAlumnos;
+        protected global::System.Web.UI.WebControls.GridView gvprofes;
     }
 }

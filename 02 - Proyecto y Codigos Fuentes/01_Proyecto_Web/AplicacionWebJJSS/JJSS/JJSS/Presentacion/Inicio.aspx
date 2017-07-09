@@ -217,12 +217,15 @@
                         </div>
 <!---------------------------------**************Grilla de clase************---------------------------------------->
 
-                        <asp:GridView ID="gv_clasesDisponibles" runat="server" ShowHeader="true" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
+                        <asp:GridView ID="gv_clasesDisponibles" runat="server" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="id_clase"  HeaderText="ID de clase"/>
                                 <asp:BoundField DataField="nombre"  HeaderText="Nombre"/>
                                 <asp:BoundField DataField="precio" HeaderText="Precio" />
                                 <%--<asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />--%>
+
+                                <asp:BoundField DataField="tipo_clase" HeaderText="Tipo de Clase" />
+                                <asp:BoundField DataField="ubicacion" HeaderText="Ubicación" />
 
                                 <asp:TemplateField>
                                     <ItemTemplate>

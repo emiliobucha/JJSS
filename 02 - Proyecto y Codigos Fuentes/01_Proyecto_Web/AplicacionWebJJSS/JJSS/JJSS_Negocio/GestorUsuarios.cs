@@ -88,6 +88,7 @@ namespace JJSS_Negocio
                         db.SaveChanges();
 
                         transaction.Commit();
+                        sReturn = nuevoUsuario.id_usuario.ToString();
                         return sReturn;
                     }
                     catch (Exception ex)

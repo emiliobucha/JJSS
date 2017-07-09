@@ -13,45 +13,45 @@
 
             <div class="container">
 
-                
+
 
                 <form id="form1" runat="server">
 
 
                     <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <a class="ui-icon ui-icon-check"></a>
-                        <strong>
-                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
-                    </div>
-                </div>
-                <div class="row centered">
-                <p>&nbsp;</p>
-            </div>
-            </asp:Panel>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <a class="ui-icon ui-icon-check"></a>
+                                <strong>
+                                    <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                            </div>
+                        </div>
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
+                    </asp:Panel>
 
-            <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <a class="ui-icon ui-icon-alert"></a>
-                        <strong>Error! </strong>
-                        <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
-                    </div>
-                </div>
-                <div class="row centered">
-                <p>&nbsp;</p>
-            </div>
-            </asp:Panel>
+                    <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <a class="ui-icon ui-icon-alert"></a>
+                                <strong>Error! </strong>
+                                <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
+                    </asp:Panel>
 
                     <div class="row mt centered">
-                    <h1>FORMULARIO DE ALTA DE CLASE</h1>
-                    <p>&nbsp;</p>
-                </div>
+                        <h1>FORMULARIO DE ALTA DE CLASE</h1>
+                        <p>&nbsp;</p>
+                    </div>
 
                     <!--Nombre-->
                     <asp:Panel ID="pnl_datosClase" CssClass="panel panel-default" runat="server">
@@ -122,6 +122,21 @@
                             </div>
                             <div class="col-xs-3">
                             </div>
+                        </div>
+                        <div class="row centered">
+                            &nbsp;
+                        </div>
+                        <!-- profesor-->
+                        <div class="row centered">
+                            <div class="col-xs-2">
+                                <label class="pull-left">Profesor</label>
+                            </div>
+                            <div class="col-xs-3">
+                                <asp:DropDownList ID="ddl_profesor" runat="server" CssClass="caja2"></asp:DropDownList>
+                            </div>
+                            <div class="col-xs-3">
+                            </div>
+
                         </div>
 
                         <div class="row centered">
@@ -209,8 +224,8 @@
                     </div>
 
                     <div class="row centered">
-                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="false" ShowSummary="true" EnableClientScript="true" CssClass="text-danger" BorderStyle="Double" ValidationGroup="vg_aceptar" HeaderText="Se han producido los siguientes errores:" />
-                        </div>
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="false" ShowSummary="true" EnableClientScript="true" CssClass="text-danger" BorderStyle="Double" ValidationGroup="vg_aceptar" HeaderText="Se han producido los siguientes errores:" />
+                    </div>
 
                     <div class="row centered">
                         <asp:Button ID="btn_aceptar" runat="server" OnClick="btn_aceptar_Click" Text="Aceptar" CssClass="btn btn-default" ValidationGroup="vg_aceptar"></asp:Button>

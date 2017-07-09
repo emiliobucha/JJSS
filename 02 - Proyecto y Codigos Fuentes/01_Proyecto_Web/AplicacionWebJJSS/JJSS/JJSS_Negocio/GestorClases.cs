@@ -32,7 +32,7 @@ namespace JJSS_Negocio
          *          
          */
 
-        public String GenerarNuevaClase(int pTipo, double pPrecio, DataTable pHorarios, string pNombre, int pUbicacion)
+        public String GenerarNuevaClase(int pTipo, double pPrecio, DataTable pHorarios, string pNombre, int pUbicacion, int pProfe)
         {
             String sReturn = "";
             try
@@ -49,6 +49,7 @@ namespace JJSS_Negocio
                             precio = pPrecio,
                             nombre = pNombre,
                             id_ubicacion = pUbicacion,
+                            id_profe=pProfe,
                             baja_logica=1 //clase disponible
                         };
 
@@ -128,26 +129,38 @@ namespace JJSS_Negocio
          * Retorno: List<clase> 
          *          Listado de todas las clases
          */
-        public List<clase> ObtenerClases()
+        public List<Object> ObtenerClasesDisponibles()
         {
             using (var db = new JJSSEntities())
             {
                 var clasesDisponibles = from clases in db.clase
+                                        join ubic in db.academia on clases.id_ubicacion equals ubic.id_academia
+                                        join tipo in db.tipo_clase on clases.id_tipo_clase equals tipo.id_tipo_clase
                                         where clases.baja_logica == 1
-                                        select clases;
-                return clasesDisponibles.ToList();
+                                        select new
+                                        {
+                                            id_clase=clases.id_clase,
+                                            nombre = clases.nombre,
+                                            precio = clases.precio,
+                                            tipo_clase=tipo.nombre,
+                                            ubicacion= ubic.nombre,
+                                        };
+                List<Object> claseLista = clasesDisponibles.ToList<Object>();
+
+                return claseLista;
             }
         }
 
-        /*
-         * Obtiene los datos de una clase dado un id
-         * Parametros: 
-         *              pId : id de la clase a buscar
-         * Retorno
-         *              la clase encontrada
-         *              null si no encuentra
-         * */
-        public clase ObtenerClasePorId(int pId)
+
+    /*
+     * Obtiene los datos de una clase dado un id
+     * Parametros: 
+     *              pId : id de la clase a buscar
+     * Retorno
+     *              la clase encontrada
+     *              null si no encuentra
+     * */
+    public clase ObtenerClasePorId(int pId)
         {
             using (var db = new JJSSEntities())
             {
@@ -166,7 +179,7 @@ namespace JJSS_Negocio
          *          "" si esta correcto
          * 
          * */
-        public string modificarClase(int pId, DataTable pHorarios, double pPrecio)
+        public string modificarClase(int pId, DataTable pHorarios, double pPrecio, int pProfe)
         {
             string sReturn = "";
             try
@@ -189,9 +202,10 @@ namespace JJSS_Negocio
                                                 select hor;
                         }
 
-                        //busca la clase y actualiza el precio
+                        //busca la clase y actualiza el precio y profe
                         clase claseEncontrada = db.clase.Find(pId);
                         claseEncontrada.precio = pPrecio;
+                        claseEncontrada.id_profe = pProfe;
                         db.SaveChanges();
 
                         //agrega los nuevos horarios
@@ -272,5 +286,12 @@ namespace JJSS_Negocio
             GestorAcademias gestorAcademias = new GestorAcademias();
             return gestorAcademias.ObtenerAcademias();
         }
+
+        public List<profesor> ObtenerProfesores()
+        {
+            GestorProfesores gestorProfesores = new GestorProfesores();
+            return gestorProfesores.ObtenerProfesores();
+        }
+
     }
 }

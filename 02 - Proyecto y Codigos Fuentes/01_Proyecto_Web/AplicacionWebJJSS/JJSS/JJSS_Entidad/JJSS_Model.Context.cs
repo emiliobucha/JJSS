@@ -52,5 +52,7 @@ namespace JJSS_Entidad
         public virtual DbSet<seguridad_opcion> seguridad_opcion { get; set; }
         public virtual DbSet<seguridad_usuario> seguridad_usuario { get; set; }
         public virtual DbSet<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
+        public virtual DbSet<profesor> profesor { get; set; }
+        public virtual DbSet<profesor_imagen> profesor_imagen { get; set; }
     }
 }

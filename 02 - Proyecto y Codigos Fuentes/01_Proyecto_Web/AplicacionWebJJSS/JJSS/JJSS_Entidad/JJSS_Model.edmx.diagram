@@ -66,6 +66,12 @@
         <AssociationConnector Association="JJSSModel.fk_grupoxopcion_clave_opcion" />
         <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_usuario" />
         <AssociationConnector Association="JJSSModel.FK_alumno_id_usuario" />
+        <EntityTypeShape EntityType="JJSSModel.profesor" Width="1.5" PointX="17.625" PointY="10.375" />
+        <EntityTypeShape EntityType="JJSSModel.profesor_imagen" Width="1.5" PointX="19.875" PointY="11.625" />
+        <AssociationConnector Association="JJSSModel.FK_profesor_id_direccion" />
+        <AssociationConnector Association="JJSSModel.FK_profesor_id_faja" />
+        <AssociationConnector Association="JJSSModel.FK_profesor_id_usuario" />
+        <AssociationConnector Association="JJSSModel.FK_profesorimagen_id_profesor" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

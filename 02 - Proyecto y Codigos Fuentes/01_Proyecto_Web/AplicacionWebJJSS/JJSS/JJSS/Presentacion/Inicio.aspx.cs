@@ -125,7 +125,7 @@ namespace JJSS.Presentacion
         }
         protected void cargarClases()
         {
-            gv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClases();
+            gv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClasesDisponibles();
             gv_clasesDisponibles.DataBind();
         }
 
