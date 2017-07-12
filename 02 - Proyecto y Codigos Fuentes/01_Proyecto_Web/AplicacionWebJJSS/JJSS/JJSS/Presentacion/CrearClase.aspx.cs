@@ -189,6 +189,7 @@ namespace JJSS.Presentacion
                 {
                     estado = true;
                     sReturn = "La clase se actualizó correctamente";
+                    limpiar();
                 }
             }
             else
@@ -201,6 +202,7 @@ namespace JJSS.Presentacion
                 {
                     estado = true;
                     sReturn = "La clase se ha creado exitosamente";
+                    limpiar();
                 }
             }
 
@@ -267,6 +269,11 @@ namespace JJSS.Presentacion
             }
         }
 
+        protected void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+            Response.Redirect("../Presentacion/Inicio.aspx");
+        }
     }
 
 }

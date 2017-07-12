@@ -349,14 +349,17 @@
 
                                 <asp:Button ID="btn_registro" runat="server" CausesValidation="false" CssClass="btn btn-default" OnClick="btn_registro_Click" Text="Volver a registrar" />
 
-                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnSelectedIndexChanged="gvAlumnos_SelectedIndexChanged" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar">
+                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand">
                                     <Columns>
 
-                                        <asp:CommandField HeaderText="Eliminar" SelectText="Eliminar" ShowCancelButton="True" ShowDeleteButton="False" ShowSelectButton="True" />
                                         <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
                                         <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
+                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" />
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" />
                                     </Columns>
+                                    <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
+                                    <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
                                 </asp:GridView>
 
                             </div>

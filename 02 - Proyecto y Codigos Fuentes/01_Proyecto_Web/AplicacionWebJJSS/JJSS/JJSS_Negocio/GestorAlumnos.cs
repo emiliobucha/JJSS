@@ -173,7 +173,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public List<Object> BuscarAlumnoPorApellido(int pDni)
+        public List<Object> BuscarAlumnoPorDni(int pDni)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())

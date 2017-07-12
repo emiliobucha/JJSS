@@ -175,5 +175,72 @@ namespace JJSS_Negocio
         }
 
 
+        /*
+         * Metodo que devuelve un listado con nombre, apellido y dni de todos los profesores
+         * Parametros: pDni: dni del profe a buscar
+         * Retorno: List<Object>
+         * */
+        public List<Object> BuscarProfePorDni(int pDni)
+        {
+            using (var db = new JJSSEntities())
+            {
+                if (pDni == 0)
+                {
+                    var profesores = from profe in db.profesor
+                                     select new
+                                     {
+                                         alu_dni=profe.dni,
+                                         alu_nombre=profe.nombre,
+                                         alu_apellido=profe.apellido
+                                     };
+                    return profesores.ToList<Object>();
+                }
+                else
+                {
+                    var profesores = from profe in db.profesor
+                                     where profe.dni==pDni
+                                     select new
+                                     {
+                                         alu_dni = profe.dni,
+                                         alu_nombre = profe.nombre,
+                                         alu_apellido = profe.apellido
+                                     };
+                    return profesores.ToList<Object>();
+                }
+                
+            }
+        }
+
+        /*Método que permite eliminar profe
+         * 
+         * Parametros: 
+         *              pDni : Entero numero de DNI del profe a eliminar
+         *  Retornos: String
+         *              "" : Transaccion Correcta
+         *              ex.Message : Mensaje de error provocado por una excepción
+         */
+        public string EliminarProfesor(int pDni)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    profesor profeABorrar = ObtenerProfesorPorDNI(pDni);
+                    db.profesor.Attach(profeABorrar);
+                    db.profesor.Remove(profeABorrar);
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
     }
 }

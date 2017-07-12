@@ -35,9 +35,31 @@ namespace JJSS.Presentacion
                 CargarComboFajas();
                 CargarComboCiudades(1);
                 CargarComboProvincias();
+                ViewState["gvAlumnosOrden"] = "dni";
+                gvprofes.AllowPaging = true;
+                gvprofes.AutoGenerateColumns = false;
+                gvprofes.PageSize = 20;
+                CargarGrilla();
+                mostrarPaneles();
             }
 
 
+        }
+
+        protected void mostrarPaneles()
+        {
+            if (Session["profesor"] == null || Session["profesor"].ToString().CompareTo("Registrar") == 0)
+            {
+                pnl_mostrar_profes.Visible = false;
+                pnlFormulario.Visible = true;
+                Session["profesor"] = "profe";
+            }
+            else if (Session["profesor"].ToString().CompareTo("Administrar") == 0)
+            {
+                pnl_mostrar_profes.Visible = true;
+                pnlFormulario.Visible = false;
+                Session["profesor"] = "profe";
+            }
         }
 
         public override void VerifyRenderingInServerForm(Control control)
@@ -120,8 +142,25 @@ namespace JJSS.Presentacion
             int ciudad = int.Parse(ddl_localidad.SelectedValue);
 
             string sReturn = gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, idFaja, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
-            if (sReturn.CompareTo("") == 0) mensaje("Se ha creado el profesor exitosamente", true);
-            else mensaje(sReturn, false);
+            Boolean estado;
+            if (sReturn.CompareTo("") == 0)
+            {
+                sReturn = "Se ha creado el profesor exitosamente";
+                estado = true;
+                //Session["alumnos"] = "Administrar";
+                pnl_mostrar_profes.Visible = true;
+                pnlFormulario.Visible = false;
+                limpiar();
+            }
+            else
+            {
+                estado = false;
+                //Session["alumnos"] = "Registrar";
+                pnl_mostrar_profes.Visible = false;
+                pnlFormulario.Visible = true;
+            }
+            mensaje(sReturn, estado);
+            CargarGrilla();
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -149,7 +188,7 @@ namespace JJSS.Presentacion
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx");
         }
 
         private void limpiar()
@@ -170,34 +209,73 @@ namespace JJSS.Presentacion
             ddl_provincia.SelectedIndex = 0;
         }
 
+        protected void CargarGrilla()
+        {
+            int dni = 0;
+            if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
+
+            gvprofes.DataSource = gestorProfes.BuscarProfePorDni(dni);
+            gvprofes.DataBind();
+        }
+
         protected void btn_ver_profes_Click(object sender, EventArgs e)
         {
-
+            //Session["alumnos"] = "Administrar";
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+            pnl_mostrar_profes.Visible = true;
+            pnlFormulario.Visible = false;
         }
 
         protected void btn_buscar_profe_Click(object sender, EventArgs e)
         {
-
+            CargarGrilla();
+            //Session["alumnos"] = "Administrar";
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+            pnl_mostrar_profes.Visible = true;
+            pnlFormulario.Visible = false;
         }
 
         protected void btn_registro_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void gvprofes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            //Session["alumnos"] = "Registrar";
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+            pnl_mostrar_profes.Visible = false;
+            pnlFormulario.Visible = true;
         }
 
         protected void gvprofes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvprofes.PageIndex = e.NewPageIndex;
+            CargarGrilla();
+            pnlFormulario.Visible = false;
+            pnl_mostrar_profes.Visible = true;
         }
 
-        protected void gvprofes_PageIndexChanged(object sender, EventArgs e)
+        protected void gvprofes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
+            if (e.CommandName.CompareTo("eliminar") == 0)
+            {
+                //if (confirmar("¿Está seguro de eliminar este alumno?") == true) { }
+                int index = Convert.ToInt32(e.CommandArgument);
+                int dni = Convert.ToInt32(gvprofes.DataKeys[index].Value);
+                string sReturn = gestorProfes.EliminarProfesor(dni);
+                Boolean estado = true;
+                if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el profesor correctamente";
+                else estado = false;
+                //Session["alumnos"] = "Administrar";
+                pnl_mostrar_profes.Visible = true;
+                pnlFormulario.Visible = false;
+                mensaje(sReturn, estado);
+                CargarGrilla();
+            }
+            else if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                mensaje("Proximamente", false);
+            }
         }
+
     }
 }
