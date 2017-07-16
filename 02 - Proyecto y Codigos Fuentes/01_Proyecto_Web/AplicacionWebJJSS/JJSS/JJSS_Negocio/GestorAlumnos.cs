@@ -88,6 +88,7 @@ namespace JJSS_Negocio
                     
                     ciudad ciudadElegida = db.ciudad.Find(pIdCiudad);
                     
+                    //+ crear direccion vacia
                     if (pCalle!="" && pNumero != null) //si ingresa direccion
                     {
                         direccion nuevaDireccion;

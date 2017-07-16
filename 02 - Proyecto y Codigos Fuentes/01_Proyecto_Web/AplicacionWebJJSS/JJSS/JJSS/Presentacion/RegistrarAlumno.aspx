@@ -357,6 +357,7 @@
                                         <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:ButtonField CommandName="eliminar" Text="Eliminar" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" />
+                                        <asp:ButtonField CommandName="pago" Text="Registrar pago" />
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />

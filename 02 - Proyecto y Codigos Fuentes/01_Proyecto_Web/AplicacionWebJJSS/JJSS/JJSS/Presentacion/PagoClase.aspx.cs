@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using JJSS_Entidad;
+using JJSS_Negocio;
+
+namespace JJSS.Presentacion
+{
+    public partial class PagoClase : System.Web.UI.Page
+    {
+        private GestorClases gestorClase;
+        private GestorFormaPago gestorFPago;
+        private GestorPagoClase gestorPago;
+        private GestorAlumnos gestorAlumnos;
+        private alumno alu;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            gestorClase = new GestorClases();
+            gestorFPago = new GestorFormaPago();
+            gestorAlumnos = new GestorAlumnos();
+            gestorPago = new GestorPagoClase();
+
+            if (!IsPostBack)
+            {
+                CargarComboClase();
+                CargarComboFormaPago();
+                int dni = int.Parse(Session["PagoClase"].ToString());
+                alu =gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+                lbl_alumno.Text = alu.apellido+", "+alu.nombre;
+            }
+        }
+
+        protected void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+            Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
+        }
+
+        protected void btn_aceptar_Click(object sender, EventArgs e)
+        {
+            decimal monto = decimal.Parse(txt_monto.Text.Replace(".", ","));
+            string mes = ddl_mes.SelectedValue;
+            int idClase = int.Parse(ddl_clase.SelectedValue);
+            int idFormaPago = int.Parse(ddl_forma_pago.SelectedValue);
+            int dni = int.Parse(Session["PagoClase"].ToString());
+            alu = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+
+            string sReturn = gestorPago.registrarPago(alu.id_alumno, idClase, monto, mes, idFormaPago);
+            if (sReturn.CompareTo("") == 0)
+            {
+                mensaje("Se ha registrado el pago exitosamente", true);
+                limpiar();
+            }
+            else mensaje(sReturn, false);
+        }
+
+        protected void limpiar()
+        {
+            txt_monto.Text = "";
+            ddl_clase.SelectedIndex = 0;
+            ddl_forma_pago.SelectedIndex = 0;
+            ddl_mes.SelectedIndex = 0;
+            lbl_alumno.Text = "<Alumno>";
+        }
+
+        private void mensaje(string pMensaje, Boolean pEstado)
+        {
+            // Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
+            if (pEstado == true)
+            {
+                pnl_mensaje_exito.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = pMensaje;
+            }
+            else
+            {
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = true;
+                lbl_error.Text = pMensaje;
+            }
+        }
+
+        protected void CargarComboClase()
+        {
+            //+ que busque solo las clases que esta inscripto ese alumno
+            List<Object> clase = gestorClase.ObtenerClasesDisponibles();
+            ddl_clase.DataSource = clase;
+            ddl_clase.DataTextField = "nombre";
+            ddl_clase.DataValueField = "id_clase";
+            ddl_clase.DataBind();
+        }
+
+        protected void CargarComboFormaPago()
+        {
+            List<forma_pago> formasPago = gestorFPago.ObtenerFormasPago();
+            ddl_forma_pago.DataSource = formasPago;
+            ddl_forma_pago.DataTextField = "nombre";
+            ddl_forma_pago.DataValueField = "id_forma_pago";
+            ddl_forma_pago.DataBind();
+        }
+
+        protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clase claseSelect=gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
+            txt_monto.Text = claseSelect.precio.ToString();
+        }
+    }
+}

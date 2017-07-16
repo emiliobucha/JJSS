@@ -298,6 +298,12 @@ namespace JJSS.Presentacion
             else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
                 mensaje("Proximamente", false);
+            }else if (e.CommandName.CompareTo("pago") == 0)
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int dni = Convert.ToInt32(gvAlumnos.DataKeys[index].Value);
+                Session["PagoClase"] = dni.ToString();
+                Response.Redirect("../Presentacion/PagoClase");
             }
         }
 

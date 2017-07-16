@@ -20,6 +20,7 @@ namespace JJSS_Entidad
             this.participante = new HashSet<participante>();
             this.inscripcion_clase = new HashSet<inscripcion_clase>();
             this.alumno_imagen = new HashSet<alumno_imagen>();
+            this.pago_clase = new HashSet<pago_clase>();
         }
     
         public int id_alumno { get; set; }
@@ -48,5 +49,7 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno_imagen> alumno_imagen { get; set; }
         public virtual seguridad_usuario seguridad_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pago_clase> pago_clase { get; set; }
     }
 }
