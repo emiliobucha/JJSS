@@ -7,6 +7,7 @@
     <a href="#torneos" class="smoothScroll">Torneos</a>
     <a href="#clases" class="smoothScroll">Clases</a>
     <a href="#alumnos" class="smoothScroll">Alumnos</a>
+    <%--<a><asp:LinkButton ID="LinkButton1" runat="server">Cerrar Sesión</asp:LinkButton></a>--%>
 </asp:Content>
 
 <asp:Content ID="InicioEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
@@ -69,6 +70,45 @@
     <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
 
     <form runat="server">
+
+        <!--SECTOR PERFIL -->
+            <section id="perfil" title="clases"></section>
+            <div id="perfilwrap">
+
+                <!--APARTADO DE CLASES DISPONIBLES-->
+                <div class="container">
+                    <div class="row mt centered">
+
+                        <h1>MI PERFIL</h1>
+                        
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row mt centered">
+
+
+                        <!--col crear_nueva_clase-->
+                        <div class="col-lg-4 proc">
+                            <i class="fa fa-pencil" id="modificar_perfil"></i>
+                            <h3><a href="../Presentacion/Perfil.aspx" style="color: #000000">Modificar mi perfil</a></h3>
+                            <p>Permite modificar los datos del usuario.</p>
+                        </div>
+                        <!--/col-->
+
+                    </div>
+                    <!--/row -->
+                </div>
+                <!--/container -->
+            </div>
+            <!--/Portfoliowrap -->
+
+
+            <!-- ABOUT SEPARATOR -->
+            <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
+
+
+
 
         <!--SECTOR TORNEOS -->
         <section id="torneos" title="torneos"></section>

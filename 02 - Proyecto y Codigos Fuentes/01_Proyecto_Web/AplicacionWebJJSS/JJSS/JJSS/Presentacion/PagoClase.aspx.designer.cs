@@ -13,13 +13,13 @@ namespace JJSS.Presentacion {
     public partial class PagoClase {
         
         /// <summary>
-        /// Control formRegAlumno.
+        /// Control formPagoClase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formRegAlumno;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formPagoClase;
         
         /// <summary>
         /// Control pnl_mensaje_exito.

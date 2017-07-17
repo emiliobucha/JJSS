@@ -28,8 +28,7 @@ namespace JJSS_Negocio
         {
             string sReturn="";
             
-            DateTime pFecha = DateTime.Today.Date;
-            string pHora = DateTime.Now.ToString("hh:mm:ss");
+            DateTime pFecha = DateTime.Now;
             using (var db = new JJSSEntities())
             {
                 var transaction = db.Database.BeginTransaction();
@@ -76,8 +75,7 @@ namespace JJSS_Negocio
                         //pago_clase = pagoRegistrado,
                         id_pago_clase= pagoRegistrado.id_pago_clase,
                         monto = pMonto,
-                        fecha=pFecha,
-                        hora= pHora,
+                        fecha_hora=pFecha,
                         mes = pMes,
                         forma_pago=formaSelect
                     };
@@ -113,13 +111,13 @@ namespace JJSS_Negocio
                 var pagoEncontrado = from pago in db.pago_clase
                                      join detalle in db.detalle_pago_clase on pago.id_pago_clase equals detalle.id_pago_clase
                                      where pago.id_alumno == pAlumno && pago.id_clase == pClase && detalle.mes == pMes
-                                     orderby detalle.fecha descending
+                                     orderby detalle.fecha_hora descending
                                      select new
                                      {
                                          alu = pago.id_alumno,
                                          cla = pago.id_clase,
                                          mes = detalle.mes,
-                                         fecha = detalle.fecha
+                                         fecha = detalle.fecha_hora
                                      };
 
                  DataTable dt= modUtilidadesTablas.ToDataTable(pagoEncontrado);

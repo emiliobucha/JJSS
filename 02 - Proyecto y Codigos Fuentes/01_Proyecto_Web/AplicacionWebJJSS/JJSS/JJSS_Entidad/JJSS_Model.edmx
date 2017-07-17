@@ -90,8 +90,7 @@
           <Property Name="id_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_pago_clase" Type="int" />
           <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="fecha" Type="date" />
-          <Property Name="hora" Type="varchar" MaxLength="10" />
+          <Property Name="fecha_hora" Type="date" />
           <Property Name="mes" Type="varchar" MaxLength="20" />
           <Property Name="id_forma_pago" Type="int" />
         </EntityType>
@@ -2200,12 +2199,11 @@
           <Property Name="id_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_pago_clase" Type="Int32" />
           <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="mes" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_forma_pago" Type="Int32" />
           <NavigationProperty Name="forma_pago" Relationship="JJSSModel.FK_detalleclase_id_forma_pago" FromRole="detalle_pago_clase" ToRole="forma_pago" />
           <NavigationProperty Name="pago_clase" Relationship="JJSSModel.FK_detalleclase_id_pago_clase" FromRole="detalle_pago_clase" ToRole="pago_clase" />
+          <Property Name="fecha_hora" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_detalleclase_id_forma_pago">
           <End Type="JJSSModel.forma_pago" Role="forma_pago" Multiplicity="0..1" />
@@ -2585,10 +2583,9 @@
           <EntitySetMapping Name="detalle_pago_clase">
             <EntityTypeMapping TypeName="JJSSModel.detalle_pago_clase">
               <MappingFragment StoreEntitySet="detalle_pago_clase">
+                <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
                 <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
                 <ScalarProperty Name="mes" ColumnName="mes" />
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="id_pago_clase" ColumnName="id_pago_clase" />
                 <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />

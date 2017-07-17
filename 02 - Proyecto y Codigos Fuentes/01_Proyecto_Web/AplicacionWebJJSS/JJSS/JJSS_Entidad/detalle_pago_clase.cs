@@ -17,10 +17,9 @@ namespace JJSS_Entidad
         public int id_detalle { get; set; }
         public Nullable<int> id_pago_clase { get; set; }
         public Nullable<decimal> monto { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public string hora { get; set; }
         public string mes { get; set; }
         public Nullable<int> id_forma_pago { get; set; }
+        public Nullable<System.DateTime> fecha_hora { get; set; }
     
         public virtual forma_pago forma_pago { get; set; }
         public virtual pago_clase pago_clase { get; set; }

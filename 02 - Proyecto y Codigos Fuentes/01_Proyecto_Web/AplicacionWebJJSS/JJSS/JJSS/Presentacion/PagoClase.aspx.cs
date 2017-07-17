@@ -15,7 +15,7 @@ namespace JJSS.Presentacion
         private GestorFormaPago gestorFPago;
         private GestorPagoClase gestorPago;
         private GestorAlumnos gestorAlumnos;
-        private alumno alu;
+        private alumno alumnoElegido;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,8 +29,8 @@ namespace JJSS.Presentacion
                 CargarComboClase();
                 CargarComboFormaPago();
                 int dni = int.Parse(Session["PagoClase"].ToString());
-                alu =gestorAlumnos.ObtenerAlumnoPorDNI(dni);
-                lbl_alumno.Text = alu.apellido+", "+alu.nombre;
+                alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+                lbl_alumno.Text = alumnoElegido.apellido+", "+ alumnoElegido.nombre;
             }
         }
 
@@ -46,16 +46,21 @@ namespace JJSS.Presentacion
             string mes = ddl_mes.SelectedValue;
             int idClase = int.Parse(ddl_clase.SelectedValue);
             int idFormaPago = int.Parse(ddl_forma_pago.SelectedValue);
-            int dni = int.Parse(Session["PagoClase"].ToString());
-            alu = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
-
-            string sReturn = gestorPago.registrarPago(alu.id_alumno, idClase, monto, mes, idFormaPago);
-            if (sReturn.CompareTo("") == 0)
+            int dni;
+            if (int.TryParse(Session["PagoClase"].ToString(), out dni))
             {
-                mensaje("Se ha registrado el pago exitosamente", true);
-                limpiar();
+                alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+
+                string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago);
+                if (sReturn.CompareTo("") == 0)
+                {
+                    mensaje("Se ha registrado el pago exitosamente", true);
+                    limpiar();
+                }
+                else mensaje(sReturn, false);
             }
-            else mensaje(sReturn, false);
+            else mensaje("No hay alumno seleccionado", false);
+            
         }
 
         protected void limpiar()
@@ -64,7 +69,8 @@ namespace JJSS.Presentacion
             ddl_clase.SelectedIndex = 0;
             ddl_forma_pago.SelectedIndex = 0;
             ddl_mes.SelectedIndex = 0;
-            lbl_alumno.Text = "<Alumno>";
+            lbl_alumno.Text = "No hay alumno seleccionado";
+            Session["PagoClase"] = "";
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -86,7 +92,6 @@ namespace JJSS.Presentacion
 
         protected void CargarComboClase()
         {
-            //+ que busque solo las clases que esta inscripto ese alumno
             List<Object> clase = gestorClase.ObtenerClasesDisponibles();
             ddl_clase.DataSource = clase;
             ddl_clase.DataTextField = "nombre";

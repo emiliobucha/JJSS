@@ -7,7 +7,7 @@ using JJSS_Entidad;
 
 namespace JJSS_Negocio
 {
-    class GestorUsuarios
+    public class GestorUsuarios
     {
         public string CambiarClave(string pClave, string pNueva, string pLogin)
         {

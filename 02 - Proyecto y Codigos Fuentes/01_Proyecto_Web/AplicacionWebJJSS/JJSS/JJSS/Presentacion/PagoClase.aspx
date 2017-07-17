@@ -7,8 +7,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
-    <section id="registrarAlumno" title="registrarAlumno"></section>
-    <form id="formRegAlumno" runat="server">
+    <section id="pagoClase" title="pagoClase"></section>
+    <form id="formPagoClase" runat="server">
         <div id="registrowrap">
 
             <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <div class="row centered">
                             <h2>
-                                <asp:Label ID="lbl_alumno" runat="server" Text="Alumno"></asp:Label></h2>
+                                <asp:Label ID="lbl_alumno" runat="server" Text="No hay alumno seleccionado"></asp:Label></h2>
                             <p>&nbsp;</p>
                         </div>
 

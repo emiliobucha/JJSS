@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
+using System.Data;
 
 namespace JJSS_Negocio
 {
@@ -54,8 +55,8 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria, 
-            short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen, 
+        public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria,
+            short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
             string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad)
         {
             string sReturn = "";
@@ -85,11 +86,11 @@ namespace JJSS_Negocio
                         return "Alumno existente";
                     }
                     alumno nuevoAlumno;
-                    
+
                     ciudad ciudadElegida = db.ciudad.Find(pIdCiudad);
-                    
+
                     //+ crear direccion vacia
-                    if (pCalle!="" && pNumero != null) //si ingresa direccion
+                    if (pCalle != "" && pNumero != null) //si ingresa direccion
                     {
                         direccion nuevaDireccion;
                         nuevaDireccion = new direccion()
@@ -137,9 +138,9 @@ namespace JJSS_Negocio
                             seguridad_usuario = usuario
                         };
                     }
-                    
+
                     db.alumno.Add(nuevoAlumno);
-                    
+
                     db.SaveChanges();
                     alumno_imagen nuevoAlumno_imagen = new alumno_imagen()
                     {
@@ -148,7 +149,7 @@ namespace JJSS_Negocio
                     };
                     db.alumno_imagen.Add(nuevoAlumno_imagen);
                     db.SaveChanges();
-                        
+
                     transaction.Commit();
                     return sReturn;
 
@@ -204,7 +205,7 @@ namespace JJSS_Negocio
                                                  };
                         return alumnosPorApellido.ToList<Object>();
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -244,6 +245,64 @@ namespace JJSS_Negocio
                     transaction.Rollback();
                     return ex.Message;
                 }
+            }
+        }
+
+
+        /*
+         * Permite modificar algunos datos de un alumno
+         * Parametros: pNombre : String nombre del alumno
+         *              pApellido : String apellido del alumno
+         *              pDni : Entero numero de DNI del alumno
+         * Retornos: String
+         *              "" : Transaccion Correcta
+         *              ex.Message : Mensaje de error provocado por una excepción
+         * 
+         */
+        public string ModificarAlumno(int pDni, string pNombre, string pApellido)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    //+ se tienen que poder modificar mas datos
+                    //+ que pasa si no encuentra al alumno?
+                    alumno alumnoModificar = ObtenerAlumnoPorDNI(pDni);
+                    alumnoModificar.apellido = pApellido;
+                    alumnoModificar.nombre = pNombre;
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
+
+        /*
+         * Permite obtener los datos de un alumno a partir de su usuario
+         * Parametros: pIdUsuario: entero que representa el id de un usuario
+         * Retornos: alumnoencontrado
+         *          null: si no encuentra ninguno
+         * 
+         */
+        public alumno ObtenerAlumnoPorIdUsuario(int pIdUsuario)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var alumnoEncontrado = from usuario in db.seguridad_usuario
+                                       join alu in db.alumno on usuario.id_usuario equals alu.id_usuario
+                                       where usuario.id_usuario == pIdUsuario
+                                       select alu;
+                //DataTable dt = modUtilidadesTablas.ToDataTable(alumnoEncontrado);
+                //return dt;
+                return alumnoEncontrado.FirstOrDefault();
             }
         }
     }
