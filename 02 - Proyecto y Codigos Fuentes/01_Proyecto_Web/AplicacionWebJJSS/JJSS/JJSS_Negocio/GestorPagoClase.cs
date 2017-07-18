@@ -48,7 +48,7 @@ namespace JJSS_Negocio
                     forma_pago formaSelect = db.forma_pago.Find(pFormaPago);
 
                     // validar que no pago antes esa cuota
-                    if (validarPago(alumnoSelect.id_alumno, pClase, pMes))
+                    if (!validarPago(alumnoSelect.id_alumno, pClase, pMes))
                     {
                         return "Ya se registró este pago";
                     }

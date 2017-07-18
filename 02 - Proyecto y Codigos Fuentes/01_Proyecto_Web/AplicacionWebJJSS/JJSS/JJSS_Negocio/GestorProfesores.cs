@@ -211,6 +211,8 @@ namespace JJSS_Negocio
             }
         }
 
+       
+
         /*Método que permite eliminar profe
          * 
          * Parametros: 
@@ -239,6 +241,141 @@ namespace JJSS_Negocio
                     transaction.Rollback();
                     return ex.Message;
                 }
+            }
+        }
+
+
+        /*
+         * Permite modificar algunos datos de un profesor
+         * Parametros: pNombre : String nombre del profesor
+         *              pApellido : String apellido del profesor
+         *              pDni : Entero numero de DNI del profesor
+         * Retornos: String
+         *              "" : Transaccion Correcta
+         *              ex.Message : Mensaje de error provocado por una excepción
+         * 
+         */
+        public string Modificarprofesor(int pDni, string pNombre, string pApellido)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    //+ se tienen que poder modificar mas datos
+                    
+                    profesor profesorModificar = ObtenerProfesorPorDNI(pDni);
+                    if (profesorModificar == null) return "NO";
+                    profesorModificar.apellido = pApellido;
+                    profesorModificar.nombre = pNombre;
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
+
+        /*
+         * Permite modificar los datos de contacto de un profesor
+         * Parametros: pDni : Entero numero de DNI del profesor
+         *              pTelefono : Entero numero de telefono del profesor
+         *              pMail : String mail del profesor
+         *              pCalle: string calle del profesor
+         *              pnumero: entero nullable numero de la calle
+         *              pdpto: string nombre del departament
+         *              ppido: entero nullable piso del departamentp
+         *              pidciudad: entero que representa el id de la ciudad del profesor
+         *              pTelEmergencia : Entero numero de telefono de emergencia del profesor
+         * Retornos: String
+         *              "" : Transaccion Correcta
+         *              ex.Message : Mensaje de error provocado por una excepción
+         *              NO: no encontro el profesor
+         * 
+         */
+        public string ModificarProfesor(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, int pDni, int pIdCiudad)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    profesor profesorModificar = ObtenerProfesorPorDNI(pDni);
+                    if (profesorModificar == null) return "NO";
+                    profesorModificar.telefono = pTelefono;
+                    profesorModificar.telefono_emergencia = pTelUrgencia;
+                    profesorModificar.mail = pMail;
+
+                    //busco la direccion 
+                    var direccionProfesor = from dir in db.direccion
+                                          join alu in db.profesor on dir.id_direccion equals alu.id_direccion
+                                          where alu.dni == pDni
+                                          select dir;
+
+                    direccion direccionModificar = direccionProfesor.FirstOrDefault();
+
+                    if (direccionModificar == null)//no tenia direccion direccion
+                    {
+                        if (pCalle.CompareTo("") != 0 && pNumero != null) //cargo una direcicon, entonces creo una
+                        {
+                            direccion nuevaDireccion;
+                            nuevaDireccion = new direccion
+                            {
+                                calle1 = pCalle,
+                                departamento = pDepto,
+                                numero = pNumero,
+                                piso = pPiso,
+                                id_ciudad = pIdCiudad
+
+                            };
+                            db.direccion.Add(nuevaDireccion);
+                            profesorModificar.direccion = nuevaDireccion;
+                        }
+                    }
+                    else //tenia direccion, entonces la modifico
+                    {
+                        direccionModificar.calle1 = pCalle;
+                        direccionModificar.departamento = pDepto;
+                        direccionModificar.numero = pNumero;
+                        direccionModificar.piso = pPiso;
+                        direccionModificar.id_ciudad = pIdCiudad;
+                    }
+
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
+        /*
+         * Permite obtener los datos de un profesor a partir de su usuario
+         * Parametros: pIdUsuario: entero que representa el id de un usuario
+         * Retornos: profesorencontrado
+         *          null: si no encuentra ninguno
+         * 
+         */
+        public profesor ObtenerProfesorPorIdUsuario(int pIdUsuario)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var profesorEncontrado = from usuario in db.seguridad_usuario
+                                       join alu in db.profesor on usuario.id_usuario equals alu.id_usuario
+                                       where usuario.id_usuario == pIdUsuario
+                                       select alu;
+                return profesorEncontrado.FirstOrDefault();
             }
         }
 

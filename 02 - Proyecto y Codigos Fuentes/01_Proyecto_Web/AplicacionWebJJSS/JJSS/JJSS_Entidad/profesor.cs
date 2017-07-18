@@ -26,12 +26,12 @@ namespace JJSS_Entidad
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
         public Nullable<int> id_faja { get; set; }
         public Nullable<short> sexo { get; set; }
-        public Nullable<int> dni { get; set; }
-        public Nullable<long> telefono { get; set; }
+        public int dni { get; set; }
+        public long telefono { get; set; }
         public string mail { get; set; }
-        public Nullable<long> telefono_emergencia { get; set; }
+        public long telefono_emergencia { get; set; }
         public Nullable<int> id_usuario { get; set; }
-        public Nullable<System.DateTime> fecha_ingreso { get; set; }
+        public System.DateTime fecha_ingreso { get; set; }
         public Nullable<int> id_direccion { get; set; }
     
         public virtual direccion direccion { get; set; }

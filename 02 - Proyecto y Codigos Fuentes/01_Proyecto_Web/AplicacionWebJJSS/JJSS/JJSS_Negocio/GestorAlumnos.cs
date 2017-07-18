@@ -46,8 +46,13 @@ namespace JJSS_Negocio
          *              pDni : Entero numero de DNI del alumno
          *              pTelefono : Entero numero de telefono del alumno
          *              pMail : String mail del alumno
-         *              pIdDireccion : Entero id de la direccion del alumno
+         *              pCalle: string calle del alumno
+         *              pnumero: entero nullable numero de la calle
+         *              pdpto: string nombre del departament
+         *              ppido: entero nullable piso del departamentp
+         *              pidciudad: entero que representa el id de la ciudad del alumno
          *              pTelEmergencia : Entero numero de telefono de emergencia del alumno
+         *              pimagen : arregl de bytes que representa la foto de perfil
          *  Retornos: String
          *              "" : Transaccion Correcta
          *              ex.Message : Mensaje de error provocado por una excepción
@@ -250,13 +255,14 @@ namespace JJSS_Negocio
 
 
         /*
-         * Permite modificar algunos datos de un alumno
+         * Permite modificar los datos personales de un alumno
          * Parametros: pNombre : String nombre del alumno
          *              pApellido : String apellido del alumno
          *              pDni : Entero numero de DNI del alumno
          * Retornos: String
          *              "" : Transaccion Correcta
          *              ex.Message : Mensaje de error provocado por una excepción
+         *              NO: no encontro el alumno
          * 
          */
         public string ModificarAlumno(int pDni, string pNombre, string pApellido)
@@ -267,9 +273,8 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    //+ se tienen que poder modificar mas datos
-                    //+ que pasa si no encuentra al alumno?
                     alumno alumnoModificar = ObtenerAlumnoPorDNI(pDni);
+                    if (alumnoModificar == null) return "NO";
                     alumnoModificar.apellido = pApellido;
                     alumnoModificar.nombre = pNombre;
                     db.SaveChanges();
@@ -286,6 +291,84 @@ namespace JJSS_Negocio
 
 
         /*
+         * Permite modificar los datos de contacto de un alumno
+         * Parametros: pDni : Entero numero de DNI del alumno
+         *              pTelefono : Entero numero de telefono del alumno
+         *              pMail : String mail del alumno
+         *              pCalle: string calle del alumno
+         *              pnumero: entero nullable numero de la calle
+         *              pdpto: string nombre del departament
+         *              ppido: entero nullable piso del departamentp
+         *              pidciudad: entero que representa el id de la ciudad del alumno
+         *              pTelEmergencia : Entero numero de telefono de emergencia del alumno
+         * Retornos: String
+         *              "" : Transaccion Correcta
+         *              ex.Message : Mensaje de error provocado por una excepción
+         *              NO: no encontro el alumno
+         * 
+         */
+        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, int pDni, int pIdCiudad)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    alumno alumnoModificar = ObtenerAlumnoPorDNI(pDni);
+                    if (alumnoModificar == null) return "NO";
+                    alumnoModificar.telefono = pTelefono;
+                    alumnoModificar.telefono_emergencia = pTelUrgencia;
+                    alumnoModificar.mail = pMail;
+
+                    //busco la direccion 
+                    var direccionAlumno = from dir in db.direccion
+                                          join alu in db.alumno on dir.id_direccion equals alu.id_direccion
+                                          where alu.dni == pDni 
+                                          select dir;
+                    
+                    direccion direccionModificar =direccionAlumno.FirstOrDefault();
+
+                    if (direccionModificar == null)//no tenia direccion direccion
+                    {
+                        if (pCalle.CompareTo("")!=0 && pNumero != null) //cargo una direcicon, entonces creo una
+                        {
+                            direccion nuevaDireccion;
+                            nuevaDireccion = new direccion
+                            {
+                                calle1 = pCalle,
+                                departamento = pDepto,
+                                numero = pNumero,
+                                piso = pPiso,
+                                id_ciudad = pIdCiudad
+                                
+                            };
+                            db.direccion.Add(nuevaDireccion);
+                            alumnoModificar.direccion = nuevaDireccion;
+                        }
+                    }
+                    else //tenia direccion, entonces la modifico
+                    {
+                        direccionModificar.calle1 = pCalle;
+                        direccionModificar.departamento = pDepto;
+                        direccionModificar.numero = pNumero;
+                        direccionModificar.piso = pPiso;
+                        direccionModificar.id_ciudad = pIdCiudad;
+                    }
+                    
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
+        /*
          * Permite obtener los datos de un alumno a partir de su usuario
          * Parametros: pIdUsuario: entero que representa el id de un usuario
          * Retornos: alumnoencontrado
@@ -300,8 +383,6 @@ namespace JJSS_Negocio
                                        join alu in db.alumno on usuario.id_usuario equals alu.id_usuario
                                        where usuario.id_usuario == pIdUsuario
                                        select alu;
-                //DataTable dt = modUtilidadesTablas.ToDataTable(alumnoEncontrado);
-                //return dt;
                 return alumnoEncontrado.FirstOrDefault();
             }
         }
