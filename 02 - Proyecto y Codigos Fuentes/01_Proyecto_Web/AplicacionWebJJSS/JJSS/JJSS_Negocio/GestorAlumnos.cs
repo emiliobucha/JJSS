@@ -344,7 +344,11 @@ namespace JJSS_Negocio
                                 
                             };
                             db.direccion.Add(nuevaDireccion);
-                            alumnoModificar.direccion = nuevaDireccion;
+                            
+                            //alumnoModificar.direccion = nuevaDireccion;
+                            alumnoModificar.id_direccion = nuevaDireccion.id_direccion;
+                            db.SaveChanges();
+
                         }
                     }
                     else //tenia direccion, entonces la modifico
@@ -384,6 +388,33 @@ namespace JJSS_Negocio
                                        where usuario.id_usuario == pIdUsuario
                                        select alu;
                 return alumnoEncontrado.FirstOrDefault();
+            }
+        }
+
+        /*
+         * Permite obtener la direccion de un alumno a partir del id alumno
+         * Parametros: pIdUsuario: entero que representa el id de un usuario
+         * Retornos: alumnoencontrado
+         *          null: si no encuentra ninguno
+         * 
+         */
+        public DataTable ObtenerDireccionAlumno(int pIdAlumno)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var direccionEncontrada = from dir in db.direccion
+                                          join alu in db.alumno on dir.id_direccion equals alu.id_direccion
+                                          join ciu in db.ciudad on dir.id_ciudad equals ciu.id_ciudad
+                                          where alu.id_alumno == pIdAlumno
+                                          select new {
+                                              calle = dir.calle1,
+                                              numero = dir.numero,
+                                              depto = dir.departamento,
+                                              piso= dir.piso,
+                                              idCiudad=dir.id_ciudad,
+                                              idProvincia=ciu.id_provincia
+                                          };
+                return modUtilidadesTablas.ToDataTable(direccionEncontrada.ToList());
             }
         }
     }

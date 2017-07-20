@@ -65,42 +65,54 @@ namespace JJSS.Presentacion
             {
                 profesor profeEncontrado = gestorProfe.ObtenerProfesorPorIdUsuario(id_usuario);
                 if (profeEncontrado == null) mensaje("No se encontró el usuario o es admin", false); //no existe o es admin
+                else
+                {
+                    DataTable direccionEncontrada = gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
 
-                txt_dni.Text = profeEncontrado.dni.ToString();
-                txt_nombre.Text = profeEncontrado.nombre;
-                txt_apellido.Text = profeEncontrado.apellido;
-                txt_email.Text = profeEncontrado.mail;
-                txt_telefono.Text = profeEncontrado.telefono.ToString();
-                txt_telefono_urgencia.Text = profeEncontrado.telefono_emergencia.ToString();
-                //+Rever direccion
-                //if (profeEncontrado.direccion != null)
-                //{
-                //    txt_calle.Text = profeEncontrado.direccion.calle1;
-                //    txt_nro_dpto.Text = profeEncontrado.direccion.departamento.ToString();
-                //    txt_numero.Text = profeEncontrado.direccion.numero.ToString();
-                //    txt_piso.Text = profeEncontrado.direccion.piso.ToString();
-                //    ddl_localidad.SelectedValue = profeEncontrado.direccion.id_ciudad.ToString();
-                //    ddl_provincia.SelectedValue = profeEncontrado.direccion.ciudad.id_provincia.ToString();
-                //}
+                    txt_dni.Text = profeEncontrado.dni.ToString();
+                    txt_nombre.Text = profeEncontrado.nombre;
+                    txt_apellido.Text = profeEncontrado.apellido;
+                    txt_email.Text = profeEncontrado.mail;
+                    txt_telefono.Text = profeEncontrado.telefono.ToString();
+                    txt_telefono_urgencia.Text = profeEncontrado.telefono_emergencia.ToString();
+                    if (direccionEncontrada.Rows.Count > 0)
+                    {
+                        DataRow row = direccionEncontrada.Rows[0];
+                        txt_calle.Text = row["calle"].ToString();
+                        txt_nro_dpto.Text = row["depto"].ToString();
+                        txt_numero.Text = row["numero"].ToString();
+                        txt_piso.Text = row["piso"].ToString();
+                        ddl_localidad.SelectedValue = row["idCiudad"].ToString();
+                        ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                    }
+                }
                 
+
+
             }
             else
             {
+                // busco la direccion
+                DataTable direccionEncontrada= gestorAlumnos.ObtenerDireccionAlumno(alumnoEncontrado.id_alumno);
+                
                 txt_dni.Text = alumnoEncontrado.dni.ToString();
                 txt_nombre.Text = alumnoEncontrado.nombre;
                 txt_apellido.Text = alumnoEncontrado.apellido;
                 txt_email.Text = alumnoEncontrado.mail;
                 txt_telefono.Text = alumnoEncontrado.telefono.ToString();
                 txt_telefono_urgencia.Text = alumnoEncontrado.telefono_emergencia.ToString();
-                //if (alumnoEncontrado.direccion != null)
-                //{
-                //    txt_calle.Text = alumnoEncontrado.direccion.calle1;
-                //    txt_nro_dpto.Text = alumnoEncontrado.direccion.departamento.ToString();
-                //    txt_numero.Text = alumnoEncontrado.direccion.numero.ToString();
-                //    txt_piso.Text = alumnoEncontrado.direccion.piso.ToString();
-                //    ddl_localidad.SelectedValue = alumnoEncontrado.direccion.id_ciudad.ToString();
-                //    ddl_provincia.SelectedValue = alumnoEncontrado.direccion.ciudad.id_provincia.ToString();
-                //}
+                if (direccionEncontrada.Rows.Count > 0)
+                {
+                    DataRow row = direccionEncontrada.Rows[0];
+                    txt_calle.Text = row["calle"].ToString();
+                    txt_nro_dpto.Text = row["depto"].ToString();
+                    txt_numero.Text = row["numero"].ToString();
+                    txt_piso.Text = row["piso"].ToString();
+                    ddl_localidad.SelectedValue = row["idCiudad"].ToString();
+                    ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                }
+                
+
 
             }
 

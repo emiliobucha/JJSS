@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
+using System.Data;
 
 namespace JJSS_Negocio
 {
@@ -376,6 +377,35 @@ namespace JJSS_Negocio
                                        where usuario.id_usuario == pIdUsuario
                                        select alu;
                 return profesorEncontrado.FirstOrDefault();
+            }
+        }
+
+
+        /*
+         * Permite obtener la direccion de un profesor a partir del id profesor
+         * Parametros: pIdUsuario: entero que representa el id de un profesor
+         * Retornos: datatable con la direccion
+         *          null: si no encuentra ninguno
+         * 
+         */
+        public DataTable ObtenerDireccionProfesor(int pIdProfe)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var direccionEncontrada = from dir in db.direccion
+                                          join pro in db.profesor on dir.id_direccion equals pro.id_direccion
+                                          join ciu in db.ciudad on dir.id_ciudad equals ciu.id_ciudad
+                                          where pro.id_profesor == pIdProfe
+                                          select new
+                                          {
+                                              calle = dir.calle1,
+                                              numero = dir.numero,
+                                              depto = dir.departamento,
+                                              piso = dir.piso,
+                                              idCiudad = dir.id_ciudad,
+                                              idProvincia = ciu.id_provincia
+                                          };
+                return modUtilidadesTablas.ToDataTable(direccionEncontrada.ToList());
             }
         }
 

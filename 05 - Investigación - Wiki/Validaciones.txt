@@ -19,3 +19,6 @@
 
 ------------------- Hora
 <asp:RegularExpressionValidator ID="regex_horadesde" runat="server" ControlToValidate="txt_horadesde" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido" ValidationExpression="^([0-1][0-9])|([2][0-4])\:[0-5][0-9]$"></asp:RegularExpressionValidator>
+
+------------------- Summary
+<asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="false" ShowSummary="true" EnableClientScript="true" CssClass="text-danger" BorderStyle="Double" ValidationGroup="vgAlumnos" HeaderText="Se han producido los siguientes errores:" />

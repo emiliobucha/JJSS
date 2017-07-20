@@ -207,17 +207,17 @@
             <PropertyRef Name="id_profesor" />
           </Key>
           <Property Name="id_profesor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-          <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="date" />
           <Property Name="id_faja" Type="int" />
           <Property Name="sexo" Type="smallint" />
-          <Property Name="dni" Type="int" />
-          <Property Name="telefono" Type="bigint" />
-          <Property Name="mail" Type="nvarchar" MaxLength="80" />
-          <Property Name="telefono_emergencia" Type="bigint" />
+          <Property Name="dni" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="bigint" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="telefono_emergencia" Type="bigint" Nullable="false" />
           <Property Name="id_usuario" Type="int" />
-          <Property Name="fecha_ingreso" Type="date" />
+          <Property Name="fecha_ingreso" Type="date" Nullable="false" />
           <Property Name="id_direccion" Type="int" />
         </EntityType>
         <EntityType Name="profesor_imagen">
@@ -2073,17 +2073,17 @@
             <PropertyRef Name="id_profesor" />
           </Key>
           <Property Name="id_profesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
           <Property Name="id_faja" Type="Int32" />
           <Property Name="sexo" Type="Int16" />
-          <Property Name="dni" Type="Int32" />
-          <Property Name="telefono" Type="Int64" />
-          <Property Name="mail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Name="telefono_emergencia" Type="Int64" />
+          <Property Name="dni" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="Int64" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefono_emergencia" Type="Int64" Nullable="false" />
           <Property Name="id_usuario" Type="Int32" />
-          <Property Name="fecha_ingreso" Type="DateTime" Precision="0" />
+          <Property Name="fecha_ingreso" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="id_direccion" Type="Int32" />
           <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_profesor_id_direccion" FromRole="profesor" ToRole="direccion" />
           <NavigationProperty Name="faja" Relationship="JJSSModel.FK_profesor_id_faja" FromRole="profesor" ToRole="faja" />

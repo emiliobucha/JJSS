@@ -39,6 +39,14 @@ namespace JJSS_Negocio
             }
         }
 
+
+        /*
+         * Metodo que permite iniciar una sesion
+         * Parametros:  pClave : string clave del usuario
+         *              pLogin : string nombre de usuario
+         * Retornos: Sesion : sesion activa
+         * 
+         */
         public Sesion IniciarSesion(string pLogin, string pClave)
         {
             Sesion sesionAux = new Sesion();
@@ -116,11 +124,22 @@ namespace JJSS_Negocio
             return sesionAux;
         }
 
+
+        /*
+         * Metodo que permite cerrar una sesion
+         * 
+         */
         public void CerrarSesion()
         {
             xSesion = new Sesion();
         }
 
+
+        /*
+         * Metodo que permite obtener la sesion actual
+         * Retornos: xSesion : sesion activa
+         * 
+         */
         public Sesion getActual()
         {
             if (xSesion == null)
@@ -132,6 +151,13 @@ namespace JJSS_Negocio
 
 
         }
+
+
+        /*
+         * Metodo que permite cambiar la sesion actual
+         * Parametros: pSeg : nueva sesion
+         * 
+         */
         public void setActual(Sesion pSeg)
         {
             xSesion = pSeg;

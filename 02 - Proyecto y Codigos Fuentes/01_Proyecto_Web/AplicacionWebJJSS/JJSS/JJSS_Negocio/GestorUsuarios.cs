@@ -9,6 +9,18 @@ namespace JJSS_Negocio
 {
     public class GestorUsuarios
     {
+
+        /*
+         * Metodo que permite cambiar al clave de un usuario
+         * Parametros:  pClave : string clave antigua
+         *              pNueva : string clave nueva
+         *              pLogin : string nombre de usuario
+         * Retornos: string
+         *          "": transaccion correcta
+         *          Usuario y/o clave anteriores incorrectas
+         *          ex.Message : error en la BD
+         * 
+         */
         public string CambiarClave(string pClave, string pNueva, string pLogin)
         {
             String sReturn = "";
@@ -47,6 +59,17 @@ namespace JJSS_Negocio
         }
 
         /*
+         * Metodo que permite generar un usuario
+         * Parametros:  pClave : string clave del usuario
+         *              pGrupo : grupo de usuario al que va a pertenecer
+         *              pLogin : string nombre de usuario
+         *              pMail : mail del usuario
+         *              pNombre : nombre y apellido del usuario
+         * Retornos: string
+         *          "": transaccion correcta
+         *          ex.Message : error en la BD
+         * 
+         * 
          * Grupos: 
          * 1 Admin
          * 2 Profe
