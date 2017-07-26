@@ -111,8 +111,8 @@
                                 <asp:TextBox ID="txt_monto" runat="server" CssClass="caja2"></asp:TextBox>
                             </div>
                             <div class="col-xs-3">
-                                <asp:RequiredFieldValidator ID="requerido_monro" runat="server" ErrorMessage="Debe ingresar un monto" CssClass="text-danger" Display="Dynamic" ControlToValidate="txt_monto" ValidationGroup="vgRegistrarPago"  Text="*"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="regex_monto" runat="server" ControlToValidate="txt_monto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del monto" Text="*" ValidationGroup="vgRegistrarPago"  ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="requerido_monro" runat="server" ErrorMessage="Debe ingresar un monto" CssClass="text-danger" Display="Dynamic" ControlToValidate="txt_monto" ValidationGroup="vgRegistrarPago"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="regex_monto" runat="server" ControlToValidate="txt_monto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del monto" ValidationGroup="vgRegistrarPago"  ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
                             </div>
                         </div>
 
@@ -135,11 +135,6 @@
 
                          <div class="row centered">
                             &nbsp;
-                        </div>
-
-                        <!-- FORMA PAGO-->
-                        <div class="row centered">
-                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="false" ShowSummary="true" EnableClientScript="true" CssClass="text-danger" BorderStyle="Double" ValidationGroup="vgRegistrarPago" HeaderText="Se han producido los siguientes errores:" />
                         </div>
 
                          <div class="row centered">

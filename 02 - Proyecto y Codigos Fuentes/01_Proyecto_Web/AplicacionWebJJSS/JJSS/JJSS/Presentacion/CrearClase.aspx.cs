@@ -79,38 +79,40 @@ namespace JJSS.Presentacion
 
         protected void btn_agregar_Click(object sender, EventArgs e)
         {
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
             dtHorarios = (DataTable)Session["dtHorarios"];
             //dtHorarios = (DataTable)dg_horarios;
 
-
+            //validacion con los horarios en esa clase
             if (dtHorarios.Select("dia = " + ddl_dia.SelectedIndex).Length > 0)
             {
                 if (dtHorarios.Select("dia = " + ddl_dia.SelectedIndex + " and hora_desde <= '" + txt_horadesde.Text + "' and hora_hasta > '" + txt_horadesde.Text + "'").Length > 0)
                 {
-                    mensaje("Ya hay una clase en ese horario",false);
+                    mensaje("Ya hay una clase en ese horario", false);
                     return;
                 }
                 if (dtHorarios.Select("dia = " + ddl_dia.SelectedIndex + " and hora_desde < '" + txt_horahasta.Text + "' and hora_hasta >= '" + txt_horahasta.Text + "'").Length > 0)
                 {
-                    mensaje("Ya hay una clase en ese horario",false);
+                    mensaje("Ya hay una clase en ese horario", false);
                     return;
                 }
             }
+            
+                DataRow drNuevoHorario = dtHorarios.NewRow();
+                drNuevoHorario["nombre_dia"] = ddl_dia.SelectedValue;
+                drNuevoHorario["dia"] = ddl_dia.SelectedIndex;
+                drNuevoHorario["hora_desde"] = txt_horadesde.Text;
+                drNuevoHorario["hora_hasta"] = txt_horahasta.Text;
+                dtHorarios.Rows.Add(drNuevoHorario);
 
-            DataRow drNuevoHorario = dtHorarios.NewRow();
-            drNuevoHorario["nombre_dia"] = ddl_dia.SelectedValue;
-            drNuevoHorario["dia"] = ddl_dia.SelectedIndex;
-            drNuevoHorario["hora_desde"] = txt_horadesde.Text;
-            drNuevoHorario["hora_hasta"] = txt_horahasta.Text;
-            dtHorarios.Rows.Add(drNuevoHorario);
-
-            dtHorarios.AcceptChanges();
-            DataView dv_horarios = dtHorarios.DefaultView;
-            dv_horarios.Sort = "dia asc, hora_desde asc";
-            dg_horarios.DataSource = dv_horarios;
-            dg_horarios.DataBind();
-            Session["dtHorarios"] = dtHorarios;
-
+                dtHorarios.AcceptChanges();
+                DataView dv_horarios = dtHorarios.DefaultView;
+                dv_horarios.Sort = "dia asc, hora_desde asc";
+                dg_horarios.DataSource = dv_horarios;
+                dg_horarios.DataBind();
+                Session["dtHorarios"] = dtHorarios;
+            
         }
 
         private void CargarComboTipos()
@@ -176,36 +178,45 @@ namespace JJSS.Presentacion
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
             gestorClases = new GestorClases();
             string sReturn = "";
             Boolean estado = false;
-            if (Session["clase"] != null)
-            {
-                int idClase = 0;
-                idClase = int.Parse(Session["clase"].ToString());
-                int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
-                sReturn = gestorClases.modificarClase(idClase, (DataTable)Session["dtHorarios"], double.Parse(txt_precio.Text),profe);
-                if (sReturn.CompareTo("") == 0)
-                {
-                    estado = true;
-                    sReturn = "La clase se actualizó correctamente";
-                    limpiar();
-                }
-            }
+
+            //validacion con los horarios de otras clases
+            DataTable dt = (DataTable)Session["dtHorarios"];
+            Boolean bReturn = gestorClases.validarDisponibilidadHorario(dt,int.Parse(ddl_ubicacion.SelectedValue.ToString()));
+            if (bReturn ==false) sReturn= "Hay un horario que se superpone con otra clase";
             else
             {
-                int tipo = int.Parse(ddl_tipo_clase.SelectedValue.ToString());
-                int ubicacion = int.Parse(ddl_ubicacion.SelectedValue.ToString());
-                int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
-                sReturn = gestorClases.GenerarNuevaClase(tipo, Double.Parse(txt_precio.Text), (DataTable)Session["dtHorarios"], txt_nombre.Text, ubicacion, profe);
-                if (sReturn.CompareTo("") == 0)
+                if (Session["clase"] != null)
                 {
-                    estado = true;
-                    sReturn = "La clase se ha creado exitosamente";
-                    limpiar();
+                    int idClase = 0;
+                    idClase = int.Parse(Session["clase"].ToString());
+                    int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
+                    sReturn = gestorClases.modificarClase(idClase, (DataTable)Session["dtHorarios"], double.Parse(txt_precio.Text), profe);
+                    if (sReturn.CompareTo("") == 0)
+                    {
+                        estado = true;
+                        sReturn = "La clase se actualizó correctamente";
+                        limpiar();
+                    }
+                }
+                else
+                {
+                    int tipo = int.Parse(ddl_tipo_clase.SelectedValue.ToString());
+                    int ubicacion = int.Parse(ddl_ubicacion.SelectedValue.ToString());
+                    int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
+                    sReturn = gestorClases.GenerarNuevaClase(tipo, Double.Parse(txt_precio.Text), (DataTable)Session["dtHorarios"], txt_nombre.Text, ubicacion, profe);
+                    if (sReturn.CompareTo("") == 0)
+                    {
+                        estado = true;
+                        sReturn = "La clase se ha creado exitosamente";
+                        limpiar();
+                    }
                 }
             }
-
             mensaje(sReturn,estado);
 
         }
@@ -214,6 +225,8 @@ namespace JJSS.Presentacion
         {
             if (e.CommandName.CompareTo("Eliminar") == 0)
             {
+                pnl_mensaje_error.Visible = false;
+                pnl_mensaje_exito.Visible = false;
                 int horario = Convert.ToInt32(e.CommandArgument);
 
                 dtHorarios = (DataTable)Session["dtHorarios"];
@@ -231,6 +244,8 @@ namespace JJSS.Presentacion
 
         protected void limpiar()
         {
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
             txt_horadesde.Text = "";
             txt_horahasta.Text = "";
             txt_nombre.Text = "";

@@ -137,10 +137,8 @@
                         </div>
                         <div class="col-xs-3">
                             <asp:TextBox ID="txt_telefono" CssClass="caja2" runat="server" placeholder="Ingrese télefono"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el teléfono" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgAlumnos"></asp:RequiredFieldValidator>
-                            <asp:CompareValidator ID="numerico_telefono" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El telefono tiene que ser un valor numérico" Operator="DataTypeCheck" ValidationGroup="vgAlumnos"></asp:CompareValidator>
-                            <asp:CompareValidator ID="mayor_telefono" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El teléfono debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan" ValidationGroup="vgAlumnos"></asp:CompareValidator>
-                            <asp:CompareValidator ID="menor_telefono" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono" Type="Double" ErrorMessage="El teléfono debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan" ValidationGroup="vgAlumnos"></asp:CompareValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el teléfono" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regex_telefono" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                         </div>
                         <div class="col-xs-2">
 
@@ -149,12 +147,9 @@
                         </div>
                         <div class="col-xs-3">
                             <asp:TextBox ID="txt_telefono_urgencia" CssClass="caja2" runat="server" placeholder="Ingrese teléfono en caso de urgencia"></asp:TextBox>
-                        </div>
-                        <div class="col-xs-3">
-                            <asp:RequiredFieldValidator ID="requerido_telemergencia" runat="server" ErrorMessage="Debe ingresar el teléfono de urgencia" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgAlumnos"></asp:RequiredFieldValidator>
-                            <asp:CompareValidator ID="numerico_telemergencia" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El telefono tiene que ser un valor numérico" Operator="DataTypeCheck" ValidationGroup="vgAlumnos"></asp:CompareValidator>
-                            <asp:CompareValidator ID="mayor_telemergencia" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El teléfono de urgencia debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan" ValidationGroup="vgAlumnos"></asp:CompareValidator>
-                            <asp:CompareValidator ID="menor_telemergencia" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_telefono_urgencia" Type="Double" ErrorMessage="El teléfono de urgencia debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan" ValidationGroup="vgAlumnos"></asp:CompareValidator>
+                        
+                            <asp:RequiredFieldValidator ID="requerido_telemergencia" runat="server" ErrorMessage="Debe ingresar el teléfono de urgencia" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                         </div>
                     </div>
 
@@ -171,9 +166,9 @@
                             <asp:TextBox ID="txt_email" class="caja2" runat="server" placeholder="Ingrese e-mail"></asp:TextBox>
                         </div>
                         <div class="col-xs-3">
-                            <asp:RequiredFieldValidator ID="requerido_mail" runat="server" ControlToValidate="txt_email" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe ingresar el mail" ValidationGroup="vgAlumnos"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="caracteres_nombre0" runat="server" ControlToValidate="txt_email" CssClass="text-danger" Display="Dynamic" ErrorMessage="Mail demasiado largo" ValidationExpression="^[\s\S]{0,80}$" ValidationGroup="vgAlumnos"></asp:RegularExpressionValidator>
-                            <asp:RegularExpressionValidator ID="regex_mail" runat="server" ControlToValidate="txt_email" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de mail" ValidationExpression="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" ValidationGroup="vgAlumnos"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="requerido_mail" runat="server" ControlToValidate="txt_email" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe ingresar el mail" ValidationGroup="vgContacto"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="caracteres_nombre0" runat="server" ControlToValidate="txt_email" CssClass="text-danger" Display="Dynamic" ErrorMessage="Mail demasiado largo" ValidationExpression="^[\s\S]{0,80}$" ValidationGroup="vgContacto"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="regex_mail" runat="server" ControlToValidate="txt_email" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de mail" ValidationExpression="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" ValidationGroup="vgContacto"></asp:RegularExpressionValidator>
                         </div>
                     </div>
 
@@ -187,30 +182,28 @@
                         </div>
                         <div class="col-xs-3">
                             <asp:TextBox ID="txt_calle" class="caja2" runat="server" placeholder="Ingrese calle"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="caracteres_calle" runat="server" ControlToValidate="txt_calle" CssClass="text-danger" Display="Dynamic" ErrorMessage="Calle demasiado larga" ValidationExpression="^[\s\S]{0,50}$"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="caracteres_calle" runat="server" ControlToValidate="txt_calle" CssClass="text-danger" Display="Dynamic" ErrorMessage="Calle demasiado larga" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgContacto"></asp:RegularExpressionValidator>
                         </div>
                         <div class="col-xs-1">
                             <label class="pull-right">Numero</label>
                         </div>
                         <div class="col-xs-1">
                             <asp:TextBox ID="txt_numero" class="caja2" runat="server"></asp:TextBox>
-                            <asp:CompareValidator ID="mayor_numero" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_numero" Type="Integer" ErrorMessage="El numéro debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan" ValidationGroup="vgAlumnos"></asp:CompareValidator>
-                            <asp:CompareValidator ID="menor_numero" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_numero" Type="Integer" ErrorMessage="Número demasiado largo" ValueToCompare="2147483647" Operator="LessThan" ValidationGroup="vgAlumnos"></asp:CompareValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_numero" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                         </div>
                         <div class="col-xs-1">
                             <label class="pull-right">Piso</label>
                         </div>
                         <div class="col-xs-1">
                             <asp:TextBox ID="txt_piso" class="caja2" runat="server"></asp:TextBox>
-                            <asp:CompareValidator ID="mayor_piso" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_piso" Type="Integer" ErrorMessage="El piso debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan" ValidationGroup="vgAlumnos"></asp:CompareValidator>
-                            <asp:CompareValidator ID="menor_piso" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_piso" Type="Integer" ErrorMessage="Piso demasiado largo" ValueToCompare="2147483647" Operator="LessThan" ValidationGroup="vgAlumnos"></asp:CompareValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_piso" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                         </div>
                         <div class="col-xs-1">
                             <label class=" pull-right">Dpto</label>
                         </div>
                         <div class="col-xs-1">
                             <asp:TextBox ID="txt_nro_dpto" class="caja2" runat="server"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="caracteres_departamento" runat="server" ControlToValidate="txt_nro_dpto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgAlumnos"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="caracteres_departamento" runat="server" ControlToValidate="txt_nro_dpto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgContacto"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="row centered">

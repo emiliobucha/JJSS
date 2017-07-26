@@ -273,10 +273,15 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    alumno alumnoModificar = ObtenerAlumnoPorDNI(pDni);
+                    var alumnoEncontrado = from alu in db.alumno
+                                           where alu.dni == pDni
+                                           select alu;
+                    alumno alumnoModificar= alumnoEncontrado.FirstOrDefault();
+
                     if (alumnoModificar == null) return "NO";
                     alumnoModificar.apellido = pApellido;
                     alumnoModificar.nombre = pNombre;
+
                     db.SaveChanges();
                     transaction.Commit();
                     return sReturn;
@@ -315,7 +320,11 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    alumno alumnoModificar = ObtenerAlumnoPorDNI(pDni);
+                    var alumnoEncontrado = from alu in db.alumno
+                                           where alu.dni == pDni
+                                           select alu;
+                    alumno alumnoModificar = alumnoEncontrado.FirstOrDefault();
+
                     if (alumnoModificar == null) return "NO";
                     alumnoModificar.telefono = pTelefono;
                     alumnoModificar.telefono_emergencia = pTelUrgencia;

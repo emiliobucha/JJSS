@@ -96,6 +96,22 @@
                         </div>
                         <!--/col-->
 
+                        <!--col crear_nueva_clase-->
+                        <div class="col-lg-4 proc">
+                            <i class="fa fa-pencil" id="cerrar_sesion"></i>
+                            <h3><asp:Button ID="btn_cerrar_sesion" runat="server" Text="Cerrar Sesion" OnClick="btn_cerrar_sesion_Click" /></h3>
+                            
+                            
+                        </div>
+
+                        <!--col crear_nueva_clase-->
+                        <div class="col-lg-4 proc">
+                            <i class="fa fa-pencil" id="iniciar_sesion"></i>
+                            <h3><asp:Button ID="Button1" runat="server" Text="Iniciar Sesion" OnClick="Button1_Click" /></h3>
+                            
+                            
+                        </div>
+
                     </div>
                     <!--/row -->
                 </div>
@@ -636,9 +652,7 @@
                                         <div class="col-xs-5">
                                             <asp:TextBox ID="txt_inscripcionClase_dni" runat="server"></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic" ValidationGroup="inscripcionClase"></asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="formato_dni" runat="server" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ErrorMessage="El DNI debe contener solo valores numéricos" ValidationExpression="^[0-9]*$" ValidationGroup="inscripcionClase"></asp:RegularExpressionValidator>
-                                            <asp:CompareValidator ID="mayor_dni" CssClass="text text-danger" Display="Dynamic"  runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El DNI debe ser un valor mayor a 0" ValueToCompare="0" Operator="GreaterThan" ValidationGroup="inscripcionClase"></asp:CompareValidator>
-                                            <asp:CompareValidator ID="menor_dni" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_inscripcionClase_dni" Type="Integer" ErrorMessage="El dni debe ser un valor menor" ValueToCompare="2147483647" Operator="LessThan" ValidationGroup="inscripcionClase"></asp:CompareValidator>
+                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ValidationGroup="inscripcionClase" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                                         </div>
                                     </div>
 

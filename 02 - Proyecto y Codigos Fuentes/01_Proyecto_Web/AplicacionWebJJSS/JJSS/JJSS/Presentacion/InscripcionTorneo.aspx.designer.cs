@@ -256,22 +256,13 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoDni;
         
         /// <summary>
-        /// Control mayor_dni.
+        /// Control regex_dni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator mayor_dni;
-        
-        /// <summary>
-        /// Control menor_dni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator menor_dni;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_dni;
         
         /// <summary>
         /// Control pnl_Inscripcion.
@@ -373,15 +364,6 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPeso;
         
         /// <summary>
-        /// Control positivoPeso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator positivoPeso;
-        
-        /// <summary>
         /// Control regex_peso.
         /// </summary>
         /// <remarks>
@@ -409,22 +391,13 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoEdad;
         
         /// <summary>
-        /// Control positivoEdad.
+        /// Control RegularExpressionValidator1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator positivoEdad;
-        
-        /// <summary>
-        /// Control maximo_edad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator maximo_edad;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
         /// Control ddl_fajas.
@@ -434,15 +407,6 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_fajas;
-        
-        /// <summary>
-        /// Control ValidationSummary1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
         /// Control btn_aceptar.

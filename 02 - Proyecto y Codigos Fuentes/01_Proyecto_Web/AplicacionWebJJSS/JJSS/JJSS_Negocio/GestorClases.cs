@@ -49,8 +49,8 @@ namespace JJSS_Negocio
                             precio = pPrecio,
                             nombre = pNombre,
                             id_ubicacion = pUbicacion,
-                            id_profe=pProfe,
-                            baja_logica=1 //clase disponible
+                            id_profe = pProfe,
+                            baja_logica = 1 //clase disponible
                         };
 
                         db.clase.Add(nuevaClase);
@@ -63,7 +63,8 @@ namespace JJSS_Negocio
                                 hora_desde = drAux["hora_desde"].ToString(),
                                 hora_hasta = drAux["hora_hasta"].ToString(),
                                 id_clase = nuevaClase.id_clase,
-                                nombre_dia = drAux["nombre_dia"].ToString()
+                                nombre_dia = drAux["nombre_dia"].ToString(),
+                                dia = int.Parse(drAux["dia"].ToString())
 
                             };
 
@@ -139,11 +140,11 @@ namespace JJSS_Negocio
                                         where clases.baja_logica == 1
                                         select new
                                         {
-                                            id_clase=clases.id_clase,
+                                            id_clase = clases.id_clase,
                                             nombre = clases.nombre,
                                             precio = clases.precio,
-                                            tipo_clase=tipo.nombre,
-                                            ubicacion= ubic.nombre,
+                                            tipo_clase = tipo.nombre,
+                                            ubicacion = ubic.nombre,
                                         };
                 List<Object> claseLista = clasesDisponibles.ToList<Object>();
 
@@ -152,15 +153,15 @@ namespace JJSS_Negocio
         }
 
 
-    /*
-     * Obtiene los datos de una clase dado un id
-     * Parametros: 
-     *              pId : id de la clase a buscar
-     * Retorno
-     *              la clase encontrada
-     *              null si no encuentra
-     * */
-    public clase ObtenerClasePorId(int pId)
+        /*
+         * Obtiene los datos de una clase dado un id
+         * Parametros: 
+         *              pId : id de la clase a buscar
+         * Retorno
+         *              la clase encontrada
+         *              null si no encuentra
+         * */
+        public clase ObtenerClasePorId(int pId)
         {
             using (var db = new JJSSEntities())
             {
@@ -193,7 +194,7 @@ namespace JJSS_Negocio
                         var horarioEncontrado = from hor in db.horario
                                                 where hor.id_clase == pId
                                                 select hor;
-                        while (horarioEncontrado.Count()>0)
+                        while (horarioEncontrado.Count() > 0)
                         {
                             db.horario.Remove(horarioEncontrado.First());
                             db.SaveChanges();
@@ -217,7 +218,7 @@ namespace JJSS_Negocio
                                 hora_hasta = drAux["hora_hasta"].ToString(),
                                 id_clase = pId,
                                 nombre_dia = drAux["nombre_dia"].ToString(),
-                                dia= int.Parse(drAux["dia"].ToString())
+                                dia = int.Parse(drAux["dia"].ToString())
                             };
 
                             db.horario.Add(nuevoHorario);
@@ -291,6 +292,48 @@ namespace JJSS_Negocio
         {
             GestorProfesores gestorProfesores = new GestorProfesores();
             return gestorProfesores.ObtenerProfesores();
+        }
+
+        /*
+         * Metodo que valida si existe una clase en el mismo horario que se quiere agregar
+         * Parametros:  pDTHorarios: DataTable contiene los dias y horarios que se quieren agregar
+         *              pIdUbicacion: entero que representa el ID de la ubicacion de la clase
+         * Retornos: boolean    false: ya existe una clase en ese horario
+         *                      true: los horarios estan todos disponibles
+         * 
+         */
+        public Boolean validarDisponibilidadHorario(DataTable pDTHorarios, int pIdUbicacion)
+        {
+            using (var db = new JJSSEntities())
+            {
+
+                for (int j = 0; j < pDTHorarios.Rows.Count; j++)
+                {
+                    int dia = int.Parse(pDTHorarios.Rows[j]["dia"].ToString());
+                    var claseEncontrada = from clase in db.clase
+                                          join hora in db.horario on clase.id_clase equals hora.id_clase
+                                          where clase.id_ubicacion == pIdUbicacion && hora.dia == dia
+                                          select new
+                                          {
+                                              desde = hora.hora_desde,
+                                              hasta = hora.hora_hasta
+                                          };
+
+                    DataTable dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
+                    for (int i = 0; i < dtClases.Rows.Count; i++)
+                    {
+                        DataRow dr = dtClases.Rows[i];
+                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) == 0) return false;
+                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0) return false;
+                        if (dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) == 0) return false;
+                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) > 0) return false;
+                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0) return false;
+
+                    }
+
+                }
+            }
+            return true;
         }
 
     }

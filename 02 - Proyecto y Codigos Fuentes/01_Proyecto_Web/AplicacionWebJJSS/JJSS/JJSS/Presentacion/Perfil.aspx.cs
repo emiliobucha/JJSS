@@ -57,24 +57,55 @@ namespace JJSS.Presentacion
         {
             GestorSesiones gestorSesion = new GestorSesiones();
             seguridad_usuario alumnoActual = gestorSesion.getActual().usuario;
-            int id_usuario = alumnoActual.id_usuario;
-
-
-            alumno alumnoEncontrado = gestorAlumnos.ObtenerAlumnoPorIdUsuario(id_usuario);
-            if (alumnoEncontrado == null) //es un profe
+            if (alumnoActual == null) mensaje("No esta logueado", false);
+            else
             {
-                profesor profeEncontrado = gestorProfe.ObtenerProfesorPorIdUsuario(id_usuario);
-                if (profeEncontrado == null) mensaje("No se encontró el usuario o es admin", false); //no existe o es admin
+
+
+                int id_usuario = alumnoActual.id_usuario;
+
+
+                alumno alumnoEncontrado = gestorAlumnos.ObtenerAlumnoPorIdUsuario(id_usuario);
+                if (alumnoEncontrado == null) //es un profe
+                {
+                    profesor profeEncontrado = gestorProfe.ObtenerProfesorPorIdUsuario(id_usuario);
+                    if (profeEncontrado == null) mensaje("No se encontró el usuario o es admin", false); //no existe o es admin
+                    else
+                    {
+                        DataTable direccionEncontrada = gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
+
+                        txt_dni.Text = profeEncontrado.dni.ToString();
+                        txt_nombre.Text = profeEncontrado.nombre;
+                        txt_apellido.Text = profeEncontrado.apellido;
+                        txt_email.Text = profeEncontrado.mail;
+                        txt_telefono.Text = profeEncontrado.telefono.ToString();
+                        txt_telefono_urgencia.Text = profeEncontrado.telefono_emergencia.ToString();
+                        if (direccionEncontrada.Rows.Count > 0)
+                        {
+                            DataRow row = direccionEncontrada.Rows[0];
+                            txt_calle.Text = row["calle"].ToString();
+                            txt_nro_dpto.Text = row["depto"].ToString();
+                            txt_numero.Text = row["numero"].ToString();
+                            txt_piso.Text = row["piso"].ToString();
+                            ddl_localidad.SelectedValue = row["idCiudad"].ToString();
+                            ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                        }
+                    }
+
+
+
+                }
                 else
                 {
-                    DataTable direccionEncontrada = gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
+                    // busco la direccion
+                    DataTable direccionEncontrada = gestorAlumnos.ObtenerDireccionAlumno(alumnoEncontrado.id_alumno);
 
-                    txt_dni.Text = profeEncontrado.dni.ToString();
-                    txt_nombre.Text = profeEncontrado.nombre;
-                    txt_apellido.Text = profeEncontrado.apellido;
-                    txt_email.Text = profeEncontrado.mail;
-                    txt_telefono.Text = profeEncontrado.telefono.ToString();
-                    txt_telefono_urgencia.Text = profeEncontrado.telefono_emergencia.ToString();
+                    txt_dni.Text = alumnoEncontrado.dni.ToString();
+                    txt_nombre.Text = alumnoEncontrado.nombre;
+                    txt_apellido.Text = alumnoEncontrado.apellido;
+                    txt_email.Text = alumnoEncontrado.mail;
+                    txt_telefono.Text = alumnoEncontrado.telefono.ToString();
+                    txt_telefono_urgencia.Text = alumnoEncontrado.telefono_emergencia.ToString();
                     if (direccionEncontrada.Rows.Count > 0)
                     {
                         DataRow row = direccionEncontrada.Rows[0];
@@ -85,38 +116,13 @@ namespace JJSS.Presentacion
                         ddl_localidad.SelectedValue = row["idCiudad"].ToString();
                         ddl_provincia.SelectedValue = row["idProvincia"].ToString();
                     }
+
+
+
                 }
-                
 
-
+                txt_usuario.Text = alumnoActual.login;
             }
-            else
-            {
-                // busco la direccion
-                DataTable direccionEncontrada= gestorAlumnos.ObtenerDireccionAlumno(alumnoEncontrado.id_alumno);
-                
-                txt_dni.Text = alumnoEncontrado.dni.ToString();
-                txt_nombre.Text = alumnoEncontrado.nombre;
-                txt_apellido.Text = alumnoEncontrado.apellido;
-                txt_email.Text = alumnoEncontrado.mail;
-                txt_telefono.Text = alumnoEncontrado.telefono.ToString();
-                txt_telefono_urgencia.Text = alumnoEncontrado.telefono_emergencia.ToString();
-                if (direccionEncontrada.Rows.Count > 0)
-                {
-                    DataRow row = direccionEncontrada.Rows[0];
-                    txt_calle.Text = row["calle"].ToString();
-                    txt_nro_dpto.Text = row["depto"].ToString();
-                    txt_numero.Text = row["numero"].ToString();
-                    txt_piso.Text = row["piso"].ToString();
-                    ddl_localidad.SelectedValue = row["idCiudad"].ToString();
-                    ddl_provincia.SelectedValue = row["idProvincia"].ToString();
-                }
-                
-
-
-            }
-
-            txt_usuario.Text = alumnoActual.login;
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
@@ -254,25 +260,30 @@ namespace JJSS.Presentacion
         protected void btn_datos_personales_Click(object sender, EventArgs e)
         {
             MultiView1.SetActiveView(view_datos_personales);
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
 
         }
 
         protected void btn_contacto_Click(object sender, EventArgs e)
         {
             MultiView1.SetActiveView(view_contacto);
-
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
         }
 
         protected void btn_pass_Click(object sender, EventArgs e)
         {
             MultiView1.SetActiveView(view_pass);
-
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
         }
 
         protected void btn_foto_perfil_Click(object sender, EventArgs e)
         {
             MultiView1.SetActiveView(view_foto_perfil);
-
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
         }
 
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)

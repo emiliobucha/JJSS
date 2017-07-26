@@ -65,8 +65,8 @@
                                 <asp:TextBox ID="txt_nombre" runat="server" onblur="ValidatorOnChange(event)" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
                             </div>
                             <div class="col-md-3">
-                                <asp:RequiredFieldValidator ID="requeridoNombre" CssClass="text-danger" runat="server" ErrorMessage="Debe ingresar un nombre de torneo" ControlToValidate="txt_nombre" EnableClientScript="false" ValidationGroup="vgTorneo">*</asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgTorneo">*</asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="requeridoNombre" CssClass="text-danger" runat="server" ErrorMessage="Debe ingresar un nombre de torneo" ControlToValidate="txt_nombre" EnableClientScript="false" ValidationGroup="vgTorneo"> </asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
                             </div>
                         </div>
 
@@ -128,8 +128,8 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="col-md-3">
-                                <asp:RequiredFieldValidator ID="rfv_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe ingresar fecha del torneo" ValidationGroup="vgTorneo">*</asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="rev_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de torneo" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo">*</asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="rfv_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe ingresar fecha del torneo" ValidationGroup="vgTorneo"> </asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="rev_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de torneo" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
                             </div>
                         </div>
 
@@ -172,10 +172,10 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="col-md-3">
-                                <asp:RequiredFieldValidator ID="rfv_fecha_cierre" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar fecha de cierre de inscripciones" ControlToValidate="dp_fecha_cierre" ValidationGroup="vgTorneo">*</asp:RequiredFieldValidator>
-                                <asp:CustomValidator ID="val_fechas" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha de cierre de inscripción no puede ser mayor a la fecha de comienzo del torneo" OnServerValidate="val_fechas_ServerValidate" ValidationGroup="vgTorneo">*</asp:CustomValidator>
-                                <asp:CustomValidator ID="val_fecha_actual" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha no puede ser anterior a la actual" OnServerValidate="val_fecha_actual_ServerValidate" ValidationGroup="vgTorneo">*</asp:CustomValidator>
-                                <asp:RegularExpressionValidator ID="rev_fecha_cierre" runat="server" ControlToValidate="dp_fecha_cierre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de cierre" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo">*</asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="rfv_fecha_cierre" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar fecha de cierre de inscripciones" ControlToValidate="dp_fecha_cierre" ValidationGroup="vgTorneo"> </asp:RequiredFieldValidator>
+                                <asp:CustomValidator ID="val_fechas" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha de cierre de inscripción no puede ser mayor a la fecha de comienzo del torneo" OnServerValidate="val_fechas_ServerValidate" ValidationGroup="vgTorneo"> </asp:CustomValidator>
+                                <asp:CustomValidator ID="val_fecha_actual" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha no puede ser anterior a la actual" OnServerValidate="val_fecha_actual_ServerValidate" ValidationGroup="vgTorneo"> </asp:CustomValidator>
+                                <asp:RegularExpressionValidator ID="rev_fecha_cierre" runat="server" ControlToValidate="dp_fecha_cierre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de cierre" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
                             </div>
                         </div>
 
@@ -192,10 +192,8 @@
                                 <asp:TextBox ID="txt_precio_cat" CssClass="form-control" placeholder="Ingrese precio de inscripcion categoria" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-4">
-                                <asp:RequiredFieldValidator ID="requeridoPrecioCat" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de categoría" ControlToValidate="txt_precio_cat" ValidationGroup="vgTorneo">*</asp:RequiredFieldValidator>
-                                <asp:CompareValidator ID="positivoPrecioCat" runat="server" ErrorMessage="El precio debe ser un valor mayor a 0" ControlToValidate="txt_precio_cat" CssClass="text-danger" ValueToCompare="0" Type="Double" Operator="GreaterThan" Display="Dynamic" ValidationGroup="vgTorneo">*</asp:CompareValidator>
-                                <asp:CompareValidator ID="tipoPrecioCat" runat="server" ErrorMessage="El precio debe ser un valor numérico" ControlToValidate="txt_precio_cat" CssClass="text-danger" Type="Double" Operator="DataTypeCheck" Display="Dynamic" ValidationGroup="vgTorneo">*</asp:CompareValidator>
-                                <asp:RegularExpressionValidator ID="regex_peso_cat" runat="server" ControlToValidate="txt_precio_cat" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del precio" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$" ValidationGroup="vgTorneo">*</asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="requeridoPrecioCat" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de categoría" ControlToValidate="txt_precio_cat" ValidationGroup="vgTorneo"> </asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="regex_peso_cat" runat="server" ControlToValidate="txt_precio_cat" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del precio" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
                             </div>
                         </div>
 
@@ -212,11 +210,8 @@
                                 <asp:TextBox ID="txt_precio_abs" CssClass="form-control" placeholder="Ingrese precio de inscripcion absoluta" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-4">
-                                <asp:RequiredFieldValidator ID="requeridoPrecioAbs" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de inscripción absoluta" ControlToValidate="txt_precio_abs" ValidationGroup="vgTorneo">*</asp:RequiredFieldValidator>
-                                <asp:CompareValidator ID="positivoPrecioAbs" runat="server" ErrorMessage="El precio debe ser un valor mayor a 0" ControlToValidate="txt_precio_abs" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" ValidationGroup="vgTorneo">*</asp:CompareValidator>
-                                <asp:CompareValidator ID="tipoPrecioAbs" runat="server" ErrorMessage="El precio debe ser un valor numérico" ControlToValidate="txt_precio_abs" CssClass="text-danger" Type="Double" Operator="DataTypeCheck" Display="Dynamic" ValidationGroup="vgTorneo">*</asp:CompareValidator>
-
-                                <asp:RegularExpressionValidator ID="regex_precio_abs" runat="server" ControlToValidate="txt_precio_abs" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del precio" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$" ValidationGroup="vgTorneo">*</asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="requeridoPrecioAbs" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de inscripción absoluta" ControlToValidate="txt_precio_abs" ValidationGroup="vgTorneo"> </asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="regex_precio_abs" runat="server" ControlToValidate="txt_precio_abs" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del precio" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
 
                             </div>
                         </div>
@@ -251,10 +246,6 @@
 
                         <div class="row centered">
                             <p>&nbsp;</p>
-                        </div>
-
-                        <div class="row centered">
-                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="false" ShowSummary="true" EnableClientScript="true" CssClass="text-danger" BorderStyle="Double" ValidationGroup="vgTorneo" HeaderText="Se han producido los siguientes errores:" />
                         </div>
 
                         <!--Boton-->

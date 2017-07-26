@@ -234,5 +234,16 @@ namespace JJSS.Presentacion
         {
             Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
         }
+
+        protected void btn_cerrar_sesion_Click(object sender, EventArgs e)
+        {
+            GestorSesiones gestorSesion = new GestorSesiones();
+            gestorSesion.CerrarSesion();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Presentacion/Login.aspx");
+        }
     }
 }
