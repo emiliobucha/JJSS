@@ -44,7 +44,8 @@ namespace JJSS.Presentacion
             {
                 cargarTorneosExportarListado();
                 cargarClases();
-                cargarTorneosAbiertos();             
+                cargarTorneosAbiertos();
+                cargarRecarga();
             }
             
 
@@ -140,8 +141,11 @@ namespace JJSS.Presentacion
             Session["alumnos"] = "Administrar";
             Response.Redirect("~/Presentacion/RegistrarAlumno.aspx");
         }
-               
-     
+
+        protected void cargarRecarga()
+        {
+            txt_modal_recarga.Text = "100";
+        }
 
         protected void cargarTorneosExportarListado()
         {
@@ -244,6 +248,16 @@ namespace JJSS.Presentacion
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Presentacion/Login.aspx");
+        }
+
+        protected void btn_modal_recarga_aceptar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnk_gradiacion_alumnos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
