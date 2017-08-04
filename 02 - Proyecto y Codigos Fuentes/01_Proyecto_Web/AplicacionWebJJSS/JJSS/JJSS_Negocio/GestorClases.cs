@@ -336,5 +336,58 @@ namespace JJSS_Negocio
             return true;
         }
 
+        /*
+         * Metodo que devuelve el valor de recargo a pagar segun el dia de inscripcion
+         * Parametros:  pIdClase : entero - id de la clase a la que esta inscripto el alumno
+         *              pIdAlumno : entero - id del alumno
+         * Retorno: double >=0 - representa el valor del recargo 
+         *                  <= no esta inscripto a esa clase
+         * 
+         */
+        public double calcularRecargo(int pIdClase, int pIdAlumno)
+        {
+            inscripcion_clase inscripcionDelAlumno;
+            int diaMaximo = 0;
+            using (var db = new JJSSEntities())
+            {
+                GestorInscripcionesClase ins = new GestorInscripcionesClase();
+                inscripcionDelAlumno = ins.ObtenerAlumnoInscripto(pIdAlumno, pIdClase);
+            }
+            if (inscripcionDelAlumno == null)
+            {
+                return -1;
+            }
+            else
+            {
+                DateTime fechaInscripcion = (DateTime)inscripcionDelAlumno.fecha;
+                
+                if ((fechaInscripcion.Month == 1 || fechaInscripcion.Month == 3 || fechaInscripcion.Month == 5 || fechaInscripcion.Month == 7 || fechaInscripcion.Month == 8 ||
+                    fechaInscripcion.Month == 10 || fechaInscripcion.Month == 12) && fechaInscripcion.Day > 26) //mes tiene 31 dias
+                {
+                    diaMaximo = 5 - (31 - fechaInscripcion.Day);
+                }
+                else if ((fechaInscripcion.Month == 4 || fechaInscripcion.Month == 6 || fechaInscripcion.Month == 9 || fechaInscripcion.Month == 11) && fechaInscripcion.Day > 25)//mes tiene 30 dias
+                {
+                    diaMaximo = 5 - (30 - fechaInscripcion.Day);
+                }
+                else if (fechaInscripcion.Month == 2 && fechaInscripcion.Day > 23) //mes tiene 28 dias
+                {
+                    diaMaximo = 5 - (28 - fechaInscripcion.Day);
+                }
+                else
+                {
+                    diaMaximo = fechaInscripcion.Day + 5;
+                }
+
+                if (diaMaximo < DateTime.Today.Day) // se cobra recargo
+                {
+                    //+de donde saco el monto recargo?
+                    return 100;
+                }
+            }
+
+            return 0;
+        }
+
     }
 }

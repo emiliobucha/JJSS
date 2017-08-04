@@ -111,7 +111,13 @@ namespace JJSS.Presentacion
         protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
         {
             clase claseSelect=gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
-            txt_monto.Text = claseSelect.precio.ToString();
+            int dni;
+            int.TryParse(Session["PagoClase"].ToString(), out dni);
+            alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+            double recargo = gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno)+ (double)claseSelect.precio;
+            if (recargo == -1) mensaje("El alumno no está inscripto a esa clase", false);
+            else txt_monto.Text =  recargo.ToString();
+
         }
     }
 }
