@@ -12,17 +12,10 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class detalle_pago_clase
+    public partial class parametro
     {
-        public int id_detalle { get; set; }
-        public Nullable<int> id_pago_clase { get; set; }
-        public Nullable<decimal> monto { get; set; }
-        public string mes { get; set; }
-        public int id_forma_pago { get; set; }
-        public Nullable<System.DateTime> fecha_hora { get; set; }
-        public Nullable<short> recargo { get; set; }
-    
-        public virtual pago_clase pago_clase { get; set; }
-        public virtual forma_pago forma_pago { get; set; }
+        public int id_parametro { get; set; }
+        public string nombre { get; set; }
+        public decimal valor { get; set; }
     }
 }

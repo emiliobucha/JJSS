@@ -24,7 +24,7 @@ namespace JJSS_Negocio
          *              El alumno no está inscripto a esa clase
          *              Ya se registró este pago
          */
-        public string registrarPago(int pAlumno, int pClase, decimal pMonto, string pMes, int pFormaPago)
+        public string registrarPago(int pAlumno, int pClase, decimal pMonto, string pMes, int pFormaPago, short pPagoRecargo)
         {
             string sReturn="";
             
@@ -77,7 +77,8 @@ namespace JJSS_Negocio
                         monto = pMonto,
                         fecha_hora=pFecha,
                         mes = pMes,
-                        forma_pago=formaSelect
+                        forma_pago=formaSelect,
+                        recargo=pPagoRecargo
                     };
                     db.detalle_pago_clase.Add(nuevoDetalle);
 

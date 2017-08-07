@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data;
 using System.Data.Linq;
 using System.Configuration;
+using System.Globalization;
 
 namespace JJSS_Negocio
 {
@@ -348,10 +349,13 @@ namespace JJSS_Negocio
         {
             inscripcion_clase inscripcionDelAlumno;
             int diaMaximo = 0;
+            double recargo = 0;
             using (var db = new JJSSEntities())
             {
                 GestorInscripcionesClase ins = new GestorInscripcionesClase();
                 inscripcionDelAlumno = ins.ObtenerAlumnoInscripto(pIdAlumno, pIdClase);
+                var recargoParametro = db.parametro.Find(1);
+                recargo = (double)recargoParametro.valor;
             }
             if (inscripcionDelAlumno == null)
             {
@@ -381,13 +385,68 @@ namespace JJSS_Negocio
 
                 if (diaMaximo < DateTime.Today.Day) // se cobra recargo
                 {
-                    //+de donde saco el monto recargo?
-                    return 100;
+                    return recargo;
                 }
             }
 
             return 0;
         }
 
+        public int buscarClaseSegunHoraActual(int pIdUbicacion) 
+        {
+            string horaActual = DateTime.Now.ToShortTimeString();
+            CultureInfo ci = new CultureInfo("Es-Es");
+            string nombreDia=ci.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+
+            DataTable dtClases;
+
+            using (var db = new JJSSEntities())
+            {
+                var claseEncontrada = from clase in db.clase
+                                      join horario in db.horario on clase.id_clase equals horario.id_clase
+                                      where clase.id_ubicacion == pIdUbicacion
+                                      && horario.nombre_dia == nombreDia
+                                      select new
+                                      {
+                                          idClase=clase.id_clase,
+                                          dia=horario.nombre_dia,
+                                          desde=horario.hora_desde,
+                                          hasta=horario.hora_hasta
+                                      };
+                dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
+            }
+
+            for (int i = 0; i < dtClases.Rows.Count; i++)
+            {
+                DataRow dr = dtClases.Rows[i];
+                
+                if (dr["desde"].ToString().CompareTo(horaActual) <= 0 && dr["hasta"].ToString().CompareTo(horaActual) >= 0) return int.Parse(dr["idClase"].ToString());
+            }
+
+
+            return 0;
+        }
+
     }
 }
+//int dia = int.Parse(pDTHorarios.Rows[j]["dia"].ToString());
+//var claseEncontrada = from clase in db.clase
+//                      join hora in db.horario on clase.id_clase equals hora.id_clase
+//                      where clase.id_ubicacion == pIdUbicacion && hora.dia == dia
+//                      select new
+//                      {
+//                          desde = hora.hora_desde,
+//                          hasta = hora.hora_hasta
+//                      };
+
+//DataTable dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
+//                    for (int i = 0; i<dtClases.Rows.Count; i++)
+//                    {
+//                        DataRow dr = dtClases.Rows[i];
+//                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) == 0) return false;
+//                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0) return false;
+//                        if (dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) == 0) return false;
+//                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) > 0) return false;
+//                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0) return false;
+
+//                    }

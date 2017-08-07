@@ -16,6 +16,7 @@ namespace JJSS.Presentacion
         private GestorPagoClase gestorPago;
         private GestorAlumnos gestorAlumnos;
         private alumno alumnoElegido;
+        private short pagoRecargo=0; //si es 0 no pago recargo, si es 1 si lo pago
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +52,7 @@ namespace JJSS.Presentacion
             {
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
 
-                string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago);
+                string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago,pagoRecargo);
                 if (sReturn.CompareTo("") == 0)
                 {
                     mensaje("Se ha registrado el pago exitosamente", true);
@@ -71,6 +72,7 @@ namespace JJSS.Presentacion
             ddl_mes.SelectedIndex = 0;
             lbl_alumno.Text = "No hay alumno seleccionado";
             Session["PagoClase"] = "";
+            pagoRecargo = 0;
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -110,14 +112,39 @@ namespace JJSS.Presentacion
 
         protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clase claseSelect=gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
+            clase claseSelect = gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
             int dni;
             int.TryParse(Session["PagoClase"].ToString(), out dni);
             alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
-            double recargo = gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno)+ (double)claseSelect.precio;
+
+            double recargo = gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno);
             if (recargo == -1) mensaje("El alumno no está inscripto a esa clase", false);
-            else txt_monto.Text =  recargo.ToString();
+            else
+            {
+                double monto = recargo + (double)claseSelect.precio;
+                txt_monto.Text = monto.ToString();
+            }
+            if (recargo > 0) pagoRecargo = 1;
 
         }
+
+        //protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    clase claseSelect=gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
+        //    int dni;
+        //    int.TryParse(Session["PagoClase"].ToString(), out dni);
+        //    alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+
+        //    double recargo = gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno);
+        //    if (recargo == -1) mensaje("El alumno no está inscripto a esa clase", false);
+        //    else
+        //    {
+        //        double monto = recargo + (double) claseSelect.precio;
+        //        txt_monto.Text = monto.ToString();
+        //    }
+        //    if (recargo > 0) pagoRecargo = 1; 
+
+
+        //}
     }
 }

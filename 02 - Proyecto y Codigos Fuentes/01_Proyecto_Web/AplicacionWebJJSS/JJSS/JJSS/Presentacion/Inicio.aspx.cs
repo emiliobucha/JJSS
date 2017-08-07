@@ -17,6 +17,7 @@ namespace JJSS.Presentacion
         private GestorInscripcionesClase gestorInscripcionClase;
         private torneo torneoSeleccionado;
         private int? idAlumno=null;
+        private GestorParametro gestorParametro;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -252,12 +253,21 @@ namespace JJSS.Presentacion
 
         protected void btn_modal_recarga_aceptar_Click(object sender, EventArgs e)
         {
-
+            gestorParametro = new GestorParametro();
+            string mensaje =gestorParametro.modificarParametro(1, decimal.Parse(txt_modal_recarga.Text));
+            if (mensaje.CompareTo("") == 0) mensaje = "Se actualizó exitosamente";
+            Response.Write("<script>window.alert('" + mensaje + "');</script>");
         }
 
         protected void lnk_gradiacion_alumnos_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            GestorAsistencia ga = new GestorAsistencia();
+            ga.buscarClaseSegunHoraActual(2);
         }
     }
 }
