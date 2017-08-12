@@ -98,21 +98,37 @@ namespace JJSS_Negocio
         /*
          * Obtener inscripcion de un alumno a una clase
          * Parametros:
-         *              pID: entero que representa el id del alumno
+         *              pIDAlumno: entero que representa el id del alumno
          *              pIDClase: entero que representa el id de la clase 
          * Retornos:Inscripcion_clase
          *          Inscripcion del alumno a dicha clase pudiendo ser nulo el resultado si no estaba inscripto
          *              
          */
-        public inscripcion_clase ObtenerAlumnoInscripto(int pID,int pIDClase)
+        public inscripcion_clase ObtenerAlumnoInscripto(int pIDAlumno,int pIDClase)
         {
             using (var db = new JJSSEntities())
             {
                 var inscripcion = from ic in db.inscripcion_clase
                                   where ic.id_clase == pIDClase &&
-                                         ic.id_alumno == pID
+                                         ic.id_alumno == pIDAlumno
                                   select ic;
                 return inscripcion.FirstOrDefault();
+            }
+        }
+
+        public Boolean ValidarTipoClaseAlumno(int pIdAlumno, int pIdTipoClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var tipoClase = from alu in db.alumno
+                          join ins in db.inscripcion_clase on alu.id_alumno equals ins.id_alumno
+                          join clase in db.clase on ins.id_clase equals clase.id_clase
+                          join tipo in db.tipo_clase on clase.id_tipo_clase equals tipo.id_tipo_clase
+                          where (alu.id_alumno == pIdAlumno) && (tipo.id_tipo_clase == pIdTipoClase)
+                          select tipo;
+
+                if (tipoClase.ToList() == null) return false;
+                else return true;
             }
         }
     }

@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="JJSSModel.estado" Width="1.5" PointX="3.75" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.faja" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.inscripcion" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.lucha" Width="1.5" PointX="11.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.lucha" Width="1.5" PointX="14.5" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.pais" Width="1.5" PointX="3.75" PointY="21" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.resultado" Width="1.5" PointX="16.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.sede" Width="1.5" PointX="3.75" PointY="16.25" IsExpanded="true" />
@@ -72,13 +72,17 @@
         <AssociationConnector Association="JJSSModel.FK_profesor_id_faja" />
         <AssociationConnector Association="JJSSModel.FK_profesor_id_usuario" />
         <AssociationConnector Association="JJSSModel.FK_profesorimagen_id_profesor" />
-        <EntityTypeShape EntityType="JJSSModel.forma_pago" Width="1.5" PointX="10.5" PointY="0.5" />
         <EntityTypeShape EntityType="JJSSModel.pago_clase" Width="1.5" PointX="11.375" PointY="2.625" />
         <AssociationConnector Association="JJSSModel.FK_pagoclase_id_alumno" />
         <AssociationConnector Association="JJSSModel.FK_pagoclase_id_clase" />
         <EntityTypeShape EntityType="JJSSModel.detalle_pago_clase" Width="1.5" PointX="13.625" PointY="1.25" />
-        <AssociationConnector Association="JJSSModel.FK_detalleclase_id_forma_pago" />
         <AssociationConnector Association="JJSSModel.FK_detalleclase_id_pago_clase" />
+        <EntityTypeShape EntityType="JJSSModel.forma_pago" Width="1.5" PointX="8.375" PointY="0.875" />
+        <AssociationConnector Association="JJSSModel.FK_detalleclase_id_forma_pago" />
+        <EntityTypeShape EntityType="JJSSModel.parametro" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="JJSSModel.asistencia_clase" Width="1.5" PointX="12" PointY="6.125" />
+        <AssociationConnector Association="JJSSModel.FK_asistencia_alumno" />
+        <AssociationConnector Association="JJSSModel.FK_asistencia_tipoclase" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -42,6 +42,15 @@
           <Property Name="imagen" Type="binary" MaxLength="8000" />
           <Property Name="id_alumnoimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="asistencia_clase">
+          <Key>
+            <PropertyRef Name="id_asistencia" />
+          </Key>
+          <Property Name="id_asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_hora" Type="datetime" Nullable="false" />
+          <Property Name="id_tipo_clase" Type="int" Nullable="false" />
+          <Property Name="id_alumno" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -92,7 +101,8 @@
           <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
           <Property Name="fecha_hora" Type="date" />
           <Property Name="mes" Type="varchar" MaxLength="20" />
-          <Property Name="id_forma_pago" Type="int" />
+          <Property Name="id_forma_pago" Type="int" Nullable="false" />
+          <Property Name="recargo" Type="smallint" />
         </EntityType>
         <EntityType Name="direccion">
           <Key>
@@ -187,6 +197,14 @@
           </Key>
           <Property Name="nombre" Type="nvarchar" MaxLength="30" />
           <Property Name="id_pais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parametro">
+          <Key>
+            <PropertyRef Name="id_parametro" />
+          </Key>
+          <Property Name="id_parametro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="40" />
+          <Property Name="valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="participante">
           <Key>
@@ -632,6 +650,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_asistencia_alumno">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+          <End Role="asistencia_clase" Type="Self.asistencia_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="id_alumno" />
+            </Principal>
+            <Dependent Role="asistencia_clase">
+              <PropertyRef Name="id_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_asistencia_tipoclase">
+          <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="1" />
+          <End Role="asistencia_clase" Type="Self.asistencia_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Principal>
+            <Dependent Role="asistencia_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ciudad_id_provincia">
           <End Role="provincia" Type="Self.provincia" Multiplicity="0..1" />
           <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
@@ -669,7 +711,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_detalleclase_id_forma_pago">
-          <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="0..1" />
+          <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="1" />
           <End Role="detalle_pago_clase" Type="Self.detalle_pago_clase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="forma_pago">
@@ -886,6 +928,7 @@
           <EntitySet Name="academia" EntityType="Self.academia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno_imagen" EntityType="Self.alumno_imagen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="asistencia_clase" EntityType="Self.asistencia_clase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categoria_torneo" EntityType="Self.categoria_torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ciudad" EntityType="Self.ciudad" Schema="dbo" store:Type="Tables" />
@@ -901,6 +944,7 @@
           <EntitySet Name="lucha" EntityType="Self.lucha" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pago_clase" EntityType="Self.pago_clase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pais" EntityType="Self.pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parametro" EntityType="Self.parametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="participante" EntityType="Self.participante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="profesor" EntityType="Self.profesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="profesor_imagen" EntityType="Self.profesor_imagen" Schema="dbo" store:Type="Tables" />
@@ -1014,6 +1058,14 @@
           <AssociationSet Name="FK_alumnoimagen_id_alumno" Association="Self.FK_alumnoimagen_id_alumno">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="alumno_imagen" EntitySet="alumno_imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_asistencia_alumno" Association="Self.FK_asistencia_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="asistencia_clase" EntitySet="asistencia_clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_asistencia_tipoclase" Association="Self.FK_asistencia_tipoclase">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
           <AssociationSet Name="FK_ciudad_id_provincia" Association="Self.FK_ciudad_id_provincia">
             <End Role="provincia" EntitySet="provincia" />
@@ -1531,7 +1583,6 @@
             <End Role="profesor" EntitySet="profesor" />
             <End Role="profesor_imagen" EntitySet="profesor_imagen" />
           </AssociationSet>
-          <EntitySet Name="forma_pago" EntityType="JJSSModel.forma_pago" />
           <EntitySet Name="pago_clase" EntityType="JJSSModel.pago_clase" />
           <AssociationSet Name="FK_pagoclase_id_alumno" Association="JJSSModel.FK_pagoclase_id_alumno">
             <End Role="alumno" EntitySet="alumno" />
@@ -1542,13 +1593,24 @@
             <End Role="pago_clase" EntitySet="pago_clase" />
           </AssociationSet>
           <EntitySet Name="detalle_pago_clase" EntityType="JJSSModel.detalle_pago_clase" />
+          <AssociationSet Name="FK_detalleclase_id_pago_clase" Association="JJSSModel.FK_detalleclase_id_pago_clase">
+            <End Role="pago_clase" EntitySet="pago_clase" />
+            <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
+          </AssociationSet>
+          <EntitySet Name="forma_pago" EntityType="JJSSModel.forma_pago" />
           <AssociationSet Name="FK_detalleclase_id_forma_pago" Association="JJSSModel.FK_detalleclase_id_forma_pago">
             <End Role="forma_pago" EntitySet="forma_pago" />
             <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK_detalleclase_id_pago_clase" Association="JJSSModel.FK_detalleclase_id_pago_clase">
-            <End Role="pago_clase" EntitySet="pago_clase" />
-            <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
+          <EntitySet Name="parametro" EntityType="JJSSModel.parametro" />
+          <EntitySet Name="asistencia_clase" EntityType="JJSSModel.asistencia_clase" />
+          <AssociationSet Name="FK_asistencia_alumno" Association="JJSSModel.FK_asistencia_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="asistencia_clase" EntitySet="asistencia_clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_asistencia_tipoclase" Association="JJSSModel.FK_asistencia_tipoclase">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="alumno">
@@ -1578,6 +1640,7 @@
           <Property Name="id_usuario" Type="Int32" />
           <NavigationProperty Name="seguridad_usuario" Relationship="JJSSModel.FK_alumno_id_usuario" FromRole="alumno" ToRole="seguridad_usuario" />
           <NavigationProperty Name="pago_clase" Relationship="JJSSModel.FK_pagoclase_id_alumno" FromRole="alumno" ToRole="pago_clase" />
+          <NavigationProperty Name="asistencia_clase" Relationship="JJSSModel.FK_asistencia_alumno" FromRole="alumno" ToRole="asistencia_clase" />
         </EntityType>
         <EntityType Name="participante">
           <Key>
@@ -1746,6 +1809,7 @@
           <Property Name="id_tipo_clase" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="clase" Relationship="JJSSModel.FK_clase_id_tipo_clase" FromRole="tipo_clase" ToRole="clase" />
+          <NavigationProperty Name="asistencia_clase" Relationship="JJSSModel.FK_asistencia_tipoclase" FromRole="tipo_clase" ToRole="asistencia_clase" />
         </EntityType>
         <Association Name="FK_alumno_id_categoria">
           <End Type="JJSSModel.categoria" Role="categoria" Multiplicity="0..1" />
@@ -2149,14 +2213,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="forma_pago">
-          <Key>
-            <PropertyRef Name="id_forma_pago" />
-          </Key>
-          <Property Name="id_forma_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="detalle_pago_clase" Relationship="JJSSModel.FK_detalleclase_id_forma_pago" FromRole="forma_pago" ToRole="detalle_pago_clase" />
-        </EntityType>
         <EntityType Name="pago_clase">
           <Key>
             <PropertyRef Name="id_pago_clase" />
@@ -2200,13 +2256,34 @@
           <Property Name="id_pago_clase" Type="Int32" />
           <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="mes" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="id_forma_pago" Type="Int32" />
-          <NavigationProperty Name="forma_pago" Relationship="JJSSModel.FK_detalleclase_id_forma_pago" FromRole="detalle_pago_clase" ToRole="forma_pago" />
+          <Property Name="id_forma_pago" Type="Int32" Nullable="false" />
           <NavigationProperty Name="pago_clase" Relationship="JJSSModel.FK_detalleclase_id_pago_clase" FromRole="detalle_pago_clase" ToRole="pago_clase" />
           <Property Name="fecha_hora" Type="DateTime" Precision="0" />
+          <Property Name="recargo" Type="Int16" />
+          <NavigationProperty Name="forma_pago" Relationship="JJSSModel.FK_detalleclase_id_forma_pago" FromRole="detalle_pago_clase" ToRole="forma_pago" />
+        </EntityType>
+        <Association Name="FK_detalleclase_id_pago_clase">
+          <End Type="JJSSModel.pago_clase" Role="pago_clase" Multiplicity="0..1" />
+          <End Type="JJSSModel.detalle_pago_clase" Role="detalle_pago_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pago_clase">
+              <PropertyRef Name="id_pago_clase" />
+            </Principal>
+            <Dependent Role="detalle_pago_clase">
+              <PropertyRef Name="id_pago_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="forma_pago">
+          <Key>
+            <PropertyRef Name="id_forma_pago" />
+          </Key>
+          <Property Name="id_forma_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="detalle_pago_clase" Relationship="JJSSModel.FK_detalleclase_id_forma_pago" FromRole="forma_pago" ToRole="detalle_pago_clase" />
         </EntityType>
         <Association Name="FK_detalleclase_id_forma_pago">
-          <End Type="JJSSModel.forma_pago" Role="forma_pago" Multiplicity="0..1" />
+          <End Type="JJSSModel.forma_pago" Role="forma_pago" Multiplicity="1" />
           <End Type="JJSSModel.detalle_pago_clase" Role="detalle_pago_clase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="forma_pago">
@@ -2217,15 +2294,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_detalleclase_id_pago_clase">
-          <End Type="JJSSModel.pago_clase" Role="pago_clase" Multiplicity="0..1" />
-          <End Type="JJSSModel.detalle_pago_clase" Role="detalle_pago_clase" Multiplicity="*" />
+        <EntityType Name="parametro">
+          <Key>
+            <PropertyRef Name="id_parametro" />
+          </Key>
+          <Property Name="id_parametro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="valor" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="asistencia_clase">
+          <Key>
+            <PropertyRef Name="id_asistencia" />
+          </Key>
+          <Property Name="id_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_hora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_alumno" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_asistencia_alumno" FromRole="asistencia_clase" ToRole="alumno" />
+          <Property Name="id_tipo_clase" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tipo_clase" Relationship="JJSSModel.FK_asistencia_tipoclase" FromRole="asistencia_clase" ToRole="tipo_clase" />
+        </EntityType>
+        <Association Name="FK_asistencia_alumno">
+          <End Type="JJSSModel.alumno" Role="alumno" Multiplicity="1" />
+          <End Type="JJSSModel.asistencia_clase" Role="asistencia_clase" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="pago_clase">
-              <PropertyRef Name="id_pago_clase" />
+            <Principal Role="alumno">
+              <PropertyRef Name="id_alumno" />
             </Principal>
-            <Dependent Role="detalle_pago_clase">
-              <PropertyRef Name="id_pago_clase" />
+            <Dependent Role="asistencia_clase">
+              <PropertyRef Name="id_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_asistencia_tipoclase">
+          <End Type="JJSSModel.tipo_clase" Role="tipo_clase" Multiplicity="1" />
+          <End Type="JJSSModel.asistencia_clase" Role="asistencia_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Principal>
+            <Dependent Role="asistencia_clase">
+              <PropertyRef Name="id_tipo_clase" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2563,14 +2671,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="forma_pago">
-            <EntityTypeMapping TypeName="JJSSModel.forma_pago">
-              <MappingFragment StoreEntitySet="forma_pago">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="pago_clase">
             <EntityTypeMapping TypeName="JJSSModel.pago_clase">
               <MappingFragment StoreEntitySet="pago_clase">
@@ -2583,12 +2683,40 @@
           <EntitySetMapping Name="detalle_pago_clase">
             <EntityTypeMapping TypeName="JJSSModel.detalle_pago_clase">
               <MappingFragment StoreEntitySet="detalle_pago_clase">
+                <ScalarProperty Name="recargo" ColumnName="recargo" />
                 <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
                 <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
                 <ScalarProperty Name="mes" ColumnName="mes" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="id_pago_clase" ColumnName="id_pago_clase" />
                 <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forma_pago">
+            <EntityTypeMapping TypeName="JJSSModel.forma_pago">
+              <MappingFragment StoreEntitySet="forma_pago">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parametro">
+            <EntityTypeMapping TypeName="JJSSModel.parametro">
+              <MappingFragment StoreEntitySet="parametro">
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_parametro" ColumnName="id_parametro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="asistencia_clase">
+            <EntityTypeMapping TypeName="JJSSModel.asistencia_clase">
+              <MappingFragment StoreEntitySet="asistencia_clase">
+                <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
+                <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+                <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
+                <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

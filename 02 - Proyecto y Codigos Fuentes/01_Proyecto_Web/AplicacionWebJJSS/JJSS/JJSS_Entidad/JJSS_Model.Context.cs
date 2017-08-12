@@ -54,8 +54,10 @@ namespace JJSS_Entidad
         public virtual DbSet<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
         public virtual DbSet<profesor> profesor { get; set; }
         public virtual DbSet<profesor_imagen> profesor_imagen { get; set; }
-        public virtual DbSet<forma_pago> forma_pago { get; set; }
         public virtual DbSet<pago_clase> pago_clase { get; set; }
         public virtual DbSet<detalle_pago_clase> detalle_pago_clase { get; set; }
+        public virtual DbSet<forma_pago> forma_pago { get; set; }
+        public virtual DbSet<parametro> parametro { get; set; }
+        public virtual DbSet<asistencia_clase> asistencia_clase { get; set; }
     }
 }
