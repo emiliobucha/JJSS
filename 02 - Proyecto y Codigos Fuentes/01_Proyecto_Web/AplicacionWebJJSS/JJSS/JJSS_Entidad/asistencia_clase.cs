@@ -16,10 +16,10 @@ namespace JJSS_Entidad
     {
         public int id_asistencia { get; set; }
         public System.DateTime fecha_hora { get; set; }
-        public int id_clase { get; set; }
+        public int id_tipo_clase { get; set; }
         public int id_alumno { get; set; }
     
         public virtual alumno alumno { get; set; }
-        public virtual clase clase { get; set; }
+        public virtual tipo_clase tipo_clase { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace JJSS_Entidad
         public tipo_clase()
         {
             this.clase = new HashSet<clase>();
+            this.asistencia_clase = new HashSet<asistencia_clase>();
         }
     
         public int id_tipo_clase { get; set; }
@@ -25,5 +26,7 @@ namespace JJSS_Entidad
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<clase> clase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<asistencia_clase> asistencia_clase { get; set; }
     }
 }
