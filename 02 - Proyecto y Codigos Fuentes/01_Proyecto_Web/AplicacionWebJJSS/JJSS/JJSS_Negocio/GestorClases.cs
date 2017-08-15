@@ -392,7 +392,7 @@ namespace JJSS_Negocio
             return 0;
         }
 
-        public int buscarClaseSegunHoraActual(int pIdUbicacion) 
+        public int buscarTipoClaseSegunHoraActual(int pIdUbicacion) 
         {
             string horaActual = DateTime.Now.ToShortTimeString();
             CultureInfo ci = new CultureInfo("Es-Es");
@@ -404,6 +404,7 @@ namespace JJSS_Negocio
             {
                 var claseEncontrada = from clase in db.clase
                                       join horario in db.horario on clase.id_clase equals horario.id_clase
+                                      join tipo in db.tipo_clase on clase.id_tipo_clase equals tipo.id_tipo_clase
                                       where clase.id_ubicacion == pIdUbicacion
                                       && horario.nombre_dia == nombreDia
                                       select new
@@ -411,7 +412,8 @@ namespace JJSS_Negocio
                                           idClase=clase.id_clase,
                                           dia=horario.nombre_dia,
                                           desde=horario.hora_desde,
-                                          hasta=horario.hora_hasta
+                                          hasta=horario.hora_hasta,
+                                          tipoClase = tipo.id_tipo_clase
                                       };
                 dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
             }
@@ -420,7 +422,7 @@ namespace JJSS_Negocio
             {
                 DataRow dr = dtClases.Rows[i];
                 
-                if (dr["desde"].ToString().CompareTo(horaActual) <= 0 && dr["hasta"].ToString().CompareTo(horaActual) >= 0) return int.Parse(dr["idClase"].ToString());
+                if (dr["desde"].ToString().CompareTo(horaActual) <= 0 && dr["hasta"].ToString().CompareTo(horaActual) >= 0) return int.Parse(dr["tipoClase"].ToString());
             }
 
 

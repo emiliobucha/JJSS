@@ -16,8 +16,12 @@ namespace JJSS_Entidad
     {
         public int id_asistencia { get; set; }
         public System.DateTime fecha_hora { get; set; }
+<<<<<<< HEAD
         public int id_tipo_clase { get; set; }
+=======
+>>>>>>> 65061888db7306ad4d26348f384f61fe6ffad6ba
         public int id_alumno { get; set; }
+        public int id_tipo_clase { get; set; }
     
         public virtual alumno alumno { get; set; }
         public virtual tipo_clase tipo_clase { get; set; }

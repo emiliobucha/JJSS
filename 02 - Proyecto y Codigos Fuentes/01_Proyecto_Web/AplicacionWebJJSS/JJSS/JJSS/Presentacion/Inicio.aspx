@@ -299,7 +299,7 @@
                         <!--col registrar_asistencia-->
                         <div class="col-lg-4 proc" id="item_registrar_asistencia">
                             <i class="fa fa-cogs"></i>
-                            <h3 class="logo"><a href="" style="color: #000000">Registrar Asistencia</a></h3>
+                            <h3 class="logo"><a href="../Presentacion/RegistrarAsistencia.aspx" style="color: #000000">Registrar Asistencia</a></h3>
                             <p>Puedes mantener un registro de asistencia en cada uno de los puntos donde se dictan las clases.</p>
                             <p>
                                 <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />

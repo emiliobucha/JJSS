@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using System.Globalization;
 
 namespace JJSS_Negocio
 {
@@ -167,6 +168,93 @@ namespace JJSS_Negocio
         {
             GestorInscripcionesClase inscripcion = new GestorInscripcionesClase();
             return inscripcion.ObtenerAlumnoInscripto(pAlumno, pClase);
+        }
+
+
+        /*
+         * Metodo que valida si un alumno pago para asistir a clases
+         * Parametros : pIdAlumno entero que representa el id del alumno
+         *              pIDTipoClase entero que representa el id del tipo de clase
+         * Retornos : true - puede asistir
+         *              false - no puede asistir
+         * 
+         */
+        public Boolean validarPagoParaAsistencia(int pIdAlumno,int pIdTipoClase)
+        {
+            DataTable dt;
+            DateTime fechaInscripcion;
+            using (var db = new JJSSEntities())
+            {
+                var inscripcion = from ins in db.inscripcion_clase
+                                                join alu in db.alumno on ins.id_alumno equals alu.id_alumno
+                                                where alu.id_alumno == pIdAlumno 
+                                                select ins;
+                if (inscripcion == null) return false;
+                fechaInscripcion = (DateTime)inscripcion.FirstOrDefault().fecha;
+
+                var pago = from alu in db.alumno
+                           join pag in db.pago_clase on alu.id_alumno equals pag.id_alumno
+                           join detalle in db.detalle_pago_clase on pag.id_pago_clase equals detalle.id_pago_clase
+                           where alu.id_alumno == pIdAlumno
+                           orderby detalle.fecha_hora
+                           select new
+                           {
+                               idPago = pag.id_pago_clase,
+                               mes = detalle.mes,
+                               fecha = detalle.fecha_hora
+                           };
+                dt=modUtilidadesTablas.ToDataTable(pago.ToList());
+
+            }
+            int contPagos = dt.Rows.Count;
+            if (contPagos >0)
+            { //tiene un pago
+                DataRow dr = dt.Rows[contPagos - 1];
+                string mesPago = dr["mes"].ToString();
+                DateTime fechaPago = DateTime.Parse(dr["fecha"].ToString());
+
+                CultureInfo ci = new CultureInfo("Es-Es");
+                string nombreMes = ci.DateTimeFormat.GetMonthName(DateTime.Now.Month);
+                if (mesPago.ToLower().CompareTo(nombreMes)==0 && fechaPago.Year == DateTime.Today.Year)
+                {
+                    return true;
+                }
+                else
+                {
+                    //+ preguntar a Mariano hasta cuando tengo tiempo de asistir a clases sin pagar
+                    DateTime pagoRecargo = fechaInscripcion.AddDays(12);
+                    if (DateTime.Today.Day <= pagoRecargo.Day) return true;
+                    else return false;
+                }
+            }
+            else
+            {// no tiene ningun pago
+
+                using (var db = new JJSSEntities())
+                {
+                    var asistencia = from asi in db.asistencia_clase
+                                     join alu in db.alumno on asi.id_alumno equals alu.id_alumno
+                                     where alu.id_alumno == pIdAlumno && asi.id_tipo_clase == pIdTipoClase
+                                     select asi;
+                    if (asistencia == null) return true;
+                    else return false;
+                }
+            }
+
+            /* A- buscar fecha inscripcion
+             * B- buscar ultimo pago
+             *      1- si tiene un pago, validar que corresponda con el mes y año actual
+             *          a- si corresponde, se deja asistir - true X
+             *          b- si no corresponde, validar si esta a tiempo de pagar con recargo (7 dias)
+             *              i- si esta a tiempo de pagar - true X
+             *              ii- si se paso la fecha - false X
+             *      2- si no tiene un pago, validar si ya asistio una vez
+             *          a- si asistio una vez, no se deja asistir - false X
+             *          b- si no asistio nunca, se deja asistir - true X
+             *      
+             * 
+             * 
+             */
         }
     }
 }

@@ -266,8 +266,8 @@ namespace JJSS.Presentacion
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            GestorAsistencia ga = new GestorAsistencia();
-            ga.buscarClaseSegunHoraActual(2);
+            GestorPagoClase gp = new GestorPagoClase();
+            gp.validarPagoParaAsistencia(11, 3);
         }
     }
 }
