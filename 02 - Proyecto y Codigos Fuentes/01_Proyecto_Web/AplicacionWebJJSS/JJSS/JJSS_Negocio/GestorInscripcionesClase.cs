@@ -116,6 +116,14 @@ namespace JJSS_Negocio
             }
         }
 
+        /*
+         * Metodo que valida si el alumno esta inscripto a ese tipo de clase
+         * Parametros:  pIdAlumno: entero - ID del alumno
+         *              pIdTipoClase: entero - ID tipo clase
+         * Retorno: true: el alumno está inscripto en la clase
+         *          false: el alumno no esta inscripto en la clase
+         * 
+         */
         public Boolean ValidarTipoClaseAlumno(int pIdAlumno, int pIdTipoClase)
         {
             using (var db = new JJSSEntities())

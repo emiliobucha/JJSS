@@ -243,7 +243,13 @@ namespace JJSS_Negocio
             }
         }
 
-
+        /*
+         * Metodo que elimina una clase logicamente
+         * Parametros: pIdClase: entero - id de la clase a eliminar
+         * Retorno: "" Transaccion correcta de BD
+         *          ex.Message: Mensaje de error de la BD
+         * 
+         */
         public string eliminarClase(int pIdClase)
         {
             string sReturn = "";
@@ -276,19 +282,33 @@ namespace JJSS_Negocio
             }
         }
 
-
+        /*
+         * Método que devuelve un listado de todas los tipos de clases cargadas
+         * Retorno: List<tipo_clase>
+         *          Retorna toda lista de tipos de clases
+         */
         public List<tipo_clase> ObtenerTipoClases()
         {
             GestorTipoClase gestorTipoClase = new GestorTipoClase();
             return gestorTipoClase.ObtenerTipoClase();
         }
 
+        /*
+         * Método que devuelve un listado de todas las academias cargadas
+         * Retorno: List<academia>
+         *          Retorna toda lista de academias
+         */
         public List<academia> ObtenerAcademias()
         {
             GestorAcademias gestorAcademias = new GestorAcademias();
             return gestorAcademias.ObtenerAcademias();
         }
 
+        /*
+         * Método que devuelve un listado de todas los profesores cargadas
+         * Retorno: List<profesor>
+         *          Retorna toda lista de profesores
+         */
         public List<profesor> ObtenerProfesores()
         {
             GestorProfesores gestorProfesores = new GestorProfesores();
@@ -348,7 +368,7 @@ namespace JJSS_Negocio
         public double calcularRecargo(int pIdClase, int pIdAlumno)
         {
             inscripcion_clase inscripcionDelAlumno;
-            int diaMaximo = 0;
+            DateTime diaMaximo;
             double recargo = 0;
             using (var db = new JJSSEntities())
             {
@@ -364,26 +384,10 @@ namespace JJSS_Negocio
             else
             {
                 DateTime fechaInscripcion = (DateTime)inscripcionDelAlumno.fecha;
-                
-                if ((fechaInscripcion.Month == 1 || fechaInscripcion.Month == 3 || fechaInscripcion.Month == 5 || fechaInscripcion.Month == 7 || fechaInscripcion.Month == 8 ||
-                    fechaInscripcion.Month == 10 || fechaInscripcion.Month == 12) && fechaInscripcion.Day > 26) //mes tiene 31 dias
-                {
-                    diaMaximo = 5 - (31 - fechaInscripcion.Day);
-                }
-                else if ((fechaInscripcion.Month == 4 || fechaInscripcion.Month == 6 || fechaInscripcion.Month == 9 || fechaInscripcion.Month == 11) && fechaInscripcion.Day > 25)//mes tiene 30 dias
-                {
-                    diaMaximo = 5 - (30 - fechaInscripcion.Day);
-                }
-                else if (fechaInscripcion.Month == 2 && fechaInscripcion.Day > 23) //mes tiene 28 dias
-                {
-                    diaMaximo = 5 - (28 - fechaInscripcion.Day);
-                }
-                else
-                {
-                    diaMaximo = fechaInscripcion.Day + 5;
-                }
 
-                if (diaMaximo < DateTime.Today.Day) // se cobra recargo
+                diaMaximo = fechaInscripcion.AddDays(5);
+
+                if (diaMaximo < DateTime.Today) // se cobra recargo
                 {
                     return recargo;
                 }
@@ -392,6 +396,13 @@ namespace JJSS_Negocio
             return 0;
         }
 
+
+        /*
+         * Metodo que devuelve el ID de la clase que se está dictando en el momento actual segun la academia
+         * Parametros:  pIdUbicacion : entero - ID de la ubicacion de la clase
+         * Retorno:     entero - 0: no se esta dando ninguna clase
+         *                      >0 : ID de la clase actual
+         */
         public int buscarTipoClaseSegunHoraActual(int pIdUbicacion) 
         {
             string horaActual = DateTime.Now.ToShortTimeString();
@@ -431,24 +442,3 @@ namespace JJSS_Negocio
 
     }
 }
-//int dia = int.Parse(pDTHorarios.Rows[j]["dia"].ToString());
-//var claseEncontrada = from clase in db.clase
-//                      join hora in db.horario on clase.id_clase equals hora.id_clase
-//                      where clase.id_ubicacion == pIdUbicacion && hora.dia == dia
-//                      select new
-//                      {
-//                          desde = hora.hora_desde,
-//                          hasta = hora.hora_hasta
-//                      };
-
-//DataTable dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
-//                    for (int i = 0; i<dtClases.Rows.Count; i++)
-//                    {
-//                        DataRow dr = dtClases.Rows[i];
-//                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) == 0) return false;
-//                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0) return false;
-//                        if (dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) == 0) return false;
-//                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) > 0) return false;
-//                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0) return false;
-
-//                    }

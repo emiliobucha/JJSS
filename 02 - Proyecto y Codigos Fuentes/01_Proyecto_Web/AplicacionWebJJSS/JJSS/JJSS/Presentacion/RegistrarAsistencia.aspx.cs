@@ -43,7 +43,7 @@ namespace JJSS.Presentacion
             {
 
 
-                alumno alu = gestorAlumno.ObtenerAlumnoPorDNI(int.Parse(txt_dni.Text));
+                alumno alu = gestorAlumno.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
 
                 string resultado = gestorAsistencia.ValidarTipoClaseAlumno(alu.id_alumno, idTipoClase);
                 if (resultado == "")
@@ -82,6 +82,16 @@ namespace JJSS.Presentacion
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
             }
+        }
+
+        protected void ddl_ubicacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Presentacion/Inicio.aspx");
         }
     }
 }
