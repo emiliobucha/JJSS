@@ -9,7 +9,11 @@ namespace JJSS_Negocio
 {
     public class GestorAcademias
     {
-
+        /*
+         * Método que devuelve un listado de todas las academias cargadas
+         * Retorno: List<academia>
+         *          Retorna toda lista de academias
+         */
         public List<academia> ObtenerAcademias()
         {
             using (var db = new JJSSEntities())
