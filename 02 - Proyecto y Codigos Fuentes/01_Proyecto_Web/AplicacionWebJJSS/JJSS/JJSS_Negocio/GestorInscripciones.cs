@@ -81,8 +81,7 @@ namespace JJSS_Negocio
                         nombre = pNombre,
                         apellido = pApellido,
                         //peso = pPeso,
-                        faja = fajaElegida,
-                        id_faja = fajaElegida.id_faja,
+                        
                         sexo = pSexo,
                         fecha_nacimiento = new DateTime(DateTime.Now.Year - pEdad, 1, 1), //Invento fecha de nacimiento con la edad que le pasamos por parametro
                         dni = pDni,
@@ -128,8 +127,6 @@ namespace JJSS_Negocio
                         id_participante = nuevoParticipante.id_participante,
                         id_torneo = torneoInscripto.id_torneo,
                         torneo = torneoInscripto,
-                        categoria_torneo = nuevaCategoriaTorneo,
-                        id_categoria_torneo = nuevaCategoriaTorneo.id_categoria_torneo,
                         peso = pPeso
 
                     };

@@ -22,15 +22,12 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="date" />
-          <Property Name="id_faja" Type="int" />
-          <Property Name="id_categoria" Type="int" />
           <Property Name="sexo" Type="smallint" />
           <Property Name="dni" Type="int" Nullable="false" />
           <Property Name="telefono" Type="bigint" Nullable="false" />
           <Property Name="mail" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="id_direccion" Type="int" />
           <Property Name="fecha_ingreso" Type="date" Nullable="false" />
-          <Property Name="foto_perfil" Type="image" />
           <Property Name="telefono_emergencia" Type="bigint" Nullable="false" />
           <Property Name="id_usuario" Type="int" />
         </EntityType>
@@ -41,6 +38,14 @@
           <Property Name="id_alumno" Type="int" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
           <Property Name="id_alumnoimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="alumnoxfaja">
+          <Key>
+            <PropertyRef Name="id_alumnoxfaja" />
+          </Key>
+          <Property Name="id_alumnoxfaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_alumno" Type="int" />
+          <Property Name="id_faja" Type="int" />
         </EntityType>
         <EntityType Name="asistencia_clase">
           <Key>
@@ -62,6 +67,7 @@
           <Property Name="edad_desde" Type="int" />
           <Property Name="edad_hasta" Type="int" />
           <Property Name="sexo" Type="smallint" />
+          <Property Name="id_tipo_clase" Type="int" />
         </EntityType>
         <EntityType Name="categoria_torneo">
           <Key>
@@ -128,8 +134,9 @@
             <PropertyRef Name="id_faja" />
           </Key>
           <Property Name="id_faja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="color" Type="nvarchar" MaxLength="45" />
-          <Property Name="grado" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="45" />
+          <Property Name="id_tipo_clase" Type="int" />
+          <Property Name="orden" Type="int" />
         </EntityType>
         <EntityType Name="forma_pago">
           <Key>
@@ -159,8 +166,9 @@
           <Property Name="codigo_barra" Type="bigint" />
           <Property Name="id_participante" Type="int" />
           <Property Name="id_torneo" Type="int" />
-          <Property Name="id_categoria_torneo" Type="int" />
+          <Property Name="id_categoria" Type="int" />
           <Property Name="peso" Type="float" />
+          <Property Name="id_faja" Type="int" />
         </EntityType>
         <EntityType Name="inscripcion_clase">
           <Key>
@@ -214,8 +222,6 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="apellido" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="date" />
-          <Property Name="id_faja" Type="int" />
-          <Property Name="id_categoria" Type="int" />
           <Property Name="sexo" Type="smallint" />
           <Property Name="dni" Type="int" Nullable="false" />
           <Property Name="id_alumno" Type="int" />
@@ -228,7 +234,6 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="date" />
-          <Property Name="id_faja" Type="int" />
           <Property Name="sexo" Type="smallint" />
           <Property Name="dni" Type="int" Nullable="false" />
           <Property Name="telefono" Type="bigint" Nullable="false" />
@@ -339,6 +344,7 @@
           <Property Name="hora_cierre" Type="varchar" MaxLength="10" />
           <Property Name="precio_absoluto" Type="decimal" Precision="18" Scale="0" />
           <Property Name="precio_categoria" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="id_tipo_clase" Type="int" />
         </EntityType>
         <EntityType Name="torneo_imagen">
           <Key>
@@ -372,75 +378,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__categoria__id_ca__540C7B00">
-          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categoria">
-              <PropertyRef Name="id_categoria" />
-            </Principal>
-            <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__categoria__id_ca__55009F39">
-          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categoria">
-              <PropertyRef Name="id_categoria" />
-            </Principal>
-            <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__categoria__id_fa__55F4C372">
-          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_faja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__categoria__id_fa__56E8E7AB">
-          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_faja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__categoria__id_fa__57DD0BE4">
-          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_faja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__inscripci__id_ca__6166761E">
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="0..1" />
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
           <End Role="inscripcion" Type="Self.inscripcion" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="categoria_torneo">
-              <PropertyRef Name="id_categoria_torneo" />
+            <Principal Role="categoria">
+              <PropertyRef Name="id_categoria" />
             </Principal>
             <Dependent Role="inscripcion">
-              <PropertyRef Name="id_categoria_torneo" />
+              <PropertyRef Name="id_categoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -528,30 +474,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__participa__id_ca__6FB49575">
-          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
-          <End Role="participante" Type="Self.participante" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categoria">
-              <PropertyRef Name="id_categoria" />
-            </Principal>
-            <Dependent Role="participante">
-              <PropertyRef Name="id_categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__participa__id_fa__70A8B9AE">
-          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
-          <End Role="participante" Type="Self.participante" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="participante">
-              <PropertyRef Name="id_faja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__sede__id_direcci__719CDDE7">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="sede" Type="Self.sede" Multiplicity="*" />
@@ -588,15 +510,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_alumno_id_categoria">
-          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+        <Association Name="FK_alumno">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
+          <End Role="alumnoxfaja" Type="Self.alumnoxfaja" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="categoria">
-              <PropertyRef Name="id_categoria" />
+            <Principal Role="alumno">
+              <PropertyRef Name="id_alumno" />
             </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_categoria" />
+            <Dependent Role="alumnoxfaja">
+              <PropertyRef Name="id_alumno" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -609,18 +531,6 @@
             </Principal>
             <Dependent Role="alumno">
               <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_alumno_id_faja">
-          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_faja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -670,6 +580,18 @@
               <PropertyRef Name="id_tipo_clase" />
             </Principal>
             <Dependent Role="asistencia_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_categoria_tipoclase">
+          <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
+          <End Role="categoria" Type="Self.categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Principal>
+            <Dependent Role="categoria">
               <PropertyRef Name="id_tipo_clase" />
             </Dependent>
           </ReferentialConstraint>
@@ -746,6 +668,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_faja">
+          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
+          <End Role="alumnoxfaja" Type="Self.alumnoxfaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faja">
+              <PropertyRef Name="id_faja" />
+            </Principal>
+            <Dependent Role="alumnoxfaja">
+              <PropertyRef Name="id_faja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_faja_tipoclase">
+          <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
+          <End Role="faja" Type="Self.faja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Principal>
+            <Dependent Role="faja">
+              <PropertyRef Name="id_tipo_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_grupoxopcion_clave_opcion">
           <End Role="seguridad_opcion" Type="Self.seguridad_opcion" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -783,6 +729,18 @@
             </Principal>
             <Dependent Role="horario">
               <PropertyRef Name="id_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incripcion_faka">
+          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
+          <End Role="inscripcion" Type="Self.inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faja">
+              <PropertyRef Name="id_faja" />
+            </Principal>
+            <Dependent Role="inscripcion">
+              <PropertyRef Name="id_faja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -831,18 +789,6 @@
             </Principal>
             <Dependent Role="profesor">
               <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_profesor_id_faja">
-          <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
-          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="profesor">
-              <PropertyRef Name="id_faja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -896,6 +842,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_torneo_tipoclase">
+          <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
+          <End Role="torneo" Type="Self.torneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Principal>
+            <Dependent Role="torneo">
+              <PropertyRef Name="id_tipo_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_usuarioxgrupo_id_grupo">
           <End Role="seguridad_grupo" Type="Self.seguridad_grupo" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -928,6 +886,7 @@
           <EntitySet Name="academia" EntityType="Self.academia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno_imagen" EntityType="Self.alumno_imagen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="alumnoxfaja" EntityType="Self.alumnoxfaja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="asistencia_clase" EntityType="Self.asistencia_clase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categoria_torneo" EntityType="Self.categoria_torneo" Schema="dbo" store:Type="Tables" />
@@ -967,28 +926,8 @@
             <End Role="categoria" EntitySet="categoria" />
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_ca__540C7B00" Association="Self.FK__categoria__id_ca__540C7B00">
-            <End Role="categoria" EntitySet="categoria" />
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_ca__55009F39" Association="Self.FK__categoria__id_ca__55009F39">
-            <End Role="categoria" EntitySet="categoria" />
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_fa__55F4C372" Association="Self.FK__categoria__id_fa__55F4C372">
-            <End Role="faja" EntitySet="faja" />
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_fa__56E8E7AB" Association="Self.FK__categoria__id_fa__56E8E7AB">
-            <End Role="faja" EntitySet="faja" />
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_fa__57DD0BE4" Association="Self.FK__categoria__id_fa__57DD0BE4">
-            <End Role="faja" EntitySet="faja" />
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
           <AssociationSet Name="FK__inscripci__id_ca__6166761E" Association="Self.FK__inscripci__id_ca__6166761E">
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
+            <End Role="categoria" EntitySet="categoria" />
             <End Role="inscripcion" EntitySet="inscripcion" />
           </AssociationSet>
           <AssociationSet Name="FK__inscripci__id_pa__634EBE90" Association="Self.FK__inscripci__id_pa__634EBE90">
@@ -1019,14 +958,6 @@
             <End Role="alumno" EntitySet="alumno" />
             <End Role="participante" EntitySet="participante" />
           </AssociationSet>
-          <AssociationSet Name="FK__participa__id_ca__6FB49575" Association="Self.FK__participa__id_ca__6FB49575">
-            <End Role="categoria" EntitySet="categoria" />
-            <End Role="participante" EntitySet="participante" />
-          </AssociationSet>
-          <AssociationSet Name="FK__participa__id_fa__70A8B9AE" Association="Self.FK__participa__id_fa__70A8B9AE">
-            <End Role="faja" EntitySet="faja" />
-            <End Role="participante" EntitySet="participante" />
-          </AssociationSet>
           <AssociationSet Name="FK__sede__id_direcci__719CDDE7" Association="Self.FK__sede__id_direcci__719CDDE7">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="sede" EntitySet="sede" />
@@ -1039,16 +970,12 @@
             <End Role="sede" EntitySet="sede" />
             <End Role="torneo" EntitySet="torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK_alumno_id_categoria" Association="Self.FK_alumno_id_categoria">
-            <End Role="categoria" EntitySet="categoria" />
+          <AssociationSet Name="FK_alumno" Association="Self.FK_alumno">
             <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumnoxfaja" EntitySet="alumnoxfaja" />
           </AssociationSet>
           <AssociationSet Name="FK_alumno_id_direccion" Association="Self.FK_alumno_id_direccion">
             <End Role="direccion" EntitySet="direccion" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="FK_alumno_id_faja" Association="Self.FK_alumno_id_faja">
-            <End Role="faja" EntitySet="faja" />
             <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
           <AssociationSet Name="FK_alumno_id_usuario" Association="Self.FK_alumno_id_usuario">
@@ -1066,6 +993,10 @@
           <AssociationSet Name="FK_asistencia_tipoclase" Association="Self.FK_asistencia_tipoclase">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_categoria_tipoclase" Association="Self.FK_categoria_tipoclase">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="categoria" EntitySet="categoria" />
           </AssociationSet>
           <AssociationSet Name="FK_ciudad_id_provincia" Association="Self.FK_ciudad_id_provincia">
             <End Role="provincia" EntitySet="provincia" />
@@ -1091,6 +1022,14 @@
             <End Role="ciudad" EntitySet="ciudad" />
             <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
+          <AssociationSet Name="FK_faja" Association="Self.FK_faja">
+            <End Role="faja" EntitySet="faja" />
+            <End Role="alumnoxfaja" EntitySet="alumnoxfaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_faja_tipoclase" Association="Self.FK_faja_tipoclase">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="faja" EntitySet="faja" />
+          </AssociationSet>
           <AssociationSet Name="fk_grupoxopcion_clave_opcion" Association="Self.fk_grupoxopcion_clave_opcion">
             <End Role="seguridad_opcion" EntitySet="seguridad_opcion" />
             <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
@@ -1102,6 +1041,10 @@
           <AssociationSet Name="FK_horario_id_clase" Association="Self.FK_horario_id_clase">
             <End Role="clase" EntitySet="clase" />
             <End Role="horario" EntitySet="horario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incripcion_faka" Association="Self.FK_incripcion_faka">
+            <End Role="faja" EntitySet="faja" />
+            <End Role="inscripcion" EntitySet="inscripcion" />
           </AssociationSet>
           <AssociationSet Name="FK_inscripcion_clase_id_alumno" Association="Self.FK_inscripcion_clase_id_alumno">
             <End Role="alumno" EntitySet="alumno" />
@@ -1119,10 +1062,6 @@
             <End Role="direccion" EntitySet="direccion" />
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
-          <AssociationSet Name="FK_profesor_id_faja" Association="Self.FK_profesor_id_faja">
-            <End Role="faja" EntitySet="faja" />
-            <End Role="profesor" EntitySet="profesor" />
-          </AssociationSet>
           <AssociationSet Name="FK_profesor_id_usuario" Association="Self.FK_profesor_id_usuario">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="profesor" EntitySet="profesor" />
@@ -1138,6 +1077,10 @@
           <AssociationSet Name="FK_torneo_imagen_id_torneo" Association="Self.FK_torneo_imagen_id_torneo">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_torneo_tipoclase" Association="Self.FK_torneo_tipoclase">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="torneo" EntitySet="torneo" />
           </AssociationSet>
           <AssociationSet Name="fk_usuarioxgrupo_id_grupo" Association="Self.fk_usuarioxgrupo_id_grupo">
             <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
@@ -1172,7 +1115,6 @@
           <Property Name="sexo" Type="Int16" />
           <Property Name="id_faja" Type="Int32" />
           <NavigationProperty Name="faja" Relationship="Self.categoria_torneo_categoria_torneo_id_faja_fk" FromRole="categoria_torneo" ToRole="faja" />
-          <NavigationProperty Name="inscripcion" Relationship="Self.inscripcion_inscripcion_id_categoria_torneo_fk" FromRole="categoria_torneo" ToRole="inscripcion" />
           <NavigationProperty Name="categoria" Relationship="JJSSModel.categoria_torneo_categoria_torneo_id_categoria_fk" FromRole="categoria_torneo" ToRole="categoria" />
         </EntityType>
         <EntityType Name="direccion">
@@ -1205,12 +1147,13 @@
             <PropertyRef Name="id_faja" />
           </Key>
           <Property Name="id_faja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="color" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="grado" Type="Int32" />
           <NavigationProperty Name="categoria_torneo" Relationship="Self.categoria_torneo_categoria_torneo_id_faja_fk" FromRole="faja" ToRole="categoria_torneo" />
-          <NavigationProperty Name="participante" Relationship="JJSSModel.participante_participante_id_faja_fk" FromRole="faja" ToRole="participante" />
-          <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_alumno_id_faja" FromRole="faja" ToRole="alumno" />
-          <NavigationProperty Name="profesor" Relationship="JJSSModel.FK_profesor_id_faja" FromRole="faja" ToRole="profesor" />
+          <Property Name="descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="id_tipo_clase" Type="Int32" />
+          <Property Name="orden" Type="Int32" />
+          <NavigationProperty Name="alumnoxfaja" Relationship="JJSSModel.FK_faja" FromRole="faja" ToRole="alumnoxfaja" />
+          <NavigationProperty Name="tipo_clase" Relationship="JJSSModel.FK_faja_tipoclase" FromRole="faja" ToRole="tipo_clase" />
+          <NavigationProperty Name="inscripcion" Relationship="JJSSModel.FK_incripcion_faka" FromRole="faja" ToRole="inscripcion" />
         </EntityType>
         <EntityType Name="inscripcion">
           <Key>
@@ -1222,11 +1165,13 @@
           <Property Name="codigo_barra" Type="Int64" />
           <Property Name="id_participante" Type="Int32" />
           <Property Name="id_torneo" Type="Int32" />
-          <Property Name="id_categoria_torneo" Type="Int32" />
-          <NavigationProperty Name="categoria_torneo" Relationship="Self.inscripcion_inscripcion_id_categoria_torneo_fk" FromRole="inscripcion" ToRole="categoria_torneo" />
           <NavigationProperty Name="torneo" Relationship="Self.inscripcion_inscripcion_id_torneo_fk" FromRole="inscripcion" ToRole="torneo" />
           <NavigationProperty Name="participante" Relationship="JJSSModel.inscripcion_inscripcion_id_participante_fk" FromRole="inscripcion" ToRole="participante" />
           <Property Name="peso" Type="Double" />
+          <Property Name="id_categoria" Type="Int32" />
+          <Property Name="id_faja" Type="Int32" />
+          <NavigationProperty Name="categoria" Relationship="JJSSModel.FK__inscripci__id_ca__6166761E" FromRole="inscripcion" ToRole="categoria" />
+          <NavigationProperty Name="faja" Relationship="JJSSModel.FK_incripcion_faka" FromRole="inscripcion" ToRole="faja" />
         </EntityType>
         <EntityType Name="lucha">
           <Key>
@@ -1292,6 +1237,8 @@
           <NavigationProperty Name="lucha" Relationship="Self.lucha_lucha_id_torneo_fk" FromRole="torneo" ToRole="lucha" />
           <NavigationProperty Name="sede" Relationship="Self.torneo_torneo_id_sede_fk" FromRole="torneo" ToRole="sede" />
           <NavigationProperty Name="torneo_imagen" Relationship="JJSSModel.FK_torneo_imagen_id_torneo" FromRole="torneo" ToRole="torneo_imagen" />
+          <Property Name="id_tipo_clase" Type="Int32" />
+          <NavigationProperty Name="tipo_clase" Relationship="JJSSModel.FK_torneo_tipoclase" FromRole="torneo" ToRole="tipo_clase" />
         </EntityType>
         <Association Name="academia_academia_id_direccion_fk">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
@@ -1314,18 +1261,6 @@
             </Principal>
             <Dependent Role="categoria_torneo">
               <PropertyRef Name="id_faja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="inscripcion_inscripcion_id_categoria_torneo_fk">
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="0..1" />
-          <End Role="inscripcion" Type="Self.inscripcion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categoria_torneo">
-              <PropertyRef Name="id_categoria_torneo" />
-            </Principal>
-            <Dependent Role="inscripcion">
-              <PropertyRef Name="id_categoria_torneo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1421,10 +1356,6 @@
             <End Role="faja" EntitySet="faja" />
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
           </AssociationSet>
-          <AssociationSet Name="inscripcion_inscripcion_id_categoria_torneo_fk" Association="Self.inscripcion_inscripcion_id_categoria_torneo_fk">
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-            <End Role="inscripcion" EntitySet="inscripcion" />
-          </AssociationSet>
           <AssociationSet Name="sede_sede_id_direccion_fk" Association="Self.sede_sede_id_direccion_fk">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="sede" EntitySet="sede" />
@@ -1451,10 +1382,6 @@
           </AssociationSet>
           <EntitySet Name="alumno" EntityType="JJSSModel.alumno" />
           <EntitySet Name="participante" EntityType="JJSSModel.participante" />
-          <AssociationSet Name="participante_participante_id_faja_fk" Association="JJSSModel.participante_participante_id_faja_fk">
-            <End Role="faja" EntitySet="faja" />
-            <End Role="participante" EntitySet="participante" />
-          </AssociationSet>
           <AssociationSet Name="inscripcion_inscripcion_id_participante_fk" Association="JJSSModel.inscripcion_inscripcion_id_participante_fk">
             <End Role="participante" EntitySet="participante" />
             <End Role="inscripcion" EntitySet="inscripcion" />
@@ -1472,10 +1399,6 @@
             <End Role="categoria" EntitySet="categoria" />
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
           </AssociationSet>
-          <AssociationSet Name="participante_participante_id_categoria_fk" Association="JJSSModel.participante_participante_id_categoria_fk">
-            <End Role="categoria" EntitySet="categoria" />
-            <End Role="participante" EntitySet="participante" />
-          </AssociationSet>
           <AssociationSet Name="FK__particapa_id_al__48DE5BA8" Association="JJSSModel.FK__particapa_id_al__48DE5BA8">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="participante" EntitySet="participante" />
@@ -1484,16 +1407,8 @@
           <EntitySet Name="horario" EntityType="JJSSModel.horario" />
           <EntitySet Name="inscripcion_clase" EntityType="JJSSModel.inscripcion_clase" />
           <EntitySet Name="tipo_clase" EntityType="JJSSModel.tipo_clase" />
-          <AssociationSet Name="FK_alumno_id_categoria" Association="JJSSModel.FK_alumno_id_categoria">
-            <End Role="categoria" EntitySet="categoria" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
           <AssociationSet Name="FK_alumno_id_direccion" Association="JJSSModel.FK_alumno_id_direccion">
             <End Role="direccion" EntitySet="direccion" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="FK_alumno_id_faja" Association="JJSSModel.FK_alumno_id_faja">
-            <End Role="faja" EntitySet="faja" />
             <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
           <AssociationSet Name="FK_ins_clase_id_alumno" Association="JJSSModel.FK_ins_clase_id_alumno">
@@ -1571,10 +1486,6 @@
             <End Role="direccion" EntitySet="direccion" />
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
-          <AssociationSet Name="FK_profesor_id_faja" Association="JJSSModel.FK_profesor_id_faja">
-            <End Role="faja" EntitySet="faja" />
-            <End Role="profesor" EntitySet="profesor" />
-          </AssociationSet>
           <AssociationSet Name="FK_profesor_id_usuario" Association="JJSSModel.FK_profesor_id_usuario">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="profesor" EntitySet="profesor" />
@@ -1612,6 +1523,35 @@
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
+          <EntitySet Name="alumnoxfaja" EntityType="JJSSModel.alumnoxfaja" />
+          <AssociationSet Name="FK_alumno" Association="JJSSModel.FK_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumnoxfaja" EntitySet="alumnoxfaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_faja" Association="JJSSModel.FK_faja">
+            <End Role="faja" EntitySet="faja" />
+            <End Role="alumnoxfaja" EntitySet="alumnoxfaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__inscripci__id_ca__6166761E" Association="JJSSModel.FK__inscripci__id_ca__6166761E">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="inscripcion" EntitySet="inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_categoria_tipoclase" Association="JJSSModel.FK_categoria_tipoclase">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="categoria" EntitySet="categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_faja_tipoclase" Association="JJSSModel.FK_faja_tipoclase">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="faja" EntitySet="faja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incripcion_faka" Association="JJSSModel.FK_incripcion_faka">
+            <End Role="faja" EntitySet="faja" />
+            <End Role="inscripcion" EntitySet="inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_torneo_tipoclase" Association="JJSSModel.FK_torneo_tipoclase">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="torneo" EntitySet="torneo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="alumno">
           <Key>
@@ -1621,8 +1561,6 @@
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
-          <Property Name="id_faja" Type="Int32" />
-          <Property Name="id_categoria" Type="Int32" />
           <Property Name="sexo" Type="Int16" />
           <Property Name="dni" Type="Int32" Nullable="false" />
           <Property Name="telefono" Type="Int32" Nullable="false" />
@@ -1630,17 +1568,15 @@
           <Property Name="id_direccion" Type="Int32" />
           <Property Name="fecha_ingreso" Type="DateTime" Precision="0" Nullable="false" />
           <NavigationProperty Name="participante" Relationship="JJSSModel.FK__particapa_id_al__48DE5BA8" FromRole="alumno" ToRole="participante" />
-          <Property Name="foto_perfil" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="telefono_emergencia" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="categoria" Relationship="JJSSModel.FK_alumno_id_categoria" FromRole="alumno" ToRole="categoria" />
           <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_alumno_id_direccion" FromRole="alumno" ToRole="direccion" />
-          <NavigationProperty Name="faja" Relationship="JJSSModel.FK_alumno_id_faja" FromRole="alumno" ToRole="faja" />
           <NavigationProperty Name="inscripcion_clase" Relationship="JJSSModel.FK_ins_clase_id_alumno" FromRole="alumno" ToRole="inscripcion_clase" />
           <NavigationProperty Name="alumno_imagen" Relationship="JJSSModel.FK_alumnoimagen_id_alumno" FromRole="alumno" ToRole="alumno_imagen" />
           <Property Name="id_usuario" Type="Int32" />
           <NavigationProperty Name="seguridad_usuario" Relationship="JJSSModel.FK_alumno_id_usuario" FromRole="alumno" ToRole="seguridad_usuario" />
           <NavigationProperty Name="pago_clase" Relationship="JJSSModel.FK_pagoclase_id_alumno" FromRole="alumno" ToRole="pago_clase" />
           <NavigationProperty Name="asistencia_clase" Relationship="JJSSModel.FK_asistencia_alumno" FromRole="alumno" ToRole="asistencia_clase" />
+          <NavigationProperty Name="alumnoxfaja" Relationship="JJSSModel.FK_alumno" FromRole="alumno" ToRole="alumnoxfaja" />
         </EntityType>
         <EntityType Name="participante">
           <Key>
@@ -1650,30 +1586,14 @@
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
-          <Property Name="id_faja" Type="Int32" />
-          <Property Name="id_categoria" Type="Int32" />
           <Property Name="sexo" Type="Int16" />
           <Property Name="dni" Type="Int32" Nullable="false" />
           <Property Name="id_alumno" Type="Int32" />
-          <NavigationProperty Name="faja" Relationship="JJSSModel.participante_participante_id_faja_fk" FromRole="participante" ToRole="faja" />
           <NavigationProperty Name="inscripcion" Relationship="JJSSModel.inscripcion_inscripcion_id_participante_fk" FromRole="participante" ToRole="inscripcion" />
           <NavigationProperty Name="lucha" Relationship="JJSSModel.lucha_lucha_id_participante_1_fk" FromRole="participante" ToRole="lucha" />
           <NavigationProperty Name="lucha1" Relationship="JJSSModel.lucha_lucha_id_participante_2_fk" FromRole="participante" ToRole="lucha" />
-          <NavigationProperty Name="categoria" Relationship="JJSSModel.participante_participante_id_categoria_fk" FromRole="participante" ToRole="categoria" />
           <NavigationProperty Name="alumno" Relationship="JJSSModel.FK__particapa_id_al__48DE5BA8" FromRole="participante" ToRole="alumno" />
         </EntityType>
-        <Association Name="participante_participante_id_faja_fk">
-          <End Type="JJSSModel.faja" Role="faja" Multiplicity="0..1" />
-          <End Type="JJSSModel.participante" Role="participante" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="participante">
-              <PropertyRef Name="id_faja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="inscripcion_inscripcion_id_participante_fk">
           <End Type="JJSSModel.participante" Role="participante" Multiplicity="0..1" />
           <End Type="JJSSModel.inscripcion" Role="inscripcion" Multiplicity="*" />
@@ -1722,8 +1642,9 @@
           <Property Name="edad_hasta" Type="Int32" />
           <Property Name="sexo" Type="Int16" />
           <NavigationProperty Name="categoria_torneo" Relationship="JJSSModel.categoria_torneo_categoria_torneo_id_categoria_fk" FromRole="categoria" ToRole="categoria_torneo" />
-          <NavigationProperty Name="participante" Relationship="JJSSModel.participante_participante_id_categoria_fk" FromRole="categoria" ToRole="participante" />
-          <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_alumno_id_categoria" FromRole="categoria" ToRole="alumno" />
+          <Property Name="id_tipo_clase" Type="Int32" />
+          <NavigationProperty Name="inscripcion" Relationship="JJSSModel.FK__inscripci__id_ca__6166761E" FromRole="categoria" ToRole="inscripcion" />
+          <NavigationProperty Name="tipo_clase" Relationship="JJSSModel.FK_categoria_tipoclase" FromRole="categoria" ToRole="tipo_clase" />
         </EntityType>
         <Association Name="categoria_torneo_categoria_torneo_id_categoria_fk">
           <End Type="JJSSModel.categoria" Role="categoria" Multiplicity="0..1" />
@@ -1733,18 +1654,6 @@
               <PropertyRef Name="id_categoria" />
             </Principal>
             <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="participante_participante_id_categoria_fk">
-          <End Type="JJSSModel.categoria" Role="categoria" Multiplicity="0..1" />
-          <End Type="JJSSModel.participante" Role="participante" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categoria">
-              <PropertyRef Name="id_categoria" />
-            </Principal>
-            <Dependent Role="participante">
               <PropertyRef Name="id_categoria" />
             </Dependent>
           </ReferentialConstraint>
@@ -1810,19 +1719,10 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="clase" Relationship="JJSSModel.FK_clase_id_tipo_clase" FromRole="tipo_clase" ToRole="clase" />
           <NavigationProperty Name="asistencia_clase" Relationship="JJSSModel.FK_asistencia_tipoclase" FromRole="tipo_clase" ToRole="asistencia_clase" />
+          <NavigationProperty Name="categoria" Relationship="JJSSModel.FK_categoria_tipoclase" FromRole="tipo_clase" ToRole="categoria" />
+          <NavigationProperty Name="faja" Relationship="JJSSModel.FK_faja_tipoclase" FromRole="tipo_clase" ToRole="faja" />
+          <NavigationProperty Name="torneo" Relationship="JJSSModel.FK_torneo_tipoclase" FromRole="tipo_clase" ToRole="torneo" />
         </EntityType>
-        <Association Name="FK_alumno_id_categoria">
-          <End Type="JJSSModel.categoria" Role="categoria" Multiplicity="0..1" />
-          <End Type="JJSSModel.alumno" Role="alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categoria">
-              <PropertyRef Name="id_categoria" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_alumno_id_direccion">
           <End Type="JJSSModel.direccion" Role="direccion" Multiplicity="0..1" />
           <End Type="JJSSModel.alumno" Role="alumno" Multiplicity="*" />
@@ -1832,18 +1732,6 @@
             </Principal>
             <Dependent Role="alumno">
               <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_alumno_id_faja">
-          <End Type="JJSSModel.faja" Role="faja" Multiplicity="0..1" />
-          <End Type="JJSSModel.alumno" Role="alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_faja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2140,7 +2028,6 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
-          <Property Name="id_faja" Type="Int32" />
           <Property Name="sexo" Type="Int16" />
           <Property Name="dni" Type="Int32" Nullable="false" />
           <Property Name="telefono" Type="Int64" Nullable="false" />
@@ -2150,7 +2037,6 @@
           <Property Name="fecha_ingreso" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="id_direccion" Type="Int32" />
           <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_profesor_id_direccion" FromRole="profesor" ToRole="direccion" />
-          <NavigationProperty Name="faja" Relationship="JJSSModel.FK_profesor_id_faja" FromRole="profesor" ToRole="faja" />
           <NavigationProperty Name="seguridad_usuario" Relationship="JJSSModel.FK_profesor_id_usuario" FromRole="profesor" ToRole="seguridad_usuario" />
           <NavigationProperty Name="profesor_imagen" Relationship="JJSSModel.FK_profesorimagen_id_profesor" FromRole="profesor" ToRole="profesor_imagen" />
         </EntityType>
@@ -2172,18 +2058,6 @@
             </Principal>
             <Dependent Role="profesor">
               <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_profesor_id_faja">
-          <End Type="JJSSModel.faja" Role="faja" Multiplicity="0..1" />
-          <End Type="JJSSModel.profesor" Role="profesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faja">
-              <PropertyRef Name="id_faja" />
-            </Principal>
-            <Dependent Role="profesor">
-              <PropertyRef Name="id_faja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2337,6 +2211,100 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="alumnoxfaja">
+          <Key>
+            <PropertyRef Name="id_alumnoxfaja" />
+          </Key>
+          <Property Name="id_alumnoxfaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_alumno" Type="Int32" />
+          <Property Name="id_faja" Type="Int32" />
+          <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_alumno" FromRole="alumnoxfaja" ToRole="alumno" />
+          <NavigationProperty Name="faja" Relationship="JJSSModel.FK_faja" FromRole="alumnoxfaja" ToRole="faja" />
+        </EntityType>
+        <Association Name="FK_alumno">
+          <End Type="JJSSModel.alumno" Role="alumno" Multiplicity="0..1" />
+          <End Type="JJSSModel.alumnoxfaja" Role="alumnoxfaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="id_alumno" />
+            </Principal>
+            <Dependent Role="alumnoxfaja">
+              <PropertyRef Name="id_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_faja">
+          <End Type="JJSSModel.faja" Role="faja" Multiplicity="0..1" />
+          <End Type="JJSSModel.alumnoxfaja" Role="alumnoxfaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faja">
+              <PropertyRef Name="id_faja" />
+            </Principal>
+            <Dependent Role="alumnoxfaja">
+              <PropertyRef Name="id_faja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__inscripci__id_ca__6166761E">
+          <End Type="JJSSModel.categoria" Role="categoria" Multiplicity="0..1" />
+          <End Type="JJSSModel.inscripcion" Role="inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="inscripcion">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_categoria_tipoclase">
+          <End Type="JJSSModel.tipo_clase" Role="tipo_clase" Multiplicity="0..1" />
+          <End Type="JJSSModel.categoria" Role="categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Principal>
+            <Dependent Role="categoria">
+              <PropertyRef Name="id_tipo_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_faja_tipoclase">
+          <End Type="JJSSModel.tipo_clase" Role="tipo_clase" Multiplicity="0..1" />
+          <End Type="JJSSModel.faja" Role="faja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Principal>
+            <Dependent Role="faja">
+              <PropertyRef Name="id_tipo_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incripcion_faka">
+          <End Type="JJSSModel.faja" Role="faja" Multiplicity="0..1" />
+          <End Type="JJSSModel.inscripcion" Role="inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faja">
+              <PropertyRef Name="id_faja" />
+            </Principal>
+            <Dependent Role="inscripcion">
+              <PropertyRef Name="id_faja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_torneo_tipoclase">
+          <End Type="JJSSModel.tipo_clase" Role="tipo_clase" Multiplicity="0..1" />
+          <End Type="JJSSModel.torneo" Role="torneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_clase">
+              <PropertyRef Name="id_tipo_clase" />
+            </Principal>
+            <Dependent Role="torneo">
+              <PropertyRef Name="id_tipo_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2387,15 +2355,18 @@
           <EntitySetMapping Name="faja">
             <EntityTypeMapping TypeName="JJSSModel.faja">
               <MappingFragment StoreEntitySet="faja">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="id_faja" ColumnName="id_faja" />
-                <ScalarProperty Name="color" ColumnName="color" />
-                <ScalarProperty Name="grado" ColumnName="grado" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="inscripcion">
             <EntityTypeMapping TypeName="JJSSModel.inscripcion">
               <MappingFragment StoreEntitySet="inscripcion">
+                <ScalarProperty Name="id_faja" ColumnName="id_faja" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="peso" ColumnName="peso" />
                 <ScalarProperty Name="id_inscripcion" ColumnName="id_inscripcion" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
@@ -2403,7 +2374,6 @@
                 <ScalarProperty Name="codigo_barra" ColumnName="codigo_barra" />
                 <ScalarProperty Name="id_participante" ColumnName="id_participante" />
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
-                <ScalarProperty Name="id_categoria_torneo" ColumnName="id_categoria_torneo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2451,6 +2421,7 @@
           <EntitySetMapping Name="torneo">
             <EntityTypeMapping TypeName="JJSSModel.torneo">
               <MappingFragment StoreEntitySet="torneo">
+                <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2469,13 +2440,10 @@
               <MappingFragment StoreEntitySet="alumno">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="telefono_emergencia" ColumnName="telefono_emergencia" />
-                <ScalarProperty Name="foto_perfil" ColumnName="foto_perfil" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
-                <ScalarProperty Name="id_faja" ColumnName="id_faja" />
-                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="dni" ColumnName="dni" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
@@ -2491,8 +2459,6 @@
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="dni" ColumnName="dni" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
-                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
-                <ScalarProperty Name="id_faja" ColumnName="id_faja" />
                 <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2503,6 +2469,7 @@
           <EntitySetMapping Name="categoria">
             <EntityTypeMapping TypeName="JJSSModel.categoria">
               <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="edad_hasta" ColumnName="edad_hasta" />
                 <ScalarProperty Name="edad_desde" ColumnName="edad_desde" />
@@ -2654,7 +2621,6 @@
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="dni" ColumnName="dni" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
-                <ScalarProperty Name="id_faja" ColumnName="id_faja" />
                 <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2717,6 +2683,15 @@
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
                 <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alumnoxfaja">
+            <EntityTypeMapping TypeName="JJSSModel.alumnoxfaja">
+              <MappingFragment StoreEntitySet="alumnoxfaja">
+                <ScalarProperty Name="id_faja" ColumnName="id_faja" />
+                <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+                <ScalarProperty Name="id_alumnoxfaja" ColumnName="id_alumnoxfaja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

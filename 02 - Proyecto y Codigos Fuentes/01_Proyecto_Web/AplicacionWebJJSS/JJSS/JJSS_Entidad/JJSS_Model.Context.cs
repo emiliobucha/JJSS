@@ -59,5 +59,6 @@ namespace JJSS_Entidad
         public virtual DbSet<forma_pago> forma_pago { get; set; }
         public virtual DbSet<parametro> parametro { get; set; }
         public virtual DbSet<asistencia_clase> asistencia_clase { get; set; }
+        public virtual DbSet<alumnoxfaja> alumnoxfaja { get; set; }
     }
 }

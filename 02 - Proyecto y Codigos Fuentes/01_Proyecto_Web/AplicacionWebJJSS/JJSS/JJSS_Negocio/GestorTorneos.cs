@@ -225,7 +225,7 @@ namespace JJSS_Negocio
             {
                 var participantes = from inscr in db.inscripcion
                                     join part in db.participante on inscr.id_participante equals part.id_participante
-                                    join cat_tor in db.categoria_torneo on inscr.id_categoria_torneo equals cat_tor.id_categoria_torneo
+                                    join cat_tor in db.categoria on inscr.id_categoria equals cat_tor.id_categoria
                                     where inscr.id_torneo == pID
                                     select new
                                     {
@@ -238,9 +238,8 @@ namespace JJSS_Negocio
                                         par_apellido = part.apellido,
                                         par_fecha_nac = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
-                                        par_faja = cat_tor.faja.color,
-                                        par_categoria = cat_tor.categoria.nombre,
-
+                                        par_faja= inscr.faja.descripcion,
+                                        par_categoria=inscr.categoria.nombre,
                                     };
                 List<Object> participantesList = participantes.ToList<Object>();
               
@@ -315,9 +314,5 @@ namespace JJSS_Negocio
                 
 
         }
-
-        
-
-
     }
 }

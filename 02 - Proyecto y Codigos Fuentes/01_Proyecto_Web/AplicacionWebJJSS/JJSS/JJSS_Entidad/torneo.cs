@@ -32,6 +32,7 @@ namespace JJSS_Entidad
         public string hora_cierre { get; set; }
         public Nullable<decimal> precio_absoluto { get; set; }
         public Nullable<decimal> precio_categoria { get; set; }
+        public Nullable<int> id_tipo_clase { get; set; }
     
         public virtual estado estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -41,5 +42,6 @@ namespace JJSS_Entidad
         public virtual sede sede { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<torneo_imagen> torneo_imagen { get; set; }
+        public virtual tipo_clase tipo_clase { get; set; }
     }
 }

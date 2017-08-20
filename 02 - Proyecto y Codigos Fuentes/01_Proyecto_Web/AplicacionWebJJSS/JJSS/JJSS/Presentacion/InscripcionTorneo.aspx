@@ -191,7 +191,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ValidationGroup="grupoDni" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="regex_dni" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_txtDni" CssClass="text-danger" Display="Dynamic" ValidationGroup="grupoDni" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="regex_dni" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ValidationGroup="grupoDni" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                                 <div class="row centered">
@@ -287,11 +287,11 @@
                                         <asp:TextBox class="caja2" ID="txt_peso" runat="server" placeholder="Ingrese peso"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic"> </asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="requeridoPeso" runat="server" ErrorMessage="Debe ingresar un peso" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgDatos"> </asp:RequiredFieldValidator>
                                         <%--<asp:CompareValidator ID="tipoPeso" runat="server" ErrorMessage="El peso debe ser un valor numérico" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
                                         <%--<asp:CompareValidator ID="positivoPeso" runat="server" ErrorMessage="El peso debe ser un valor mayor a 0" ControlToValidate="txt_peso" CssClass="text-danger" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic"> </asp:CompareValidator>--%>
 
-                                        <asp:RegularExpressionValidator ID="regex_peso" runat="server" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del peso" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"> </asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="regex_peso" runat="server" ControlToValidate="txt_peso" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del peso" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$" ValidationGroup="vgDatos"> </asp:RegularExpressionValidator>
 
                                     </div>
                                 </div>

@@ -22,29 +22,25 @@ namespace JJSS_Entidad
             this.alumno_imagen = new HashSet<alumno_imagen>();
             this.pago_clase = new HashSet<pago_clase>();
             this.asistencia_clase = new HashSet<asistencia_clase>();
+            this.alumnoxfaja = new HashSet<alumnoxfaja>();
         }
     
         public int id_alumno { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
-        public Nullable<int> id_faja { get; set; }
-        public Nullable<int> id_categoria { get; set; }
         public Nullable<short> sexo { get; set; }
         public int dni { get; set; }
         public int telefono { get; set; }
         public string mail { get; set; }
         public Nullable<int> id_direccion { get; set; }
         public System.DateTime fecha_ingreso { get; set; }
-        public byte[] foto_perfil { get; set; }
         public int telefono_emergencia { get; set; }
         public Nullable<int> id_usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }
-        public virtual categoria categoria { get; set; }
         public virtual direccion direccion { get; set; }
-        public virtual faja faja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -54,5 +50,7 @@ namespace JJSS_Entidad
         public virtual ICollection<pago_clase> pago_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<asistencia_clase> asistencia_clase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<alumnoxfaja> alumnoxfaja { get; set; }
     }
 }

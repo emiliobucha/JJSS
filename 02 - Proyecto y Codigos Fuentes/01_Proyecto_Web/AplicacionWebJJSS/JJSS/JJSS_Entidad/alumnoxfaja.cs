@@ -12,21 +12,13 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class inscripcion
+    public partial class alumnoxfaja
     {
-        public int id_inscripcion { get; set; }
-        public string hora { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<long> codigo_barra { get; set; }
-        public Nullable<int> id_participante { get; set; }
-        public Nullable<int> id_torneo { get; set; }
-        public Nullable<double> peso { get; set; }
-        public Nullable<int> id_categoria { get; set; }
+        public int id_alumnoxfaja { get; set; }
+        public Nullable<int> id_alumno { get; set; }
         public Nullable<int> id_faja { get; set; }
     
-        public virtual torneo torneo { get; set; }
-        public virtual participante participante { get; set; }
-        public virtual categoria categoria { get; set; }
+        public virtual alumno alumno { get; set; }
         public virtual faja faja { get; set; }
     }
 }
