@@ -17,9 +17,9 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public torneo()
         {
-            this.inscripcion = new HashSet<inscripcion>();
             this.lucha = new HashSet<lucha>();
             this.torneo_imagen = new HashSet<torneo_imagen>();
+            this.inscripcion = new HashSet<inscripcion>();
         }
     
         public int id_torneo { get; set; }
@@ -32,14 +32,16 @@ namespace JJSS_Entidad
         public string hora_cierre { get; set; }
         public Nullable<decimal> precio_absoluto { get; set; }
         public Nullable<decimal> precio_categoria { get; set; }
+        public Nullable<int> id_tipo_clase { get; set; }
     
         public virtual estado estado { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inscripcion> inscripcion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lucha> lucha { get; set; }
         public virtual sede sede { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<torneo_imagen> torneo_imagen { get; set; }
+        public virtual tipo_clase tipo_clase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<inscripcion> inscripcion { get; set; }
     }
 }

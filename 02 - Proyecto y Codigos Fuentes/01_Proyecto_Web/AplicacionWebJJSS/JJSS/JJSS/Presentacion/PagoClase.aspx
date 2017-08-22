@@ -157,23 +157,16 @@
             </asp:Panel>
         </div>
 
-    </form>
-    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
-     <script type="text/javascript">
-     (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-    </script>
-   
 
-
-    <!--Implementando ventana emergente --------------------*********     Inscribir alumno a Clase     *********--------------------->
-            <div class="modal fade" id="modal_inscribirAlumunoClase" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+<%--         <!--Implementando ventana emergente --------------------*********     Confirmar pago de alumno a Clase     *********--------------------->
+            <div class="modal fade" id="modal_ConfirmarPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
 
                         <!--Cabecera-->
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" >Inscribir alumno a clase</h4>
+                            <h4 class="modal-title" >Confirmar pago clase</h4>
                         </div>
 
                         <!--Cuerpo-->
@@ -182,18 +175,14 @@
                             <div class="form-group">
 
                                 <!--Ingresar DNI para inscribir alumno-->
-                                <asp:Panel ID="pnl_inscribirClase" CssClass="panel panel-default" runat="server">
+                                <asp:Panel ID="pnl_confirmarPagoClase" CssClass="panel panel-default" runat="server">
                                     <div class="row centered">
                                         <p>&nbsp;</p>
                                     </div>
                                     <div class="row centered">
                                         <div class=" col-xs-2"></div>
                                         <div class=" col-xs-8">
-                                            <asp:Label ID="Label1" runat="server" Text="Clase"></asp:Label>
-                                    
-                                            <!--Nombre Clase-->
-                                            <asp:Label ID="lbl_claseSeleccionada_nombre" runat="server" Text=""></asp:Label>
-
+                                            
                                             <!--Id Clase-->
                                             <asp:Label ID="Label2" runat="server" Text="("></asp:Label>
                                             <asp:Label ID="lbl_claseSeleccionada_id" runat="server" Text=""></asp:Label>
@@ -226,13 +215,23 @@
                         <!--Botonero-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <asp:Button ID="btn_inscripcionClase_aceptar" CssClass="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_inscripcionClase_aceptar_Click" ValidationGroup="inscripcionClase" />
+                            <%--<asp:Button ID="btn_inscripcionClase_aceptar" CssClass="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_inscripcionClase_aceptar_Click" ValidationGroup="inscripcionClase" />--%>
                         </div>
 
                     </div>
                 </div>
             </div>
             <!----------------------*********  Fin ventana emergente   *********--------------------->   
+--%>
 
+
+    </form>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+     <script type="text/javascript">
+     (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+    </script>
+   
+
+   
 
 </asp:Content>

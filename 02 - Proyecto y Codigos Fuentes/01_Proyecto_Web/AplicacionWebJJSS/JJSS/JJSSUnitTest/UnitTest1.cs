@@ -28,7 +28,7 @@ namespace JJSSUnitTest
             Assert.AreEqual(esperado, edadTexto);
         }
 
-      
+
 
         //[TestMethod]
         //public void UTCalcularEdadCorrectaPasa()
@@ -69,11 +69,20 @@ namespace JJSSUnitTest
         //        drNuevoHorario["nombre_dia"] = "D" + i;
         //        pHorarios.Rows.Add(drNuevoHorario);
         //    }
-          
+
         //    string pNombre = "Test Clase Longaniza 2";
         //    string retorno = GC.GenerarNuevaClase(pTipo, pPrecio, pHorarios, pNombre);
         //    string esperado = "";
         //    Assert.AreEqual(esperado, retorno);
         //}
+        [TestMethod]
+        public void UTe()
+        {
+            modEmails md = new modEmails();
+            md.Enviar();
+        }
+
+
+
     }
 }

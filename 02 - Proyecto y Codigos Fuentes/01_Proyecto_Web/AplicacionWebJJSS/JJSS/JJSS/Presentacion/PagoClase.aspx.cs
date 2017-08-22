@@ -148,7 +148,7 @@ namespace JJSS.Presentacion
 
         //protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
         //{
-        //    clase claseSelect=gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
+        //    clase claseSelect = gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
         //    int dni;
         //    int.TryParse(Session["PagoClase"].ToString(), out dni);
         //    alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
@@ -157,10 +157,10 @@ namespace JJSS.Presentacion
         //    if (recargo == -1) mensaje("El alumno no está inscripto a esa clase", false);
         //    else
         //    {
-        //        double monto = recargo + (double) claseSelect.precio;
+        //        double monto = recargo + (double)claseSelect.precio;
         //        txt_monto.Text = monto.ToString();
         //    }
-        //    if (recargo > 0) pagoRecargo = 1; 
+        //    if (recargo > 0) pagoRecargo = 1;
 
 
         //}

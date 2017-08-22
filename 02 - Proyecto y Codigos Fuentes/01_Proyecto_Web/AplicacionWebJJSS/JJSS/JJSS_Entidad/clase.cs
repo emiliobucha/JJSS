@@ -17,7 +17,6 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public clase()
         {
-            this.inscripcion_clase = new HashSet<inscripcion_clase>();
             this.horario = new HashSet<horario>();
             this.pago_clase = new HashSet<pago_clase>();
         }
@@ -26,16 +25,14 @@ namespace JJSS_Entidad
         public Nullable<int> id_tipo_clase { get; set; }
         public Nullable<double> precio { get; set; }
         public Nullable<int> id_profe { get; set; }
-        public string nombre { get; set; }
         public Nullable<int> id_ubicacion { get; set; }
+        public string nombre { get; set; }
         public Nullable<int> baja_logica { get; set; }
     
+        public virtual academia academia { get; set; }
         public virtual tipo_clase tipo_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<horario> horario { get; set; }
-        public virtual academia academia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_clase> pago_clase { get; set; }
     }
