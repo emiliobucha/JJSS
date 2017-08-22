@@ -1,4 +1,3 @@
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\obj\Debug\JJSS_Entidad.csprojResolveAssemblyReference.cache
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\JJSS_Entidad.dll.config
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\JJSS_Entidad.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\JJSS_Entidad.pdb
@@ -49,12 +48,8 @@ D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\Aplica
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\obj\Debug\JJSS_Entidad.pdb
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\System.ServiceModel.DomainServices.EntityFramework.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\System.ServiceModel.DomainServices.Server.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\System.ServiceModel.DomainServices.EntityFramework.xml
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\System.ServiceModel.DomainServices.Server.xml
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\de\EntityFramework.resources.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\es\EntityFramework.resources.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\fr\EntityFramework.resources.dll
@@ -64,21 +59,6 @@ E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\ru\EntityFramework.resources.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\zh-Hans\EntityFramework.resources.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\zh-Hant\EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\de\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\es\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\fr\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\it\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\ja\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\ko\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\ru\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\zh-Hans\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\zh-Hant\System.ServiceModel.DomainServices.EntityFramework.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\de\System.ServiceModel.DomainServices.Server.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\es\System.ServiceModel.DomainServices.Server.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\fr\System.ServiceModel.DomainServices.Server.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\it\System.ServiceModel.DomainServices.Server.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\ja\System.ServiceModel.DomainServices.Server.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\ko\System.ServiceModel.DomainServices.Server.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\ru\System.ServiceModel.DomainServices.Server.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\zh-Hans\System.ServiceModel.DomainServices.Server.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\zh-Hant\System.ServiceModel.DomainServices.Server.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\Microsoft.ExtendedReflection.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\bin\Debug\es\Microsoft.ExtendedReflection.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Entidad\obj\Debug\JJSS_Entidad.csprojResolveAssemblyReference.cache
