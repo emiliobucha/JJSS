@@ -17,7 +17,6 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public faja()
         {
-            this.categoria_torneo = new HashSet<categoria_torneo>();
             this.alumnoxfaja = new HashSet<alumnoxfaja>();
             this.inscripcion = new HashSet<inscripcion>();
         }
@@ -27,8 +26,6 @@ namespace JJSS_Entidad
         public Nullable<int> id_tipo_clase { get; set; }
         public Nullable<int> orden { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumnoxfaja> alumnoxfaja { get; set; }
         public virtual tipo_clase tipo_clase { get; set; }

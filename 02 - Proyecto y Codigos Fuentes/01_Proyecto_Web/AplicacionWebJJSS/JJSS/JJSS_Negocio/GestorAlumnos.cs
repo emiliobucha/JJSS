@@ -100,7 +100,7 @@ namespace JJSS_Negocio
                         direccion nuevaDireccion;
                         nuevaDireccion = new direccion()
                         {
-                            calle1 = pCalle,
+                            calle = pCalle,
                             departamento = pDpto,
                             numero = pNumero,
                             piso = pPiso,
@@ -341,7 +341,7 @@ namespace JJSS_Negocio
                             direccion nuevaDireccion;
                             nuevaDireccion = new direccion
                             {
-                                calle1 = pCalle,
+                                calle = pCalle,
                                 departamento = pDepto,
                                 numero = pNumero,
                                 piso = pPiso,
@@ -358,7 +358,7 @@ namespace JJSS_Negocio
                     }
                     else //tenia direccion, entonces la modifico
                     {
-                        direccionModificar.calle1 = pCalle;
+                        direccionModificar.calle = pCalle;
                         direccionModificar.departamento = pDepto;
                         direccionModificar.numero = pNumero;
                         direccionModificar.piso = pPiso;
@@ -412,7 +412,7 @@ namespace JJSS_Negocio
                                           join ciu in db.ciudad on dir.id_ciudad equals ciu.id_ciudad
                                           where alu.id_alumno == pIdAlumno
                                           select new {
-                                              calle = dir.calle1,
+                                              calle = dir.calle,
                                               numero = dir.numero,
                                               depto = dir.departamento,
                                               piso= dir.piso,

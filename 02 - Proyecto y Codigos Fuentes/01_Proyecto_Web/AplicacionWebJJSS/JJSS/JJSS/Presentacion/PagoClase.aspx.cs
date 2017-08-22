@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 
+using System.Collections;
+
 namespace JJSS.Presentacion
 {
     public partial class PagoClase : System.Web.UI.Page
@@ -15,8 +17,10 @@ namespace JJSS.Presentacion
         private GestorFormaPago gestorFPago;
         private GestorPagoClase gestorPago;
         private GestorAlumnos gestorAlumnos;
+        private GestorMercadoPago gestorMP;
         private alumno alumnoElegido;
-        private short pagoRecargo=0; //si es 0 no pago recargo, si es 1 si lo pago
+        private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,11 +31,13 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
+
+
                 CargarComboClase();
                 CargarComboFormaPago();
                 int dni = int.Parse(Session["PagoClase"].ToString());
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
-                lbl_alumno.Text = alumnoElegido.apellido+", "+ alumnoElegido.nombre;
+                lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
             }
         }
 
@@ -39,6 +45,15 @@ namespace JJSS.Presentacion
         {
             limpiar();
             Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
+        }
+
+        protected void btn_pagar_Click(object sender, EventArgs e)
+        {
+            String sInit_Point = "";
+            gestorMP = new GestorMercadoPago();
+            sInit_Point = gestorMP.NuevoPago(txt_monto.Text.Replace(".", ","));
+            mp_checkout.Attributes.Add("href", sInit_Point);
+
         }
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
@@ -52,7 +67,7 @@ namespace JJSS.Presentacion
             {
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
 
-                string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago,pagoRecargo);
+                string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago, pagoRecargo);
                 if (sReturn.CompareTo("") == 0)
                 {
                     mensaje("Se ha registrado el pago exitosamente", true);
@@ -61,7 +76,7 @@ namespace JJSS.Presentacion
                 else mensaje(sReturn, false);
             }
             else mensaje("No hay alumno seleccionado", false);
-            
+
         }
 
         protected void limpiar()
@@ -128,9 +143,12 @@ namespace JJSS.Presentacion
 
         }
 
+
+
+
         //protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
         //{
-        //    clase claseSelect=gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
+        //    clase claseSelect = gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
         //    int dni;
         //    int.TryParse(Session["PagoClase"].ToString(), out dni);
         //    alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
@@ -139,10 +157,10 @@ namespace JJSS.Presentacion
         //    if (recargo == -1) mensaje("El alumno no está inscripto a esa clase", false);
         //    else
         //    {
-        //        double monto = recargo + (double) claseSelect.precio;
+        //        double monto = recargo + (double)claseSelect.precio;
         //        txt_monto.Text = monto.ToString();
         //    }
-        //    if (recargo > 0) pagoRecargo = 1; 
+        //    if (recargo > 0) pagoRecargo = 1;
 
 
         //}

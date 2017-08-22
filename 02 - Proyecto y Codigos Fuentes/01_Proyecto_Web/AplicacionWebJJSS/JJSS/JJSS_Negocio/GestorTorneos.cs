@@ -231,7 +231,7 @@ namespace JJSS_Negocio
                                     {
                                         tor_nombre = inscr.torneo.nombre,
                                         tor_sede = inscr.torneo.sede.nombre,
-                                        tor_direccion = inscr.torneo.sede.direccion.calle1 + " " + inscr.torneo.sede.direccion.numero,
+                                        tor_direccion = inscr.torneo.sede.direccion.calle + " " + inscr.torneo.sede.direccion.numero,
                                         tor_fecha = inscr.torneo.fecha,
                                         tor_hora = inscr.torneo.hora,
                                         par_nombre = part.nombre,

@@ -92,7 +92,7 @@ namespace JJSS_Negocio
                     db.SaveChanges();
                     var catTorneoExistente = from catTor in db.categoria_torneo
                                              where (catTor.id_categoria == categoriaPerteneciente.id_categoria)
-                                             && (catTor.faja.id_faja == fajaElegida.id_faja)
+                                            // && (catTor.faja.id_faja == fajaElegida.id_faja)
                                              && (catTor.sexo == pSexo)
                                              select catTor;
                     categoria_torneo nuevaCategoriaTorneo;
@@ -103,7 +103,7 @@ namespace JJSS_Negocio
                         nuevaCategoriaTorneo = new categoria_torneo()
                         {
                             id_categoria = categoriaPerteneciente.id_categoria,
-                            faja = fajaElegida,
+                        //faja = fajaElegida,
                             sexo = pSexo,
 
                         };

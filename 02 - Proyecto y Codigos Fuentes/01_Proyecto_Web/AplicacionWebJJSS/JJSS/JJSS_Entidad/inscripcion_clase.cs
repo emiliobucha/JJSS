@@ -21,6 +21,5 @@ namespace JJSS_Entidad
         public Nullable<int> id_alumno { get; set; }
     
         public virtual alumno alumno { get; set; }
-        public virtual clase clase { get; set; }
     }
 }

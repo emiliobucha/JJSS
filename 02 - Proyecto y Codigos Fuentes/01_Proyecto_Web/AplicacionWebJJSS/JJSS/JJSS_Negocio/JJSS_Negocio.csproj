@@ -40,13 +40,31 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GestorAcademias.cs" />
+    <Compile Include="GestorAsistencia.cs" />
+    <Compile Include="GestorCiudades.cs" />
+    <Compile Include="GestorClases.cs" />
+    <Compile Include="GestorFormaPago.cs" />
+    <Compile Include="GestorInscripcionesClase.cs" />
+    <Compile Include="GestorMercadoPago.cs" />
+    <Compile Include="GestorPagoClase.cs" />
+    <Compile Include="GestorParametro.cs" />
     <Compile Include="GestorParticipantes.cs" />
     <Compile Include="GestorAlumnos.cs" />
     <Compile Include="GestorInscripciones.cs" />
+    <Compile Include="GestorProfesores.cs" />
+    <Compile Include="GestorProvincias.cs" />
     <Compile Include="GestorReportes.cs" />
     <Compile Include="GestorSedes.cs" />
+    <Compile Include="GestorSesiones.cs" />
+    <Compile Include="GestorTipoClase.cs" />
     <Compile Include="GestorTorneos.cs" />
+    <Compile Include="GestorUsuarios.cs" />
+    <Compile Include="modEmails.cs" />
     <Compile Include="modReportes.cs" />
+    <Compile Include="modUtilidades.cs" />
+    <Compile Include="modUtilidadesTablas.cs" />
+    <Compile Include="Sesion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -54,6 +72,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="mercadopago">
+      <HintPath>C:\Users\Emilio\Desktop\sdk-dotnet-master\sdk-dotnet-master\bin\mercadopago.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Scaffolding.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AspNet.Scaffolding.EntityFramework.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />

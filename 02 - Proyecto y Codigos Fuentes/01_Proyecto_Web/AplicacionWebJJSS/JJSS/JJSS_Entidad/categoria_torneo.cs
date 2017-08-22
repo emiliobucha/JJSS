@@ -19,7 +19,6 @@ namespace JJSS_Entidad
         public Nullable<short> sexo { get; set; }
         public Nullable<int> id_faja { get; set; }
     
-        public virtual faja faja { get; set; }
         public virtual categoria categoria { get; set; }
     }
 }

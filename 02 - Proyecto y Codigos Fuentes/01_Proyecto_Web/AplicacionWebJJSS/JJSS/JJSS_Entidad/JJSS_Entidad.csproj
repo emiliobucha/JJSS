@@ -88,7 +88,13 @@
     <Compile Include="alumno.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="alumnoxfaja.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="alumno_imagen.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="asistencia_clase.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="categoria.cs">
@@ -103,6 +109,9 @@
     <Compile Include="clase.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="detalle_pago_clase.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="direccion.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
@@ -110,6 +119,9 @@
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="faja.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="forma_pago.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="horario.cs">
@@ -139,16 +151,46 @@
     <Compile Include="lucha.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="pago_clase.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="pais.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="parametro.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="participante.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="profesor.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="profesor_imagen.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="provincia.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="resultado.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="sede.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_grupo.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_grupoxopcion.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_opcion.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_usuario.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_usuarioxgrupo.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="tipo_clase.cs">

@@ -17,6 +17,7 @@ namespace JJSS_Entidad
         public int id_alumnoxfaja { get; set; }
         public Nullable<int> id_alumno { get; set; }
         public Nullable<int> id_faja { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
     
         public virtual alumno alumno { get; set; }
         public virtual faja faja { get; set; }
