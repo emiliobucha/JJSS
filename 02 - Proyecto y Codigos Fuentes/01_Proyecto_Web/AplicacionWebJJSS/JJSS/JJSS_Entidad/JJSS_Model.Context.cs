@@ -54,11 +54,14 @@ namespace JJSS_Entidad
         public virtual DbSet<parametro> parametro { get; set; }
         public virtual DbSet<asistencia_clase> asistencia_clase { get; set; }
         public virtual DbSet<alumnoxfaja> alumnoxfaja { get; set; }
+<<<<<<< HEAD
         public virtual DbSet<faja> faja { get; set; }
         public virtual DbSet<inscripcion> inscripcion { get; set; }
         public virtual DbSet<alumno> alumno { get; set; }
         public virtual DbSet<clase> clase { get; set; }
         public virtual DbSet<participante> participante { get; set; }
         public virtual DbSet<profesor> profesor { get; set; }
+=======
+>>>>>>> 754423030ba862c865fa5f8bebee24cccf535817
     }
 }

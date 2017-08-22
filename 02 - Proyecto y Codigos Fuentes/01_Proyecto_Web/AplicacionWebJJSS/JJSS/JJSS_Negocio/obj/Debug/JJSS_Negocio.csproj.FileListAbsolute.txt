@@ -4,15 +4,8 @@ E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Negocio.pdb
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Entidad.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.Data.Edm.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.Data.Entity.Design.Extensibility.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EnvDTE.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\stdole.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Entidad.pdb
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\JJSS_Entidad.dll.config
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.Data.Edm.xml
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\es\Microsoft.Data.Edm.resources.dll
-E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\es\Microsoft.Data.Entity.Design.Extensibility.resources.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\obj\Debug\JJSS_Negocio.dll
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\obj\Debug\JJSS_Negocio.pdb
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\obj\Debug\JJSS_Negocio.csprojResolveAssemblyReference.cache
@@ -43,3 +36,10 @@ E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.xml
 E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.SqlServer.xml
 D:\USUARIO\Documents\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\EntityFramework.xml
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.ExtendedReflection.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.ReportViewer.Common.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.ReportViewer.WebForms.DLL
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\es\Microsoft.ExtendedReflection.resources.dll
+E:\Facultad\Proyecto Final\JJSS\02 - Proyecto y Codigos Fuentes\01_Proyecto_Web\AplicacionWebJJSS\JJSS\JJSS_Negocio\bin\Debug\mercadopago.dll

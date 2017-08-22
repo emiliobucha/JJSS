@@ -15,11 +15,12 @@ namespace JJSS
         private GestorInscripciones gestorInscripciones;
         private GestorTorneos gestorDeTorneos;
         private torneo torneoSeleccionado;
+        private GestorAlumnos gestorAlumnos;
         private int? idAlumno = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
 
             //try
             //{
@@ -38,6 +39,7 @@ namespace JJSS
 
             gestorInscripciones = new GestorInscripciones();
             gestorDeTorneos = new GestorTorneos();
+            gestorAlumnos = new GestorAlumnos();
             if (!IsPostBack)
             {
                
@@ -82,7 +84,7 @@ namespace JJSS
             txt_nombre.Text = "";
             txt_peso.Text = "";
             //ya se que no usamos el index pero solo tiene que setearlo en el primer valor que haya en el combo
-            ddl_fajas.SelectedIndex = 0;
+            //ddl_fajas.SelectedIndex = 0;
 
             if (limpiaTodo == true)
             {
@@ -145,7 +147,7 @@ namespace JJSS
         {
             List<faja> fajas = gestorInscripciones.ObtenerFajas();
             ddl_fajas.DataSource = fajas;
-            ddl_fajas.DataTextField = "color";
+            ddl_fajas.DataTextField = "descripcion";
             ddl_fajas.DataValueField = "id_faja";
             ddl_fajas.DataBind();
         }
@@ -216,7 +218,7 @@ namespace JJSS
                     txt_apellido.ReadOnly = true;
                     txt_nombre.ReadOnly = true;
                     txt_edad.ReadOnly = true;
-                    ddl_fajas.Enabled = false;
+                    
                     rbSexo.Enabled = false;
 
                     txt_apellido.Text = alumnoEncontrado.apellido;
@@ -224,7 +226,16 @@ namespace JJSS
 
                     txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 
-                    ddl_fajas.SelectedValue = alumnoEncontrado.id_faja.ToString();
+                    int idTorneo = 0;
+                    int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+                    int idTipoClase = (int) gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
+                    faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
+                    if (fajaAlumno!= null)
+                    {
+                        ddl_fajas.Enabled = false;
+                        ddl_fajas.SelectedValue = fajaAlumno.id_faja.ToString();
+                    }
+                    
 
                     if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
                     if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;

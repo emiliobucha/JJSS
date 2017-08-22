@@ -113,8 +113,6 @@ namespace JJSS_Negocio
                             nombre = pNombre,
                             apellido = pApellido,
                             fecha_nacimiento = pFechaNacimiento,
-                            faja = fajaElegida,
-                            //categoria
                             sexo = pSexo,
                             dni = pDni,
                             telefono = pTelefono,
@@ -132,8 +130,6 @@ namespace JJSS_Negocio
                             nombre = pNombre,
                             apellido = pApellido,
                             fecha_nacimiento = pFechaNacimiento,
-                            faja = fajaElegida,
-                            //categoria
                             sexo = pSexo,
                             dni = pDni,
                             telefono = pTelefono,
@@ -425,6 +421,20 @@ namespace JJSS_Negocio
                                           };
                 return modUtilidadesTablas.ToDataTable(direccionEncontrada.ToList());
             }
+        }
+
+        public faja ObtenerFajaAlumno (int pIdAlumno, int pIdTipoClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var fajaEncontrada = from alu in db.alumno
+                                     join axf in db.alumnoxfaja on alu.id_alumno equals axf.id_alumno
+                                     join faj in db.faja on axf.id_faja equals faj.id_faja
+                                     where alu.id_alumno == pIdAlumno && faj.id_tipo_clase == pIdTipoClase
+                                     select faj;
+                return fajaEncontrada.FirstOrDefault();
+            }
+
         }
     }
 }
