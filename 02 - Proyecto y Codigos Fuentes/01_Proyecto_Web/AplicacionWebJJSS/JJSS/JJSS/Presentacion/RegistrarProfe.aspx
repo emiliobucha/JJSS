@@ -47,7 +47,7 @@
 
                     <div class="container">
                         <div class="row mt centered">
-                            <h1>FORMULARIO DE REGISTRO DE PROFESOR</h1>
+                            <h1>REGISTRO DE PROFESOR</h1>
                             <p>&nbsp;</p>
                         </div>
 
@@ -67,7 +67,7 @@
                                 <div class="row centered">
                                     <div class="col-xs-2">
                                         <!--Nombre-->
-                                        <label class="pull-left">Nombres</label>
+                                        <label class="pull-left">Nombre</label>
                                     </div>
                                     <div class="col-xs-3">
                                         <asp:TextBox ID="txt_nombres" runat="server" placeholder="Ingrese nombres" CssClass="caja2"></asp:TextBox>
@@ -266,37 +266,10 @@
 
                             </asp:Panel>
 
-                            <asp:Panel ID="pnl_datos_academicos" CssClass="panel panel-footer" runat="server">
-                                <div class="row centered">
-                                    <h2>Datos Académicos</h2>
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                </div>
-
-                                <!--Faja y Categoria-->
-                                <div class="row centered">
-                                    <!--Faja-->
-                                    <div class="col-xs-2">
-                                        <label class="pull-left">Faja</label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
-                                        </asp:DropDownList>
-                                    </div>
-                                    
-                                </div>
-
-                                <div class="row centered">
-                                    <p>&nbsp;</p>
-                                </div>
-
-                            </asp:Panel>
-
                             <!--Boton-->
                             <div class="row centered">
                                 <asp:Button ID="btn_cancelar" runat="server" CssClass="btn btn-default" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
-                                <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Guardar" OnClick="btn_guardar_click" ValidationGroup="vgProfes" />
+                                <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgProfes" />
                                 <asp:Button ID="btn_ver_profes" runat="server" CssClass="btn btn-default" Text="Ver profesores" CausesValidation="False" OnClick="btn_ver_profes_Click" />
                             </div>
                         </div>
@@ -319,7 +292,7 @@
                         <div class="form-group ">
                             <!--Boton-->
                             <div class="row centered">
-                                <strong>DNI a buscar:</strong>
+                                <strong>DNI</strong>
                                 <asp:TextBox ID="txt_filtro_dni" runat="server"></asp:TextBox>
                                 <asp:CompareValidator ID="mayor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="El DNI debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="0"></asp:CompareValidator>
                                 <asp:CompareValidator ID="menor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="DNI demasiado largo" Operator="LessThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="2147483647"></asp:CompareValidator>

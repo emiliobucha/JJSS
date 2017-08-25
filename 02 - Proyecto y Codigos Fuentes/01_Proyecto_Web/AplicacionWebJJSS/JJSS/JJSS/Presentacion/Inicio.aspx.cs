@@ -16,8 +16,10 @@ namespace JJSS.Presentacion
         private GestorClases gestorDeClases;
         private GestorInscripcionesClase gestorInscripcionClase;
         private torneo torneoSeleccionado;
-        private int? idAlumno=null;
+        private int? idAlumno = null;
+        private GestorAlumnos gestorAlumnos;
         private GestorParametro gestorParametro;
+        private GestorTipoClase gestorTipoClase;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +30,7 @@ namespace JJSS.Presentacion
             //    if (sesionActiva.estado != "INGRESO ACEPTADO")
             //    {
             //        Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
-                   
+
             //    }
             //}
             //catch(Exception ex)
@@ -40,6 +42,7 @@ namespace JJSS.Presentacion
             gestorDeTorneos = new GestorTorneos();
             gestorInscripciones = new GestorInscripciones();
             gestorDeClases = new GestorClases();
+            gestorTipoClase = new GestorTipoClase();
             gestorInscripcionClase = new GestorInscripcionesClase();
             if (!IsPostBack)
             {
@@ -47,8 +50,9 @@ namespace JJSS.Presentacion
                 cargarClases();
                 cargarTorneosAbiertos();
                 cargarRecarga();
+                
             }
-            
+
 
 
             //   this.btn_confirmar_dni.ServerClick += MetodoClick;
@@ -60,10 +64,31 @@ namespace JJSS.Presentacion
             //    //llamamos el metodo que queremos ejecutar, en este caso el evento onclick del boton Button2
             //    btnGenerarListado_Click(this, new EventArgs());
             //}
-          
-        }
-        
 
+        }
+
+        //protected void cargarComboFajas()
+        //{
+
+        //    int idClase = 0;
+        //    int.TryParse(hf_claseSeleccionada_id.Value, out idClase);
+        //    if (idClase != 0)
+        //    {
+        //        List<faja> fajas = gestorTipoClase.ObtenerFajasSegunTipoClase(idClase);
+        //        if (fajas != null)
+        //        {
+        //            ddl_faja.DataSource = fajas;
+        //            ddl_faja.DataTextField = "descripcion";
+        //            ddl_faja.DataValueField = "id_faja";
+        //            ddl_faja.DataBind();
+        //        }
+        //        else
+        //        {
+        //            ddl_faja.Visible = false;
+        //        }
+        //    }
+        //}
+        
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -103,26 +128,24 @@ namespace JJSS.Presentacion
         {
             gv_torneosAbiertos.DataSource = gestorDeTorneos.ObtenerTorneos();
             gv_torneosAbiertos.DataBind();
-           
+            
+
+
         }
 
         protected void gv_torneosAbiertos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName.CompareTo("inscribir") == 0)
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+                int id = Convert.ToInt32(gv_torneosAbiertos.DataKeys[indice].Value);
 
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = gv_torneosAbiertos.Rows[index];
 
-            int id = Convert.ToInt32(row.Cells[0].Text);
+                Session["torneoSeleccionado"] = id;
 
+                Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
+            }
 
-                // int id = (int)Convert.ToInt64(gv_torneosAbiertos.SelectedRow.Cells[1].Text);
-                //int id = (int)gv_torneosAbiertos.SelectedDataKey.Value;
-               
-           // int id = (int)this.gv_torneosAbiertos.SelectedValue;
-
-            Session["torneoSeleccionado"] = id;         
-
-            Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
 
         }
         protected void cargarClases()
@@ -173,7 +196,7 @@ namespace JJSS.Presentacion
                 if (sesionActiva.estado != "INGRESO ACEPTADO")
                 {
                     if ((int?)sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'")[0]["perm_ejecutar"] != 1)
-                    { 
+                    {
                         Response.Write("<script>window.alert('" + "Debe estar logueado como alumno para inscribirse".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
                     }
                 }
@@ -195,26 +218,29 @@ namespace JJSS.Presentacion
             try
             {
                 string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, idClase, phora, pfecha);
-                if (sReturn != "")
-                {
-                    Response.Write("<script>window.alert('" + sReturn.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
-                }
-                else
-                {
-                    Response.Write("<script>window.alert('" + "Alumno Inscripto".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
-                }
+                //if (sReturn != "") mensajeInsClase(sReturn, false);
+                //else
+                //{
+                //    gestorAlumnos = new GestorAlumnos();
+                //    string ddl = ddl_faja.SelectedValue;
+                //    if (ddl_faja.SelectedIndex >= 0) sReturn = gestorAlumnos.AsignarFaja(dniAlumno, int.Parse(ddl_faja.SelectedValue));
+                //    if (sReturn != "") mensajeInsClase(sReturn, false);
+                //    else mensajeInsClase("Alumno inscripto", true);
+
+                //}
             }
             catch (Exception ex)
             {
-                Response.Write("<script>window.alert('" + ex.Message.Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+                //mensajeInsClase(ex.Message.Trim(), false);
             }
         }
 
+        
         protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
         {
             btnGenerarListado();
         }
-        
+
 
         protected void gv_clasesDisponibles_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -223,11 +249,12 @@ namespace JJSS.Presentacion
                 // int idClase = int.Parse(gv_clasesDisponibles.SelectedValue.ToString());
                 int index = Convert.ToInt32(e.CommandArgument);
                 int id = Convert.ToInt32(gv_clasesDisponibles.DataKeys[index].Value);
-                string sReturn=gestorDeClases.eliminarClase(id);
+                string sReturn = gestorDeClases.eliminarClase(id);
                 if (sReturn.CompareTo("") == 0) sReturn = "Se eliminó la clase correctamente";
                 mensaje(sReturn);
                 cargarClases();
-            }else if (e.CommandName.CompareTo("Seleccionar") == 0)
+            }
+            else if (e.CommandName.CompareTo("Seleccionar") == 0)
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 int id = Convert.ToInt32(gv_clasesDisponibles.DataKeys[index].Value);
@@ -254,7 +281,7 @@ namespace JJSS.Presentacion
         protected void btn_modal_recarga_aceptar_Click(object sender, EventArgs e)
         {
             gestorParametro = new GestorParametro();
-            string mensaje =gestorParametro.modificarParametro(1, decimal.Parse(txt_modal_recarga.Text));
+            string mensaje = gestorParametro.modificarParametro(1, decimal.Parse(txt_modal_recarga.Text));
             if (mensaje.CompareTo("") == 0) mensaje = "Se actualizó exitosamente";
             Response.Write("<script>window.alert('" + mensaje + "');</script>");
         }
@@ -269,5 +296,12 @@ namespace JJSS.Presentacion
             GestorPagoClase gp = new GestorPagoClase();
             gp.validarPagoParaAsistencia(11, 3);
         }
+
+        protected void rb_tipo_clase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cargarComboFajas();
+        }
+
+        
     }
 }

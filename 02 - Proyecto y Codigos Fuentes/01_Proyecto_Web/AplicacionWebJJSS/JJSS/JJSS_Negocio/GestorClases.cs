@@ -138,6 +138,7 @@ namespace JJSS_Negocio
                 var clasesDisponibles = from clases in db.clase
                                         join ubic in db.academia on clases.id_ubicacion equals ubic.id_academia
                                         join tipo in db.tipo_clase on clases.id_tipo_clase equals tipo.id_tipo_clase
+                                        join profe in db.profesor on clases.id_profe equals profe.id_profesor
                                         where clases.baja_logica == 1
                                         select new
                                         {
@@ -146,6 +147,8 @@ namespace JJSS_Negocio
                                             precio = clases.precio,
                                             tipo_clase = tipo.nombre,
                                             ubicacion = ubic.nombre,
+                                            profesor =profe.nombre +" "+ profe.apellido,
+                                            
                                         };
                 List<Object> claseLista = clasesDisponibles.ToList<Object>();
 
@@ -438,6 +441,25 @@ namespace JJSS_Negocio
 
 
             return 0;
+        }
+
+
+        /*
+         * Metodo que obtiene una lista de clases a las que esta inscripto un alumno
+         * Parametros: pIdAlumno: entero- representa el ID del alumno
+         * Retornos: List<clase> - lista de las clases
+         * 
+         */
+        public List<clase> ObtenerClaseSegunAlumno(int pIdAlumno)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var claseSegunAlumno = from clase in db.clase
+                                       join ins in db.inscripcion_clase on clase.id_clase equals ins.id_clase
+                                       where ins.id_alumno == pIdAlumno
+                                       select clase;
+                return claseSegunAlumno.ToList();
+            }
         }
 
     }

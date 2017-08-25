@@ -44,13 +44,14 @@
             <asp:Panel ID="pnlPago" runat="server">
                 <div class="container">
                     <div class="row mt centered">
-                        <h1>FORMULARIO DE REGISTRO DE PAGO DE CLASE</h1>
+                        <h1>REGISTRO DE PAGO DE CLASE</h1>
                         <p>&nbsp;</p>
                     </div>
 
                     <div class="form-group">
                         <div class="row centered">
                             <h2>
+                                <asp:Label ID="lbl1" runat="server" Text="Alumno: "></asp:Label>
                                 <asp:Label ID="lbl_alumno" runat="server" Text="No hay alumno seleccionado"></asp:Label></h2>
                             <p>&nbsp;</p>
                         </div>
@@ -105,7 +106,7 @@
                         <!-- MONTO-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <label class="pull-left">Monto</label>
+                                <label class="pull-left">Importe</label>
                             </div>
                             <div class="col-xs-3">
                                 <asp:TextBox ID="txt_monto" runat="server" CssClass="caja2"></asp:TextBox>
@@ -143,12 +144,17 @@
 
                         <!-- BOTONES-->
                         <div class="row centered">
+<<<<<<< Updated upstream
                             <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
                             <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" ValidationGroup="vgRegistrarPago" OnClick="btn_aceptar_Click" />
                              <asp:Button ID="btn_pagar" runat="server" OnClick="btn_pagar_Click" Text="Confirmar" ValidationGroup="vgRegistrarPago" />
                            
                             <a runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="modal">Pagar</a>
 
+=======
+                            <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" CssClass="btn btn-default" />
+                            <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" ValidationGroup="vgRegistrarPago" OnClick="btn_aceptar_Click" CssClass="btn btn-default" />
+>>>>>>> Stashed changes
                         </div>
 
                     </div>

@@ -10,16 +10,39 @@ namespace JJSS_Negocio
     public class GestorTipoClase
     {
 
+        private GestorClases gestorClase;
+
         /*
          * Método que devuelve un listado de todas los tipos de clases cargadas
          * Retorno: List<tipo_clase>
-         *          Retorna toda lista de tipos de clases
+         *          Retorna lista de tipos de clases
          */
         public List<tipo_clase> ObtenerTipoClase()
         {
             using (var db = new JJSSEntities())
             {
                 return db.tipo_clase.ToList();
+            }
+        }
+
+
+        /*
+         * Método que devuelve un listado de las fajas
+         * Parametro: pIdClase: entero - Id de la clase
+         * Retorno: List<faja>
+         *          Retorna lista de fajas
+         */
+        public List<faja> ObtenerFajasSegunTipoClase(int pIdClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                gestorClase = new GestorClases();
+                clase claseSeleccionada = gestorClase.ObtenerClasePorId(pIdClase);
+
+                var fajas = from faj in db.faja
+                            where faj.id_tipo_clase==claseSeleccionada.id_tipo_clase
+                            select faj;
+                return fajas.ToList();
             }
         }
     }

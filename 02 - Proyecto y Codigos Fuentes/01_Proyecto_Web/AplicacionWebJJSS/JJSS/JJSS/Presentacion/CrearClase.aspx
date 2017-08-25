@@ -49,7 +49,7 @@
                     </asp:Panel>
 
                     <div class="row mt centered">
-                        <h1>FORMULARIO DE ALTA DE CLASE</h1>
+                        <h1>ALTA DE CLASE</h1>
                         <p>&nbsp;</p>
                     </div>
 
@@ -193,7 +193,7 @@
                         <div class="row centered">
 
                             <!--OnRowDataBound="dg_horarios_RowDataBound"-->
-                            <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" CssClass="table table-responsive" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_horarios_RowCommand" OnRowDataBound="dg_horarios_RowDataBound" BorderColor="Black" BorderStyle="Double">
+                            <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" CssClass="table" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_horarios_RowCommand" OnRowDataBound="dg_horarios_RowDataBound" BorderColor="Black" BorderStyle="Double">
 
                                 <Columns>
                                     <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Día" DataField="nombre_dia">

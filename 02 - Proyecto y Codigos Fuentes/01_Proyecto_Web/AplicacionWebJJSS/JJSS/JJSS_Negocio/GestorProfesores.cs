@@ -55,7 +55,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string RegistrarProfesor(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja,
+        public string RegistrarProfesor(string pNombre, string pApellido, DateTime? pFechaNacimiento, 
             short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
             string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad)
         {
@@ -77,10 +77,7 @@ namespace JJSS_Negocio
                     }
                     seguridad_usuario usuario = db.seguridad_usuario.Find(idUsuario);
 
-                    faja fajaElegida = db.faja.Find(pIdFaja);
-                    //+Rever categorias en la BD
-                    //categoria catElegida = db.categoria.Find(pIdCategoria);
-
+                    
                     if (ObtenerProfesorPorDNI(pDni) != null)
                     {
                         return "Profesor existente";
