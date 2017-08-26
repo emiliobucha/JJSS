@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-3 col-md-offset-1">
                     <h1></h1>
-                    
+
                 </div>
             </div>
             <! --/row -->
@@ -48,11 +48,11 @@
                     <div class="name-zig"></div>
 
                     <div class="col-md-6">
-                        <p>Somos una academia de artes marciales dedicada a la difusión y aprendizaje de las actividades combate cuerpo a cuerpo, sistemas de defensa personal y entrenamiento físico.</p>
-                        <p>La actividad con mayor desarrollo es el brazilian jiu-jitsu, en la cual, su profesor mariano hinojal, cinturón negro 1 grado, brinda todos los aspectos técnicos necesario para realizarla de maneras amateur o profesional y de alto nivel competitivo. Su bagaje pedagógico viene de 14 años de práctica y enseñanza constante.</p>
+                        <p align="justify">Somos una academia de artes marciales dedicada a la difusión y aprendizaje de las actividades combate cuerpo a cuerpo, sistemas de defensa personal y entrenamiento físico.</p>
+                        <p align="justify">La actividad con mayor desarrollo es el Brazilian Jiu-Jitsu, en la cual, su profesor Mariano Hinojal, cinturón negro 1 grado, brinda todos los aspectos técnicos necesario para realizarla de maneras amateur o profesional y de alto nivel competitivo. Su bagaje pedagógico viene de 14 años de práctica y enseñanza constante.</p>
                     </div>
                     <div class="col-md-6">
-                        <p>En la ciudad de Córdoba se encuentra desde el año 2008, en la zona céntrica, y actualmente cuenta con tres lugares más de enseñanza en la ciudad. Además, se imparten clases en Rio Ceballos, Villa Carlos Paz y Morteros, como así también en la ciudad de Rosario. La academia Lotus club tiene su casa central en Sao Paulo, Brazil. La misma cuenta con sucursales en toda argentina, además de academias en New York y distintas ciudades de Europa. Con lo cual, brinda un respaldo de seriedad, confianza y trabajo responsable en la enseñanza del brazilian jiu-jitsu.</p>
+                        <p align="justify">Se encuentra desde el año 2008 en la ciudad de Córdoba, en la zona céntrica, y actualmente cuenta con tres lugares más de enseñanza en la ciudad. Además, se imparten clases en Río Ceballos, Villa Carlos Paz y Morteros, como así también en la ciudad de Rosario. La academia Lotus Club tiene su casa central en Sao Paulo, Brasil. La misma cuenta con sucursales en toda Argentina, además de academias en Nueva York y distintas ciudades de Europa. Con lo cual, brinda un respaldo de seriedad, confianza y trabajo responsable en la enseñanza del Brazilian Jiu-Jitsu.</p>
                     </div>
 
                 </div>
@@ -71,56 +71,58 @@
     <form runat="server">
 
         <!--SECTOR PERFIL -->
-            <section id="perfil" title="clases"></section>
-            <div id="perfilwrap">
+        <section id="perfil" title="clases"></section>
+        <div id="perfilwrap">
 
-                <!--APARTADO DE PERFIL-->
-                <div class="container">
-                    <div class="row mt centered">
+            <!--APARTADO DE PERFIL-->
+            <div class="container">
+                <div class="row mt centered">
 
-                        <h1>MI PERFIL</h1>
-                        
-                    </div>
+                    <h1>MI PERFIL</h1>
+
                 </div>
-
-                <div class="container">
-                    <div class="row mt centered">
-
-
-                        <!--col modificar_perfil-->
-                        <div class="col-lg-4 proc" id="item_modificar_perfil">
-                            <i class="fa fa-pencil"></i>
-                            <h3><a href="../Presentacion/Perfil.aspx" style="color: #000000">Modificar mi perfil</a></h3>
-                            <p>Permite modificar los datos del usuario.</p>
-                        </div>
-                        <!--/col-->
-
-                        <!--col cerrar_sesion-->
-                        <div class="col-lg-4 proc"  id="item_cerrar_sesion">
-                            <i class="fa fa-pencil"></i>
-                            <h3><asp:Button ID="btn_cerrar_sesion" runat="server" Text="Cerrar Sesion" OnClick="btn_cerrar_sesion_Click" /></h3>
-                            
-                            
-                        </div>
-
-                        <!--col iniciar_sesion-->
-                        <div class="col-lg-4 proc" id="item_iniciar_sesion">
-                            <i class="fa fa-pencil" ></i>
-                            <h3><asp:Button ID="Button1" runat="server" Text="Iniciar Sesion" OnClick="Button1_Click" /></h3>
-                            
-                            
-                        </div>
-
-                    </div>
-                    <!--/row -->
-                </div>
-                <!--/container -->
             </div>
-            <!--/Portfoliowrap -->
+
+            <div class="container">
+                <div class="row mt centered">
 
 
-            <!-- ABOUT SEPARATOR -->
-            <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
+                    <!--col modificar_perfil-->
+                    <div class="col-lg-4 proc" id="item_modificar_perfil">
+                        <i class="fa fa-pencil"></i>
+                        <h3><a href="../Presentacion/Perfil.aspx" style="color: #000000">Modificar mi perfil</a></h3>
+                        <p>Permite modificar los datos del usuario.</p>
+                    </div>
+                    <!--/col-->
+
+                    <!--col cerrar_sesion-->
+                    <div class="col-lg-4 proc" id="item_cerrar_sesion">
+                        <i class="fa fa-pencil"></i>
+                        <h3>
+                            <asp:Button ID="btn_cerrar_sesion" runat="server" Text="Cerrar Sesión" OnClick="btn_cerrar_sesion_Click" /></h3>
+
+
+                    </div>
+
+                    <!--col iniciar_sesion-->
+                    <div class="col-lg-4 proc" id="item_iniciar_sesion">
+                        <i class="fa fa-pencil"></i>
+                        <h3>
+                            <asp:Button ID="Button1" runat="server" Text="Iniciar Sesión" OnClick="Button1_Click" /></h3>
+
+
+                    </div>
+
+                </div>
+                <!--/row -->
+            </div>
+            <!--/container -->
+        </div>
+        <!--/Portfoliowrap -->
+
+
+        <!-- ABOUT SEPARATOR -->
+        <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
 
 
 
@@ -134,20 +136,22 @@
                 <div class="row mt centered">
 
 
-                    <h1>ULTIMOS TORNEOS</h1>
+                    <h1>ÚLTIMOS TORNEOS</h1>
                     <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
 
                     <!---------------------------------**************Grilla de Torneos************---------------------------------------->
-                    <asp:GridView ID="gv_torneosAbiertos" runat="server" ShowHeader="true" DataKeyNames="id_torneo" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos por el momento" OnRowCommand="gv_torneosAbiertos_RowCommand">
+                    <asp:GridView ID="gv_torneosAbiertos" runat="server" ShowHeader="true" DataKeyNames="id_torneo" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos en este momento" OnRowCommand="gv_torneosAbiertos_RowCommand" HeaderStyle-HorizontalAlign="Center">
                         <Columns>
-                            <asp:BoundField DataField="id_torneo" HeaderText="ID de torneo" />
+                            <%--<asp:BoundField DataField="id_torneo" HeaderText="ID de torneo" />--%>
                             <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                            <asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />
+                            <asp:BoundField DataField="fecha" HeaderText="Fecha" />
+                            <asp:ButtonField CommandName="inscribir" Text="Inscribir" />
+                            
                         </Columns>
                     </asp:GridView>
-                     <!---------------FIN Grilla-------------------->
+                    <!---------------FIN Grilla-------------------->
 
                 </div>
                 <!--/container -->
@@ -156,13 +160,13 @@
                 <!--APARTADO DE ADMINISTRACION DE TORNEOS -->
                 <div class="container">
                     <div class="row mt centered">
-                        <h1>ADMINISTRACION DE TORNEOS</h1>
+                        <h1>ADMINISTRACIÓN DE TORNEOS</h1>
 
                         <!--col insrcibir_Torneo-->
                         <div class="col-lg-4 proc" id="item_insrcibir_Torneo">
                             <i class="fa fa-pencil"></i>
                             <h3><a href="../Presentacion/InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
-                            <p>Accede a los torneos que estan pronto a desarrollar e inscribete.</p>
+                            <p>Accede a los torneos que estan pronto a desarrollar e inscríbete.</p>
                         </div>
                         <!--/col-->
 
@@ -170,7 +174,7 @@
                         <div class="col-lg-4 proc" id="item_mis_Torneos">
                             <i class="fa fa-heart"></i>
                             <h3>Mis torneos</h3>
-                            <p>Pudes ver aqui el historial de los torneos en que has competido.</p>
+                            <p>Puedes ver aquí el historial de los torneos en que has competido.</p>
                         </div>
                         <!--/col-->
 
@@ -178,7 +182,7 @@
                         <div class="col-lg-4 proc" id="item_visualizar_Torneo">
                             <i class="fa fa-eye"></i>
                             <h3>Visualizar torneos</h3>
-                            <p>Accede a todos los torneos que se han desarrollado. Un filtro de busqueda te facilitara el trabajo</p>
+                            <p>Accede a todos los torneos que se han desarrollado. Un filtro de búsqueda te facilitará el trabajo</p>
                         </div>
                         <!--/col-->
 
@@ -186,7 +190,7 @@
                         <div class="col-lg-4 proc" id="item_Generar_Torneo">
                             <i class="fa fa-cogs"></i>
                             <h3 class="logo"><a href="../Presentacion/CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
-                            <p>Genera un nuevo torneo. Esta herramienta no solo te permitira crearlo, tambien tendras un seguimiento del mismo.</p>
+                            <p>Crea un nuevo torneo para luego ver su seguimiento.</p>
                         </div>
                         <!--/col-->
 
@@ -221,26 +225,29 @@
                         <div class="row centered">
                             <p>&nbsp;</p>
                         </div>
-                <!---------------------------------**************Grilla de clase************---------------------------------------->
+                        <!---------------------------------**************Grilla de clase************---------------------------------------->
                         <asp:GridView ID="gv_clasesDisponibles" runat="server" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
                             <Columns>
-                                <asp:BoundField DataField="id_clase"  HeaderText="ID de clase"/>
-                                <asp:BoundField DataField="nombre"  HeaderText="Nombre"/>
-                                <asp:BoundField DataField="precio" HeaderText="Precio" />
-                                <%--<asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />--%>
-
+                                <asp:BoundField DataField="id_clase" HeaderText="ID de clase" />
+                                <asp:BoundField DataField="nombre" HeaderText="Clase" />
                                 <asp:BoundField DataField="tipo_clase" HeaderText="Tipo de Clase" />
                                 <asp:BoundField DataField="ubicacion" HeaderText="Ubicación" />
+                                <asp:BoundField DataField="profesor" HeaderText="Profesor" />
+                                <asp:BoundField DataField="precio" HeaderText="Precio" />
+
+                                <%--<asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />--%>
+
+                                
 
                                 <asp:TemplateField>
                                     <ItemTemplate>
                                         <input type="button" id="btn_inscribirClase" class="btn btn-link " onclick="seleccionarClaseInscripcion(this)" value="Inscribir" />
-                                    </ItemTemplate>                                    
-                                </asp:TemplateField>                               
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                                
+
                                 <asp:ButtonField Text="Seleccionar" CommandName="Seleccionar" />
-                                <asp:ButtonField Text="Eliminar" CommandName="Eliminar" />                                
+                                <asp:ButtonField Text="Eliminar" CommandName="Eliminar" />
 
                             </Columns>
                         </asp:GridView>
@@ -252,10 +259,10 @@
                 <!--APARTADO DE ADMINISTRACION DE CLASES -->
                 <div class="container">
                     <div class="row mt centered">
-                        <h1>ADMINISTRACION DE CLASES</h1>
+                        <h1>ADMINISTRACIÓN DE CLASES</h1>
 
                         <!--col crear_nueva_clase-->
-                        <div class="col-lg-4 proc"  id="item_crear_nueva_clase">
+                        <div class="col-lg-4 proc" id="item_crear_nueva_clase">
                             <i class="fa fa-pencil"></i>
                             <h3><a href="../Presentacion/CrearClase.aspx" style="color: #000000">Crear nueva clase</a></h3>
                             <p>Crea una nueva clase con sus respectivos horarios para administrarla.</p>
@@ -282,15 +289,15 @@
                         <div class="col-lg-4 proc" id="item_inscribir_Alumno_Clase">
                             <i class="fa fa-cogs"></i>
                             <h3 class="logo"><a style="color: #000000">Inscribir a un alumno</a></h3>
-                            <p>Puedes inscribir a un alumno a una determinada clase. Esto te permitira realizar una administracion del mismo.</p>
+                            <p>Puedes inscribir a un alumno a una determinada clase. Esto te permitirá realizar una administración del mismo.</p>
                         </div>
                         <!--/col-->
 
-                         <!--col modificar_valor_de_recarga_por_atraso-->
+                        <!--col modificar_valor_de_recarga_por_atraso-->
                         <div class="col-lg-4 proc" id="item_recarga_por_atraso">
-                            <i class="fa fa-dollar"></i>                         
+                            <i class="fa fa-dollar"></i>
                             <h3 class="logo">
-                                <a  id="btn_recarga_por_atraso" href="" data-toggle="modal" data-target="#modal_recarga" style="color: #000000">Recargo por atraso</a>
+                                <a id="btn_recarga_por_atraso" href="" data-toggle="modal" data-target="#modal_recarga" style="color: #000000">Recargo por atraso</a>
                             </h3>
                             <p>Puedes modificar el valor de recarga en caso de atraso de pago de tus alumnos.</p>
                         </div>
@@ -301,9 +308,7 @@
                             <i class="fa fa-cogs"></i>
                             <h3 class="logo"><a href="../Presentacion/RegistrarAsistencia.aspx" style="color: #000000">Registrar Asistencia</a></h3>
                             <p>Puedes mantener un registro de asistencia en cada uno de los puntos donde se dictan las clases.</p>
-                            <p>
-                                <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />
-                            </p>
+                            
                         </div>
                         <!--/col-->
 
@@ -326,32 +331,33 @@
                 <!--APARTADO DE ADMINISTRACION DE ALUMNOS -->
                 <div class="container">
                     <div class="row mt centered">
-                        <h1>ADMINISTRACION DE ALUMNNOS</h1>
+                        <h1>ADMINISTRACIÓN DE ALUMNNOS</h1>
 
                         <!--col registrar_alumno-->
                         <div class="col-lg-4 proc" id="item_registrar_alumno">
-                            <i class="fa fa-pencil" ></i>                            
+                            <i class="fa fa-pencil"></i>
                             <h3><%--<a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Registrar Alumno</a>--%></h3>
                             <h3>
                                 <asp:LinkButton ID="lnk_registrar_alumno" OnClick="registrarAlumno_Click" runat="server" Style="color: #000000">Registrar Alumno</asp:LinkButton>
                             </h3>
-                            <p>Registra un nuevo alumno. De esta forma podras contar con sus informacion para la posterior administracion del mismo.</p>
+                            <p>Registra un nuevo alumno. De esta forma podrás contar con su información para la posterior administración del mismo.</p>
                         </div>
                         <!--/col-->
 
                         <!--col administrar_alumnos-->
                         <div class="col-lg-4 proc" id="item_administrar_alumnos">
-                            <i class="fa fa-cogs" ></i>
-                            <h3><asp:LinkButton ID="lnk_administrar_alumnos" OnClick="administrarAlumnos_Click" runat="server" Style="color: #000000">Administrar Alumnos</asp:LinkButton></h3>
-                            <p>Podras visualizar todos tus alumnos. Darlos de bajo. Modificar su perfil.</p>
+                            <i class="fa fa-cogs"></i>
+                            <h3>
+                                <asp:LinkButton ID="lnk_administrar_alumnos" OnClick="administrarAlumnos_Click" runat="server" Style="color: #000000">Administrar Alumnos</asp:LinkButton></h3>
+                            <p>Podrás visualizar todos tus alumnos. Darlos de bajo. Modificar su perfil.</p>
                         </div>
                         <!--/col-->
 
                         <!--col graduacion_alumnos-->
-                        <div class="col-lg-4 proc"  id="item_graduacion_alumnos">
+                        <div class="col-lg-4 proc" id="item_graduacion_alumnos">
                             <i class="fa fa-arrow-up"></i>
                             <h3 class="logo"><a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Graduar Alumnos</a> </h3>
-                            <p>Puedes modificar el cinturán y grado de cada alumno de manera fácil y rápida.</p>
+                            <p>Puedes modificar el cinturón y grado de cada alumno de manera fácil y rápida.</p>
                         </div>
                         <!--/col-->
 
@@ -360,7 +366,7 @@
 
             </div>
             <!--/Portfoliowrap -->
- 
+
 
             <!-- SERVICE SECTION -->
             <section id="services" title="services"></section>
@@ -379,26 +385,34 @@
 			<div class="row mt">
                 <div class="col-lg-3 service">
                     <i class="fa fa-star"></i>
-                    <p>PREMIUM QUALITY<br />
-                        <small>LOREM IPSUM DOLOR</small></p>
+                    <p>
+                        PREMIUM QUALITY<br />
+                        <small>LOREM IPSUM DOLOR</small>
+                    </p>
                     <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 </div>
                 <div class="col-lg-3 service">
                     <i class="fa fa-cloud"></i>
-                    <p>CLOUD SERVICES<br />
-                        <small>LOREM IPSUM DOLOR</small></p>
+                    <p>
+                        CLOUD SERVICES<br />
+                        <small>LOREM IPSUM DOLOR</small>
+                    </p>
                     <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 </div>
                 <div class="col-lg-3 service">
                     <i class="fa fa-shield"></i>
-                    <p>SECURED ACCOUNTS<br />
-                        <small>LOREM IPSUM DOLOR</small></p>
+                    <p>
+                        SECURED ACCOUNTS<br />
+                        <small>LOREM IPSUM DOLOR</small>
+                    </p>
                     <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 </div>
                 <div class="col-lg-3 service">
                     <i class="fa fa-heart"></i>
-                    <p>100% SATISFACTION<br />
-                        <small>LOREM IPSUM DOLOR</small></p>
+                    <p>
+                        100% SATISFACTION<br />
+                        <small>LOREM IPSUM DOLOR</small>
+                    </p>
                     <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 </div>
             </div>
@@ -406,26 +420,34 @@
 			<div class="row mt">
                 <div class="col-lg-3 service">
                     <i class="fa fa-trophy"></i>
-                    <p>PREMIUM QUALITY<br />
-                        <small>LOREM IPSUM DOLOR</small></p>
+                    <p>
+                        PREMIUM QUALITY<br />
+                        <small>LOREM IPSUM DOLOR</small>
+                    </p>
                     <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 </div>
                 <div class="col-lg-3 service">
                     <i class="fa fa-globe"></i>
-                    <p>CLOUD SERVICES<br />
-                        <small>LOREM IPSUM DOLOR</small></p>
+                    <p>
+                        CLOUD SERVICES<br />
+                        <small>LOREM IPSUM DOLOR</small>
+                    </p>
                     <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 </div>
                 <div class="col-lg-3 service">
                     <i class="fa fa-lock"></i>
-                    <p>SECURED ACCOUNTS<br />
-                        <small>LOREM IPSUM DOLOR</small></p>
+                    <p>
+                        SECURED ACCOUNTS<br />
+                        <small>LOREM IPSUM DOLOR</small>
+                    </p>
                     <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 </div>
                 <div class="col-lg-3 service">
                     <i class="fa fa-thumbs-up"></i>
-                    <p>100% SATISFACTION<br />
-                        <small>LOREM IPSUM DOLOR</small></p>
+                    <p>
+                        100% SATISFACTION<br />
+                        <small>LOREM IPSUM DOLOR</small>
+                    </p>
                     <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 </div>
             </div>
@@ -448,21 +470,24 @@
                                 <h3>MARK WEBBER</h3>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                 <p>
-                                    <img class="img-circle" src="assets/img/pic-t1.jpg" width="80"></p>
+                                    <img class="img-circle" src="assets/img/pic-t1.jpg" width="80">
+                                </p>
                             </div>
 
                             <div class="item mb centered">
                                 <h3>PAUL LEVINGSTON</h3>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                 <p>
-                                    <img class="img-circle" src="assets/img/pic-t2.jpg" width="80"></p>
+                                    <img class="img-circle" src="assets/img/pic-t2.jpg" width="80">
+                                </p>
                             </div>
 
                             <div class="item mb centered">
                                 <h3>LUCY LENNIN</h3>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                 <p>
-                                    <img class="img-circle" src="assets/img/pic-t3.jpg" width="80"></p>
+                                    <img class="img-circle" src="assets/img/pic-t3.jpg" width="80">
+                                </p>
                             </div>
 
                         </div>
@@ -524,11 +549,11 @@
                 </div>
                 <!-- /container -->
             </div>
-               
 
 
 
-<!--Implementando ventana emergente --------------------*********     Exportar Listado     *********--------------------->
+
+            <!--Implementando ventana emergente --------------------*********     Exportar Listado     *********--------------------->
             <div class="modal fade" id="exportarListado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -568,16 +593,16 @@
                         <!--Botonero-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <asp:Button ID="btn_acpetarTorneoExportarLista"  CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_acpetarTorneoExportarLista_Click"/>
-                            
+                            <asp:Button ID="btn_acpetarTorneoExportarLista" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_acpetarTorneoExportarLista_Click" />
+
                         </div>
 
                     </div>
                 </div>
             </div>
-             <!----------------------*********  Fin ventana emergente   *********--------------------->
+            <!----------------------*********  Fin ventana emergente   *********--------------------->
 
-<!--Implementando ventana emergente --------------------*********     Inscribir alumno a Clase     *********--------------------->
+            <!--Implementando ventana emergente --------------------*********     Inscribir alumno a Clase     *********--------------------->
             <div class="modal fade" id="modal_inscribirAlumunoClase" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -585,7 +610,7 @@
                         <!--Cabecera-->
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" >Inscribir alumno a clase</h4>
+                            <h4 class="modal-title">Inscribir alumno a clase</h4>
                         </div>
 
                         <!--Cuerpo-->
@@ -595,6 +620,7 @@
 
                                 <!--Ingresar DNI para inscribir alumno-->
                                 <asp:Panel ID="pnl_inscribirClase" CssClass="panel panel-default" runat="server">
+                                    
                                     <div class="row centered">
                                         <p>&nbsp;</p>
                                     </div>
@@ -602,14 +628,14 @@
                                         <div class=" col-xs-2"></div>
                                         <div class=" col-xs-8">
                                             <asp:Label ID="Label1" runat="server" Text="Clase"></asp:Label>
-                                    
+
                                             <!--Nombre Clase-->
                                             <asp:Label ID="lbl_claseSeleccionada_nombre" runat="server" Text=""></asp:Label>
 
                                             <!--Id Clase-->
                                             <asp:Label ID="Label2" runat="server" Text="("></asp:Label>
                                             <asp:Label ID="lbl_claseSeleccionada_id" runat="server" Text=""></asp:Label>
-                                            <asp:Label ID="Label3" runat="server" Text=")"></asp:Label>                                     
+                                            <asp:Label ID="Label3" runat="server" Text=")"></asp:Label>
                                             <asp:HiddenField ID="hf_claseSeleccionada_id" runat="server" />
                                         </div>
                                     </div>
@@ -621,16 +647,14 @@
                                         <div class=" col-xs-2">
                                             <label for="recipient-name" class="control-label">DNI:</label>
                                         </div>
+                                        <!-- DNI-->
                                         <div class="col-xs-5">
                                             <asp:TextBox ID="txt_inscripcionClase_dni" runat="server"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic" ValidationGroup="inscripcionClase"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ValidationGroup="inscripcionClase" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                                         </div>
                                     </div>
-
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
+                                    
                                 </asp:Panel>
                             </div>
                         </div>
@@ -644,9 +668,9 @@
                     </div>
                 </div>
             </div>
-            <!----------------------*********  Fin ventana emergente   *********--------------------->   
+            <!----------------------*********  Fin ventana emergente   *********--------------------->
 
-<!--Implementando ventana emergente --------------------*********     Administrar recarga     *********--------------------->
+            <!--Implementando ventana emergente --------------------*********     Administrar recarga     *********--------------------->
 
             <div class="modal fade" id="modal_recarga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
                 <div class="modal-dialog" role="document">
@@ -677,8 +701,8 @@
                                             <asp:TextBox ID="txt_modal_recarga" runat="server"></asp:TextBox>
                                         </div>
                                         <div class="col-xs-3">
-                                             <asp:RequiredFieldValidator ID="requeridoMonto" ValidationGroup="vg_recarga" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un valor de recarga" ControlToValidate="txt_modal_recarga" Display="Dynamic"> </asp:RequiredFieldValidator>
-                                             <asp:RegularExpressionValidator ID="regex_monto" ValidationGroup="vg_recarga" runat="server" ControlToValidate="txt_modal_recarga" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del valor de recarga" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"> </asp:RegularExpressionValidator>
+                                            <asp:RequiredFieldValidator ID="requeridoMonto" ValidationGroup="vg_recarga" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un valor de recarga" ControlToValidate="txt_modal_recarga" Display="Dynamic"> </asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="regex_monto" ValidationGroup="vg_recarga" runat="server" ControlToValidate="txt_modal_recarga" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del valor de recarga" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"> </asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                     <div class="row centered">
@@ -691,21 +715,18 @@
                         <!--Botonero-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <asp:Button ID="btn_modal_recarga_aceptar"  CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_modal_recarga_aceptar_Click" ValidationGroup="vg_recarga" />                            
+                            <asp:Button ID="btn_modal_recarga_aceptar" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_modal_recarga_aceptar_Click" ValidationGroup="vg_recarga" />
                         </div>
 
                     </div>
                 </div>
             </div>
- <!----------------------*********  Fin ventana emergente   *********--------------------->
-
-
-
+            <!----------------------*********  Fin ventana emergente   *********--------------------->
     </form>
 
 
 
-<!---------------------------************              SCRIPTS              **************---------------------------->
+    <!---------------------------************              SCRIPTS              **************---------------------------->
 
     <script type="text/javascript">
 
@@ -720,7 +741,7 @@
 
             //alert(rowId + idClase + nombre);   
 
-            document.getElementById("<%=hf_claseSeleccionada_id.ClientID%>").value = idClase;      
+            document.getElementById("<%=hf_claseSeleccionada_id.ClientID%>").value = idClase;
             document.getElementById('<%=lbl_claseSeleccionada_id.ClientID %>').innerText = idClase;
             document.getElementById('<%=lbl_claseSeleccionada_nombre.ClientID %>').textContent = nombre;
 
@@ -737,7 +758,7 @@
         function ShowPopup() {
             $("#btn_emergente").click();
         }
-    </script>      
+    </script>
 
 
 

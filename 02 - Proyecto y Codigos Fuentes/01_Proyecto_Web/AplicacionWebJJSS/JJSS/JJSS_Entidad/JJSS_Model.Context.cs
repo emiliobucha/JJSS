@@ -37,18 +37,33 @@ namespace JJSS_Entidad
         public virtual DbSet<detalle_pago_clase> detalle_pago_clase { get; set; }
         public virtual DbSet<direccion> direccion { get; set; }
         public virtual DbSet<estado> estado { get; set; }
+<<<<<<< HEAD
         public virtual DbSet<faja> faja { get; set; }
         public virtual DbSet<forma_pago> forma_pago { get; set; }
         public virtual DbSet<horario> horario { get; set; }
         public virtual DbSet<inscripcion> inscripcion { get; set; }
         public virtual DbSet<inscripcion_clase> inscripcion_clase { get; set; }
+=======
+>>>>>>> 521db55afd69e5169dac970eda717997e2ecfa67
         public virtual DbSet<lucha> lucha { get; set; }
         public virtual DbSet<pago_clase> pago_clase { get; set; }
         public virtual DbSet<pais> pais { get; set; }
+<<<<<<< HEAD
         public virtual DbSet<parametro> parametro { get; set; }
         public virtual DbSet<participante> participante { get; set; }
         public virtual DbSet<profesor> profesor { get; set; }
         public virtual DbSet<profesor_imagen> profesor_imagen { get; set; }
+=======
+        public virtual DbSet<resultado> resultado { get; set; }
+        public virtual DbSet<sede> sede { get; set; }
+        public virtual DbSet<torneo> torneo { get; set; }
+        public virtual DbSet<categoria> categoria { get; set; }
+        public virtual DbSet<horario> horario { get; set; }
+        public virtual DbSet<inscripcion_clase> inscripcion_clase { get; set; }
+        public virtual DbSet<tipo_clase> tipo_clase { get; set; }
+        public virtual DbSet<alumno_imagen> alumno_imagen { get; set; }
+        public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }
+>>>>>>> 521db55afd69e5169dac970eda717997e2ecfa67
         public virtual DbSet<provincia> provincia { get; set; }
         public virtual DbSet<resultado> resultado { get; set; }
         public virtual DbSet<sede> sede { get; set; }
@@ -57,8 +72,27 @@ namespace JJSS_Entidad
         public virtual DbSet<seguridad_opcion> seguridad_opcion { get; set; }
         public virtual DbSet<seguridad_usuario> seguridad_usuario { get; set; }
         public virtual DbSet<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
+<<<<<<< HEAD
         public virtual DbSet<tipo_clase> tipo_clase { get; set; }
         public virtual DbSet<torneo> torneo { get; set; }
         public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }
+=======
+        public virtual DbSet<profesor_imagen> profesor_imagen { get; set; }
+        public virtual DbSet<pago_clase> pago_clase { get; set; }
+        public virtual DbSet<detalle_pago_clase> detalle_pago_clase { get; set; }
+        public virtual DbSet<forma_pago> forma_pago { get; set; }
+        public virtual DbSet<parametro> parametro { get; set; }
+        public virtual DbSet<asistencia_clase> asistencia_clase { get; set; }
+        public virtual DbSet<alumnoxfaja> alumnoxfaja { get; set; }
+<<<<<<< HEAD
+        public virtual DbSet<faja> faja { get; set; }
+        public virtual DbSet<inscripcion> inscripcion { get; set; }
+        public virtual DbSet<alumno> alumno { get; set; }
+        public virtual DbSet<clase> clase { get; set; }
+        public virtual DbSet<participante> participante { get; set; }
+        public virtual DbSet<profesor> profesor { get; set; }
+=======
+>>>>>>> 754423030ba862c865fa5f8bebee24cccf535817
+>>>>>>> 521db55afd69e5169dac970eda717997e2ecfa67
     }
 }

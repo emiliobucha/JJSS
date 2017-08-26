@@ -50,7 +50,7 @@
 
                     <div class="row mt centered">
 
-                        <h1>FORMULARIO DE ALTA DE TORNEO</h1>
+                        <h1>ALTA DE TORNEO</h1>
                         <p>&nbsp;</p>
                     </div>
 

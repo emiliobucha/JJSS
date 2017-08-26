@@ -116,7 +116,7 @@
                     </div>
                 </asp:Panel>
                 <div class="row centered">
-                    <asp:Button ID="btn_guardar_personal" CssClass="btn btn-default" ValidationGroup="vgPersonal" runat="server" Text="Guardar" OnClick="btn_guardar_personal_Click" />
+                    <asp:Button ID="btn_guardar_personal" CssClass="btn btn-default" ValidationGroup="vgPersonal" runat="server" Text="Aceptar" OnClick="btn_guardar_personal_Click" />
                 </div>
             </asp:View>
 
@@ -235,7 +235,7 @@
                     </div>
                 </asp:Panel>
                 <div class="row centered">
-                    <asp:Button ID="btn_guardar_contacto" CssClass="btn btn-default" ValidationGroup="vgContacto" runat="server" Text="Guardar" OnClick="btn_guardar_contaco_Click" />
+                    <asp:Button ID="btn_guardar_contacto" CssClass="btn btn-default" ValidationGroup="vgContacto" runat="server" Text="Aceptar" OnClick="btn_guardar_contaco_Click" />
                 </div>
             </asp:View>
 

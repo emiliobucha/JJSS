@@ -44,13 +44,15 @@
             <asp:Panel ID="pnlPago" runat="server">
                 <div class="container">
                     <div class="row mt centered">
-                        <h1>FORMULARIO DE REGISTRO DE PAGO DE CLASE</h1>
+                       
+                        <h1>REGISTRO DE PAGO DE CLASE</h1>
                         <p>&nbsp;</p>
                     </div>
 
                     <div class="form-group">
                         <div class="row centered">
                             <h2>
+                                <asp:Label ID="lbl1" runat="server" Text="Alumno: "></asp:Label>
                                 <asp:Label ID="lbl_alumno" runat="server" Text="No hay alumno seleccionado"></asp:Label></h2>
                             <p>&nbsp;</p>
                         </div>
@@ -105,7 +107,7 @@
                         <!-- MONTO-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <label class="pull-left">Monto</label>
+                                
                             </div>
                             <div class="col-xs-3">
                                 <asp:TextBox ID="txt_monto" runat="server" CssClass="caja2"></asp:TextBox>
@@ -143,13 +145,11 @@
 
                         <!-- BOTONES-->
                         <div class="row centered">
+
                             <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
                             <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" ValidationGroup="vgRegistrarPago" OnClick="btn_aceptar_Click" />
-                             <asp:Button ID="btn_pagar" runat="server" OnClick="btn_pagar_Click" Text="Confirmar" ValidationGroup="vgRegistrarPago" />
-                           
-                            <a runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="modal">Pagar</a>
-
-                        </div>
+   							<asp:Button ID="btn_pagar" runat="server" OnClick="btn_pagar_Click" Text="Confirmar" ValidationGroup="vgRegistrarPago" />   
+                            <a runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="modal">Pagar</a>                        </div>
 
                     </div>
                 </div>
@@ -158,71 +158,6 @@
         </div>
 
 
-<%--         <!--Implementando ventana emergente --------------------*********     Confirmar pago de alumno a Clase     *********--------------------->
-            <div class="modal fade" id="modal_ConfirmarPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-
-                        <!--Cabecera-->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" >Confirmar pago clase</h4>
-                        </div>
-
-                        <!--Cuerpo-->
-
-                        <div class="modal-body">
-                            <div class="form-group">
-
-                                <!--Ingresar DNI para inscribir alumno-->
-                                <asp:Panel ID="pnl_confirmarPagoClase" CssClass="panel panel-default" runat="server">
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                    <div class="row centered">
-                                        <div class=" col-xs-2"></div>
-                                        <div class=" col-xs-8">
-                                            
-                                            <!--Id Clase-->
-                                            <asp:Label ID="Label2" runat="server" Text="("></asp:Label>
-                                            <asp:Label ID="lbl_claseSeleccionada_id" runat="server" Text=""></asp:Label>
-                                            <asp:Label ID="Label3" runat="server" Text=")"></asp:Label>                                     
-                                            <asp:HiddenField ID="hf_claseSeleccionada_id" runat="server" />
-                                        </div>
-                                    </div>
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                    <div class="row center-block">
-                                        <div class=" col-xs-2"></div>
-                                        <div class=" col-xs-2">
-                                            <label for="recipient-name" class="control-label">DNI:</label>
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <asp:TextBox ID="txt_inscripcionClase_dni" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic" ValidationGroup="inscripcionClase"></asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ValidationGroup="inscripcionClase" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
-                                        </div>
-                                    </div>
-
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                </asp:Panel>
-                            </div>
-                        </div>
-
-                        <!--Botonero-->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <%--<asp:Button ID="btn_inscripcionClase_aceptar" CssClass="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_inscripcionClase_aceptar_Click" ValidationGroup="inscripcionClase" />--%>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!----------------------*********  Fin ventana emergente   *********--------------------->   
---%>
 
 
     </form>

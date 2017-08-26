@@ -51,7 +51,7 @@
 
                     <div class="container">
                         <div class="row mt centered">
-                            <h1>FORMULARIO DE REGISTRO DE ALUMNO</h1>
+                            <h1>REGISTRO DE ALUMNO</h1>
                             <p>&nbsp;</p>
                         </div>
 
@@ -71,7 +71,7 @@
                                 <div class="row centered">
                                     <div class="col-xs-2">
                                         <!--Nombre-->
-                                        <label class="pull-left">Nombres</label>
+                                        <label class="pull-left">Nombre</label>
                                     </div>
                                     <div class="col-xs-3">
                                         <asp:TextBox ID="txt_nombres" runat="server" placeholder="Ingrese nombres" CssClass="caja2"></asp:TextBox>
@@ -270,45 +270,11 @@
 
                             </asp:Panel>
 
-                            <asp:Panel ID="pnl_datos_academicos" CssClass="panel panel-footer" runat="server">
-                                <div class="row centered">
-                                    <h2>Datos Academicos</h2>
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                </div>
-
-                                <!--Faja y Categoria-->
-                                <div class="row centered">
-                                    <!--Faja-->
-                                    <div class="col-xs-2">
-                                        <label class="pull-left">Faja</label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
-                                        </asp:DropDownList>
-                                    </div>
-                                    <!--Categoria-->
-                                    <div class="col-xs-2">
-                                        <label class="pull-rigth">Categoria</label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <asp:DropDownList class="caja2" ID="ddl_categoria" runat="server">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-
-                                <div class="row centered">
-                                    <p>&nbsp;</p>
-                                </div>
-
-                            </asp:Panel>
-
 
                             <!--Boton-->
                             <div class="row centered">
                                 <asp:Button ID="btn_cancelar" runat="server" CssClass="btn btn-default" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
-                                <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Guardar" OnClick="btn_guardar_click" ValidationGroup="vgAlumnos" />
+                                <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgAlumnos" />
                                 <asp:Button ID="btn_ver_alumnos" runat="server" CssClass="btn btn-default" Text="Ver Alumnos" CausesValidation="False" OnClick="btn_ver_alumnos_Click" />
                             </div>
                         </div>
@@ -331,7 +297,7 @@
                         <div class="form-group ">
                             <!--Boton-->
                             <div class="row centered">
-                                <strong>DNI a buscar:</strong>
+                                <strong>DNI</strong>
                                 <asp:TextBox ID="txt_filtro_dni" runat="server"></asp:TextBox>
                                 <asp:CompareValidator ID="mayor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="El DNI debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="0"></asp:CompareValidator>
                                 <asp:CompareValidator ID="menor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="DNI demasiado largo" Operator="LessThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="2147483647"></asp:CompareValidator>
@@ -341,10 +307,9 @@
 
                                 <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand">
                                     <Columns>
-
-                                        <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
-                                        <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
+                                        <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
+                                        <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
                                         <asp:ButtonField CommandName="eliminar" Text="Eliminar" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" />
                                         <asp:ButtonField CommandName="pago" Text="Registrar pago" />

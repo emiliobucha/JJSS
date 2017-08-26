@@ -50,7 +50,7 @@
             <div class="container">
                 <div class="row mt centered">
                     <div>
-                        <asp:Label ID="lbl_Inscripcion" runat="server" Text="Inscripción Torneo" Font-Size="XX-Large" CssClass=""></asp:Label>
+                        <asp:Label ID="lbl_Inscripcion" runat="server" Text="INSCRIPCIÓN DE TORNEO" Font-Size="XX-Large" CssClass=""></asp:Label>
                     </div>
 
                     <form id="form1" runat="server">
@@ -90,7 +90,7 @@
                                 <div class="row centered">
                                     <div class="col centered">
 
-                                        <asp:Label ID="Label5" runat="server" Text="Informacion del Evento " Font-Bold="true" Font-Size="Large"></asp:Label>
+                                        <asp:Label ID="Label5" runat="server" Text="Informacion del Evento: " Font-Bold="true" Font-Size="Large"></asp:Label>
                                         <asp:Label ID="lbl_NombreTorneo" CssClass="centered" runat="server" Text="" Font-Bold="true" Font-Size="Large"></asp:Label>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@
                                 <div class="row centered">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-2">
-                                        <label class="pull-left">Ingresar DNI del participante:</label>
+                                        <label class="pull-left">DNI del participante:</label>
                                     </div>
                                     <div class="col-md-3">
                                         <asp:TextBox ID="txtDni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
@@ -224,7 +224,7 @@
                                 <div class="row centered">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-2">
-                                        <label class="pull-left">Ingresar nombre:</label>
+                                        <label class="pull-left">Nombre:</label>
                                     </div>
                                     <div class="col-md-3">
                                         <asp:TextBox ID="txt_nombre" class="caja2" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
@@ -243,7 +243,7 @@
                                 <div class="row centered">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-2">
-                                        <label class="pull-left">Ingresar apellido:</label>
+                                        <label class="pull-left">Apellido:</label>
                                     </div>
                                     <div class="col-md-3">
                                         <asp:TextBox ID="txt_apellido" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>

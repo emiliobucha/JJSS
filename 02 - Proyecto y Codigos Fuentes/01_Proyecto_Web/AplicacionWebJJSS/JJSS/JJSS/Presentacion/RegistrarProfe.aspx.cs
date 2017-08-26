@@ -32,7 +32,7 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
-                CargarComboFajas();
+                
                 CargarComboCiudades(1);
                 CargarComboProvincias();
                 ViewState["gvAlumnosOrden"] = "dni";
@@ -67,16 +67,7 @@ namespace JJSS.Presentacion
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
                server control at run time. */
         }
-
-        protected void CargarComboFajas()
-        {
-            List<faja> fajas = gestorInscripciones.ObtenerFajas();
-            ddl_fajas.DataSource = fajas;
-            ddl_fajas.DataTextField = "color";
-            ddl_fajas.DataValueField = "id_faja";
-            ddl_fajas.DataBind();
-        }
-
+        
         protected void CargarComboProvincias()
         {
             List<provincia> provincias = gestorProvincias.ObtenerProvincias();
@@ -104,7 +95,7 @@ namespace JJSS.Presentacion
 
             string[] formats = { "MM/dd/yyyy" };
             DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
-            int idFaja = int.Parse(ddl_fajas.SelectedValue);
+            
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
@@ -141,7 +132,7 @@ namespace JJSS.Presentacion
 
             int ciudad = int.Parse(ddl_localidad.SelectedValue);
 
-            string sReturn = gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, idFaja, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
+            string sReturn = gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
             Boolean estado;
             if (sReturn.CompareTo("") == 0)
             {
@@ -204,7 +195,6 @@ namespace JJSS.Presentacion
             txt_piso.Text = "";
             txt_telefono.Text = "";
             txt_telefono_urgencia.Text = "";
-            ddl_fajas.SelectedIndex = 0;
             ddl_localidad.SelectedIndex = 0;
             ddl_provincia.SelectedIndex = 0;
         }

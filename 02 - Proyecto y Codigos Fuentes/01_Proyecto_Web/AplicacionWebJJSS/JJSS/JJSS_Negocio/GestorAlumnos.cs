@@ -60,7 +60,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja, int? pIdCategoria,
+      
             short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
             string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad)
         {
@@ -82,9 +82,6 @@ namespace JJSS_Negocio
                     }
                     seguridad_usuario usuario = db.seguridad_usuario.Find(idUsuario);
 
-                    faja fajaElegida = db.faja.Find(pIdFaja);
-                    //+Rever categorias en la BD
-                    //categoria catElegida = db.categoria.Find(pIdCategoria);
 
                     if (ObtenerAlumnoPorDNI(pDni) != null)
                     {
@@ -100,6 +97,7 @@ namespace JJSS_Negocio
                         direccion nuevaDireccion;
                         nuevaDireccion = new direccion()
                         {
+                            
                             calle = pCalle,
                             departamento = pDpto,
                             numero = pNumero,
@@ -272,7 +270,8 @@ namespace JJSS_Negocio
                     var alumnoEncontrado = from alu in db.alumno
                                            where alu.dni == pDni
                                            select alu;
-                    alumno alumnoModificar= alumnoEncontrado.FirstOrDefault();
+                
+                    alumno alumnoModificar = alumnoEncontrado.FirstOrDefault();
 
                     if (alumnoModificar == null) return "NO";
                     alumnoModificar.apellido = pApellido;
@@ -329,27 +328,31 @@ namespace JJSS_Negocio
                     //busco la direccion 
                     var direccionAlumno = from dir in db.direccion
                                           join alu in db.alumno on dir.id_direccion equals alu.id_direccion
-                                          where alu.dni == pDni 
+                                         
+                                          where alu.dni == pDni
                                           select dir;
-                    
-                    direccion direccionModificar =direccionAlumno.FirstOrDefault();
+                   
+
+                    direccion direccionModificar = direccionAlumno.FirstOrDefault();
 
                     if (direccionModificar == null)//no tenia direccion direccion
                     {
-                        if (pCalle.CompareTo("")!=0 && pNumero != null) //cargo una direcicon, entonces creo una
+                        
+                        if (pCalle.CompareTo("") != 0 && pNumero != null) //cargo una direcicon, entonces creo una
                         {
                             direccion nuevaDireccion;
                             nuevaDireccion = new direccion
                             {
+                                
                                 calle = pCalle,
                                 departamento = pDepto,
                                 numero = pNumero,
                                 piso = pPiso,
                                 id_ciudad = pIdCiudad
-                                
+
                             };
                             db.direccion.Add(nuevaDireccion);
-                            
+
                             //alumnoModificar.direccion = nuevaDireccion;
                             alumnoModificar.id_direccion = nuevaDireccion.id_direccion;
                             db.SaveChanges();
@@ -358,13 +361,14 @@ namespace JJSS_Negocio
                     }
                     else //tenia direccion, entonces la modifico
                     {
+                        
                         direccionModificar.calle = pCalle;
                         direccionModificar.departamento = pDepto;
                         direccionModificar.numero = pNumero;
                         direccionModificar.piso = pPiso;
                         direccionModificar.id_ciudad = pIdCiudad;
                     }
-                    
+
                     db.SaveChanges();
                     transaction.Commit();
                     return sReturn;
@@ -411,20 +415,29 @@ namespace JJSS_Negocio
                                           join alu in db.alumno on dir.id_direccion equals alu.id_direccion
                                           join ciu in db.ciudad on dir.id_ciudad equals ciu.id_ciudad
                                           where alu.id_alumno == pIdAlumno
-                                          select new {
+
+                                             
                                               calle = dir.calle,
                                               numero = dir.numero,
                                               depto = dir.departamento,
-                                              piso= dir.piso,
-                                              idCiudad=dir.id_ciudad,
-                                              idProvincia=ciu.id_provincia
+                                             
                                           };
                 return modUtilidadesTablas.ToDataTable(direccionEncontrada.ToList());
             }
         }
 
-        public faja ObtenerFajaAlumno (int pIdAlumno, int pIdTipoClase)
+
+        /*
+         * Metodo que busca la faja que tiene el alumno para un tipo clase
+         * Parametros:  pDniAlumno : entero- representa el dni del alumno
+         *              pIDTipoClase: entero - representa el id del tipo de clase
+         * Retornos:    faja encontrada
+         *              null
+         * 
+         */
+        public faja ObtenerFajaAlumno(int pIdAlumno, int pIdTipoClase)
         {
+
             using (var db = new JJSSEntities())
             {
                 var fajaEncontrada = from alu in db.alumno
@@ -435,6 +448,43 @@ namespace JJSS_Negocio
                 return fajaEncontrada.FirstOrDefault();
             }
 
+        }
+
+
+        /*
+         * Metodo que asigna una faja a un alumno
+         * Parametros:  pDniAlumno : entero- representa el dni del alumno
+         *              pIDFaja: entero - representa el id de la faja
+         * Retornos:    "": transaccion correcta
+         *              ex.message: error en la BD
+         * 
+         */
+        public string AsignarFaja(int pDniAlumno, int pIDFaja)
+        {
+            alumno alu = ObtenerAlumnoPorDNI(pDniAlumno);
+            DateTime fechaActual = DateTime.Today.Date;
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    
+                    alumnoxfaja nuevoAxF;
+                    nuevoAxF = new alumnoxfaja
+                    {
+                        fecha = fechaActual,
+                        id_alumno = alu.id_alumno,
+                        id_faja = pIDFaja
+                    };
+
+                    db.alumnoxfaja.Add(nuevoAxF);
+                    db.SaveChanges();
+                    return "";
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+            }
         }
     }
 }

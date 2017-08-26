@@ -109,11 +109,19 @@ namespace JJSS.Presentacion
 
         protected void CargarComboClase()
         {
-            List<Object> clase = gestorClase.ObtenerClasesDisponibles();
+            int dni;
+            int.TryParse(Session["PagoClase"].ToString(), out dni);
+            alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+            List<clase> clase = gestorClase.ObtenerClaseSegunAlumno(alumnoElegido.id_alumno);
             ddl_clase.DataSource = clase;
             ddl_clase.DataTextField = "nombre";
             ddl_clase.DataValueField = "id_clase";
             ddl_clase.DataBind();
+
+            if (clase.Count==0)
+            {
+                mensaje("El alumno no está inscripto a ninguna clase", false);
+            }
         }
 
         protected void CargarComboFormaPago()
