@@ -4,8 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-<<<<<<< HEAD
-      <Diagram DiagramId="ff271ffe72324654b14583423ee8b334" Name="Diagram1">
+      <Diagram DiagramId="bc922454a7c34646801ff4de60b6375c" Name="Diagram1">
         <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="6.75" PointY="32.5" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.alumno_imagen" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
@@ -41,212 +40,50 @@
         <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="3.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.torneo" Width="1.5" PointX="5.25" PointY="39.875" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.torneo_imagen" Width="1.5" PointX="7.5" PointY="41.125" IsExpanded="true" />
-        <AssociationConnector Association="JJSSModel.FK__academia__id_dir__282DF8C2" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__clase__id_ubicac__32AB8735" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__alumno__id_direc__29221CFB" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__alumno__id_usuar__2A164134" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__alumno_im__id_al__2B0A656D" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__alumnoxfa__id_al__2BFE89A6" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__asistenci__id_al__2DE6D218" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_al__3D2915A8" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__pago_clas__id_al__41EDCAC5" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__participa__id_al__43D61337" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__alumnoxfa__id_fa__2CF2ADDF" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__asistenci__id_ti__2EDAF651" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__categoria__id_ca__30C33EC3" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__categoria__id_ti__2FCF1A8A" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_ca__395884C4" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__ciudad__id_provi__31B762FC" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__direccion__id_ci__367C1819" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__clase__id_tipo_c__339FAB6E" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__horario__id_clas__3864608B" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__pago_clas__id_cl__42E1EEFE" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__detalle_p__id_fo__3493CFA7" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__detalle_p__id_pa__3587F3E0" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__profesor__id_dir__44CA3770" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__sede__id_direcci__489AC854" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__torneo__id_estad__4D5F7D71" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__faja__id_tipo_cl__37703C52" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_fa__3C34F16F" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_pa__3A4CA8FD" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_to__3B40CD36" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__lucha__id_partic__3E1D39E1" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__lucha__id_partic__3F115E1A" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__lucha__id_result__40058253" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__lucha__id_torneo__40F9A68C" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__provincia__id_pa__47A6A41B" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__profesor___id_pr__46B27FE2" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__profesor__id_usu__45BE5BA9" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__torneo__id_sede__4E53A1AA" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__seguridad__id_gr__4A8310C6" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__seguridad__id_gr__4B7734FF" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__seguridad__clave__498EEC8D" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__seguridad__id_us__4C6B5938" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__torneo__id_tipo___4F47C5E3" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__torneo_im__id_to__503BEA1C" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__academia__id_dir__4D5F7D71" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_clase_id_direccion" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__participa__id_al__6EC0713C" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_alumno_id_direccion" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_alumno_id_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_alumnoimagen_id_alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_asistencia_alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_inscripcion_clase_id_alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_pagoclase_id_alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_faja" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_asistencia_tipoclase" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__categoria__id_ca__531856C7" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__inscripci__id_ca__6166761E" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_categoria_tipoclase" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_ciudad_id_provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_direccion_id_ciudad" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_clase_id_tipo_clase" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_horario_id_clase" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_pagoclase_id_clase" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_detalleclase_id_forma_pago" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_detalleclase_id_pago_clase" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__sede__id_direcci__719CDDE7" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_profesor_id_direccion" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__torneo__id_estad__74794A92" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_faja_tipoclase" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_incripcion_faka" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__inscripci__id_pa__634EBE90" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__inscripci__id_to__65370702" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__lucha__id_partic__671F4F74" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__lucha__id_partic__681373AD" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__lucha__id_result__6AEFE058" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__lucha__id_torneo__6CD828CA" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_provincia_id_pais" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_profesor_id_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_profesorimagen_id_profesor" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK__torneo__id_sede__76619304" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.fk_grupoxopcion_grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.fk_grupoxopcion_clave_opcion" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_torneo_tipoclase" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_torneo_imagen_id_torneo" ManuallyRouted="false" />
       </Diagram>
-=======
-<<<<<<< HEAD
-      <Diagram DiagramId="75f5d254ec584e4cbefc10966b8e4418" Name="Diagram1" ZoomLevel="59">
-        <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.categoria_torneo" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.direccion" Width="1.5" PointX="1.5" PointY="9.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.estado" Width="1.5" PointX="3.75" PointY="13.875" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.lucha" Width="1.5" PointX="14.5" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.pais" Width="1.5" PointX="3.75" PointY="21" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.resultado" Width="1.5" PointX="16.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.sede" Width="1.5" PointX="3.75" PointY="16.25" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.torneo" Width="1.5" PointX="6" PointY="14.125" IsExpanded="false" />
-        <AssociationConnector Association="JJSSModel.academia_academia_id_direccion_fk" ManuallyRouted="false" />
-=======
-      <Diagram DiagramId="75f5d254ec584e4cbefc10966b8e4418" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="10.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.categoria_torneo" Width="1.5" PointX="11.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.direccion" Width="1.5" PointX="3.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.estado" Width="1.5" PointX="13.25" PointY="24" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.faja" Width="1.5" PointX="8.5" PointY="21.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.inscripcion" Width="1.5" PointX="14.5" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.lucha" Width="1.5" PointX="20.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.pais" Width="1.5" PointX="9" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.resultado" Width="1.5" PointX="18.5" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.sede" Width="1.5" PointX="13.25" PointY="26.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.torneo" Width="1.5" PointX="15.5" PointY="7" IsExpanded="true" />
-        <AssociationConnector Association="JJSSModel.academia_academia_id_direccion_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.categoria_torneo_categoria_torneo_id_faja_fk" ManuallyRouted="false" />
->>>>>>> 754423030ba862c865fa5f8bebee24cccf535817
-        <AssociationConnector Association="JJSSModel.sede_sede_id_direccion_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.torneo_torneo_id_estado_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.lucha_lucha_id_resultado_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.lucha_lucha_id_torneo_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.torneo_torneo_id_sede_fk" ManuallyRouted="false" />
-<<<<<<< HEAD
-        <EntityTypeShape EntityType="JJSSModel.categoria" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="false" />
-        <AssociationConnector Association="JJSSModel.categoria_torneo_categoria_torneo_id_categoria_fk" />
-        <EntityTypeShape EntityType="JJSSModel.horario" Width="1.5" PointX="5.625" PointY="20.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.inscripcion_clase" Width="1.5" PointX="5.625" PointY="0.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="8.625" PointY="20.5" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.alumno_imagen" Width="1.5" PointX="1.25" PointY="0.5" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.torneo_imagen" Width="1.5" PointX="5.375" PointY="7.75" />
-        <AssociationConnector Association="JJSSModel.FK_torneo_imagen_id_torneo" />
-        <EntityTypeShape EntityType="JJSSModel.provincia" Width="1.5" PointX="1.625" PointY="22" IsExpanded="false" />
-        <AssociationConnector Association="JJSSModel.FK_provincia_id_pais" />
-        <EntityTypeShape EntityType="JJSSModel.ciudad" Width="1.5" PointX="1.875" PointY="18.75" IsExpanded="false" />
-        <AssociationConnector Association="JJSSModel.FK_ciudad_id_provincia" />
-        <AssociationConnector Association="JJSSModel.FK_direccion_id_ciudad" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_grupo" Width="1.5" PointX="9.375" PointY="12" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_grupoxopcion" Width="1.5" PointX="11.625" PointY="11.5" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_opcion" Width="1.5" PointX="9.375" PointY="15.125" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_usuario" Width="1.5" PointX="12.375" PointY="15.875" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_usuarioxgrupo" Width="1.5" PointX="14.625" PointY="12" />
-=======
-        <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.participante" Width="1.5" PointX="2.5" PointY="2.875" IsExpanded="false" />
-        <AssociationConnector Association="JJSSModel.inscripcion_inscripcion_id_participante_fk" />
-        <AssociationConnector Association="JJSSModel.lucha_lucha_id_participante_1_fk" />
-        <AssociationConnector Association="JJSSModel.lucha_lucha_id_participante_2_fk" />
-        <EntityTypeShape EntityType="JJSSModel.categoria" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="false" />
-        <AssociationConnector Association="JJSSModel.categoria_torneo_categoria_torneo_id_categoria_fk" />
-        <AssociationConnector Association="JJSSModel.FK__particapa_id_al__48DE5BA8" />
-        <EntityTypeShape EntityType="JJSSModel.clase" Width="1.5" PointX="12.5" PointY="5.5" />
-        <EntityTypeShape EntityType="JJSSModel.horario" Width="1.5" PointX="14.75" PointY="20.375" />
-        <EntityTypeShape EntityType="JJSSModel.inscripcion_clase" Width="1.5" PointX="17.75" PointY="7.125" />
-        <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="6.25" PointY="12" />
-        <AssociationConnector Association="JJSSModel.FK_alumno_id_direccion" />
-        <AssociationConnector Association="JJSSModel.FK_ins_clase_id_alumno" />
-        <AssociationConnector Association="JJSSModel.FK_clase_id_tipo_clase" />
-        <AssociationConnector Association="JJSSModel.FK_ins_clase_id_clase" />
-        <EntityTypeShape EntityType="JJSSModel.alumno_imagen" Width="1.5" PointX="8.25" PointY="25.75" />
-        <AssociationConnector Association="JJSSModel.FK_alumnoimagen_id_alumno" />
-        <EntityTypeShape EntityType="JJSSModel.torneo_imagen" Width="1.5" PointX="17.75" PointY="12" />
-        <AssociationConnector Association="JJSSModel.FK_alumno_id_clase_clase_id_clase" />
-        <AssociationConnector Association="JJSSModel.FK_torneo_imagen_id_torneo" />
-        <EntityTypeShape EntityType="JJSSModel.provincia" Width="1.5" PointX="9" PointY="15.75" />
-        <AssociationConnector Association="JJSSModel.FK_provincia_id_pais" />
-        <EntityTypeShape EntityType="JJSSModel.ciudad" Width="1.5" PointX="9" PointY="12.75" />
-        <AssociationConnector Association="JJSSModel.FK_ciudad_id_provincia" />
-        <AssociationConnector Association="JJSSModel.FK_direccion_id_ciudad" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_grupo" Width="1.5" PointX="8.25" PointY="31.25" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_grupoxopcion" Width="1.5" PointX="10.5" PointY="30.625" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_opcion" Width="1.5" PointX="8.25" PointY="34.25" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_usuario" Width="1.5" PointX="0.75" PointY="7.375" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_usuarioxgrupo" Width="1.5" PointX="3" PointY="3.75" />
-        <AssociationConnector Association="JJSSModel.FK_clase_id_direccion1" />
->>>>>>> 754423030ba862c865fa5f8bebee24cccf535817
-        <AssociationConnector Association="JJSSModel.fk_grupoxopcion_grupo" />
-        <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_grupo" />
-        <AssociationConnector Association="JJSSModel.fk_grupoxopcion_clave_opcion" />
-        <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_usuario" />
-<<<<<<< HEAD
-        <EntityTypeShape EntityType="JJSSModel.profesor_imagen" Width="1.5" PointX="19.875" PointY="11.625" />
-        <EntityTypeShape EntityType="JJSSModel.pago_clase" Width="1.5" PointX="11.375" PointY="2.625" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.detalle_pago_clase" Width="1.5" PointX="13.625" PointY="1.25" />
-        <AssociationConnector Association="JJSSModel.FK_detalleclase_id_pago_clase" />
-        <EntityTypeShape EntityType="JJSSModel.forma_pago" Width="1.5" PointX="8.375" PointY="0.875" IsExpanded="false" />
-        <AssociationConnector Association="JJSSModel.FK_detalleclase_id_forma_pago" />
-        <EntityTypeShape EntityType="JJSSModel.parametro" Width="1.5" PointX="5.375" PointY="4.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="JJSSModel.asistencia_clase" Width="1.5" PointX="10.875" PointY="8.375" />
-        <AssociationConnector Association="JJSSModel.FK_asistencia_tipoclase" />
-        <EntityTypeShape EntityType="JJSSModel.alumnoxfaja" Width="1.5" PointX="11" PointY="0.75" IsExpanded="false" />
-        <AssociationConnector Association="JJSSModel.FK__categoria__id_ti__2FCF1A8A" />
-        <AssociationConnector Association="JJSSModel.FK__torneo__id_tipo___4F47C5E3" />
-        <EntityTypeShape EntityType="JJSSModel.faja" Width="1.5" PointX="10.875" PointY="19.5" />
-        <AssociationConnector Association="JJSSModel.FK__alumnoxfa__id_fa__2CF2ADDF" />
-        <AssociationConnector Association="JJSSModel.FK__faja__id_tipo_cl__37703C52" />
-        <EntityTypeShape EntityType="JJSSModel.inscripcion" Width="1.5" PointX="15.125" PointY="15.5" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_ca__395884C4" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_fa__3C34F16F" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_to__3B40CD36" />
-        <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="17.625" PointY="15.625" />
-        <EntityTypeShape EntityType="JJSSModel.clase" Width="1.5" PointX="9.125" PointY="2.25" />
-        <EntityTypeShape EntityType="JJSSModel.participante" Width="1.5" PointX="19.875" PointY="16.5" />
-        <AssociationConnector Association="JJSSModel.FK__clase__id_ubicac__32AB8735" />
-        <AssociationConnector Association="JJSSModel.FK__alumno__id_direc__29221CFB" />
-        <AssociationConnector Association="JJSSModel.FK__alumno__id_usuar__2A164134" />
-        <AssociationConnector Association="JJSSModel.FK__alumno_im__id_al__2B0A656D" />
-        <AssociationConnector Association="JJSSModel.FK__alumnoxfa__id_al__2BFE89A6" />
-        <AssociationConnector Association="JJSSModel.FK__asistenci__id_al__2DE6D218" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_al__3D2915A8" />
-        <AssociationConnector Association="JJSSModel.FK__pago_clas__id_al__41EDCAC5" />
-        <AssociationConnector Association="JJSSModel.FK__participa__id_al__43D61337" />
-        <AssociationConnector Association="JJSSModel.FK__clase__id_tipo_c__339FAB6E" />
-        <AssociationConnector Association="JJSSModel.FK__horario__id_clas__3864608B" />
-        <AssociationConnector Association="JJSSModel.FK__pago_clas__id_cl__42E1EEFE" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_pa__3A4CA8FD" />
-        <AssociationConnector Association="JJSSModel.FK__lucha__id_partic__3E1D39E1" />
-        <AssociationConnector Association="JJSSModel.FK__lucha__id_partic__3F115E1A" />
-        <EntityTypeShape EntityType="JJSSModel.profesor" Width="1.5" PointX="17.625" PointY="10.125" />
-        <AssociationConnector Association="JJSSModel.FK__profesor__id_dir__44CA3770" />
-        <AssociationConnector Association="JJSSModel.FK__profesor___id_pr__46B27FE2" />
-        <AssociationConnector Association="JJSSModel.FK__profesor__id_usu__45BE5BA9" />
-=======
-        <AssociationConnector Association="JJSSModel.FK_alumno_id_usuario" />
-        <EntityTypeShape EntityType="JJSSModel.profesor" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="JJSSModel.profesor_imagen" Width="1.5" PointX="8.25" PointY="28.625" />
-        <AssociationConnector Association="JJSSModel.FK_profesor_id_direccion" />
-        <AssociationConnector Association="JJSSModel.FK_profesor_id_usuario" />
-        <AssociationConnector Association="JJSSModel.FK_profesorimagen_id_profesor" />
-        <EntityTypeShape EntityType="JJSSModel.pago_clase" Width="1.5" PointX="17.75" PointY="4.25" />
-        <AssociationConnector Association="JJSSModel.FK_pagoclase_id_alumno" />
-        <AssociationConnector Association="JJSSModel.FK_pagoclase_id_clase" />
-        <EntityTypeShape EntityType="JJSSModel.detalle_pago_clase" Width="1.5" PointX="20" PointY="4" />
-        <AssociationConnector Association="JJSSModel.FK_detalleclase_id_pago_clase" />
-        <EntityTypeShape EntityType="JJSSModel.forma_pago" Width="1.5" PointX="17.75" PointY="14.875" />
-        <AssociationConnector Association="JJSSModel.FK_detalleclase_id_forma_pago" />
-        <EntityTypeShape EntityType="JJSSModel.parametro" Width="1.5" PointX="20.125" PointY="12.375" />
-        <EntityTypeShape EntityType="JJSSModel.asistencia_clase" Width="1.5" PointX="11.5" PointY="10.25" />
-        <AssociationConnector Association="JJSSModel.FK_asistencia_alumno" />
-        <AssociationConnector Association="JJSSModel.FK_asistencia_tipoclase" />
-        <EntityTypeShape EntityType="JJSSModel.alumnoxfaja" Width="1.5" PointX="14.75" PointY="17.375" />
-        <AssociationConnector Association="JJSSModel.FK_alumno" />
-        <AssociationConnector Association="JJSSModel.FK_faja" />
-        <AssociationConnector Association="JJSSModel.FK__inscripci__id_ca__6166761E" />
-        <AssociationConnector Association="JJSSModel.FK_categoria_tipoclase" />
-        <AssociationConnector Association="JJSSModel.FK_faja_tipoclase" />
-        <AssociationConnector Association="JJSSModel.FK_incripcion_faka" />
-        <AssociationConnector Association="JJSSModel.FK_torneo_tipoclase" />
->>>>>>> 754423030ba862c865fa5f8bebee24cccf535817
-        </Diagram>
->>>>>>> 521db55afd69e5169dac970eda717997e2ecfa67
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

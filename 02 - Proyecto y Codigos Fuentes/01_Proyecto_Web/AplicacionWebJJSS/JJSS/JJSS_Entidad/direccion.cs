@@ -19,8 +19,8 @@ namespace JJSS_Entidad
         {
             this.academia = new HashSet<academia>();
             this.alumno = new HashSet<alumno>();
-            this.profesor = new HashSet<profesor>();
             this.sede = new HashSet<sede>();
+            this.profesor = new HashSet<profesor>();
         }
     
         public int id_direccion { get; set; }
@@ -34,16 +34,11 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<academia> academia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-<<<<<<< HEAD
-=======
-        public virtual ICollection<sede> sede { get; set; }
+        public virtual ICollection<alumno> alumno { get; set; }
         public virtual ciudad ciudad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
->>>>>>> 521db55afd69e5169dac970eda717997e2ecfa67
-        public virtual ICollection<alumno> alumno { get; set; }
+        public virtual ICollection<sede> sede { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<profesor> profesor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sede> sede { get; set; }
     }
 }

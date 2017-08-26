@@ -60,7 +60,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-      
+        public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento,
             short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
             string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad)
         {
@@ -97,7 +97,6 @@ namespace JJSS_Negocio
                         direccion nuevaDireccion;
                         nuevaDireccion = new direccion()
                         {
-                            
                             calle = pCalle,
                             departamento = pDpto,
                             numero = pNumero,
@@ -270,7 +269,6 @@ namespace JJSS_Negocio
                     var alumnoEncontrado = from alu in db.alumno
                                            where alu.dni == pDni
                                            select alu;
-                
                     alumno alumnoModificar = alumnoEncontrado.FirstOrDefault();
 
                     if (alumnoModificar == null) return "NO";
@@ -328,22 +326,18 @@ namespace JJSS_Negocio
                     //busco la direccion 
                     var direccionAlumno = from dir in db.direccion
                                           join alu in db.alumno on dir.id_direccion equals alu.id_direccion
-                                         
                                           where alu.dni == pDni
                                           select dir;
-                   
 
                     direccion direccionModificar = direccionAlumno.FirstOrDefault();
 
                     if (direccionModificar == null)//no tenia direccion direccion
                     {
-                        
                         if (pCalle.CompareTo("") != 0 && pNumero != null) //cargo una direcicon, entonces creo una
                         {
                             direccion nuevaDireccion;
                             nuevaDireccion = new direccion
                             {
-                                
                                 calle = pCalle,
                                 departamento = pDepto,
                                 numero = pNumero,
@@ -361,7 +355,6 @@ namespace JJSS_Negocio
                     }
                     else //tenia direccion, entonces la modifico
                     {
-                        
                         direccionModificar.calle = pCalle;
                         direccionModificar.departamento = pDepto;
                         direccionModificar.numero = pNumero;
@@ -415,12 +408,14 @@ namespace JJSS_Negocio
                                           join alu in db.alumno on dir.id_direccion equals alu.id_direccion
                                           join ciu in db.ciudad on dir.id_ciudad equals ciu.id_ciudad
                                           where alu.id_alumno == pIdAlumno
-
-                                             
+                                          select new
+                                          {
                                               calle = dir.calle,
                                               numero = dir.numero,
                                               depto = dir.departamento,
-                                             
+                                              piso = dir.piso,
+                                              idCiudad = dir.id_ciudad,
+                                              idProvincia = ciu.id_provincia
                                           };
                 return modUtilidadesTablas.ToDataTable(direccionEncontrada.ToList());
             }

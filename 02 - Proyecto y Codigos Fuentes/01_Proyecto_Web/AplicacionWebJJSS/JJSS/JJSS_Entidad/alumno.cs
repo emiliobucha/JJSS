@@ -17,12 +17,12 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public alumno()
         {
-            this.alumno_imagen = new HashSet<alumno_imagen>();
+            this.participante = new HashSet<participante>();
             this.alumnoxfaja = new HashSet<alumnoxfaja>();
+            this.alumno_imagen = new HashSet<alumno_imagen>();
             this.asistencia_clase = new HashSet<asistencia_clase>();
             this.inscripcion_clase = new HashSet<inscripcion_clase>();
             this.pago_clase = new HashSet<pago_clase>();
-            this.participante = new HashSet<participante>();
         }
     
         public int id_alumno { get; set; }
@@ -38,19 +38,19 @@ namespace JJSS_Entidad
         public long telefono_emergencia { get; set; }
         public Nullable<int> id_usuario { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<participante> participante { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<alumnoxfaja> alumnoxfaja { get; set; }
         public virtual direccion direccion { get; set; }
         public virtual seguridad_usuario seguridad_usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno_imagen> alumno_imagen { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alumnoxfaja> alumnoxfaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<asistencia_clase> asistencia_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_clase> pago_clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<participante> participante { get; set; }
     }
 }

@@ -24,9 +24,9 @@ namespace JJSS_Entidad
         public Nullable<int> id_alumno { get; set; }
         public Nullable<int> id_clase { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_pago_clase> detalle_pago_clase { get; set; }
         public virtual alumno alumno { get; set; }
         public virtual clase clase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalle_pago_clase> detalle_pago_clase { get; set; }
     }
 }

@@ -26,12 +26,7 @@ namespace JJSS_Entidad
     
         public virtual categoria categoria { get; set; }
         public virtual faja faja { get; set; }
-<<<<<<< HEAD
         public virtual participante participante { get; set; }
         public virtual torneo torneo { get; set; }
-=======
-        public virtual torneo torneo { get; set; }
-        public virtual participante participante { get; set; }
->>>>>>> 521db55afd69e5169dac970eda717997e2ecfa67
     }
 }

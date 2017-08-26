@@ -34,8 +34,8 @@ namespace JJSS_Entidad
         public Nullable<int> id_direccion { get; set; }
     
         public virtual direccion direccion { get; set; }
+        public virtual seguridad_usuario seguridad_usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<profesor_imagen> profesor_imagen { get; set; }
-        public virtual seguridad_usuario seguridad_usuario { get; set; }
     }
 }
