@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="PagoClase.aspx.cs" Inherits="JJSS.Presentacion.PagoClase" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="AlumnoPagoClase.aspx.cs" Inherits="JJSS.Presentacion.AlumnoPagoClase" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphMenu" runat="server">
 </asp:Content>
@@ -45,7 +45,7 @@
                 <div class="container">
                     <div class="row mt centered">
                        
-                        <h1>REGISTRO DE PAGO DE CLASE</h1>
+                        <h1>PAGO DE CLASE</h1>
                         <p>&nbsp;</p>
                     </div>
 
@@ -63,7 +63,25 @@
                                 <label class="pull-left">Clase</label>
                             </div>
                             <div class="col-xs-3">
-                                <asp:DropDownList ID="ddl_clase" runat="server" CssClass="caja2" OnSelectedIndexChanged="ddl_clase_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                <asp:Label ID="lbl_clase" runat="server" Text="Clase"></asp:Label>
+                            </div>
+                            <div class="col-xs-3">
+                                
+                            </div>
+                        </div>
+
+                         <div class="row centered">
+                            &nbsp;
+                        </div>
+                        
+                         <!-- FECGA-->
+                        <div class="row centered">
+                            <div class="col-xs-2">
+                                <asp:Label cssClass="pull-left" ID="lbl_fecha" runat="server" Text="Fecha"></asp:Label>
+
+                            </div>
+                            <div class="col-xs-3">
+                                <asp:Label ID="lbl_fecha1" runat="server" Text="12/12/2012"></asp:Label>
                             </div>
                             <div class="col-xs-3">
                                 
@@ -74,26 +92,15 @@
                             &nbsp;
                         </div>
 
-                        <!-- MES-->
+
+                        <!-- RECARGO-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <label class="pull-left">Mes a abonar</label>
+                                <asp:Label cssClass="pull-left" ID="lbl_recargo" runat="server" Text="Recargo"></asp:Label>
+
                             </div>
                             <div class="col-xs-3">
-                                <asp:DropDownList ID="ddl_mes" runat="server" CssClass="caja2">
-                                    <asp:ListItem>Enero</asp:ListItem>
-                                    <asp:ListItem>Febrero</asp:ListItem>
-                                    <asp:ListItem>Marzo</asp:ListItem>
-                                    <asp:ListItem>Abril</asp:ListItem>
-                                    <asp:ListItem>Mayo</asp:ListItem>
-                                    <asp:ListItem>Junio</asp:ListItem>
-                                    <asp:ListItem>Julio</asp:ListItem>
-                                    <asp:ListItem>Agosto</asp:ListItem>
-                                    <asp:ListItem>Septiembre</asp:ListItem>
-                                    <asp:ListItem>Octubre</asp:ListItem>
-                                    <asp:ListItem>Noviembre</asp:ListItem>
-                                    <asp:ListItem>Diciembre</asp:ListItem>
-                                </asp:DropDownList>
+                                <asp:Label ID="lbl_recargoMonto" runat="server" Text="$"></asp:Label>
                             </div>
                             <div class="col-xs-3">
                                 
@@ -108,47 +115,29 @@
                         <div class="row centered">
                             <div class="col-xs-2">
                                 
+                                <asp:Label cssClass="pull-left" ID="lbl_monto1" runat="server" Text="Monto"></asp:Label>
+
                             </div>
                             <div class="col-xs-3">
-                                <asp:TextBox ID="txt_monto" runat="server" CssClass="caja2"></asp:TextBox>
+                                <asp:Label ID="lbl_monto" runat="server" Text="$"></asp:Label>
                             </div>
-                            <div class="col-xs-3">
-                                <asp:RequiredFieldValidator ID="requerido_monro" runat="server" ErrorMessage="Debe ingresar un monto" CssClass="text-danger" Display="Dynamic" ControlToValidate="txt_monto" ValidationGroup="vgRegistrarPago"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="regex_monto" runat="server" ControlToValidate="txt_monto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del monto" ValidationGroup="vgRegistrarPago"  ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"></asp:RegularExpressionValidator>
-                            </div>
+
                         </div>
 
                          <div class="row centered">
                             &nbsp;
                         </div>
                             
-                        <!-- FORMA PAGO-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <label class="pull-left">Forma de pago</label>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:DropDownList ID="ddl_forma_pago" runat="server" CssClass="caja2"></asp:DropDownList>
-                            </div>
-                            <div class="col-xs-3">
-                                
-                            </div>
-                        </div>
-
-                         <div class="row centered">
-                            &nbsp;
-                        </div>
-
-                         <div class="row centered">
-                            &nbsp;
-                        </div>
+                     
 
                         <!-- BOTONES-->
                         <div class="row centered">
 
-                            <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
-                            <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" ValidationGroup="vgRegistrarPago" OnClick="btn_aceptar_Click" />
-   							
+                             <a class="ui-button" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="modal" onreturn="execute_my_onreturn">Pagar</a>     
+                            <asp:Button ID="btn_cancelar" CssClass="ui-button" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
+
+                        </div>
+
                     </div>
                 </div>
 
@@ -163,7 +152,21 @@
      <script type="text/javascript">
      (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
     </script>
-   
+  <script type="text/javascript">
+      function execute_my_onreturn(json) {
+          if (json.collection_status == 'approved') {
+              location.href="AlumnoPagoFinalizado.aspx?Estado=ok"
+          } else if (json.collection_status == 'pending') {
+              alert('El usuario no completó el pago');
+          } else if (json.collection_status == 'in_process') {
+              alert('El pago está siendo revisado');
+          } else if (json.collection_status == 'rejected') {
+              alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
+          } else if (json.collection_status == null) {
+              alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
+          }
+      }
+</script>
 
    
 

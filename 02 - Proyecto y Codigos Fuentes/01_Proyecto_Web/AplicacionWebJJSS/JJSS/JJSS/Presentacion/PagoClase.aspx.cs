@@ -17,7 +17,7 @@ namespace JJSS.Presentacion
         private GestorFormaPago gestorFPago;
         private GestorPagoClase gestorPago;
         private GestorAlumnos gestorAlumnos;
-        private GestorMercadoPago gestorMP;
+
         private alumno alumnoElegido;
         private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
 
@@ -47,15 +47,7 @@ namespace JJSS.Presentacion
             Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
         }
 
-        protected void btn_pagar_Click(object sender, EventArgs e)
-        {
-            String sInit_Point = "";
-            gestorMP = new GestorMercadoPago();
-            sInit_Point = gestorMP.NuevoPago(txt_monto.Text.Replace(".", ","));
-            mp_checkout.Attributes.Add("href", sInit_Point);
-
-        }
-
+     
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
             decimal monto = decimal.Parse(txt_monto.Text.Replace(".", ","));

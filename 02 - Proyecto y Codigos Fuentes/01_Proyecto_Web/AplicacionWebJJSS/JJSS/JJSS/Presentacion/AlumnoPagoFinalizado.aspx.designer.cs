@@ -10,7 +10,7 @@
 namespace JJSS.Presentacion {
     
     
-    public partial class PagoClase {
+    public partial class AlumnoPagoFinalizado {
         
         /// <summary>
         /// Control formPagoClase.
@@ -85,75 +85,75 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_alumno;
         
         /// <summary>
-        /// Control ddl_clase.
+        /// Control lbl_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_clase;
+        protected global::System.Web.UI.WebControls.Label lbl_clase;
         
         /// <summary>
-        /// Control ddl_mes.
+        /// Control lbl_fecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_mes;
+        protected global::System.Web.UI.WebControls.Label lbl_fecha;
         
         /// <summary>
-        /// Control txt_monto.
+        /// Control lbl_fecha1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_monto;
+        protected global::System.Web.UI.WebControls.Label lbl_fecha1;
         
         /// <summary>
-        /// Control requerido_monro.
+        /// Control lbl_recargo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requerido_monro;
+        protected global::System.Web.UI.WebControls.Label lbl_recargo;
         
         /// <summary>
-        /// Control regex_monto.
+        /// Control lbl_recargoMonto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_monto;
+        protected global::System.Web.UI.WebControls.Label lbl_recargoMonto;
         
         /// <summary>
-        /// Control ddl_forma_pago.
+        /// Control lbl_monto1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_forma_pago;
+        protected global::System.Web.UI.WebControls.Label lbl_monto1;
         
         /// <summary>
-        /// Control btn_cancelar.
+        /// Control lbl_monto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar;
+        protected global::System.Web.UI.WebControls.Label lbl_monto;
         
         /// <summary>
-        /// Control btn_aceptar.
+        /// Control btn_volver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_aceptar;
+        protected global::System.Web.UI.WebControls.Button btn_volver;
     }
 }

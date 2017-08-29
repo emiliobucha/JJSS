@@ -147,8 +147,8 @@ namespace JJSS_Negocio
                                             precio = clases.precio,
                                             tipo_clase = tipo.nombre,
                                             ubicacion = ubic.nombre,
-                                            profesor =profe.nombre +" "+ profe.apellido,
-                                            
+                                            profesor = profe.nombre + " " + profe.apellido,
+
                                         };
                 List<Object> claseLista = clasesDisponibles.ToList<Object>();
 
@@ -406,11 +406,11 @@ namespace JJSS_Negocio
          * Retorno:     entero - 0: no se esta dando ninguna clase
          *                      >0 : ID de la clase actual
          */
-        public int buscarTipoClaseSegunHoraActual(int pIdUbicacion) 
+        public int buscarTipoClaseSegunHoraActual(int pIdUbicacion)
         {
             string horaActual = DateTime.Now.ToShortTimeString();
             CultureInfo ci = new CultureInfo("Es-Es");
-            string nombreDia=ci.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+            string nombreDia = ci.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
 
             DataTable dtClases;
 
@@ -423,10 +423,10 @@ namespace JJSS_Negocio
                                       && horario.nombre_dia == nombreDia
                                       select new
                                       {
-                                          idClase=clase.id_clase,
-                                          dia=horario.nombre_dia,
-                                          desde=horario.hora_desde,
-                                          hasta=horario.hora_hasta,
+                                          idClase = clase.id_clase,
+                                          dia = horario.nombre_dia,
+                                          desde = horario.hora_desde,
+                                          hasta = horario.hora_hasta,
                                           tipoClase = tipo.id_tipo_clase
                                       };
                 dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
@@ -435,7 +435,7 @@ namespace JJSS_Negocio
             for (int i = 0; i < dtClases.Rows.Count; i++)
             {
                 DataRow dr = dtClases.Rows[i];
-                
+
                 if (dr["desde"].ToString().CompareTo(horaActual) <= 0 && dr["hasta"].ToString().CompareTo(horaActual) >= 0) return int.Parse(dr["tipoClase"].ToString());
             }
 
@@ -461,6 +461,42 @@ namespace JJSS_Negocio
                 return claseSegunAlumno.ToList();
             }
         }
+
+
+        /*
+         * Metodo que obtiene una lista de clases a las que esta inscripto un alumno
+         * Parametros: pIdAlumno: entero- representa el ID del alumno
+         * Retornos: List<clase> - lista de las clases
+         * 
+         */
+        public List<Object> ObtenerClaseSegunAlumnoGrilla(int pIdAlumno)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var clasesDisponibles = from clases in db.clase
+                                        join ubic in db.academia on clases.id_ubicacion equals ubic.id_academia
+                                        join tipo in db.tipo_clase on clases.id_tipo_clase equals tipo.id_tipo_clase
+                                        join profe in db.profesor on clases.id_profe equals profe.id_profesor
+                                        join ins in db.inscripcion_clase on clases.id_clase equals ins.id_clase
+                                        where clases.baja_logica == 1
+                                          && ins.id_alumno == pIdAlumno
+
+                                        select new
+                                        {
+                                            id_clase = clases.id_clase,
+                                            nombre = clases.nombre,
+                                            precio = clases.precio,
+                                            tipo_clase = tipo.nombre,
+                                            ubicacion = ubic.nombre,
+                                            profesor = profe.nombre + " " + profe.apellido,
+
+                                        };
+                List<Object> claseLista = clasesDisponibles.ToList<Object>();
+
+                return claseLista;
+            }
+        }
+
 
     }
 }

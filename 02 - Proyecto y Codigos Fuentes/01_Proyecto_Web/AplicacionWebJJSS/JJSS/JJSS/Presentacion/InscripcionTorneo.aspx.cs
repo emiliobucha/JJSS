@@ -101,7 +101,7 @@ namespace JJSS
             //+Ver Bien el SelectedValue del combo
 
             int idTorneo = 0;
-            int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+            int.TryParse(Session["torneoSeleccionado"].ToString(), out idTorneo);
 
             //solo para invitados
             string nombre = txt_nombre.Text;
@@ -227,7 +227,7 @@ namespace JJSS
                     txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 
                     int idTorneo = 0;
-                    int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+                    int.TryParse(Session["torneoSeleccionado"].ToString(), out idTorneo);
                     int idTipoClase = (int) gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
                     faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
                     if (fajaAlumno!= null)
