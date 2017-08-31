@@ -13,10 +13,15 @@ namespace JJSS.Presentacion
     {
         private GestorAcademias gestorAcademias;
         private GestorAsistencia gestorAsistencia;
+        private GestorAlumnos gestorAlumno;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarComboUbicacion();
+            if (!IsPostBack)
+            {
+                cargarComboUbicacion();
+            }
+            
         }
 
         protected void cargarComboUbicacion()
@@ -33,9 +38,9 @@ namespace JJSS.Presentacion
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
-            GestorAlumnos gestorAlumno = new GestorAlumnos();
-
             gestorAsistencia = new GestorAsistencia();
+            gestorAlumno = new GestorAlumnos();
+
             int idTipoClase = gestorAsistencia.buscarTipoClaseSegunHoraActual(int.Parse(ddl_ubicacion.SelectedValue));
 
             if (idTipoClase == 0) mensaje("No hay clases disponibles en este horario", false);
@@ -84,10 +89,6 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void ddl_ubicacion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {

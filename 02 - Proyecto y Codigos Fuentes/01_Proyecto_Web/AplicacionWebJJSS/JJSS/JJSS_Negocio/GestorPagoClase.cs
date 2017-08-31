@@ -209,7 +209,7 @@ namespace JJSS_Negocio
             int contPagos = dt.Rows.Count;
             if (contPagos >0)
             { //tiene un pago
-                DataRow dr = dt.Rows[contPagos - 1];
+                DataRow dr = dt.Rows[0];
                 string mesPago = dr["mes"].ToString();
                 DateTime fechaPago = DateTime.Parse(dr["fecha"].ToString());
 

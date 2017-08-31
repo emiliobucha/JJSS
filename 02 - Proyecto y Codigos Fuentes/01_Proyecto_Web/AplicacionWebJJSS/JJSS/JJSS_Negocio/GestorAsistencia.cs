@@ -64,7 +64,7 @@ namespace JJSS_Negocio
          */
         public string registrarAsistencia(int pIdAlumno, int pIdTipoClase)
         {
-            DateTime fechaActual = DateTime.Today;
+            DateTime fechaActual = DateTime.Now;
             try
             {
                 using (var db = new JJSSEntities())

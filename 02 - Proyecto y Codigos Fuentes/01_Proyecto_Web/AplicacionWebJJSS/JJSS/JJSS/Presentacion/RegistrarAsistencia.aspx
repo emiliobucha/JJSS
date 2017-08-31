@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-xs-3">
                                     <%--<asp:TextBox ID="txt_localidad" class="caja2" runat="server" placeholder="Ingrese localidad"></asp:TextBox>--%>
-                                    <asp:DropDownList class="caja2" ID="ddl_ubicacion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_ubicacion_SelectedIndexChanged">
+                                    <asp:DropDownList class="caja2" ID="ddl_ubicacion" runat="server" AutoPostBack="false">
                                     </asp:DropDownList>
                                 </div>
                             </div>
