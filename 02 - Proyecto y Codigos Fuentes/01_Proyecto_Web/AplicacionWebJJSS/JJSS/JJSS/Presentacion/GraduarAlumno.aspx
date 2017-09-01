@@ -39,8 +39,22 @@
         </asp:Panel>
 
         <div class="row mt centered">
+            <p>&nbsp;</p>
             <h1>GRADUAR ALUMNOS</h1>
             <p>&nbsp;</p>
+        </div>
+
+        <div  class="row mt centered">
+            <p>&nbsp;</p>
+            <h2>Filtros</h2>
+            <div class="col-md-2">Disciplina</div>
+            <div class="col-md-3">
+                <asp:RadioButtonList ID="rb_tipo_clase" CssClass="caja2" runat="server">
+                    <asp:ListItem Selected="True" Value="0">Todos</asp:ListItem>
+                </asp:RadioButtonList>
+            </div>
+            
+            <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btn_buscar_Click" />
         </div>
 
         <asp:MultiView ID="MultiView1" runat="server">
@@ -54,7 +68,7 @@
                     </div>
                 </div>
                 
-                <asp:GridView ID="gv_graduacion" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="idAlu">
+                <asp:GridView ID="gv_graduacion" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="idAlu" EmptyDataText="No existen elementos para esta selección">
                     <Columns>
                         <asp:BoundField DataField="alumno" HeaderText="Alumno" />
                         <asp:BoundField DataField="tipo" HeaderText="Disciplina" />
@@ -66,6 +80,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
+                    <EmptyDataRowStyle CssClass="table" />
                 </asp:GridView>
 
                 <div class="row centered">

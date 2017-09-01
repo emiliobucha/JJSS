@@ -33,9 +33,35 @@ namespace JJSS_Negocio
             }
         }
 
+
+
+
+        public List<Object> buscarFajasAlumnosConFiltro( int pIdTipoClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var graduacion = from alu in db.alumno
+                                 join axf in db.alumnoxfaja on alu.id_alumno equals axf.id_alumno
+                                 join faj in db.faja on axf.id_faja equals faj.id_faja
+                                 join tip in db.tipo_clase on faj.id_tipo_clase equals tip.id_tipo_clase
+                                 where axf.actual == 1 && tip.id_tipo_clase==pIdTipoClase
+                                 
+                                 select new
+                                 {
+                                     alumno = alu.apellido + ", " + alu.nombre,
+                                     faja = faj.descripcion,
+                                     fecha = axf.fecha,
+                                     tipo = tip.nombre,
+                                     idAlu = alu.id_alumno
+                                 };
+                List<Object> lista = graduacion.ToList<Object>();
+                return lista;
+            }
+        }
+
         public string graduar(DataTable pDt)
         {
-            
+
             using (var db = new JJSSEntities())
             {
                 var transaction = db.Database.BeginTransaction();
@@ -45,7 +71,7 @@ namespace JJSS_Negocio
                     {
                         DataRow dr = pDt.Rows[i];
                         string faja = dr["fajaActual"].ToString();
-                        
+
                         int grados = int.Parse(dr["grados"].ToString());
                         int idAlu = int.Parse(dr["idAlumno"].ToString());
                         DateTime fecha = DateTime.Now;
@@ -54,8 +80,8 @@ namespace JJSS_Negocio
                                          where faj.descripcion == faja
                                          select faj;
 
-                        
-                        int ordenSiguiente = (int)fajaActual.FirstOrDefault().orden+grados;
+
+                        int ordenSiguiente = (int)fajaActual.FirstOrDefault().orden + grados;
                         int tipoClase = (int)fajaActual.FirstOrDefault().id_tipo_clase;
                         int idFajaActual = (int)fajaActual.FirstOrDefault().id_faja;
 
@@ -82,19 +108,17 @@ namespace JJSS_Negocio
                         aluxf.FirstOrDefault().actual = 0;
                         db.SaveChanges();
 
-                        transaction.Commit();
-                        return "";
+
                     }
+                    transaction.Commit();
+                    return "";
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
                     return ex.Message;
                 }
-
             }
-
-            return "";
         }
     }
 }

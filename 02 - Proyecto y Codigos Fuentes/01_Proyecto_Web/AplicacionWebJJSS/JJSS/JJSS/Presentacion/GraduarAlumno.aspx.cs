@@ -13,27 +13,64 @@ namespace JJSS.Presentacion
     public partial class GraduarAlumno : System.Web.UI.Page
     {
         private GestorGraduacion gestorGraduacion;
+        private GestorTipoClase gestorTipo;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                gestorTipo = new GestorTipoClase();
+                gestorGraduacion = new GestorGraduacion();
+
                 cargarGrilla();
                 MultiView1.SetActiveView(view_elegir_graduacion);
-                
+
+                cargarRadioButton();
+
             }
 
         }
 
         protected void cargarGrilla()
         {
-            gestorGraduacion = new GestorGraduacion();
-            gv_graduacion.DataSource = gestorGraduacion.buscarFajasAlumnos();
+            int tipoClase = int.Parse(rb_tipo_clase.SelectedValue);
+            List<Object> lista= new List<Object>();
+
+            if (tipoClase==0)
+            {
+                gestorGraduacion = new GestorGraduacion();
+                lista = gestorGraduacion.buscarFajasAlumnos();
+            }
+            else
+            {
+                gestorGraduacion = new GestorGraduacion();
+                lista = gestorGraduacion.buscarFajasAlumnosConFiltro(tipoClase);
+            }
+
+             
+
+            gv_graduacion.DataSource = lista;
+
+
             gv_graduacion.DataBind();
 
 
         }
-        
+
+        protected void cargarRadioButton()
+        {
+            List<tipo_clase> lista = gestorTipo.ObtenerTipoClase();
+            tipo_clase tc = new tipo_clase();
+            tc.id_tipo_clase = 0;
+            tc.nombre = "Todos";
+            lista.Add(tc);
+            rb_tipo_clase.DataSource = lista;
+            rb_tipo_clase.DataValueField = "id_tipo_clase";
+            rb_tipo_clase.DataTextField = "nombre";
+            
+            rb_tipo_clase.DataBind();
+        }
+
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Presentacion/Inicio.aspx");
@@ -47,8 +84,8 @@ namespace JJSS.Presentacion
             dt.Columns.Add("fajaActual");
             for (int i = 0; i < gv_graduacion.Rows.Count; i++)
             {
-                TextBox tb= (TextBox)gv_graduacion.Rows[i].Cells[4].FindControl("txt_grados");
-                int grados =int.Parse( tb.Text);
+                TextBox tb = (TextBox)gv_graduacion.Rows[i].Cells[4].FindControl("txt_grados");
+                int grados = int.Parse(tb.Text);
                 if (grados >= 1)
                 {
                     int idAlu = Convert.ToInt32(gv_graduacion.DataKeys[i].Value);
@@ -61,16 +98,18 @@ namespace JJSS.Presentacion
                     dt.Rows.Add(dr);
                     dt.AcceptChanges();
 
-                    
+
                 }
             }
             gestorGraduacion = new GestorGraduacion();
-            string result = gestorGraduacion.graduar(dt);
-            if (result == "") {
+            string result = "-";
+             result = gestorGraduacion.graduar(dt);
+            if (result == "")
+            {
                 mensaje("Graduado exitosamente", true);
                 cargarGrilla();
             }
-            else mensaje(result, false);
+            else if (result!="-") mensaje(result, false);
         }
 
         class graduacion
@@ -102,6 +141,11 @@ namespace JJSS.Presentacion
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
             }
+        }
+
+        protected void btn_buscar_Click(object sender, EventArgs e)
+        {
+            cargarGrilla();
         }
     }
 }
