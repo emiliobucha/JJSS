@@ -31,6 +31,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
+        /// Control lv_torneos_abiertos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lv_torneos_abiertos;
+        
+        /// <summary>
         /// Control gv_torneosAbiertos.
         /// </summary>
         /// <remarks>

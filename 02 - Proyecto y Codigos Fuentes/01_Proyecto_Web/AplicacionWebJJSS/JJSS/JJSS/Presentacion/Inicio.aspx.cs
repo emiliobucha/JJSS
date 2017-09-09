@@ -50,7 +50,7 @@ namespace JJSS.Presentacion
                 cargarClases();
                 cargarTorneosAbiertos();
                 cargarRecarga();
-                
+                cargarTorneosAbiertosView();
             }
 
 
@@ -127,11 +127,15 @@ namespace JJSS.Presentacion
         protected void cargarTorneosAbiertos()
         {
             gv_torneosAbiertos.DataSource = gestorDeTorneos.ObtenerTorneos();
-            gv_torneosAbiertos.DataBind();
-            
-
-
+            gv_torneosAbiertos.DataBind();   
         }
+
+        protected void cargarTorneosAbiertosView()
+        {
+            lv_torneos_abiertos.DataSource = gestorDeTorneos.ObtenerTorneosConImagen();
+            lv_torneos_abiertos.DataBind();
+        }
+
 
         protected void gv_torneosAbiertos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -302,6 +306,16 @@ namespace JJSS.Presentacion
             //cargarComboFajas();
         }
 
-        
+       
+
+        protected void lv_torneos_abiertos_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+
+            Session["torneoSeleccionado"] = id;
+
+            Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
+        }
+
     }
 }

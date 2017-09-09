@@ -10,7 +10,10 @@
     <%--<a><asp:LinkButton ID="LinkButton1" runat="server">Cerrar Sesión</asp:LinkButton></a>--%>
 </asp:Content>
 
+
+
 <asp:Content ID="InicioEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
+    <
     <section id="home" title="home"></section>
     <div id="headerwrap2">
         <div class="container">
@@ -28,9 +31,10 @@
 </asp:Content>
 
 
+
 <asp:Content ID="InicioContenido" ContentPlaceHolderID="cphContenido" runat="Server">
     <section id="about" title="about"></section>
-
+    
     <!--PRESENTACION DE LA ACADEMIA-->
     <div id="aboutwrap">
         <div class="container">
@@ -135,78 +139,124 @@
             <div class="container">
                 <div class="row mt centered">
 
-
                     <h1>ÚLTIMOS TORNEOS</h1>
                     <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
+                    <!---------------------------------**************Muestra de Torneos************---------------------------------------->
+                    <div>
+                        <asp:ListView ID="lv_torneos_abiertos" GroupPlaceholderID="groupPlaceHolder1" ItemPlaceholderID="itemPlaceHolder1" GroupItemCount="3" runat="server"  OnItemCommand="lv_torneos_abiertos_ItemCommand"  >
 
-                    <!---------------------------------**************Grilla de Torneos************---------------------------------------->
-                    <asp:GridView ID="gv_torneosAbiertos" runat="server" ShowHeader="true" DataKeyNames="id_torneo" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos en este momento" OnRowCommand="gv_torneosAbiertos_RowCommand" HeaderStyle-HorizontalAlign="Center">
-                        <Columns>
-                            <%--<asp:BoundField DataField="id_torneo" HeaderText="ID de torneo" />--%>
-                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                            <asp:BoundField DataField="fecha" HeaderText="Fecha" />
-                            <asp:ButtonField CommandName="inscribir" Text="Inscribir" />
-                            
-                        </Columns>
-                    </asp:GridView>
-                    <!---------------FIN Grilla-------------------->
+                            <LayoutTemplate>
+                                <table>
+                                    <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
+                                </table>
+                            </LayoutTemplate>
 
-                </div>
-                <!--/container -->
+                            <GroupTemplate>
+                                <tr>
+                                    <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
+                                </tr>
+                            </GroupTemplate>
 
+                            <ItemTemplate >
 
-                <!--APARTADO DE ADMINISTRACION DE TORNEOS -->
-                <div class="container">
-                    <div class="row mt centered">
-                        <h1>ADMINISTRACIÓN DE TORNEOS</h1>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="border:1px medium gray"  >
+                                    <div>
+                                         <asp:Label ID="lv_lbl_nombre" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
+                                    </div>
+                                    <div>
+                                     <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
+                                         <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404"  />
+                                    </div>
+                                    <div>
+                                         <asp:Label ID="lv_lbl_fecha" runat="server" Text='<%# Eval("fecha") %>' />
+                                    </div>
+                                      <div>
+                                         <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
+                                    </div>     
+                                    <div>
+                                        <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass=" btn-link" Text="Inscribir" />
+                                    </div>                                 
+                                </div>
 
-                        <!--col insrcibir_Torneo-->
-                        <div class="col-lg-4 proc" id="item_insrcibir_Torneo">
-                            <i class="fa fa-pencil"></i>
-                            <h3><a href="../Presentacion/InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
-                            <p>Accede a los torneos que estan pronto a desarrollar e inscríbete.</p>
-                        </div>
-                        <!--/col-->
+                            </ItemTemplate>
+                            <EmptyDataTemplate>
+                                <h3>No hay torneos disponibles por el momento</h3> 
+                            </EmptyDataTemplate>
+                        </asp:ListView>
 
-                        <!--col mis_Torneos-->
-                        <div class="col-lg-4 proc" id="item_mis_Torneos">
-                            <i class="fa fa-heart"></i>
-                            <h3>Mis torneos</h3>
-                            <p>Puedes ver aquí el historial de los torneos en que has competido.</p>
-                        </div>
-                        <!--/col-->
-
-                        <!--col visualizar_Torneo-->
-                        <div class="col-lg-4 proc" id="item_visualizar_Torneo">
-                            <i class="fa fa-eye"></i>
-                            <h3>Visualizar torneos</h3>
-                            <p>Accede a todos los torneos que se han desarrollado. Un filtro de búsqueda te facilitará el trabajo</p>
-                        </div>
-                        <!--/col-->
-
-                        <!--col Generar_Torneo-->
-                        <div class="col-lg-4 proc" id="item_Generar_Torneo">
-                            <i class="fa fa-cogs"></i>
-                            <h3 class="logo"><a href="../Presentacion/CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
-                            <p>Crea un nuevo torneo para luego ver su seguimiento.</p>
-                        </div>
-                        <!--/col-->
-
-                        <!--col Generar_Listado_inscriptos-->
-                        <div class="col-lg-4 proc" id="item_Generar_Listado_inscriptos">
-                            <i class="fa fa-cogs"></i>
-                            <h3 class="logo"><a id="btn_generar_Listado_inscriptos" href="" data-toggle="modal" data-target="#exportarListado" style="color: #000000">Generar listado de inscriptos</a></h3>
-                            <p>Genera un listado de los inscriptos a un torneo. Con esta herramienta podrás imprimir un listados con los inscriptos a un torneo.</p>
-                        </div>
-                        <!--/col-->
+                                             
                     </div>
-                    <!--/row -->
+                    <!---------------------------------**************Grilla de Torneos************---------------------------------------->
+                    <div>
+                        <asp:GridView ID="gv_torneosAbiertos" runat="server" ShowHeader="true" DataKeyNames="id_torneo" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay torneos abiertos en este momento" OnRowCommand="gv_torneosAbiertos_RowCommand" HeaderStyle-HorizontalAlign="Center">
+                            <Columns>
+                                <%--<asp:BoundField DataField="id_torneo" HeaderText="ID de torneo" />--%>
+                                <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                <asp:BoundField DataField="fecha" HeaderText="Fecha" />
+                                <asp:ButtonField CommandName="inscribir" Text="Inscribir" />
+
+                            </Columns>
+                        </asp:GridView>
+                        <!---------------FIN Grilla-------------------->
+
+                    </div>
+                    <!--/container -->
+
+
+                    <!--APARTADO DE ADMINISTRACION DE TORNEOS -->
+                    <div class="container">
+                        <div class="row mt centered">
+                            <h1>ADMINISTRACIÓN DE TORNEOS</h1>
+
+                            <!--col insrcibir_Torneo-->
+                            <div class="col-lg-4 proc" id="item_insrcibir_Torneo">
+                                <i class="fa fa-pencil"></i>
+                                <h3><a href="../Presentacion/InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
+                                <p>Accede a los torneos que estan pronto a desarrollar e inscríbete.</p>
+                            </div>
+                            <!--/col-->
+
+                            <!--col mis_Torneos-->
+                            <div class="col-lg-4 proc" id="item_mis_Torneos">
+                                <i class="fa fa-heart"></i>
+                                <h3>Mis torneos</h3>
+                                <p>Puedes ver aquí el historial de los torneos en que has competido.</p>
+                            </div>
+                            <!--/col-->
+
+                            <!--col visualizar_Torneo-->
+                            <div class="col-lg-4 proc" id="item_visualizar_Torneo">
+                                <i class="fa fa-eye"></i>
+                                <h3>Visualizar torneos</h3>
+                                <p>Accede a todos los torneos que se han desarrollado. Un filtro de búsqueda te facilitará el trabajo</p>
+                            </div>
+                            <!--/col-->
+
+                            <!--col Generar_Torneo-->
+                            <div class="col-lg-4 proc" id="item_Generar_Torneo">
+                                <i class="fa fa-cogs"></i>
+                                <h3 class="logo"><a href="../Presentacion/CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
+                                <p>Crea un nuevo torneo para luego ver su seguimiento.</p>
+                            </div>
+                            <!--/col-->
+
+                            <!--col Generar_Listado_inscriptos-->
+                            <div class="col-lg-4 proc" id="item_Generar_Listado_inscriptos">
+                                <i class="fa fa-cogs"></i>
+                                <h3 class="logo"><a id="btn_generar_Listado_inscriptos" href="" data-toggle="modal" data-target="#exportarListado" style="color: #000000">Generar listado de inscriptos</a></h3>
+                                <p>Genera un listado de los inscriptos a un torneo. Con esta herramienta podrás imprimir un listados con los inscriptos a un torneo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
                 </div>
-                <!--/container -->
+                <!--/row -->
             </div>
-            <!--/Portfoliowrap -->
+            <!--/container -->
+        </div>
+        <!--/Portfoliowrap -->
 
 
             <!-- ABOUT SEPARATOR -->
@@ -751,16 +801,27 @@
         }
 
 
-
-        function openModal() {
-            $('#modal_inscribirAlumunoClase').modal('show');
-        }
-        function ShowPopup() {
-            $("#btn_emergente").click();
-        }
+       
     </script>
 
+    <script type="text/javascript">
 
+        $(document).ready(function () {
+
+            var elements = document.getElementsById('lv_imagen');
+            var inscribir = document.getElementsById('lv_btn_inscribir');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].Attributes.Add("onclick", "clickAImagenes(inscribir[i]);");
+            }
+        });
+
+
+
+        function clickAImagenes(id_inscribir) {
+
+            $(id_inscribir).click();
+        }	
+</script>
 
 
 
