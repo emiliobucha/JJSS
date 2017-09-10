@@ -15,6 +15,7 @@ namespace JJSS.Presentacion
     {
         private GestorClases gestorClase;
         private GestorAlumnos gestorAlumnos;
+        private GestorSesiones  gestorSesiones = new GestorSesiones();
 
         private alumno alumnoElegido;
   
@@ -24,8 +25,9 @@ namespace JJSS.Presentacion
             gestorAlumnos = new GestorAlumnos();
             if (!IsPostBack)
             {
-                int dni = int.Parse(Session["AlumnoDNI"].ToString());
-                alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+                alumnoElegido = gestorAlumnos.ObtenerAlumnoPorIdUsuario(gestorSesiones.getActual().usuario.id_usuario);
+                int dni = alumnoElegido.dni;
+                Session["AlumnoDNI"] = dni;
                 cargarClases();
 
             }

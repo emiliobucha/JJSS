@@ -90,13 +90,13 @@
                     <!--col modificar_perfil-->
                     <div class="col-lg-4 proc" id="item_modificar_perfil">
                         <i class="fa fa-pencil"></i>
-                        <h3><a href="../Presentacion/Perfil.aspx" style="color: #000000">Modificar mi perfil</a></h3>
+                        <h3><a href="../Presentacion/Perfil.aspx" class="ui-button" style="color: #000000">Modificar mi perfil</a></h3>
                         <p>Permite modificar los datos del usuario.</p>
                     </div>
                     <!--/col-->
 
                     <!--col cerrar_sesion-->
-                    <div class="col-lg-4 proc" id="item_cerrar_sesion">
+<%--                    <div class="col-lg-4 proc" id="item_cerrar_sesion">
                         <i class="fa fa-pencil"></i>
                         <h3>
                             <asp:Button ID="btn_cerrar_sesion" runat="server" Text="Cerrar Sesión" OnClick="btn_cerrar_sesion_Click" /></h3>
@@ -108,10 +108,10 @@
                     <div class="col-lg-4 proc" id="item_iniciar_sesion">
                         <i class="fa fa-pencil"></i>
                         <h3>
-                            <asp:Button ID="Button1" runat="server" Text="Iniciar Sesión" OnClick="Button1_Click" /></h3>
+                            <asp:Button ID="Button1"  runat="server" Text="Iniciar Sesión" OnClick="Button1_Click" /></h3>
 
 
-                    </div>
+                    </div>--%>
 
                 </div>
                 <!--/row -->
@@ -146,7 +146,7 @@
                         <Columns>
                             <%--<asp:BoundField DataField="id_torneo" HeaderText="ID de torneo" />--%>
                             <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                            <asp:BoundField DataField="fecha" HeaderText="Fecha" />
+                            <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:d}"/>
                             <asp:ButtonField CommandName="inscribir" Text="Inscribir" />
                             
                         </Columns>
@@ -228,7 +228,7 @@
                         <!---------------------------------**************Grilla de clase************---------------------------------------->
                         <asp:GridView ID="gv_clasesDisponibles" runat="server" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
                             <Columns>
-                                <asp:BoundField DataField="id_clase" HeaderText="ID de clase" />
+                              <%--  <asp:BoundField DataField="id_clase" HeaderText="ID de clase" />--%>
                                 <asp:BoundField DataField="nombre" HeaderText="Clase" />
                                 <asp:BoundField DataField="tipo_clase" HeaderText="Tipo de Clase" />
                                 <asp:BoundField DataField="ubicacion" HeaderText="Ubicación" />
@@ -358,6 +358,13 @@
                             <i class="fa fa-arrow-up"></i>
                             <h3 class="logo"><a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Graduar Alumnos</a> </h3>
                             <p>Puedes modificar el cinturón y grado de cada alumno de manera fácil y rápida.</p>
+                        </div>
+                        <!--/col-->
+                       <!--col clases_alumno-->
+                        <div class="col-lg-4 proc" id="item_clases_alumnos">
+                            <i class="fa fa-arrow-up"></i>
+                            <h3 class="logo"><a href="../Presentacion/AlumnoClases.aspx" style="color: #000000">Clases Alumnos</a> </h3>
+                            <p>Puedes ver todas tus clases y pagar mediante MercadoPago.</p>
                         </div>
                         <!--/col-->
 
