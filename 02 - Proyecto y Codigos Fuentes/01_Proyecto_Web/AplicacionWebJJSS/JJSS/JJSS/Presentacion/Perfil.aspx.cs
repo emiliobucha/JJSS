@@ -28,10 +28,21 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
-                MultiView1.SetActiveView(view_datos_personales);
-                CargarDatos();
-                CargarComboCiudades(1);
-                CargarComboProvincias();
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                if (sesionActiva.estado == "INGRESO ACEPTADO")
+                {
+
+
+
+                    MultiView1.SetActiveView(view_datos_personales);
+                    CargarDatos();
+                    CargarComboCiudades(1);
+                    CargarComboProvincias();
+                }
+                else {
+                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
             }
         }
 

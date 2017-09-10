@@ -19,6 +19,30 @@ namespace JJSS.Presentacion
         {
             if (!IsPostBack)
             {
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_CREACION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_modificar"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
                 gestorTipo = new GestorTipoClase();
                 gestorGraduacion = new GestorGraduacion();
 
@@ -34,9 +58,9 @@ namespace JJSS.Presentacion
         protected void cargarGrilla()
         {
             int tipoClase = int.Parse(rb_tipo_clase.SelectedValue);
-            List<Object> lista= new List<Object>();
+            List<Object> lista = new List<Object>();
 
-            if (tipoClase==0)
+            if (tipoClase == 0)
             {
                 gestorGraduacion = new GestorGraduacion();
                 lista = gestorGraduacion.buscarFajasAlumnos();
@@ -47,7 +71,7 @@ namespace JJSS.Presentacion
                 lista = gestorGraduacion.buscarFajasAlumnosConFiltro(tipoClase);
             }
 
-             
+
 
             gv_graduacion.DataSource = lista;
 
@@ -67,7 +91,7 @@ namespace JJSS.Presentacion
             rb_tipo_clase.DataSource = lista;
             rb_tipo_clase.DataValueField = "id_tipo_clase";
             rb_tipo_clase.DataTextField = "nombre";
-            
+
             rb_tipo_clase.DataBind();
         }
 
@@ -103,13 +127,13 @@ namespace JJSS.Presentacion
             }
             gestorGraduacion = new GestorGraduacion();
             string result = "-";
-             result = gestorGraduacion.graduar(dt);
+            result = gestorGraduacion.graduar(dt);
             if (result == "")
             {
                 mensaje("Graduado exitosamente", true);
                 cargarGrilla();
             }
-            else if (result!="-") mensaje(result, false);
+            else if (result != "-") mensaje(result, false);
         }
 
         class graduacion

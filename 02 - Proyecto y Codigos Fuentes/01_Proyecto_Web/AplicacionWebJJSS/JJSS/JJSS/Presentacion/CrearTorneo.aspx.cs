@@ -40,11 +40,39 @@ namespace JJSS.Presentacion
             //}
 
             gestorTorneos = new GestorTorneos();
-            if (!IsPostBack) CargarComboSedes();
+            if (!IsPostBack)
+            {
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
+                CargarComboSedes();
 
 
 
 
+            }
         }
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -97,7 +125,7 @@ namespace JJSS.Presentacion
                     mensaje(sReturn, true);
                 }
                 else mensaje(sReturn, false);
-                
+
             }
 
 

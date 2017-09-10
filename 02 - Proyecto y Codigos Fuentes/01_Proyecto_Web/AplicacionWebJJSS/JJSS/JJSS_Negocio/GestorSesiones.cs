@@ -73,6 +73,7 @@ namespace JJSS_Negocio
                                                    perm_clave = op.clave_opcion,
                                                    perm_nombre = op.nombre,
                                                    perm_ejecutar = gop.ejecutar,
+                                                   perm_ver = gop.ver,
                                                    perm_modificar = gop.modificar,
                                                    perm_agregar = gop.agregar,
                                                    perm_eliminar = gop.eliminar
@@ -82,11 +83,13 @@ namespace JJSS_Negocio
                                                {
                                                    x.perm_clave,
                                                    x.perm_nombre
-                                               } into g select new
+                                               } into g
+                                               select new
                                                {
                                                    perm_clave = g.Key.perm_clave,
                                                    perm_nombre = g.Key.perm_nombre,
                                                    perm_ejecutar = g.Max(x => x.perm_ejecutar),
+                                                   perm_ver = g.Max(x => x.perm_ver),
                                                    perm_modificar = g.Max(x => x.perm_modificar),
                                                    perm_agregar = g.Max(x => x.perm_agregar),
                                                    perm_eliminar = g.Max(x => x.perm_eliminar)
@@ -95,7 +98,7 @@ namespace JJSS_Negocio
 
 
                         try
-                      {
+                        {
                             var Lista = permisosUsuario.ToList();
 
                             sesionAux.permisos = modUtilidadesTablas.ToDataTable(permisosUsuario.ToList());
@@ -132,6 +135,36 @@ namespace JJSS_Negocio
         public void CerrarSesion()
         {
             xSesion = new Sesion();
+        }
+
+
+        /*
+         * Método que permite ingresar con una sesión invitado
+         * 
+         *
+         */
+        public Sesion IniciarInvitado()
+        {
+            Sesion sesionAux = new Sesion();
+            try
+            {
+
+                sesionAux.estado = "INGRESO ACEPTADO";
+                sesionAux.usuario.nombre = "INVITADO";
+                sesionAux.usuario.login = "INVITADO";
+                
+                xSesion = sesionAux;
+
+                HttpContext.Current.Session.Timeout = 20;
+
+
+            }
+            catch (Exception ex)
+            {
+                sesionAux.estado = "INGRESO RECHAZADO - USUARIO O CLAVE INCORRECTOS";
+            }
+
+            return sesionAux;
         }
 
 

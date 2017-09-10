@@ -47,7 +47,31 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
-               
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_CREACION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
+
                 CargarComboCiudades(1);
                 CargarComboProvincias();
                 //carga de grilla
@@ -57,12 +81,13 @@ namespace JJSS.Presentacion
                 gvAlumnos.PageSize = 20;
                 CargarGrilla();
                 mostrarPaneles();
+
             }
         }
 
         protected void mostrarPaneles()
         {
-            if (Session["alumnos"] == null || Session["alumnos"].ToString().CompareTo("Registrar")==0)
+            if (Session["alumnos"] == null || Session["alumnos"].ToString().CompareTo("Registrar") == 0)
             {
                 pnl_mostrar_alumnos.Visible = false;
                 pnlFormulario.Visible = true;
@@ -112,29 +137,29 @@ namespace JJSS.Presentacion
             int dni = int.Parse(txtDni.Text);
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
-           
+
             string[] formats = { "MM/dd/yyyy" };
-            
+
             DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
-            
+
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
-         
+
             int tel = 0;
-            if (txt_telefono.Text!="")
+            if (txt_telefono.Text != "")
             {
                 tel = int.Parse(txt_telefono.Text);
             }
- 
+
             string mail = txt_email.Text;
             string calle = txt_calle.Text;
             string departamento = txt_nro_dpto.Text;
 
             int? piso = null;
             if (txt_piso.Text != "")
-            { 
-                 piso = int.Parse(txt_piso.Text);
+            {
+                piso = int.Parse(txt_piso.Text);
             }
             int? numero = null;
             if (txt_numero.Text != "")
@@ -153,7 +178,7 @@ namespace JJSS.Presentacion
 
             int ciudad = int.Parse(ddl_localidad.SelectedValue);
 
-            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail,  telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
+            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
             Boolean estado = true;
             if (sReturn.CompareTo("") == 0)
             {
@@ -171,14 +196,14 @@ namespace JJSS.Presentacion
                 pnl_mostrar_alumnos.Visible = false;
                 pnlFormulario.Visible = true;
             }
-            mensaje(sReturn,estado);
+            mensaje(sReturn, estado);
             CargarGrilla();
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
         {
-           // Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
-           if (pEstado == true)
+            // Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
+            if (pEstado == true)
             {
                 pnl_mensaje_exito.Visible = true;
                 pnl_mensaje_error.Visible = false;
@@ -254,7 +279,7 @@ namespace JJSS.Presentacion
             txt_piso.Text = "";
             txt_telefono.Text = "";
             txt_telefono_urgencia.Text = "";
-            
+
             ddl_localidad.SelectedIndex = 0;
             ddl_provincia.SelectedIndex = 0;
         }
@@ -288,7 +313,8 @@ namespace JJSS.Presentacion
             else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
                 mensaje("Proximamente", false);
-            }else if (e.CommandName.CompareTo("pago") == 0)
+            }
+            else if (e.CommandName.CompareTo("pago") == 0)
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 int dni = Convert.ToInt32(gvAlumnos.DataKeys[index].Value);

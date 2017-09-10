@@ -31,13 +31,36 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_CREACION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_modificar"].ToString(), out permiso);
 
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
                 CargarComboClase();
                 CargarComboFormaPago();
                 int dni = int.Parse(Session["PagoClase"].ToString());
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
                 lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
+
             }
         }
 
@@ -47,7 +70,7 @@ namespace JJSS.Presentacion
             Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
         }
 
-     
+
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
             decimal monto = decimal.Parse(txt_monto.Text.Replace(".", ","));
@@ -110,7 +133,7 @@ namespace JJSS.Presentacion
             ddl_clase.DataValueField = "id_clase";
             ddl_clase.DataBind();
 
-            if (clase.Count==0)
+            if (clase.Count == 0)
             {
                 mensaje("El alumno no está inscripto a ninguna clase", false);
             }

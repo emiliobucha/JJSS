@@ -22,20 +22,7 @@ namespace JJSS
         {
             
 
-            //try
-            //{
-            //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-            //    if (sesionActiva.estado != "INGRESO ACEPTADO")
-            //    {
-            //        Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
-
-            //}
 
             gestorInscripciones = new GestorInscripciones();
             gestorDeTorneos = new GestorTorneos();
@@ -43,6 +30,10 @@ namespace JJSS
             if (!IsPostBack)
             {
                
+
+
+
+
                 CargarComboFajas();
                 if (Session["torneoSeleccionado"] != null)
                 {

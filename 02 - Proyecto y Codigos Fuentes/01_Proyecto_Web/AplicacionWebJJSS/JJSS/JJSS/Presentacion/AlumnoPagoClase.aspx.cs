@@ -31,6 +31,34 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
+
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
+
+
                 if (Session["Clase"] == null) Response.Redirect("AlumnoClase.aspx");
 
                 lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
@@ -54,7 +82,7 @@ namespace JJSS.Presentacion
                     lbl_recargo.Visible = true;
                     lbl_recargoMonto.Visible = true;
                     lbl_recargoMonto.Text = "$" + recargo.ToString();
-            
+
                 }
                 else
                 {
@@ -66,9 +94,9 @@ namespace JJSS.Presentacion
                 gestorMP = new GestorMercadoPago();
                 sInit_Point = gestorMP.NuevoPago(monto);
                 mp_checkout.Attributes.Add("href", sInit_Point);
-
             }
         }
+
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
@@ -78,7 +106,7 @@ namespace JJSS.Presentacion
 
         protected void limpiar()
         {
-          
+
             lbl_alumno.Text = "No hay alumno seleccionado";
             Session["PagoClase"] = "";
             pagoRecargo = 0;

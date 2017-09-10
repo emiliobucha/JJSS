@@ -15,16 +15,41 @@ namespace JJSS.Presentacion
     {
         private GestorClases gestorClase;
         private GestorAlumnos gestorAlumnos;
-        private GestorSesiones  gestorSesiones = new GestorSesiones();
+        private GestorSesiones gestorSesiones = new GestorSesiones();
 
         private alumno alumnoElegido;
-  
+
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorClase = new GestorClases();
             gestorAlumnos = new GestorAlumnos();
             if (!IsPostBack)
             {
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
+
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorIdUsuario(gestorSesiones.getActual().usuario.id_usuario);
                 int dni = alumnoElegido.dni;
                 Session["AlumnoDNI"] = dni;
@@ -43,11 +68,11 @@ namespace JJSS.Presentacion
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
-            
+
             Response.Redirect("../Presentacion/Inicio.aspx");
         }
 
-       
+
 
         private void mensaje(string pMensaje, Boolean pEstado)
         {

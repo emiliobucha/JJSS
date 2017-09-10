@@ -50,6 +50,7 @@
       <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.0.0\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Scaffolding.EntityFramework.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -130,8 +131,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\MisEstilos.css" />
     <Content Include="css\shop-homepage.css" />
+    <Content Include="img\16700476_10212706802211337_1006928008308717976_o.jpg" />
+    <Content Include="img\Academia.jpg" />
+    <Content Include="img\FondoLogo.jpg" />
     <Content Include="img\Imagen por Defecto.png" />
+    <Content Include="img\Mariano.jpg" />
+    <Content Include="img\torneo01.jpg" />
+    <Content Include="img\torneo02.jpg" />
+    <Content Include="img\torneo03.jpg" />
+    <Content Include="img\Torneo1.jpg" />
     <Content Include="js\funciones.js" />
     <Content Include="js\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
     <Content Include="js\jquery-ui-1.11.4.custom\images\ui-bg_glass_65_ffffff_1x400.png" />
@@ -152,7 +162,11 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.structure.min.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
+    <Content Include="Presentacion\AlumnoClases.aspx" />
+    <Content Include="Presentacion\AlumnoPagoClase.aspx" />
+    <Content Include="Presentacion\AlumnoPagoFinalizado.aspx" />
     <Content Include="Presentacion\CrearClase.aspx" />
+    <Content Include="Presentacion\GraduarAlumno.aspx" />
     <Content Include="Presentacion\InscripcionTorneo.aspx" />
     <Content Include="Presentacion\Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -198,6 +212,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="css\product-box.less" />
+    <Content Include="img\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\classie.js" />
@@ -263,12 +278,40 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Presentacion\AlumnoClases.aspx.cs">
+      <DependentUpon>AlumnoClases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\AlumnoClases.aspx.designer.cs">
+      <DependentUpon>AlumnoClases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\AlumnoPagoClase.aspx.cs">
+      <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\AlumnoPagoClase.aspx.designer.cs">
+      <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\AlumnoPagoFinalizado.aspx.cs">
+      <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\AlumnoPagoFinalizado.aspx.designer.cs">
+      <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\CrearClase.aspx.cs">
       <DependentUpon>CrearClase.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\CrearClase.aspx.designer.cs">
       <DependentUpon>CrearClase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\GraduarAlumno.aspx.cs">
+      <DependentUpon>GraduarAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\GraduarAlumno.aspx.designer.cs">
+      <DependentUpon>GraduarAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\InscripcionTorneo.aspx.cs">
       <DependentUpon>InscripcionTorneo.aspx</DependentUpon>
