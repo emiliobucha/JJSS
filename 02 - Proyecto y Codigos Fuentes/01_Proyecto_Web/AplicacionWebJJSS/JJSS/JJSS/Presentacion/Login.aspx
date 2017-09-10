@@ -18,7 +18,7 @@
                         <h1>Iniciar Sesión</h1>
                         <p>&nbsp;</p>
                     </div>
-                    
+
                     <div class="form-group ">
                         <!--usuario-->
                         <div class="row centered">
@@ -78,6 +78,10 @@
                         <!--Boton-->
                         <div class="row centered">
                             <asp:Button ID="btn_iniciar_sesion" CssClass="btn btn-default" runat="server" Text="Iniciar Sesión" ValidationGroup="val_inicio_sesion" OnClick="btn_iniciar_sesion_Click" />
+                        </div>
+                         <!--Invitado-->
+                        <div class="row centered">
+                            <asp:Button ID="btn_invitado" CssClass="btn btn-default" runat="server" Text="Iniciar como Invitado" OnClick="btn_invitado_Click" />
                         </div>
                     </div>
                 </div>

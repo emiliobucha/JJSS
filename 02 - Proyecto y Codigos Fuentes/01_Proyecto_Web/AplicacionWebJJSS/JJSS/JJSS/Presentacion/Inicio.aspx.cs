@@ -24,20 +24,32 @@ namespace JJSS.Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //try
-            //{ 
-            //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-            //    if (sesionActiva.estado != "INGRESO ACEPTADO")
-            //    {
-            //        Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+            try
+            {
+                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+                {
+                    ocultarInvitado();
 
-            //    }
-            //}
-            //catch(Exception ex)
-            //{
-            //    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                }
+                else
+                {
 
-            //}
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado != "INGRESO ACEPTADO")
+                    {
+
+                        Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                    }
+                    ocultarPermiso();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+            }
 
             gestorDeTorneos = new GestorTorneos();
             gestorInscripciones = new GestorInscripciones();
@@ -87,7 +99,7 @@ namespace JJSS.Presentacion
         //        }
         //    }
         //}
-        
+
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -288,7 +300,7 @@ namespace JJSS.Presentacion
             //cargarComboFajas();
         }
 
-       
+
 
         protected void lv_torneos_abiertos_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
@@ -296,6 +308,202 @@ namespace JJSS.Presentacion
             Session["torneoSeleccionado"] = id;
             Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
         }
+
+
+        protected void ocultarInvitado()
+        {
+            item_modificar_perfil.Style["display"] = "none";
+            administracion_torneos.Style["display"] = "none";
+            administracion_clases.Style["display"] = "none";
+            administracion_alumnos.Style["display"] = "none";
+
+        }
+
+        protected void ocultarPermiso()
+        {
+            try
+            {
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                if (sesionActiva.estado == "INGRESO ACEPTADO")
+                {
+                    int permiso = 0;
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+
+                    }
+                    if (permiso != 1)
+                    {
+                        item_inscribir_Alumno_Clase.Style["display"] = "none";
+                    }
+
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
+
+                    }
+                    if (permiso != 1)
+                    {
+                        item_mis_Clases.Style["display"] = "none";
+                    }
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_mis_Torneos.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_HORARIO'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+
+                    }
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_ALUMNOS'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_crear_nueva_clase.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_Generar_Torneo.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_registrar_alumno.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_modificar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_administrar_alumnos.Style["display"] = "none";
+                        item_graduacion_alumnos.Style["display"] = "none";
+                    }
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION_LISTA'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_Generar_Listado_inscriptos.Style["display"] = "none";
+                    }
+
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'SEGURIDAD_USUARIOS'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'SEGURIDAD_PERMISOS'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'PROFESOR_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        //item_registrar_profesor.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'PARAMETROS'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_modificar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_recarga_por_atraso.Style["display"] = "none";
+                    }
+
+
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+            }
+
+        }
+
 
 
         //protected void lv_clasesDisponibles_ItemCommand(object sender, ListViewCommandEventArgs e)

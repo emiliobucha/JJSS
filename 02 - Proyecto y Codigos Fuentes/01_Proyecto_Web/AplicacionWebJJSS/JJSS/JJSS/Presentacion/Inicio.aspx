@@ -75,7 +75,7 @@
     <form runat="server">
 
         <!--SECTOR PERFIL -->
-        <section id="perfil" title="clases"></section>
+        <section id="perfil" title="clases" runat="server"></section>
         <div id="perfilwrap">
 
             <!--APARTADO DE PERFIL-->
@@ -92,7 +92,7 @@
 
 
                     <!--col modificar_perfil-->
-                    <div class="col-lg-4 proc" id="item_modificar_perfil">
+                    <div class="col-lg-4 proc" id="item_modificar_perfil" runat="server">
                         <i class="fa fa-pencil"></i>
                         <h3><a href="../Presentacion/Perfil.aspx" style="color: #000000">Modificar mi perfil</a></h3>
                         <p>Permite modificar los datos del usuario.</p>
@@ -195,12 +195,13 @@
 
 
                     <!--APARTADO DE ADMINISTRACION DE TORNEOS -->
-                    <div class="container">
+                    <div class="container" id="administracion_torneos" runat="server">
+                        >
                         <div class="row mt centered">
                             <h1>ADMINISTRACIÓN DE TORNEOS</h1>
 
                             <!--col insrcibir_Torneo-->
-                            <div class="col-lg-4 proc" id="item_insrcibir_Torneo">
+                            <div class="col-lg-4 proc" id="item_insrcibir_Torneo" runat="server">
                                 <i class="fa fa-pencil"></i>
                                 <h3><a href="../Presentacion/InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
                                 <p>Accede a los torneos que estan pronto a desarrollar e inscríbete.</p>
@@ -208,7 +209,7 @@
                             <!--/col-->
 
                             <!--col mis_Torneos-->
-                            <div class="col-lg-4 proc" id="item_mis_Torneos">
+                            <div class="col-lg-4 proc" id="item_mis_Torneos" runat="server">
                                 <i class="fa fa-heart"></i>
                                 <h3>Mis torneos</h3>
                                 <p>Puedes ver aquí el historial de los torneos en que has competido.</p>
@@ -216,7 +217,7 @@
                             <!--/col-->
 
                             <!--col visualizar_Torneo-->
-                            <div class="col-lg-4 proc" id="item_visualizar_Torneo">
+                            <div class="col-lg-4 proc" id="item_visualizar_Torneo" runat="server">
                                 <i class="fa fa-eye"></i>
                                 <h3>Visualizar torneos</h3>
                                 <p>Accede a todos los torneos que se han desarrollado. Un filtro de búsqueda te facilitará el trabajo</p>
@@ -224,7 +225,7 @@
                             <!--/col-->
 
                             <!--col Generar_Torneo-->
-                            <div class="col-lg-4 proc" id="item_Generar_Torneo">
+                            <div class="col-lg-4 proc" id="item_Generar_Torneo" runat="server">
                                 <i class="fa fa-cogs"></i>
                                 <h3 class="logo"><a href="../Presentacion/CrearTorneo.aspx" style="color: #000000">Generar un nuevo torneo</a></h3>
                                 <p>Crea un nuevo torneo para luego ver su seguimiento.</p>
@@ -232,7 +233,7 @@
                             <!--/col-->
 
                             <!--col Generar_Listado_inscriptos-->
-                            <div class="col-lg-4 proc" id="item_Generar_Listado_inscriptos">
+                            <div class="col-lg-4 proc" id="item_Generar_Listado_inscriptos" runat="server">
                                 <i class="fa fa-cogs"></i>
                                 <h3 class="logo"><a id="btn_generar_Listado_inscriptos" href="" data-toggle="modal" data-target="#exportarListado" style="color: #000000">Generar listado de inscriptos</a></h3>
                                 <p>Genera un listado de los inscriptos a un torneo. Con esta herramienta podrás imprimir un listados con los inscriptos a un torneo.</p>
@@ -261,10 +262,11 @@
                 <div class="row mt centered">
 
                     <h1>CLASES DISPONIBLES</h1>
-                    <div class="row centered">
+
+                    <%--  <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
-                   <%-- <!---------------------------------**************Grilla de clase************---------------------------------------->
+                    <!---------------------------------**************Grilla de clase************---------------------------------------->
                     <asp:GridView ID="gv_clasesDisponibles" runat="server" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="id_clase" HeaderText="ID de clase" />
@@ -289,13 +291,14 @@
                             <asp:ButtonField Text="Eliminar" CommandName="Eliminar" />
 
                         </Columns>
-                    </asp:GridView>
-                </div>
+                    </asp:GridView>--%>
+
+<%--                </div>
             </div>--%>
             <!---------------FIN Grilla-------------------->
 
             <!---------------------------------**************Muestra de Clases************---------------------------------------->
-            <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <asp:ListView ID="lv_clasesDisponibles" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase" GroupItemCount="3" runat="server">
 
                     <LayoutTemplate>
@@ -316,7 +319,7 @@
                             <div>
                                 <asp:Label ID="lv_lbl_nombre_clase" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
                             </div>
-                           <%-- <div>                           
+                            <%-- <div>                           
                                 <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                             </div>--%>
                             <div>
@@ -335,42 +338,46 @@
                                 <asp:Button ID="lv_btn_inscribir" data-toggle="modal" data-target="#modal_inscribirAlumunoClase" runat="server" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Inscribir" />
                             </div>
                         </div>
-                         
+
                     </ItemTemplate>
                     <EmptyDataTemplate>
                         <h3>No hay clases disponibles por el momento</h3>
                     </EmptyDataTemplate>
                 </asp:ListView>
-                
+
             </div>
+                                                </div>
+                        </div>
             <!---------------FIN Cuadricula-------------------->
 
 
 
 
             <!--APARTADO DE ADMINISTRACION DE CLASES -->
-            <div class="container">
+            <div class="container" id="administracion_clases" runat="server">
                 <div class="row mt centered">
                     <h1>ADMINISTRACIÓN DE CLASES</h1>
 
                     <!--col crear_nueva_clase-->
-                    <div class="col-lg-4 proc" id="item_crear_nueva_clase">
+                    <div class="col-lg-4 proc" id="item_crear_nueva_clase" runat="server">
                         <i class="fa fa-pencil"></i>
                         <h3><a href="../Presentacion/CrearClase.aspx" style="color: #000000">Crear nueva clase</a></h3>
                         <p>Crea una nueva clase con sus respectivos horarios para administrarla.</p>
                     </div>
                     <!--/col-->
 
-                    <!--col mis_Clases-->
-                    <div class="col-lg-4 proc" id="item_mis_Clases">
-                        <i class="fa fa-heart"></i>
-                        <h3>Mis clases</h3>
-                        <p>Puedes ver aquí las clases en las que te has inscripto.</p>
+                      <!--col mis_Clases-->
+                    <div class="col-lg-4 proc" id="item_mis_Clases" runat="server">
+                        <i class="fa fa fa-heart"></i>
+                        <h3 class="logo"><a href="../Presentacion/AlumnoClases.aspx" style="color: #000000">Mis clases</a> </h3>
+                        <p>Puedes ver todas tus clases y pagar mediante MercadoPago.</p>
                     </div>
                     <!--/col-->
 
+                   
+
                     <!--col visualizar_Clase-->
-                    <div class="col-lg-4 proc" id="">
+                    <div class="col-lg-4 proc" id="item_visualizar_clases" runat="server">
                         <i class="fa fa-eye"></i>
                         <h3>Visualizar horarios</h3>
                         <p>Consulta los horarios en que se desarrollan las diferentes clases que se dictan en la academia</p>
@@ -378,7 +385,7 @@
                     <!--/col-->
 
                     <!--col inscribir_Alumno_Clase-->
-                    <div class="col-lg-4 proc" id="item_inscribir_Alumno_Clase">
+                    <div class="col-lg-4 proc" id="item_inscribir_Alumno_Clase" runat="server">
                         <i class="fa fa-cogs"></i>
                         <h3 class="logo"><a style="color: #000000">Inscribir a un alumno</a></h3>
                         <p>Puedes inscribir a un alumno a una determinada clase. Esto te permitirá realizar una administración del mismo.</p>
@@ -386,7 +393,7 @@
                     <!--/col-->
 
                     <!--col modificar_valor_de_recarga_por_atraso-->
-                    <div class="col-lg-4 proc" id="item_recarga_por_atraso">
+                    <div class="col-lg-4 proc" id="item_recarga_por_atraso" runat="server">
                         <i class="fa fa-dollar"></i>
                         <h3 class="logo">
                             <a id="btn_recarga_por_atraso" href="" data-toggle="modal" data-target="#modal_recarga" style="color: #000000">Recargo por atraso</a>
@@ -396,7 +403,7 @@
                     <!--/col-->
 
                     <!--col registrar_asistencia-->
-                    <div class="col-lg-4 proc" id="item_registrar_asistencia">
+                    <div class="col-lg-4 proc" id="item_registrar_asistencia" runat="server">
                         <i class="fa fa-cogs"></i>
                         <h3 class="logo"><a href="../Presentacion/RegistrarAsistencia.aspx" style="color: #000000">Registrar Asistencia</a></h3>
                         <p>Puedes mantener un registro de asistencia en cada uno de los puntos donde se dictan las clases.</p>
@@ -417,16 +424,16 @@
         <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
 
         <!--SECTOR ALUMNOS -->
-        <section id="alumnos" title="clases"></section>
+        <section id="alumnos" title="clases" runat="server"></section>
         <div id="alumnoswrap">
 
             <!--APARTADO DE ADMINISTRACION DE ALUMNOS -->
-            <div class="container">
+            <div class="container" id="administracion_alumnos" runat="server">
                 <div class="row mt centered">
                     <h1>ADMINISTRACIÓN DE ALUMNNOS</h1>
 
                     <!--col registrar_alumno-->
-                    <div class="col-lg-4 proc" id="item_registrar_alumno">
+                    <div class="col-lg-4 proc" id="item_registrar_alumno" runat="server">
                         <i class="fa fa-pencil"></i>
                         <h3><%--<a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Registrar Alumno</a>--%></h3>
                         <h3>
@@ -437,7 +444,7 @@
                     <!--/col-->
 
                     <!--col administrar_alumnos-->
-                    <div class="col-lg-4 proc" id="item_administrar_alumnos">
+                    <div class="col-lg-4 proc" id="item_administrar_alumnos" runat="server">
                         <i class="fa fa-cogs"></i>
                         <h3>
                             <asp:LinkButton ID="lnk_administrar_alumnos" OnClick="administrarAlumnos_Click" runat="server" Style="color: #000000">Administrar Alumnos</asp:LinkButton></h3>
@@ -446,20 +453,14 @@
                     <!--/col-->
 
                     <!--col graduacion_alumnos-->
-                    <div class="col-lg-4 proc" id="item_graduacion_alumnos">
+                    <div class="col-lg-4 proc" id="item_graduacion_alumnos" runat="server">
                         <i class="fa fa-arrow-up"></i>
                         <h3 class="logo"><a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Graduar Alumnos</a> </h3>
                         <p>Puedes modificar el cinturón y grado de cada alumno de manera fácil y rápida.</p>
                     </div>
                     <!--/col-->
 
-                           <!--col clases_alumno-->
-                        <div class="col-lg-4 proc" id="item_clases_alumnos">
-                            <i class="fa fa-arrow-up"></i>
-                            <h3 class="logo"><a href="../Presentacion/AlumnoClases.aspx" style="color: #000000">Clases Alumnos</a> </h3>
-                            <p>Puedes ver todas tus clases y pagar mediante MercadoPago.</p>
-                        </div>
-                        <!--/col-->
+                  
 
                 </div>
             </div>
@@ -754,8 +755,8 @@
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ValidationGroup="inscripcionClase" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                                     </div>
                                     <div class="row centered">
-                                    <p>&nbsp;</p>
-                                </div>
+                                        <p>&nbsp;</p>
+                                    </div>
                                 </div>
 
                             </asp:Panel>

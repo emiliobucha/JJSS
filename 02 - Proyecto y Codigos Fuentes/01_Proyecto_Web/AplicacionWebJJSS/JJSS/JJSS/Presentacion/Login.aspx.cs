@@ -49,5 +49,18 @@ namespace JJSS.Presentacion
                 Response.Write("<script>window.alert('" + "Ha ocurrido un error, por favor intentelo mas tarde".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
             }
         }
+        protected void btn_invitado_Click(object sender, EventArgs e)
+        {
+          
+            try
+            {
+                HttpContext.Current.Session["SEGURIDAD_SESION"]= "INVITADO";
+                Response.Redirect("~/Presentacion/Inicio.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + "Ha ocurrido un error, por favor intentelo mas tarde".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+            }
+        }
     }
 }

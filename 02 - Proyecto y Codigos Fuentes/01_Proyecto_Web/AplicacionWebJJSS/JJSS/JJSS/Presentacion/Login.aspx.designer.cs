@@ -94,6 +94,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_iniciar_sesion;
         
         /// <summary>
+        /// Control btn_invitado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_invitado;
+        
+        /// <summary>
         /// Control pnl_cambiar_pass.
         /// </summary>
         /// <remarks>
