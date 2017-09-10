@@ -151,6 +151,30 @@ namespace JJSS_Negocio
             }
         }
 
+        public List<Object> ObtenerTorneosConImagen()
+        {
+            using (var db = new JJSSEntities())
+            {
+                var torneosAbiertos =
+                                           from t in db.torneo
+                                           join i in db.torneo_imagen on t.id_torneo equals i.id_torneo
+                                           into ps
+                                           from i in ps.DefaultIfEmpty()
+                                           where t.id_estado == 1
+                                           select new
+                                           {
+                                               id_torneo = t.id_torneo,
+                                               nombre = t.nombre,
+                                               fecha = t.fecha,
+                                               hora = t.hora,
+                                               imagen =  i.imagen
+                                            };
+                
+
+                List<Object> listaTorneos = torneosAbiertos.ToList<Object>();
+                return listaTorneos;
+            }
+        }
 
         public List<torneo> ObtenerTorneosAbiertosCerrados()
         {
