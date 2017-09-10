@@ -453,6 +453,14 @@
                     </div>
                     <!--/col-->
 
+                           <!--col clases_alumno-->
+                        <div class="col-lg-4 proc" id="item_clases_alumnos">
+                            <i class="fa fa-arrow-up"></i>
+                            <h3 class="logo"><a href="../Presentacion/AlumnoClases.aspx" style="color: #000000">Clases Alumnos</a> </h3>
+                            <p>Puedes ver todas tus clases y pagar mediante MercadoPago.</p>
+                        </div>
+                        <!--/col-->
+
                 </div>
             </div>
 
