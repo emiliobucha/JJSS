@@ -47,10 +47,9 @@ namespace JJSS.Presentacion
             if (!IsPostBack)
             {
                 cargarTorneosExportarListado();
-                cargarClases();
-                cargarTorneosAbiertos();
+                cargarClasesView();
                 cargarRecarga();
-                
+                cargarTorneosAbiertosView();
             }
 
 
@@ -124,35 +123,20 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void cargarTorneosAbiertos()
+        /*
+         * Carga de datos en las cuadriculas correspondientes de  torneo y clases
+         */
+        protected void cargarTorneosAbiertosView()
         {
-            gv_torneosAbiertos.DataSource = gestorDeTorneos.ObtenerTorneos();
-            gv_torneosAbiertos.DataBind();
-            
-
-
+            lv_torneos_abiertos.DataSource = gestorDeTorneos.ObtenerTorneosConImagen();
+            lv_torneos_abiertos.DataBind();
+        }
+        protected void cargarClasesView()
+        {
+            lv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClasesDisponibles();
+            lv_clasesDisponibles.DataBind();
         }
 
-        protected void gv_torneosAbiertos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName.CompareTo("inscribir") == 0)
-            {
-                int indice = Convert.ToInt32(e.CommandArgument);
-                int id = Convert.ToInt32(gv_torneosAbiertos.DataKeys[indice].Value);
-
-
-                Session["torneoSeleccionado"] = id;
-
-                Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
-            }
-
-
-        }
-        protected void cargarClases()
-        {
-            gv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClasesDisponibles();
-            gv_clasesDisponibles.DataBind();
-        }
 
         protected void registrarAlumno_Click(object sender, EventArgs e)
         {
@@ -170,6 +154,7 @@ namespace JJSS.Presentacion
         {
             txt_modal_recarga.Text = "100";
         }
+
 
         protected void cargarTorneosExportarListado()
         {
@@ -235,33 +220,34 @@ namespace JJSS.Presentacion
             }
         }
 
-        
+
         protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
         {
             btnGenerarListado();
         }
 
 
-        protected void gv_clasesDisponibles_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName.CompareTo("Eliminar") == 0)
-            {
-                // int idClase = int.Parse(gv_clasesDisponibles.SelectedValue.ToString());
-                int index = Convert.ToInt32(e.CommandArgument);
-                int id = Convert.ToInt32(gv_clasesDisponibles.DataKeys[index].Value);
-                string sReturn = gestorDeClases.eliminarClase(id);
-                if (sReturn.CompareTo("") == 0) sReturn = "Se eliminó la clase correctamente";
-                mensaje(sReturn);
-                cargarClases();
-            }
-            else if (e.CommandName.CompareTo("Seleccionar") == 0)
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int id = Convert.ToInt32(gv_clasesDisponibles.DataKeys[index].Value);
-                Session["clase"] = id;
-                Response.Redirect("~/Presentacion/CrearClase");
-            }
-        }
+        //protected void gv_clasesDisponibles_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName.CompareTo("Eliminar") == 0)
+        //    {
+        //        // int idClase = int.Parse(gv_clasesDisponibles.SelectedValue.ToString());
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        int id = Convert.ToInt32(gv_clasesDisponibles.DataKeys[index].Value);
+        //        string sReturn = gestorDeClases.eliminarClase(id);
+        //        if (sReturn.CompareTo("") == 0) sReturn = "Se eliminó la clase correctamente";
+        //        mensaje(sReturn);
+        //        cargarClases();
+        //    }
+        //    else if (e.CommandName.CompareTo("Seleccionar") == 0)
+        //    {
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        int id = Convert.ToInt32(gv_clasesDisponibles.DataKeys[index].Value);
+        //        Session["clase"] = id;
+        //        Response.Redirect("~/Presentacion/CrearClase");
+        //    }
+        //}
+
         private void mensaje(string pMensaje)
         {
             Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
@@ -302,6 +288,21 @@ namespace JJSS.Presentacion
             //cargarComboFajas();
         }
 
-        
+       
+
+        protected void lv_torneos_abiertos_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            Session["torneoSeleccionado"] = id;
+            Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
+        }
+
+
+        //protected void lv_clasesDisponibles_ItemCommand(object sender, ListViewCommandEventArgs e)
+        //{
+        //    int id = Convert.ToInt32(e.CommandArgument);
+        //    Session["clase"] = id;
+        //    Response.Redirect("~/Presentacion/CrearClase");
+        //}
     }
 }

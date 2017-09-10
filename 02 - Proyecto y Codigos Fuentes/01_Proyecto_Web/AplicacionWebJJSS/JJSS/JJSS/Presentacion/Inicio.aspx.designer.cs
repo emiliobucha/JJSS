@@ -13,22 +13,40 @@ namespace JJSS.Presentacion {
     public partial class Inicio {
         
         /// <summary>
-        /// Control gv_torneosAbiertos.
+        /// Control btn_cerrar_sesion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_torneosAbiertos;
+        protected global::System.Web.UI.WebControls.Button btn_cerrar_sesion;
         
         /// <summary>
-        /// Control gv_clasesDisponibles.
+        /// Control Button1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_clasesDisponibles;
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// Control lv_torneos_abiertos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lv_torneos_abiertos;
+        
+        /// <summary>
+        /// Control lv_clasesDisponibles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lv_clasesDisponibles;
         
         /// <summary>
         /// Control lnk_registrar_alumno.
