@@ -126,6 +126,7 @@ namespace JJSS_Negocio
         }
 
 
+
         /*
          * Obtiene un listado de todas las clases que están disponibles
          * Retorno: List<clase> 

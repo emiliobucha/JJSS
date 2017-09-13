@@ -58,13 +58,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_error;
         
         /// <summary>
-        /// Control pnl_mostrar_alumnos.
+        /// Control pnl_datos_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_mostrar_alumnos;
+        protected global::System.Web.UI.WebControls.Panel pnl_datos_clase;
         
         /// <summary>
         /// Control lbl_nombre_clase.
@@ -121,6 +121,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.GridView dg_horarios;
         
         /// <summary>
+        /// Control pnl_listado_alumnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_listado_alumnos;
+        
+        /// <summary>
         /// Control txt_filtro_dni.
         /// </summary>
         /// <remarks>
@@ -164,5 +173,59 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAlumnos;
+        
+        /// <summary>
+        /// Control pnl_datos_alumnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_datos_alumnos;
+        
+        /// <summary>
+        /// Control lbl_alumno_nombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_alumno_nombre;
+        
+        /// <summary>
+        /// Control lbl_alumno_apellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_alumno_apellido;
+        
+        /// <summary>
+        /// Control lbl_alumno_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_alumno_dni;
+        
+        /// <summary>
+        /// Control ddl_fajas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_fajas;
+        
+        /// <summary>
+        /// Control btn_aceptar_inscripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_aceptar_inscripcion;
     }
 }

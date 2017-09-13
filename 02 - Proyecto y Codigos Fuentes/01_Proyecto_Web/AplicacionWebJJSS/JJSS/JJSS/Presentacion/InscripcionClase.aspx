@@ -35,73 +35,78 @@
                 </div>
             </div>
             <div class="row centered">
+                BB
                 <p>&nbsp;</p>
             </div>
         </asp:Panel>
 
         <div class="row centered">
             <h1>INSCRIPCION A CLASE</h1>
-                <p>&nbsp;</p>
+            <p>&nbsp;</p>
         </div>
 
-        <asp:Panel ID="pnl_mostrar_alumnos" runat="server" Visible="true">
+        <div id="mostrarAlumnowrap">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 centered center-block">
 
-            <div id="mostrarAlumnowrap">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 centered center-block">
-                    
-                        <div class="centered">
-                            <h3>DATOS DE LA CLASE</h3>
-                            <p>&nbsp;</p>
-                        </div>
-
-                        <div  style="border: 1px medium gray">
-                            <div>
-                                <asp:Label ID="lbl_nombre_clase" CssClass="h3" runat="server" />
-                            </div>
-                            <div>
-                                <asp:Label ID="lbl_tipo_clase" runat="server" />
-                            </div>
-                            <div>
-                                <asp:Label ID="lbl_ubicacion" runat="server" />
-                            </div>
-                            <div>
-                                <asp:Label ID="lbl_profesor" runat="server" />
-                            </div>
-                            <div>
-                                <asp:Label ID="lbl_precio" runat="server" />
-                            </div>
-                                                       
-
-                            <div class="centered center-block">
-
-                                <!--OnRowDataBound="dg_horarios_RowDataBound"-->
-                                <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" AutoGenerateColumns="False" GridLines="None" CssClass="table" BorderColor="Black" BorderStyle="Double">
-
-                                    <Columns>
-                                        <%--     <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Ubicacion" DataField="ubicacion"><HeaderStyle CssClass="text-center" /></asp:BoundField>                                    
-                                    <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Profesor" DataField="profesor"><HeaderStyle CssClass="text-center" /></asp:BoundField>--%>
-                                        <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Día" DataField="nombre_dia">
-                                            <HeaderStyle CssClass="text-center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Desde" DataField="hora_desde">
-                                            <HeaderStyle CssClass="text-center" />
-                                        </asp:BoundField>
-                                    </Columns>
-                                </asp:GridView>
-
-                            </div>
-
-
-                    </div>
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 centered">
-                    <div>
+                <asp:Panel ID="pnl_datos_clase" runat="server">
+                    <div class="centered">
+                        <h3>DATOS DE LA CLASE</h3>
                         <p>&nbsp;</p>
                     </div>
+
+                    <div style="border: 1px medium gray">
+                        <div>
+                            <asp:Label ID="lbl_nombre_clase" CssClass="h3" runat="server" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lbl_tipo_clase" runat="server" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lbl_ubicacion" runat="server" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lbl_profesor" runat="server" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lbl_precio" runat="server" />
+                        </div>
+
+
+                        <div class="centered center-block">
+
+                            <!--OnRowDataBound="dg_horarios_RowDataBound"-->
+                            <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" AutoGenerateColumns="False" GridLines="None" CssClass="table" BorderColor="Black" BorderStyle="Double">
+
+                                <Columns>
+                                    <%--     <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Ubicacion" DataField="ubicacion"><HeaderStyle CssClass="text-center" /></asp:BoundField>                                    
+                                    <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Profesor" DataField="profesor"><HeaderStyle CssClass="text-center" /></asp:BoundField>--%>
+                                    <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Día" DataField="nombre_dia">
+                                        <HeaderStyle CssClass="text-center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Desde" DataField="hora_desde">
+                                        <HeaderStyle CssClass="text-center" />
+                                    </asp:BoundField>
+                                </Columns>
+                            </asp:GridView>
+
+                        </div>
+                    </div>
+                </asp:Panel>
+            
+
+            </div>
+
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 centered">
+                <div>
+                    <p>&nbsp;</p>
                 </div>
+            </div>
 
 
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+                <asp:Panel ID="pnl_listado_alumnos" runat="server">
+
                     <div class="centered">
                         <h3>LISTADO DE ALUMNOS</h3>
                         <p>&nbsp;</p>
@@ -132,10 +137,85 @@
 
                         </div>
                     </div>
-                </div>
-            </div>
+                </asp:Panel>
 
-        </asp:Panel>
+                <asp:Panel ID="pnl_datos_alumnos" runat="server">
+
+                      <div class="centered">
+                        <h3>DATOS DEL ALUMNO</h3>
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <!--Nombre-->
+                    <div class="row centered">
+                        <div class="col-md-2"></div>
+                        <div class="col-xs-2">
+                            <label class="pull-left">Nombre</label>
+                        </div>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_alumno_nombre" class="pull-left" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+
+                     <!--Apellido-->
+                    <div class="row centered">
+                        <div class="col-md-2"></div>
+                        <div class="col-xs-2">
+                            <label class="pull-left">Apellido</label>
+                        </div>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_alumno_apellido" class="pull-left" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>                       
+
+                    <!-- DNI-->
+                    <div class="row centered">
+                        <div class="col-md-2"></div>
+                        <div class="col-xs-2">
+                            <label class="pull-left">DNI</label>
+                        </div>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_alumno_dni" class="pull-left" runat="server" Text=""></asp:Label>
+                        </div>
+                    </div>
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <!-- Datos para seleccionar -->
+
+                    <!--Faja-->
+                    <div class="row centered">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                            <label class="pull-left">Faja:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <!--Boton para aceptar inscripcion-->
+                    <div class="row centered">
+                        <asp:Button ID="btn_aceptar_inscripcion" runat="server" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
+                    </div>
+
+
+                </asp:Panel>
+
+            </div>
+        </div>
+
 
     </form>
 </asp:Content>

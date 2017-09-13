@@ -139,5 +139,16 @@ namespace JJSS_Negocio
                 else return true;
             }
         }
+
+        /*
+       * Metodo que nos devuelve una lista de fajas para luego ser seleccionadas al momento de inscribirse
+       */
+        public List<faja> ObtenerFajas()
+        {
+            using (var db = new JJSSEntities())
+            {
+                return db.faja.ToList();
+            }
+        }
     }
 }

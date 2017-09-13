@@ -167,6 +167,7 @@
     <Content Include="Presentacion\AlumnoPagoFinalizado.aspx" />
     <Content Include="Presentacion\CrearClase.aspx" />
     <Content Include="Presentacion\GraduarAlumno.aspx" />
+    <Content Include="Presentacion\InscripcionClase.aspx" />
     <Content Include="Presentacion\InscripcionTorneo.aspx" />
     <Content Include="Presentacion\Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -312,6 +313,13 @@
     </Compile>
     <Compile Include="Presentacion\GraduarAlumno.aspx.designer.cs">
       <DependentUpon>GraduarAlumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\InscripcionClase.aspx.cs">
+      <DependentUpon>InscripcionClase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\InscripcionClase.aspx.designer.cs">
+      <DependentUpon>InscripcionClase.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\InscripcionTorneo.aspx.cs">
       <DependentUpon>InscripcionTorneo.aspx</DependentUpon>
