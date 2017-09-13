@@ -299,7 +299,7 @@
 
             <!---------------------------------**************Muestra de Clases************---------------------------------------->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <asp:ListView ID="lv_clasesDisponibles" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase" GroupItemCount="3" runat="server">
+                <asp:ListView ID="lv_clasesDisponibles" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase" GroupItemCount="3" OnItemCommand="lv_clasesDisponibles_ItemCommand" runat="server" >
 
                     <LayoutTemplate>
                         <table>
@@ -335,7 +335,7 @@
                                 <asp:Label ID="lv_lbl_precio" runat="server" Text='<%# Eval("precio") %>' />
                             </div>
                             <div>
-                                <asp:Button ID="lv_btn_inscribir" data-toggle="modal" data-target="#modal_inscribirAlumunoClase" runat="server" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Inscribir" />
+                                <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Inscribir"  />
                             </div>
                         </div>
 
@@ -883,6 +883,17 @@
         function clickAImagenes(id_inscribir) {
 
             $(id_inscribir).click();
+        }
+
+        window.onload = function () {
+            var imagenes = $('*[id^="cphContenido_lv_torneos_abiertos_ctrl0_lv_imagen"]');
+            var inscribir = $('*[id^="cphContenido_lv_torneos_abiertos_ctrl0_lv_btn_inscribir"]');
+
+            for (var i = 0; i < 3; i++) {
+                var imagenes = $('*[id^="cphContenido_lv_torneos_abiertos_ctrl0_lv_imagen"]');
+                var inscribir = $('*[id^="cphContenido_lv_torneos_abiertos_ctrl0_lv_btn_inscribir"]');
+                imagenes[i].addEventListener('onclick', function () { inscribir[i].click(); });
+            };
         }
 
     </script>

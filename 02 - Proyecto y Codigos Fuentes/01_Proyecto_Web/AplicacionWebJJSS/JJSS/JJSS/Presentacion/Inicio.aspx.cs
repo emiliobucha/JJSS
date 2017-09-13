@@ -488,11 +488,7 @@ namespace JJSS.Presentacion
                     if (permiso != 1)
                     {
                         item_recarga_por_atraso.Style["display"] = "none";
-                    }
-
-
-
-
+                    }                  
 
                 }
             }
@@ -501,16 +497,13 @@ namespace JJSS.Presentacion
                 Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
             }
-
+         }
+        
+        protected void lv_clasesDisponibles_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            Session["id_clase"] = id;
+            Response.Redirect("~/Presentacion/InscripcionClase.aspx");
         }
-
-
-
-        //protected void lv_clasesDisponibles_ItemCommand(object sender, ListViewCommandEventArgs e)
-        //{
-        //    int id = Convert.ToInt32(e.CommandArgument);
-        //    Session["clase"] = id;
-        //    Response.Redirect("~/Presentacion/CrearClase");
-        //}
     }
 }
