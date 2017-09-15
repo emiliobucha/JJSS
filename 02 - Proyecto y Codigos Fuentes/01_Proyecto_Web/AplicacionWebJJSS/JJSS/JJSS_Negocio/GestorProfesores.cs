@@ -172,6 +172,20 @@ namespace JJSS_Negocio
 
 
         /*
+         * Método que devuelve un profe segun su id
+         * Parametros: pIDProfe: entero que representa el id del tipo de clase a buscar
+         * Retorno: profe
+         *          null
+         */
+        public profesor ObtenerProfesorPorID(int pIDProfe)
+        {
+            using (var db = new JJSSEntities())
+            {
+                return db.profesor.Find(pIDProfe);
+            }
+        }
+
+        /*
          * Metodo que devuelve un listado con nombre, apellido y dni de todos los profesores
          * Parametros: pDni: dni del profe a buscar
          * Retorno: List<Object>

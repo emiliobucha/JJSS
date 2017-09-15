@@ -27,6 +27,20 @@ namespace JJSS_Negocio
 
 
         /*
+         * Método que devuelve un tipo de clase segun su id
+         * Parametros: pIDTipoClase: entero que representa el id del tipo de clase a buscar
+         * Retorno: tipoclase
+         *          null
+         */
+        public tipo_clase ObtenerTipoClasePorID(int pIDTipoClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                return db.tipo_clase.Find(pIDTipoClase);
+            }
+        }
+
+        /*
          * Método que devuelve un listado de las fajas
          * Parametro: pIdClase: entero - Id de la clase
          * Retorno: List<faja>

@@ -210,11 +210,12 @@ namespace JJSS.Presentacion
             //int idClase = Convert.ToInt32(lbl_claseSeleccionada_id.Text);
             int dniAlumno = int.Parse(txt_inscripcionClase_dni.Text);
             DateTime pfecha = DateTime.Now;
+            
 
             string phora = pfecha.ToShortTimeString();
             try
             {
-                string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, idClase, phora, pfecha);
+            //    string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, idClase, phora, pfecha);
                 //if (sReturn != "") mensajeInsClase(sReturn, false);
                 //else
                 //{
@@ -504,6 +505,20 @@ namespace JJSS.Presentacion
             int id = Convert.ToInt32(e.CommandArgument);
             Session["id_clase"] = id;
             Response.Redirect("~/Presentacion/InscripcionClase.aspx");
+        }
+
+        protected void lnk_registrar_profe_Click(object sender, EventArgs e)
+        {
+
+            Session["profesor"] = "Registrar";
+            Response.Redirect("~/Presentacion/RegistrarProfe.aspx");
+
+        }
+
+        protected void lnk_administrar_profes_Click(object sender, EventArgs e)
+        {
+            Session["profesor"] = "Administrar";
+            Response.Redirect("~/Presentacion/RegistrarProfe.aspx");
         }
     }
 }

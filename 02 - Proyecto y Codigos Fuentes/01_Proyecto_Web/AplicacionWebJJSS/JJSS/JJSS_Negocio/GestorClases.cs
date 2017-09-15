@@ -91,20 +91,7 @@ namespace JJSS_Negocio
                 return ex.Message;
             }
         }
-        /*
-         *Método que devuelve los tipos de clases 
-         *Retornos:List <tipo_clase>
-         *          Listado de todos los tipos de clases
-         *
-      */
-        public List<tipo_clase> ObtenerTipos()
-        {
-            using (var db = new JJSSEntities())
-            {
-                return db.tipo_clase.ToList();
-            }
-
-        }
+        
 
         /*
          * Método que devuelve los horarios disponibles de una clase, si esta no existe devuelve una tabla vacia que nos permite ver el formato de dicha tabla
@@ -298,6 +285,18 @@ namespace JJSS_Negocio
         }
 
         /*
+         * Método que devuelve un tipo de clase segun su id
+         * Parametros: pIDTipoClase: entero que representa el id del tipo de clase a buscar
+         * Retorno: tipoclase
+         *          null
+         */
+        public tipo_clase ObtenerTipoClasesPorID(int pIDTipoClase)
+        {
+            GestorTipoClase gestorTipoClase = new GestorTipoClase();
+            return gestorTipoClase.ObtenerTipoClasePorID(pIDTipoClase);
+        }
+
+        /*
          * Método que devuelve un listado de todas las academias cargadas
          * Retorno: List<academia>
          *          Retorna toda lista de academias
@@ -309,6 +308,18 @@ namespace JJSS_Negocio
         }
 
         /*
+         * Método que devuelve una academia segun su id
+         * Parametros: pIDAcademia: entero que representa el id del tipo de clase a buscar
+         * Retorno: academia
+         *          null
+         */
+        public academia ObtenerAcademiasPorID(int pIDAcademia)
+        {
+            GestorAcademias gestorAcademias = new GestorAcademias();
+            return gestorAcademias.ObtenerAcademiasPorID(pIDAcademia);
+        }
+
+        /*
          * Método que devuelve un listado de todas los profesores cargadas
          * Retorno: List<profesor>
          *          Retorna toda lista de profesores
@@ -317,6 +328,19 @@ namespace JJSS_Negocio
         {
             GestorProfesores gestorProfesores = new GestorProfesores();
             return gestorProfesores.ObtenerProfesores();
+        }
+
+
+        /*
+         * Método que devuelve un profe segun su id
+         * Parametros: pIDProfe: entero que representa el id del tipo de clase a buscar
+         * Retorno: profe
+         *          null
+         */
+        public profesor ObtenerProfesorPorID(int pIDProfe)
+        {
+            GestorProfesores gestorProfesores = new GestorProfesores();
+            return gestorProfesores.ObtenerProfesorPorID(pIDProfe);
         }
 
         /*

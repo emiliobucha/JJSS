@@ -55,16 +55,16 @@ namespace JJSS.Presentacion
 
                 }
 
-                if (Session["id_clase"] == null )
+                if (Session["id_clase"] == null)
                 {
                     Response.Redirect("../Presentacion/Inicio.aspx");
                 }
-                else 
+                else
                 {
-                    id_Clase = (int)Session["id_clase"];
+                    id_Clase = int.Parse(Session["id_clase"].ToString());
                 }
 
-                
+
 
                 ViewState["gvDatosOrden"] = "dni";
                 gvAlumnos.AllowPaging = true;
@@ -87,21 +87,37 @@ namespace JJSS.Presentacion
 
         protected void CargarComboFajas()
         {
-            List<faja> fajas = gestorInscripcionClase.ObtenerFajas();
-            ddl_fajas.DataSource = fajas;
-            ddl_fajas.DataTextField = "descripcion";
-            ddl_fajas.DataValueField = "id_faja";
-            ddl_fajas.DataBind();
+            clase datos_clase = gestorClases.ObtenerClasePorId(id_Clase);
+
+            List<faja> fajas = gestorInscripcionClase.ObtenerFajasPorTipoClase( (int)datos_clase.id_tipo_clase);
+            if (fajas.Count==0)
+            {
+                ddl_fajas.Enabled = false;
+            }
+            else
+            {
+                ddl_fajas.Enabled = true;
+                ddl_fajas.DataSource = fajas;
+                ddl_fajas.DataTextField = "descripcion";
+                ddl_fajas.DataValueField = "id_faja";
+                ddl_fajas.DataBind();
+            }
         }
 
         protected void CargarDatosDeClase()
-        {         
+        {
             clase datos_clase = gestorClases.ObtenerClasePorId(id_Clase);
 
             //cargar datos generales
             lbl_nombre_clase.Text = datos_clase.nombre.ToString();
-            lbl_tipo_clase.Text = datos_clase.id_tipo_clase.ToString();
-            lbl_precio.Text = datos_clase.precio.ToString();
+            profesor profe = gestorClases.ObtenerProfesorPorID((int)datos_clase.id_profe);
+            lbl_profesor.Text ="Profesor: "+ profe.apellido + ", " + profe.nombre;
+            lbl_ubicacion.Text ="Ubicación: "+ gestorClases.ObtenerAcademiasPorID((int)datos_clase.id_ubicacion).nombre;
+            lbl_tipo_clase.Text ="Tipo de Clase: "+ gestorClases.ObtenerTipoClasesPorID((int)datos_clase.id_tipo_clase).nombre;
+            
+            
+            
+            lbl_precio.Text = "Precio: $"+datos_clase.precio.ToString();
 
             //cargar horarios con sus respectivos horarios
             dtHorarios = gestorClases.ObtenerTablaHorarios(id_Clase);
@@ -148,7 +164,7 @@ namespace JJSS.Presentacion
 
         //____________  Metodos de uso del panel de alumnos  __________
 
-            
+
         /*
          * Acción del boton buscar, que se encarga de filtrar por dni la grilla de alumnos
          */
@@ -159,8 +175,8 @@ namespace JJSS.Presentacion
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
             pnl_listado_alumnos.Visible = true;
-        }        
-     
+        }
+
         /*
          * Método que surge de la interacción con la grilla de alumnos para llevar adelante la inscripcion
          */
@@ -185,18 +201,18 @@ namespace JJSS.Presentacion
                     Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 }
-                
+
                 //captura de datos de la grilla
                 int index = Convert.ToInt32(e.CommandArgument);
                 int dniAlumno = Convert.ToInt32(gvAlumnos.DataKeys[index].Value);
 
                 string nombre_Alumno = gvAlumnos.Rows[index].Cells[0].Text;
                 string apellido_Alumno = gvAlumnos.Rows[index].Cells[1].Text;
-                cargaDatosAlumno(dniAlumno,nombre_Alumno,apellido_Alumno);
+                cargaDatosAlumno(dniAlumno, nombre_Alumno, apellido_Alumno);
 
-              
+
             }
-            
+
         }
         /*
          * Método de ordenacion de la grilla por dni
@@ -229,6 +245,8 @@ namespace JJSS.Presentacion
             lbl_alumno_apellido.Text = apellido;
             lbl_alumno_dni.Text = dni.ToString();
             lbl_alumno_nombre.Text = nombre;
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
         }
 
         /*
@@ -236,7 +254,7 @@ namespace JJSS.Presentacion
          */
         protected void definirVisualizacionDePaneles(bool ver)
         {
-            if(ver == true)
+            if (ver == true)
             {
                 pnl_listado_alumnos.Visible = false;
                 pnl_datos_alumnos.Visible = true;
@@ -253,30 +271,25 @@ namespace JJSS.Presentacion
         */
         protected void btn_aceptar_inscripcion_Click(object sender, EventArgs e)
         {
-            int dniAlumno = Convert.ToInt32(lbl_alumno_dni.ToString()); 
+            int dniAlumno = Convert.ToInt32(lbl_alumno_dni.Text);
             DateTime pfecha = DateTime.Now;
 
             string phora = pfecha.ToShortTimeString();
+            int idFaja = 0;
+            int.TryParse(ddl_fajas.SelectedValue.ToString(), out idFaja);
+            id_Clase = int.Parse(Session["id_clase"].ToString());
             try
             {
-                string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, id_Clase, phora, pfecha);
-                //if (sReturn != "") mensajeInsClase(sReturn, false);
-                //else
-                //{
-                //    gestorAlumnos = new GestorAlumnos();
-                //    string ddl = ddl_faja.SelectedValue;
-                //    if (ddl_faja.SelectedIndex >= 0) sReturn = gestorAlumnos.AsignarFaja(dniAlumno, int.Parse(ddl_faja.SelectedValue));
-                //    if (sReturn != "") mensajeInsClase(sReturn, false);
-                //    else mensajeInsClase("Alumno inscripto", true);
-
-                //}
-            }
-            catch (Exception ex)
+                string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, id_Clase, phora, pfecha, idFaja);
+                if (sReturn == "") {
+                    mensaje("La inscripción se ha realizado correctamente", true);
+                    definirVisualizacionDePaneles(true);
+                }
+                else mensaje(sReturn, false);
+            }catch(Exception ex)
             {
-                //mensajeInsClase(ex.Message.Trim(), false);
+                mensaje(ex.Message, false);
             }
-
-            mensaje("Proximamente", false);
         }
 
 
@@ -288,6 +301,11 @@ namespace JJSS.Presentacion
             Response.Redirect("../Presentacion/Inicio.aspx");
         }
 
-       
+        protected void btn_alumnos_Click(object sender, EventArgs e)
+        {
+            definirVisualizacionDePaneles(false);
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+        }
     }
 }

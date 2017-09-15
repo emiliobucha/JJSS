@@ -35,6 +35,7 @@ namespace JJSS_Negocio
          *              pClase: entero que indica el id de la clase a la que se va a inscribir
          *              pHora: Hora de la transacción, en que se generó la inscripción
          *              pFecha: datetime de la fecha en la que se inscribió
+         *              pIdFaja: entero que representa el id de la faja a asignar
          * Retornos:String  
          *          "" - Transacción completada correctamente
          *          Mensaje de Excepcion de transaccion
@@ -43,18 +44,18 @@ namespace JJSS_Negocio
          *              Ya esta inscripto el alumno
          *  
          */
-        public String InscribirAlumnoAClase(int pDNIAlumno, int pClase, string pHora, DateTime pFecha)
+        public String InscribirAlumnoAClase(int pDNIAlumno, int pClase, string pHora, DateTime pFecha, int pIdFaja)
         {
             String sReturn = "";
             GestorAlumnos gestorAlumnos = new GestorAlumnos();
             alumno pAlumno = gestorAlumnos.ObtenerAlumnoPorDNI(pDNIAlumno);
-           if (pAlumno == null)
+            if (pAlumno == null)
             {
-                throw new Exception("El alumno no esta registrado");
+                throw new Exception("El alumno no está registrado");
             }
-            if (ObtenerAlumnoInscripto(pAlumno.id_alumno, pClase) !=null)
+            if (ObtenerAlumnoInscripto(pAlumno.id_alumno, pClase) != null)
             {
-                throw new Exception("Ya se ha inscripto a esa clase");
+                throw new Exception("El alumno ya está inscripto a esa clase");
             }
 
             try
@@ -76,7 +77,18 @@ namespace JJSS_Negocio
                         };
                         db.inscripcion_clase.Add(nuevaInscripcion);
                         db.SaveChanges();
-
+                        if (pIdFaja > 0)
+                        {
+                            alumnoxfaja nuevaFaja = new alumnoxfaja()
+                            {
+                                id_alumno = pAlumno.id_alumno,
+                                id_faja = pIdFaja,
+                                fecha = pFecha,
+                                actual = 1,
+                            };
+                            db.alumnoxfaja.Add(nuevaFaja);
+                            db.SaveChanges();
+                        }
                         transaction.Commit();
                         return sReturn;
                     }
@@ -88,7 +100,7 @@ namespace JJSS_Negocio
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ex.Message;
             }
@@ -104,7 +116,7 @@ namespace JJSS_Negocio
          *          Inscripcion del alumno a dicha clase pudiendo ser nulo el resultado si no estaba inscripto
          *              
          */
-        public inscripcion_clase ObtenerAlumnoInscripto(int pIDAlumno,int pIDClase)
+        public inscripcion_clase ObtenerAlumnoInscripto(int pIDAlumno, int pIDClase)
         {
             using (var db = new JJSSEntities())
             {
@@ -129,11 +141,11 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var tipoClase = from alu in db.alumno
-                          join ins in db.inscripcion_clase on alu.id_alumno equals ins.id_alumno
-                          join clase in db.clase on ins.id_clase equals clase.id_clase
-                          join tipo in db.tipo_clase on clase.id_tipo_clase equals tipo.id_tipo_clase
-                          where (alu.id_alumno == pIdAlumno) && (tipo.id_tipo_clase == pIdTipoClase)
-                          select tipo;
+                                join ins in db.inscripcion_clase on alu.id_alumno equals ins.id_alumno
+                                join clase in db.clase on ins.id_clase equals clase.id_clase
+                                join tipo in db.tipo_clase on clase.id_tipo_clase equals tipo.id_tipo_clase
+                                where (alu.id_alumno == pIdAlumno) && (tipo.id_tipo_clase == pIdTipoClase)
+                                select tipo;
 
                 if (tipoClase.ToList() == null) return false;
                 else return true;
@@ -148,6 +160,17 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 return db.faja.ToList();
+            }
+        }
+
+        public List<faja> ObtenerFajasPorTipoClase(int pIdTipoClase)
+        {
+            using (var db= new JJSSEntities())
+            {
+                var fajasEncontradas = from faj in db.faja
+                                       where faj.id_tipo_clase == pIdTipoClase
+                                       select faj;
+                return fajasEncontradas.ToList();
             }
         }
     }

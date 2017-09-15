@@ -11,6 +11,11 @@ namespace JJSS_Negocio
     public class GestorGraduacion
     {
 
+        /**
+         * Metodo que busca todos los alumnos que tienen una faja asociada actualmente y devuelve los datos del alumno, faja y tipo de clase
+         * Retorno: Lista de object  -  apellido y nombre del alumno, faja, fecha de ultima graduacion, tipo de clase, id de alumno
+         * 
+         */
         public List<Object> buscarFajasAlumnos()
         {
             using (var db = new JJSSEntities())
@@ -34,7 +39,12 @@ namespace JJSS_Negocio
         }
 
 
-
+        /*
+         * Metodo que busca todos los alumnos que tienen una faja asociada actualmente con un filtro y devuelve los datos del alumno, faja y tipo de clase
+         * Parametros: pIdTipoClase: id de tipo de clase para filtrar
+         * Retorno: Lista de object  -  apellido y nombre del alumno, faja, fecha de ultima graduacion, tipo de clase, id de alumno
+         * 
+         */
 
         public List<Object> buscarFajasAlumnosConFiltro( int pIdTipoClase)
         {
@@ -59,6 +69,14 @@ namespace JJSS_Negocio
             }
         }
 
+
+        /*
+         * Metodo que le cambia la faja a un alumno
+         * Parametros: pDt: DataTable - contiene los datos de los alumnos a graduar incluida la faja actual, la cantidad de grados a graduar y el id del alumno
+         * Retorno: string -    "" - Transaccion correcta
+         *                      ex.Message - error de la BD
+         * 
+         */
         public string graduar(DataTable pDt)
         {
 

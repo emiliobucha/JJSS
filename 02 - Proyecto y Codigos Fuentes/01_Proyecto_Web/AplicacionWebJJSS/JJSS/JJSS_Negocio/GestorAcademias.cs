@@ -21,5 +21,22 @@ namespace JJSS_Negocio
                 return db.academia.ToList();
             }
         }
+
+
+        /*
+         * Método que devuelve un tipo de clase segun su id
+         * Parametros: pIDAcademia: entero que representa el id del tipo de clase a buscar
+         * Retorno: tipoclase
+         *          null
+         */
+        public academia ObtenerAcademiasPorID(int pIDAcademia)
+        {
+            using (var db = new JJSSEntities())
+            {
+
+                return db.academia.Find(pIDAcademia);
+
+            }
+        }
     }
 }

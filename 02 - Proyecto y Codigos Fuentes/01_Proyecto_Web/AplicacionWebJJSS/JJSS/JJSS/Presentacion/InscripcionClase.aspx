@@ -208,6 +208,7 @@
                     <!--Boton para aceptar inscripcion-->
                     <div class="row centered">
                         <asp:Button ID="btn_aceptar_inscripcion" runat="server" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
+                        <asp:Button ID="btn_alumnos" runat="server" Text="Alumnos" OnClick="btn_alumnos_Click"/>
                     </div>
 
 

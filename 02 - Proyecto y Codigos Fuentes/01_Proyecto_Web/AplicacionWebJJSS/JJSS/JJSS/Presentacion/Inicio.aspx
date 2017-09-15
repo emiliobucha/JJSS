@@ -13,7 +13,7 @@
 
 
 <asp:Content ID="InicioEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
-    <
+    
     <section id="home" title="home"></section>
     <div id="headerwrap2">
         <div class="container">
@@ -196,7 +196,7 @@
 
                     <!--APARTADO DE ADMINISTRACION DE TORNEOS -->
                     <div class="container" id="administracion_torneos" runat="server">
-                        >
+                        
                         <div class="row mt centered">
                             <h1>ADMINISTRACIÓN DE TORNEOS</h1>
 
@@ -455,7 +455,7 @@
                     <!--col graduacion_alumnos-->
                     <div class="col-lg-4 proc" id="item_graduacion_alumnos" runat="server">
                         <i class="fa fa-arrow-up"></i>
-                        <h3 class="logo"><a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Graduar Alumnos</a> </h3>
+                        <h3 class="logo"><a href="../Presentacion/GraduarAlumno.aspx" style="color: #000000">Graduar Alumnos</a> </h3>
                         <p>Puedes modificar el cinturón y grado de cada alumno de manera fácil y rápida.</p>
                     </div>
                     <!--/col-->
@@ -468,6 +468,42 @@
         </div>
         <!--/Portfoliowrap -->
 
+
+        <!--SECTOR ALUMNOS -->
+        <section id="Section1" title="clases" runat="server"></section>
+        <div id="alumnoswrap">
+
+            <!--APARTADO DE ADMINISTRACION DE ALUMNOS -->
+            <div class="container" id="Div1" runat="server">
+                <div class="row mt centered">
+                    <h1>ADMINISTRACIÓN DE PROFESORES</h1>
+
+                    <!--col registrar_profesor-->
+                    <div class="col-lg-4 proc" id="Div2" runat="server">
+                        <i class="fa fa-pencil"></i>
+                        <h3><%--<a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Registrar Alumno</a>--%></h3>
+                        <h3>
+                            <asp:LinkButton ID="lnk_registrar_profe" runat="server" Style="color: #000000" OnClick="lnk_registrar_profe_Click">Registrar Profesor</asp:LinkButton>
+                        </h3>
+                        <p>Registra un nuevo profesor. De esta forma podrás contar con su información para la posterior administración del mismo.</p>
+                    </div>
+                    <!--/col-->
+
+                    <!--col administrar_profes-->
+                    <div class="col-lg-4 proc" id="Div3" runat="server">
+                        <i class="fa fa-cogs"></i>
+                        <h3>
+                            <asp:LinkButton ID="lnk_administrar_profes" runat="server" Style="color: #000000" OnClick="lnk_administrar_profes_Click">Administrar Profesores</asp:LinkButton></h3>
+                        <p>Podrás visualizar todos los profesores, darlos de baja y modificar su perfil.</p>
+                    </div>
+                    <!--/col-->
+
+
+                </div>
+            </div>
+
+        </div>
+        <!--/Portfoliowrap -->
 
         <!-- SERVICE SECTION -->
         <section id="services" title="services"></section>
