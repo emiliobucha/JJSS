@@ -85,7 +85,7 @@ namespace JJSS_Negocio
 
                     if (ObtenerAlumnoPorDNI(pDni) != null)
                     {
-                        return "Alumno existente";
+                        throw new Exception("El alumno ya existe");
                     }
                     alumno nuevoAlumno;
 
@@ -252,13 +252,15 @@ namespace JJSS_Negocio
          * Parametros: pNombre : String nombre del alumno
          *              pApellido : String apellido del alumno
          *              pDni : Entero numero de DNI del alumno
+         *              pFecha: DateTime fecha de nacimiento dle alumno
+         *              pSexo: short sexo del alumno
          * Retornos: String
          *              "" : Transaccion Correcta
          *              ex.Message : Mensaje de error provocado por una excepción
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(int pDni, string pNombre, string pApellido)
+        public string ModificarAlumno(int pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -271,9 +273,12 @@ namespace JJSS_Negocio
                                            select alu;
                     alumno alumnoModificar = alumnoEncontrado.FirstOrDefault();
 
-                    if (alumnoModificar == null) return "NO";
+                    if (alumnoModificar == null) throw new Exception("El usuario no existe");
                     alumnoModificar.apellido = pApellido;
                     alumnoModificar.nombre = pNombre;
+                    if (pFecha != null) alumnoModificar.fecha_nacimiento = pFecha;
+                    if (pSexo != null) alumnoModificar.sexo = pSexo;
+
 
                     db.SaveChanges();
                     transaction.Commit();
@@ -318,7 +323,7 @@ namespace JJSS_Negocio
                                            select alu;
                     alumno alumnoModificar = alumnoEncontrado.FirstOrDefault();
 
-                    if (alumnoModificar == null) return "NO";
+                    if (alumnoModificar == null) throw new Exception("El usuario no existe");
                     alumnoModificar.telefono = pTelefono;
                     alumnoModificar.telefono_emergencia = pTelUrgencia;
                     alumnoModificar.mail = pMail;

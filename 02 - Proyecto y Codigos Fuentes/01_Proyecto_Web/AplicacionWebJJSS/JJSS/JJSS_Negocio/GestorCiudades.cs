@@ -39,6 +39,7 @@ namespace JJSS_Negocio
             {
                 var ciudadesPorProvincia = from ciudad in db.ciudad
                                            where ciudad.id_provincia == pProvincia
+                                           orderby ciudad.nombre
                                            select ciudad;
 
                 return ciudadesPorProvincia.ToList();

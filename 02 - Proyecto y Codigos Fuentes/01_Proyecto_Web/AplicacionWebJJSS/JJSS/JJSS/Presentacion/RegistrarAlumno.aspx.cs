@@ -10,6 +10,7 @@ using JJSS_Entidad;
 using JJSS_Negocio;
 using System.IO;
 using System.Globalization;
+using System.Data;
 
 namespace JJSS.Presentacion
 {
@@ -19,6 +20,7 @@ namespace JJSS.Presentacion
         private GestorAlumnos gestorAlumnos;
         private GestorCiudades gestorCiudades;
         private GestorProvincias gestorProvincias;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -72,7 +74,7 @@ namespace JJSS.Presentacion
 
                 }
 
-                CargarComboCiudades(1);
+                //CargarComboCiudades(1);
                 CargarComboProvincias();
                 //carga de grilla
                 ViewState["gvDatosOrden"] = "dni";
@@ -81,7 +83,6 @@ namespace JJSS.Presentacion
                 gvAlumnos.PageSize = 20;
                 CargarGrilla();
                 mostrarPaneles();
-
             }
         }
 
@@ -133,7 +134,7 @@ namespace JJSS.Presentacion
 
         protected void btn_guardar_click(object sender, EventArgs e)
         {
-            //+ver categorias, direccion y foto perfil
+            
             int dni = int.Parse(txtDni.Text);
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
@@ -166,38 +167,59 @@ namespace JJSS.Presentacion
             {
                 numero = int.Parse(txt_numero.Text);
             }
-            System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
-            byte[] imagenByte;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imagen.CopyTo(ms);
-                imagenByte = ms.ToArray();
-            }
+            
             int telEmergencia = int.Parse(txt_telefono_urgencia.Text);
             //Image imagenPerfil = Avatar;
 
             int ciudad = int.Parse(ddl_localidad.SelectedValue);
 
-            string sReturn = gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
-            Boolean estado = true;
-            if (sReturn.CompareTo("") == 0)
+            if (txtDni.Enabled==false)
             {
-                sReturn = "Se ha creado el alumno exitosamente";
-                estado = true;
-                //Session["alumnos"] = "Administrar";
-                pnl_mostrar_alumnos.Visible = true;
-                pnlFormulario.Visible = false;
-                limpiar();
+                //actualiza datos
+                try
+                {
+                    gestorAlumnos.ModificarAlumno(dni, nombre, apellido,fechaNac,sexo);
+                    gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad);
+                    mensaje("Se modificaron los datos correctamente", true);
+                    pnl_mostrar_alumnos.Visible = true;
+                    pnlFormulario.Visible = false;
+                    limpiar();
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message.CompareTo("El usuario no existe") == 0) mensaje("El alumno no existe", false);
+                    else mensaje(ex.Message, false);
+                }
+                CargarGrilla();
+
             }
             else
             {
-                estado = false;
-                //Session["alumnos"] = "Registrar";
-                pnl_mostrar_alumnos.Visible = false;
-                pnlFormulario.Visible = true;
+                System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
+                byte[] imagenByte;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    imagen.CopyTo(ms);
+                    imagenByte = ms.ToArray();
+                }
+                //registra un nuevo alumno
+                try
+                {
+                    gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
+                    mensaje("Se ha creado el alumno exitosamente", true);
+                    pnl_mostrar_alumnos.Visible = true;
+                    pnlFormulario.Visible = false;
+                    limpiar();
+                }
+                catch (Exception ex)
+                {
+                    mensaje(ex.Message, false);
+                    pnl_mostrar_alumnos.Visible = false;
+                    pnlFormulario.Visible = true;
+                }
+
+                CargarGrilla();
             }
-            mensaje(sReturn, estado);
-            CargarGrilla();
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -219,7 +241,7 @@ namespace JJSS.Presentacion
 
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarComboCiudades(int.Parse(ddl_localidad.SelectedValue));
+            CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
         }
 
         protected void CargarGrilla()
@@ -280,8 +302,12 @@ namespace JJSS.Presentacion
             txt_telefono.Text = "";
             txt_telefono_urgencia.Text = "";
 
-            ddl_localidad.SelectedIndex = 0;
+            if (ddl_localidad.Items.Count!=0) ddl_localidad.SelectedIndex = 0;
+
             ddl_provincia.SelectedIndex = 0;
+
+            txtDni.Enabled = true;
+
         }
 
         protected void btn_registro_Click(object sender, EventArgs e)
@@ -295,11 +321,12 @@ namespace JJSS.Presentacion
 
         protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int index = Convert.ToInt32(e.CommandArgument);
+            int dni = Convert.ToInt32(gvAlumnos.DataKeys[index].Value);
+
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
                 //if (confirmar("¿Está seguro de eliminar este alumno?") == true) { }
-                int index = Convert.ToInt32(e.CommandArgument);
-                int dni = Convert.ToInt32(gvAlumnos.DataKeys[index].Value);
                 string sReturn = gestorAlumnos.EliminarAlumno(dni);
                 Boolean estado = true;
                 if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
@@ -312,12 +339,47 @@ namespace JJSS.Presentacion
             }
             else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
-                mensaje("Proximamente", false);
+                limpiar();
+                alumno alu = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+                txtDni.Text = alu.dni.ToString();
+                txt_apellido.Text = alu.apellido;
+                txt_email.Text = alu.mail;
+                txt_nombres.Text = alu.nombre;
+                txt_telefono.Text = alu.telefono.ToString();
+                txt_telefono_urgencia.Text = alu.telefono_emergencia.ToString();
+
+                DateTime fecha = (DateTime)alu.fecha_nacimiento;
+                string format = "MM/dd/yyyy";
+                dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
+                
+
+                if (alu.sexo == 0) rbSexo.SelectedIndex = 0;
+                if (alu.sexo == 1) rbSexo.SelectedIndex = 1;
+
+                DataTable direccionEncontrada = gestorAlumnos.ObtenerDireccionAlumno(alu.id_alumno);
+                if (direccionEncontrada.Rows.Count > 0)
+                {
+                    DataRow row = direccionEncontrada.Rows[0];
+                    txt_calle.Text = row["calle"].ToString();
+                    txt_nro_dpto.Text = row["depto"].ToString();
+                    txt_numero.Text = row["numero"].ToString();
+                    txt_piso.Text = row["piso"].ToString();
+                    ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                    CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
+                    ddl_localidad.SelectedValue = row["idCiudad"].ToString();
+                }
+
+                txtDni.Enabled = false;
+
+                pnl_mostrar_alumnos.Visible = false;
+                pnlFormulario.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                pnl_mensaje_exito.Visible = false;
+
+
             }
             else if (e.CommandName.CompareTo("pago") == 0)
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int dni = Convert.ToInt32(gvAlumnos.DataKeys[index].Value);
                 Session["PagoClase"] = dni.ToString();
                 Response.Redirect("../Presentacion/PagoClase");
             }

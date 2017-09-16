@@ -58,7 +58,7 @@ namespace JJSS.Presentacion
 
                 }
 
-                CargarComboCiudades(1);
+                //CargarComboCiudades(1);
                 CargarComboProvincias();
                 ViewState["gvAlumnosOrden"] = "dni";
                 gvprofes.AllowPaging = true;
@@ -198,7 +198,7 @@ namespace JJSS.Presentacion
 
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarComboCiudades(int.Parse(ddl_localidad.SelectedValue));
+            CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)

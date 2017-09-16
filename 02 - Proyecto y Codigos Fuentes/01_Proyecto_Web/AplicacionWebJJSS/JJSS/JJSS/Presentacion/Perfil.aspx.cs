@@ -35,9 +35,10 @@ namespace JJSS.Presentacion
 
 
                     MultiView1.SetActiveView(view_datos_personales);
-                    CargarDatos();
-                    CargarComboCiudades(1);
                     CargarComboProvincias();
+                    CargarDatos();
+                    //CargarComboCiudades(1);
+                    
                 }
                 else {
                     Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
@@ -68,7 +69,7 @@ namespace JJSS.Presentacion
         {
             GestorSesiones gestorSesion = new GestorSesiones();
             seguridad_usuario alumnoActual = gestorSesion.getActual().usuario;
-            if (alumnoActual == null) mensaje("No esta logueado", false);
+            if (alumnoActual == null) mensaje("No está logueado", false);
             else
             {
 
@@ -98,8 +99,10 @@ namespace JJSS.Presentacion
                             txt_nro_dpto.Text = row["depto"].ToString();
                             txt_numero.Text = row["numero"].ToString();
                             txt_piso.Text = row["piso"].ToString();
-                            ddl_localidad.SelectedValue = row["idCiudad"].ToString();
                             ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                            CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
+                            ddl_localidad.SelectedValue = row["idCiudad"].ToString();
+
                         }
                     }
 
@@ -124,8 +127,11 @@ namespace JJSS.Presentacion
                         txt_nro_dpto.Text = row["depto"].ToString();
                         txt_numero.Text = row["numero"].ToString();
                         txt_piso.Text = row["piso"].ToString();
-                        ddl_localidad.SelectedValue = row["idCiudad"].ToString();
                         ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                        CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
+                        ddl_localidad.SelectedValue = row["idCiudad"].ToString();
+                        
+                        
                     }
 
 
@@ -213,18 +219,31 @@ namespace JJSS.Presentacion
 
             int idCiudad = int.Parse(ddl_localidad.SelectedValue);
 
-            string sreturn =gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel,telUrg, mail,int.Parse(txt_dni.Text),idCiudad);
-            if (sreturn.CompareTo("NO") == 0)//es un profe
-            {
-                sreturn = gestorProfe.ModificarProfesor(calle,departamento,numero,piso,tel,telUrg,mail, int.Parse(txt_dni.Text), idCiudad);
-                if (sreturn.CompareTo("NO") == 0) mensaje("No se encontró el usuario o es admin", false);//no existe o es admin
-            }
-            if (sreturn.CompareTo("") == 0)
-            {
-                mensaje("Se modificaron los datos correctamente", true);
 
+            //modifica los datos
+            try
+            {
+                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad);
+                mensaje("Se modificaron los datos correctamente", true);
             }
-            else mensaje(sreturn, false);
+            catch (Exception ex)
+            {
+                if (ex.Message.CompareTo("El usuario no existe") == 0)
+                    
+                {
+                    try
+                    {
+                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad);
+                        mensaje("Se modificaron los datos correctamente", true);
+                    }
+                    catch(Exception exx)
+                    {
+                        mensaje(exx.Message, false);
+                    }
+                }else mensaje(ex.Message, false);
+            }
+
+
         }
 
         protected void btn_cambiar_pass_Click(object sender, EventArgs e)
@@ -254,18 +273,31 @@ namespace JJSS.Presentacion
             int dni = int.Parse(txt_dni.Text);
 
             //+ NO ESTA CONTEMPLADO SI ES ADMIN...
-            string sreturn = gestorAlumnos.ModificarAlumno(dni, nombre, apellido);
-            if (sreturn.CompareTo("NO") == 0)//es un profe
+
+            //modifica los datos
+            try
             {
-                sreturn = gestorProfe.Modificarprofesor(dni, nombre, apellido);
-                if (sreturn.CompareTo("NO") == 0) mensaje("No se encontró el usuario o es admin", false);//no existe o es admin
-            }
-            if (sreturn.CompareTo("") == 0)
-            {
+                gestorAlumnos.ModificarAlumno(dni,nombre,apellido,null,null);
                 mensaje("Se modificaron los datos correctamente", true);
-                
             }
-            else mensaje(sreturn, false);
+            catch (Exception ex)
+            {
+                if (ex.Message.CompareTo("El usuario no existe") == 0)
+
+                {
+                    try
+                    {
+                        gestorProfe.ModificarProfesor(dni,nombre,apellido);
+                        mensaje("Se modificaron los datos correctamente", true);
+                    }
+                    catch (Exception exx)
+                    {
+                        mensaje(exx.Message, false);
+                    }
+                }
+                else mensaje(ex.Message, false);
+            }
+            
         }
 
         protected void btn_datos_personales_Click(object sender, EventArgs e)
@@ -299,7 +331,7 @@ namespace JJSS.Presentacion
 
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarComboCiudades(int.Parse(ddl_localidad.SelectedValue));
+            CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
         }
     }
 }

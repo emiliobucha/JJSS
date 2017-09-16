@@ -265,7 +265,7 @@ namespace JJSS_Negocio
          *              ex.Message : Mensaje de error provocado por una excepción
          * 
          */
-        public string Modificarprofesor(int pDni, string pNombre, string pApellido)
+        public string ModificarProfesor(int pDni, string pNombre, string pApellido)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -276,7 +276,7 @@ namespace JJSS_Negocio
                     //+ se tienen que poder modificar mas datos
                     
                     profesor profesorModificar = ObtenerProfesorPorDNI(pDni);
-                    if (profesorModificar == null) return "NO";
+                    if (profesorModificar == null) throw new Exception("El usuario no existe");
                     profesorModificar.apellido = pApellido;
                     profesorModificar.nombre = pNombre;
                     db.SaveChanges();
@@ -318,7 +318,7 @@ namespace JJSS_Negocio
                 try
                 {
                     profesor profesorModificar = ObtenerProfesorPorDNI(pDni);
-                    if (profesorModificar == null) return "NO";
+                    if (profesorModificar == null) throw new Exception("El usuario no existe");
                     profesorModificar.telefono = pTelefono;
                     profesorModificar.telefono_emergencia = pTelUrgencia;
                     profesorModificar.mail = pMail;
