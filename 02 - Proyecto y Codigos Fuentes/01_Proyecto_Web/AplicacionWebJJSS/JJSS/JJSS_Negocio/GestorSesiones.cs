@@ -62,6 +62,7 @@ namespace JJSS_Negocio
 
                     if (sesionUsuario.ToList().Count == 1)
                     {
+                        if (sesionUsuario.First().baja_logica == 0) throw new Exception("Usuario inhabilitado");
                         sesionAux.usuario = sesionUsuario.ToList()[0];
                         var permisosUsuario = (from x in
                                               (from op in db.seguridad_opcion

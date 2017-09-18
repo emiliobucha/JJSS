@@ -27,7 +27,7 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var alumnoEncontrado = from alu in db.alumno
-                                       where alu.dni == pDni
+                                       where alu.dni == pDni && alu.baja_logica==1
                                        select alu;
                 return alumnoEncontrado.FirstOrDefault();
             }
@@ -117,7 +117,8 @@ namespace JJSS_Negocio
                             direccion = nuevaDireccion,
                             fecha_ingreso = DateTime.Today,
                             telefono_emergencia = pTelEmergencia,
-                            seguridad_usuario = usuario
+                            seguridad_usuario = usuario,
+                            baja_logica=1
                         };
                     }
                     else //no ingresa direccion
@@ -133,7 +134,8 @@ namespace JJSS_Negocio
                             mail = pMail,
                             fecha_ingreso = DateTime.Today,
                             telefono_emergencia = pTelEmergencia,
-                            seguridad_usuario = usuario
+                            seguridad_usuario = usuario,
+                            baja_logica=1
                         };
                     }
 
@@ -162,7 +164,7 @@ namespace JJSS_Negocio
         }
 
 
-        /*Método que busca un alumno con filtro de apellido
+        /*Método que busca un alumno con filtro de dni
          * 
          * Parametros: 
          *              
@@ -183,6 +185,7 @@ namespace JJSS_Negocio
                     if (pDni == 0) //sin filtro
                     {
                         var alumnosPorApellido = from alumno in db.alumno
+                                                 where alumno.baja_logica==1
                                                  select new
                                                  {
                                                      alu_nombre = alumno.nombre,
@@ -194,7 +197,7 @@ namespace JJSS_Negocio
                     else //con filtro de apellido
                     {
                         var alumnosPorApellido = from alumno in db.alumno
-                                                 where alumno.dni == pDni
+                                                 where alumno.dni == pDni && alumno.baja_logica == 1
                                                  select new
                                                  {
                                                      alu_nombre = alumno.nombre,
@@ -231,10 +234,23 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    alumno alumnoBorrar = ObtenerAlumnoPorDNI(pDni);
-                    db.alumno.Attach(alumnoBorrar);
-                    db.alumno.Remove(alumnoBorrar);
+                    var alumnoEncontrado = from alu in db.alumno
+                                           where alu.dni == pDni
+                                           select alu;
+                    alumno alumnoBorrar = alumnoEncontrado.FirstOrDefault();
+                    
+                    if (alumnoBorrar == null) throw new Exception("El alumno no existe");
+                    alumnoBorrar.baja_logica = 0;
                     db.SaveChanges();
+
+                    seguridad_usuario usuario = (from usu in db.seguridad_usuario
+                                   where usu.id_usuario == alumnoBorrar.id_usuario
+                                   select usu).FirstOrDefault();
+                    if (usuario == null) throw new Exception("El usuario no existe");
+                    usuario.baja_logica = 0;
+                    db.SaveChanges();
+
+
                     transaction.Commit();
                     return sReturn;
                 }
@@ -392,7 +408,7 @@ namespace JJSS_Negocio
             {
                 var alumnoEncontrado = from usuario in db.seguridad_usuario
                                        join alu in db.alumno on usuario.id_usuario equals alu.id_usuario
-                                       where usuario.id_usuario == pIdUsuario
+                                       where usuario.id_usuario == pIdUsuario && alu.baja_logica == 1
                                        select alu;
                 return alumnoEncontrado.FirstOrDefault();
             }
@@ -443,7 +459,7 @@ namespace JJSS_Negocio
                 var fajaEncontrada = from alu in db.alumno
                                      join axf in db.alumnoxfaja on alu.id_alumno equals axf.id_alumno
                                      join faj in db.faja on axf.id_faja equals faj.id_faja
-                                     where alu.id_alumno == pIdAlumno && faj.id_tipo_clase == pIdTipoClase
+                                     where alu.id_alumno == pIdAlumno && faj.id_tipo_clase == pIdTipoClase && alu.baja_logica == 1
                                      select faj;
                 return fajaEncontrada.FirstOrDefault();
             }

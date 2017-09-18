@@ -27,6 +27,7 @@ namespace JJSS_Entidad
         public string clave { get; set; }
         public string nombre { get; set; }
         public string mail { get; set; }
+        public Nullable<short> baja_logica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno> alumno { get; set; }

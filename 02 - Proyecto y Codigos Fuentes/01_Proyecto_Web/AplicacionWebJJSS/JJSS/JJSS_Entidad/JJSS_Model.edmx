@@ -30,6 +30,7 @@
           <Property Name="fecha_ingreso" Type="date" Nullable="false" />
           <Property Name="telefono_emergencia" Type="bigint" Nullable="false" />
           <Property Name="id_usuario" Type="int" />
+          <Property Name="baja_logica" Type="smallint" />
         </EntityType>
         <EntityType Name="alumno_imagen">
           <Key>
@@ -316,6 +317,7 @@
           <Property Name="clave" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="mail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="baja_logica" Type="smallint" />
         </EntityType>
         <EntityType Name="seguridad_usuarioxgrupo">
           <Key>
@@ -1168,6 +1170,7 @@
           <NavigationProperty Name="asistencia_clase" Relationship="Self.FK_asistencia_alumno" FromRole="alumno" ToRole="asistencia_clase" />
           <NavigationProperty Name="inscripcion_clase" Relationship="Self.FK_inscripcion_clase_id_alumno" FromRole="alumno" ToRole="inscripcion_clase" />
           <NavigationProperty Name="pago_clase" Relationship="Self.FK_pagoclase_id_alumno" FromRole="alumno" ToRole="pago_clase" />
+          <Property Name="baja_logica" Type="Int16" />
         </EntityType>
         <EntityType Name="alumno_imagen">
           <Key>
@@ -1518,6 +1521,7 @@
           <NavigationProperty Name="alumno" Relationship="Self.FK_alumno_id_usuario" FromRole="seguridad_usuario" ToRole="alumno" />
           <NavigationProperty Name="profesor" Relationship="Self.FK_profesor_id_usuario" FromRole="seguridad_usuario" ToRole="profesor" />
           <NavigationProperty Name="seguridad_usuarioxgrupo" Relationship="Self.fk_usuarioxgrupo_id_usuario" FromRole="seguridad_usuario" ToRole="seguridad_usuarioxgrupo" />
+          <Property Name="baja_logica" Type="Int16" />
         </EntityType>
         <EntityType Name="seguridad_usuarioxgrupo">
           <Key>
@@ -2346,6 +2350,7 @@
           <EntitySetMapping Name="alumno">
             <EntityTypeMapping TypeName="JJSSModel.alumno">
               <MappingFragment StoreEntitySet="alumno">
+                <ScalarProperty Name="baja_logica" ColumnName="baja_logica" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
@@ -2668,6 +2673,7 @@
           <EntitySetMapping Name="seguridad_usuario">
             <EntityTypeMapping TypeName="JJSSModel.seguridad_usuario">
               <MappingFragment StoreEntitySet="seguridad_usuario">
+                <ScalarProperty Name="baja_logica" ColumnName="baja_logica" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="clave" ColumnName="clave" />

@@ -37,6 +37,7 @@ namespace JJSS_Entidad
         public System.DateTime fecha_ingreso { get; set; }
         public long telefono_emergencia { get; set; }
         public Nullable<int> id_usuario { get; set; }
+        public Nullable<short> baja_logica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }
