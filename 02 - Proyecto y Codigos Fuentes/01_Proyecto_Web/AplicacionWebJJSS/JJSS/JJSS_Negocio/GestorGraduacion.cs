@@ -25,6 +25,7 @@ namespace JJSS_Negocio
                                  join faj in db.faja on axf.id_faja equals faj.id_faja
                                  join tip in db.tipo_clase on faj.id_tipo_clase equals tip.id_tipo_clase
                                  where axf.actual == 1
+                                 orderby alu.apellido
                                  select new
                                  {
                                      alumno = alu.apellido + ", " + alu.nombre,
@@ -55,7 +56,7 @@ namespace JJSS_Negocio
                                  join faj in db.faja on axf.id_faja equals faj.id_faja
                                  join tip in db.tipo_clase on faj.id_tipo_clase equals tip.id_tipo_clase
                                  where axf.actual == 1 && tip.id_tipo_clase==pIdTipoClase
-                                 
+                                 orderby alu.apellido
                                  select new
                                  {
                                      alumno = alu.apellido + ", " + alu.nombre,
@@ -72,7 +73,7 @@ namespace JJSS_Negocio
 
         /*
          * Metodo que le cambia la faja a un alumno
-         * Parametros: pDt: DataTable - contiene los datos de los alumnos a graduar incluida la faja actual, la cantidad de grados a graduar y el id del alumno
+         * Parametros: pDt: DataTable - contiene los datos de los alumnos a graduar incluida la cantidad de grados a graduar y el id del alumno
          * Retorno: string -    "" - Transaccion correcta
          *                      ex.Message - error de la BD
          * 
@@ -88,25 +89,27 @@ namespace JJSS_Negocio
                     for (int i = 0; i < pDt.Rows.Count; i++)
                     {
                         DataRow dr = pDt.Rows[i];
-                        string faja = dr["fajaActual"].ToString();
-
+                        string tClase = dr["tipoClase"].ToString();
                         int grados = int.Parse(dr["grados"].ToString());
                         int idAlu = int.Parse(dr["idAlumno"].ToString());
                         DateTime fecha = DateTime.Now;
 
-                        var fajaActual = from faj in db.faja
-                                         where faj.descripcion == faja
-                                         select faj;
+                        faja fajaActual = (from faj in db.faja
+                                         join axf in db.alumnoxfaja on faj.id_faja equals axf.id_faja
+                                         join tc in db.tipo_clase on faj.id_tipo_clase equals tc.id_tipo_clase
+                                         where axf.id_alumno == idAlu && axf.actual == 1 && tc.nombre==tClase
+                                         select faj).FirstOrDefault();
 
 
-                        int ordenSiguiente = (int)fajaActual.FirstOrDefault().orden + grados;
-                        int tipoClase = (int)fajaActual.FirstOrDefault().id_tipo_clase;
-                        int idFajaActual = (int)fajaActual.FirstOrDefault().id_faja;
+                        int ordenSiguiente = (int)fajaActual.orden + grados;
+                        int tipoClase = (int)fajaActual.id_tipo_clase;
+                        int idFajaActual = (int)fajaActual.id_faja;
 
-                        var fajaSiguiente = from faj in db.faja
+                        faja fajaSiguiente = (from faj in db.faja
                                             where faj.orden == ordenSiguiente && faj.id_tipo_clase == tipoClase
-                                            select faj;
-                        int idFajaSiguiente = fajaSiguiente.FirstOrDefault().id_faja;
+                                            select faj).FirstOrDefault();
+                        if (fajaSiguiente == null) throw new Exception("No existe esa faja");
+                        int idFajaSiguiente = fajaSiguiente.id_faja;
 
 
                         alumnoxfaja nuevoAxF;

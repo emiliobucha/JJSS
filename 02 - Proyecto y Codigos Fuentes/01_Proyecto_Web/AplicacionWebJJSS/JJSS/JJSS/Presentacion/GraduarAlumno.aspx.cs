@@ -57,7 +57,8 @@ namespace JJSS.Presentacion
 
         protected void cargarGrilla()
         {
-            int tipoClase = int.Parse(rb_tipo_clase.SelectedValue);
+            int tipoClase = 0;
+            int.TryParse(rb_tipo_clase.SelectedValue, out tipoClase);
             List<Object> lista = new List<Object>();
 
             if (tipoClase == 0)
@@ -103,9 +104,10 @@ namespace JJSS.Presentacion
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
+            dt.Columns.Add("tipoClase");
             dt.Columns.Add("idAlumno");
             dt.Columns.Add("grados");
-            dt.Columns.Add("fajaActual");
+            
             for (int i = 0; i < gv_graduacion.Rows.Count; i++)
             {
                 TextBox tb = (TextBox)gv_graduacion.Rows[i].Cells[4].FindControl("txt_grados");
@@ -113,12 +115,10 @@ namespace JJSS.Presentacion
                 if (grados >= 1)
                 {
                     int idAlu = Convert.ToInt32(gv_graduacion.DataKeys[i].Value);
-                    string fajaActual = gv_graduacion.Rows[i].Cells[2].Text;
-
                     DataRow dr = dt.NewRow();
                     dr["idAlumno"] = idAlu;
                     dr["grados"] = grados;
-                    dr["fajaActual"] = fajaActual;
+                    dr["tipoClase"] = gv_graduacion.Rows[i].Cells[1].Text;
                     dt.Rows.Add(dr);
                     dt.AcceptChanges();
 
@@ -136,19 +136,7 @@ namespace JJSS.Presentacion
             else if (result != "-") mensaje(result, false);
         }
 
-        class graduacion
-        {
-            private int idAlumno;
-            private int grados;
-            private string fajaActual;
-
-            public graduacion(int pIdAlumno, int pGrados, string pFajaActual)
-            {
-                this.idAlumno = pIdAlumno;
-                this.grados = pGrados;
-                this.fajaActual = pFajaActual;
-            }
-        }
+       
 
         private void mensaje(string pMensaje, Boolean pEstado)
         {

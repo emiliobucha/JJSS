@@ -170,10 +170,10 @@
                                         <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                                     </div>
                                     <div>
-                                        <asp:Label ID="lv_lbl_fecha" runat="server" Text='<%# Eval("fecha") %>' />
+                                        Fecha: <asp:Label ID="lv_lbl_fecha" runat="server" Text='<%# Eval("fecha") %>' />
                                     </div>
                                     <div>
-                                        <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
+                                        Hora: <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
                                     </div>
                                     <div>
                                         <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass=" btn-link" Text="Inscribir" />
@@ -323,16 +323,17 @@
                                 <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                             </div>--%>
                             <div>
-                                <asp:Label ID="lv_lbl_tipo_clase" runat="server" Text='<%# Eval("tipo_clase") %>' />
+                                Tipo de Clase: <asp:Label ID="lv_lbl_tipo_clase" runat="server" Text='<%# Eval("tipo_clase") %>' />
                             </div>
                             <div>
-                                <asp:Label ID="lv_lbl_ubicacion" runat="server" Text='<%# Eval("ubicacion") %>' />
+                                Ubicación: <asp:Label ID="lv_lbl_ubicacion" runat="server" Text='<%# Eval("ubicacion") %>' />
                             </div>
                             <div>
-                                <asp:Label ID="lv_lbl_profesor" runat="server" Text='<%# Eval("profesor") %>' />
+                                Profesor: <asp:Label ID="lv_lbl_profesor" runat="server" Text='<%# Eval("profesor") %>' />
                             </div>
                             <div>
-                                <asp:Label ID="lv_lbl_precio" runat="server" Text='<%# Eval("precio") %>' />
+                                Precio: $<asp:Label ID="lv_lbl_precio" runat="server" Text='<%# Eval("precio") %>' />
+                                
                             </div>
                             <div>
                                 <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Inscribir"  />

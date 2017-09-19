@@ -43,7 +43,7 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    torneo torneoEncontrado= BuscarTorneoPorNombreFecha(pNombre, pFecha);
+                    torneo torneoEncontrado = BuscarTorneoPorNombreFecha(pNombre, pFecha);
                     if (torneoEncontrado != null)
                     {
                         sReturn = "El torneo ya ha sido creado";
@@ -59,7 +59,7 @@ namespace JJSS_Negocio
                         precio_absoluto = pPrecio_absoluto,
                         hora = pHora,
                         hora_cierre = pHora_cierre,
-                        id_sede = pSede, 
+                        id_sede = pSede,
                         estado = estadoTorneo
                     };
                     db.torneo.Add(nuevoTorneo);
@@ -97,10 +97,10 @@ namespace JJSS_Negocio
          * Retorno: torneo 
          *          torneo encontrado, si no existe devuelve null
          */
-        public torneo BuscarTorneoPorNombreFecha(string pNombre,DateTime pFecha)
+        public torneo BuscarTorneoPorNombreFecha(string pNombre, DateTime pFecha)
         {
-            
-            using (var db=new JJSSEntities())
+
+            using (var db = new JJSSEntities())
             {
                 var encontradoTorneo = from torneo in db.torneo
                                        where torneo.nombre == pNombre && torneo.fecha == pFecha
@@ -115,7 +115,8 @@ namespace JJSS_Negocio
         public torneo BuscarTorneoPorID(int pID)
         {
             torneo encontradoTorneo = null;
-            using (var db = new JJSSEntities()) {
+            using (var db = new JJSSEntities())
+            {
                 encontradoTorneo = db.torneo.Find(pID);
             }
             return encontradoTorneo;
@@ -153,6 +154,7 @@ namespace JJSS_Negocio
 
         public List<Object> ObtenerTorneosConImagen()
         {
+            cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
             {
                 var torneosAbiertos =
@@ -167,12 +169,60 @@ namespace JJSS_Negocio
                                                nombre = t.nombre,
                                                fecha = t.fecha,
                                                hora = t.hora,
-                                               imagen =  i.imagen
-                                            };
-                
+                                               imagen = i.imagen
+                                           };
+
 
                 List<Object> listaTorneos = torneosAbiertos.ToList<Object>();
                 return listaTorneos;
+            }
+        }
+
+        public void cambiarEstadoTorneos()
+        {
+            using (var db = new JJSSEntities())
+            {
+                // del estado 1 al 2
+                List<torneo> torneosAbiertos =
+                        (from torneo in db.torneo
+                         where torneo.id_estado == 1
+                         select torneo).ToList<torneo>();
+
+                foreach(torneo x in torneosAbiertos)
+                {
+                    DateTime cierre = (DateTime)x.fecha_cierre;
+                    if (cierre.Date < DateTime.Now.Date) x.id_estado = 2;
+                    else if (cierre.Date == DateTime.Now.Date && x.hora_cierre.CompareTo(DateTime.Now.ToShortTimeString())<0) x.id_estado = 2;
+                    db.SaveChanges();
+                }
+
+                //del estado 2 al 3
+                List<torneo> torneosCerrados =
+                        (from torneo in db.torneo
+                         where torneo.id_estado == 2
+                         select torneo).ToList<torneo>();
+
+                foreach (torneo x in torneosCerrados)
+                {
+                    DateTime fecha = (DateTime)x.fecha;
+                    if (fecha.Date < DateTime.Now.Date) x.id_estado = 3;
+                    else if (fecha.Date == DateTime.Now.Date && x.hora.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = 3;
+                    db.SaveChanges();
+                }
+
+                //del estado 3 al 4
+                List<torneo> torneosEnCurso =
+                        (from torneo in db.torneo
+                         where torneo.id_estado == 3
+                         select torneo).ToList<torneo>();
+
+                foreach (torneo x in torneosEnCurso)
+                {
+                    DateTime fecha = (DateTime)x.fecha;
+                    if (fecha.Date < DateTime.Now.Date) x.id_estado = 4;
+                    db.SaveChanges();
+                }
+
             }
         }
 
@@ -202,7 +252,8 @@ namespace JJSS_Negocio
         /*
          * Eliminar un torneo indicando el ID
          */
-        public String EliminarTorneoPorID(int pID) {
+        public String EliminarTorneoPorID(int pID)
+        {
             String sReturn = "";
             using (var db = new JJSSEntities())
             {
@@ -227,13 +278,14 @@ namespace JJSS_Negocio
         /*
          * Obtenemos un listado de los paticipantes a un torneo 
          */
-        public List<participante> ObtenerParticipantesATorneo(int pID) {
+        public List<participante> ObtenerParticipantesATorneo(int pID)
+        {
             List<inscripcion> inscripcionesTorneo = ObtenerInscripcionesATorneo(pID);
             List<participante> participantes = new List<participante>();
 
             foreach (var auxInscripcion in inscripcionesTorneo)
             {
-                    participantes.Add(auxInscripcion.participante);
+                participantes.Add(auxInscripcion.participante);
             }
 
             return participantes;
@@ -262,11 +314,11 @@ namespace JJSS_Negocio
                                         par_apellido = part.apellido,
                                         par_fecha_nac = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
-                                        par_faja= inscr.faja.descripcion,
-                                        par_categoria=inscr.categoria.nombre,
+                                        par_faja = inscr.faja.descripcion,
+                                        par_categoria = inscr.categoria.nombre,
                                     };
                 List<Object> participantesList = participantes.ToList<Object>();
-              
+
                 return participantesList;
             }
         }
@@ -275,7 +327,7 @@ namespace JJSS_Negocio
         private string Sexo(string pSexo)
         {
             if (pSexo == "0")
-                return  "Femenino";
+                return "Femenino";
             else
                 return "Masculino";
         }
@@ -299,7 +351,8 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    lucha nuevaLucha = new lucha() {
+                    lucha nuevaLucha = new lucha()
+                    {
                         torneo = pTorneo,
                     };
                     db.lucha.Add(nuevaLucha);
@@ -335,7 +388,7 @@ namespace JJSS_Negocio
                 throw new Exception("No posee inscriptos el torneo seleccionado");
 
             return gestorReportes.GenerarReporteListadoParticipantes(listado);
-                
+
 
         }
     }
