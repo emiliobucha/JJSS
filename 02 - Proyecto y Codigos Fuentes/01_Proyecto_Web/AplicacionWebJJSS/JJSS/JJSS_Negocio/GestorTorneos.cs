@@ -60,7 +60,8 @@ namespace JJSS_Negocio
                         hora = pHora,
                         hora_cierre = pHora_cierre,
                         id_sede = pSede,
-                        estado = estadoTorneo
+                        estado = estadoTorneo,
+                        id_tipo_clase=1
                     };
                     db.torneo.Add(nuevoTorneo);
                     db.SaveChanges();

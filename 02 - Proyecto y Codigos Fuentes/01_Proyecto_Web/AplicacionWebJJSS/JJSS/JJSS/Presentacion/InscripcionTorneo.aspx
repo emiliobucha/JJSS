@@ -184,7 +184,7 @@
                                         <label class="pull-left">DNI del participante:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="txtDni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
+                                        <asp:TextBox ID="txtDni" class="caja2" runat="server" placeholder="Ingrese DNI"  ValidationGroup="grupoDni"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1">
                                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
@@ -270,6 +270,7 @@
                                             <asp:ListItem>Masculino</asp:ListItem>
                                         </asp:RadioButtonList>
                                     </div>
+                                    <asp:CustomValidator ID="val_sexo" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe seleccionar un sexo" ValidationGroup="vgDatos" ControlToValidate="rbSexo" OnServerValidate="val_sexo_ServerValidate"></asp:CustomValidator>
                                 </div>
 
 
@@ -299,28 +300,28 @@
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
-                                <!--Edad-->
 
+
+                                <!--Fecha de nacimiento-->
                                 <div class="row centered">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-2">
-                                        <label class="pull-left">Edad</label>
+                                        <label class="pull-left text-left">Fecha de Nacimiento</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox class="caja2" ID="txt_edad" runat="server" placeholder="Ingrese edad"></asp:TextBox>
+                                        <asp:TextBox ID="dp_fecha" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha "></asp:TextBox>
                                     </div>
-                                    <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoEdad" runat="server" ErrorMessage="Debe ingresar la edad" ControlToValidate="txt_edad" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgDatos"> </asp:RequiredFieldValidator>
-                                        <%--<asp:CompareValidator ID="tipoEdad" runat="server" ErrorMessage="La edad debe ser un valor numérico" ControlToValidate="txt_edad" CssClass="text-danger" Type="Double" Display="Dynamic"></asp:CompareValidator>--%>
-                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_edad" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgDatos" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
-                                         
 
+                                    <div class="col-md-3">
+                                        <asp:RequiredFieldValidator ID="rfv_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe ingresar fecha" ValidationGroup="vgDatos"> </asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="rev_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgDatos"> </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
 
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
+
                                 <!--Faja-->
 
                                 <div class="row centered">
@@ -362,4 +363,17 @@
         </div>
 
     </asp:Panel>
+</asp:Content>
+<asp:Content ID="cphP" ContentPlaceHolderID="cphP" runat="server">
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".datepicker").datepicker({
+                    dateFormat: "mm/dd/yy",
+                    monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
+                });
+            }
+        );
+    </script>
 </asp:Content>

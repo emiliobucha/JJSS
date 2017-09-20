@@ -459,12 +459,13 @@ namespace JJSS_Negocio
                 var fajaEncontrada = from alu in db.alumno
                                      join axf in db.alumnoxfaja on alu.id_alumno equals axf.id_alumno
                                      join faj in db.faja on axf.id_faja equals faj.id_faja
-                                     where alu.id_alumno == pIdAlumno && faj.id_tipo_clase == pIdTipoClase && alu.baja_logica == 1
+                                     where alu.id_alumno == pIdAlumno && faj.id_tipo_clase == pIdTipoClase && alu.baja_logica == 1 && axf.actual==1
                                      select faj;
                 return fajaEncontrada.FirstOrDefault();
             }
 
         }
+
 
 
         /*

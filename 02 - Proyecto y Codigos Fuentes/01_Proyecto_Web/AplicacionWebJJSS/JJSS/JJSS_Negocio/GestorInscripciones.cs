@@ -22,7 +22,7 @@ namespace JJSS_Negocio
          *              pNombre : String nombre del participante
          *              pApellido : String apellido del participante
          *              pPeso : Float peso del participante
-         *              pEdad : Entero edad del participante
+         *              pFechaNacimiento : DateTime fecha de nacimiento del participante
          *              pFaja : Entero id de la faja que posee el participante
          *              pSexo : Short 0 Mujer 1 Hombre
          *              pDni : 
@@ -33,7 +33,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, int pEdad, int pFaja, short pSexo, int pDni, int? pIDAlumno)
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, DateTime pFechaNacimiento, int pFaja, short pSexo, int pDni, int? pIDAlumno)
         {
 
             String sReturn = "";
@@ -46,25 +46,23 @@ namespace JJSS_Negocio
                     torneo torneoInscripto = db.torneo.Find(pTorneo);
 
                     faja fajaElegida = db.faja.Find(pFaja);
+                    int edad = DateTime.Today.AddTicks(-pFechaNacimiento.Ticks).Year - 1;
 
                     var cat =
                         from categoria in db.categoria
-                        where (categoria.edad_desde <= pEdad)
-                        && (categoria.edad_hasta > pEdad)
+                        where (categoria.edad_desde <= edad)
+                        && (categoria.edad_hasta > edad)
                         && (categoria.peso_desde <= pPeso)
                         && (categoria.peso_hasta > pPeso)
                         && (categoria.sexo == pSexo)
                         select categoria;
 
                     categoria categoriaPerteneciente = cat.First();
-
                     
-
                     //Nuevos
-                    //+Reveer la edad
                    
 
-                    if (ObtenerParticipanteporDNI(pDni) != null)
+                    if (obtenerParticipanteDeTorneo(pDni, pTorneo) != null)
                     {
                         return "Participante exitente";
                     }
@@ -72,10 +70,7 @@ namespace JJSS_Negocio
                    //alumnoExistente = ObtenerAlumnoPorDNI(pDni);
 
                     participante nuevoParticipante;
-
-
-
-
+                    
                     nuevoParticipante = new participante()
                     {
                         nombre = pNombre,
@@ -83,7 +78,7 @@ namespace JJSS_Negocio
                         //peso = pPeso,
                         
                         sexo = pSexo,
-                        fecha_nacimiento = new DateTime(DateTime.Now.Year - pEdad, 1, 1), //Invento fecha de nacimiento con la edad que le pasamos por parametro
+                        fecha_nacimiento = pFechaNacimiento,
                         dni = pDni,
                         id_alumno=pIDAlumno
 
@@ -169,6 +164,22 @@ namespace JJSS_Negocio
             }
         }
 
+        public List<faja> ObtenerFajasPorTipoClase(int pIdTipoClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var fajasEncontradas = from faj in db.faja
+                                       where faj.id_tipo_clase == pIdTipoClase
+                                       select faj;
+                return fajasEncontradas.ToList();
+            }
+        }
+
+        /*
+         * Método que busca un alumno por DNI, permite bajar el acoplamiente delegando la tarea a su gestor correspondiente
+         * Parámetros:
+         *              pDni: entero que representa el dni a buscar
+         */
         public alumno ObtenerAlumnoPorDNI(int pDni)
         {
             GestorAlumnos gestorAlumnos = new GestorAlumnos();
@@ -189,18 +200,16 @@ namespace JJSS_Negocio
         }
 
 
-        /*
-         * Método que calcula la edad
-         * Paramétro: 
-         *          pFechaNacimiento: Datetime, que puede ser nulo, que representa la fecha de nacimiento del participante a inscribirse
-         */
-        public string calcularEdad(DateTime? pFechaNacimiento)
+        public participante obtenerParticipanteDeTorneo(int pDni, int pIDTorneo)
         {
-            //+habria que ver como calcularla mejor porque si estuviera calculando mi edad daria 22 pero todavia tengo 21
-            DateTime fechaNac = Convert.ToDateTime(pFechaNacimiento);
-            int edad = DateTime.Today.Year - fechaNac.Year;
-            return edad.ToString();
+            using (var db = new JJSSEntities())
+            {
+                participante participante = (from part in db.participante
+                                             join ins in db.inscripcion on part.id_participante equals ins.id_participante
+                                             where part.dni == pDni && ins.id_torneo == pIDTorneo
+                                             select part).FirstOrDefault();
+                return participante;
+            }
         }
-
     }
 }

@@ -346,6 +346,15 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
         
         /// <summary>
+        /// Control val_sexo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator val_sexo;
+        
+        /// <summary>
         /// Control txt_peso.
         /// </summary>
         /// <remarks>
@@ -373,31 +382,31 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_peso;
         
         /// <summary>
-        /// Control txt_edad.
+        /// Control dp_fecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_edad;
+        protected global::System.Web.UI.WebControls.TextBox dp_fecha;
         
         /// <summary>
-        /// Control requeridoEdad.
+        /// Control rfv_fecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoEdad;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_fecha;
         
         /// <summary>
-        /// Control RegularExpressionValidator1.
+        /// Control rev_fecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_fecha;
         
         /// <summary>
         /// Control ddl_fajas.
