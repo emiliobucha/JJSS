@@ -147,7 +147,7 @@
                                         <asp:Label ID="Label4" CssClass="pull-left" runat="server" Text="$"></asp:Label>
                                         <asp:Label ID="lbl_CostoInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                         <label class="pull-left">&nbsp; Precio Absoluto:&nbsp;</label>
-                                        <asp:Label ID="Label3" CssClass="pull-left" runat="server" Text="$"></asp:Label>
+                                        <asp:Label ID="Label3" CssClass="pull-left" runat="server" Text="$ "></asp:Label>
                                         <asp:Label ID="lbl_CostoInscripcionAbsoluto" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                     </div>
                                 </div>

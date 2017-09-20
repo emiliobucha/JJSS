@@ -2,11 +2,11 @@
 
 
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
-    <a href="#home" class="smoothScroll">Home</a>
-    <a href="#about" class="smoothScroll">About</a>
-    <a href="#torneos" class="smoothScroll">Torneos</a>
-    <a href="#clases" class="smoothScroll">Clases</a>
-    <a href="#alumnos" class="smoothScroll">Alumnos</a>
+    <a href="#section_home" class="smoothScroll">Home</a>
+    <a href="#section_about" class="smoothScroll">About</a>
+    <a href="#section_torneos" class="smoothScroll">Torneos</a>
+    <a href="#section_clases" class="smoothScroll">Clases</a>
+    <a href="#section_alumnos" class="smoothScroll">Alumnos</a>
     <%--<a><asp:LinkButton ID="LinkButton1" runat="server">Cerrar Sesión</asp:LinkButton></a>--%>
 </asp:Content>
 
@@ -14,26 +14,21 @@
 
 <asp:Content ID="InicioEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
     
-    <section id="home" title="home"></section>
-    <div id="headerwrap2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-md-offset-1">
-                    <h1></h1>
-
-                </div>
-            </div>
-            <! --/row -->
-        </div>
-        <! --/container -->
-    </div>
+    <section id="section_home" title="home"></section>
+    <img src="../img/logo_mariano.png"  class="hidden-lg hidden-md img-responsive"/>
+    <div id="headerwrap2" class="hidden-xs hidden-sm"></div>
     <! --/headerwrap -->
 </asp:Content>
 
 
 
 <asp:Content ID="InicioContenido" ContentPlaceHolderID="cphContenido" runat="Server">
-    <section id="about" title="about"></section>
+
+    <section id="section_about" title="about"></section>
+
+    <div class="row centered">
+        <p>&nbsp;</p>
+    </div>
 
     <!--PRESENTACION DE LA ACADEMIA-->
     <div id="aboutwrap">
@@ -70,7 +65,7 @@
     <!-- /aboutwrap -->
 
     <!-- ABOUT SEPARATOR -->
-    <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
+    <div class="sep" data-stellar-background-ratio="0.5"></div>
 
     <form runat="server">
 
@@ -126,13 +121,18 @@
 
 
         <!-- ABOUT SEPARATOR -->
-        <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
+        <div class="sep paraTorneos" data-stellar-background-ratio="0.5"></div>
 
 
 
 
         <!--SECTOR TORNEOS -->
-        <section id="torneos" title="torneos"></section>
+
+        <div class="row centered">
+            <p>&nbsp;</p>
+        </div>
+
+        <section id="section_torneos" title="torneos"></section>
         <div id="torneoswrap">
 
             <!--APARTADO DE TORNEOS FUTUROS-->
@@ -161,7 +161,7 @@
 
                             <ItemTemplate>
 
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="border: 1px medium gray">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px medium gray">
                                     <div>
                                         <asp:Label ID="lv_lbl_nombre" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
                                     </div>
@@ -195,6 +195,11 @@
 
 
                     <!--APARTADO DE ADMINISTRACION DE TORNEOS -->
+
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
+
                     <div class="container" id="administracion_torneos" runat="server">
                         
                         <div class="row mt centered">
@@ -204,7 +209,7 @@
                             <div class="col-lg-4 proc" id="item_insrcibir_Torneo" runat="server">
                                 <i class="fa fa-pencil"></i>
                                 <h3><a href="../Presentacion/InscripcionTorneo.aspx" style="color: #000000">Inscripciones </a></h3>
-                                <p>Accede a los torneos que estan pronto a desarrollar e inscríbete.</p>
+                                <p>Accede a los próximos torneos e inscríbite para participar.</p>
                             </div>
                             <!--/col-->
 
@@ -212,7 +217,7 @@
                             <div class="col-lg-4 proc" id="item_mis_Torneos" runat="server">
                                 <i class="fa fa-heart"></i>
                                 <h3>Mis torneos</h3>
-                                <p>Puedes ver aquí el historial de los torneos en que has competido.</p>
+                                <p>Accede al historial de los torneos en que has competido.</p>
                             </div>
                             <!--/col-->
 
@@ -220,7 +225,7 @@
                             <div class="col-lg-4 proc" id="item_visualizar_Torneo" runat="server">
                                 <i class="fa fa-eye"></i>
                                 <h3>Visualizar torneos</h3>
-                                <p>Accede a todos los torneos que se han desarrollado. Un filtro de búsqueda te facilitará el trabajo</p>
+                                <p>Accede a todos los torneos que se han desarrollado y busca el que te interesa mediante un filtro.</p>
                             </div>
                             <!--/col-->
 
@@ -236,7 +241,7 @@
                             <div class="col-lg-4 proc" id="item_Generar_Listado_inscriptos" runat="server">
                                 <i class="fa fa-cogs"></i>
                                 <h3 class="logo"><a id="btn_generar_Listado_inscriptos" href="" data-toggle="modal" data-target="#exportarListado" style="color: #000000">Generar listado de inscriptos</a></h3>
-                                <p>Genera un listado de los inscriptos a un torneo. Con esta herramienta podrás imprimir un listados con los inscriptos a un torneo.</p>
+                                <p>Genera e imprime un listado de los inscriptos a un torneo.</p>
                             </div>
                         </div>
                     </div>
@@ -250,18 +255,26 @@
 
 
         <!-- ABOUT SEPARATOR -->
-        <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
+        <div class="sep paraClases" data-stellar-background-ratio="0.5"></div>
 
 
         <!--SECTOR CLASES -->
-        <section id="clases" title="clases"></section>
+        <section id="section_clases" title="clases"></section>
         <div id="claseswrap">
+
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
 
             <!--APARTADO DE CLASES DISPONIBLES-->
             <div class="container">
                 <div class="row mt centered">
 
                     <h1>CLASES DISPONIBLES</h1>
+
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
 
                     <%--  <div class="row centered">
                         <p>&nbsp;</p>
@@ -315,7 +328,7 @@
 
                     <ItemTemplate>
 
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="border: 1px medium gray">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px medium gray">
                             <div>
                                 <asp:Label ID="lv_lbl_nombre_clase" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
                             </div>
@@ -338,6 +351,7 @@
                             <div>
                                 <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Inscribir"  />
                             </div>
+
                         </div>
 
                     </ItemTemplate>
@@ -351,6 +365,10 @@
                         </div>
             <!---------------FIN Cuadricula-------------------->
 
+            
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
 
 
 
@@ -422,12 +440,16 @@
 
 
         <!-- ABOUT SEPARATOR -->
-        <div class="sep torneo" data-stellar-background-ratio="0.5"></div>
+        <div class="sep paraAlumnos" data-stellar-background-ratio="0.5"></div>
 
         <!--SECTOR ALUMNOS -->
         <section id="alumnos" title="clases" runat="server"></section>
         <div id="alumnoswrap">
-
+            
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+            
             <!--APARTADO DE ADMINISTRACION DE ALUMNOS -->
             <div class="container" id="administracion_alumnos" runat="server">
                 <div class="row mt centered">
@@ -471,8 +493,14 @@
 
 
         <!--SECTOR ALUMNOS -->
-        <section id="Section1" title="clases" runat="server"></section>
+        <section id="section_alumnos" title="alumnos"></section>
         <div id="alumnoswrap">
+
+
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+
 
             <!--APARTADO DE ADMINISTRACION DE ALUMNOS -->
             <div class="container" id="Div1" runat="server">
@@ -505,6 +533,12 @@
 
         </div>
         <!--/Portfoliowrap -->
+
+        
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+
 
         <!-- SERVICE SECTION -->
         <section id="services" title="services"></section>
@@ -692,7 +726,7 @@
 
 
         <!--Implementando ventana emergente --------------------*********     Exportar Listado     *********--------------------->
-        <div class="modal fade" id="exportarListado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+        <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="exportarListado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 
@@ -713,11 +747,11 @@
                                     <p>&nbsp;</p>
                                 </div>
                                 <div class="row center-block">
-                                    <div class=" col-xs-2"></div>
-                                    <div class=" col-xs-2">
+                                    <div class="col-sm-1 col-xs-1" ></div>
+                                    <div class="col-sm-2 col-xs-2">
                                         <label for="recipient-name" class="control-label">Torneo:</label>
                                     </div>
-                                    <div class="col-xs-5">
+                                    <div class="col-sm-5 col-xs-5">
                                         <asp:DropDownList ID="ddl_torneoExportarListado" CssClass="caja2" runat="server" AutoPostBack="false"></asp:DropDownList>
                                     </div>
                                 </div>
@@ -741,7 +775,7 @@
         <!----------------------*********  Fin ventana emergente   *********--------------------->
 
         <!--Implementando ventana emergente --------------------*********     Inscribir alumno a Clase     *********--------------------->
-        <div class="modal fade" id="modal_inscribirAlumunoClase" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+        <div class="modal fade col-sm-10 col-xs-10" id="modal_inscribirAlumunoClase" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 

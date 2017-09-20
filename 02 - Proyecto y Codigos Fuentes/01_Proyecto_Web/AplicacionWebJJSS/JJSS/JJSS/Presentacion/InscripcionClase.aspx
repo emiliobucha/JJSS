@@ -68,6 +68,7 @@
                             <asp:Label ID="lbl_profesor" runat="server" />
                         </div>
                         <div>
+                            <asp:Label ID="Label4" runat="server" Text="$ "></asp:Label>
                             <asp:Label ID="lbl_precio" runat="server" />
                         </div>
 
