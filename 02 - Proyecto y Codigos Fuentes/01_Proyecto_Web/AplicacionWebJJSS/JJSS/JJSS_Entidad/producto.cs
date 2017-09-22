@@ -12,21 +12,28 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class estado
+    public partial class producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public estado()
+        public producto()
         {
-            this.torneo = new HashSet<torneo>();
-            this.estado_reserva = new HashSet<estado_reserva>();
+            this.detalle_compra = new HashSet<detalle_compra>();
+            this.detalle_reserva = new HashSet<detalle_reserva>();
+            this.producto_imagen = new HashSet<producto_imagen>();
         }
     
-        public int id_estado { get; set; }
+        public int id_producto { get; set; }
         public string nombre { get; set; }
+        public Nullable<int> id_categoria { get; set; }
+        public Nullable<int> stock { get; set; }
+        public Nullable<decimal> precio_venta { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<torneo> torneo { get; set; }
+        public virtual ICollection<detalle_compra> detalle_compra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<estado_reserva> estado_reserva { get; set; }
+        public virtual ICollection<detalle_reserva> detalle_reserva { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<producto_imagen> producto_imagen { get; set; }
+        public virtual categoria_producto categoria_producto { get; set; }
     }
 }

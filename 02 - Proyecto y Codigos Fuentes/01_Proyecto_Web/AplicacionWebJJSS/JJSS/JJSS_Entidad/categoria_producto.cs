@@ -12,21 +12,18 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class estado
+    public partial class categoria_producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public estado()
+        public categoria_producto()
         {
-            this.torneo = new HashSet<torneo>();
-            this.estado_reserva = new HashSet<estado_reserva>();
+            this.producto = new HashSet<producto>();
         }
     
-        public int id_estado { get; set; }
+        public int id_categoria { get; set; }
         public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<torneo> torneo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<estado_reserva> estado_reserva { get; set; }
+        public virtual ICollection<producto> producto { get; set; }
     }
 }

@@ -100,6 +100,9 @@
     <Compile Include="categoria.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="categoria_producto.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="categoria_torneo.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
@@ -109,13 +112,25 @@
     <Compile Include="clase.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="compra.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalle_compra.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="detalle_pago_clase.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalle_reserva.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="direccion.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="estado.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="estado_reserva.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="faja.cs">
@@ -163,13 +178,25 @@
     <Compile Include="participante.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="producto.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="producto_imagen.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="profesor.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="profesor_imagen.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="proveedor.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="provincia.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reserva.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="resultado.cs">

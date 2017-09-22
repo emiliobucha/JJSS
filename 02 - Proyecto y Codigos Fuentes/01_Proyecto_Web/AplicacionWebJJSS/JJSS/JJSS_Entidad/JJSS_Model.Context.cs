@@ -60,5 +60,14 @@ namespace JJSS_Entidad
         public virtual DbSet<tipo_clase> tipo_clase { get; set; }
         public virtual DbSet<torneo> torneo { get; set; }
         public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }
+        public virtual DbSet<categoria_producto> categoria_producto { get; set; }
+        public virtual DbSet<compra> compra { get; set; }
+        public virtual DbSet<detalle_compra> detalle_compra { get; set; }
+        public virtual DbSet<detalle_reserva> detalle_reserva { get; set; }
+        public virtual DbSet<estado_reserva> estado_reserva { get; set; }
+        public virtual DbSet<producto> producto { get; set; }
+        public virtual DbSet<proveedor> proveedor { get; set; }
+        public virtual DbSet<reserva> reserva { get; set; }
+        public virtual DbSet<producto_imagen> producto_imagen { get; set; }
     }
 }

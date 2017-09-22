@@ -12,21 +12,20 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class estado
+    public partial class compra
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public estado()
+        public compra()
         {
-            this.torneo = new HashSet<torneo>();
-            this.estado_reserva = new HashSet<estado_reserva>();
+            this.detalle_compra = new HashSet<detalle_compra>();
         }
     
-        public int id_estado { get; set; }
-        public string nombre { get; set; }
+        public int id_compra { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> id_proveedor { get; set; }
     
+        public virtual proveedor proveedor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<torneo> torneo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<estado_reserva> estado_reserva { get; set; }
+        public virtual ICollection<detalle_compra> detalle_compra { get; set; }
     }
 }

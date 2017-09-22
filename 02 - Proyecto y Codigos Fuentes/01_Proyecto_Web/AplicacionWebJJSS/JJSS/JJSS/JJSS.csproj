@@ -171,6 +171,7 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.structure.min.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
+    <Content Include="Presentacion\AgregarProducto.aspx" />
     <Content Include="Presentacion\AlumnoClases.aspx" />
     <Content Include="Presentacion\AlumnoPagoClase.aspx" />
     <Content Include="Presentacion\AlumnoPagoFinalizado.aspx" />
@@ -276,6 +277,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Presentacion\AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\AlumnoClases.aspx.cs">
       <DependentUpon>AlumnoClases.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

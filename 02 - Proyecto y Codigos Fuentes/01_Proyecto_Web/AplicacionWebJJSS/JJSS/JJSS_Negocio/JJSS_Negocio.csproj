@@ -53,6 +53,7 @@
     <Compile Include="GestorParticipantes.cs" />
     <Compile Include="GestorAlumnos.cs" />
     <Compile Include="GestorInscripciones.cs" />
+    <Compile Include="GestorProductos.cs" />
     <Compile Include="GestorProfesores.cs" />
     <Compile Include="GestorProvincias.cs" />
     <Compile Include="GestorReportes.cs" />
