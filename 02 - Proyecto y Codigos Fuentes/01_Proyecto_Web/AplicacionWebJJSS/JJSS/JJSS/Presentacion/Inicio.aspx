@@ -540,97 +540,9 @@
             </div>
 
 
-        <!-- SERVICE SECTION -->
-        <section id="services" title="services"></section>
-        <div id="servicewrap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8-offset-2 centered">
-                        <h1>AN OVERVIEW OF MY SERVICES</h1>
-                        <h3>I'll do all the work for you</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div>
-                    <!-- /col-lg-8 -->
-                </div>
-                <! --/row -->
-			
-			<div class="row mt">
-                <div class="col-lg-3 service">
-                    <i class="fa fa-star"></i>
-                    <p>
-                        PREMIUM QUALITY<br />
-                        <small>LOREM IPSUM DOLOR</small>
-                    </p>
-                    <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                </div>
-                <div class="col-lg-3 service">
-                    <i class="fa fa-cloud"></i>
-                    <p>
-                        CLOUD SERVICES<br />
-                        <small>LOREM IPSUM DOLOR</small>
-                    </p>
-                    <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                </div>
-                <div class="col-lg-3 service">
-                    <i class="fa fa-shield"></i>
-                    <p>
-                        SECURED ACCOUNTS<br />
-                        <small>LOREM IPSUM DOLOR</small>
-                    </p>
-                    <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                </div>
-                <div class="col-lg-3 service">
-                    <i class="fa fa-heart"></i>
-                    <p>
-                        100% SATISFACTION<br />
-                        <small>LOREM IPSUM DOLOR</small>
-                    </p>
-                    <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                </div>
-            </div>
-                <! --/row -->
-			<div class="row mt">
-                <div class="col-lg-3 service">
-                    <i class="fa fa-trophy"></i>
-                    <p>
-                        PREMIUM QUALITY<br />
-                        <small>LOREM IPSUM DOLOR</small>
-                    </p>
-                    <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                </div>
-                <div class="col-lg-3 service">
-                    <i class="fa fa-globe"></i>
-                    <p>
-                        CLOUD SERVICES<br />
-                        <small>LOREM IPSUM DOLOR</small>
-                    </p>
-                    <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                </div>
-                <div class="col-lg-3 service">
-                    <i class="fa fa-lock"></i>
-                    <p>
-                        SECURED ACCOUNTS<br />
-                        <small>LOREM IPSUM DOLOR</small>
-                    </p>
-                    <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                </div>
-                <div class="col-lg-3 service">
-                    <i class="fa fa-thumbs-up"></i>
-                    <p>
-                        100% SATISFACTION<br />
-                        <small>LOREM IPSUM DOLOR</small>
-                    </p>
-                    <p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                </div>
-            </div>
-                <! --/row -->
-			
-            </div>
-            <! --/container -->
-        </div>
-        <! --/servicewrap -->
-	
-	<div id="testimonials">
+
+		
+	<%--<div id="testimonials">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 mt">
@@ -678,7 +590,7 @@
         </div>
         <! --/container -->
     </div>
-        <! --/testimonials -->
+        <! --/testimonials -->--%>
 	
 	<!-- SERVICE SECTION -->
         <section id="contact" title="contact"></section>

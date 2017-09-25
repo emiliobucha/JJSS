@@ -1,13 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CrearTorneo.aspx.cs" Inherits="JJSS.Presentacion.CrearTorneo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="CrearTorneo.aspx.cs" Inherits="JJSS.Presentacion.CrearTorneo" %>
 
-<asp:Content ID="crearTorneoMenu" ContentPlaceHolderID="cphMenu" runat="server">
-    <a href="Inicio.aspx" class="smoothScroll">Home</a>
-    <a href="#crearTorneo" class="smoothScroll">Crear</a>
-</asp:Content>
+
 
 <asp:Content ID="crearTorneoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
-
 
 <asp:Content ID="crearTorneoContenido" ContentPlaceHolderID="cphContenido" runat="server">
 

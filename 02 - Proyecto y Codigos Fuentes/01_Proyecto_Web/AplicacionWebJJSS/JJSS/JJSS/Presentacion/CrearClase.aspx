@@ -1,8 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CrearClase.aspx.cs" Inherits="JJSS.Presentacion.CrearClase" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="CrearClase.aspx.cs" Inherits="JJSS.Presentacion.CrearClase" %>
 
-<asp:Content ID="crearClaseMenu" ContentPlaceHolderID="cphMenu" runat="server">
-    <a href="Inicio.aspx" class="smoothScroll">Home</a>
-</asp:Content>
+
 <asp:Content ID="crearClaseEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="crearClaseContenido" ContentPlaceHolderID="cphContenido" runat="server">

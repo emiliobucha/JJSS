@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarProfe.aspx.cs" Inherits="JJSS.Presentacion.RegistrarProfe" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="RegistrarProfe.aspx.cs" Inherits="JJSS.Presentacion.RegistrarProfe" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphMenu" runat="server">
-    <a href="Inicio.aspx" class="smoothScroll">Home</a>
-</asp:Content>
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 

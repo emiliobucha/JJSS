@@ -7,18 +7,16 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 
-namespace JJSS
-{
 
-    
-    public partial class SiteMaster : MasterPage
+namespace JJSS.Presentacion
+{
+    public partial class Site2 : System.Web.UI.MasterPage
     {
         GestorSesiones gestorSesion;
-        
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gestorSesion = new GestorSesiones();           
+            gestorSesion = new GestorSesiones();
             Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
             if (sesionActiva == null)
             {
@@ -32,12 +30,11 @@ namespace JJSS
                 lbl_sesion_nombre.Text = sesionActiva.usuario.nombre.ToString();
             }
         }
-
         protected void cerrar_sesion_Click(object sender, EventArgs e)
         {
             gestorSesion = new GestorSesiones();
             gestorSesion.CerrarSesion();
         }
-        
-    }
+    }      
+    
 }

@@ -212,6 +212,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="css\product-box.less" />
     <Content Include="img\Thumbs.db" />
+    <Content Include="Presentacion\Site2.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\classie.js" />
@@ -398,6 +399,13 @@
     </Compile>
     <Compile Include="Presentacion\RegistrarProfe.aspx.designer.cs">
       <DependentUpon>RegistrarProfe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Site2.Master.cs">
+      <DependentUpon>Site2.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Site2.Master.designer.cs">
+      <DependentUpon>Site2.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presentacion\Site.Master.cs">

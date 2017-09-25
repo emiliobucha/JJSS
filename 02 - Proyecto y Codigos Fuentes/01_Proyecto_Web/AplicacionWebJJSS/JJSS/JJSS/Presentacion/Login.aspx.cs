@@ -50,6 +50,7 @@ namespace JJSS.Presentacion
                 Response.Write("<script>window.alert('" + "Ha ocurrido un error, por favor inténtelo más tarde".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
             }
         }
+
         protected void btn_invitado_Click(object sender, EventArgs e)
         {
           

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="JJSS.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site2.master.cs" Inherits="JJSS.Presentacion.Site2" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,12 +65,12 @@
                   </div>
 
 
-                  
+
                   <!---------------- SESSION ------------------->
-                  
+
                   <!--si NO hay una sesion activa-->
                   <asp:Panel ID="pnl_iniciar_sesion" runat="server">
-                      <a id="iniciar_sesion" href="Login.aspx" >
+                      <a id="iniciar_sesion" href="Login.aspx" style="text-transform:capitalize">
                           <span class="glyphicon glyphicon-chevron-right"></span>
                           Iniciar Sesión
                       </a>
@@ -78,18 +78,18 @@
 
                   <!--si hay una sesion activa-->
                   <asp:Panel ID="pnl_sesion_activa" runat="server">
-                      
-                      <a id="data_sesion" href="#sesion" data-toggle="collapse" data-target="#sesion">                         
+
+                      <a id="data_sesion" href="#sesion" data-toggle="collapse" data-target="#sesion">
                           <span class="glyphicon glyphicon-chevron-right"></span>
-                          <asp:Label ID="lbl_sesion_nombre" runat="server" Text=""></asp:Label>
+                          <asp:Label ID="lbl_sesion_nombre" runat="server" Text="" style="text-transform:capitalize"></asp:Label>
                           <label>&nbsp;</label>
                           <span class="glyphicon glyphicon-user icon-size"></span>
                       </a>
 
                       <div id="sesion" class="collapse">
 
-                          <a href="../Presentacion/Perfil.aspx"  style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Modificar Perfil</a>
-                          <a onclick="cerrar_sesion_Click"  style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Cerrar Sesión</a>
+                          <a href="../Presentacion/Perfil.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Modificar Perfil</a>
+                          <a onclick="cerrar_sesion_Click" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Cerrar Sesión</a>
 
                       </div>
                   </asp:Panel>
@@ -100,9 +100,102 @@
 
                   <!----------------- MENU --------------------->
                   <h1 class="logo"><a href="index.html#home">MENU</a></h1>
-                                                                  
-                  <asp:ContentPlaceHolder ID="cphMenu" runat="server"></asp:ContentPlaceHolder>
+
+
+
+                  <!--------------------- TORNEOS -------------------------->
+                  <asp:Panel ID="pnl_menu_torneos" runat="server">
+
+                      <a href="#submenu_torneos" data-toggle="collapse" data-target="#submenu_torneos">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <asp:Label ID="Label1" runat="server" Text="torneos"></asp:Label>
+                      </a>
+
+                      <div id="submenu_torneos" class="collapse">
+
+                          <a href="CrearTorneo.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Crear Nuevo</a>
+                          <a href="InscripcionTorneo.aspx" style="text-transform:capitalize" >&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
+
+                      </div>
+                  </asp:Panel>
+
+                  <!--------------------- CLASES -------------------------->
+                  <asp:Panel ID="pnl_clases" runat="server">
+
+                      <a href="#submenu_clases" data-toggle="collapse" data-target="#submenu_clases">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <asp:Label ID="Label2" runat="server" Text="Clases"></asp:Label>
+                      </a>
+
+                      <div id="submenu_clases" class="collapse">
+
+                          <a href="CrearTorneo.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Crear Nueva</a>
+                          <a href="InscripcionClase.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
+                          <a href="PagoClase.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Registrar Pago</a>
+
+                      </div>
+                  </asp:Panel>
+
+                  <!-------------------- ALUMNOS ------------------------->
+                  <asp:Panel ID="pnl_alumnos" runat="server">
+
+                      <a href="#submenu_alumnos" data-toggle="collapse" data-target="#submenu_alumnos">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <asp:Label ID="Label4" runat="server" Text="Alumnos"></asp:Label>
+                      </a>
+
+                      <div id="submenu_alumnos" class="collapse">
+
+                          <a href="RegistrarAlumno.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Registrar Alumno</a>
+                          <a href="GraduarAlumno.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Graduar</a>
+
+                      </div>
+                  </asp:Panel>
+
+                  <!-------------------- PROFESORES ------------------------->
+                  <asp:Panel ID="Panel1" runat="server">
+
+                      <a href="#submenu_profesores" data-toggle="collapse" data-target="#submenu_profesores">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <asp:Label ID="Label6" runat="server" Text="Profesores"></asp:Label>
+                      </a>
+
+                      <div id="submenu_profesores" class="collapse">
+
+                          <a href="RegistrarProfe.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Registrar Profesor</a>
+
+                      </div>
+                  </asp:Panel>
+
+                  <!---------------------- TIENDA ------------------------->
+                  <asp:Panel ID="pnl_tienda" runat="server">
+
+                      <a href="#submenu_tienda" data-toggle="collapse" data-target="#submenu_tienda">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <asp:Label ID="Label3" runat="server" Text="Tienda"></asp:Label>
+                      </a>
+
+                      <div id="submenu_tienda" class="collapse">
+
+                          <a href="AgregarProducto.aspx"  style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Agregar Producto</a>
+
+                      </div>
+                  </asp:Panel>
+
+                  <!----------------- EVENTOS ESPECIALES --------------------->
+                  <asp:Panel ID="pnl_eventos_especiales" runat="server">
+
+                      <a href="#submenu_eventos_especiales" data-toggle="collapse" data-target="#submenu_eventos_especiales">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <asp:Label ID="Label5" runat="server" Text="Eventos Especiales"></asp:Label>
+                      </a>
+
+                      <div id="submenu_eventos_especiales" class="collapse">
+                      </div>
+
+                  </asp:Panel>
                   
+
                   <div class="row centered">
                       <p>&nbsp;</p>
                   </div>

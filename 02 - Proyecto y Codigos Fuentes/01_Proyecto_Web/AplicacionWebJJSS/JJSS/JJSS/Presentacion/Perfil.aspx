@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="JJSS.Presentacion.Perfil" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="JJSS.Presentacion.Perfil" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphMenu" runat="server">
-</asp:Content>
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">

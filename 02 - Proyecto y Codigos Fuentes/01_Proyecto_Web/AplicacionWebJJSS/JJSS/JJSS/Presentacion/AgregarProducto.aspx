@@ -1,13 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="AgregarProducto.aspx.cs" Inherits="JJSS.Presentacion.AgregarProducto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.master" AutoEventWireup="true" CodeBehind="AgregarProducto.aspx.cs" Inherits="JJSS.Presentacion.AgregarProducto" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphMenu" runat="server">
-</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
 
+<asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
     <section id="inscripcionTorneo" title="inscripcionTorneo"></section>
 
     <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
