@@ -2,12 +2,29 @@
 
 
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
-    <a href="#section_home" class="smoothScroll">Home</a>
-    <a href="#section_about" class="smoothScroll">About</a>
-    <a href="#section_torneos" class="smoothScroll">Torneos</a>
-    <a href="#section_clases" class="smoothScroll">Clases</a>
-    <a href="#section_alumnos" class="smoothScroll">Alumnos</a>
-    <%--<a><asp:LinkButton ID="LinkButton1" runat="server">Cerrar Sesión</asp:LinkButton></a>--%>
+
+
+    <a href="#section_home">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        INICIO
+    </a>
+    <a href="#section_about" class="smoothScroll">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        Sobre Nosotros
+    </a>
+    <a href="#section_torneos" class="smoothScroll">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        Torneos
+    </a>
+    <a href="#section_clases" class="smoothScroll">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        Clases
+    </a>
+    <a href="#section_alumnos" class="smoothScroll">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        Alumnos
+    </a>
+
 </asp:Content>
 
 
@@ -69,7 +86,7 @@
 
     <form runat="server">
 
-        <!--SECTOR PERFIL -->
+      <%--  <!--SECTOR PERFIL -->
         <section id="perfil" title="clases" runat="server"></section>
         <div id="perfilwrap">
 
@@ -117,7 +134,7 @@
             </div>
             <!--/container -->
         </div>
-        <!--/Portfoliowrap -->
+        <!--/Portfoliowrap -->--%>
 
 
         <!-- ABOUT SEPARATOR -->
@@ -594,46 +611,7 @@
 	
 	<!-- SERVICE SECTION -->
         <section id="contact" title="contact"></section>
-        <!-- CONTACT SEPARATOR -->
-        <div class="sep contact" data-stellar-background-ratio="0.5"></div>
-
-        <div id="contactwrap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <p>CONTACT ME RIGHT NOW!</p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        <p>
-                            <small>5th Avenue, 987<br />
-                                38399, New York,<br />
-                                USA.</small>
-                        </p>
-                        <p>
-                            <small>Tel. 9888-4394<br />
-                                Mail. Hello@coolfolks.com<br />
-                                Skype. NYCDesign</small>
-                        </p>
-
-                    </div>
-
-                    <div class="col-lg-6">
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="exampleInputName1">Your Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
-                                <label for="exampleInputText1">Message</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
-                    </div>
-
-                </div>
-                <!--/row -->
-            </div>
-            <!-- /container -->
-        </div>
-
+       
 
 
 
@@ -686,76 +664,7 @@
         </div>
         <!----------------------*********  Fin ventana emergente   *********--------------------->
 
-        <!--Implementando ventana emergente --------------------*********     Inscribir alumno a Clase     *********--------------------->
-        <div class="modal fade col-sm-10 col-xs-10" id="modal_inscribirAlumunoClase" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-                    <!--Cabecera-->
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Inscribir alumno a clase</h4>
-                    </div>
-
-                    <!--Cuerpo-->
-
-                    <div class="modal-body">
-                        <div class="form-group">
-
-                            <!--Ingresar DNI para inscribir alumno-->
-                            <asp:Panel ID="pnl_inscribirClase" CssClass="panel panel-default" runat="server">
-
-                                <div class="row centered">
-                                    <p>&nbsp;</p>
-                                </div>
-                                <div class="row centered">
-                                    <div class=" col-xs-2"></div>
-                                    <div class=" col-xs-8">
-                                        <asp:Label ID="Label1" runat="server" Text="Clase"></asp:Label>
-
-                                        <!--Nombre Clase-->
-                                        <asp:Label ID="lbl_claseSeleccionada_nombre" runat="server" Text=""></asp:Label>
-
-                                        <!--Id Clase-->
-                                        <asp:Label ID="Label2" runat="server" Text="("></asp:Label>
-                                        <asp:Label ID="lbl_claseSeleccionada_id" runat="server" Text=""></asp:Label>
-                                        <asp:Label ID="Label3" runat="server" Text=")"></asp:Label>
-                                        <asp:HiddenField ID="hf_claseSeleccionada_id" runat="server" />
-                                    </div>
-                                </div>
-                                <div class="row centered">
-                                    <p>&nbsp;</p>
-                                </div>
-                                <div class="row center-block">
-                                    <div class=" col-xs-2"></div>
-                                    <div class=" col-xs-2">
-                                        <label for="recipient-name" class="control-label">DNI:</label>
-                                    </div>
-                                    <!-- DNI-->
-                                    <div class="col-xs-5">
-                                        <asp:TextBox ID="txt_inscripcionClase_dni" runat="server"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="requeridoDni" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un DNI" ControlToValidate="txt_inscripcionClase_dni" Display="Dynamic" ValidationGroup="inscripcionClase"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_inscripcionClase_dni" CssClass="text-danger" Display="Dynamic" ValidationGroup="inscripcionClase" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
-                                    </div>
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                </div>
-
-                            </asp:Panel>
-                        </div>
-                    </div>
-
-                    <!--Botonero-->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="btn_inscripcionClase_aceptar" CssClass="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_inscripcionClase_aceptar_Click" ValidationGroup="inscripcionClase" />
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!----------------------*********  Fin ventana emergente   *********--------------------->
+      
 
         <!--Implementando ventana emergente --------------------*********     Administrar recarga     *********--------------------->
 
@@ -815,40 +724,6 @@
 
     <!---------------------------************              SCRIPTS              **************---------------------------->
 
-    <script type="text/javascript">
-
-        var popup;
-
-      <%--  function seleccionarClaseInscripcion(row) {
-            var rowData = row.parentNode.parentNode;
-            var rowId = rowData.rowIndex;
-            var gridView = document.getElementById('<%=gv_clasesDisponibles.ClientID %>')
-            var idClase = gridView.rows[rowId].cells[0].innerHTML;
-            var nombre = gridView.rows[rowId].cells[1].innerHTML;
-
-            //alert(rowId + idClase + nombre);   
-
-            document.getElementById("<%=hf_claseSeleccionada_id.ClientID%>").value = idClase;
-            document.getElementById('<%=lbl_claseSeleccionada_id.ClientID %>').innerText = idClase;
-            document.getElementById('<%=lbl_claseSeleccionada_nombre.ClientID %>').textContent = nombre;
-
-            popup = $("#modal_inscribirAlumunoClase").modal('show');
-            //popup.focus();--%>
-
-    <%--    function seleccionarClaseInscripcion(x) {
-            var listview = document.getElementById('<%=lv_clasesDisponibles.ClientID %>')
-            var idClase = listview.getElementsByTagName('<%=lv_lbl_nombre_clase.ClientID %>')
-            var nombre = gridView.rows[rowId].cells[1].innerHTML;
-
-            document.getElementById("<%=hf_claseSeleccionada_id.ClientID%>").value = idClase;
-            document.getElementById('<%=lbl_claseSeleccionada_id.ClientID %>').innerText = idClase;
-            document.getElementById('<%=lbl_claseSeleccionada_nombre.ClientID %>').textContent = nombre;
-
-            popup = $("#modal_inscribirAlumunoClase").modal('show');
-        }--%>
-
-
-    </script>
 
     <script type="text/javascript">
 

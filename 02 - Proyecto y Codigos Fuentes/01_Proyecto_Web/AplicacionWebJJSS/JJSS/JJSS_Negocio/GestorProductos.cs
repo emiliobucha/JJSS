@@ -82,5 +82,29 @@ namespace JJSS_Negocio
                 return productosEncontrados.ToList<Object>();
             }
         }
+
+        /*
+        * Obtener Productos Para la Tienda
+        */
+        public List<Object> ObtenerProductosTienda()
+        {
+            using (var db = new JJSSEntities())
+            {
+                var productosEncontrados = from prod in db.producto
+                                           join cat in db.categoria_producto on prod.id_categoria equals cat.id_categoria
+                                           join img in db.producto_imagen on prod.id_producto equals img.id_producto
+                                           into ps
+                                           from img in ps.DefaultIfEmpty()
+                                           select new
+                                           {
+                                               categoria = cat.nombre,
+                                               nombre = prod.nombre,
+                                               stock = prod.stock,
+                                               precio = prod.precio_venta,
+                                               imagen = img.imagen,
+                                           };
+                return productosEncontrados.ToList<Object>();
+            }
+        }
     }
 }

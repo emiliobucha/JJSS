@@ -1,16 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="JJSS.Presentacion.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphMenu" runat="server">
+    <a href="Inicio.aspx#section_home">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        INICIO
+    </a>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
-</asp:Content>
+
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
 
     <section id="login" title="login"></section>
-    <form id="form2" runat="server">
-        <asp:Panel ID="pnlLogin" runat="server" CssClass="panel panel-default">
+
+    <form id="form2" runat="server" >
+
+        <asp:Panel ID="pnlLogin" runat="server" CssClass="panel panel-default" Height="100%">
             <div id="loginwrap">
                 <div class="container">
                     <div class="row mt centered">
@@ -24,7 +27,7 @@
                         <div class="row centered">
                             <div class="col-md-3"></div>
                             <div class="col-md-2">
-                                <label class="pull-left 4">Nombre de Usuario</label>
+                                <label class="pull-left 4">Usuario</label>
                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txt_usuario" runat="server" placeholder="Nombre de usuario" CssClass="caja2"></asp:TextBox>
@@ -81,7 +84,7 @@
                         </div>
                          <!--Invitado-->
                         <div class="row centered">
-                            <asp:Button ID="btn_invitado" CssClass="btn btn-default" runat="server" Text="Iniciar como Invitado" OnClick="btn_invitado_Click" />
+                            <asp:Button ID="btn_invitado" CssClass="btn btn-default btn-link" ForeColor="Black" Font-Bold="true" runat="server" Text="Iniciar como Invitado" OnClick="btn_invitado_Click" />
                         </div>
                     </div>
                 </div>
@@ -162,8 +165,5 @@
                 </div>
             </div>
         </asp:Panel>
-
-
     </form>
-
 </asp:Content>

@@ -10,8 +10,8 @@
     <section id="inscripcionTorneo" title="inscripcionTorneo"></section>
 
     <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-2 hidden-sm"></div>
+        <div class="col-md-8 col-xs-12">
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <a class="ui-icon ui-icon-check"></a>
@@ -25,8 +25,8 @@
     </asp:Panel>
 
     <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-2 hidden-sm"></div>
+        <div class="col-md-8 col-xs-12">
             <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <a class="ui-icon ui-icon-alert"></a>
