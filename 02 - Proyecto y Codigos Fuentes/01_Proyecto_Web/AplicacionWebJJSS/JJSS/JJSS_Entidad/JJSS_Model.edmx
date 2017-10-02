@@ -56,7 +56,7 @@
           </Key>
           <Property Name="id_asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha_hora" Type="datetime" Nullable="false" />
-          <Property Name="id_tipo_clase" Type="int" Nullable="false" />
+          <Property Name="id_clase" Type="int" Nullable="false" />
           <Property Name="id_alumno" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="categoria">
@@ -661,15 +661,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_asistencia_tipoclase">
-          <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="1" />
+        <Association Name="FK_asistencia_clase">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
           <End Role="asistencia_clase" Type="Self.asistencia_clase" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tipo_clase">
-              <PropertyRef Name="id_tipo_clase" />
+            <Principal Role="clase">
+              <PropertyRef Name="id_clase" />
             </Principal>
             <Dependent Role="asistencia_clase">
-              <PropertyRef Name="id_tipo_clase" />
+              <PropertyRef Name="id_clase" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1236,8 +1236,8 @@
             <End Role="alumno" EntitySet="alumno" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK_asistencia_tipoclase" Association="Self.FK_asistencia_tipoclase">
-            <End Role="tipo_clase" EntitySet="tipo_clase" />
+          <AssociationSet Name="FK_asistencia_clase" Association="Self.FK_asistencia_clase">
+            <End Role="clase" EntitySet="clase" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
           <AssociationSet Name="FK_categoria_tipoclase" Association="Self.FK_categoria_tipoclase">
@@ -1450,10 +1450,10 @@
           </Key>
           <Property Name="id_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha_hora" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="id_tipo_clase" Type="Int32" Nullable="false" />
           <Property Name="id_alumno" Type="Int32" Nullable="false" />
           <NavigationProperty Name="alumno" Relationship="Self.FK_asistencia_alumno" FromRole="asistencia_clase" ToRole="alumno" />
-          <NavigationProperty Name="tipo_clase" Relationship="Self.FK_asistencia_tipoclase" FromRole="asistencia_clase" ToRole="tipo_clase" />
+          <Property Name="id_clase" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clase" Relationship="JJSSModel.FK_asistencia_clase" FromRole="asistencia_clase" ToRole="clase" />
         </EntityType>
         <EntityType Name="categoria">
           <Key>
@@ -1507,6 +1507,7 @@
           <NavigationProperty Name="horario" Relationship="Self.FK_horario_id_clase" FromRole="clase" ToRole="horario" />
           <NavigationProperty Name="pago_clase" Relationship="Self.FK_pagoclase_id_clase" FromRole="clase" ToRole="pago_clase" />
           <NavigationProperty Name="inscripcion_clase" Relationship="JJSSModel.FK_inscripcion_clase" FromRole="clase" ToRole="inscripcion_clase" />
+          <NavigationProperty Name="asistencia_clase" Relationship="JJSSModel.FK_asistencia_clase" FromRole="clase" ToRole="asistencia_clase" />
         </EntityType>
         <EntityType Name="detalle_pago_clase">
           <Key>
@@ -1791,7 +1792,6 @@
           </Key>
           <Property Name="id_tipo_clase" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="asistencia_clase" Relationship="Self.FK_asistencia_tipoclase" FromRole="tipo_clase" ToRole="asistencia_clase" />
           <NavigationProperty Name="categoria" Relationship="Self.FK_categoria_tipoclase" FromRole="tipo_clase" ToRole="categoria" />
           <NavigationProperty Name="clase" Relationship="Self.FK_clase_id_tipo_clase" FromRole="tipo_clase" ToRole="clase" />
           <NavigationProperty Name="faja" Relationship="Self.FK_faja_tipoclase" FromRole="tipo_clase" ToRole="faja" />
@@ -1959,18 +1959,6 @@
             </Principal>
             <Dependent Role="alumnoxfaja">
               <PropertyRef Name="id_faja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_asistencia_tipoclase">
-          <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="1" />
-          <End Role="asistencia_clase" Type="Self.asistencia_clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tipo_clase">
-              <PropertyRef Name="id_tipo_clase" />
-            </Principal>
-            <Dependent Role="asistencia_clase">
-              <PropertyRef Name="id_tipo_clase" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2436,10 +2424,6 @@
             <End Role="faja" EntitySet="faja" />
             <End Role="alumnoxfaja" EntitySet="alumnoxfaja" />
           </AssociationSet>
-          <AssociationSet Name="FK_asistencia_tipoclase" Association="Self.FK_asistencia_tipoclase">
-            <End Role="tipo_clase" EntitySet="tipo_clase" />
-            <End Role="asistencia_clase" EntitySet="asistencia_clase" />
-          </AssociationSet>
           <AssociationSet Name="FK__categoria__id_ca__531856C7" Association="Self.FK__categoria__id_ca__531856C7">
             <End Role="categoria" EntitySet="categoria" />
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
@@ -2616,6 +2600,10 @@
           <AssociationSet Name="FK_producto_categoria1" Association="JJSSModel.FK_producto_categoria1">
             <End Role="categoria_producto" EntitySet="categoria_producto" />
             <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_asistencia_clase" Association="JJSSModel.FK_asistencia_clase">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_inscripcion_clase">
@@ -2851,6 +2839,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_asistencia_clase">
+          <End Type="JJSSModel.clase" Role="clase" Multiplicity="1" />
+          <End Type="JJSSModel.asistencia_clase" Role="asistencia_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="id_clase" />
+            </Principal>
+            <Dependent Role="asistencia_clase">
+              <PropertyRef Name="id_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2909,9 +2909,9 @@
           <EntitySetMapping Name="asistencia_clase">
             <EntityTypeMapping TypeName="JJSSModel.asistencia_clase">
               <MappingFragment StoreEntitySet="asistencia_clase">
+                <ScalarProperty Name="id_clase" ColumnName="id_clase" />
                 <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
                 <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
-                <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
               </MappingFragment>
             </EntityTypeMapping>

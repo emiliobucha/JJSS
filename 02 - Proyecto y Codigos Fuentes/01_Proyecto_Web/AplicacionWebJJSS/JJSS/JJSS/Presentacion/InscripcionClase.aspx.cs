@@ -44,14 +44,14 @@ namespace JJSS.Presentacion
                         }
                         if (permiso != 1)
                         {
-                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 }
 
@@ -136,8 +136,19 @@ namespace JJSS.Presentacion
         {
             int dni = 0;
             if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
-            string orden = ViewState["gvDatosOrden"].ToString();
-            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorDni(dni);
+            List<alumno> listaCompleta = gestorAlumnos.BuscarAlumno();
+            List<alumno> listaConFiltro = new List<alumno>();
+            string filtroApellido = txt_filtro_apellido.Text.ToUpper();
+
+            foreach (alumno i in listaCompleta)
+            {
+                string apellido = i.apellido.ToUpper();
+                if (dni==0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
+
+                if (apellido.StartsWith(filtroApellido) && i.dni==dni) listaConFiltro.Add(i);
+            }
+
+            gvAlumnos.DataSource = listaConFiltro;
             gvAlumnos.DataBind();
         }
 
@@ -198,7 +209,7 @@ namespace JJSS.Presentacion
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 }
 
@@ -306,6 +317,11 @@ namespace JJSS.Presentacion
             definirVisualizacionDePaneles(false);
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
+        }
+
+        protected void btn_buscar_apellido_Click(object sender, EventArgs e)
+        {
+            CargarGrilla();
         }
     }
 }

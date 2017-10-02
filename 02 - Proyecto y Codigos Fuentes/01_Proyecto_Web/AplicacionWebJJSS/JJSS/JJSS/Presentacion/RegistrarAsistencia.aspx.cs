@@ -41,21 +41,19 @@ namespace JJSS.Presentacion
             gestorAsistencia = new GestorAsistencia();
             gestorAlumno = new GestorAlumnos();
 
-            int idTipoClase = gestorAsistencia.buscarTipoClaseSegunHoraActual(int.Parse(ddl_ubicacion.SelectedValue));
+            clase claseActual = gestorAsistencia.buscarClaseSegunHoraActual(int.Parse(ddl_ubicacion.SelectedValue));
 
-            if (idTipoClase == 0) mensaje("No hay clases disponibles en este horario", false);
+            if (claseActual == null) mensaje("No hay clases disponibles en este horario", false);
             else
             {
-
-
                 alumno alu = gestorAlumno.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
 
-                string resultado = gestorAsistencia.ValidarTipoClaseAlumno(alu.id_alumno, idTipoClase);
+                string resultado = gestorAsistencia.ValidarTipoClaseAlumno(alu.id_alumno, (int)claseActual.id_tipo_clase);
                 if (resultado == "")
                 {
-                    if (gestorAsistencia.ValidarPagoParaAsistencia(alu.id_alumno, idTipoClase))
+                    if (gestorAsistencia.ValidarPagoParaAsistencia(alu.id_alumno, (int)claseActual.id_tipo_clase))
                     {
-                        resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, idTipoClase);
+                        resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, (int)claseActual.id_clase);
                         if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
                         else mensaje(resultado, false);
                     }

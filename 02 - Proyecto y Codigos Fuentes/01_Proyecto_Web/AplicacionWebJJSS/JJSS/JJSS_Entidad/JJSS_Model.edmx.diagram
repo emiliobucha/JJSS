@@ -51,7 +51,6 @@
         <AssociationConnector Association="JJSSModel.FK_inscripcion_clase_id_alumno" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_pagoclase_id_alumno" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_faja" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK_asistencia_tipoclase" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__categoria__id_ca__531856C7" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__inscripci__id_ca__6166761E" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_categoria_tipoclase" ManuallyRouted="false" />
@@ -103,6 +102,7 @@
         <EntityTypeShape EntityType="JJSSModel.producto_imagen" Width="1.5" PointX="17.5" PointY="22.25" />
         <AssociationConnector Association="JJSSModel.FK_producto_imagen" />
         <AssociationConnector Association="JJSSModel.FK_producto_categoria1" />
+        <AssociationConnector Association="JJSSModel.FK_asistencia_clase" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

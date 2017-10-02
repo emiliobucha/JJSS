@@ -297,15 +297,19 @@
                                 <asp:TextBox ID="txt_filtro_dni" runat="server"></asp:TextBox>
                                 <asp:CompareValidator ID="mayor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="El DNI debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="0"></asp:CompareValidator>
                                 <asp:CompareValidator ID="menor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="DNI demasiado largo" Operator="LessThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="2147483647"></asp:CompareValidator>
+                                <strong>Apellido</strong>
+                                <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
+                                
+                                
                                 <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar alumnos" OnClick="btn_buscar_alumno_Click" ValidationGroup="vgFiltro" CssClass="btn btn-default" />
 
                                 <asp:Button ID="btn_registro" runat="server" CausesValidation="false" CssClass="btn btn-default" OnClick="btn_registro_Click" Text="Volver a registrar" />
 
-                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand">
+                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand">
                                     <Columns>
-                                        <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                        <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
-                                        <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
+                                        <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
+                                        <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
+                                        <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
                                         <asp:ButtonField CommandName="eliminar" Text="Eliminar" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" />
                                         <asp:ButtonField CommandName="pago" Text="Registrar pago" />

@@ -107,7 +107,7 @@
                         <!-- MONTO-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                
+                                <label class="pull-left">Importe</label>
                             </div>
                             <div class="col-xs-3">
                                 <asp:TextBox ID="txt_monto" runat="server" CssClass="caja2"></asp:TextBox>

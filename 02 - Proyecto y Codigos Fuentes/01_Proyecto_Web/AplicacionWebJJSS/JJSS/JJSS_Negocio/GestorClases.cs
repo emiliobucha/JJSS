@@ -431,9 +431,11 @@ namespace JJSS_Negocio
          * Retorno:     entero - 0: no se esta dando ninguna clase
          *                      >0 : ID de la clase actual
          */
-        public int buscarTipoClaseSegunHoraActual(int pIdUbicacion)
+        public clase buscarClaseSegunHoraActual(int pIdUbicacion)
         {
-            string horaActual = DateTime.Now.ToShortTimeString();
+            string hora = DateTime.Now.ToShortTimeString();
+            TimeSpan horaActual = TimeSpan.Parse(hora);
+            
             CultureInfo ci = new CultureInfo("Es-Es");
             string nombreDia = ci.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
 
@@ -456,16 +458,22 @@ namespace JJSS_Negocio
                                       };
                 dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
             }
-
+            int idClase = 0;
             for (int i = 0; i < dtClases.Rows.Count; i++)
             {
                 DataRow dr = dtClases.Rows[i];
-
-                if (dr["desde"].ToString().CompareTo(horaActual) <= 0 && dr["hasta"].ToString().CompareTo(horaActual) >= 0) return int.Parse(dr["tipoClase"].ToString());
+                
+                TimeSpan horaDesde = TimeSpan.Parse( dr["desde"].ToString());
+                if (horaActual > horaDesde.Subtract(TimeSpan.FromMinutes(15)) && horaActual<= horaDesde.Add(TimeSpan.FromMinutes(45)))
+                {
+                    idClase = int.Parse(dr["tipoClase"].ToString());
+                    break;
+                }
             }
 
-
-            return 0;
+            if (idClase != 0) return ObtenerClasePorId(idClase);
+            else return null;
+            
         }
 
 

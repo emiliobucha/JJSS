@@ -67,6 +67,24 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.RadioButtonList rb_tipo_clase;
         
         /// <summary>
+        /// Control txt_filtro_apellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
+        
+        /// <summary>
+        /// Control caracteres_apellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator caracteres_apellido;
+        
+        /// <summary>
         /// Control btn_buscar.
         /// </summary>
         /// <remarks>

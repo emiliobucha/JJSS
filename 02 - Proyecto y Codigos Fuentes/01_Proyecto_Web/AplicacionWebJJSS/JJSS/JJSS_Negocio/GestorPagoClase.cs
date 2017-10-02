@@ -183,6 +183,7 @@ namespace JJSS_Negocio
         {
             DataTable dt;
             DateTime fechaInscripcion;
+            int diasRecargo = 0;
             using (var db = new JJSSEntities())
             {
                 var inscripcion = from ins in db.inscripcion_clase
@@ -205,6 +206,11 @@ namespace JJSS_Negocio
                            };
                 dt=modUtilidadesTablas.ToDataTable(pago.ToList());
 
+                var parametro = from param in db.parametro
+                                  where param.id_parametro == 2
+                                  select param;
+                diasRecargo = (int)parametro.FirstOrDefault().valor;
+
             }
             int contPagos = dt.Rows.Count;
             if (contPagos >0)
@@ -221,8 +227,7 @@ namespace JJSS_Negocio
                 }
                 else
                 {
-                    //+ preguntar a Mariano hasta cuando tengo tiempo de asistir a clases sin pagar
-                    DateTime pagoRecargo = fechaInscripcion.AddDays(12);
+                    DateTime pagoRecargo = fechaInscripcion.AddDays(diasRecargo);
                     if (DateTime.Today.Day <= pagoRecargo.Day) return true;
                     else return false;
                 }
@@ -234,7 +239,8 @@ namespace JJSS_Negocio
                 {
                     var asistencia = from asi in db.asistencia_clase
                                      join alu in db.alumno on asi.id_alumno equals alu.id_alumno
-                                     where alu.id_alumno == pIdAlumno && asi.id_tipo_clase == pIdTipoClase
+                                     join cla in db.clase on asi.id_clase equals cla.id_clase
+                                     where alu.id_alumno == pIdAlumno && cla.id_tipo_clase == pIdTipoClase
                                      select asi;
                     if (asistencia == null) return true;
                     else return false;

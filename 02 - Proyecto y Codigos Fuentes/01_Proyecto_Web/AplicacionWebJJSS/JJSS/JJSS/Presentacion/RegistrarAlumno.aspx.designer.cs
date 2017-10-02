@@ -472,6 +472,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.CompareValidator menor_dni0;
         
         /// <summary>
+        /// Control txt_filtro_apellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
+        
+        /// <summary>
         /// Control btn_buscar_alumno.
         /// </summary>
         /// <remarks>

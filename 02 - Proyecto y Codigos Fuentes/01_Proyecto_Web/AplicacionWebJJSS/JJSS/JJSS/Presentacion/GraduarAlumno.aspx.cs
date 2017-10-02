@@ -33,14 +33,14 @@ namespace JJSS.Presentacion
                         }
                         if (permiso != 1)
                         {
-                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 }
                 gestorTipo = new GestorTipoClase();
@@ -60,7 +60,7 @@ namespace JJSS.Presentacion
             int tipoClase = 0;
             int.TryParse(rb_tipo_clase.SelectedValue, out tipoClase);
             List<Object> lista = new List<Object>();
-
+            
             if (tipoClase == 0)
             {
                 gestorGraduacion = new GestorGraduacion();
@@ -71,8 +71,6 @@ namespace JJSS.Presentacion
                 gestorGraduacion = new GestorGraduacion();
                 lista = gestorGraduacion.buscarFajasAlumnosConFiltro(tipoClase);
             }
-
-
 
             gv_graduacion.DataSource = lista;
 

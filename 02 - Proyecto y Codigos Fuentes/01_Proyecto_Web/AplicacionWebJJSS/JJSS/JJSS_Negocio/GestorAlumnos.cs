@@ -175,37 +175,19 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public List<Object> BuscarAlumnoPorDni(int pDni)
+        public List<alumno> BuscarAlumno()
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
             {
                 try
                 {
-                    if (pDni == 0) //sin filtro
-                    {
-                        var alumnosPorApellido = from alumno in db.alumno
-                                                 where alumno.baja_logica==1
-                                                 select new
-                                                 {
-                                                     alu_nombre = alumno.nombre,
-                                                     alu_apellido = alumno.apellido,
-                                                     alu_dni = alumno.dni,
-                                                 };
-                        return alumnosPorApellido.ToList<Object>();
-                    }
-                    else //con filtro de apellido
-                    {
-                        var alumnosPorApellido = from alumno in db.alumno
-                                                 where alumno.dni == pDni && alumno.baja_logica == 1
-                                                 select new
-                                                 {
-                                                     alu_nombre = alumno.nombre,
-                                                     alu_apellido = alumno.apellido,
-                                                     alu_dni = alumno.dni,
-                                                 };
-                        return alumnosPorApellido.ToList<Object>();
-                    }
+                    var alumnosPorApellido = from alumno in db.alumno
+                                                 where alumno.baja_logica == 1
+                                                 orderby alumno.apellido
+                                                 select alumno;
+                        return alumnosPorApellido.ToList<alumno>();
+                    
 
                 }
                 catch (Exception ex)

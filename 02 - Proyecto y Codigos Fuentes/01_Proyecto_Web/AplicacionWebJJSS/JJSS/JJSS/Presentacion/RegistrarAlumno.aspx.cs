@@ -31,13 +31,13 @@ namespace JJSS.Presentacion
             //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
             //    if (sesionActiva.estado != "INGRESO ACEPTADO")
             //    {
-            //        Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+            //        Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
             //    }
             //}
             //catch (Exception ex)
             //{
-            //    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+            //    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
             //}
 
@@ -49,30 +49,30 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
-                try
-                {
-                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-                    if (sesionActiva.estado == "INGRESO ACEPTADO")
-                    {
-                        int permiso = 0;
-                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_CREACION'");
-                        if (drsAux.Length > 0)
-                        {
-                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                //try
+                //{
+                //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                //    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                //    {
+                //        int permiso = 0;
+                //        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_CREACION'");
+                //        if (drsAux.Length > 0)
+                //        {
+                //            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
 
-                        }
-                        if (permiso != 1)
-                        {
-                            Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                //        }
+                //        if (permiso != 1)
+                //        {
+                //            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                //        }
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
-                }
+                //}
 
                 //CargarComboCiudades(1);
                 CargarComboProvincias();
@@ -248,9 +248,19 @@ namespace JJSS.Presentacion
         {
             int dni = 0;
             if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
-            string orden = ViewState["gvDatosOrden"].ToString();
+            List<alumno> listaCompleta = gestorAlumnos.BuscarAlumno();
+            List<alumno> listaConFiltro = new List<alumno>();
+            string filtroApellido = txt_filtro_apellido.Text.ToUpper();
 
-            gvAlumnos.DataSource = gestorAlumnos.BuscarAlumnoPorDni(dni);
+            foreach (alumno i in listaCompleta)
+            {
+                string apellido = i.apellido.ToUpper();
+                if (dni == 0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
+
+                if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
+            }
+
+            gvAlumnos.DataSource = listaConFiltro;
             gvAlumnos.DataBind();
         }
 

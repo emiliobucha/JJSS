@@ -17,7 +17,6 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tipo_clase()
         {
-            this.asistencia_clase = new HashSet<asistencia_clase>();
             this.categoria = new HashSet<categoria>();
             this.clase = new HashSet<clase>();
             this.faja = new HashSet<faja>();
@@ -27,8 +26,6 @@ namespace JJSS_Entidad
         public int id_tipo_clase { get; set; }
         public string nombre { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<asistencia_clase> asistencia_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<categoria> categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

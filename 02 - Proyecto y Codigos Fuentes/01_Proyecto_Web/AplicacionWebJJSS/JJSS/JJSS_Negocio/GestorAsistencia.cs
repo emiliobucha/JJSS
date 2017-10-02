@@ -20,10 +20,10 @@ namespace JJSS_Negocio
          * Retorno:     entero - 0: no se esta dando ninguna clase
          *                      >0 : ID de la clase actual
          */
-        public int buscarTipoClaseSegunHoraActual(int pIdUbicacion)
+        public clase buscarClaseSegunHoraActual(int pIdUbicacion)
         {
             gestorClases = new GestorClases();
-            return gestorClases.buscarTipoClaseSegunHoraActual(pIdUbicacion);
+            return gestorClases.buscarClaseSegunHoraActual(pIdUbicacion);
         }
 
         /*
@@ -62,7 +62,7 @@ namespace JJSS_Negocio
          * Retornos: "" Transaccion correcta de la BD
          *           ex.Message: mensaje de error en la BD
          */
-        public string registrarAsistencia(int pIdAlumno, int pIdTipoClase)
+        public string registrarAsistencia(int pIdAlumno, int pIDClase)
         {
             DateTime fechaActual = DateTime.Now;
             try
@@ -74,7 +74,7 @@ namespace JJSS_Negocio
                     nuevaAsistencia = new asistencia_clase
                     {
                         id_alumno = pIdAlumno,
-                        id_tipo_clase = pIdTipoClase,
+                        id_clase = pIDClase,
                         fecha_hora = fechaActual
                     };
                     db.asistencia_clase.Add(nuevaAsistencia);
