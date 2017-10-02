@@ -548,6 +548,32 @@
                 </div>
             </div>
 
+
+
+            <!--APARTADO DE TIENDA -->
+            <div class="container" id="Div4" runat="server">
+                <div class="row mt centered">
+                    <h1>TIENDA</h1>
+
+                    <!--col agregar_productos-->
+                    <div class="col-lg-4 proc" id="Div5" runat="server">
+                        <i class="fa fa-pencil"></i>
+                        <h3 class="logo"><a href="../Presentacion/AgregarProducto.aspx" style="color: #000000">Dar de alta productos</a> </h3>
+                        <p>Puedes registrar nuevos productos para que luego sean mostrados en la tienda.</p>
+                    </div>
+                    <!--/col-->
+
+                    <!--col agregar_productos-->
+                    <div class="col-lg-4 proc" id="Div6" runat="server">
+                        <i class="fa fa-eye"></i>
+                        <h3 class="logo"><a href="" style="color: #000000">Ver los productos</a> </h3>
+                        <p>Puedes ver los productos disponibles para la reserva.</p>
+                    </div>
+                    <!--/col-->
+
+                </div>
+            </div>
+
         </div>
         <!--/Portfoliowrap -->
 

@@ -59,20 +59,34 @@ namespace JJSS.Presentacion
         {
             int tipoClase = 0;
             int.TryParse(rb_tipo_clase.SelectedValue, out tipoClase);
+            DataTable dtCompleta=new DataTable();
+            DataTable dtConFiltro = new DataTable();
+            
             List<Object> lista = new List<Object>();
             
             if (tipoClase == 0)
             {
                 gestorGraduacion = new GestorGraduacion();
-                lista = gestorGraduacion.buscarFajasAlumnos();
+                dtCompleta = gestorGraduacion.buscarFajasAlumnos();
             }
             else
             {
                 gestorGraduacion = new GestorGraduacion();
-                lista = gestorGraduacion.buscarFajasAlumnosConFiltro(tipoClase);
+                dtCompleta = gestorGraduacion.buscarFajasAlumnosConFiltro(tipoClase);
+            }
+            dtConFiltro= dtCompleta.Clone();
+            string filtroApellido = txt_filtro_apellido.Text.ToUpper().Trim();
+
+            for (int i =0; i < dtCompleta.Rows.Count; i++)
+            {
+                DataRow dr = dtCompleta.Rows[i];
+                if (dr["apellido"].ToString().ToUpper().StartsWith(filtroApellido))
+                {
+                    dtConFiltro.ImportRow(dr);
+                };
             }
 
-            gv_graduacion.DataSource = lista;
+            gv_graduacion.DataSource = dtConFiltro;
 
 
             gv_graduacion.DataBind();
@@ -116,7 +130,7 @@ namespace JJSS.Presentacion
                     DataRow dr = dt.NewRow();
                     dr["idAlumno"] = idAlu;
                     dr["grados"] = grados;
-                    dr["tipoClase"] = gv_graduacion.Rows[i].Cells[1].Text;
+                    dr["tipoClase"] = gv_graduacion.Rows[i].Cells[2].Text;
                     dt.Rows.Add(dr);
                     dt.AcceptChanges();
 
@@ -155,6 +169,12 @@ namespace JJSS.Presentacion
 
         protected void btn_buscar_Click(object sender, EventArgs e)
         {
+            cargarGrilla();
+        }
+
+        protected void gv_graduacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gv_graduacion.PageIndex = e.NewPageIndex;
             cargarGrilla();
         }
     }

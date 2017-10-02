@@ -299,20 +299,20 @@
                                 <asp:CompareValidator ID="menor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="DNI demasiado largo" Operator="LessThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="2147483647"></asp:CompareValidator>
                                 <strong>Apellido</strong>
                                 <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
-                                
+                                 <asp:RegularExpressionValidator ID="regex_apellido_filtro" runat="server" ControlToValidate="txt_filtro_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
                                 
                                 <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar alumnos" OnClick="btn_buscar_alumno_Click" ValidationGroup="vgFiltro" CssClass="btn btn-default" />
 
                                 <asp:Button ID="btn_registro" runat="server" CausesValidation="false" CssClass="btn btn-default" OnClick="btn_registro_Click" Text="Volver a registrar" />
 
-                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand">
+                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
-                                        <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
+                                        <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
-                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" />
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" />
-                                        <asp:ButtonField CommandName="pago" Text="Registrar pago" />
+                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
+                                        <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />

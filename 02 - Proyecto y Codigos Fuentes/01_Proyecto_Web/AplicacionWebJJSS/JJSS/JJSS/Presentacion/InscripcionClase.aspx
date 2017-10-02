@@ -132,18 +132,22 @@
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
-                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand">
+                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
-                                        <asp:ButtonField CommandName="inscribir" Text="Inscribir" />
+                                        <asp:ButtonField CommandName="inscribir" Text="Inscribir" HeaderText="Inscribir" />
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
                                 </asp:GridView>
 
                             </div>
+                        </div>
+
+                        <div>
+                            <asp:Button ID="btn_registrar_alumno" CssClass="btn btn-default btn-link" ForeColor="Black" Font-Bold="true" runat="server" Text="Registrar nuevo alumno" CausesValidation="false" OnClick="btn_registrar_alumno_Click"/>
                         </div>
                     </asp:Panel>
 

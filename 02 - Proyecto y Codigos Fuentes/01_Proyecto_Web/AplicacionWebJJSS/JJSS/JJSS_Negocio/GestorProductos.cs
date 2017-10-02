@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
+using System.Data;
 
 namespace JJSS_Negocio
 {
@@ -67,19 +68,20 @@ namespace JJSS_Negocio
         /*
          * Metodo que obtiene una lista con todos los productos y su categoria
          */
-        public List<Object> ObtenerProductos()
+        public DataTable ObtenerProductos()
         {
             using (var db = new JJSSEntities())
             {
                 var productosEncontrados = from prod in db.producto
                                            join cat in db.categoria_producto on prod.id_categoria equals cat.id_categoria
+                                           orderby prod.nombre
                                            select new
                                            {
                                                nombre = prod.nombre,
                                                categoria = cat.nombre,
                                                stock = prod.stock,
                                            };
-                return productosEncontrados.ToList<Object>();
+                return modUtilidadesTablas.ToDataTable(productosEncontrados.ToList());
             }
         }
 

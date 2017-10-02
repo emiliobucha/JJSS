@@ -103,6 +103,10 @@ namespace JJSS.Presentacion
             }
         }
 
-
+        protected void gvClases_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvClases.PageIndex = e.NewPageIndex;
+            cargarClases();
+        }
     }
 }

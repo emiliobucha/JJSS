@@ -466,7 +466,7 @@ namespace JJSS_Negocio
                 TimeSpan horaDesde = TimeSpan.Parse( dr["desde"].ToString());
                 if (horaActual > horaDesde.Subtract(TimeSpan.FromMinutes(15)) && horaActual<= horaDesde.Add(TimeSpan.FromMinutes(45)))
                 {
-                    idClase = int.Parse(dr["tipoClase"].ToString());
+                    idClase = int.Parse(dr["idClase"].ToString());
                     break;
                 }
             }
@@ -513,7 +513,7 @@ namespace JJSS_Negocio
                                         join ins in db.inscripcion_clase on clases.id_clase equals ins.id_clase
                                         where clases.baja_logica == 1
                                           && ins.id_alumno == pIdAlumno
-
+                                          orderby clases.nombre
                                         select new
                                         {
                                             id_clase = clases.id_clase,

@@ -16,7 +16,7 @@ namespace JJSS_Negocio
          * Retorno: Lista de object  -  apellido y nombre del alumno, faja, fecha de ultima graduacion, tipo de clase, id de alumno
          * 
          */
-        public List<Object> buscarFajasAlumnos()
+        public DataTable buscarFajasAlumnos()
         {
             using (var db = new JJSSEntities())
             {
@@ -28,14 +28,15 @@ namespace JJSS_Negocio
                                  orderby alu.apellido
                                  select new
                                  {
-                                     alumno = alu.apellido + ", " + alu.nombre,
+                                     apellido = alu.apellido,
+                                     nombre= alu.nombre,
                                      faja = faj.descripcion,
                                      fecha = axf.fecha,
                                      tipo = tip.nombre,
                                      idAlu = alu.id_alumno
                                  };
-                List<Object> lista = graduacion.ToList<Object>();
-                return lista;
+                
+                return modUtilidadesTablas.ToDataTable(graduacion.ToList());
             }
         }
 
@@ -47,7 +48,7 @@ namespace JJSS_Negocio
          * 
          */
 
-        public List<Object> buscarFajasAlumnosConFiltro( int pIdTipoClase)
+        public DataTable buscarFajasAlumnosConFiltro( int pIdTipoClase)
         {
             using (var db = new JJSSEntities())
             {
@@ -59,14 +60,14 @@ namespace JJSS_Negocio
                                  orderby alu.apellido
                                  select new
                                  {
-                                     alumno = alu.apellido + ", " + alu.nombre,
+                                     apellido = alu.apellido,
+                                     nombre= alu.nombre,
                                      faja = faj.descripcion,
                                      fecha = axf.fecha,
                                      tipo = tip.nombre,
                                      idAlu = alu.id_alumno
                                  };
-                List<Object> lista = graduacion.ToList<Object>();
-                return lista;
+                return modUtilidadesTablas.ToDataTable(graduacion.ToList());
             }
         }
 

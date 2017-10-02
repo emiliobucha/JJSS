@@ -70,13 +70,14 @@
                     </div>
                 </div>
 
-                <asp:GridView ID="gv_graduacion" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="idAlu" EmptyDataText="No existen elementos para esta selección">
+                <asp:GridView ID="gv_graduacion" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="idAlu" EmptyDataText="No existen elementos para esta selección" AllowPaging="True" OnPageIndexChanging="gv_graduacion_PageIndexChanging" PageSize="20">
                     <Columns>
-                        <asp:BoundField DataField="alumno" HeaderText="Alumno" />
+                        <asp:BoundField DataField="apellido" HeaderText="Apellido" />
+                        <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="tipo" HeaderText="Disciplina" />
                         <asp:BoundField DataField="faja" HeaderText="Faja Actual" />
                         <asp:BoundField DataField="fecha" HeaderText="Fecha de Última Graduación" />
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="Grados a aumentar" HeaderStyle-HorizontalAlign="Center">
                             <ItemTemplate>
                                 <asp:TextBox ID="txt_grados" runat="server" CssClass="caja2" Text="0" TextMode="Number"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="requeridoGrados" runat="server" ErrorMessage="Debe ingresar la cantidad de grados" ValidationGroup="vg_grados" Display="Dynamic" CssClass="text text-danger" ControlToValidate="txt_grados"></asp:RequiredFieldValidator>

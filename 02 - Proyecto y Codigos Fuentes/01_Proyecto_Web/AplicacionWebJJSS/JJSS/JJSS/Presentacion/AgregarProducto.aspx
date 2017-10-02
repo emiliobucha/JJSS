@@ -3,8 +3,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
-</asp:Content>
+
 
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
     <section id="inscripcionTorneo" title="inscripcionTorneo"></section>
@@ -42,20 +41,20 @@
         <div class="row centered">
             <p>&nbsp;</p>
         </div>
-    <asp:Button ID="btn_formulario" runat="server" CssClass="btn btn-default" Text="Agregar Productos" CausesValidation="false" OnClick="btn_formulario_Click" />
-    <asp:Button ID="btn_grilla" runat="server" CssClass="btn btn-default" Text="Ver Productos" CausesValidation="false" OnClick="btn_grilla_Click" />
+        <asp:Button ID="btn_formulario" runat="server" CssClass="btn btn-default" Text="Agregar Productos" CausesValidation="false" OnClick="btn_formulario_Click" />
+        <asp:Button ID="btn_grilla" runat="server" CssClass="btn btn-default" Text="Ver Productos" CausesValidation="false" OnClick="btn_grilla_Click" />
 
-    <asp:MultiView ID="MultiView1" runat="server">
-        <asp:View ID="view_formulario" runat="server">
-            <asp:Panel ID="pnlFormulario" runat="server">
-                <div id="agregarProductoswrap">
-                    <div class="container">
-                        <div class="row mt centered">
-                            <div>
-                                <asp:Label ID="lbl_agregar_prodcutos" runat="server" Text="AGREGAR PRODUCTOS" Font-Size="XX-Large"></asp:Label>
-                            </div>
+        <asp:MultiView ID="MultiView1" runat="server">
+            <asp:View ID="view_formulario" runat="server">
+                <asp:Panel ID="pnlFormulario" runat="server">
+                    <div id="agregarProductoswrap">
+                        <div class="container">
+                            <div class="row mt centered">
+                                <div>
+                                    <asp:Label ID="lbl_agregar_prodcutos" runat="server" Text="AGREGAR PRODUCTOS" Font-Size="XX-Large"></asp:Label>
+                                </div>
 
-                            
+
                                 <div class="form-group ">
                                     <div class="row centered">
                                         <p>&nbsp;</p>
@@ -127,33 +126,67 @@
 
 
                                 </div>
-                            
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
-        </asp:View>
+                </asp:Panel>
+            </asp:View>
 
-        <asp:View ID="view_grilla" runat="server">
+            <asp:View ID="view_grilla" runat="server">
 
-            <div class="row mt centered">
-                <div>
+                <div class="row mt centered">
+                    <p>&nbsp;</p>
                     <asp:Label ID="lbl_grilla" runat="server" Text="VER PRODUCTOS" Font-Size="XX-Large"></asp:Label>
+                    <p>&nbsp;</p>
+                    <div class="col-md-2"><strong>Nombre</strong></div>
+                    <div class="col-md-3">
+                        <asp:TextBox ID="txt_filtro_nombre" runat="server" CssClass="caja2"></asp:TextBox>
+                        <asp:RegularExpressionValidator ID="caracteres_nombre_filtro" runat="server" ControlToValidate="txt_filtro_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
+                    </div>
 
-                    <asp:GridView ID="gv_productos" CssClass="table" AllowPaging="True" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="gv_productos_PageIndexChanging" PageSize="20">
-                        <Columns>
-                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                            <asp:BoundField DataField="categoria" HeaderText="Categoria" />
-                            <asp:BoundField DataField="stock" HeaderText="Stock Disponible" />
-                        </Columns>
-                    </asp:GridView>
+                    <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btn_buscar_Click" ValidationGroup="vgFiltro" />
                 </div>
-            </div>
-        </asp:View>
+
+                <div class="row mt centered">
+                    <div>
 
 
-    </asp:MultiView>
+                        <asp:GridView ID="gv_productos" CssClass="table" EmptyDataText="No hay productos para mostrar" AllowPaging="True" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="gv_productos_PageIndexChanging" PageSize="20">
+                            <Columns>
+                                <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                <asp:BoundField DataField="categoria" HeaderText="Categoria" />
+                                <asp:BoundField DataField="stock" HeaderText="Stock Disponible" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+            </asp:View>
+
+
+        </asp:MultiView>
     </form>
 
+
+</asp:Content>
+<asp:Content ID="cphP" ContentPlaceHolderID="cphP" runat="server">
+
+    <script type="text/javascript">
+        function previewFile() {
+            var preview = document.querySelector('#<%=Avatar.ClientID %>');
+            var file = document.querySelector('#<%=avatarUpload.ClientID %>').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
 
 </asp:Content>

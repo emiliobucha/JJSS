@@ -60,7 +60,7 @@
                                             <!--Boton-->
                                             <div class="row centered">
 
-                                                <asp:GridView ID="gvClases" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_clase" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay clases para mostrar" OnRowCommand="gvClases_RowCommand">
+                                                <asp:GridView ID="gvClases" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_clase" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay clases para mostrar" OnRowCommand="gvClases_RowCommand" AllowPaging="True" OnPageIndexChanging="gvClases_PageIndexChanging" PageSize="20">
                                                     <Columns>
                                                       <%--  <asp:BoundField DataField="id_clase" HeaderText="ID de clase" />--%>
                                                         <asp:BoundField DataField="nombre" HeaderText="Clase" />
@@ -68,7 +68,7 @@
                                                         <asp:BoundField DataField="ubicacion" HeaderText="Ubicación" />
                                                         <asp:BoundField DataField="profesor" HeaderText="Profesor" />
                                                         <asp:BoundField DataField="precio" HeaderText="Precio" />
-                                                        <asp:ButtonField CommandName="pago" Text="Registrar pago" />
+                                                        <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />
                                                     </Columns>
                                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                                    

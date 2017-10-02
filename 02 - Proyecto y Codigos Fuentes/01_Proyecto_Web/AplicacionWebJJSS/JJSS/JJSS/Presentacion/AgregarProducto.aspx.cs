@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JJSS_Negocio;
 using JJSS_Entidad;
 using System.IO;
+using System.Data;
 
 
 namespace JJSS.Presentacion
@@ -17,7 +18,6 @@ namespace JJSS.Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 gestorProductos = new GestorProductos();
@@ -25,6 +25,8 @@ namespace JJSS.Presentacion
                 MultiView1.SetActiveView(view_formulario);
                 btn_formulario.CssClass = "btn btn-info";
                 btn_grilla.CssClass = "btn btn-default";
+                gv_productos.AllowPaging = true;
+                gv_productos.PageSize = 20;
             }
         }
 
@@ -117,7 +119,25 @@ namespace JJSS.Presentacion
         protected void CargarGrilla()
         {
             gestorProductos = new GestorProductos();
-            gv_productos.DataSource = gestorProductos.ObtenerProductos();
+            DataTable dtCompleta = new DataTable();
+            DataTable dtConFiltro = new DataTable();
+
+
+            dtCompleta = gestorProductos.ObtenerProductos();
+
+            dtConFiltro = dtCompleta.Clone();
+            string filtroNombre = txt_filtro_nombre.Text.ToUpper().Trim();
+
+            for (int i = 0; i < dtCompleta.Rows.Count; i++)
+            {
+                DataRow dr = dtCompleta.Rows[i];
+                if (dr["nombre"].ToString().ToUpper().StartsWith(filtroNombre))
+                {
+                    dtConFiltro.ImportRow(dr);
+                };
+            }
+
+            gv_productos.DataSource = dtConFiltro;
             gv_productos.DataBind();
         }
 
@@ -126,5 +146,11 @@ namespace JJSS.Presentacion
             gv_productos.PageIndex = e.NewPageIndex;
             CargarGrilla();
         }
+
+        protected void btn_buscar_Click(object sender, EventArgs e)
+        {
+            CargarGrilla();
+        }
+
     }
 }

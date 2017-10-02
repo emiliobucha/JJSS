@@ -323,5 +323,10 @@ namespace JJSS.Presentacion
         {
             CargarGrilla();
         }
+
+        protected void btn_registrar_alumno_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RegistrarAlumno.aspx");
+        }
     }
 }

@@ -295,18 +295,23 @@
                                 <asp:TextBox ID="txt_filtro_dni" runat="server"></asp:TextBox>
                                 <asp:CompareValidator ID="mayor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="El DNI debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="0"></asp:CompareValidator>
                                 <asp:CompareValidator ID="menor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="DNI demasiado largo" Operator="LessThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="2147483647"></asp:CompareValidator>
+                                <strong>Apellido</strong>
+                                <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
+                                 <asp:RegularExpressionValidator ID="regex_apellido_filtro" runat="server" ControlToValidate="txt_filtro_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
+                                
+                                
                                 <asp:Button ID="btn_buscar_profe" runat="server" Text="Buscar profesores" OnClick="btn_buscar_profe_Click" ValidationGroup="vgFiltro" CssClass="btn btn-default" />
 
                                 <asp:Button ID="btn_registro" runat="server" CausesValidation="false" CssClass="btn btn-default" OnClick="btn_registro_Click" Text="Volver a registrar" />
 
-                                <asp:GridView ID="gvprofes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvprofes_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay profes para mostrar" OnRowCommand="gvprofes_RowCommand">
+                                <asp:GridView ID="gvprofes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvprofes_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay profes para mostrar" OnRowCommand="gvprofes_RowCommand">
                                     <Columns>
-
-                                        <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
-                                        <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
-                                        <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" />
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" />
+                                        <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
+                                        <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
+                                        <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
+                                        
+                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
                                     </Columns>
                                 </asp:GridView>
 

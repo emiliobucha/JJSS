@@ -60,7 +60,6 @@ namespace JJSS.Presentacion
 
                 //CargarComboCiudades(1);
                 CargarComboProvincias();
-                ViewState["gvAlumnosOrden"] = "dni";
                 gvprofes.AllowPaging = true;
                 gvprofes.AutoGenerateColumns = false;
                 gvprofes.PageSize = 20;
@@ -228,8 +227,20 @@ namespace JJSS.Presentacion
         {
             int dni = 0;
             if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
+            List<profesor> listaCompleta = gestorProfes.ObtenerProfesores();
+            List<profesor> listaConFiltro = new List<profesor>();
 
-            gvprofes.DataSource = gestorProfes.BuscarProfePorDni(dni);
+            string filtroApellido = txt_filtro_apellido.Text.ToUpper();
+
+            foreach (profesor i in listaCompleta)
+            {
+                string apellido = i.apellido.ToUpper();
+                if (dni == 0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
+
+                if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
+            }
+
+            gvprofes.DataSource = listaConFiltro;
             gvprofes.DataBind();
         }
 

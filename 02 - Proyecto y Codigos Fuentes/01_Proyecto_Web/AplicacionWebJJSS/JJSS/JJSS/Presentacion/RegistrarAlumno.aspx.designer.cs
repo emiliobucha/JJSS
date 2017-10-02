@@ -481,6 +481,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
         
         /// <summary>
+        /// Control regex_apellido_filtro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_apellido_filtro;
+        
+        /// <summary>
         /// Control btn_buscar_alumno.
         /// </summary>
         /// <remarks>
