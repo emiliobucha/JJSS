@@ -38,9 +38,9 @@ namespace JJSS_Negocio
                 {
                     producto nuevoProducto = new producto()
                     {
-                        nombre=pNombre,
-                        id_categoria=pIDCategoria,
-                        stock=0,
+                        nombre = pNombre,
+                        id_categoria = pIDCategoria,
+                        stock = 0,
                     };
                     db.producto.Add(nuevoProducto);
                     db.SaveChanges();
@@ -97,8 +97,10 @@ namespace JJSS_Negocio
                                            join img in db.producto_imagen on prod.id_producto equals img.id_producto
                                            into ps
                                            from img in ps.DefaultIfEmpty()
+                                           where prod.stock>0
                                            select new
                                            {
+                                               id_producto = prod.id_producto,
                                                categoria = cat.nombre,
                                                nombre = prod.nombre,
                                                stock = prod.stock,
@@ -106,6 +108,58 @@ namespace JJSS_Negocio
                                                imagen = img.imagen,
                                            };
                 return productosEncontrados.ToList<Object>();
+            }
+        }
+
+        public String ConfirmarReserva(int pIDUsuario, List<int> pItems)
+        {
+            DateTime fechaActual = DateTime.Now;
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    reserva nuevaReserva = new reserva()
+                    {
+                        fecha = fechaActual,
+                        id_usuario = pIDUsuario,
+
+                    };
+                    db.reserva.Add(nuevaReserva);
+                    db.SaveChanges();
+
+                    foreach (int i in pItems)
+                    {
+
+                        producto productoSeleccionado = db.producto.Find(i);
+
+                        detalle_reserva detalle = new detalle_reserva()
+                        {
+                            id_producto = productoSeleccionado.id_producto,
+                            precio = productoSeleccionado.precio_venta,
+                            id_reserva = nuevaReserva.id_reserva,
+                            cantidad = 1
+                        };
+                        db.detalle_reserva.Add(detalle);
+                        db.SaveChanges();
+
+                        
+                        if (productoSeleccionado.stock <= 0) throw new Exception("El producto no tiene stock suficiente");
+                        else
+                        {//+suponiendo que puede comprar solo uno
+                            productoSeleccionado.stock--;
+                            db.SaveChanges();
+                        }
+
+                    }
+                    transaction.Commit();
+                    return "";
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
             }
         }
     }

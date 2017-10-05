@@ -262,6 +262,7 @@
           <Property Name="id_parametro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="40" />
           <Property Name="valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="participante">
           <Key>
@@ -338,7 +339,7 @@
             <PropertyRef Name="id_reserva" />
           </Key>
           <Property Name="id_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_alumno" Type="int" />
+          <Property Name="id_usuario" Type="int" />
           <Property Name="fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="resultado">
@@ -1053,15 +1054,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_reserva_alumno">
-          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
+        <Association Name="FK_reserva_usuario">
+          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
           <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="alumno">
-              <PropertyRef Name="id_alumno" />
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
             </Principal>
             <Dependent Role="reserva">
-              <PropertyRef Name="id_alumno" />
+              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1360,8 +1361,8 @@
             <End Role="pais" EntitySet="pais" />
             <End Role="provincia" EntitySet="provincia" />
           </AssociationSet>
-          <AssociationSet Name="FK_reserva_alumno" Association="Self.FK_reserva_alumno">
-            <End Role="alumno" EntitySet="alumno" />
+          <AssociationSet Name="FK_reserva_usuario" Association="Self.FK_reserva_usuario">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="reserva" EntitySet="reserva" />
           </AssociationSet>
           <AssociationSet Name="FK_torneo_imagen_id_torneo" Association="Self.FK_torneo_imagen_id_torneo">
@@ -1421,7 +1422,6 @@
           <NavigationProperty Name="inscripcion_clase" Relationship="Self.FK_inscripcion_clase_id_alumno" FromRole="alumno" ToRole="inscripcion_clase" />
           <NavigationProperty Name="pago_clase" Relationship="Self.FK_pagoclase_id_alumno" FromRole="alumno" ToRole="pago_clase" />
           <Property Name="baja_logica" Type="Int16" />
-          <NavigationProperty Name="reserva" Relationship="JJSSModel.FK_reserva_alumno" FromRole="alumno" ToRole="reserva" />
         </EntityType>
         <EntityType Name="alumno_imagen">
           <Key>
@@ -1652,6 +1652,7 @@
           <Property Name="id_parametro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="valor" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="participante">
           <Key>
@@ -1775,6 +1776,7 @@
           <NavigationProperty Name="profesor" Relationship="Self.FK_profesor_id_usuario" FromRole="seguridad_usuario" ToRole="profesor" />
           <NavigationProperty Name="seguridad_usuarioxgrupo" Relationship="Self.fk_usuarioxgrupo_id_usuario" FromRole="seguridad_usuario" ToRole="seguridad_usuarioxgrupo" />
           <Property Name="baja_logica" Type="Int16" />
+          <NavigationProperty Name="reserva" Relationship="JJSSModel.FK_reserva_usuario" FromRole="seguridad_usuario" ToRole="reserva" />
         </EntityType>
         <EntityType Name="seguridad_usuarioxgrupo">
           <Key>
@@ -2560,10 +2562,6 @@
           <EntitySet Name="producto" EntityType="JJSSModel.producto" />
           <EntitySet Name="proveedor" EntityType="JJSSModel.proveedor" />
           <EntitySet Name="reserva" EntityType="JJSSModel.reserva" />
-          <AssociationSet Name="FK_reserva_alumno" Association="JJSSModel.FK_reserva_alumno">
-            <End Role="alumno" EntitySet="alumno" />
-            <End Role="reserva" EntitySet="reserva" />
-          </AssociationSet>
           <AssociationSet Name="FK_compra_proveedor" Association="JJSSModel.FK_compra_proveedor">
             <End Role="proveedor" EntitySet="proveedor" />
             <End Role="compra" EntitySet="compra" />
@@ -2604,6 +2602,10 @@
           <AssociationSet Name="FK_asistencia_clase" Association="JJSSModel.FK_asistencia_clase">
             <End Role="clase" EntitySet="clase" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reserva_usuario" Association="JJSSModel.FK_reserva_usuario">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="reserva" EntitySet="reserva" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_inscripcion_clase">
@@ -2702,24 +2704,12 @@
             <PropertyRef Name="id_reserva" />
           </Key>
           <Property Name="id_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_alumno" Type="Int32" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="alumno" Relationship="JJSSModel.FK_reserva_alumno" FromRole="reserva" ToRole="alumno" />
           <NavigationProperty Name="detalle_reserva" Relationship="JJSSModel.FK_detallereserva_reserva" FromRole="reserva" ToRole="detalle_reserva" />
           <NavigationProperty Name="estado_reserva" Relationship="JJSSModel.FK_estadoreserva_reserva" FromRole="reserva" ToRole="estado_reserva" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="seguridad_usuario" Relationship="JJSSModel.FK_reserva_usuario" FromRole="reserva" ToRole="seguridad_usuario" />
         </EntityType>
-        <Association Name="FK_reserva_alumno">
-          <End Type="JJSSModel.alumno" Role="alumno" Multiplicity="0..1" />
-          <End Type="JJSSModel.reserva" Role="reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="alumno">
-              <PropertyRef Name="id_alumno" />
-            </Principal>
-            <Dependent Role="reserva">
-              <PropertyRef Name="id_alumno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_compra_proveedor">
           <End Type="JJSSModel.proveedor" Role="proveedor" Multiplicity="0..1" />
           <End Type="JJSSModel.compra" Role="compra" Multiplicity="*" />
@@ -2848,6 +2838,18 @@
             </Principal>
             <Dependent Role="asistencia_clase">
               <PropertyRef Name="id_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reserva_usuario">
+          <End Type="JJSSModel.seguridad_usuario" Role="seguridad_usuario" Multiplicity="0..1" />
+          <End Type="JJSSModel.reserva" Role="reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3084,6 +3086,7 @@
           <EntitySetMapping Name="parametro">
             <EntityTypeMapping TypeName="JJSSModel.parametro">
               <MappingFragment StoreEntitySet="parametro">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="id_parametro" ColumnName="id_parametro" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="valor" ColumnName="valor" />
@@ -3318,8 +3321,8 @@
           <EntitySetMapping Name="reserva">
             <EntityTypeMapping TypeName="JJSSModel.reserva">
               <MappingFragment StoreEntitySet="reserva">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
               </MappingFragment>
             </EntityTypeMapping>
