@@ -97,7 +97,7 @@ namespace JJSS_Negocio
                                            join img in db.producto_imagen on prod.id_producto equals img.id_producto
                                            into ps
                                            from img in ps.DefaultIfEmpty()
-                                           where prod.stock>0
+                                           where prod.stock > 0
                                            select new
                                            {
                                                id_producto = prod.id_producto,
@@ -111,7 +111,11 @@ namespace JJSS_Negocio
             }
         }
 
-        public String ConfirmarReserva(int pIDUsuario, List<int> pItems)
+
+        /*
+         * Metodo que reserva los productos seleccionados para un usuario
+         */
+        public String ConfirmarReserva(int pIDUsuario, DataTable pItems)
         {
             DateTime fechaActual = DateTime.Now;
             using (var db = new JJSSEntities())
@@ -128,26 +132,29 @@ namespace JJSS_Negocio
                     db.reserva.Add(nuevaReserva);
                     db.SaveChanges();
 
-                    foreach (int i in pItems)
+                    for (int i = 0; i < pItems.Rows.Count; i++)
                     {
+                        DataRow dr = pItems.Rows[i];
+                        int cantidad = int.Parse(dr["cantidad"].ToString());
 
-                        producto productoSeleccionado = db.producto.Find(i);
+                        producto productoSeleccionado = db.producto.Find((int)dr["id_producto"]);
+
 
                         detalle_reserva detalle = new detalle_reserva()
                         {
                             id_producto = productoSeleccionado.id_producto,
                             precio = productoSeleccionado.precio_venta,
                             id_reserva = nuevaReserva.id_reserva,
-                            cantidad = 1
+                            cantidad =cantidad,
                         };
                         db.detalle_reserva.Add(detalle);
                         db.SaveChanges();
 
-                        
-                        if (productoSeleccionado.stock <= 0) throw new Exception("El producto no tiene stock suficiente");
+
+                        if (productoSeleccionado.stock <= 0|| productoSeleccionado.stock< cantidad) throw new Exception(productoSeleccionado.nombre+" no tiene stock suficiente");
                         else
                         {//+suponiendo que puede comprar solo uno
-                            productoSeleccionado.stock--;
+                            productoSeleccionado.stock= productoSeleccionado.stock- cantidad;
                             db.SaveChanges();
                         }
 
@@ -160,6 +167,21 @@ namespace JJSS_Negocio
                     transaction.Rollback();
                     return ex.Message;
                 }
+            }
+        }
+
+        /*
+         * Devuelve un Datatable con los datos del producto cuyo id se pasa por parametro
+         */
+        public DataTable ObtenerProductoConID(int pIdProducto)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var prod = from pr in db.producto
+                           where pr.id_producto == pIdProducto
+                           select pr;
+
+                return modUtilidadesTablas.ToDataTable(prod.ToList());
             }
         }
     }
