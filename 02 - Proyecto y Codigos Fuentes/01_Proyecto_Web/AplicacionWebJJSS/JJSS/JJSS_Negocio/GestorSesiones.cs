@@ -102,7 +102,7 @@ namespace JJSS_Negocio
                         {
                             var Lista = permisosUsuario.ToList();
 
-                            sesionAux.permisos = modUtilidadesTablas.ToDataTable(permisosUsuario.ToList());
+                            sesionAux.permisos = permisosUsuario.ToList().ToDataTable();
                         }
                         catch (Exception ex)
                         {
@@ -176,14 +176,7 @@ namespace JJSS_Negocio
          */
         public Sesion getActual()
         {
-            if (xSesion == null)
-            {
-                xSesion = new Sesion();
-
-            }
-            return xSesion;
-
-
+            return xSesion ?? (xSesion = new Sesion());
         }
 
 
