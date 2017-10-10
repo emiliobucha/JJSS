@@ -566,7 +566,7 @@
                     <!--col agregar_productos-->
                     <div class="col-lg-4 proc" id="Div6" runat="server">
                         <i class="fa fa-eye"></i>
-                        <h3 class="logo"><a href="" style="color: #000000">Ver los productos</a> </h3>
+                        <h3 class="logo"><a href="../Presentacion/Tienda" style="color: #000000">Entrar a la tienda</a> </h3>
                         <p>Puedes ver los productos disponibles para la reserva.</p>
                     </div>
                     <!--/col-->

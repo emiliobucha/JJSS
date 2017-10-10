@@ -17,5 +17,6 @@ namespace JJSS_Entidad
         public int id_parametro { get; set; }
         public string nombre { get; set; }
         public decimal valor { get; set; }
+        public string descripcion { get; set; }
     }
 }

@@ -38,9 +38,9 @@ namespace JJSS_Negocio
                 {
                     producto nuevoProducto = new producto()
                     {
-                        nombre=pNombre,
-                        id_categoria=pIDCategoria,
-                        stock=0,
+                        nombre = pNombre,
+                        id_categoria = pIDCategoria,
+                        stock = 0,
                     };
                     db.producto.Add(nuevoProducto);
                     db.SaveChanges();
@@ -97,8 +97,10 @@ namespace JJSS_Negocio
                                            join img in db.producto_imagen on prod.id_producto equals img.id_producto
                                            into ps
                                            from img in ps.DefaultIfEmpty()
+                                           where prod.stock > 0
                                            select new
                                            {
+                                               id_producto = prod.id_producto,
                                                categoria = cat.nombre,
                                                nombre = prod.nombre,
                                                stock = prod.stock,
@@ -106,6 +108,80 @@ namespace JJSS_Negocio
                                                imagen = img.imagen,
                                            };
                 return productosEncontrados.ToList<Object>();
+            }
+        }
+
+
+        /*
+         * Metodo que reserva los productos seleccionados para un usuario
+         */
+        public String ConfirmarReserva(int pIDUsuario, DataTable pItems)
+        {
+            DateTime fechaActual = DateTime.Now;
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    reserva nuevaReserva = new reserva()
+                    {
+                        fecha = fechaActual,
+                        id_usuario = pIDUsuario,
+
+                    };
+                    db.reserva.Add(nuevaReserva);
+                    db.SaveChanges();
+
+                    for (int i = 0; i < pItems.Rows.Count; i++)
+                    {
+                        DataRow dr = pItems.Rows[i];
+                        int cantidad = int.Parse(dr["cantidad"].ToString());
+
+                        producto productoSeleccionado = db.producto.Find((int)dr["id_producto"]);
+
+
+                        detalle_reserva detalle = new detalle_reserva()
+                        {
+                            id_producto = productoSeleccionado.id_producto,
+                            precio = productoSeleccionado.precio_venta,
+                            id_reserva = nuevaReserva.id_reserva,
+                            cantidad =cantidad,
+                        };
+                        db.detalle_reserva.Add(detalle);
+                        db.SaveChanges();
+
+
+                        if (productoSeleccionado.stock <= 0|| productoSeleccionado.stock< cantidad) throw new Exception(productoSeleccionado.nombre+" no tiene stock suficiente");
+                        else
+                        {//+suponiendo que puede comprar solo uno
+                            productoSeleccionado.stock= productoSeleccionado.stock- cantidad;
+                            db.SaveChanges();
+                        }
+
+                    }
+                    transaction.Commit();
+                    return "";
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
+        /*
+         * Devuelve un Datatable con los datos del producto cuyo id se pasa por parametro
+         */
+        public DataTable ObtenerProductoConID(int pIdProducto)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var prod = from pr in db.producto
+                           where pr.id_producto == pIdProducto
+                           select pr;
+
+                return modUtilidadesTablas.ToDataTable(prod.ToList());
             }
         }
     }
