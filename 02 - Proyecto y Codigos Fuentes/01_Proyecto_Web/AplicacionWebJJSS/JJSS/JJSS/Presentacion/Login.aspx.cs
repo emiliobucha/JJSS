@@ -15,6 +15,11 @@ namespace JJSS.Presentacion
         {
             if (!IsPostBack)
             {
+                if (Request.Cookies["Usuario"] != null && Request.Cookies["Password"] != null)
+                {
+                    txt_usuario.Text = Request.Cookies["Usuario"].Value;
+                    txt_pass.Attributes["value"] = Request.Cookies["Password"].Value;
+                }
                 pnl_cambiar_pass.Visible = false;
                 pnlLogin.Visible = true;
             }
@@ -37,6 +42,21 @@ namespace JJSS.Presentacion
                 Sesion nueva = gestorSesion.IniciarSesion(login, pass);
                 if (nueva.estado == "INGRESO ACEPTADO")
                 {
+                    if (chk_recordar.Checked)
+                    {
+                        Response.Cookies["Usuario"].Expires = DateTime.Now.AddDays(30);
+                        Response.Cookies["Password"].Expires = DateTime.Now.AddDays(30);
+                    }
+                    else
+                    {
+                        Response.Cookies["Usuario"].Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies["Password"].Expires = DateTime.Now.AddDays(-1);
+
+                    }
+                    Response.Cookies["Usuario"].Value = txt_usuario.Text.Trim();
+                    Response.Cookies["Password"].Value = txt_pass.Text.Trim();
+
+
                     Response.Redirect("~/Presentacion/Inicio.aspx", false);
                 }
                 else 

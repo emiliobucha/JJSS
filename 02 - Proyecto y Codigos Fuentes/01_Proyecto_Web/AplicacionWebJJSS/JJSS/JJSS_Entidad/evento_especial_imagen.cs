@@ -12,14 +12,12 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class asistencia_clase
+    public partial class evento_especial_imagen
     {
-        public int id_asistencia { get; set; }
-        public System.DateTime fecha_hora { get; set; }
-        public int id_clase { get; set; }
-        public int id_alumno { get; set; }
+        public int id_evento_imagen { get; set; }
+        public int id_evento { get; set; }
+        public byte[] imagen { get; set; }
     
-        public virtual alumno alumno { get; set; }
-        public virtual clase clase { get; set; }
+        public virtual evento_especial evento_especial { get; set; }
     }
 }

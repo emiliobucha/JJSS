@@ -12,24 +12,24 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class estado
+    public partial class participante_evento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public estado()
+        public participante_evento()
         {
-            this.evento_especial = new HashSet<evento_especial>();
-            this.torneo = new HashSet<torneo>();
-            this.estado_reserva = new HashSet<estado_reserva>();
+            this.inscripcion_evento = new HashSet<inscripcion_evento>();
         }
     
-        public int id_estado { get; set; }
+        public int id_participante { get; set; }
         public string nombre { get; set; }
+        public string apellido { get; set; }
+        public Nullable<System.DateTime> fecha_nacimiento { get; set; }
+        public Nullable<short> sexo { get; set; }
+        public int dni { get; set; }
+        public Nullable<int> id_alumno { get; set; }
     
+        public virtual alumno alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<evento_especial> evento_especial { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<torneo> torneo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<estado_reserva> estado_reserva { get; set; }
+        public virtual ICollection<inscripcion_evento> inscripcion_evento { get; set; }
     }
 }

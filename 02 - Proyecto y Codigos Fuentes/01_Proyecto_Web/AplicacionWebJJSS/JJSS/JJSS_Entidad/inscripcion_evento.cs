@@ -12,15 +12,15 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class detalle_compra
+    public partial class inscripcion_evento
     {
-        public int id_detalle { get; set; }
-        public Nullable<int> id_compra { get; set; }
-        public Nullable<int> id_producto { get; set; }
-        public Nullable<decimal> precio { get; set; }
-        public Nullable<int> cantidad { get; set; }
+        public int id_inscripcion { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> id_participante { get; set; }
+        public Nullable<int> id_evento { get; set; }
+        public string hora { get; set; }
     
-        public virtual compra compra { get; set; }
-        public virtual producto producto { get; set; }
+        public virtual evento_especial evento_especial { get; set; }
+        public virtual participante_evento participante_evento { get; set; }
     }
 }

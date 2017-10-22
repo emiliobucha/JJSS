@@ -14,18 +14,14 @@ namespace JJSS_Entidad
     
     public partial class compra
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public compra()
-        {
-            this.detalle_compra = new HashSet<detalle_compra>();
-        }
-    
         public int id_compra { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> id_proveedor { get; set; }
+        public Nullable<int> id_producto { get; set; }
+        public Nullable<decimal> precio { get; set; }
+        public Nullable<int> cantidad { get; set; }
     
+        public virtual producto producto { get; set; }
         public virtual proveedor proveedor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_compra> detalle_compra { get; set; }
     }
 }

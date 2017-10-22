@@ -10,7 +10,7 @@ using JJSS_Entidad;
 
 namespace JJSS_Negocio
 {
-    class GestorPermisos
+    public class GestorPermisos
     {
 
 
@@ -283,8 +283,15 @@ namespace JJSS_Negocio
             
         }
 
+        public List<seguridad_grupo> obtenerListaGrupos()
+        {
+            using (var db = new JJSSEntities())
+            {
+
+                return db.seguridad_grupo.ToList();
+            }
+        }
 
 
-        
     }
 }

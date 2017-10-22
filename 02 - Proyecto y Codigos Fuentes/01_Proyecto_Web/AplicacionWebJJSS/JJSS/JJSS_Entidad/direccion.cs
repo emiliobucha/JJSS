@@ -30,6 +30,7 @@ namespace JJSS_Entidad
         public string departamento { get; set; }
         public Nullable<int> piso { get; set; }
         public Nullable<int> id_ciudad { get; set; }
+        public string torre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<academia> academia { get; set; }

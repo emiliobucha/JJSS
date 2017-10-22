@@ -17,21 +17,41 @@ namespace JJSS
         private torneo torneoSeleccionado;
         private GestorAlumnos gestorAlumnos;
         private int? idAlumno = null;
+        private seguridad_usuario usuario;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-
-
             gestorInscripciones = new GestorInscripciones();
             gestorDeTorneos = new GestorTorneos();
             gestorAlumnos = new GestorAlumnos();
+
+
             if (!IsPostBack)
             {
 
 
 
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        usuario = sesionActiva.usuario;
+
+                        alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
+                        txtDni.Text = alumno.dni.ToString();
+                        limpiar(false);
+                    }
+                    else
+                    {
+                        limpiar(true);
+                    }
+                }
+                catch
+                {
+                    limpiar(true);
+                }
 
 
                 //CargarComboFajas();
@@ -53,7 +73,7 @@ namespace JJSS
                     CargarComboTorneos();
                 }
 
-                limpiar(true);
+                
             }
 
         }
@@ -76,7 +96,7 @@ namespace JJSS
             txt_peso.Text = "";
 
             //ya se que no usamos el index pero solo tiene que setearlo en el primer valor que haya en el combo
-            if (ddl_fajas.Items.Count>0) ddl_fajas.SelectedIndex = 0;
+            if (ddl_fajas.Items.Count > 0) ddl_fajas.SelectedIndex = 0;
 
 
             txt_apellido.ReadOnly = false;
@@ -195,7 +215,7 @@ namespace JJSS
                 lbl_CostoInscripcion.Text = torneoSeleccionado.precio_categoria.ToString();
                 lbl_CostoInscripcionAbsoluto.Text = torneoSeleccionado.precio_absoluto.ToString();
             }
-            limpiar(true);
+            
             pnl_dni.Visible = true;
             pnl_Inscripcion.Visible = false;
         }
@@ -221,7 +241,20 @@ namespace JJSS
             //{
             limpiar(false);
             pnl_Inscripcion.Visible = true;
-            int idTorneo = int.Parse(ddl_torneos.SelectedValue);
+            int idTorneo;
+            if (Session["torneoSeleccionado"] != null)
+            {
+                idTorneo = (int)Session["torneoSeleccionado"];
+                
+            }
+            else
+            {
+                idTorneo = int.Parse(ddl_torneos.SelectedValue);
+
+            }
+
+
+            
             participante participanteEncontrado = gestorInscripciones.obtenerParticipanteDeTorneo(int.Parse(txtDni.Text), idTorneo);
 
             //Partipante ya estaba inscripto con ese dni
@@ -297,7 +330,7 @@ namespace JJSS
         {
             try
             {
-                if (rbSexo.SelectedIndex!=0 && rbSexo.SelectedIndex!=1)
+                if (rbSexo.SelectedIndex != 0 && rbSexo.SelectedIndex != 1)
                 {
                     args.IsValid = true;
                 }

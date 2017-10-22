@@ -17,7 +17,7 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public producto()
         {
-            this.detalle_compra = new HashSet<detalle_compra>();
+            this.compra = new HashSet<compra>();
             this.detalle_reserva = new HashSet<detalle_reserva>();
             this.producto_imagen = new HashSet<producto_imagen>();
         }
@@ -28,12 +28,12 @@ namespace JJSS_Entidad
         public Nullable<int> stock { get; set; }
         public Nullable<decimal> precio_venta { get; set; }
     
+        public virtual categoria_producto categoria_producto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_compra> detalle_compra { get; set; }
+        public virtual ICollection<compra> compra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_reserva> detalle_reserva { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<producto_imagen> producto_imagen { get; set; }
-        public virtual categoria_producto categoria_producto { get; set; }
     }
 }

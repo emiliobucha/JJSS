@@ -74,14 +74,14 @@ namespace JJSS.Presentacion
 
 
                 double monto = recargo + (double)oClase.precio;
-                lbl_monto.Text = "$" + monto.ToString();
+                lbl_monto.Text = "$" + monto;
 
                 if (recargo > 0)
                 {
                     pagoRecargo = 1;
                     lbl_recargo.Visible = true;
                     lbl_recargoMonto.Visible = true;
-                    lbl_recargoMonto.Text = "$" + recargo.ToString();
+                    lbl_recargoMonto.Text = "$" + recargo;
 
                 }
                 else

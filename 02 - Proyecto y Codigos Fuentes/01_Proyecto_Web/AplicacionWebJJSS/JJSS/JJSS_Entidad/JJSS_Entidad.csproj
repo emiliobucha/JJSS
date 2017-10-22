@@ -36,11 +36,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="JJSS_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JJSS_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="JJSS_Model.edmx.diagram">
       <DependentUpon>JJSS_Model.edmx</DependentUpon>
     </None>
@@ -115,9 +115,6 @@
     <Compile Include="compra.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="detalle_compra.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="detalle_pago_clase.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
@@ -133,6 +130,12 @@
     <Compile Include="estado_reserva.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="evento_especial.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="evento_especial_imagen.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="faja.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
@@ -146,6 +149,9 @@
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="inscripcion_clase.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inscripcion_evento.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="JJSS_Model.Context.cs">
@@ -176,6 +182,9 @@
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="participante.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="participante_evento.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="producto.cs">
@@ -221,6 +230,9 @@
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="tipo_clase.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipo_evento_especial.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="torneo.cs">
