@@ -175,6 +175,8 @@
     <Content Include="Presentacion\AlumnoClases.aspx" />
     <Content Include="Presentacion\AlumnoPagoClase.aspx" />
     <Content Include="Presentacion\AlumnoPagoFinalizado.aspx" />
+    <Content Include="Presentacion\CrearEvento.aspx" />
+    <Content Include="Presentacion\InscripcionEvento.aspx" />
     <Content Include="Presentacion\ModificarPerfil.aspx" />
     <Content Include="Presentacion\CrearClase.aspx" />
     <Content Include="Presentacion\GraduarAlumno.aspx" />
@@ -307,6 +309,20 @@
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoFinalizado.aspx.designer.cs">
       <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\CrearEvento.aspx.cs">
+      <DependentUpon>CrearEvento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\CrearEvento.aspx.designer.cs">
+      <DependentUpon>CrearEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\InscripcionEvento.aspx.cs">
+      <DependentUpon>InscripcionEvento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\InscripcionEvento.aspx.designer.cs">
+      <DependentUpon>InscripcionEvento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ModificarPerfil.aspx.cs">
       <DependentUpon>ModificarPerfil.aspx</DependentUpon>
