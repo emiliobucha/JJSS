@@ -13,7 +13,9 @@ namespace JJSS.Presentacion
     public partial class ModificarPerfil : System.Web.UI.Page
     {
         private DataTable dtGrupos;
+        private GestorUsuarios gestorUsuarios;
         private GestorPermisos gestorPermisos;
+        private long id_usuario_editar;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,14 +46,37 @@ namespace JJSS.Presentacion
                     Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 }
+
+                if (Session["UsuarioEditar"] == null)
+                {
+                    Response.Write("<script>window.alert('" + "No hay usuario para editar correctamente".Trim() +
+                                   "');</script>" + "<script>window.setTimeout(location.href='" +
+                                   "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+
+                }
+                else
+                {
+                    id_usuario_editar = int.Parse(Session["UsuarioEditar"].ToString());
+                }
+
                 dg_grupos.AutoGenerateColumns = false;
+                gestorUsuarios = new GestorUsuarios();
                 gestorPermisos = new GestorPermisos();
                 CargarComboGrupos();
+                CargarGrilla();
 
             }
         }
 
+        private void CargarGrilla()
+        {
+            dtGrupos = gestorPermisos.obtenerTablaGrupos(id_usuario_editar);
 
+            Session["dtGrupos"] = dtGrupos;
+            dg_grupos.DataSource = dtGrupos;
+            dg_grupos.DataBind();
+
+        }
 
         private void CargarComboGrupos()
         {
@@ -68,30 +93,29 @@ namespace JJSS.Presentacion
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
             dtGrupos = (DataTable)Session["dtGrupos"];
-            //dtHorarios = (DataTable)dg_horarios;
 
-            //validacion con los horarios en esa clase
-            if (dtGrupos.Select("id = " + ddl_grupos.SelectedIndex).Length > 0)
+            //Validación con los grupos que ya tiene el usuario
+            if (dtGrupos.Select("id_grupo = " + ddl_grupos.SelectedValue).Length > 0)
             {
-               
+
+                mensaje("El usuario ya posee ese grupo asignado", false);
+                return;
             }
 
             DataRow drNuevoGrupo = dtGrupos.NewRow();
-            drNuevoGrupo["nombre"] = ddl_grupos.SelectedValue;
-            drNuevoGrupo["id_grupo"] = ddl_grupos.SelectedIndex;
-           
+            drNuevoGrupo["nombre"] = ddl_grupos.SelectedItem.Text;
+            drNuevoGrupo["id_grupo"] = ddl_grupos.SelectedValue;
+
             dtGrupos.Rows.Add(drNuevoGrupo);
 
             dtGrupos.AcceptChanges();
-            DataView dv_horarios = dtGrupos.DefaultView;
-            dv_horarios.Sort = "dia asc, hora_desde asc";
-            dg_grupos.DataSource = dv_horarios;
+            dg_grupos.DataSource = dtGrupos;
             dg_grupos.DataBind();
             Session["dtGrupos"] = dtGrupos;
 
         }
 
-      
+
 
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
@@ -99,47 +123,48 @@ namespace JJSS.Presentacion
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
             gestorPermisos = new GestorPermisos();
+
             string sReturn = "";
             Boolean estado = false;
 
             //validacion con los horarios de otras clases
-            DataTable dt = (DataTable)Session["dtHorarios"];
-            Boolean bReturn = gestorPermisos.validarDisponibilidadHorario(dt, int.Parse(ddl_ubicacion.SelectedValue.ToString()));
-            if (bReturn == false) sReturn = "Hay un horario que se superpone con otra clase";
+            DataTable dt = (DataTable)Session["dtGrupos"];
+            id_usuario_editar = int.Parse(Session["UsuarioEditar"].ToString());
+            DataTable gruposViejos = gestorPermisos.obtenerTablaGrupos(id_usuario_editar);
+
+            foreach (DataRow drGrupo in dt.Rows)
+            {
+                if (gruposViejos.Select("id_grupo = " + drGrupo["id_grupo"]).Length == 0)
+                {
+                    sReturn = gestorPermisos.AgregarGrupo(id_usuario_editar, (int)drGrupo["id_grupo"]);
+                    estado = sReturn == "";
+                }
+
+            }
+          
+            foreach (DataRow drGrupo in gruposViejos.Rows)
+            {
+                if (dt.Select("id_grupo = " + drGrupo["id_grupo"]).Length == 0)
+                {
+                    sReturn = gestorPermisos.QuitarGrupo(id_usuario_editar, (int)drGrupo["id_grupo"]);
+                    estado = sReturn == "";
+                }
+
+            }
+
+            if (estado)
+            {
+                mensaje("Se han actualizado con exito los grupos al usuario", estado);
+                Response.Redirect("../Presentacion/Usuarios.aspx");
+            }
             else
             {
-                if (Session["clase"] != null)
-                {
-                    int idClase = 0;
-                    idClase = int.Parse(Session["clase"].ToString());
-                    int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
-                    sReturn = gestorClases.modificarClase(idClase, (DataTable)Session["dtHorarios"], double.Parse(txt_precio.Text), profe);
-                    if (sReturn.CompareTo("") == 0)
-                    {
-                        estado = true;
-                        sReturn = "La clase se actualizó correctamente";
-                        limpiar();
-                    }
-                }
-                else
-                {
-                    int tipo = int.Parse(ddl_tipo_clase.SelectedValue.ToString());
-                    int ubicacion = int.Parse(ddl_ubicacion.SelectedValue.ToString());
-                    int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
-                    sReturn = gestorClases.GenerarNuevaClase(tipo, Double.Parse(txt_precio.Text), (DataTable)Session["dtHorarios"], txt_nombre.Text, ubicacion, profe);
-                    if (sReturn.CompareTo("") == 0)
-                    {
-                        estado = true;
-                        sReturn = "La clase se ha creado exitosamente";
-                        limpiar();
-                    }
-                }
+                mensaje(sReturn, estado);
             }
-            mensaje(sReturn, estado);
 
         }
 
-        protected void dg_horarios_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void dg_grupos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName.CompareTo("Eliminar") == 0)
             {
@@ -155,35 +180,18 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void btn_nueva_clase_Click(object sender, EventArgs e)
-        {
-            limpiar();
-        }
+
 
         protected void limpiar()
         {
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
-            txt_horadesde.Text = "";
-            txt_horahasta.Text = "";
-            txt_nombre.Text = "";
-            txt_precio.Text = "";
-            txt_nombre.Enabled = true;
-            ddl_ubicacion.Enabled = true;
-            ddl_tipo_clase.Enabled = true;
-            Session["clase"] = null;
-            dtHorarios = (DataTable)Session["dtHorarios"];
-            //if (dtHorarios != null)
-            //{
-            //    for (int i = 0; i < dtHorarios.Rows.Count; i++)
-            //    {
-            //        dtHorarios.Rows.RemoveAt(i);
-            //    }
-            //}
+
+            Session["UsuarioEditar"] = null;
 
             dg_grupos.DataSource = null;
             dg_grupos.DataBind();
-            Session["dtHorarios"] = null;
+            Session["dtGrupos"] = null;
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)

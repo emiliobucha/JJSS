@@ -181,13 +181,13 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                  
+
                     if (string.IsNullOrEmpty(pNombre)) throw new Exception("Nombre de grupo invalido");
                     var grupo = from grp in db.seguridad_grupo
-                        where grp.nombre == pNombre 
-                        select grp;
+                                where grp.nombre == pNombre
+                                select grp;
 
-                    if (grupo.ToList().Count> 0) throw new Exception("Nombre de grupo ya existente");
+                    if (grupo.ToList().Count > 0) throw new Exception("Nombre de grupo ya existente");
 
                     var nuevoGrupo = new seguridad_grupo()
                     {
@@ -270,17 +270,17 @@ namespace JJSS_Negocio
 
         public List<seguridad_grupoxopcion> getGrupoxOpciones(long pId)
         {
-            
+
             using (var db = new JJSSEntities())
             {
                 var grupoxOpciones = from gop in db.seguridad_grupoxopcion
-                    where gop.id_grupo == pId
-                    select gop;
+                                     where gop.id_grupo == pId
+                                     select gop;
 
                 return grupoxOpciones.ToList();
 
             }
-            
+
         }
 
         public List<seguridad_grupo> obtenerListaGrupos()
@@ -289,6 +289,19 @@ namespace JJSS_Negocio
             {
 
                 return db.seguridad_grupo.ToList();
+            }
+        }
+
+        public DataTable obtenerTablaGrupos(long pId)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var grupos = from gru in db.seguridad_grupo
+                             join gxu in db.seguridad_usuarioxgrupo on gru.id_grupo equals gxu.id_grupo
+                             where gxu.id_usuario == pId
+                             select gru;
+                return grupos.ToList().ToDataTable();
+
             }
         }
 

@@ -77,7 +77,7 @@
 
                         <div class="row centered">
                             <!--OnRowDataBound="dg_horarios_RowDataBound"-->
-                            <asp:GridView ID="dg_grupos" runat="server" BorderColor="Black" BorderStyle="Double" CssClass="table" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_horarios_RowCommand" OnRowDataBound="dg_horarios_RowDataBound" OnSelectedIndexChanged="dg_horarios_SelectedIndexChanged">
+                            <asp:GridView ID="dg_grupos" runat="server" BorderColor="Black" BorderStyle="Double" CssClass="table" DataKeyNames="id_grupo" EmptyDataText="No hay grupos asignados a este usuario" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_grupos_RowCommand" >
                                 <Columns>
                                     <asp:BoundField DataField="nombre" HeaderStyle-CssClass="text-center" HeaderText="Grupo">
                                     <HeaderStyle CssClass="text-center" />
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="row centered">
-                        <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_cancelar_Click"></asp:Button>
+                        <%--<asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_cancelar_Click"></asp:Button>--%>
                         <asp:Button ID="btn_aceptar" runat="server" OnClick="btn_aceptar_Click" Text="Aceptar" CssClass="btn btn-default" ValidationGroup="vg_aceptar"></asp:Button>
                     </div>
                 </form>
