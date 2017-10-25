@@ -576,6 +576,14 @@
                     </div>
                     <!--/col-->
 
+                    <!--col compra-->
+                    <div class="col-lg-4 proc" id="Div9" runat="server">
+                        <i class="fa fa-eye"></i>
+                        <h3 class="logo"><a href="../Presentacion/ComprarProducto.aspx" style="color: #000000">Registrar compra de productos</a> </h3>
+                        <p>Puedes registrar la compra de un producto a un proveedor, agregar stock al mismo y modificar su precio</p>
+                    </div>
+                    <!--/col-->
+
                 </div>
             </div>
 

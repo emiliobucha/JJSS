@@ -80,6 +80,7 @@ namespace JJSS_Negocio
                                                nombre = prod.nombre,
                                                categoria = cat.nombre,
                                                stock = prod.stock,
+                                               id_producto= prod.id_producto,
                                            };
                 return modUtilidadesTablas.ToDataTable(productosEncontrados.ToList());
             }
@@ -184,5 +185,25 @@ namespace JJSS_Negocio
                 return modUtilidadesTablas.ToDataTable(prod.ToList());
             }
         }
+        /*
+         * obtener categoria, producto segun el id
+         */
+        public DataTable ObtenerProductoCategoria (int pIDProducto)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var product = from pr in db.producto
+                              join cat in db.categoria_producto on pr.id_categoria equals cat.id_categoria
+                              where pr.id_producto == pIDProducto
+                              select new
+                              {
+                                  precio = pr.precio_venta,
+                                  categoria = cat.nombre,
+                                  stock = pr.stock,
+                              };
+                return modUtilidadesTablas.ToDataTable( product.ToList());
+            }
+        }
+            
     }
 }

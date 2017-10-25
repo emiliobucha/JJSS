@@ -173,6 +173,7 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
     <Content Include="Presentacion\AgregarProducto.aspx" />
     <Content Include="Presentacion\AlumnoPagoClase.aspx" />
+    <Content Include="Presentacion\ComprarProducto.aspx" />
     <Content Include="Presentacion\TorneoPagoFinalizado.aspx" />
     <Content Include="Presentacion\Usuarios.aspx" />
     <Content Include="Presentacion\AlumnoClases.aspx" />
@@ -299,6 +300,13 @@
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoClase.aspx.designer.cs">
       <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComprarProducto.aspx.cs">
+      <DependentUpon>ComprarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComprarProducto.aspx.designer.cs">
+      <DependentUpon>ComprarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\TorneoPagoFinalizado.aspx.cs">
       <DependentUpon>TorneoPagoFinalizado.aspx</DependentUpon>
