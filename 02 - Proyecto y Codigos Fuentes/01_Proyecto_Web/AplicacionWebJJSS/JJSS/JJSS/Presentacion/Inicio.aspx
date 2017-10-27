@@ -236,7 +236,7 @@
                             <div class="col-lg-4 proc" id="item_mis_Torneos" runat="server">
                                 <i class="fa fa-heart"></i>
                                 <h3>Mis torneos</h3>
-                                <p>Accede al historial de los torneos en que has competido.</p>
+                                <p>Accede al historial de torneos en los que has competido.</p>
                             </div>
                             <!--/col-->
 
@@ -244,7 +244,7 @@
                             <div class="col-lg-4 proc" id="item_visualizar_Torneo" runat="server">
                                 <i class="fa fa-eye"></i>
                                 <h3>Visualizar torneos</h3>
-                                <p>Accede a todos los torneos que se han desarrollado y busca el que te interesa mediante un filtro.</p>
+                                <p>Accede a todos los torneos que se han desarrollado y busca el que te interese mediante un filtro.</p>
                             </div>
                             <!--/col-->
 
@@ -403,7 +403,7 @@
                     <div class="col-lg-4 proc" id="item_crear_nueva_clase" runat="server">
                         <i class="fa fa-pencil"></i>
                         <h3><a href="../Presentacion/CrearClase.aspx" style="color: #000000">Crear nueva clase</a></h3>
-                        <p>Crea una nueva clase con sus respectivos horarios para administrarla.</p>
+                        <p>Crea una nueva clase con sus horarios.</p>
                     </div>
                     <!--/col-->
 
@@ -411,7 +411,7 @@
                     <div class="col-lg-4 proc" id="item_mis_Clases" runat="server">
                         <i class="fa fa fa-heart"></i>
                         <h3 class="logo"><a href="../Presentacion/AlumnoClases.aspx" style="color: #000000">Mis clases</a> </h3>
-                        <p>Puedes ver todas tus clases y pagar mediante MercadoPago.</p>
+                        <p>Accede a todas tus clases y paga mediante MercadoPago.</p>
                     </div>
                     <!--/col-->
 
@@ -429,7 +429,7 @@
                     <div class="col-lg-4 proc" id="item_inscribir_Alumno_Clase" runat="server">
                         <i class="fa fa-cogs"></i>
                         <h3 class="logo"><a style="color: #000000">Inscribir a un alumno</a></h3>
-                        <p>Puedes inscribir a un alumno a una determinada clase. Esto te permitirá realizar una administración del mismo.</p>
+                        <p>Inscribe alumnos a una clase.</p>
                     </div>
                     <!--/col-->
 
@@ -439,7 +439,7 @@
                         <h3 class="logo">
                             <a id="btn_recarga_por_atraso" href="" data-toggle="modal" data-target="#modal_recarga" style="color: #000000">Recargo por atraso</a>
                         </h3>
-                        <p>Puedes modificar el valor de recarga en caso de atraso de pago de tus alumnos.</p>
+                        <p>Modifica el valor de recarga en caso de atraso de pago de tus alumnos.</p>
                     </div>
                     <!--/col-->
 
@@ -447,7 +447,7 @@
                     <div class="col-lg-4 proc" id="item_registrar_asistencia" runat="server">
                         <i class="fa fa-cogs"></i>
                         <h3 class="logo"><a href="../Presentacion/RegistrarAsistencia.aspx" style="color: #000000">Registrar Asistencia</a></h3>
-                        <p>Puedes mantener un registro de asistencia en cada uno de los puntos donde se dictan las clases.</p>
+                        <p>Registra la asistencia de tus alumnos en cada lugar donde se dictan las clases.</p>
 
                     </div>
                     <!--/col-->

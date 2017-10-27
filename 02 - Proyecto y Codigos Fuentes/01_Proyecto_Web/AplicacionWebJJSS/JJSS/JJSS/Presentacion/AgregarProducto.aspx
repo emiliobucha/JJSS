@@ -10,7 +10,7 @@
 
     <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
         <div class="col-md-2 hidden-sm"></div>
-        <div class="col-md-8 col-xs-12">
+        <div class="col-md-8 col-sm-10 col-xs-10">
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <a class="ui-icon ui-icon-check"></a>
@@ -25,7 +25,7 @@
 
     <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
         <div class="col-md-2 hidden-sm"></div>
-        <div class="col-md-8 col-xs-12">
+        <div class="col-md-8 col-sm-10 col-xs-10">
             <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <a class="ui-icon ui-icon-alert"></a>
@@ -41,8 +41,10 @@
         <div class="row centered">
             <p>&nbsp;</p>
         </div>
+        <div class="col-sm-12 col-xs-12">            
         <asp:Button ID="btn_formulario" runat="server" CssClass="btn btn-default" Text="Agregar Productos" CausesValidation="false" OnClick="btn_formulario_Click" />
         <asp:Button ID="btn_grilla" runat="server" CssClass="btn btn-default" Text="Ver Productos" CausesValidation="false" OnClick="btn_grilla_Click" />
+        </div>
 
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="view_formulario" runat="server">
@@ -64,14 +66,13 @@
                                     <!--Ingresar nombre-->
 
                                     <div class="row centered">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-2 col-lg-2 col-sm-10 col-xs-10">
                                             <label class="pull-left">Nombre</label>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 col-lg-3 col-sm-10 col-xs-10">
                                             <asp:TextBox ID="txt_nombre" class="caja2" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 col-lg-3  col-sm-10 col-xs-10">
                                             <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgDatos"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgDatos"></asp:RegularExpressionValidator>
                                         </div>
@@ -84,11 +85,11 @@
                                     <!--categoria-->
 
                                     <div class="row centered">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-2 col-lg-2 col-sm-10 col-xs-10">
                                             <label class="pull-left">Categoria</label>
                                         </div>
-                                        <div class="col-md-2">
+
+                                        <div class="col-md-3 col-lg-3  col-sm-10 col-xs-10">
                                             <asp:DropDownList class="caja2" ID="ddl_categoria" runat="server">
                                             </asp:DropDownList>
                                         </div>
@@ -101,8 +102,8 @@
 
                                     <!--Foto-->
                                     <div class="row centered">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-xs-2">
+                                        <div class="col-md-2 col-lg-2 hidden-sm hidden-xs"></div>
+                                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                                             <asp:Panel ID="Panel1" runat="server">
 
                                                 <label class=" pull-left">Imagen</label>

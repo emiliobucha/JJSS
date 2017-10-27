@@ -11,6 +11,7 @@
     <div class="container">
         <section id="inscripcionTorneo" title="inscripcionTorneo"></section>
 
+          
         <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
             <div class="col-md-2 hidden-xs"></div>
             <div class="col-md-8 col-xs-12 col-sm-12">
@@ -41,7 +42,13 @@
             </div>
         </asp:Panel>
 
+
         <asp:Panel ID="pnlFormulario" runat="server" CssClass="col-sm-12 col-xs-12 col-md-10 col-lg-10">
+         
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+
             <div id="crearTorneowrap">
                 <div class="container">
                     <div class="row mt centered">
@@ -57,6 +64,12 @@
 
                                 <!--Elegir torneo-->
                                 <asp:Panel ID="pnl_elegirTorneo" CssClass="panel panel-default" runat="server">
+
+
+                                    <div class="row centered">
+                                        <p>&nbsp;</p>
+                                    </div>
+
                                     <div class="row centered">
                                         <div class="col-md-2 hidden-xs hidden-sm"></div>
                                         <div class="col-md-2 col-sm-6 col-xs-6">
@@ -70,9 +83,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="row centered">
-                                        <p>&nbsp;</p>
-                                    </div>
                                 </asp:Panel>
                                 <!--PANEL DE INFORMACION DEL TORNEO-->
 
@@ -86,7 +96,7 @@
                                     <div class="row centered">
                                         <div class="col centered col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                            <asp:Label ID="Label5" runat="server" Text="Informacion del Evento: " Font-Bold="true" Font-Size="Large"></asp:Label>
+                                            <asp:Label ID="Label5" runat="server" Text="Información del Evento: " Font-Bold="true" Font-Size="Large"></asp:Label>
                                             <asp:Label ID="lbl_NombreTorneo" CssClass="centered" runat="server" Text="" Font-Bold="true" Font-Size="Large"></asp:Label>
                                         </div>
                                     </div>
@@ -140,7 +150,7 @@
                                         <div class="col-md-2 hidden-sm hidden-xs"></div>
                                         <div class="col-md-5 col-lg-10 col-sm-10">
 
-                                            <label class="pull-left">El costo de inscripcion:&nbsp; </label>
+                                            <label class="pull-left">El costo de inscripción:&nbsp; </label>
                                             <asp:Label ID="Label4" CssClass="pull-left" runat="server" Text="$"></asp:Label>
                                             <asp:Label ID="lbl_CostoInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
 
@@ -148,6 +158,9 @@
                                                 <p>&nbsp;</p>
                                             </div>
                                         </div>
+                                      </div>
+                                    <div class="row centered">
+                                        <div class="col-md-2 hidden-sm hidden-xs"></div>
                                         <div class="col-md-5 col-lg-10 col-sm-10">
 
                                             <label class="pull-left">Precio Absoluto:&nbsp;</label>
