@@ -13,20 +13,20 @@ namespace JJSS.Presentacion
 {
     public partial class TorneoPago : System.Web.UI.Page
     {
-        private GestorClases gestorClase;
+        private GestorTorneos gestorTorneo;
         private GestorFormaPago gestorFPago;
         private GestorPagoClase gestorPago;
-        private GestorAlumnos gestorAlumnos;
+        private GestorParticipantes gestorParticipantes;
         private GestorMercadoPago gestorMP;
-        private alumno alumnoElegido;
+        private participante participanteElegido;
         private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gestorClase = new GestorClases();
+            gestorTorneo = new GestorTorneos();
             gestorFPago = new GestorFormaPago();
-            gestorAlumnos = new GestorAlumnos();
+            gestorParticipantes = new GestorParticipantes();
             gestorPago = new GestorPagoClase();
 
             if (!IsPostBack)
@@ -38,10 +38,10 @@ namespace JJSS.Presentacion
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
                         int permiso = 0;
-                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
                         if (drsAux.Length > 0)
                         {
-                            int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
 
                         }
                         if (permiso != 1)
@@ -59,37 +59,25 @@ namespace JJSS.Presentacion
                 }
 
 
-                if (Session["Clase"] == null) Response.Redirect("AlumnoClase.aspx");
+                if (Session["TorneoPagar"] == null) Response.Redirect("InscripcionTorneo.aspx");
 
                 lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
 
-                int id = int.Parse(Session["Clase"].ToString());
-                int dni = int.Parse(Session["AlumnoDNI"].ToString());
-                alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
-                lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
+                int id = int.Parse(Session["TorneoPagar"].ToString());
+                int dni = int.Parse(Session["ParticipanteDNI"].ToString());
+                participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
+                lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
 
-                clase oClase = gestorClase.ObtenerClasePorId(id);
-                lbl_clase.Text = oClase.nombre;
-                double recargo = gestorClase.calcularRecargo(id, alumnoElegido.id_alumno);
+                torneo torneo = gestorTorneo.BuscarTorneoPorID(id);
+                lbl_torneo.Text = torneo.nombre;
+                lbl_fechatorneo.Text = torneo.fecha.ToString();
 
-
-                double monto = recargo + (double)oClase.precio;
+                double monto = (double)torneo.precio_absoluto ;
                 lbl_monto.Text = "$" + monto;
 
-                if (recargo > 0)
-                {
-                    pagoRecargo = 1;
-                    lbl_recargo.Visible = true;
-                    lbl_recargoMonto.Visible = true;
-                    lbl_recargoMonto.Text = "$" + recargo;
+              
 
-                }
-                else
-                {
-                    lbl_recargo.Visible = false;
-                    lbl_recargoMonto.Visible = false;
-
-                }
+                
                 String sInit_Point = "";
                 gestorMP = new GestorMercadoPago();
                 sInit_Point = gestorMP.NuevoPago(monto);
@@ -101,14 +89,14 @@ namespace JJSS.Presentacion
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("../Presentacion/AlumnoClases.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx");
         }
 
         protected void limpiar()
         {
 
-            lbl_alumno.Text = "No hay alumno seleccionado";
-            Session["PagoClase"] = "";
+            lbl_participante.Text = "No hay partiipante seleccionado";
+            Session["PagoTorneo"] = "";
             pagoRecargo = 0;
         }
 

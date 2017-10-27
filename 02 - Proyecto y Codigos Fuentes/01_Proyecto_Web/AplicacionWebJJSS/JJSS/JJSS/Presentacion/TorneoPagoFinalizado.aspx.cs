@@ -40,7 +40,7 @@ namespace JJSS.Presentacion
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
                         int permiso = 0;
-                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
                         if (drsAux.Length > 0)
                         {
                             int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
@@ -138,7 +138,7 @@ namespace JJSS.Presentacion
         protected void btn_volver_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("AlumnoClases.aspx");
+            Response.Redirect("Inicio.aspx");
         }
     }
 }
