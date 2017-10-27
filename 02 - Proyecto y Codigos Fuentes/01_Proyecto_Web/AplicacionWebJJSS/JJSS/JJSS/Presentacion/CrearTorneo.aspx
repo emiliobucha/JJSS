@@ -91,14 +91,14 @@
                         <!--Fecha de torneo-->
                         <div class="row centered">
                             <div class="col-md-2">
-                                <label class="pull-left">Fecha a producirse</label>
+                                <label class="pull-left">Fecha a realizarse</label>
                             </div>
                             <div class="col-md-3">
                                 <asp:TextBox ID="dp_fecha" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha del torneo"></asp:TextBox>
                             </div>
 
                             <div class="col-md-2">
-                                <label class="pull-left">Hora de inicio</label>
+                                <label class="pull-left">Hora a realizarse</label>
                             </div>
 
                             <div class="col-md-2">
@@ -136,7 +136,7 @@
                         <!--Fecha de cierre de inscripcion-->
                         <div class="row centered">
                             <div class="col-md-2">
-                                <label class="pull-left ">Cierre de inscripcion</label>
+                                <label class="pull-left ">Cierre de inscripción</label>
                             </div>
                             <div class="col-md-3">
                                 <asp:TextBox ID="dp_fecha_cierre" placeholder="Seleccione fecha de cierre de inscripciones" CssClass="datepicker caja2" runat="server"></asp:TextBox>
@@ -182,10 +182,10 @@
                         <!--Precio por categoria-->
                         <div class="row centered">
                             <div class="col-md-3">
-                                <label class="pull-left left">Precio de inscripcion categoria</label>
+                                <label class="pull-left left">Precio de inscripción categoria</label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_precio_cat" CssClass="form-control" placeholder="Ingrese precio de inscripcion categoria" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_precio_cat" CssClass="form-control" placeholder="Ingrese precio de inscripción categoria" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-4">
                                 <asp:RequiredFieldValidator ID="requeridoPrecioCat" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de categoría" ControlToValidate="txt_precio_cat" ValidationGroup="vgTorneo"> </asp:RequiredFieldValidator>
@@ -200,10 +200,10 @@
                         <!--Precio absoluto-->
                         <div class="row centered">
                             <div class="col-md-3">
-                                <label class="pull-left">Precio de inscripcion absoluta</label>
+                                <label class="pull-left">Precio de inscripción absoluta</label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_precio_abs" CssClass="form-control" placeholder="Ingrese precio de inscripcion absoluta" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_precio_abs" CssClass="form-control" placeholder="Ingrese precio de inscripción absoluta" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-4">
                                 <asp:RequiredFieldValidator ID="requeridoPrecioAbs" runat="server" Display="Dynamic" CssClass="text-danger" ErrorMessage="Debe ingresar precio de inscripción absoluta" ControlToValidate="txt_precio_abs" ValidationGroup="vgTorneo"> </asp:RequiredFieldValidator>

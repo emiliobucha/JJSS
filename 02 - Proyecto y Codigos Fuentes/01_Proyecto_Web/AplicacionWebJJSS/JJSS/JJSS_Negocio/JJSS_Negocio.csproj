@@ -44,6 +44,7 @@
     <Compile Include="GestorAsistencia.cs" />
     <Compile Include="GestorCiudades.cs" />
     <Compile Include="GestorClases.cs" />
+    <Compile Include="GestorCompras.cs" />
     <Compile Include="GestorEventos.cs" />
     <Compile Include="GestorFormaPago.cs" />
     <Compile Include="GestorGraduacion.cs" />

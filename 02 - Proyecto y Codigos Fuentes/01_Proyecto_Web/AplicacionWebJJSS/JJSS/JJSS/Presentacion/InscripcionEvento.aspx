@@ -314,6 +314,9 @@
 </asp:Content>
 <asp:Content ID="cphP" ContentPlaceHolderID="cphP" runat="server">
     <script type="text/javascript">
+
+</script>
+    <script type="text/javascript">
         $(document).ready(
             function () {
                 $(".datepicker").datepicker({
