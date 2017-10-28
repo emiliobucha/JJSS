@@ -584,6 +584,14 @@
                     </div>
                     <!--/col-->
 
+                    <!--col compra-->
+                    <div class="col-lg-4 proc" id="Div10" runat="server">
+                        <i class="fa fa-eye"></i>
+                        <h3 class="logo"><a href="../Presentacion/Reservas.aspx" style="color: #000000">Seguimiento de las reservas</a> </h3>
+                        <p>Puedes cancelar o registrar el retiro de una reserva</p>
+                    </div>
+                    <!--/col-->
+
                 </div>
             </div>
 

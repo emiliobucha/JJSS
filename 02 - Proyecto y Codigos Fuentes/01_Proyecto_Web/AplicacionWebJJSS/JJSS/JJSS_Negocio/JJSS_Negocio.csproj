@@ -61,6 +61,7 @@
     <Compile Include="GestorProfesores.cs" />
     <Compile Include="GestorProvincias.cs" />
     <Compile Include="GestorReportes.cs" />
+    <Compile Include="GestorReservas.cs" />
     <Compile Include="GestorSedes.cs" />
     <Compile Include="GestorSesiones.cs" />
     <Compile Include="GestorTipoClase.cs" />

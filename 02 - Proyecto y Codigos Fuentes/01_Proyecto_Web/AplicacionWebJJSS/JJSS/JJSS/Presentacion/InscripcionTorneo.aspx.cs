@@ -214,6 +214,7 @@ namespace JJSS
                 lbl_HoraTorneo.Text = torneoSeleccionado.hora.ToString();
                 lbl_CostoInscripcion.Text = torneoSeleccionado.precio_categoria.ToString();
                 lbl_CostoInscripcionAbsoluto.Text = torneoSeleccionado.precio_absoluto.ToString();
+                lbl_HoraCierre.Text = torneoSeleccionado.hora_cierre.ToString();
             }
             
             pnl_dni.Visible = true;
