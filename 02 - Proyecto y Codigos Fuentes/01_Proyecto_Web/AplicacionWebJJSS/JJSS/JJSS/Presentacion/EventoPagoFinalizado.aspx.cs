@@ -11,14 +11,14 @@ using System.Collections;
 
 namespace JJSS.Presentacion
 {
-    public partial class AlumnoPagoFinalizado : System.Web.UI.Page
+    public partial class EventoPagoFinalizado : System.Web.UI.Page
     {
-        private GestorClases gestorClase;
+        private GestorEventos gestorEventos;
         private GestorFormaPago gestorFPago;
-        private GestorPagoClase gestorPago;
-        private GestorAlumnos gestorAlumnos;
+        private GestorPagoEvento gestorPago;
+        private GestorParticipantes gestorParticipantes;
         private GestorMercadoPago gestorMP;
-        private alumno alumnoElegido;
+        private participante participanteElegido;
         private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
 
 
@@ -26,11 +26,10 @@ namespace JJSS.Presentacion
         {
 
 
-            gestorClase = new GestorClases();
+            gestorEventos = new GestorEventos();
             gestorFPago = new GestorFormaPago();
-            gestorAlumnos = new GestorAlumnos();
-            gestorPago = new GestorPagoClase();
-
+            gestorParticipantes = new GestorParticipantes();
+            gestorPago = new GestorPagoEvento();
             if (!IsPostBack)
             {
 
@@ -40,7 +39,7 @@ namespace JJSS.Presentacion
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
                         int permiso = 0;
-                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
                         if (drsAux.Length > 0)
                         {
                             int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
@@ -58,7 +57,7 @@ namespace JJSS.Presentacion
                     Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 }
-                if (Session["Clase"] == null || Session["Clase"].ToString() == "") Response.Redirect("AlumnoClases.aspx");
+                if (Session["EventoPagar"] == null || Session["EventoPagar"].ToString() == "") Response.Redirect("Inicio.aspx");
 
 
 
@@ -66,25 +65,25 @@ namespace JJSS.Presentacion
                 if (resultado == "ok")
                 {
 
-                    lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
-                    int id = int.Parse(Session["Clase"].ToString());
-                    int dni = int.Parse(Session["AlumnoDNI"].ToString());
-                    alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
-                    clase oClase = gestorClase.ObtenerClasePorId(id);
-                    lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
-                    lbl_clase.Text = oClase.nombre;
-
-                    double recargo = gestorClase.calcularRecargo(id, alumnoElegido.id_alumno);
-                    double monto = recargo + (double)oClase.precio;
-                    string mes = DateTime.Today.Month.ToString();
+                    lbl_fecha.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
+                    int id = int.Parse(Session["EventoPagar"].ToString());
+                    int dni = int.Parse(Session["ParticipanteDNI"].ToString());
+                    participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
+                    evento_especial eventoPagar = gestorEventos.BuscarEventoPorID(id);
+                    lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
+                    lbl_evento.Text = eventoPagar.nombre;
 
 
+                    double monto = (double)eventoPagar.precio;
+                    lbl_monto.Text = "$" + monto;
 
-                    if (int.TryParse(Session["AlumnoDNI"].ToString(), out dni))
+
+
+                    if (int.TryParse(Session["ParticipanteDNI"].ToString(), out dni))
                     {
-                        alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+                        participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
 
-                        string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, id, (decimal)monto, mes, 4, pagoRecargo);
+                        string sReturn = gestorPago.registrarPago(participanteElegido.id_participante, id, 4);
                         if (sReturn.CompareTo("") == 0)
                         {
                             mensaje("Se ha registrado el pago exitosamente", true);
@@ -93,12 +92,12 @@ namespace JJSS.Presentacion
                         else mensaje(sReturn, false);
                     }
                     else mensaje("No hay alumno seleccionado", false);
-                    Session["Clase"] = null;
+                    Session["EventoPagar"] = null;
                 }
                 else
                 {
-                    Session["Clase"] = null;
-                    Response.Redirect("AlumnoClases.aspx");
+                    Session["EventoPagar"] = null;
+                    Response.Redirect("Inicio.aspx");
                 }
 
 
@@ -113,9 +112,9 @@ namespace JJSS.Presentacion
         protected void limpiar()
         {
 
-            lbl_alumno.Text = "No hay alumno seleccionado";
-            Session["Clase"] = "";
-            pagoRecargo = 0;
+            //lbl_alumno.Text = "No hay alumno seleccionado";
+            //Session["Clase"] = "";
+            //pagoRecargo = 0;
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -138,7 +137,7 @@ namespace JJSS.Presentacion
         protected void btn_volver_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("AlumnoClases.aspx");
+            Response.Redirect("Inicio.aspx");
         }
     }
 }

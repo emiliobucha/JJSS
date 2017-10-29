@@ -55,7 +55,7 @@ namespace JJSS_Negocio
                     evento_especial eventoInscripto = db.evento_especial.Find(pEvento);
 
                     int edad = DateTime.Today.AddTicks(-pFechaNacimiento.Ticks).Year - 1;
-                    
+
                     //Nuevos
 
 
@@ -82,7 +82,7 @@ namespace JJSS_Negocio
                     };
                     db.participante_evento.Add(nuevoParticipante);
                     db.SaveChanges();
-                    
+
                     string hora = hora = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;
                     inscripcion_evento nuevaInscripcion = new inscripcion_evento()
@@ -125,11 +125,24 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 participante_evento participante = (from part in db.participante_evento
-                                             join ins in db.inscripcion_evento on part.id_participante equals ins.id_participante
-                                             where part.dni == pDni && ins.id_evento == pIDEvento
-                                             select part).FirstOrDefault();
+                                                    join ins in db.inscripcion_evento on part.id_participante equals ins.id_participante
+                                                    where part.dni == pDni && ins.id_evento == pIDEvento
+                                                    select part).FirstOrDefault();
                 return participante;
             }
         }
+
+        public inscripcion_evento obtenerInscripcionAEventoPorIdParticipante(int pId, int pIdEvento)
+        {
+            using (var db = new JJSSEntities())
+            {
+                inscripcion_evento inscripcion = (from ins in db.inscripcion_evento
+                                                  join part in db.participante on ins.id_participante equals part.id_participante
+                                                  where part.id_participante == pId && ins.id_evento == pIdEvento
+                                                  select ins).FirstOrDefault();
+                return inscripcion;
+            }
+        }
+
     }
 }

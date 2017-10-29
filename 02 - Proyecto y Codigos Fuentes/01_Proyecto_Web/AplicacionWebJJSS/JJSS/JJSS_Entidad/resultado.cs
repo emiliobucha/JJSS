@@ -18,6 +18,7 @@ namespace JJSS_Entidad
         public resultado()
         {
             this.lucha = new HashSet<lucha>();
+            this.categoria_torneo = new HashSet<categoria_torneo>();
         }
     
         public int id_resultado { get; set; }
@@ -29,5 +30,7 @@ namespace JJSS_Entidad
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lucha> lucha { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
     }
 }

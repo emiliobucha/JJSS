@@ -10,16 +10,16 @@
 namespace JJSS.Presentacion {
     
     
-    public partial class TorneoPagoFinalizado {
+    public partial class EventoPagoFinalizado {
         
         /// <summary>
-        /// Control formPagoTorneo.
+        /// Control formPagoEvento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formPagoTorneo;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formPagoEvento;
         
         /// <summary>
         /// Control pnl_mensaje_exito.
@@ -85,13 +85,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_participante;
         
         /// <summary>
-        /// Control lbl_torneo.
+        /// Control lbl_evento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_torneo;
+        protected global::System.Web.UI.WebControls.Label lbl_evento;
         
         /// <summary>
         /// Control lbl_fecha1.
@@ -112,22 +112,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_fecha;
         
         /// <summary>
-        /// Control lbl_fechatorneo1.
+        /// Control lbl_fechaevento1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_fechatorneo1;
+        protected global::System.Web.UI.WebControls.Label lbl_fechaevento1;
         
         /// <summary>
-        /// Control lbl_fechatorneo.
+        /// Control lbl_fechaevento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_fechatorneo;
+        protected global::System.Web.UI.WebControls.Label lbl_fechaevento;
         
         /// <summary>
         /// Control lbl_monto1.

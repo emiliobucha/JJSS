@@ -40,6 +40,8 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var transaction = db.Database.BeginTransaction();
+
+                
                 try
                 {
                     //Foraneos
@@ -58,36 +60,36 @@ namespace JJSS_Negocio
                         select categoria;
 
                     categoria categoriaPerteneciente = cat.First();
-                    
+
                     //Nuevos
-                   
+
 
                     if (obtenerParticipanteDeTorneo(pDni, pTorneo) != null)
                     {
                         return "Participante exitente";
                     }
 
-                   //alumnoExistente = ObtenerAlumnoPorDNI(pDni);
+                    //alumnoExistente = ObtenerAlumnoPorDNI(pDni);
 
                     participante nuevoParticipante;
-                    
+
                     nuevoParticipante = new participante()
                     {
                         nombre = pNombre,
                         apellido = pApellido,
                         //peso = pPeso,
-                        
+
                         sexo = pSexo,
                         fecha_nacimiento = pFechaNacimiento,
                         dni = pDni,
-                        id_alumno=pIDAlumno
+                        id_alumno = pIDAlumno
 
                     };
                     db.participante.Add(nuevoParticipante);
                     db.SaveChanges();
                     var catTorneoExistente = from catTor in db.categoria_torneo
                                              where (catTor.id_categoria == categoriaPerteneciente.id_categoria)
-                                            // && (catTor.faja.id_faja == fajaElegida.id_faja)
+                                             // && (catTor.faja.id_faja == fajaElegida.id_faja)
                                              && (catTor.sexo == pSexo)
                                              select catTor;
                     categoria_torneo nuevaCategoriaTorneo;
@@ -98,7 +100,7 @@ namespace JJSS_Negocio
                         nuevaCategoriaTorneo = new categoria_torneo()
                         {
                             id_categoria = categoriaPerteneciente.id_categoria,
-                        //faja = fajaElegida,
+                            //faja = fajaElegida,
                             sexo = pSexo,
 
                         };
@@ -114,7 +116,7 @@ namespace JJSS_Negocio
                     DateTime fecha = DateTime.Now.Date;
                     inscripcion nuevaInscripcion = new inscripcion()
                     {
-                        
+
                         hora = hora,
                         fecha = fecha,
                         codigo_barra = 123456789,
@@ -126,8 +128,8 @@ namespace JJSS_Negocio
 
                     };
 
-                   
-                  
+
+
                     db.inscripcion.Add(nuevaInscripcion);
                     db.SaveChanges();
                     transaction.Commit();
@@ -142,7 +144,7 @@ namespace JJSS_Negocio
             }
         }
 
-    
+
         /*
          * Metodo que nos permite bajar el acoplamiente y obtener los diferentes torneos para el momento de inscribirse
          */
@@ -184,7 +186,7 @@ namespace JJSS_Negocio
         {
             GestorAlumnos gestorAlumnos = new GestorAlumnos();
 
-            return  gestorAlumnos.ObtenerAlumnoPorDNI(pDni);
+            return gestorAlumnos.ObtenerAlumnoPorDNI(pDni);
         }
 
         /*
@@ -209,6 +211,19 @@ namespace JJSS_Negocio
                                              where part.dni == pDni && ins.id_torneo == pIDTorneo
                                              select part).FirstOrDefault();
                 return participante;
+            }
+        }
+
+
+        public inscripcion obtenerInscripcionATorneoPorIdParticipante(int pId, int pIDTorneo)
+        {
+            using (var db = new JJSSEntities())
+            {
+                inscripcion inscripcion = (from ins in db.inscripcion
+                                             join part in db.participante on ins.id_participante  equals part.id_participante
+                                             where part.id_participante == pId && ins.id_torneo == pIDTorneo
+                                             select ins).FirstOrDefault();
+                return inscripcion;
             }
         }
     }

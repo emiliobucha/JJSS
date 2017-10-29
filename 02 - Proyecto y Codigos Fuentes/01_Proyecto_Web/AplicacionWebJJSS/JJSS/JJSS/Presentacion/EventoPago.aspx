@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="TorneoPago.aspx.cs" Inherits="JJSS.Presentacion.TorneoPago" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="EventoPago.aspx.cs" Inherits="JJSS.Presentacion.EventoPago" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
@@ -6,8 +6,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
-    <section id="pagoTorneo" title="pagoTorneo"></section>
-    <form id="formPagoTorneo" runat="server">
+    <section id="pagoEvento" title="pagoEvento"></section>
+    <form id="formPagoEvento" runat="server">
         <div id="registrowrap">
 
             <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
@@ -44,7 +44,7 @@
                 <div class="container">
                     <div class="row mt centered">
                        
-                        <h1>PAGO DE TORNEO</h1>
+                        <h1>PAGO DE EVENTO</h1>
                         <p>&nbsp;</p>
                     </div>
 
@@ -56,13 +56,13 @@
                             <p>&nbsp;</p>
                         </div>
 
-                        <!-- Torneo-->
+                        <!-- Evento-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <label class="pull-left">Torneo</label>
+                                <label class="pull-left">Evento</label>
                             </div>
                             <div class="col-xs-3">
-                                <asp:Label ID="lbl_torneo" runat="server" Text="Torneo"></asp:Label>
+                                <asp:Label ID="lbl_evento" runat="server" Text="Evento"></asp:Label>
                             </div>
                             <div class="col-xs-3">
                                 
@@ -91,14 +91,14 @@
                             &nbsp;
                         </div>
 
-                        <!-- FECHA DEL TORNEO-->
+                        <!-- FECHA DEL EVENTO-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fechatorneo1" runat="server" Text="Fecha del Torneo"></asp:Label>
+                                <asp:Label cssClass="pull-left" ID="lbl_fechaevento1" runat="server" Text="Fecha del Evento"></asp:Label>
 
                             </div>
                             <div class="col-xs-3">
-                                <asp:Label ID="lbl_fechatorneo" runat="server" Text="12/12/2012"></asp:Label>
+                                <asp:Label ID="lbl_fechaevento" runat="server" Text="12/12/2012"></asp:Label>
                             </div>
                             <div class="col-xs-3">
                                 
@@ -154,7 +154,7 @@
   <script type="text/javascript">
       function execute_my_onreturn(json) {
           if (json.collection_status == 'approved') {
-              location.href="TorneoPagoFinalizado.aspx?Estado=ok"
+              location.href="EventoPagoFinalizado.aspx?Estado=ok"
           } else if (json.collection_status == 'pending') {
               alert('El usuario no completó el pago');
           } else if (json.collection_status == 'in_process') {

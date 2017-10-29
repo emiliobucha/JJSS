@@ -12,15 +12,17 @@ namespace JJSS_Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class categoria_torneo
+    public partial class pago_evento
     {
-        public int id_categoria_torneo { get; set; }
-        public Nullable<int> id_categoria { get; set; }
-        public Nullable<short> sexo { get; set; }
-        public Nullable<int> id_faja { get; set; }
-        public Nullable<int> id_resultado { get; set; }
+        public int id_pago_torneo { get; set; }
+        public Nullable<int> id_participante { get; set; }
+        public Nullable<int> id_evento { get; set; }
+        public Nullable<decimal> pago_monto { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> id_forma_pago { get; set; }
     
-        public virtual categoria categoria { get; set; }
-        public virtual resultado resultado { get; set; }
+        public virtual evento_especial evento_especial { get; set; }
+        public virtual forma_pago forma_pago { get; set; }
+        public virtual participante participante { get; set; }
     }
 }

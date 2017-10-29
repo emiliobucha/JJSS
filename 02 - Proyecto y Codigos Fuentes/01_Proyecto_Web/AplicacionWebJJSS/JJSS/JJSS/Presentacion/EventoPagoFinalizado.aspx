@@ -1,13 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="TorneoPago.aspx.cs" Inherits="JJSS.Presentacion.TorneoPago" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="EventoPagoFinalizado.aspx.cs" Inherits="JJSS.Presentacion.EventoPagoFinalizado" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
-    <section id="pagoTorneo" title="pagoTorneo"></section>
-    <form id="formPagoTorneo" runat="server">
+    <section id="pagoEvento" title="pagoEvento"></section>
+    <form id="formPagoEvento" runat="server">
         <div id="registrowrap">
 
             <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
@@ -44,7 +43,7 @@
                 <div class="container">
                     <div class="row mt centered">
                        
-                        <h1>PAGO DE TORNEO</h1>
+                        <h1>PAGO DE EVENTO</h1>
                         <p>&nbsp;</p>
                     </div>
 
@@ -56,13 +55,13 @@
                             <p>&nbsp;</p>
                         </div>
 
-                        <!-- Torneo-->
+                        <!-- Evento-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <label class="pull-left">Torneo</label>
+                                <label class="pull-left">Evento</label>
                             </div>
                             <div class="col-xs-3">
-                                <asp:Label ID="lbl_torneo" runat="server" Text="Torneo"></asp:Label>
+                                <asp:Label ID="lbl_evento" runat="server" Text="Evento"></asp:Label>
                             </div>
                             <div class="col-xs-3">
                                 
@@ -76,11 +75,11 @@
                          <!-- FECHA DE PAGO-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fecha" runat="server" Text="Fecha de Pago"></asp:Label>
+                                <asp:Label cssClass="pull-left" ID="lbl_fecha1" runat="server" Text="Fecha de Pago"></asp:Label>
 
                             </div>
                             <div class="col-xs-3">
-                                <asp:Label ID="lbl_fecha1" runat="server" Text="12/12/2012"></asp:Label>
+                                <asp:Label ID="lbl_fecha" runat="server" Text="12/12/2012"></asp:Label>
                             </div>
                             <div class="col-xs-3">
                                 
@@ -91,14 +90,14 @@
                             &nbsp;
                         </div>
 
-                        <!-- FECHA DEL TORNEO-->
+                        <!-- FECHA DEL EVENTO-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fechatorneo1" runat="server" Text="Fecha del Torneo"></asp:Label>
+                                <asp:Label cssClass="pull-left" ID="lbl_fechaevento1" runat="server" Text="Fecha del Evento"></asp:Label>
 
                             </div>
                             <div class="col-xs-3">
-                                <asp:Label ID="lbl_fechatorneo" runat="server" Text="12/12/2012"></asp:Label>
+                                <asp:Label ID="lbl_fechaevento" runat="server" Text="12/12/2012"></asp:Label>
                             </div>
                             <div class="col-xs-3">
                                 
@@ -126,14 +125,13 @@
                          <div class="row centered">
                             &nbsp;
                         </div>
-                            
-                     
+
 
                         <!-- BOTONES-->
                         <div class="row centered">
 
-                             <a class="ui-button" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="modal" onreturn="execute_my_onreturn">Pagar</a>     
-                            <asp:Button ID="btn_cancelar" CssClass="ui-button" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
+                          
+                            <asp:Button ID="btn_volver" CssClass="ui-button" runat="server" Text="Volver" CausesValidation="false" OnClick="btn_volver_Click" />
 
                         </div>
 
@@ -148,25 +146,25 @@
 
     </form>
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
-     <script type="text/javascript">
-     (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+    <script type="text/javascript">
+        (function () { function $MPC_load() { window.$MPC_loaded !== true && (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js"; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); window.$MPC_loaded = true; })(); } window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null; })();
     </script>
-  <script type="text/javascript">
-      function execute_my_onreturn(json) {
-          if (json.collection_status == 'approved') {
-              location.href="TorneoPagoFinalizado.aspx?Estado=ok"
-          } else if (json.collection_status == 'pending') {
-              alert('El usuario no completó el pago');
-          } else if (json.collection_status == 'in_process') {
-              alert('El pago está siendo revisado');
-          } else if (json.collection_status == 'rejected') {
-              alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
-          } else if (json.collection_status == null) {
-              alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
-          }
-      }
-</script>
+    <script type="text/javascript">
+        function execute_my_onreturn(json) {
+            if (json.collection_status == 'approved') {
+                location.href = "AlumnoPagoFinalizado.aspx"
+            } else if (json.collection_status == 'pending') {
+                alert('El usuario no completó el pago');
+            } else if (json.collection_status == 'in_process') {
+                alert('El pago está siendo revisado');
+            } else if (json.collection_status == 'rejected') {
+                alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
+            } else if (json.collection_status == null) {
+                alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
+            }
+        }
+    </script>
 
-   
+
 
 </asp:Content>

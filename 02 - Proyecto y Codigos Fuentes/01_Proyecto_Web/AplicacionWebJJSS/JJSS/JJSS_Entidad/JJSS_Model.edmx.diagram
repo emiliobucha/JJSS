@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a39c88d82e814310b6357f57b0d8cf80" Name="Diagram1">
+      <Diagram DiagramId="a39c88d82e814310b6357f57b0d8cf80" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="JJSSDB1Model.academia" Width="1.5" PointX="6.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSDB1Model.alumno" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSDB1Model.alumno_imagen" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
@@ -113,6 +113,15 @@
         <AssociationConnector Association="JJSSDB1Model.fk_usuarioxgrupo_id_usuario" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSDB1Model.FK_torneo_tipoclase" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSDB1Model.FK_torneo_imagen_id_torneo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="JJSSDB1Model.pago_evento" Width="1.5" PointX="13.5" PointY="38.125" />
+        <EntityTypeShape EntityType="JJSSDB1Model.pago_torneo" Width="1.5" PointX="13.5" PointY="34.25" />
+        <AssociationConnector Association="JJSSDB1Model.FK_resultado_id_resultado" />
+        <AssociationConnector Association="JJSSDB1Model.FK__pago_torn__id_ev__1995C0A8" />
+        <AssociationConnector Association="JJSSDB1Model.FK__pago_torn__id_fo__17AD7836" />
+        <AssociationConnector Association="JJSSDB1Model.fk_forma_pago_id_forma_pago" />
+        <AssociationConnector Association="JJSSDB1Model.FK__pago_torn__id_pa__18A19C6F" />
+        <AssociationConnector Association="JJSSDB1Model.fk_parcipante_id_participante" />
+        <AssociationConnector Association="JJSSDB1Model.fk_torneo_id_torneo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

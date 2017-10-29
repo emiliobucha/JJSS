@@ -11,11 +11,11 @@ using System.Collections;
 
 namespace JJSS.Presentacion
 {
-    public partial class TorneoPagoFinalizado : System.Web.UI.Page
+    public partial class EventoPago : System.Web.UI.Page
     {
-        private GestorTorneos gestorTorneos;
+        private GestorEventos gestorEvento;
         private GestorFormaPago gestorFPago;
-        private GestorPagoTorneo gestorPago;
+        private GestorPagoClase gestorPago;
         private GestorParticipantes gestorParticipantes;
         private GestorMercadoPago gestorMP;
         private participante participanteElegido;
@@ -24,12 +24,11 @@ namespace JJSS.Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            gestorTorneos = new GestorTorneos();
+            gestorEvento = new GestorEventos();
             gestorFPago = new GestorFormaPago();
             gestorParticipantes = new GestorParticipantes();
-            gestorPago = new GestorPagoTorneo();
+            gestorPago = new GestorPagoClase();
+
             if (!IsPostBack)
             {
 
@@ -42,7 +41,7 @@ namespace JJSS.Presentacion
                         System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
                         if (drsAux.Length > 0)
                         {
-                            int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
 
                         }
                         if (permiso != 1)
@@ -50,6 +49,7 @@ namespace JJSS.Presentacion
                             Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                         }
+
                     }
                 }
                 catch (Exception ex)
@@ -57,64 +57,47 @@ namespace JJSS.Presentacion
                     Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 }
-                if (Session["TorneoPagar"] == null || Session["TorneoPagar"].ToString() == "") Response.Redirect("Inicio.aspx");
 
 
+                if (Session["EventoPagar"] == null) Response.Redirect("InscripcionEvento.aspx");
 
-                var resultado = Request["Estado"];
-                if (resultado == "ok")
-                {
+                lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
 
-                    lbl_fecha.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
-                    int id = int.Parse(Session["TorneoPagar"].ToString());
-                    int dni = int.Parse(Session["ParticipanteDNI"].ToString());
-                    participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
-                    torneo torneoPagar = gestorTorneos.BuscarTorneoPorID(id);
-                    lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
-                    lbl_torneo.Text = torneoPagar.nombre;
+                int id = int.Parse(Session["EventoPagar"].ToString());
+                int dni = int.Parse(Session["ParticipanteDNI"].ToString());
+                participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
+                lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
 
+                evento_especial evento = gestorEvento.BuscarEventoPorID(id);
+                lbl_evento.Text = evento.nombre;
+                lbl_fechaevento.Text = evento.fecha.ToString();
 
-                    double monto = (double)torneoPagar.precio_absoluto;
-                    lbl_monto.Text = "$" + monto;
+                double monto = (double)evento.precio ;
+                lbl_monto.Text = "$" + monto;
 
+              
 
-
-                    if (int.TryParse(Session["ParticipanteDNI"].ToString(), out dni))
-                    {
-                        participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
-
-                        string sReturn = gestorPago.registrarPago(participanteElegido.id_participante, id, 4);
-                        if (sReturn.CompareTo("") == 0)
-                        {
-                            mensaje("Se ha registrado el pago exitosamente", true);
-                            limpiar();
-                        }
-                        else mensaje(sReturn, false);
-                    }
-                    else mensaje("No hay alumno seleccionado", false);
-                    Session["TorneoPagar"] = null;
-                }
-                else
-                {
-                    Session["TorneoPagar"] = null;
-                    Response.Redirect("Inicio.aspx");
-                }
-
-
+                
+                String sInit_Point = "";
+                gestorMP = new GestorMercadoPago();
+                sInit_Point = gestorMP.NuevoPago(monto);
+                mp_checkout.Attributes.Add("href", sInit_Point);
             }
-
-
         }
 
 
-
+        protected void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+            Response.Redirect("../Presentacion/Inicio.aspx");
+        }
 
         protected void limpiar()
         {
 
-            //lbl_alumno.Text = "No hay alumno seleccionado";
-            //Session["Clase"] = "";
-            //pagoRecargo = 0;
+            lbl_participante.Text = "No hay partiipante seleccionado";
+            Session["PagoEvento"] = "";
+            pagoRecargo = 0;
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -134,10 +117,5 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void btn_volver_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            Response.Redirect("Inicio.aspx");
-        }
     }
 }

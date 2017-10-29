@@ -26,5 +26,13 @@ namespace JJSS_Negocio
                 return participanteEncontrado.FirstOrDefault();            
             }
         }
+
+        public participante obtenerParticipantePorId(int pId)
+        {
+            using ( var db = new JJSSEntities())
+            {
+                return db.participante.Find(pId);
+            }
+        }
     }
 }

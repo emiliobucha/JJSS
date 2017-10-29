@@ -180,6 +180,12 @@
     <Compile Include="pago_clase.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="pago_evento.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pago_torneo.cs">
+      <DependentUpon>JJSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="pais.cs">
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
