@@ -107,7 +107,7 @@
                                     <div class="row centered">
                                         <div class="col-md-2 hidden-sm hidden-xs"></div>
                                         <div class="col-md-4 ">
-                                            <label class="pull-left">Fecha:&nbsp; </label>
+                                            <label class="pull-left">Fecha del evento:&nbsp; </label>
                                             <asp:Label ID="lbl_FechaDeEvento" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                             <asp:Label ID="Label1" CssClass="pull-left" runat="server" Text=", "></asp:Label>
                                             <asp:Label ID="lbl_HoraEvento" CssClass="pull-left" runat="server" Text=""></asp:Label>
@@ -123,8 +123,11 @@
                                     <div class="row centered">
                                         <div class="col-md-2 hidden-sm hidden-xs"></div>
                                         <div class="col-md-6">
-                                            <label class="pull-left">Cierre de Inscripciones:&nbsp;</label>
+                                            <label class="pull-left">Cierre de Inscripción:&nbsp;</label>
                                             <asp:Label ID="lbl_FechaCierreInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
+                                            <asp:Label ID="Label3" CssClass="pull-left" runat="server" Text=", "></asp:Label>
+                                            <asp:Label ID="lbl_HoraCierre" CssClass="pull-left" runat="server" Text=""></asp:Label>
+                                            <asp:Label ID="Label8" CssClass="pull-left" runat="server" Text=" hs"></asp:Label>
                                         </div>
                                     </div>
 
@@ -137,7 +140,7 @@
                                         <div class="col-md-2 hidden-sm hidden-xs"></div>
                                         <div class="col-md-5 col-lg-10 col-sm-10">
 
-                                            <label class="pull-left">El costo de inscripción:&nbsp; </label>
+                                            <label class="pull-left">Costo:&nbsp; </label>
                                             <asp:Label ID="Label4" CssClass="pull-left" runat="server" Text="$"></asp:Label>
                                             <asp:Label ID="lbl_CostoInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
 

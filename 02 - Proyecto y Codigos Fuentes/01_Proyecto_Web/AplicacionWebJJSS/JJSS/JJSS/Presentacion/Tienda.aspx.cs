@@ -12,7 +12,7 @@ namespace JJSS.Presentacion
 {
     public partial class Tienda : System.Web.UI.Page
     {
-
+        private GestorReservas gestorReservas;
         private GestorProductos gestorProductos;
         static DataTable dtItems;
 
@@ -94,11 +94,12 @@ namespace JJSS.Presentacion
 
         protected void btn_confirmar_reserva_Click(object sender, EventArgs e)
         {
+            gestorReservas = new GestorReservas();
             gestorProductos = new GestorProductos();
             GestorSesiones gestorSesion = new GestorSesiones();
             seguridad_usuario alumnoActual = gestorSesion.getActual().usuario;
             int idUsuario = alumnoActual.id_usuario;
-            string sReturn = gestorProductos.ConfirmarReserva(idUsuario, dtItems);
+            string sReturn = gestorReservas.ConfirmarReserva(idUsuario, dtItems);
             if (sReturn.CompareTo("") == 0)
             {
                 mensaje("Se reservaron los productos correctamente", true);

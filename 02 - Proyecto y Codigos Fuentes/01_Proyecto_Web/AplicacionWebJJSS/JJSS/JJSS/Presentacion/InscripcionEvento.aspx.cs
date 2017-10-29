@@ -123,6 +123,7 @@ namespace JJSS.Presentacion
                 lbl_FechaDeEvento.Text = eventoSeleccionado.fecha.Value.ToLongDateString();
                 lbl_HoraEvento.Text = eventoSeleccionado.hora.ToString();
                 lbl_CostoInscripcion.Text = eventoSeleccionado.precio.ToString();
+                lbl_HoraCierre.Text = eventoSeleccionado.hora_cierre.ToString();
             }
 
             pnl_dni.Visible = true;

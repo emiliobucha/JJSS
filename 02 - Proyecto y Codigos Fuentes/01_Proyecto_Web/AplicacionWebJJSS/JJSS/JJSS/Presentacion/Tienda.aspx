@@ -94,9 +94,9 @@
                 <asp:GridView ID="gv_items" CssClass="table" runat="server" DataKeyNames="id_producto" EmptyDataText="No seleccionó ningún producto" OnRowCommand="gv_items_RowCommand" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="nombre" HeaderText="Producto" />
-                        <asp:BoundField DataField="precio_venta" HeaderText="Precio Unitario" />
+                        <asp:BoundField DataField="precio_venta" HeaderText="Precio Unitario ($)" />
                         <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
-                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar Item" />
+                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
                     </Columns>
 
                 </asp:GridView>
