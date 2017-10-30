@@ -11,7 +11,7 @@
     <div class="container">
         <section id="inscripcionTorneo" title="inscripcionTorneo"></section>
 
-          
+
         <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
             <div class="col-md-2 hidden-xs"></div>
             <div class="col-md-8 col-xs-12 col-sm-12">
@@ -19,13 +19,29 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <a class="ui-icon ui-icon-check"></a>
                     <strong>
-                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
+                        <br />
+                    </strong>
+                    <asp:Panel ID="pnl_pago" runat="server" Visible="False">
+                        <div class="text-center">
+                            ¿Desea pagar ahora?<br />
+                            <asp:Button ID="btn_pagar" runat="server" class="btn btn-default" Text="Si" OnClientClick="btn_pagar_click()" />
+                            <asp:Button ID="btn_no" runat="server" class="btn btn-default" Text="No" OnClientClick="btn_no_click()" />
+                        </div>
+                    </asp:Panel>
                 </div>
             </div>
+            
+
+
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
         </asp:Panel>
+        
+        
+        
+
 
         <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
             <div class="col-md-2 hidden-xs"></div>
@@ -44,7 +60,7 @@
 
 
         <asp:Panel ID="pnlFormulario" runat="server" CssClass="col-sm-12 col-xs-12 col-md-10 col-lg-10">
-         
+
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
@@ -140,6 +156,19 @@
                                             <asp:Label ID="lbl_FechaCierreInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                         </div>
                                     </div>
+                                    <!--Cierre Inscripciones-->
+                                    <div class="row centered">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="row centered">
+                                        <div class="col-md-2 hidden-sm hidden-xs"></div>
+                                        <div class="col-md-6">
+                                            <label class="pull-left">Hora Cierre de Inscripciones:&nbsp;</label>
+                                            <asp:Label ID="lbl_HoraCierre" CssClass="pull-left" runat="server" Text=""></asp:Label>
+                                        </div>
+                                    </div>
+
 
                                     <!--Precio-->
                                     <div class="row centered">
@@ -158,7 +187,7 @@
                                                 <p>&nbsp;</p>
                                             </div>
                                         </div>
-                                      </div>
+                                    </div>
                                     <div class="row centered">
                                         <div class="col-md-2 hidden-sm hidden-xs"></div>
                                         <div class="col-md-5 col-lg-10 col-sm-10">
@@ -176,7 +205,7 @@
                                         </div>
                                     </div>
 
-                                      <div class="row centered">
+                                    <div class="row centered">
                                         <p>&nbsp;</p>
                                     </div>
 
@@ -395,5 +424,14 @@
                 });
             }
         );
+    </script>
+    <script type="text/javascript">
+        function btn_pagar_click() {
+            location.href = "TorneoPago.aspx";
+        }
+
+        function btn_no_click() {
+            location.href = "InscripcionTorneo.aspx";
+        }
     </script>
 </asp:Content>

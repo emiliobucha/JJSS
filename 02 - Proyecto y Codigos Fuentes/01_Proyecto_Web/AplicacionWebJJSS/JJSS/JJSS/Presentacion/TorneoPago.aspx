@@ -154,7 +154,7 @@
   <script type="text/javascript">
       function execute_my_onreturn(json) {
           if (json.collection_status == 'approved') {
-              location.href="TorneoPagoFinalizado.aspx?Estado=ok"
+              location.href = "TorneoPagoFinalizado.aspx?Estado=ok";
           } else if (json.collection_status == 'pending') {
               alert('El usuario no completó el pago');
           } else if (json.collection_status == 'in_process') {

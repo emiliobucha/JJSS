@@ -15,7 +15,16 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <a class="ui-icon ui-icon-check"></a>
                     <strong>
-                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
+
+                    </strong>
+                    <asp:Panel ID="pnl_pago" runat="server" Visible="False">
+                        <div class="text-center">
+                            ¿Desea pagar ahora?<br />
+                            <asp:Button ID="btn_pagar" runat="server" class="btn btn-default" Text="Si" OnClientClick="btn_pagar_click()" />
+                            <asp:Button ID="btn_no" runat="server" class="btn btn-default" Text="No" OnClientClick="btn_no_click()" />
+                        </div>
+                    </asp:Panel>
                 </div>
             </div>
             <div class="row centered">
@@ -329,5 +338,14 @@
                 });
             }
         );
+    </script>
+    <script type="text/javascript">
+        function btn_pagar_click() {
+            location.href = "EventoPago.aspx";
+        }
+
+        function btn_no_click() {
+            location.href = "InscripcionEvento.aspx";
+        }
     </script>
 </asp:Content>

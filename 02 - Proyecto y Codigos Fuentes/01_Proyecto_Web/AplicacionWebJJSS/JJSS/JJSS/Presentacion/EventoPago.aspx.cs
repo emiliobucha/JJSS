@@ -16,9 +16,9 @@ namespace JJSS.Presentacion
         private GestorEventos gestorEvento;
         private GestorFormaPago gestorFPago;
         private GestorPagoClase gestorPago;
-        private GestorParticipantes gestorParticipantes;
+        private GestorParticipantesEvento gestorParticipantesEvento;
         private GestorMercadoPago gestorMP;
-        private participante participanteElegido;
+        private participante_evento participante_eventoElegido;
         private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
 
 
@@ -26,7 +26,7 @@ namespace JJSS.Presentacion
         {
             gestorEvento = new GestorEventos();
             gestorFPago = new GestorFormaPago();
-            gestorParticipantes = new GestorParticipantes();
+            gestorParticipantesEvento = new GestorParticipantesEvento();
             gestorPago = new GestorPagoClase();
 
             if (!IsPostBack)
@@ -65,8 +65,8 @@ namespace JJSS.Presentacion
 
                 int id = int.Parse(Session["EventoPagar"].ToString());
                 int dni = int.Parse(Session["ParticipanteDNI"].ToString());
-                participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
-                lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
+                participante_eventoElegido = gestorParticipantesEvento.ObtenerParticipantePorDNI(dni);
+                lbl_participante.Text = participante_eventoElegido.apellido + ", " + participante_eventoElegido.nombre;
 
                 evento_especial evento = gestorEvento.BuscarEventoPorID(id);
                 lbl_evento.Text = evento.nombre;

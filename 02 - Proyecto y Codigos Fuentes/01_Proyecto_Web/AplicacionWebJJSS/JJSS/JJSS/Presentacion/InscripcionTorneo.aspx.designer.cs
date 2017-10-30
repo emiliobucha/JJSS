@@ -31,6 +31,33 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.Label lbl_exito;
         
         /// <summary>
+        /// Control pnl_pago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_pago;
+        
+        /// <summary>
+        /// Control btn_pagar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_pagar;
+        
+        /// <summary>
+        /// Control btn_no.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_no;
+        
+        /// <summary>
         /// Control pnl_mensaje_error.
         /// </summary>
         /// <remarks>
@@ -184,15 +211,6 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.Label lbl_FechaCierreInscripcion;
         
         /// <summary>
-        /// Control Label7.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-        
-        /// <summary>
         /// Control lbl_HoraCierre.
         /// </summary>
         /// <remarks>
@@ -200,15 +218,6 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_HoraCierre;
-        
-        /// <summary>
-        /// Control Label9.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
         /// Control Label4.

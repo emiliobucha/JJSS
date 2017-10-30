@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="JJSSDB1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -117,7 +117,7 @@
           <Property Name="fecha" Type="datetime" />
           <Property Name="id_proveedor" Type="int" />
           <Property Name="id_producto" Type="int" />
-          <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
           <Property Name="cantidad" Type="int" />
         </EntityType>
         <EntityType Name="detalle_pago_clase">
@@ -126,7 +126,7 @@
           </Key>
           <Property Name="id_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_pago_clase" Type="int" />
-          <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
           <Property Name="fecha_hora" Type="date" />
           <Property Name="mes" Type="varchar" MaxLength="20" />
           <Property Name="id_forma_pago" Type="int" Nullable="false" />
@@ -139,7 +139,7 @@
           <Property Name="id_detalle_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_reserva" Type="int" />
           <Property Name="id_producto" Type="int" />
-          <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
           <Property Name="cantidad" Type="int" />
         </EntityType>
         <EntityType Name="direccion">
@@ -183,7 +183,7 @@
           <Property Name="id_estado" Type="int" />
           <Property Name="id_sede" Type="int" />
           <Property Name="fecha_cierre" Type="date" />
-          <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
           <Property Name="id_tipo_evento" Type="int" />
           <Property Name="hora_cierre" Type="varchar" MaxLength="10" />
           <Property Name="hora" Type="varchar" MaxLength="10" />
@@ -243,7 +243,7 @@
           </Key>
           <Property Name="id_inscripcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
-          <Property Name="hora" Type="varchar" MaxLength="15" />
+          <Property Name="hora" Type="varchar" MaxLength="20" />
           <Property Name="id_clase" Type="int" />
           <Property Name="id_alumno" Type="int" />
         </EntityType>
@@ -255,7 +255,7 @@
           <Property Name="fecha" Type="date" />
           <Property Name="id_participante" Type="int" />
           <Property Name="id_evento" Type="int" />
-          <Property Name="hora" Type="varchar" MaxLength="10" />
+          <Property Name="hora" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="lucha">
           <Key>
@@ -495,8 +495,8 @@
           <Property Name="id_sede" Type="int" />
           <Property Name="fecha_cierre" Type="date" />
           <Property Name="hora_cierre" Type="varchar" MaxLength="10" />
-          <Property Name="precio_absoluto" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="precio_categoria" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio_absoluto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="precio_categoria" Type="decimal" Precision="18" Scale="2" />
           <Property Name="id_tipo_clase" Type="int" />
         </EntityType>
         <EntityType Name="torneo_imagen">
@@ -1351,7 +1351,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="JJSSDB1ModelStoreContainer">
+        <EntityContainer Name="JJSSModelStoreContainer">
           <EntitySet Name="academia" EntityType="Self.academia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno_imagen" EntityType="Self.alumno_imagen" Schema="dbo" store:Type="Tables" />
@@ -1671,10 +1671,11 @@
             <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="JJSSDB1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -1777,9 +1778,9 @@
           <Property Name="id_categoria" Type="Int32" />
           <Property Name="sexo" Type="Int16" />
           <Property Name="id_faja" Type="Int32" />
-          <NavigationProperty Name="categoria" Relationship="Self.FK__categoria__id_ca__531856C7" FromRole="categoria_torneo" ToRole="categoria" />
           <Property Name="id_resultado" Type="Int32" />
-          <NavigationProperty Name="resultado" Relationship="JJSSDB1Model.FK_resultado_id_resultado" FromRole="categoria_torneo" ToRole="resultado" />
+          <NavigationProperty Name="categoria" Relationship="Self.FK__categoria__id_ca__531856C7" FromRole="categoria_torneo" ToRole="categoria" />
+          <NavigationProperty Name="resultado" Relationship="Self.FK_resultado_id_resultado" FromRole="categoria_torneo" ToRole="resultado" />
         </EntityType>
         <EntityType Name="ciudad">
           <Key>
@@ -1817,7 +1818,7 @@
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="id_proveedor" Type="Int32" />
           <Property Name="id_producto" Type="Int32" />
-          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="cantidad" Type="Int32" />
           <NavigationProperty Name="producto" Relationship="Self.FK_compra_producto" FromRole="compra" ToRole="producto" />
           <NavigationProperty Name="proveedor" Relationship="Self.FK_compra_proveedor" FromRole="compra" ToRole="proveedor" />
@@ -1828,7 +1829,7 @@
           </Key>
           <Property Name="id_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_pago_clase" Type="Int32" />
-          <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="monto" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="fecha_hora" Type="DateTime" Precision="0" />
           <Property Name="mes" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_forma_pago" Type="Int32" Nullable="false" />
@@ -1843,7 +1844,7 @@
           <Property Name="id_detalle_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_reserva" Type="Int32" />
           <Property Name="id_producto" Type="Int32" />
-          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="cantidad" Type="Int32" />
           <NavigationProperty Name="producto" Relationship="Self.FK_detallereserva_producto" FromRole="detalle_reserva" ToRole="producto" />
           <NavigationProperty Name="reserva" Relationship="Self.FK_detallereserva_reserva" FromRole="detalle_reserva" ToRole="reserva" />
@@ -1899,16 +1900,16 @@
           <Property Name="id_estado" Type="Int32" />
           <Property Name="id_sede" Type="Int32" />
           <Property Name="fecha_cierre" Type="DateTime" Precision="0" />
-          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="id_tipo_evento" Type="Int32" />
           <Property Name="hora_cierre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="estado" Relationship="Self.FK__evento_id_estado" FromRole="evento_especial" ToRole="estado" />
           <NavigationProperty Name="sede" Relationship="Self.FK__evento__id_sede" FromRole="evento_especial" ToRole="sede" />
           <NavigationProperty Name="inscripcion_evento" Relationship="Self.FK__inscripci__id_evento" FromRole="evento_especial" ToRole="inscripcion_evento" />
+          <NavigationProperty Name="pago_evento" Relationship="Self.FK__pago_torn__id_ev__1995C0A8" FromRole="evento_especial" ToRole="pago_evento" />
           <NavigationProperty Name="evento_especial_imagen" Relationship="Self.FK_evento_imagen_evento" FromRole="evento_especial" ToRole="evento_especial_imagen" />
           <NavigationProperty Name="tipo_evento_especial" Relationship="Self.FK_evento_tipo_evento" FromRole="evento_especial" ToRole="tipo_evento_especial" />
-          <NavigationProperty Name="pago_evento" Relationship="JJSSDB1Model.FK__pago_torn__id_ev__1995C0A8" FromRole="evento_especial" ToRole="pago_evento" />
         </EntityType>
         <EntityType Name="evento_especial_imagen">
           <Key>
@@ -1938,8 +1939,8 @@
           <Property Name="id_forma_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="detalle_pago_clase" Relationship="Self.FK_detalleclase_id_forma_pago" FromRole="forma_pago" ToRole="detalle_pago_clase" />
-          <NavigationProperty Name="pago_evento" Relationship="JJSSDB1Model.FK__pago_torn__id_fo__17AD7836" FromRole="forma_pago" ToRole="pago_evento" />
-          <NavigationProperty Name="pago_torneo" Relationship="JJSSDB1Model.fk_forma_pago_id_forma_pago" FromRole="forma_pago" ToRole="pago_torneo" />
+          <NavigationProperty Name="pago_evento" Relationship="Self.FK__pago_torn__id_fo__17AD7836" FromRole="forma_pago" ToRole="pago_evento" />
+          <NavigationProperty Name="pago_torneo" Relationship="Self.fk_forma_pago_id_forma_pago" FromRole="forma_pago" ToRole="pago_torneo" />
         </EntityType>
         <EntityType Name="horario">
           <Key>
@@ -1977,7 +1978,7 @@
           </Key>
           <Property Name="id_inscripcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="hora" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_clase" Type="Int32" />
           <Property Name="id_alumno" Type="Int32" />
           <NavigationProperty Name="alumno" Relationship="Self.FK_inscripcion_clase_id_alumno" FromRole="inscripcion_clase" ToRole="alumno" />
@@ -1991,7 +1992,7 @@
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="id_participante" Type="Int32" />
           <Property Name="id_evento" Type="Int32" />
-          <Property Name="hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="evento_especial" Relationship="Self.FK__inscripci__id_evento" FromRole="inscripcion_evento" ToRole="evento_especial" />
           <NavigationProperty Name="participante_evento" Relationship="Self.FK__inscripci__id_participante" FromRole="inscripcion_evento" ToRole="participante_evento" />
         </EntityType>
@@ -2020,6 +2021,34 @@
           <NavigationProperty Name="alumno" Relationship="Self.FK_pagoclase_id_alumno" FromRole="pago_clase" ToRole="alumno" />
           <NavigationProperty Name="clase" Relationship="Self.FK_pagoclase_id_clase" FromRole="pago_clase" ToRole="clase" />
           <NavigationProperty Name="detalle_pago_clase" Relationship="Self.FK_detalleclase_id_pago_clase" FromRole="pago_clase" ToRole="detalle_pago_clase" />
+        </EntityType>
+        <EntityType Name="pago_evento">
+          <Key>
+            <PropertyRef Name="id_pago_torneo" />
+          </Key>
+          <Property Name="id_pago_torneo" Type="Int32" Nullable="false" />
+          <Property Name="id_participante" Type="Int32" />
+          <Property Name="id_evento" Type="Int32" />
+          <Property Name="pago_monto" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="id_forma_pago" Type="Int32" />
+          <NavigationProperty Name="evento_especial" Relationship="Self.FK__pago_torn__id_ev__1995C0A8" FromRole="pago_evento" ToRole="evento_especial" />
+          <NavigationProperty Name="forma_pago" Relationship="Self.FK__pago_torn__id_fo__17AD7836" FromRole="pago_evento" ToRole="forma_pago" />
+          <NavigationProperty Name="participante" Relationship="Self.FK__pago_torn__id_pa__18A19C6F" FromRole="pago_evento" ToRole="participante" />
+        </EntityType>
+        <EntityType Name="pago_torneo">
+          <Key>
+            <PropertyRef Name="id_pago_torneo" />
+          </Key>
+          <Property Name="id_pago_torneo" Type="Int32" Nullable="false" />
+          <Property Name="id_participante" Type="Int32" />
+          <Property Name="id_torneo" Type="Int32" />
+          <Property Name="pago_monto" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="id_forma_pago" Type="Int32" />
+          <NavigationProperty Name="forma_pago" Relationship="Self.fk_forma_pago_id_forma_pago" FromRole="pago_torneo" ToRole="forma_pago" />
+          <NavigationProperty Name="participante" Relationship="Self.fk_parcipante_id_participante" FromRole="pago_torneo" ToRole="participante" />
+          <NavigationProperty Name="torneo" Relationship="Self.fk_torneo_id_torneo" FromRole="pago_torneo" ToRole="torneo" />
         </EntityType>
         <EntityType Name="pais">
           <Key>
@@ -2053,8 +2082,8 @@
           <NavigationProperty Name="inscripcion" Relationship="Self.FK__inscripci__id_pa__634EBE90" FromRole="participante" ToRole="inscripcion" />
           <NavigationProperty Name="lucha" Relationship="Self.FK__lucha__id_partic__671F4F74" FromRole="participante" ToRole="lucha" />
           <NavigationProperty Name="lucha1" Relationship="Self.FK__lucha__id_partic__681373AD" FromRole="participante" ToRole="lucha" />
-          <NavigationProperty Name="pago_evento" Relationship="JJSSDB1Model.FK__pago_torn__id_pa__18A19C6F" FromRole="participante" ToRole="pago_evento" />
-          <NavigationProperty Name="pago_torneo" Relationship="JJSSDB1Model.fk_parcipante_id_participante" FromRole="participante" ToRole="pago_torneo" />
+          <NavigationProperty Name="pago_evento" Relationship="Self.FK__pago_torn__id_pa__18A19C6F" FromRole="participante" ToRole="pago_evento" />
+          <NavigationProperty Name="pago_torneo" Relationship="Self.fk_parcipante_id_participante" FromRole="participante" ToRole="pago_torneo" />
         </EntityType>
         <EntityType Name="participante_evento">
           <Key>
@@ -2161,8 +2190,8 @@
           <Property Name="punto_participante_1" Type="Int32" />
           <Property Name="punto_participante_2" Type="Int32" />
           <Property Name="id_ganador" Type="Int32" />
+          <NavigationProperty Name="categoria_torneo" Relationship="Self.FK_resultado_id_resultado" FromRole="resultado" ToRole="categoria_torneo" />
           <NavigationProperty Name="lucha" Relationship="Self.FK__lucha__id_result__6AEFE058" FromRole="resultado" ToRole="lucha" />
-          <NavigationProperty Name="categoria_torneo" Relationship="JJSSDB1Model.FK_resultado_id_resultado" FromRole="resultado" ToRole="categoria_torneo" />
         </EntityType>
         <EntityType Name="sede">
           <Key>
@@ -2263,16 +2292,16 @@
           <Property Name="id_sede" Type="Int32" />
           <Property Name="fecha_cierre" Type="DateTime" Precision="0" />
           <Property Name="hora_cierre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="precio_absoluto" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="precio_categoria" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio_absoluto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="precio_categoria" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="id_tipo_clase" Type="Int32" />
           <NavigationProperty Name="estado" Relationship="Self.FK__torneo__id_estad__74794A92" FromRole="torneo" ToRole="estado" />
           <NavigationProperty Name="inscripcion" Relationship="Self.FK__inscripci__id_to__65370702" FromRole="torneo" ToRole="inscripcion" />
           <NavigationProperty Name="lucha" Relationship="Self.FK__lucha__id_torneo__6CD828CA" FromRole="torneo" ToRole="lucha" />
+          <NavigationProperty Name="pago_torneo" Relationship="Self.fk_torneo_id_torneo" FromRole="torneo" ToRole="pago_torneo" />
           <NavigationProperty Name="sede" Relationship="Self.FK__torneo__id_sede__76619304" FromRole="torneo" ToRole="sede" />
           <NavigationProperty Name="tipo_clase" Relationship="Self.FK_torneo_tipoclase" FromRole="torneo" ToRole="tipo_clase" />
           <NavigationProperty Name="torneo_imagen" Relationship="Self.FK_torneo_imagen_id_torneo" FromRole="torneo" ToRole="torneo_imagen" />
-          <NavigationProperty Name="pago_torneo" Relationship="JJSSDB1Model.fk_torneo_id_torneo" FromRole="torneo" ToRole="pago_torneo" />
         </EntityType>
         <EntityType Name="torneo_imagen">
           <Key>
@@ -2492,6 +2521,18 @@
             </Principal>
             <Dependent Role="producto">
               <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_resultado_id_resultado">
+          <End Role="resultado" Type="Self.resultado" Multiplicity="0..1" />
+          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resultado">
+              <PropertyRef Name="id_resultado" />
+            </Principal>
+            <Dependent Role="categoria_torneo">
+              <PropertyRef Name="id_resultado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2745,6 +2786,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__pago_torn__id_ev__1995C0A8">
+          <End Role="evento_especial" Type="Self.evento_especial" Multiplicity="0..1" />
+          <End Role="pago_evento" Type="Self.pago_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento_especial">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="pago_evento">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_evento_imagen_evento">
           <End Role="evento_especial" Type="Self.evento_especial" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2792,6 +2845,30 @@
             </Principal>
             <Dependent Role="inscripcion">
               <PropertyRef Name="id_faja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pago_torn__id_fo__17AD7836">
+          <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="0..1" />
+          <End Role="pago_evento" Type="Self.pago_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forma_pago">
+              <PropertyRef Name="id_forma_pago" />
+            </Principal>
+            <Dependent Role="pago_evento">
+              <PropertyRef Name="id_forma_pago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_forma_pago_id_forma_pago">
+          <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="0..1" />
+          <End Role="pago_torneo" Type="Self.pago_torneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forma_pago">
+              <PropertyRef Name="id_forma_pago" />
+            </Principal>
+            <Dependent Role="pago_torneo">
+              <PropertyRef Name="id_forma_pago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2881,6 +2958,42 @@
               <PropertyRef Name="id_torneo" />
             </Principal>
             <Dependent Role="lucha">
+              <PropertyRef Name="id_torneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pago_torn__id_pa__18A19C6F">
+          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
+          <End Role="pago_evento" Type="Self.pago_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="pago_evento">
+              <PropertyRef Name="id_participante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_parcipante_id_participante">
+          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
+          <End Role="pago_torneo" Type="Self.pago_torneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="pago_torneo">
+              <PropertyRef Name="id_participante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_torneo_id_torneo">
+          <End Role="torneo" Type="Self.torneo" Multiplicity="0..1" />
+          <End Role="pago_torneo" Type="Self.pago_torneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="torneo">
+              <PropertyRef Name="id_torneo" />
+            </Principal>
+            <Dependent Role="pago_torneo">
               <PropertyRef Name="id_torneo" />
             </Dependent>
           </ReferentialConstraint>
@@ -3070,6 +3183,8 @@
           <EntitySet Name="inscripcion_evento" EntityType="Self.inscripcion_evento" />
           <EntitySet Name="lucha" EntityType="Self.lucha" />
           <EntitySet Name="pago_clase" EntityType="Self.pago_clase" />
+          <EntitySet Name="pago_evento" EntityType="Self.pago_evento" />
+          <EntitySet Name="pago_torneo" EntityType="Self.pago_torneo" />
           <EntitySet Name="pais" EntityType="Self.pais" />
           <EntitySet Name="parametro" EntityType="Self.parametro" />
           <EntitySet Name="participante" EntityType="Self.participante" />
@@ -3160,6 +3275,10 @@
             <End Role="categoria_producto" EntitySet="categoria_producto" />
             <End Role="producto" EntitySet="producto" />
           </AssociationSet>
+          <AssociationSet Name="FK_resultado_id_resultado" Association="Self.FK_resultado_id_resultado">
+            <End Role="resultado" EntitySet="resultado" />
+            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
+          </AssociationSet>
           <AssociationSet Name="FK_ciudad_id_provincia" Association="Self.FK_ciudad_id_provincia">
             <End Role="provincia" EntitySet="provincia" />
             <End Role="ciudad" EntitySet="ciudad" />
@@ -3240,6 +3359,10 @@
             <End Role="evento_especial" EntitySet="evento_especial" />
             <End Role="inscripcion_evento" EntitySet="inscripcion_evento" />
           </AssociationSet>
+          <AssociationSet Name="FK__pago_torn__id_ev__1995C0A8" Association="Self.FK__pago_torn__id_ev__1995C0A8">
+            <End Role="evento_especial" EntitySet="evento_especial" />
+            <End Role="pago_evento" EntitySet="pago_evento" />
+          </AssociationSet>
           <AssociationSet Name="FK_evento_imagen_evento" Association="Self.FK_evento_imagen_evento">
             <End Role="evento_especial" EntitySet="evento_especial" />
             <End Role="evento_especial_imagen" EntitySet="evento_especial_imagen" />
@@ -3255,6 +3378,14 @@
           <AssociationSet Name="FK_incripcion_faka" Association="Self.FK_incripcion_faka">
             <End Role="faja" EntitySet="faja" />
             <End Role="inscripcion" EntitySet="inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pago_torn__id_fo__17AD7836" Association="Self.FK__pago_torn__id_fo__17AD7836">
+            <End Role="forma_pago" EntitySet="forma_pago" />
+            <End Role="pago_evento" EntitySet="pago_evento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_forma_pago_id_forma_pago" Association="Self.fk_forma_pago_id_forma_pago">
+            <End Role="forma_pago" EntitySet="forma_pago" />
+            <End Role="pago_torneo" EntitySet="pago_torneo" />
           </AssociationSet>
           <AssociationSet Name="FK__inscripci__id_pa__634EBE90" Association="Self.FK__inscripci__id_pa__634EBE90">
             <End Role="participante" EntitySet="participante" />
@@ -3283,6 +3414,18 @@
           <AssociationSet Name="FK__lucha__id_torneo__6CD828CA" Association="Self.FK__lucha__id_torneo__6CD828CA">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="lucha" EntitySet="lucha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pago_torn__id_pa__18A19C6F" Association="Self.FK__pago_torn__id_pa__18A19C6F">
+            <End Role="participante" EntitySet="participante" />
+            <End Role="pago_evento" EntitySet="pago_evento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_parcipante_id_participante" Association="Self.fk_parcipante_id_participante">
+            <End Role="participante" EntitySet="participante" />
+            <End Role="pago_torneo" EntitySet="pago_torneo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_torneo_id_torneo" Association="Self.fk_torneo_id_torneo">
+            <End Role="torneo" EntitySet="torneo" />
+            <End Role="pago_torneo" EntitySet="pago_torneo" />
           </AssociationSet>
           <AssociationSet Name="FK_provincia_id_pais" Association="Self.FK_provincia_id_pais">
             <End Role="pais" EntitySet="pais" />
@@ -3332,157 +3475,15 @@
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
-          <EntitySet Name="pago_evento" EntityType="JJSSDB1Model.pago_evento" />
-          <EntitySet Name="pago_torneo" EntityType="JJSSDB1Model.pago_torneo" />
-          <AssociationSet Name="FK_resultado_id_resultado" Association="JJSSDB1Model.FK_resultado_id_resultado">
-            <End Role="resultado" EntitySet="resultado" />
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__pago_torn__id_ev__1995C0A8" Association="JJSSDB1Model.FK__pago_torn__id_ev__1995C0A8">
-            <End Role="evento_especial" EntitySet="evento_especial" />
-            <End Role="pago_evento" EntitySet="pago_evento" />
-          </AssociationSet>
-          <AssociationSet Name="FK__pago_torn__id_fo__17AD7836" Association="JJSSDB1Model.FK__pago_torn__id_fo__17AD7836">
-            <End Role="forma_pago" EntitySet="forma_pago" />
-            <End Role="pago_evento" EntitySet="pago_evento" />
-          </AssociationSet>
-          <AssociationSet Name="fk_forma_pago_id_forma_pago" Association="JJSSDB1Model.fk_forma_pago_id_forma_pago">
-            <End Role="forma_pago" EntitySet="forma_pago" />
-            <End Role="pago_torneo" EntitySet="pago_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__pago_torn__id_pa__18A19C6F" Association="JJSSDB1Model.FK__pago_torn__id_pa__18A19C6F">
-            <End Role="participante" EntitySet="participante" />
-            <End Role="pago_evento" EntitySet="pago_evento" />
-          </AssociationSet>
-          <AssociationSet Name="fk_parcipante_id_participante" Association="JJSSDB1Model.fk_parcipante_id_participante">
-            <End Role="participante" EntitySet="participante" />
-            <End Role="pago_torneo" EntitySet="pago_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="fk_torneo_id_torneo" Association="JJSSDB1Model.fk_torneo_id_torneo">
-            <End Role="torneo" EntitySet="torneo" />
-            <End Role="pago_torneo" EntitySet="pago_torneo" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="pago_evento">
-          <Key>
-            <PropertyRef Name="id_pago_torneo" />
-          </Key>
-          <Property Name="id_pago_torneo" Type="Int32" Nullable="false" />
-          <Property Name="id_participante" Type="Int32" />
-          <Property Name="id_evento" Type="Int32" />
-          <Property Name="pago_monto" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="id_forma_pago" Type="Int32" />
-          <NavigationProperty Name="evento_especial" Relationship="JJSSDB1Model.FK__pago_torn__id_ev__1995C0A8" FromRole="pago_evento" ToRole="evento_especial" />
-          <NavigationProperty Name="forma_pago" Relationship="JJSSDB1Model.FK__pago_torn__id_fo__17AD7836" FromRole="pago_evento" ToRole="forma_pago" />
-          <NavigationProperty Name="participante" Relationship="JJSSDB1Model.FK__pago_torn__id_pa__18A19C6F" FromRole="pago_evento" ToRole="participante" />
-        </EntityType>
-        <EntityType Name="pago_torneo">
-          <Key>
-            <PropertyRef Name="id_pago_torneo" />
-          </Key>
-          <Property Name="id_pago_torneo" Type="Int32" Nullable="false" />
-          <Property Name="id_participante" Type="Int32" />
-          <Property Name="id_torneo" Type="Int32" />
-          <Property Name="pago_monto" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="id_forma_pago" Type="Int32" />
-          <NavigationProperty Name="forma_pago" Relationship="JJSSDB1Model.fk_forma_pago_id_forma_pago" FromRole="pago_torneo" ToRole="forma_pago" />
-          <NavigationProperty Name="participante" Relationship="JJSSDB1Model.fk_parcipante_id_participante" FromRole="pago_torneo" ToRole="participante" />
-          <NavigationProperty Name="torneo" Relationship="JJSSDB1Model.fk_torneo_id_torneo" FromRole="pago_torneo" ToRole="torneo" />
-        </EntityType>
-        <Association Name="FK_resultado_id_resultado">
-          <End Type="JJSSDB1Model.resultado" Role="resultado" Multiplicity="0..1" />
-          <End Type="JJSSDB1Model.categoria_torneo" Role="categoria_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="resultado">
-              <PropertyRef Name="id_resultado" />
-            </Principal>
-            <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_resultado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__pago_torn__id_ev__1995C0A8">
-          <End Type="JJSSDB1Model.evento_especial" Role="evento_especial" Multiplicity="0..1" />
-          <End Type="JJSSDB1Model.pago_evento" Role="pago_evento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="evento_especial">
-              <PropertyRef Name="id_evento" />
-            </Principal>
-            <Dependent Role="pago_evento">
-              <PropertyRef Name="id_evento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__pago_torn__id_fo__17AD7836">
-          <End Type="JJSSDB1Model.forma_pago" Role="forma_pago" Multiplicity="0..1" />
-          <End Type="JJSSDB1Model.pago_evento" Role="pago_evento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="forma_pago">
-              <PropertyRef Name="id_forma_pago" />
-            </Principal>
-            <Dependent Role="pago_evento">
-              <PropertyRef Name="id_forma_pago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_forma_pago_id_forma_pago">
-          <End Type="JJSSDB1Model.forma_pago" Role="forma_pago" Multiplicity="0..1" />
-          <End Type="JJSSDB1Model.pago_torneo" Role="pago_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="forma_pago">
-              <PropertyRef Name="id_forma_pago" />
-            </Principal>
-            <Dependent Role="pago_torneo">
-              <PropertyRef Name="id_forma_pago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__pago_torn__id_pa__18A19C6F">
-          <End Type="JJSSDB1Model.participante" Role="participante" Multiplicity="0..1" />
-          <End Type="JJSSDB1Model.pago_evento" Role="pago_evento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="pago_evento">
-              <PropertyRef Name="id_participante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_parcipante_id_participante">
-          <End Type="JJSSDB1Model.participante" Role="participante" Multiplicity="0..1" />
-          <End Type="JJSSDB1Model.pago_torneo" Role="pago_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="pago_torneo">
-              <PropertyRef Name="id_participante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_torneo_id_torneo">
-          <End Type="JJSSDB1Model.torneo" Role="torneo" Multiplicity="0..1" />
-          <End Type="JJSSDB1Model.pago_torneo" Role="pago_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="torneo">
-              <PropertyRef Name="id_torneo" />
-            </Principal>
-            <Dependent Role="pago_torneo">
-              <PropertyRef Name="id_torneo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="JJSSDB1ModelStoreContainer" CdmEntityContainer="JJSSEntities">
+        <EntityContainerMapping StorageEntityContainer="JJSSModelStoreContainer" CdmEntityContainer="JJSSEntities">
           <EntitySetMapping Name="academia">
-            <EntityTypeMapping TypeName="JJSSDB1Model.academia">
+            <EntityTypeMapping TypeName="JJSSModel.academia">
               <MappingFragment StoreEntitySet="academia">
                 <ScalarProperty Name="id_academia" ColumnName="id_academia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3492,7 +3493,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="alumno">
-            <EntityTypeMapping TypeName="JJSSDB1Model.alumno">
+            <EntityTypeMapping TypeName="JJSSModel.alumno">
               <MappingFragment StoreEntitySet="alumno">
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3511,7 +3512,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="alumno_imagen">
-            <EntityTypeMapping TypeName="JJSSDB1Model.alumno_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.alumno_imagen">
               <MappingFragment StoreEntitySet="alumno_imagen">
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
@@ -3520,7 +3521,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="alumnoxfaja">
-            <EntityTypeMapping TypeName="JJSSDB1Model.alumnoxfaja">
+            <EntityTypeMapping TypeName="JJSSModel.alumnoxfaja">
               <MappingFragment StoreEntitySet="alumnoxfaja">
                 <ScalarProperty Name="id_alumnoxfaja" ColumnName="id_alumnoxfaja" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
@@ -3531,7 +3532,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="asistencia_clase">
-            <EntityTypeMapping TypeName="JJSSDB1Model.asistencia_clase">
+            <EntityTypeMapping TypeName="JJSSModel.asistencia_clase">
               <MappingFragment StoreEntitySet="asistencia_clase">
                 <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
                 <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
@@ -3541,7 +3542,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="categoria">
-            <EntityTypeMapping TypeName="JJSSDB1Model.categoria">
+            <EntityTypeMapping TypeName="JJSSModel.categoria">
               <MappingFragment StoreEntitySet="categoria">
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3555,7 +3556,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="categoria_producto">
-            <EntityTypeMapping TypeName="JJSSDB1Model.categoria_producto">
+            <EntityTypeMapping TypeName="JJSSModel.categoria_producto">
               <MappingFragment StoreEntitySet="categoria_producto">
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3563,18 +3564,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="categoria_torneo">
-            <EntityTypeMapping TypeName="JJSSDB1Model.categoria_torneo">
+            <EntityTypeMapping TypeName="JJSSModel.categoria_torneo">
               <MappingFragment StoreEntitySet="categoria_torneo">
-                <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
                 <ScalarProperty Name="id_categoria_torneo" ColumnName="id_categoria_torneo" />
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="id_faja" ColumnName="id_faja" />
+                <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ciudad">
-            <EntityTypeMapping TypeName="JJSSDB1Model.ciudad">
+            <EntityTypeMapping TypeName="JJSSModel.ciudad">
               <MappingFragment StoreEntitySet="ciudad">
                 <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3583,7 +3584,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="clase">
-            <EntityTypeMapping TypeName="JJSSDB1Model.clase">
+            <EntityTypeMapping TypeName="JJSSModel.clase">
               <MappingFragment StoreEntitySet="clase">
                 <ScalarProperty Name="id_clase" ColumnName="id_clase" />
                 <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
@@ -3596,7 +3597,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="compra">
-            <EntityTypeMapping TypeName="JJSSDB1Model.compra">
+            <EntityTypeMapping TypeName="JJSSModel.compra">
               <MappingFragment StoreEntitySet="compra">
                 <ScalarProperty Name="id_compra" ColumnName="id_compra" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -3608,7 +3609,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="detalle_pago_clase">
-            <EntityTypeMapping TypeName="JJSSDB1Model.detalle_pago_clase">
+            <EntityTypeMapping TypeName="JJSSModel.detalle_pago_clase">
               <MappingFragment StoreEntitySet="detalle_pago_clase">
                 <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
                 <ScalarProperty Name="id_pago_clase" ColumnName="id_pago_clase" />
@@ -3621,7 +3622,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="detalle_reserva">
-            <EntityTypeMapping TypeName="JJSSDB1Model.detalle_reserva">
+            <EntityTypeMapping TypeName="JJSSModel.detalle_reserva">
               <MappingFragment StoreEntitySet="detalle_reserva">
                 <ScalarProperty Name="id_detalle_reserva" ColumnName="id_detalle_reserva" />
                 <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
@@ -3632,7 +3633,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="direccion">
-            <EntityTypeMapping TypeName="JJSSDB1Model.direccion">
+            <EntityTypeMapping TypeName="JJSSModel.direccion">
               <MappingFragment StoreEntitySet="direccion">
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
                 <ScalarProperty Name="numero" ColumnName="numero" />
@@ -3646,7 +3647,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="estado">
-            <EntityTypeMapping TypeName="JJSSDB1Model.estado">
+            <EntityTypeMapping TypeName="JJSSModel.estado">
               <MappingFragment StoreEntitySet="estado">
                 <ScalarProperty Name="id_estado" ColumnName="id_estado" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3654,7 +3655,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="estado_reserva">
-            <EntityTypeMapping TypeName="JJSSDB1Model.estado_reserva">
+            <EntityTypeMapping TypeName="JJSSModel.estado_reserva">
               <MappingFragment StoreEntitySet="estado_reserva">
                 <ScalarProperty Name="id_estado_reserva" ColumnName="id_estado_reserva" />
                 <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
@@ -3666,7 +3667,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="evento_especial">
-            <EntityTypeMapping TypeName="JJSSDB1Model.evento_especial">
+            <EntityTypeMapping TypeName="JJSSModel.evento_especial">
               <MappingFragment StoreEntitySet="evento_especial">
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3682,7 +3683,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="evento_especial_imagen">
-            <EntityTypeMapping TypeName="JJSSDB1Model.evento_especial_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.evento_especial_imagen">
               <MappingFragment StoreEntitySet="evento_especial_imagen">
                 <ScalarProperty Name="id_evento_imagen" ColumnName="id_evento_imagen" />
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
@@ -3691,7 +3692,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="faja">
-            <EntityTypeMapping TypeName="JJSSDB1Model.faja">
+            <EntityTypeMapping TypeName="JJSSModel.faja">
               <MappingFragment StoreEntitySet="faja">
                 <ScalarProperty Name="id_faja" ColumnName="id_faja" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -3701,7 +3702,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="forma_pago">
-            <EntityTypeMapping TypeName="JJSSDB1Model.forma_pago">
+            <EntityTypeMapping TypeName="JJSSModel.forma_pago">
               <MappingFragment StoreEntitySet="forma_pago">
                 <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3709,7 +3710,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="horario">
-            <EntityTypeMapping TypeName="JJSSDB1Model.horario">
+            <EntityTypeMapping TypeName="JJSSModel.horario">
               <MappingFragment StoreEntitySet="horario">
                 <ScalarProperty Name="id_horario" ColumnName="id_horario" />
                 <ScalarProperty Name="nombre_dia" ColumnName="nombre_dia" />
@@ -3721,7 +3722,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="inscripcion">
-            <EntityTypeMapping TypeName="JJSSDB1Model.inscripcion">
+            <EntityTypeMapping TypeName="JJSSModel.inscripcion">
               <MappingFragment StoreEntitySet="inscripcion">
                 <ScalarProperty Name="id_inscripcion" ColumnName="id_inscripcion" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
@@ -3736,7 +3737,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="inscripcion_clase">
-            <EntityTypeMapping TypeName="JJSSDB1Model.inscripcion_clase">
+            <EntityTypeMapping TypeName="JJSSModel.inscripcion_clase">
               <MappingFragment StoreEntitySet="inscripcion_clase">
                 <ScalarProperty Name="id_inscripcion" ColumnName="id_inscripcion" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -3747,7 +3748,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="inscripcion_evento">
-            <EntityTypeMapping TypeName="JJSSDB1Model.inscripcion_evento">
+            <EntityTypeMapping TypeName="JJSSModel.inscripcion_evento">
               <MappingFragment StoreEntitySet="inscripcion_evento">
                 <ScalarProperty Name="id_inscripcion" ColumnName="id_inscripcion" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -3758,7 +3759,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="lucha">
-            <EntityTypeMapping TypeName="JJSSDB1Model.lucha">
+            <EntityTypeMapping TypeName="JJSSModel.lucha">
               <MappingFragment StoreEntitySet="lucha">
                 <ScalarProperty Name="id_lucha" ColumnName="id_lucha" />
                 <ScalarProperty Name="id_participante1" ColumnName="id_participante1" />
@@ -3770,7 +3771,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pago_clase">
-            <EntityTypeMapping TypeName="JJSSDB1Model.pago_clase">
+            <EntityTypeMapping TypeName="JJSSModel.pago_clase">
               <MappingFragment StoreEntitySet="pago_clase">
                 <ScalarProperty Name="id_pago_clase" ColumnName="id_pago_clase" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
@@ -3778,8 +3779,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="pago_evento">
+            <EntityTypeMapping TypeName="JJSSModel.pago_evento">
+              <MappingFragment StoreEntitySet="pago_evento">
+                <ScalarProperty Name="id_pago_torneo" ColumnName="id_pago_torneo" />
+                <ScalarProperty Name="id_participante" ColumnName="id_participante" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="pago_monto" ColumnName="pago_monto" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pago_torneo">
+            <EntityTypeMapping TypeName="JJSSModel.pago_torneo">
+              <MappingFragment StoreEntitySet="pago_torneo">
+                <ScalarProperty Name="id_pago_torneo" ColumnName="id_pago_torneo" />
+                <ScalarProperty Name="id_participante" ColumnName="id_participante" />
+                <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
+                <ScalarProperty Name="pago_monto" ColumnName="pago_monto" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="pais">
-            <EntityTypeMapping TypeName="JJSSDB1Model.pais">
+            <EntityTypeMapping TypeName="JJSSModel.pais">
               <MappingFragment StoreEntitySet="pais">
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_pais" ColumnName="id_pais" />
@@ -3787,7 +3812,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="parametro">
-            <EntityTypeMapping TypeName="JJSSDB1Model.parametro">
+            <EntityTypeMapping TypeName="JJSSModel.parametro">
               <MappingFragment StoreEntitySet="parametro">
                 <ScalarProperty Name="id_parametro" ColumnName="id_parametro" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3797,7 +3822,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="participante">
-            <EntityTypeMapping TypeName="JJSSDB1Model.participante">
+            <EntityTypeMapping TypeName="JJSSModel.participante">
               <MappingFragment StoreEntitySet="participante">
                 <ScalarProperty Name="id_participante" ColumnName="id_participante" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3810,7 +3835,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="participante_evento">
-            <EntityTypeMapping TypeName="JJSSDB1Model.participante_evento">
+            <EntityTypeMapping TypeName="JJSSModel.participante_evento">
               <MappingFragment StoreEntitySet="participante_evento">
                 <ScalarProperty Name="id_participante" ColumnName="id_participante" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3823,7 +3848,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="producto">
-            <EntityTypeMapping TypeName="JJSSDB1Model.producto">
+            <EntityTypeMapping TypeName="JJSSModel.producto">
               <MappingFragment StoreEntitySet="producto">
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3834,7 +3859,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="producto_imagen">
-            <EntityTypeMapping TypeName="JJSSDB1Model.producto_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.producto_imagen">
               <MappingFragment StoreEntitySet="producto_imagen">
                 <ScalarProperty Name="id_productoimagen" ColumnName="id_productoimagen" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
@@ -3843,7 +3868,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="profesor">
-            <EntityTypeMapping TypeName="JJSSDB1Model.profesor">
+            <EntityTypeMapping TypeName="JJSSModel.profesor">
               <MappingFragment StoreEntitySet="profesor">
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3861,7 +3886,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="profesor_imagen">
-            <EntityTypeMapping TypeName="JJSSDB1Model.profesor_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.profesor_imagen">
               <MappingFragment StoreEntitySet="profesor_imagen">
                 <ScalarProperty Name="id_profesorimagen" ColumnName="id_profesorimagen" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
@@ -3870,7 +3895,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="proveedor">
-            <EntityTypeMapping TypeName="JJSSDB1Model.proveedor">
+            <EntityTypeMapping TypeName="JJSSModel.proveedor">
               <MappingFragment StoreEntitySet="proveedor">
                 <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
                 <ScalarProperty Name="razon_social" ColumnName="razon_social" />
@@ -3878,7 +3903,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="provincia">
-            <EntityTypeMapping TypeName="JJSSDB1Model.provincia">
+            <EntityTypeMapping TypeName="JJSSModel.provincia">
               <MappingFragment StoreEntitySet="provincia">
                 <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3887,7 +3912,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="reserva">
-            <EntityTypeMapping TypeName="JJSSDB1Model.reserva">
+            <EntityTypeMapping TypeName="JJSSModel.reserva">
               <MappingFragment StoreEntitySet="reserva">
                 <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
@@ -3896,7 +3921,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="resultado">
-            <EntityTypeMapping TypeName="JJSSDB1Model.resultado">
+            <EntityTypeMapping TypeName="JJSSModel.resultado">
               <MappingFragment StoreEntitySet="resultado">
                 <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
                 <ScalarProperty Name="tipo_finalizacion" ColumnName="tipo_finalizacion" />
@@ -3908,7 +3933,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sede">
-            <EntityTypeMapping TypeName="JJSSDB1Model.sede">
+            <EntityTypeMapping TypeName="JJSSModel.sede">
               <MappingFragment StoreEntitySet="sede">
                 <ScalarProperty Name="id_sede" ColumnName="id_sede" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3917,7 +3942,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="seguridad_grupo">
-            <EntityTypeMapping TypeName="JJSSDB1Model.seguridad_grupo">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_grupo">
               <MappingFragment StoreEntitySet="seguridad_grupo">
                 <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3925,7 +3950,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="seguridad_grupoxopcion">
-            <EntityTypeMapping TypeName="JJSSDB1Model.seguridad_grupoxopcion">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_grupoxopcion">
               <MappingFragment StoreEntitySet="seguridad_grupoxopcion">
                 <ScalarProperty Name="id_grupoxopcion" ColumnName="id_grupoxopcion" />
                 <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
@@ -3939,7 +3964,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="seguridad_opcion">
-            <EntityTypeMapping TypeName="JJSSDB1Model.seguridad_opcion">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_opcion">
               <MappingFragment StoreEntitySet="seguridad_opcion">
                 <ScalarProperty Name="clave_opcion" ColumnName="clave_opcion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3947,7 +3972,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="seguridad_usuario">
-            <EntityTypeMapping TypeName="JJSSDB1Model.seguridad_usuario">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_usuario">
               <MappingFragment StoreEntitySet="seguridad_usuario">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="login" ColumnName="login" />
@@ -3959,7 +3984,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="seguridad_usuarioxgrupo">
-            <EntityTypeMapping TypeName="JJSSDB1Model.seguridad_usuarioxgrupo">
+            <EntityTypeMapping TypeName="JJSSModel.seguridad_usuarioxgrupo">
               <MappingFragment StoreEntitySet="seguridad_usuarioxgrupo">
                 <ScalarProperty Name="id_usuarioxgrupo" ColumnName="id_usuarioxgrupo" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
@@ -3968,7 +3993,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tipo_clase">
-            <EntityTypeMapping TypeName="JJSSDB1Model.tipo_clase">
+            <EntityTypeMapping TypeName="JJSSModel.tipo_clase">
               <MappingFragment StoreEntitySet="tipo_clase">
                 <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3976,7 +4001,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tipo_evento_especial">
-            <EntityTypeMapping TypeName="JJSSDB1Model.tipo_evento_especial">
+            <EntityTypeMapping TypeName="JJSSModel.tipo_evento_especial">
               <MappingFragment StoreEntitySet="tipo_evento_especial">
                 <ScalarProperty Name="id_tipo_evento" ColumnName="id_tipo_evento" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -3984,7 +4009,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="torneo">
-            <EntityTypeMapping TypeName="JJSSDB1Model.torneo">
+            <EntityTypeMapping TypeName="JJSSModel.torneo">
               <MappingFragment StoreEntitySet="torneo">
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -4001,35 +4026,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="torneo_imagen">
-            <EntityTypeMapping TypeName="JJSSDB1Model.torneo_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.torneo_imagen">
               <MappingFragment StoreEntitySet="torneo_imagen">
                 <ScalarProperty Name="id_torneo_imagen" ColumnName="id_torneo_imagen" />
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="pago_evento">
-            <EntityTypeMapping TypeName="JJSSDB1Model.pago_evento">
-              <MappingFragment StoreEntitySet="pago_evento">
-                <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="pago_monto" ColumnName="pago_monto" />
-                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
-                <ScalarProperty Name="id_participante" ColumnName="id_participante" />
-                <ScalarProperty Name="id_pago_torneo" ColumnName="id_pago_torneo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="pago_torneo">
-            <EntityTypeMapping TypeName="JJSSDB1Model.pago_torneo">
-              <MappingFragment StoreEntitySet="pago_torneo">
-                <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="pago_monto" ColumnName="pago_monto" />
-                <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
-                <ScalarProperty Name="id_participante" ColumnName="id_participante" />
-                <ScalarProperty Name="id_pago_torneo" ColumnName="id_pago_torneo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -17,8 +17,8 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public resultado()
         {
-            this.lucha = new HashSet<lucha>();
             this.categoria_torneo = new HashSet<categoria_torneo>();
+            this.lucha = new HashSet<lucha>();
         }
     
         public int id_resultado { get; set; }
@@ -29,8 +29,8 @@ namespace JJSS_Entidad
         public Nullable<int> id_ganador { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<lucha> lucha { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<lucha> lucha { get; set; }
     }
 }

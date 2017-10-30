@@ -302,7 +302,7 @@ namespace JJSS_Negocio
             {
                 var participantes = from inscr in db.inscripcion
                                     join part in db.participante on inscr.id_participante equals part.id_participante
-                                    join cat_tor in db.categoria on inscr.id_categoria equals cat_tor.id_categoria
+                                    //join cat_tor in db.categoria on inscr.id_categoria equals cat_tor.id_categoria
                                     where inscr.id_torneo == pID
                                     select new
                                     {

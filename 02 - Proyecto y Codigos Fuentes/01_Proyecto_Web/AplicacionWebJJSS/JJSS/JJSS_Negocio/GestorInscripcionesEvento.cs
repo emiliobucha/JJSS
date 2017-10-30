@@ -90,10 +90,12 @@ namespace JJSS_Negocio
 
                         hora = hora,
                         fecha = fecha,
-                        participante_evento = nuevoParticipante,
+                        
                         id_participante = nuevoParticipante.id_participante,
-                        id_evento = eventoInscripto.id_evento,
-                        evento_especial = eventoInscripto,
+                        id_evento = eventoInscripto.id_evento
+                        
+
+
                     };
 
 

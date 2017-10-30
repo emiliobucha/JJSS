@@ -102,7 +102,7 @@ namespace JJSS.Presentacion
         {
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
-            txtDni.Text = "";
+          
 
             int idEvento = 0;
             int.TryParse(ddl_evento.SelectedValue, out idEvento);
@@ -114,6 +114,7 @@ namespace JJSS.Presentacion
 
             if (idEvento > 0)
             {
+
                 eventoSeleccionado = gestorEvento.BuscarEventoPorID(idEvento);
                 pnl_InfoTorneo.Visible = true;
                 pnl_Inscripcion.Visible = true;
@@ -203,7 +204,18 @@ namespace JJSS.Presentacion
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
 
-            int idEvento = int.Parse(ddl_evento.SelectedValue);
+            int idEvento;
+            if (Session["eventoSeleccionado"] != null)
+            {
+                idEvento = (int)Session["eventoSeleccionado"];
+
+            }
+            else
+            {
+                idEvento = int.Parse(ddl_evento.SelectedValue);
+
+            }
+
 
 
             //solo para invitados
@@ -228,8 +240,12 @@ namespace JJSS.Presentacion
 
             if (sReturn.CompareTo("") == 0)
             {
-                limpiar(true);
                 mensaje("La inscripción se ha realizado exitosamente", true);
+                pnl_pago.Visible = true;
+                Session["EventoPagar"] = idEvento;
+                Session["ParticipanteDNI"] = dni;
+                //limpiar(true);
+              
             }
             else mensaje(sReturn, false);
         }
