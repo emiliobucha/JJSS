@@ -103,6 +103,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_crear_nueva_clase;
         
         /// <summary>
+        /// Control lnk_crearClase.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnk_crearClase;
+        
+        /// <summary>
         /// Control item_mis_Clases.
         /// </summary>
         /// <remarks>

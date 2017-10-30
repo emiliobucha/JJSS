@@ -117,7 +117,7 @@
           <Property Name="fecha" Type="datetime" />
           <Property Name="id_proveedor" Type="int" />
           <Property Name="id_producto" Type="int" />
-          <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
           <Property Name="cantidad" Type="int" />
         </EntityType>
         <EntityType Name="detalle_pago_clase">
@@ -126,7 +126,7 @@
           </Key>
           <Property Name="id_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_pago_clase" Type="int" />
-          <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
           <Property Name="fecha_hora" Type="date" />
           <Property Name="mes" Type="varchar" MaxLength="20" />
           <Property Name="id_forma_pago" Type="int" Nullable="false" />
@@ -139,7 +139,7 @@
           <Property Name="id_detalle_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_reserva" Type="int" />
           <Property Name="id_producto" Type="int" />
-          <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
           <Property Name="cantidad" Type="int" />
         </EntityType>
         <EntityType Name="direccion">
@@ -183,7 +183,7 @@
           <Property Name="id_estado" Type="int" />
           <Property Name="id_sede" Type="int" />
           <Property Name="fecha_cierre" Type="date" />
-          <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" />
           <Property Name="id_tipo_evento" Type="int" />
           <Property Name="hora_cierre" Type="varchar" MaxLength="10" />
           <Property Name="hora" Type="varchar" MaxLength="10" />
@@ -243,7 +243,7 @@
           </Key>
           <Property Name="id_inscripcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
-          <Property Name="hora" Type="varchar" MaxLength="15" />
+          <Property Name="hora" Type="varchar" MaxLength="20" />
           <Property Name="id_clase" Type="int" />
           <Property Name="id_alumno" Type="int" />
         </EntityType>
@@ -255,7 +255,7 @@
           <Property Name="fecha" Type="date" />
           <Property Name="id_participante" Type="int" />
           <Property Name="id_evento" Type="int" />
-          <Property Name="hora" Type="varchar" MaxLength="10" />
+          <Property Name="hora" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="lucha">
           <Key>
@@ -495,8 +495,8 @@
           <Property Name="id_sede" Type="int" />
           <Property Name="fecha_cierre" Type="date" />
           <Property Name="hora_cierre" Type="varchar" MaxLength="10" />
-          <Property Name="precio_absoluto" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="precio_categoria" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="precio_absoluto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="precio_categoria" Type="decimal" Precision="18" Scale="2" />
           <Property Name="id_tipo_clase" Type="int" />
         </EntityType>
         <EntityType Name="torneo_imagen">
@@ -1817,7 +1817,7 @@
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="id_proveedor" Type="Int32" />
           <Property Name="id_producto" Type="Int32" />
-          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="cantidad" Type="Int32" />
           <NavigationProperty Name="producto" Relationship="Self.FK_compra_producto" FromRole="compra" ToRole="producto" />
           <NavigationProperty Name="proveedor" Relationship="Self.FK_compra_proveedor" FromRole="compra" ToRole="proveedor" />
@@ -1828,7 +1828,7 @@
           </Key>
           <Property Name="id_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_pago_clase" Type="Int32" />
-          <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="monto" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="fecha_hora" Type="DateTime" Precision="0" />
           <Property Name="mes" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_forma_pago" Type="Int32" Nullable="false" />
@@ -1843,7 +1843,7 @@
           <Property Name="id_detalle_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_reserva" Type="Int32" />
           <Property Name="id_producto" Type="Int32" />
-          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="cantidad" Type="Int32" />
           <NavigationProperty Name="producto" Relationship="Self.FK_detallereserva_producto" FromRole="detalle_reserva" ToRole="producto" />
           <NavigationProperty Name="reserva" Relationship="Self.FK_detallereserva_reserva" FromRole="detalle_reserva" ToRole="reserva" />
@@ -1899,7 +1899,7 @@
           <Property Name="id_estado" Type="Int32" />
           <Property Name="id_sede" Type="Int32" />
           <Property Name="fecha_cierre" Type="DateTime" Precision="0" />
-          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="id_tipo_evento" Type="Int32" />
           <Property Name="hora_cierre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -1977,7 +1977,7 @@
           </Key>
           <Property Name="id_inscripcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="hora" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_clase" Type="Int32" />
           <Property Name="id_alumno" Type="Int32" />
           <NavigationProperty Name="alumno" Relationship="Self.FK_inscripcion_clase_id_alumno" FromRole="inscripcion_clase" ToRole="alumno" />
@@ -1991,7 +1991,7 @@
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="id_participante" Type="Int32" />
           <Property Name="id_evento" Type="Int32" />
-          <Property Name="hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="evento_especial" Relationship="Self.FK__inscripci__id_evento" FromRole="inscripcion_evento" ToRole="evento_especial" />
           <NavigationProperty Name="participante_evento" Relationship="Self.FK__inscripci__id_participante" FromRole="inscripcion_evento" ToRole="participante_evento" />
         </EntityType>
@@ -2263,8 +2263,8 @@
           <Property Name="id_sede" Type="Int32" />
           <Property Name="fecha_cierre" Type="DateTime" Precision="0" />
           <Property Name="hora_cierre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="precio_absoluto" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="precio_categoria" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="precio_absoluto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="precio_categoria" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="id_tipo_clase" Type="Int32" />
           <NavigationProperty Name="estado" Relationship="Self.FK__torneo__id_estad__74794A92" FromRole="torneo" ToRole="estado" />
           <NavigationProperty Name="inscripcion" Relationship="Self.FK__inscripci__id_to__65370702" FromRole="torneo" ToRole="inscripcion" />

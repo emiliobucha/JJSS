@@ -351,7 +351,7 @@ namespace JJSS_Negocio
          *                      true: los horarios estan todos disponibles
          * 
          */
-        public Boolean validarDisponibilidadHorario(DataTable pDTHorarios, int pIdUbicacion)
+        public Boolean validarDisponibilidadHorario(DataTable pDTHorarios, int pIdUbicacion, int pidClase)
         {
             using (var db = new JJSSEntities())
             {
@@ -365,13 +365,15 @@ namespace JJSS_Negocio
                                           select new
                                           {
                                               desde = hora.hora_desde,
-                                              hasta = hora.hora_hasta
+                                              hasta = hora.hora_hasta,
+                                              id = clase.id_clase
                                           };
 
                     DataTable dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
                     for (int i = 0; i < dtClases.Rows.Count; i++)
                     {
                         DataRow dr = dtClases.Rows[i];
+                        if (int.Parse(dr["id"].ToString()) == pidClase) break;
                         if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) == 0) return false;
                         if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0) return false;
                         if (dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) == 0) return false;

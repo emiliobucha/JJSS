@@ -138,6 +138,9 @@
                                         <div class="col-md-6">
                                             <label class="pull-left">Cierre de Inscripciones:&nbsp;</label>
                                             <asp:Label ID="lbl_FechaCierreInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
+                                            <asp:Label ID="Label7" CssClass="pull-left" runat="server" Text=", "></asp:Label>
+                                            <asp:Label ID="lbl_HoraCierre" CssClass="pull-left" runat="server" Text=""></asp:Label>
+                                            <asp:Label ID="Label9" CssClass="pull-left" runat="server" Text=" hs"></asp:Label>
                                         </div>
                                     </div>
 

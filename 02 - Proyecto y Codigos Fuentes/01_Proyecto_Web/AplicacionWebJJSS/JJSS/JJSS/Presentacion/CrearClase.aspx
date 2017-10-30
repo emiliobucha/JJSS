@@ -65,11 +65,7 @@
                                 <label class="pull-left">Nombre</label>
                             </div>
                             <div class="col-xs-3">
-                                <asp:TextBox ID="txt_nombre" runat="server" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:RequiredFieldValidator ID="requeridoNombre" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" ValidationGroup="vg_aceptar"> </asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vg_aceptar"> </asp:RegularExpressionValidator>
+                                <asp:TextBox ID="txt_nombre" required="true" maxLenght="50" runat="server" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
                             </div>
                         </div>
 
@@ -82,11 +78,7 @@
                                 <label class="pull-left">Precio</label>
                             </div>
                             <div class="col-xs-3">
-                                <asp:TextBox ID="txt_precio" runat="server" placeholder="Ingrese precio" CssClass="caja2"></asp:TextBox>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:RequiredFieldValidator ID="requeridoPrecio" ValidationGroup="vg_aceptar" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un precio" ControlToValidate="txt_precio" Display="Dynamic"> </asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="regex_precio" ValidationGroup="vg_aceptar" runat="server" ControlToValidate="txt_precio" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del precio" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"> </asp:RegularExpressionValidator>
+                                <asp:TextBox ID="txt_precio" required ="true" min="0" max="999999" type="number" step="0.01" runat="server" placeholder="Ingrese precio" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
 
@@ -168,17 +160,16 @@
                                 <label class="pull-left">Hora Desde:</label>
                             </div>
                             <div class="col-xs-2 col-md-2">
-                                <asp:TextBox ID="txt_horadesde" runat="server" TextMode="Time" CssClass="caja2"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="requerido_horadesde" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un horario de inicio" ControlToValidate="txt_horadesde" Display="Dynamic" ValidationGroup="vg_agregar_horario"> </asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txt_horadesde" runat="server" required="true" type="time" CssClass="caja2"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="regex_horadesde" runat="server" ControlToValidate="txt_horadesde" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"> </asp:RegularExpressionValidator>
                             </div>
                             <div class="col-xs-2 col-md-2">
                                 <label class="pull-left">Hora Hasta:</label>
                             </div>
                             <div class="col-xs-2 col-md-2">
-                                <asp:TextBox ID="txt_horahasta" TextMode="Time" runat="server" CssClass="caja2"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="requerido_horahasta" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un horario de fin" ControlToValidate="txt_horahasta" ValidationGroup="vg_agregar_horario" Display="Dynamic"> </asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txt_horahasta" type="time" required="true" runat="server" CssClass="caja2"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="regex_horahasta" runat="server" ControlToValidate="txt_horahasta" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"> </asp:RegularExpressionValidator>
+                                <asp:CompareValidator ID="cmp_hora" ControlToValidate="txt_horadesde" ControlToCompare="txt_horahasta" CssClass="text-danger" Display="Dynamic" runat="server" ErrorMessage="La hora desde debe ser menor que la hora hasta" SetFocusOnError="true" Operator="LessThan" ></asp:CompareValidator>
                             </div>
                             <div class="col-xs-2 col-md-2">
                                 <asp:Button ID="btn_agregar" runat="server" OnClick="btn_agregar_Click" Text="Agregar" CssClass="btn btn-default" ValidationGroup="vg_agregar_horario"></asp:Button>
@@ -218,9 +209,9 @@
                     </div>
 
                     <div class="row centered">
-                        <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_cancelar_Click"></asp:Button>
+                        <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_cancelar_Click" formnovalidate="true"></asp:Button>
                         <asp:Button ID="btn_aceptar" runat="server" OnClick="btn_aceptar_Click" Text="Aceptar" CssClass="btn btn-default" ValidationGroup="vg_aceptar"></asp:Button>
-                        <asp:Button ID="btn_nueva_clase" runat="server" Text="Limpiar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_nueva_clase_Click"></asp:Button>
+                        <asp:Button ID="btn_nueva_clase" runat="server" Text="Limpiar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_nueva_clase_Click" formnovalidate="true"></asp:Button>
                     </div>
                 </form>
             </div>
