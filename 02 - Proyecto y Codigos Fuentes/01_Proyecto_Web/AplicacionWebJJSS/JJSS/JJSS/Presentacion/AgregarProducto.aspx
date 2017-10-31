@@ -41,28 +41,30 @@
         <div class="row centered">
             <p>&nbsp;</p>
         </div>
-        <div class="col-sm-12 col-xs-12">            
-        <asp:Button ID="btn_formulario" runat="server" CssClass="btn btn-default" Text="Agregar Productos" CausesValidation="false" OnClick="btn_formulario_Click" />
-        <asp:Button ID="btn_grilla" runat="server" CssClass="btn btn-default" Text="Ver Productos" CausesValidation="false" OnClick="btn_grilla_Click" />
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+            <asp:Button ID="btn_formulario" runat="server" CssClass="btn btn-default" Text="Agregar Productos" CausesValidation="false" OnClick="btn_formulario_Click" />
+            <asp:Button ID="btn_grilla" runat="server" CssClass="btn btn-default" Text="Ver Productos" CausesValidation="false" OnClick="btn_grilla_Click" />
         </div>
 
         <asp:MultiView ID="MultiView1" runat="server">
+             
+            <!-------------AGREGAR PRODUCTOS--------------->
+
             <asp:View ID="view_formulario" runat="server">
                 <asp:Panel ID="pnlFormulario" runat="server">
                     <div id="agregarProductoswrap">
                         <div class="container">
                             <div class="row mt centered">
-                                <div>
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                     <asp:Label ID="lbl_agregar_prodcutos" runat="server" Text="AGREGAR PRODUCTOS" Font-Size="XX-Large"></asp:Label>
                                 </div>
 
-
                                 <div class="form-group ">
-                                    <div class="row centered">
+
+                                    <div class="row centered col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <p>&nbsp;</p>
                                     </div>
-
-
+                                    
                                     <!--Ingresar nombre-->
 
                                     <div class="row centered">
@@ -103,16 +105,21 @@
                                     <!--Foto-->
                                     <div class="row centered">
                                         <div class="col-md-2 col-lg-2 hidden-sm hidden-xs"></div>
-                                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                            <asp:Panel ID="Panel1" runat="server">
 
+                                        <asp:Panel ID="Panel1" runat="server">
+                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                                 <label class=" pull-left">Imagen</label>
+                                            </div>
+                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                                 <input id="avatarUpload" type="file" name="file" onchange="previewFile()" runat="server" />
-                                                <%--<asp:FileUpload ID="avatarUpload" runat="server" />--%>
-                                                <asp:Image ID="Avatar" runat="server" Height="225px" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
-                                            </asp:Panel>
-                                        </div>
+                                            </div>
+                                            <%--<asp:FileUpload ID="avatarUpload" runat="server" />--%>
+                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                <asp:Image ID="Avatar" CssClass="pull-left" runat="server" Height="225px" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
+                                            </div>
+                                        </asp:Panel>
                                     </div>
+                                    
                                     <div class="row centered">
                                         <p>&nbsp;</p>
                                     </div>
@@ -134,32 +141,51 @@
                 </asp:Panel>
             </asp:View>
 
+
+            <!-------------VER PRODUCTOS--------------->
             <asp:View ID="view_grilla" runat="server">
 
-                <div class="row mt centered">
-                    <p>&nbsp;</p>
-                    <asp:Label ID="lbl_grilla" runat="server" Text="VER PRODUCTOS" Font-Size="XX-Large"></asp:Label>
-                    <p>&nbsp;</p>
-                    <div class="col-md-2"><strong>Nombre</strong></div>
-                    <div class="col-md-3">
-                        <asp:TextBox ID="txt_filtro_nombre" runat="server" CssClass="caja2"></asp:TextBox>
-                        <asp:RegularExpressionValidator ID="caracteres_nombre_filtro" runat="server" ControlToValidate="txt_filtro_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
+                <div class=" container">
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <asp:Label ID="lbl_grilla" runat="server" Text="VER PRODUCTOS" Font-Size="XX-Large"></asp:Label>
+                        </div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <!-------------filtro--------------->
+                    <div class="row centered">
+
+                        <div class="col-md-1 col-sm-2 col-xs-2">
+                            <strong>Nombre</strong>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 ">
+                            <asp:TextBox ID="txt_filtro_nombre" runat="server" CssClass="caja2"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="caracteres_nombre_filtro" runat="server" ControlToValidate="txt_filtro_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
+                        </div>
+                        <div class="col-md-1 col-sm-3 col-xs-3 ">
+                            <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btn_buscar_Click" ValidationGroup="vgFiltro" />
+                        </div>
                     </div>
 
-                    <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btn_buscar_Click" ValidationGroup="vgFiltro" />
-                </div>
 
-                <div class="row mt centered">
                     <div>
+                        <p>&nbsp;</p>
+                    </div>
 
-
-                        <asp:GridView ID="gv_productos" CssClass="table" EmptyDataText="No hay productos para mostrar" AllowPaging="True" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="gv_productos_PageIndexChanging" PageSize="20">
-                            <Columns>
-                                <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                                <asp:BoundField DataField="categoria" HeaderText="Categoria" />
-                                <asp:BoundField DataField="stock" HeaderText="Stock Disponible" />
-                            </Columns>
-                        </asp:GridView>
+                     <!-------------grilla--------------->
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+                        <div>
+                            <asp:GridView ID="gv_productos" CssClass="table" EmptyDataText="No hay productos para mostrar" AllowPaging="True" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="gv_productos_PageIndexChanging" PageSize="20">
+                                <Columns>
+                                    <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                    <asp:BoundField DataField="categoria" HeaderText="Categoria" />
+                                    <asp:BoundField DataField="stock" HeaderText="Stock Disponible" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
                     </div>
                 </div>
             </asp:View>
