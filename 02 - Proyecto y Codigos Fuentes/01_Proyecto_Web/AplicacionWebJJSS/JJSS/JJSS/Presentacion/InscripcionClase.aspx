@@ -41,7 +41,7 @@
             </asp:Panel>
 
             <div class="row centered">
-                <h1>INSCRIPCION A CLASE</h1>
+                <h1>INSCRIPCIÓN A CLASE</h1>
                 <p>&nbsp;</p>
             </div>
 
@@ -68,7 +68,7 @@
                                 <asp:Label ID="lbl_profesor" runat="server" />
                             </div>
                             <div>
-                                <asp:Label ID="Label4" runat="server" Text="$ "></asp:Label>
+                                
                                 <asp:Label ID="lbl_precio" runat="server" />
                             </div>
 

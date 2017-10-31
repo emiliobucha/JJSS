@@ -21,13 +21,18 @@ namespace JJSS.Presentacion
             {
                 cargarComboUbicacion();
             }
-            
+
         }
 
         protected void cargarComboUbicacion()
         {
             gestorAcademias = new GestorAcademias();
             List<academia> academias = gestorAcademias.ObtenerAcademias();
+            academia primerElemento = new academia();
+            primerElemento.id_academia = 0;
+            primerElemento.nombre = "Seleccione una ubicación";
+            academias.Insert(0, primerElemento);
+
             ddl_ubicacion.DataSource = academias;
             ddl_ubicacion.DataTextField = "nombre";
             ddl_ubicacion.DataValueField = "id_academia";
@@ -40,8 +45,9 @@ namespace JJSS.Presentacion
         {
             gestorAsistencia = new GestorAsistencia();
             gestorAlumno = new GestorAlumnos();
+            int ubicacion = int.Parse(ddl_ubicacion.SelectedValue);
 
-            clase claseActual = gestorAsistencia.buscarClaseSegunHoraActual(int.Parse(ddl_ubicacion.SelectedValue));
+            clase claseActual = gestorAsistencia.buscarClaseSegunHoraActual(ubicacion);
 
             if (claseActual == null) mensaje("No hay clases disponibles en este horario", false);
             else
@@ -91,6 +97,20 @@ namespace JJSS.Presentacion
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Presentacion/Inicio.aspx");
+        }
+
+        protected void cstm_ubicacion_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            try
+            {
+                int ubicacion = int.Parse(ddl_ubicacion.SelectedValue);
+                if (ubicacion == 0) args.IsValid = false;
+                else args.IsValid = true;
+            }
+            catch
+            {
+                args.IsValid = false;
+            }
         }
     }
 }

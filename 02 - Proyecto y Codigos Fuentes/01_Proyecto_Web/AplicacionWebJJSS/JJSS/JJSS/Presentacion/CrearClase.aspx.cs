@@ -208,17 +208,22 @@ namespace JJSS.Presentacion
             gestorClases = new GestorClases();
             string sReturn = "";
             Boolean estado = false;
+            int idClase=0;
+            if (Session["clase"] != null)
+            {
+                idClase = int.Parse(Session["clase"].ToString());
+            }
+            
 
             //validacion con los horarios de otras clases
             DataTable dt = (DataTable)Session["dtHorarios"];
-            Boolean bReturn = gestorClases.validarDisponibilidadHorario(dt, int.Parse(ddl_ubicacion.SelectedValue.ToString()));
+            Boolean bReturn = gestorClases.validarDisponibilidadHorario(dt, int.Parse(ddl_ubicacion.SelectedValue.ToString()),idClase);
             if (bReturn == false) sReturn = "Hay un horario que se superpone con otra clase";
             else
             {
-                if (Session["clase"] != null)
+                if (idClase != 0)
                 {
-                    int idClase = 0;
-                    idClase = int.Parse(Session["clase"].ToString());
+                    
                     int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
                     sReturn = gestorClases.modificarClase(idClase, (DataTable)Session["dtHorarios"], double.Parse(txt_precio.Text), profe);
                     if (sReturn.CompareTo("") == 0)
@@ -280,17 +285,11 @@ namespace JJSS.Presentacion
             ddl_tipo_clase.Enabled = true;
             Session["clase"] = null;
             dtHorarios = (DataTable)Session["dtHorarios"];
-            //if (dtHorarios != null)
-            //{
-            //    for (int i = 0; i < dtHorarios.Rows.Count; i++)
-            //    {
-            //        dtHorarios.Rows.RemoveAt(i);
-            //    }
-            //}
+            if (dtHorarios!=null)dtHorarios.Clear();
 
             dg_horarios.DataSource = null;
             dg_horarios.DataBind();
-            Session["dtHorarios"] = null;
+            Session["dtHorarios"] = dtHorarios;
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)

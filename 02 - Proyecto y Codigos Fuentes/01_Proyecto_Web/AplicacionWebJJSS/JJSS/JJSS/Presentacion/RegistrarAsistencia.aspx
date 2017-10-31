@@ -64,11 +64,7 @@
                                     <label class="pull-left">DNI</label>
                                 </div>
                                 <div class="col-xs-3">
-                                    <asp:TextBox ID="txtDni" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
-                                </div>
-                                <div class="col-xs-3">
-                                    <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgRegistro"> </asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="regex_dni" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgRegistro" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
+                                    <asp:TextBox ID="txtDni" required="true" min="1000000" max="100000000" type="number" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row centered">
@@ -86,6 +82,9 @@
                                     <%--<asp:TextBox ID="txt_localidad" class="caja2" runat="server" placeholder="Ingrese localidad"></asp:TextBox>--%>
                                     <asp:DropDownList class="caja2" ID="ddl_ubicacion" runat="server" AutoPostBack="false">
                                     </asp:DropDownList>
+                                </div>
+                                <div>
+                                    <asp:CustomValidator ID="cstm_ubicacion" runat="server" ErrorMessage="Debe seleccionar una ubicacion" CssClass="text-danger" ValidationGroup="vgRegistro" ControlToValidate="ddl_ubicacion" Display="Dynamic" OnServerValidate="cstm_ubicacion_ServerValidate" > </asp:CustomValidator>
                                 </div>
                             </div>
                             <div class="row centered">

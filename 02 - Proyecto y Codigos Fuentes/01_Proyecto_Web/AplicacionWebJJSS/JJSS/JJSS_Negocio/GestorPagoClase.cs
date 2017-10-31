@@ -186,6 +186,7 @@ namespace JJSS_Negocio
             int diasRecargo = 0;
             using (var db = new JJSSEntities())
             {
+                //buscar fecha inscripcion
                 var inscripcion = from ins in db.inscripcion_clase
                                                 join alu in db.alumno on ins.id_alumno equals alu.id_alumno
                                                 where alu.id_alumno == pIdAlumno 
@@ -193,11 +194,13 @@ namespace JJSS_Negocio
                 if (inscripcion == null) return false;
                 fechaInscripcion = (DateTime)inscripcion.FirstOrDefault().fecha;
 
+
+                //buscar pagos
                 var pago = from alu in db.alumno
                            join pag in db.pago_clase on alu.id_alumno equals pag.id_alumno
                            join detalle in db.detalle_pago_clase on pag.id_pago_clase equals detalle.id_pago_clase
                            where alu.id_alumno == pIdAlumno
-                           orderby detalle.fecha_hora
+                           orderby detalle.fecha_hora descending
                            select new
                            {
                                idPago = pag.id_pago_clase,
@@ -206,6 +209,7 @@ namespace JJSS_Negocio
                            };
                 dt=modUtilidadesTablas.ToDataTable(pago.ToList());
 
+                //buscar parametro de cantidad de dias para pagar la cuota
                 var parametro = from param in db.parametro
                                   where param.id_parametro == 2
                                   select param;
@@ -237,11 +241,11 @@ namespace JJSS_Negocio
 
                 using (var db = new JJSSEntities())
                 {
-                    var asistencia = from asi in db.asistencia_clase
+                    asistencia_clase asistencia = (from asi in db.asistencia_clase
                                      join alu in db.alumno on asi.id_alumno equals alu.id_alumno
                                      join cla in db.clase on asi.id_clase equals cla.id_clase
                                      where alu.id_alumno == pIdAlumno && cla.id_tipo_clase == pIdTipoClase
-                                     select asi;
+                                     select asi).FirstOrDefault();
                     if (asistencia == null) return true;
                     else return false;
                 }
@@ -261,6 +265,26 @@ namespace JJSS_Negocio
              * 
              * 
              */
+        }
+
+
+        public bool validarPago(int pIdAlumno, int pIdTipoClase)
+        {
+            DateTime fechaInscripcion;
+            using (var db = new JJSSEntities())
+            {
+                //buscar fecha inscripcion
+                var inscripcion = from ins in db.inscripcion_clase
+                                  join alu in db.alumno on ins.id_alumno equals alu.id_alumno
+                                  where alu.id_alumno == pIdAlumno
+                                  select ins;
+                if (inscripcion == null) return false;
+                fechaInscripcion = (DateTime)inscripcion.FirstOrDefault().fecha;
+
+                //buscar ultimo pago
+
+                return false;
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ namespace JJSS_Entidad
         public Nullable<int> punto_participante_1 { get; set; }
         public Nullable<int> punto_participante_2 { get; set; }
         public Nullable<int> id_ganador { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

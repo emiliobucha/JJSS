@@ -351,7 +351,7 @@ namespace JJSS_Negocio
          *                      true: los horarios estan todos disponibles
          * 
          */
-        public Boolean validarDisponibilidadHorario(DataTable pDTHorarios, int pIdUbicacion)
+        public Boolean validarDisponibilidadHorario(DataTable pDTHorarios, int pIdUbicacion, int pidClase)
         {
             using (var db = new JJSSEntities())
             {
@@ -365,13 +365,15 @@ namespace JJSS_Negocio
                                           select new
                                           {
                                               desde = hora.hora_desde,
-                                              hasta = hora.hora_hasta
+                                              hasta = hora.hora_hasta,
+                                              id = clase.id_clase
                                           };
 
                     DataTable dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
                     for (int i = 0; i < dtClases.Rows.Count; i++)
                     {
                         DataRow dr = dtClases.Rows[i];
+                        if (int.Parse(dr["id"].ToString()) == pidClase) break;
                         if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) == 0) return false;
                         if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0) return false;
                         if (dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) == 0) return false;
@@ -400,27 +402,37 @@ namespace JJSS_Negocio
             double recargo = 0;
             using (var db = new JJSSEntities())
             {
-                GestorInscripcionesClase ins = new GestorInscripcionesClase();
-                inscripcionDelAlumno = ins.ObtenerAlumnoInscripto(pIdAlumno, pIdClase);
+                //{
+                //    GestorInscripcionesClase ins = new GestorInscripcionesClase();
+                //    inscripcionDelAlumno = ins.ObtenerAlumnoInscripto(pIdAlumno, pIdClase);
+                //    var recargoParametro = db.parametro.Find(1);
+                //    recargo = (double)recargoParametro.valor;
+                //}
+                //if (inscripcionDelAlumno == null)
+                //{
+                //    return -1;
+                //}
+                //else
+                //{
+                //    DateTime fechaInscripcion = (DateTime)inscripcionDelAlumno.fecha;
+
+                //    diaMaximo = fechaInscripcion.AddDays(5);
+
+                //    if (diaMaximo < DateTime.Today) // se cobra recargo
+                //    {
+                //        return recargo;
+                //    }
+                //}
+
                 var recargoParametro = db.parametro.Find(1);
                 recargo = (double)recargoParametro.valor;
-            }
-            if (inscripcionDelAlumno == null)
-            {
-                return -1;
-            }
-            else
-            {
-                DateTime fechaInscripcion = (DateTime)inscripcionDelAlumno.fecha;
+                clase clase = db.clase.Find(pIdClase);
+                GestorPagoClase gestorPago = new GestorPagoClase();
+                bool pago=gestorPago.validarPagoParaAsistencia(pIdAlumno, (int)clase.id_tipo_clase);
+                if (pago) return 0;
+                else return recargo;
 
-                diaMaximo = fechaInscripcion.AddDays(5);
-
-                if (diaMaximo < DateTime.Today) // se cobra recargo
-                {
-                    return recargo;
-                }
             }
-
             return 0;
         }
 

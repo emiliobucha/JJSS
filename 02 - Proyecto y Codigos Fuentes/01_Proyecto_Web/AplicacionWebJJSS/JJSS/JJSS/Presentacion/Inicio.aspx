@@ -371,7 +371,13 @@
 
                                     </div>
                                     <div>
-                                        <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Inscribir" />
+                                        <asp:Button ID="lv_btn_inscribir" runat="server" CommandName="inscribir" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Inscribir" />
+                                    </div>
+                                    <div>
+                                        <asp:Button ID="lv_btn_seleccionar" runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Seleccionar" />
+                                    </div>
+                                    <div>
+                                        <asp:Button ID="lv_btn_eliminar" runat="server" CommandName="eliminar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Eliminar" />
                                     </div>
 
                                 </div>
@@ -402,7 +408,9 @@
                     <!--col crear_nueva_clase-->
                     <div class="col-lg-4 proc" id="item_crear_nueva_clase" runat="server">
                         <i class="fa fa-pencil"></i>
-                        <h3><a href="../Presentacion/CrearClase.aspx" style="color: #000000">Crear nueva clase</a></h3>
+                        <h3>
+                            <asp:LinkButton ID="lnk_crearClase" OnClick="lnk_crearClase_Click" runat="server" Style="color: #000000">Crear nueva clase</asp:LinkButton>
+                        </h3>
                         <p>Crea una nueva clase con sus horarios.</p>
                     </div>
                     <!--/col-->

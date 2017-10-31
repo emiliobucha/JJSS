@@ -1778,8 +1778,8 @@
           <Property Name="id_categoria" Type="Int32" />
           <Property Name="sexo" Type="Int16" />
           <Property Name="id_faja" Type="Int32" />
-          <Property Name="id_resultado" Type="Int32" />
           <NavigationProperty Name="categoria" Relationship="Self.FK__categoria__id_ca__531856C7" FromRole="categoria_torneo" ToRole="categoria" />
+          <Property Name="id_resultado" Type="Int32" />
           <NavigationProperty Name="resultado" Relationship="Self.FK_resultado_id_resultado" FromRole="categoria_torneo" ToRole="resultado" />
         </EntityType>
         <EntityType Name="ciudad">
@@ -1910,6 +1910,7 @@
           <NavigationProperty Name="pago_evento" Relationship="Self.FK__pago_torn__id_ev__1995C0A8" FromRole="evento_especial" ToRole="pago_evento" />
           <NavigationProperty Name="evento_especial_imagen" Relationship="Self.FK_evento_imagen_evento" FromRole="evento_especial" ToRole="evento_especial_imagen" />
           <NavigationProperty Name="tipo_evento_especial" Relationship="Self.FK_evento_tipo_evento" FromRole="evento_especial" ToRole="tipo_evento_especial" />
+
         </EntityType>
         <EntityType Name="evento_especial_imagen">
           <Key>
@@ -3483,7 +3484,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="JJSSModelStoreContainer" CdmEntityContainer="JJSSEntities">
           <EntitySetMapping Name="academia">
-            <EntityTypeMapping TypeName="JJSSModel.academia">
+ <EntityTypeMapping TypeName="JJSSModel.academia">
               <MappingFragment StoreEntitySet="academia">
                 <ScalarProperty Name="id_academia" ColumnName="id_academia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />

@@ -412,8 +412,23 @@ namespace JJSS.Presentacion
         protected void lv_clasesDisponibles_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
-            Session["id_clase"] = id;
-            Response.Redirect("~/Presentacion/InscripcionClase.aspx");
+            if (e.CommandName.CompareTo("inscribir") == 0)
+            {
+                Session["id_clase"] = id;
+                Response.Redirect("~/Presentacion/InscripcionClase.aspx");
+            }
+            if (e.CommandName.CompareTo("eliminar") == 0)
+            {
+                gestorDeClases.eliminarClase(id);
+                Response.Write("<script>window.alert('" + "Se eliminó la clase correctamente".Trim() + "');</script>");
+                cargarClasesView();
+            }
+            if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                Session["clase"] = id;
+                Response.Redirect("~/Presentacion/CrearClase.aspx");
+            }
+
         }
 
         protected void lnk_registrar_profe_Click(object sender, EventArgs e)
@@ -428,6 +443,12 @@ namespace JJSS.Presentacion
         {
             Session["profesor"] = "Administrar";
             Response.Redirect("~/Presentacion/RegistrarProfe.aspx");
+        }
+
+        protected void lnk_crearClase_Click(object sender, EventArgs e)
+        {
+            Session["clase"] = null;
+            Response.Redirect("../Presentacion/CrearClase.aspx");
         }
     }
 }

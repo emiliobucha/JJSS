@@ -173,5 +173,21 @@ namespace JJSS_Negocio
                 return fajasEncontradas.ToList();
             }
         }
+
+        /*
+         * metodo que obtiene todos los alumnos inscriptos a una clase particular
+         */ 
+        public List<alumno> ObtenerAlumnosDeUnaClase(int pIDClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var alumnos = from alu in db.alumno
+                              join ins in db.inscripcion_clase on alu.id_alumno equals ins.id_alumno
+                              where ins.id_clase == pIDClase && alu.baja_logica==1
+                              orderby alu.apellido
+                              select alu;
+                return alumnos.ToList();
+            }
+        }
     }
 }
