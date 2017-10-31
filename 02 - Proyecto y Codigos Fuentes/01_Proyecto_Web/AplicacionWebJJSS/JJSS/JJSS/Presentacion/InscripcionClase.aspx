@@ -41,7 +41,7 @@
             </asp:Panel>
 
             <div class="row centered">
-                <h1>INSCRIPCION A CLASE</h1>
+                <h1>INSCRIPCIÓN A CLASE</h1>
                 <p>&nbsp;</p>
             </div>
 

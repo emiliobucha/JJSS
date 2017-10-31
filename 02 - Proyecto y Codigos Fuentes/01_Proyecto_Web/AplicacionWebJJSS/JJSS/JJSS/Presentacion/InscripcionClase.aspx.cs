@@ -18,7 +18,7 @@ namespace JJSS.Presentacion
         private GestorClases gestorClases;
         private GestorInscripcionesClase gestorInscripcionClase;
         private DataTable dtHorarios;
-        private int id_Clase;
+        private static int id_Clase;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -89,8 +89,8 @@ namespace JJSS.Presentacion
         {
             clase datos_clase = gestorClases.ObtenerClasePorId(id_Clase);
 
-            List<faja> fajas = gestorInscripcionClase.ObtenerFajasPorTipoClase( (int)datos_clase.id_tipo_clase);
-            if (fajas.Count==0)
+            List<faja> fajas = gestorInscripcionClase.ObtenerFajasPorTipoClase((int)datos_clase.id_tipo_clase);
+            if (fajas.Count == 0)
             {
                 ddl_fajas.Enabled = false;
             }
@@ -111,13 +111,13 @@ namespace JJSS.Presentacion
             //cargar datos generales
             lbl_nombre_clase.Text = datos_clase.nombre.ToString();
             profesor profe = gestorClases.ObtenerProfesorPorID((int)datos_clase.id_profe);
-            lbl_profesor.Text ="Profesor: "+ profe.apellido + ", " + profe.nombre;
-            lbl_ubicacion.Text ="Ubicación: "+ gestorClases.ObtenerAcademiasPorID((int)datos_clase.id_ubicacion).nombre;
-            lbl_tipo_clase.Text ="Tipo de Clase: "+ gestorClases.ObtenerTipoClasesPorID((int)datos_clase.id_tipo_clase).nombre;
-            
-            
-            
-            lbl_precio.Text = "Precio: $"+datos_clase.precio.ToString();
+            lbl_profesor.Text = "Profesor: " + profe.apellido + ", " + profe.nombre;
+            lbl_ubicacion.Text = "Ubicación: " + gestorClases.ObtenerAcademiasPorID((int)datos_clase.id_ubicacion).nombre;
+            lbl_tipo_clase.Text = "Tipo de Clase: " + gestorClases.ObtenerTipoClasesPorID((int)datos_clase.id_tipo_clase).nombre;
+
+
+
+            lbl_precio.Text = "Precio: $" + datos_clase.precio.ToString();
 
             //cargar horarios con sus respectivos horarios
             dtHorarios = gestorClases.ObtenerTablaHorarios(id_Clase);
@@ -136,20 +136,45 @@ namespace JJSS.Presentacion
         {
             int dni = 0;
             if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
-            List<alumno> listaCompleta = gestorAlumnos.BuscarAlumno();
+            List<alumno> listaCompleta = mostrarAlumnosNoInscriptos();
             List<alumno> listaConFiltro = new List<alumno>();
             string filtroApellido = txt_filtro_apellido.Text.ToUpper();
 
             foreach (alumno i in listaCompleta)
             {
                 string apellido = i.apellido.ToUpper();
-                if (dni==0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
+                if (dni == 0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
 
-                if (apellido.StartsWith(filtroApellido) && i.dni==dni) listaConFiltro.Add(i);
+                if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
             }
 
             gvAlumnos.DataSource = listaConFiltro;
             gvAlumnos.DataBind();
+        }
+
+        private List<alumno> mostrarAlumnosNoInscriptos()
+        {
+            List<alumno> alumnosInscriptos = gestorInscripcionClase.ObtenerAlumnosDeUnaClase(id_Clase);
+            List<alumno> alumnos = gestorAlumnos.BuscarAlumno();
+            List<alumno> alumnosNoInscriptos=new List<alumno>();
+            Boolean encontro = false;
+
+            foreach (alumno a in alumnos)
+            {
+
+                foreach (alumno ai in alumnosInscriptos)
+                {
+                    if (a.dni == ai.dni)
+                    {
+                        encontro = true;
+                        break;
+                    }
+                    else encontro = false;
+                }
+                if (encontro == false) alumnosNoInscriptos.Add(a);
+            }
+            
+            return alumnosNoInscriptos;
         }
 
         //____________     Mensajes de error    __________
@@ -292,12 +317,15 @@ namespace JJSS.Presentacion
             try
             {
                 string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, id_Clase, phora, pfecha, idFaja);
-                if (sReturn == "") {
+                if (sReturn == "")
+                {
                     mensaje("La inscripción se ha realizado correctamente", true);
                     definirVisualizacionDePaneles(true);
+                    CargarGrilla();
                 }
                 else mensaje(sReturn, false);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 mensaje(ex.Message, false);
             }

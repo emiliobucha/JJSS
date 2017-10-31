@@ -402,27 +402,37 @@ namespace JJSS_Negocio
             double recargo = 0;
             using (var db = new JJSSEntities())
             {
-                GestorInscripcionesClase ins = new GestorInscripcionesClase();
-                inscripcionDelAlumno = ins.ObtenerAlumnoInscripto(pIdAlumno, pIdClase);
+                //{
+                //    GestorInscripcionesClase ins = new GestorInscripcionesClase();
+                //    inscripcionDelAlumno = ins.ObtenerAlumnoInscripto(pIdAlumno, pIdClase);
+                //    var recargoParametro = db.parametro.Find(1);
+                //    recargo = (double)recargoParametro.valor;
+                //}
+                //if (inscripcionDelAlumno == null)
+                //{
+                //    return -1;
+                //}
+                //else
+                //{
+                //    DateTime fechaInscripcion = (DateTime)inscripcionDelAlumno.fecha;
+
+                //    diaMaximo = fechaInscripcion.AddDays(5);
+
+                //    if (diaMaximo < DateTime.Today) // se cobra recargo
+                //    {
+                //        return recargo;
+                //    }
+                //}
+
                 var recargoParametro = db.parametro.Find(1);
                 recargo = (double)recargoParametro.valor;
-            }
-            if (inscripcionDelAlumno == null)
-            {
-                return -1;
-            }
-            else
-            {
-                DateTime fechaInscripcion = (DateTime)inscripcionDelAlumno.fecha;
+                clase clase = db.clase.Find(pIdClase);
+                GestorPagoClase gestorPago = new GestorPagoClase();
+                bool pago=gestorPago.validarPagoParaAsistencia(pIdAlumno, (int)clase.id_tipo_clase);
+                if (pago) return 0;
+                else return recargo;
 
-                diaMaximo = fechaInscripcion.AddDays(5);
-
-                if (diaMaximo < DateTime.Today) // se cobra recargo
-                {
-                    return recargo;
-                }
             }
-
             return 0;
         }
 
