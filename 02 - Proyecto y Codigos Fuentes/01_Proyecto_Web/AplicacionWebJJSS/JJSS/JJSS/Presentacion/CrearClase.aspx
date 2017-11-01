@@ -53,86 +53,87 @@
 
                     <!--Nombre-->
                     <asp:Panel ID="pnl_datosClase" CssClass="panel panel-default" runat="server">
-                        <div class="row centered">
-                            <h3>Datos de la Clase&nbsp;</h3>
-                        </div>
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
-
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <label class="pull-left">Nombre</label>
+                        <div>
+                            <div class="row centered">
+                                <h3>Datos de la Clase&nbsp;</h3>
                             </div>
-                            <div class="col-xs-3">
-                                <asp:TextBox ID="txt_nombre" required="true" maxLenght="50" runat="server" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
-                            </div>
-                        </div>
-
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
-                        <!-- precio-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <label class="pull-left">Precio</label>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:TextBox ID="txt_precio" required ="true" min="0" max="999999" type="number" step="0.01" runat="server" placeholder="Ingrese precio" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
-
-                        <!-- tipoclase-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <label class="pull-left">Tipo de Clase</label>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:DropDownList ID="ddl_tipo_clase" runat="server" CssClass="caja2"></asp:DropDownList>
-                            </div>
-                            <div class="col-xs-3">
-                            </div>
-                        </div>
-
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
-
-                        <!-- ubicacion-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <label class="pull-left">Ubicación</label>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:DropDownList ID="ddl_ubicacion" runat="server" CssClass="caja2"></asp:DropDownList>
-                            </div>
-                            <div class="col-xs-3">
-                            </div>
-                        </div>
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
-                        <!-- profesor-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <label class="pull-left">Profesor</label>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:DropDownList ID="ddl_profesor" runat="server" CssClass="caja2"></asp:DropDownList>
-                            </div>
-                            <div class="col-xs-3">
+                            <div class="row centered">
+                                &nbsp;
                             </div>
 
-                        </div>
+                            <div class="row centered">
+                                <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
+                                    <label class="pull-left">Nombre</label>
+                                </div>
+                                <div class="col-ms-3 col-lg-3 col-xs-8 col-sm-8">
+                                    <asp:TextBox ID="txt_nombre" required="true" maxLenght="50" runat="server" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
+                                </div>
+                            </div>
 
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
+                            <div class="row centered">
+                                &nbsp;
+                            </div>
+                            <!-- precio-->
+                            <div class="row centered">
+                                <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
+                                    <label class="pull-left">Precio</label>
+                                </div>
+                                <div class="col-ms-3 col-lg-3 col-xs-8 col-sm-8">
+                                    <asp:TextBox ID="txt_precio" required="true" min="0" max="999999" type="number" step="0.01" runat="server" placeholder="Ingrese precio" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
 
+                            <div class="row centered">
+                                &nbsp;
+                            </div>
+
+                            <!-- tipoclase-->
+                            <div class="row centered">
+                                <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
+                                    <label class="pull-left">Tipo de Clase</label>
+                                </div>
+                                <div class="col-ms-3 col-lg-3 col-xs-8 col-sm-8">
+                                    <asp:DropDownList ID="ddl_tipo_clase" runat="server" CssClass="caja2"></asp:DropDownList>
+                                </div>
+                                <div class="col-xs-3">
+                                </div>
+                            </div>
+
+                            <div class="row centered">
+                                &nbsp;
+                            </div>
+
+                            <!-- ubicacion-->
+                            <div class="row centered">
+                                <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
+                                    <label class="pull-left">Ubicación</label>
+                                </div>
+                                <div class="col-ms-3 col-lg-3 col-xs-8 col-sm-8">
+                                    <asp:DropDownList ID="ddl_ubicacion" runat="server" CssClass="caja2"></asp:DropDownList>
+                                </div>
+                                <div class="col-xs-3">
+                                </div>
+                            </div>
+                            <div class="row centered">
+                                &nbsp;
+                            </div>
+                            <!-- profesor-->
+                            <div class="row centered">
+                                <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
+                                    <label class="pull-left">Profesor</label>
+                                </div>
+                                <div class="col-ms-3 col-lg-3 col-xs-8 col-sm-8">
+                                    <asp:DropDownList ID="ddl_profesor" runat="server" CssClass="caja2"></asp:DropDownList>
+                                </div>
+                                <div class="col-xs-3">
+                                </div>
+
+                            </div>
+
+                            <div class="row centered">
+                                &nbsp;
+                            </div>
+                        </div>
                     </asp:Panel>
 
                     <asp:Panel ID="pnl_horariosClase" CssClass="panel panel-default" runat="server">
