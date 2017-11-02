@@ -12,22 +12,30 @@ namespace JJSS_Negocio
     {
         private const int Reservada = 5;
         private const int Cancelada = 6;
+        private const int Retirada = 7;
 
         /*
          * Metodo que reserva los productos seleccionados para un usuario
          */
-        public String ConfirmarReserva(int pIDUsuario, DataTable pItems)
+        public String ConfirmarReserva(int pIDUsuario, DataTable pItems, int pIDUsuario2)
         {
             DateTime fechaActual = DateTime.Now;
+            int usuarioQueReserva = pIDUsuario;
+            int estado=Reservada;
             using (var db = new JJSSEntities())
             {
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
+                    if (usuarioQueReserva == 1)//es admin
+                    {
+                        usuarioQueReserva = pIDUsuario2; //se le asigna la reserva otro usuario
+                        estado = Retirada; // se crea la reserva como retirada
+                    }
                     reserva nuevaReserva = new reserva()
                     {
                         fecha = fechaActual,
-                        id_usuario = pIDUsuario,
+                        id_usuario = usuarioQueReserva,
 
                     };
                     db.reserva.Add(nuevaReserva);
@@ -64,7 +72,7 @@ namespace JJSS_Negocio
                     estado_reserva nuevoEstado = new estado_reserva()
                     {
                         fecha = fechaActual,
-                        id_estado = Reservada,
+                        id_estado = estado,
                         id_reserva = nuevaReserva.id_reserva,
                         actual = 1,
                     };

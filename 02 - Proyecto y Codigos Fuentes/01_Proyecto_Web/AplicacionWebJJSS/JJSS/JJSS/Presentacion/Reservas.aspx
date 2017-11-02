@@ -119,7 +119,7 @@
 
         </asp:MultiView>
         <div class="row centered">
-            <asp:Button ID="btn_cancelar" OnClick="btn_cancelar_Click" runat="server" Text="Cancelar" CssClass="btn btn-default" CausesValidation="false" />
+            <asp:Button ID="btn_cancelar" OnClick="btn_cancelar_Click" runat="server" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" />
         </div>
     </form>
 </asp:Content>

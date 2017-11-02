@@ -66,7 +66,7 @@ namespace JJSS_Negocio
 
                     if (obtenerParticipanteDeTorneo(pDni, pTorneo) != null)
                     {
-                        return "Participante exitente";
+                        return "El participante ya se inscribió a este torneo";
                     }
 
                     //alumnoExistente = ObtenerAlumnoPorDNI(pDni);
@@ -89,8 +89,7 @@ namespace JJSS_Negocio
                     db.SaveChanges();
                     var catTorneoExistente = from catTor in db.categoria_torneo
                                              where (catTor.id_categoria == categoriaPerteneciente.id_categoria)
-                                             //&& (catTor.faja.id_faja == fajaElegida.id_faja)
-                                             && (catTor.sexo == pSexo)
+                                             && catTor.id_faja==pFaja
                                              select catTor;
                     categoria_torneo nuevaCategoriaTorneo;
                     //+rever esto
@@ -100,8 +99,7 @@ namespace JJSS_Negocio
                         nuevaCategoriaTorneo = new categoria_torneo()
                         {
                             id_categoria = categoriaPerteneciente.id_categoria,
-                            //faja = fajaElegida,
-                            sexo = pSexo,
+                            faja = fajaElegida,
 
                         };
                     }
@@ -125,8 +123,9 @@ namespace JJSS_Negocio
                         id_torneo = torneoInscripto.id_torneo,
                         torneo = torneoInscripto,
                         peso = pPeso,
-                        faja = fajaElegida
-
+                        id_faja = pFaja,
+                        faja=fajaElegida,
+                        categoria_torneo=nuevaCategoriaTorneo
 
                     };
 
@@ -275,7 +274,7 @@ namespace JJSS_Negocio
                                         par_dni = part.dni.ToString(),
                                         par_faja = inscr.faja.descripcion,
                                         par_categoria = inscr.categoria.nombre
-                                        
+
 
                                     };
                 List<CompInscripcionTorneo> participantesList = participantes.ToList<CompInscripcionTorneo>();

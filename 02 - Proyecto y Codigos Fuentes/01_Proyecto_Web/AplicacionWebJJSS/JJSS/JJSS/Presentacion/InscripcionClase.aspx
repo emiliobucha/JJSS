@@ -216,13 +216,14 @@
                         <!--Boton para aceptar inscripcion-->
                         <div class="row centered">
                             <asp:Button CssClass="btn btn-default" ID="btn_aceptar_inscripcion" runat="server" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
-                            <asp:Button CssClass="btn btn-default" ID="btn_alumnos" runat="server" Text="Alumnos" OnClick="btn_alumnos_Click" />
+                            <asp:Button CssClass="btn-link" ID="btn_alumnos" runat="server" Text="Alumnos" OnClick="btn_alumnos_Click" />
                         </div>
                         <div class="row centered">
                             <p>&nbsp;</p>
                         </div>
 
                     </asp:Panel>
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link"  CausesValidation="false" OnClick="btn_Cancelar_Click1" />
 
                 </div>
             </div>

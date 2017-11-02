@@ -54,7 +54,7 @@ namespace JJSS
                 }
 
 
-                //CargarComboFajas();
+
                 if (Session["torneoSeleccionado"] != null)
                 {
                     int id = (int) Session["torneoSeleccionado"];
@@ -64,6 +64,8 @@ namespace JJSS
                     pnl_InfoTorneo.Visible = true;
                     pnl_Inscripcion.Visible = false;
                     pnl_dni.Visible = true;
+                    torneo t =gestorDeTorneos.BuscarTorneoPorID(id);
+                    CargarComboFajas((int)t.id_tipo_clase);
                 }
                 else
                 {
@@ -242,7 +244,8 @@ namespace JJSS
             int idTorneo = 0;
             int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
             cargarInfoTorneo(idTorneo);
-
+            int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
+            CargarComboFajas(idTipoClase);
 
         }
 
@@ -382,7 +385,7 @@ namespace JJSS
         {
             try
             {
-                if (rbSexo.SelectedIndex != 0 && rbSexo.SelectedIndex != 1)
+                if (rbSexo.SelectedIndex == 0 && rbSexo.SelectedIndex == 1)
                 {
                     args.IsValid = true;
                 }

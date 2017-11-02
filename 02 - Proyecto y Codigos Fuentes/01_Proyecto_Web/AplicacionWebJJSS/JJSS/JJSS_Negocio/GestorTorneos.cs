@@ -303,7 +303,8 @@ namespace JJSS_Negocio
             {
                 var participantes = from inscr in db.inscripcion
                                     join part in db.participante on inscr.id_participante equals part.id_participante
-                                    //join cat_tor in db.categoria on inscr.id_categoria equals cat_tor.id_categoria
+                                    join cat_tor in db.categoria_torneo on inscr.id_categoria equals cat_tor.id_categoria
+                                    join cat in db.categoria on cat_tor.id_categoria equals cat.id_categoria
                                     where inscr.id_torneo == pID
                                     select new ParticipantesTorneoResultado()
                                     {
@@ -317,10 +318,10 @@ namespace JJSS_Negocio
                                         par_fecha_nacD = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
                                         par_faja = inscr.faja.descripcion,
-                                        par_categoria = inscr.categoria.nombre
+                                        par_categoria = cat.nombre,
                                     };
                 List<ParticipantesTorneoResultado> participantesList = participantes.ToList<ParticipantesTorneoResultado>();
-          
+
 
                 foreach (ParticipantesTorneoResultado part in participantesList)
                 {
@@ -353,7 +354,7 @@ namespace JJSS_Negocio
          * Aun no aplica
          */
 
-     
+
         /*
          * Genera listado de participantes a un torneo con su reporte.
          * Retorno: String del archivo resultante de la generacion del reporte en PDF

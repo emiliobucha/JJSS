@@ -235,7 +235,7 @@
                                             <label class="pull-left">DNI del participante:</label>
                                         </div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtDni" class="caja2" runat="server" placeholder="Ingrese DNI" ValidationGroup="grupoDni"></asp:TextBox>
+                                            <asp:TextBox ID="txtDni" class="caja2" required="true" runat="server" placeholder="Ingrese DNI" ValidationGroup="grupoDni"></asp:TextBox>
                                         </div>
                                         <div class="col-md-1">
                                             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
@@ -321,7 +321,7 @@
                                                 <asp:ListItem>Masculino</asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
-                                        <asp:CustomValidator ID="val_sexo" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe seleccionar un sexo" ValidationGroup="vgDatos" ControlToValidate="rbSexo" OnServerValidate="val_sexo_ServerValidate"></asp:CustomValidator>
+                                        
                                     </div>
 
 

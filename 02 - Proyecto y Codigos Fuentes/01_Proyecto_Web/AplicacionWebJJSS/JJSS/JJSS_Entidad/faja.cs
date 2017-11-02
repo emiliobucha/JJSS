@@ -19,6 +19,7 @@ namespace JJSS_Entidad
         {
             this.alumnoxfaja = new HashSet<alumnoxfaja>();
             this.inscripcion = new HashSet<inscripcion>();
+            this.categoria_torneo = new HashSet<categoria_torneo>();
         }
     
         public int id_faja { get; set; }
@@ -31,5 +32,7 @@ namespace JJSS_Entidad
         public virtual tipo_clase tipo_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion> inscripcion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
     }
 }

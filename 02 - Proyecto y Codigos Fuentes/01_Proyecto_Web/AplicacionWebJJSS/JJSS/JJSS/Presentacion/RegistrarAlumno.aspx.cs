@@ -90,12 +90,14 @@ namespace JJSS.Presentacion
         {
             if (Session["alumnos"] == null || Session["alumnos"].ToString().CompareTo("Registrar") == 0)
             {
+                MultiView1.SetActiveView(view_formulario);
                 pnl_mostrar_alumnos.Visible = false;
                 pnlFormulario.Visible = true;
                 Session["alumnos"] = "alu";
             }
             else if (Session["alumnos"].ToString().CompareTo("Administrar") == 0)
             {
+                MultiView1.SetActiveView(view_grilla);
                 pnl_mostrar_alumnos.Visible = true;
                 pnlFormulario.Visible = false;
                 Session["alumnos"] = "alu";
@@ -181,6 +183,7 @@ namespace JJSS.Presentacion
                     gestorAlumnos.ModificarAlumno(dni, nombre, apellido,fechaNac,sexo);
                     gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad);
                     mensaje("Se modificaron los datos correctamente", true);
+                    MultiView1.SetActiveView(view_grilla);
                     pnl_mostrar_alumnos.Visible = true;
                     pnlFormulario.Visible = false;
                     limpiar();
@@ -207,6 +210,7 @@ namespace JJSS.Presentacion
                 {
                     gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
                     mensaje("Se ha creado el alumno exitosamente", true);
+                    MultiView1.SetActiveView(view_grilla);
                     pnl_mostrar_alumnos.Visible = true;
                     pnlFormulario.Visible = false;
                     limpiar();
@@ -214,6 +218,7 @@ namespace JJSS.Presentacion
                 catch (Exception ex)
                 {
                     mensaje(ex.Message, false);
+                    MultiView1.SetActiveView(view_formulario);
                     pnl_mostrar_alumnos.Visible = false;
                     pnlFormulario.Visible = true;
                 }
@@ -268,6 +273,7 @@ namespace JJSS.Presentacion
         {
             gvAlumnos.PageIndex = e.NewPageIndex;
             CargarGrilla();
+            MultiView1.SetActiveView(view_grilla);
             pnlFormulario.Visible = false;
             pnl_mostrar_alumnos.Visible = true;
         }
@@ -279,6 +285,7 @@ namespace JJSS.Presentacion
             //Session["alumnos"] = "Administrar";
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
+            MultiView1.SetActiveView(view_grilla);
             pnl_mostrar_alumnos.Visible = true;
             pnlFormulario.Visible = false;
         }
@@ -288,6 +295,7 @@ namespace JJSS.Presentacion
             //Session["alumnos"] = "Administrar";
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
+            MultiView1.SetActiveView(view_grilla);
             pnl_mostrar_alumnos.Visible = true;
             pnlFormulario.Visible = false;
         }
@@ -325,6 +333,7 @@ namespace JJSS.Presentacion
             //Session["alumnos"] = "Registrar";
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
+            MultiView1.SetActiveView(view_formulario);
             pnl_mostrar_alumnos.Visible = false;
             pnlFormulario.Visible = true;
         }
@@ -342,6 +351,7 @@ namespace JJSS.Presentacion
                 if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
                 else estado = false;
                 //Session["alumnos"] = "Administrar";
+                MultiView1.SetActiveView(view_grilla);
                 pnl_mostrar_alumnos.Visible = true;
                 pnlFormulario.Visible = false;
                 mensaje(sReturn, estado);
@@ -381,6 +391,7 @@ namespace JJSS.Presentacion
 
                 txtDni.Enabled = false;
 
+                MultiView1.SetActiveView(view_formulario);
                 pnl_mostrar_alumnos.Visible = false;
                 pnlFormulario.Visible = true;
                 pnl_mensaje_error.Visible = false;

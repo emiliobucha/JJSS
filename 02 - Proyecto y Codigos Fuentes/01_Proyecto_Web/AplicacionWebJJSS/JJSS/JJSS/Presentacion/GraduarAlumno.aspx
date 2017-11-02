@@ -53,7 +53,7 @@
             <div class="col-md-2"><strong>Apellido</strong></div>
             <div class="col-md-3">
             <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
-            <asp:RegularExpressionValidator ID="caracteres_apellido" runat="server" ControlToValidate="txt_filtro_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
+            
                 </div>
 
             <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btn_buscar_Click" ValidationGroup="vgFiltro" />
@@ -79,10 +79,8 @@
                         <asp:BoundField DataField="fecha" HeaderText="Fecha de Última Graduación" />
                         <asp:TemplateField HeaderText="Grados a aumentar" HeaderStyle-HorizontalAlign="Center">
                             <ItemTemplate>
-                                <asp:TextBox ID="txt_grados" runat="server" CssClass="caja2" Text="0" TextMode="Number"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="requeridoGrados" runat="server" ErrorMessage="Debe ingresar la cantidad de grados" ValidationGroup="vg_grados" Display="Dynamic" CssClass="text text-danger" ControlToValidate="txt_grados"></asp:RequiredFieldValidator>
-                                <asp:CompareValidator ID="mayor_grado" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_grados" Type="Integer" ErrorMessage="La cantidad de grados debe ser un valor mayor a 0" ValueToCompare="-1" Operator="GreaterThan" ValidationGroup="vg_grados"></asp:CompareValidator>
-                                <asp:CompareValidator ID="menor_grado" CssClass="text text-danger" Display="Dynamic" runat="server" ControlToValidate="txt_grados" Type="Integer" ErrorMessage="La cantidad de grados debe ser un valor menor a 20" ValueToCompare="21" Operator="LessThan" ValidationGroup="vg_grados"></asp:CompareValidator>
+                                <asp:TextBox ID="txt_grados" runat="server" required="true" type="number" min="0" max="20"  CssClass="form-control" Text="0"></asp:TextBox>
+                                
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -94,27 +92,11 @@
                 </div>
             </asp:View>
 
-            <asp:View ID="view_confirmacion" runat="server">
-
-                <div class="row centered">
-
-                    <div class="row centered">
-                        <p>&nbsp;</p>
-                    </div>
-                </div>
-
-                <div class="row centered">
-                    &nbsp;
-                </div>
-
-                <div class="row centered">
-                    <asp:Button ID="btn_guardar_contacto" CssClass="btn btn-default" ValidationGroup="vgContacto" runat="server" Text="Aceptar" />
-                </div>
-            </asp:View>
+           
 
         </asp:MultiView>
         <div class="row centered">
-            <asp:Button ID="btn_cancelar" runat="server" Text="Volver" CssClass="btn btn-default" OnClick="btn_cancelar_Click" CausesValidation="false" />
+            <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link" formnovalidate="true" OnClick="btn_cancelar_Click" CausesValidation="false" />
         </div>
     </form>
 
