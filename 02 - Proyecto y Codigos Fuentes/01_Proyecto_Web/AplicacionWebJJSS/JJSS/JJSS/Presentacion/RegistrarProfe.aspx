@@ -267,9 +267,9 @@
 
                             <!--Boton-->
                             <div class="row centered">
-                                <asp:Button ID="btn_cancelar" runat="server" CssClass="btn btn-default" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
+                                <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_cancelar_Click" />
                                 <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgProfes" />
-                                <asp:Button ID="btn_ver_profes" runat="server" CssClass="btn btn-default" Text="Ver profesores" CausesValidation="False" OnClick="btn_ver_profes_Click" />
+                                <asp:Button ID="btn_ver_profes" runat="server" CssClass="btn-link" Text="Ver profesores" CausesValidation="False" OnClick="btn_ver_profes_Click" />
                             </div>
                         </div>
                     </div>

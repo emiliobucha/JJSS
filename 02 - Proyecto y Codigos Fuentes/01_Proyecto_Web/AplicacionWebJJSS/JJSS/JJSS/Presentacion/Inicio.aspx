@@ -374,7 +374,7 @@
                                         <asp:Button ID="lv_btn_inscribir" runat="server" CommandName="inscribir" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Inscribir" />
                                     </div>
                                     <div>
-                                        <asp:Button ID="lv_btn_seleccionar" runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Seleccionar" />
+                                        <asp:Button ID="lv_btn_seleccionar" runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass="btn-link" Text="Editar" />
                                     </div>
                                     <div>
                                         <asp:Button ID="lv_btn_eliminar" runat="server" CommandName="eliminar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn-link" Text="Eliminar" />

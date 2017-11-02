@@ -373,15 +373,6 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
         
         /// <summary>
-        /// Control val_sexo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator val_sexo;
-        
-        /// <summary>
         /// Control txt_peso.
         /// </summary>
         /// <remarks>

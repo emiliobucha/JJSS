@@ -354,7 +354,14 @@ namespace JJSS.Presentacion
 
         protected void btn_registrar_alumno_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RegistrarAlumno.aspx");
+            Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
+        }
+
+        protected void btn_Cancelar_Click1(object sender, EventArgs e)
+        {
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+            Response.Redirect("../Presentacion/Inicio.aspx");
         }
     }
 }

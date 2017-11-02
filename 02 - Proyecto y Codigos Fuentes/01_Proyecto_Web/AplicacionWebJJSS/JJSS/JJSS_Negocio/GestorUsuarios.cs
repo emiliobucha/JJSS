@@ -191,5 +191,39 @@ namespace JJSS_Negocio
                 return tablaFinal;
             }
         }
+
+        /*
+         *  busca todas los profesores y alumnos inscriptos
+         */
+        public DataTable BuscarProfesAlumnos()
+        {
+            using (var db = new JJSSEntities())
+            {
+                var alumnos = from usu in db.seguridad_usuario
+                               join alu in db.alumno on usu.id_usuario equals alu.id_usuario
+                               where alu.baja_logica == 1
+                               select new
+                               {
+                                   nombre = alu.nombre,
+                                   apellido = alu.apellido,
+                                   dni = alu.dni,
+                                   id=usu.id_usuario,
+                               }; 
+
+                var profesores = from usu in db.seguridad_usuario
+                              join pro in db.profesor on usu.id_usuario equals pro.id_usuario
+                              select new
+                              {
+                                  nombre = pro.nombre,
+                                  apellido = pro.apellido,
+                                  dni = pro.dni,
+                                  id=usu.id_usuario
+                              };
+
+                DataTable dt = modUtilidadesTablas.unirDataTable(modUtilidadesTablas.ToDataTable(alumnos.ToList()), modUtilidadesTablas.ToDataTable(profesores.ToList()));
+
+                return dt;
+            }
+        }
     }
 }

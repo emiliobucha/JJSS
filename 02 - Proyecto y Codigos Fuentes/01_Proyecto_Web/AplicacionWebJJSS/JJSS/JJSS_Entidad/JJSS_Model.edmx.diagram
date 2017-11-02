@@ -67,7 +67,6 @@
         <AssociationConnector Association="JJSSDB1Model.FK_faja" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSDB1Model.FK_asistencia_clase" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSDB1Model.FK__categoria__id_ca__531856C7" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSDB1Model.FK__inscripci__id_ca__6166761E" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSDB1Model.FK_categoria_tipoclase" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSDB1Model.FK_producto_categoria" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSDB1Model.FK_ciudad_id_provincia" ManuallyRouted="false" />
@@ -122,6 +121,8 @@
         <AssociationConnector Association="JJSSDB1Model.FK__pago_torn__id_pa__18A19C6F" />
         <AssociationConnector Association="JJSSDB1Model.fk_parcipante_id_participante" />
         <AssociationConnector Association="JJSSDB1Model.fk_torneo_id_torneo" />
+        <AssociationConnector Association="JJSSDB1Model.FK__inscripci__id_ca__6166761E1" />
+        <AssociationConnector Association="JJSSDB1Model.FK_categoria_torneo_faja" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,17 +12,34 @@ namespace JJSS.Presentacion
 {
     public partial class Tienda : System.Web.UI.Page
     {
-        private GestorReservas gestorReservas;
-        private GestorProductos gestorProductos;
-        static DataTable dtItems;
+        private static GestorReservas gestorReservas;
+        private static GestorProductos gestorProductos;
+        private static GestorUsuarios gestorUsuarios;
+        private static GestorSesiones gestorSesion;
+        private static DataTable dtItems;
+        private static int _idUsuarioSeleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 gestorProductos = new GestorProductos();
+                gestorReservas = new GestorReservas();
+                gestorUsuarios = new GestorUsuarios();
+                gestorSesion = new GestorSesiones();
                 cargarClasesView();
                 cargarGrillaProductos();
+
+                _idUsuarioSeleccionado = 0;
+
+                seguridad_usuario alumnoActual = gestorSesion.getActual().usuario;
+                int idUsuario = alumnoActual.id_usuario;
+                if (idUsuario == 1)
+                {
+                    pnl_usuarios.Visible = true;
+                    cargarGrillaUsuarios();
+                }
+                else pnl_usuarios.Visible = false;
             }
         }
 
@@ -54,7 +71,6 @@ namespace JJSS.Presentacion
             pnl_mensaje_exito.Visible = false;
             int idProducto = Convert.ToInt32(e.CommandArgument);
 
-            gestorProductos = new GestorProductos();
             DataTable auxdt = gestorProductos.ObtenerProductoConID(idProducto);
             TextBox tb = (TextBox)e.Item.FindControl("txt_cantidad");
             int cantidad = int.Parse(tb.Text);
@@ -94,12 +110,10 @@ namespace JJSS.Presentacion
 
         protected void btn_confirmar_reserva_Click(object sender, EventArgs e)
         {
-            gestorReservas = new GestorReservas();
-            gestorProductos = new GestorProductos();
-            GestorSesiones gestorSesion = new GestorSesiones();
+
             seguridad_usuario alumnoActual = gestorSesion.getActual().usuario;
             int idUsuario = alumnoActual.id_usuario;
-            string sReturn = gestorReservas.ConfirmarReserva(idUsuario, dtItems);
+            string sReturn = gestorReservas.ConfirmarReserva(idUsuario, dtItems, _idUsuarioSeleccionado);
             if (sReturn.CompareTo("") == 0)
             {
                 mensaje("Se reservaron los productos correctamente", true);
@@ -132,6 +146,7 @@ namespace JJSS.Presentacion
             cargarGrillaProductos();
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
+            _idUsuarioSeleccionado = 0;
         }
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
@@ -140,6 +155,9 @@ namespace JJSS.Presentacion
             cargarGrillaProductos();
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
+            _idUsuarioSeleccionado = 0;
+            Response.Redirect("../Presentacion/Inicio.aspx");
+
         }
 
         protected void gv_items_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -148,7 +166,7 @@ namespace JJSS.Presentacion
             int id = Convert.ToInt32(gv_items.DataKeys[index].Value);
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
-                for(int i= 0; i < dtItems.Rows.Count; i++)
+                for (int i = 0; i < dtItems.Rows.Count; i++)
                 {
                     DataRow dr = dtItems.Rows[i];
                     if (int.Parse(dr["id_producto"].ToString()) == id) dtItems.Rows.Remove(dr);
@@ -156,6 +174,29 @@ namespace JJSS.Presentacion
                 }
                 cargarGrillaProductos();
             }
+        }
+
+        protected void gv_usuarios_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            int id = Convert.ToInt32(gv_usuarios.DataKeys[index].Value);
+
+            if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                _idUsuarioSeleccionado = id;
+            }
+        }
+
+        protected void gv_usuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gv_usuarios.PageIndex = e.NewPageIndex;
+            cargarGrillaUsuarios();
+        }
+
+        private void cargarGrillaUsuarios()
+        {
+            gv_usuarios.DataSource = gestorUsuarios.BuscarProfesAlumnos();
+            gv_usuarios.DataBind();
         }
     }
 }

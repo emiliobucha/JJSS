@@ -101,14 +101,30 @@
 
                 </asp:GridView>
             </div>
+            <asp:Panel ID="pnl_usuarios" runat="server" Visible="false">
+                <div class="centered">
+                    <p>&nbsp;</p>
+                    <h2>Productos Seleccionados</h2>
+                    <p>&nbsp;</p> 
+                    <asp:GridView ID="gv_usuarios" CssClass="table" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_usuarios_PageIndexChanging" runat="server" DataKeyNames="id" EmptyDataText="No hay usuarios para mostrar" OnRowCommand="gv_usuarios_RowCommand" AutoGenerateColumns="false">
+                        <Columns>
+                            <asp:BoundField DataField="apellido" HeaderText="Apellido" />
+                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="dni" HeaderText="DNI" />
+                            
+                            <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="" />
+                        </Columns>
 
+                    </asp:GridView>
+                </div>
+            </asp:Panel>
 
             <div class="centered">
                 <asp:Button ID="btn_confirmar_reserva" runat="server" Text="Confirmar Reserva" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_confirmar_reserva_Click" />
                 <asp:Button ID="btn_limpiar" runat="server" Text="Eliminar productos" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_limpiar_Click" />
             </div>
 
-            <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_Cancelar_Click"/>
+            <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link"  CausesValidation="false" OnClick="btn_Cancelar_Click" />
         </div>
     </form>
 </asp:Content>
