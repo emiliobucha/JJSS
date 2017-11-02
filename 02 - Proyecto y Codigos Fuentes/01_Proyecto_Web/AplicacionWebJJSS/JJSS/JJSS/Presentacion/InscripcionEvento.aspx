@@ -8,29 +8,44 @@
     <div class="container">
         <section id="inscripcionTorneo" title="inscripcionTorneo"></section>
 
-        <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-            <div class="col-md-2 hidden-xs"></div>
-            <div class="col-md-8 col-xs-12 col-sm-12">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+        <div class="col-md-2 hidden-xs"></div>
+        <div class="col-md-8 col-xs-12 col-sm-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div>
                     <a class="ui-icon ui-icon-check"></a>
                     <strong>
                         <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
-
+                        <br />
                     </strong>
-                    <asp:Panel ID="pnl_pago" runat="server" Visible="False">
-                        <div class="text-center">
-                            ¿Desea pagar ahora?<br />
-                            <asp:Button ID="btn_pagar" runat="server" class="btn btn-default" Text="Si" OnClientClick="btn_pagar_click()" />
-                            <asp:Button ID="btn_no" runat="server" class="btn btn-default" Text="No" OnClientClick="btn_no_click()" />
-                        </div>
-                    </asp:Panel>
                 </div>
+
+                <asp:Panel ID="pnl_comprobante" runat="server" Visible="False">
+                    <a class="ui-icon ui-icon-check"></a>
+                    <strong>
+                        Descargar comprobante <a  runat="server" id="btn_descargar">Aquí</a>
+                        <br />
+                    </strong>
+                </asp:Panel>
+
+                <br />
+                <asp:Panel ID="pnl_pago" runat="server" Visible="False">
+                    <div class="text-center">
+                        ¿Desea pagar ahora?<br />
+                        <asp:Button ID="btn_pagar" runat="server" class="btn btn-default" Text="Si" OnClientClick="btn_pagar_click()" />
+                        <asp:Button ID="btn_no" runat="server" class="btn btn-default" Text="No" OnClientClick="btn_no_click()" />
+                    </div>
+                </asp:Panel>
             </div>
-            <div class="row centered">
-                <p>&nbsp;</p>
-            </div>
-        </asp:Panel>
+        </div>
+
+
+
+        <div class="row centered">
+            <p>&nbsp;</p>
+        </div>
+    </asp:Panel>
 
         <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
             <div class="col-md-2 hidden-xs"></div>

@@ -75,9 +75,6 @@ namespace JJSS.Presentacion
                 double monto = (double)torneo.precio_absoluto ;
                 lbl_monto.Text = "$" + monto;
 
-              
-
-                
                 String sInit_Point = "";
                 gestorMP = new GestorMercadoPago();
                 sInit_Point = gestorMP.NuevoPago(monto);

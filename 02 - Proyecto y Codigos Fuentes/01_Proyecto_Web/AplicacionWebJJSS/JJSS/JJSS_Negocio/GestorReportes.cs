@@ -24,7 +24,7 @@ namespace JJSS_Negocio
         {
             Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
 
-            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "Listado", "pdf");
+            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ComprobanteInscripcionEvento", "pdf");
             System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptCompInscripcionEvento"));
             return sFile;
 
@@ -39,7 +39,7 @@ namespace JJSS_Negocio
         {
             Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
 
-            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "Listado", "pdf");
+            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ComprobanteInscripcionTorneo", "pdf");
             System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptCompInscripcionTorneo"));
             return sFile;
 
@@ -57,7 +57,7 @@ namespace JJSS_Negocio
         {
             Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
 
-            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "Listado", "pdf");
+            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ComprobanteInscripcionTorneoPago", "pdf");
             System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptCompInscripcionTorneoPago"));
             return sFile;
 
@@ -73,7 +73,7 @@ namespace JJSS_Negocio
         {
             Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
 
-            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "Listado", "pdf");
+            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ListadoTorneo", "pdf");
             System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptListadoTorneo"));
             return sFile;
 
@@ -90,7 +90,7 @@ namespace JJSS_Negocio
         {
             Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
 
-            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "Listado", "pdf");
+            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ListadoEvento", "pdf");
             System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptListadoEvento"));
             return sFile;
 

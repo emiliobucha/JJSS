@@ -320,8 +320,11 @@ namespace JJSS.Presentacion
                 if (sReturn == "")
                 {
                     mensaje("La inscripción se ha realizado correctamente", true);
+
+
                     definirVisualizacionDePaneles(true);
                     CargarGrilla();
+
                 }
                 else mensaje(sReturn, false);
             }

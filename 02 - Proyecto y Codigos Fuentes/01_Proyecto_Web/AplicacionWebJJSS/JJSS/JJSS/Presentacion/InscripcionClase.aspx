@@ -10,20 +10,31 @@
     <form id="formRegAlumno" runat="server">
         <div class="container">
 
-            <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-                <div class="col-md-2 hidden-xs"></div>
-                <div class="col-md-8 col-xs-12">
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <a class="ui-icon ui-icon-check"></a>
-                        <strong>
-                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
-                    </div>
+        
+        <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+        <div class="col-md-2 hidden-xs"></div>
+        <div class="col-md-8 col-xs-12 col-sm-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div>
+                    <a class="ui-icon ui-icon-check"></a>
+                    <strong>
+                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
+                        <br />
+                    </strong>
                 </div>
-                <div class="row centered">
-                    <p>&nbsp;</p>
-                </div>
-            </asp:Panel>
+
+                <asp:Panel ID="pnl_comprobante" runat="server" Visible="False">
+                    <a class="ui-icon ui-icon-check"></a>
+                    <strong>
+                        Descargar comprobante <a  runat="server" id="btn_descargar">Aquí</a>
+                        <br />
+                    </strong>
+                </asp:Panel>
+
+            </div>
+        </div>
+
 
             <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
                 <div class="col-md-2 hidden-xs"></div>

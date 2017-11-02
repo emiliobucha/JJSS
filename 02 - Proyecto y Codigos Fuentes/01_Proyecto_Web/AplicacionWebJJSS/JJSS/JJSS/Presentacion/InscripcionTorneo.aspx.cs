@@ -34,7 +34,7 @@ namespace JJSS
 
                 try
                 {
-                    Sesion sesionActiva = (Sesion) HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
                         usuario = sesionActiva.usuario;
@@ -57,14 +57,14 @@ namespace JJSS
 
                 if (Session["torneoSeleccionado"] != null)
                 {
-                    int id = (int) Session["torneoSeleccionado"];
+                    int id = (int)Session["torneoSeleccionado"];
 
                     cargarInfoTorneo(id);
                     pnl_elegirTorneo.Visible = false;
                     pnl_InfoTorneo.Visible = true;
                     pnl_Inscripcion.Visible = false;
                     pnl_dni.Visible = true;
-                    torneo t =gestorDeTorneos.BuscarTorneoPorID(id);
+                    torneo t = gestorDeTorneos.BuscarTorneoPorID(id);
                     CargarComboFajas((int)t.id_tipo_clase);
                 }
                 else
@@ -144,7 +144,7 @@ namespace JJSS
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
             double peso = float.Parse(txt_peso.Text);
-            string[] formats = {"MM/dd/yyyy"};
+            string[] formats = { "MM/dd/yyyy" };
 
             DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"),
                 System.Globalization.DateTimeStyles.None);
@@ -175,7 +175,7 @@ namespace JJSS
                 Session["TorneoPagar"] = idTorneo;
                 Session["ParticipanteDNI"] = dni;
 
-                //para usuarios
+                ////para usuarios
                 Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
 
 
@@ -183,21 +183,18 @@ namespace JJSS
                 {
                     string mail = sesionActiva.usuario.mail;
                     string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, idTorneo).id_inscripcion, mail);
-
-                    Response.Clear();
-                    Response.AddHeader("Content-Type", "Application/octet-stream");
-                    Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
-                    Response.WriteFile(sFile);
+                    pnl_comprobante.Visible = true;
+                    btn_descargar.Attributes.Add("href", "Downloader.ashx?" + "sFile=" + sFile);
+                    
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>window.alert('" + "Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+                    mensaje("Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario", true);
                 }
 
 
 
 
-                limpiar(true);
 
             }
             else mensaje(sReturn, false);
@@ -221,7 +218,7 @@ namespace JJSS
 
             if (Session["torneoSeleccionado"] != null)
             {
-                int id = (int) Session["torneoSeleccionado"];
+                int id = (int)Session["torneoSeleccionado"];
                 ddl_torneos.SelectedValue = id.ToString();
             }
         }
@@ -298,7 +295,7 @@ namespace JJSS
             int idTorneo;
             if (Session["torneoSeleccionado"] != null)
             {
-                idTorneo = (int) Session["torneoSeleccionado"];
+                idTorneo = (int)Session["torneoSeleccionado"];
 
             }
             else
@@ -333,7 +330,7 @@ namespace JJSS
                 txt_apellido.Text = alumnoEncontrado.apellido;
                 txt_nombre.Text = alumnoEncontrado.nombre;
 
-                DateTime fecha = (DateTime) alumnoEncontrado.fecha_nacimiento;
+                DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
                 string format = "MM/dd/yyyy";
                 dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
 
@@ -341,7 +338,7 @@ namespace JJSS
                 // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 
 
-                int idTipoClase = (int) gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
+                int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
                 faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
                 if (fajaAlumno != null)
                 {

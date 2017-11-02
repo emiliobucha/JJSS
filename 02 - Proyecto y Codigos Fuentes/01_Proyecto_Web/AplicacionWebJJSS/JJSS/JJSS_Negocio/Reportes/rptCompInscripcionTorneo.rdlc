@@ -629,7 +629,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="$" &amp; First(Fields!ev_precio.Value, "DATOS")</Value>
+                <Value>="$" &amp; First(Fields!tor_precio.Value, "DATOS")</Value>
                 <Style />
               </TextRun>
             </TextRuns>

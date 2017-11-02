@@ -17,11 +17,23 @@
             <div class="col-md-8 col-xs-12 col-sm-12">
                 <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <a class="ui-icon ui-icon-check"></a>
-                    <strong>
-                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
-                        <br />
-                    </strong>
+                    <div>
+                        <a class="ui-icon ui-icon-check"></a>
+                        <strong>
+                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
+                            <br />
+                        </strong>
+                    </div>
+
+                    <asp:Panel ID="pnl_comprobante" runat="server" Visible="False">
+                        <a class="ui-icon ui-icon-check"></a>
+                        <strong>
+                            Descargar comprobante <a  runat="server" id="btn_descargar">Aquí</a>
+                            <br />
+                        </strong>
+                    </asp:Panel>
+
+                    <br />
                     <asp:Panel ID="pnl_pago" runat="server" Visible="False">
                         <div class="text-center">
                             ¿Desea pagar ahora?<br />
@@ -31,16 +43,16 @@
                     </asp:Panel>
                 </div>
             </div>
-            
+
 
 
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
         </asp:Panel>
-        
-        
-        
+
+
+
 
 
         <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
@@ -160,7 +172,7 @@
                                         </div>
                                     </div>
                                     <!--Cierre Inscripciones-->
-<%--                                    <div class="row centered">
+                                    <%--                                    <div class="row centered">
                                         <p>&nbsp;</p>
                                     </div>
 
@@ -321,7 +333,7 @@
                                                 <asp:ListItem>Masculino</asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
-                                        
+
                                     </div>
 
 
