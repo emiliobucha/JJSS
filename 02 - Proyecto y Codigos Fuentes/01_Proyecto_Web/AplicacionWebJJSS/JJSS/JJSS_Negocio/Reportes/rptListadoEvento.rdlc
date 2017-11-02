@@ -6,22 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.86917cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.12958cm</Width>
+              <Width>3.01453cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.48958cm</Width>
+              <Width>3.56514cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.43657cm</Width>
+              <Width>2.83354cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.8852cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>3.07302cm</Width>
+              <Width>2.60074cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -100,6 +97,41 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox15">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>DNI</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox15</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Textbox11">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -154,76 +186,6 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox13</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox1">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Categoria</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox1</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox3">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Faja</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -313,6 +275,40 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox20">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!par_dni.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox20</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="par_fecha_nac">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -379,81 +375,12 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="par_categoria">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!par_categoria.Value</Value>
-                              <Style>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Left</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>par_categoria</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="par_faja">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!par_faja.Value</Value>
-                              <Style>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Left</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>par_faja</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
-            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -474,8 +401,8 @@
         <DataSetName>DATOS</DataSetName>
         <Top>3.56065cm</Top>
         <Left>0.81958cm</Left>
-        <Height>1.35876cm</Height>
-        <Width>14.51395cm</Width>
+        <Height>1.35875cm</Height>
+        <Width>14.88312cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -489,7 +416,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Datos del Torneo</Value>
+                <Value>Datos del Evento</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <TextDecoration>Underline</TextDecoration>
@@ -656,7 +583,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!tor_sede.Value, "DATOS")</Value>
+                <Value>=First(Fields!ev_sede.Value, "DATOS")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -686,7 +613,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!tor_direccion.Value, "DATOS")</Value>
+                <Value>=First(Fields!ev_direccion.Value, "DATOS")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -716,7 +643,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!tor_fecha.Value, "DATOS")</Value>
+                <Value>=First(Fields!ev_fecha.Value, "DATOS")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -748,7 +675,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!tor_hora.Value, "DATOS")</Value>
+                <Value>=First(Fields!ev_hora.Value, "DATOS")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -846,7 +773,6 @@
         </Image>
         <Line Name="Line1">
           <Top>4.07141cm</Top>
-          <Left>0cm</Left>
           <Height>0cm</Height>
           <Width>16.51cm</Width>
           <ZIndex>2</ZIndex>
@@ -864,7 +790,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!tor_nombre.Value, "DATOS")</Value>
+                  <Value>=First(Fields!ev_tipo.Value, "DATOS") &amp; " - " &amp; First(Fields!ev_nombre.Value, "DATOS")</Value>
                   <Style>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -967,28 +893,36 @@
         <CommandText />
       </Query>
       <Fields>
-        <Field Name="tor_nombre">
-          <DataField>tor_nombre</DataField>
+        <Field Name="ev_nombre">
+          <DataField>ev_nombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="tor_fecha">
-          <DataField>tor_fecha</DataField>
+        <Field Name="ev_fecha">
+          <DataField>ev_fecha</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="tor_hora">
-          <DataField>tor_hora</DataField>
+        <Field Name="ev_hora">
+          <DataField>ev_hora</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="tor_sede">
-          <DataField>tor_sede</DataField>
+        <Field Name="ev_sede">
+          <DataField>ev_sede</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="tor_direccion">
-          <DataField>tor_direccion</DataField>
+        <Field Name="ev_direccion">
+          <DataField>ev_direccion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ev_tipo">
+          <DataField>ev_tipo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="par_nombre">
           <DataField>par_nombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="par_dni">
+          <DataField>par_dni</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="par_apellido">

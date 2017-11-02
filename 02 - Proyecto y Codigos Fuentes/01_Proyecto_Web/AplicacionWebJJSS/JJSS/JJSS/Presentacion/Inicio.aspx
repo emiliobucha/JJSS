@@ -622,6 +622,13 @@
                         <h3 class="logo"><a href="../Presentacion/CrearEvento.aspx" style="color: #000000">Generar un nuevo evento</a></h3>
                         <p>Crea un nuevo evento para luego ver su seguimiento.</p>
                     </div>
+                    
+                    <!--col Generar_Listado_inscriptos-->
+                    <div class="col-lg-4 proc" id="Div12" runat="server">
+                        <i class="fa fa-cogs"></i>
+                        <h3 class="logo"><a id="btn_generar_Listado_inscriptos_evento" href="" data-toggle="modal" data-target="#exportarListadoEvento" style="color: #000000">Generar listado de inscriptos</a></h3>
+                        <p>Genera e imprime un listado de los inscriptos a un evento.</p>
+                    </div>
 
                 </div>
             </div>
@@ -742,6 +749,54 @@
         </div>
         <!----------------------*********  Fin ventana emergente   *********--------------------->
 
+            <!--Implementando ventana emergente --------------------*********     Exportar Listado  Evento   *********--------------------->
+        <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="exportarListadoEvento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <!--Cabecera-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabe21">Exportar listado de inscriptos a evento</h4>
+                    </div>
+
+                    <!--Cuerpo-->
+
+                    <div class="modal-body">
+                        <div class="form-group">
+
+                            <!--Seleccione Torneo-->
+                            <asp:Panel ID="pnl_eventoExportarListado" CssClass="panel panel-default" runat="server">
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <div class="row center-block">
+                                    <div class="col-sm-1 col-xs-1"></div>
+                                    <div class="col-sm-2 col-xs-2">
+                                        <label for="recipient-name" class="control-label">Evento:</label>
+                                    </div>
+                                    <div class="col-sm-5 col-xs-5">
+                                        <asp:DropDownList ID="ddl_eventoExportarListado" CssClass="caja2" runat="server" AutoPostBack="false"></asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </div>
+
+                    <!--Botonero-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="btn_acpetarEventoExportarLista" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_acpetarEventoExportarLista_Click" />
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!----------------------*********  Fin ventana emergente   *********--------------------->
 
 
         <!--Implementando ventana emergente --------------------*********     Administrar recarga     *********--------------------->

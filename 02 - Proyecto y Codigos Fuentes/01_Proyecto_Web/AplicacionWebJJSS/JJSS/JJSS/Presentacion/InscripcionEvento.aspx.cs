@@ -234,6 +234,9 @@ namespace JJSS.Presentacion
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
             if (alumnoEncontrado != null) idAlumno = alumnoEncontrado.id_alumno;
 
+          
+
+
             //para todos
             string sReturn = gestorInscripciones.InscribirAEvento(idEvento, nombre, apellido, fechaNac.Date, sexo, dni, idAlumno);
 
@@ -244,8 +247,28 @@ namespace JJSS.Presentacion
                 pnl_pago.Visible = true;
                 Session["EventoPagar"] = idEvento;
                 Session["ParticipanteDNI"] = dni;
-                //limpiar(true);
+
+
+                //para usuarios
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+               
               
+                try
+                {
+                    string mail = sesionActiva.usuario.mail;
+                    string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, idEvento).id_inscripcion, mail);
+
+                    Response.Clear();
+                    Response.AddHeader("Content-Type", "Application/octet-stream");
+                    Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                    Response.WriteFile(sFile);
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+                }
+
+
             }
             else mensaje(sReturn, false);
         }

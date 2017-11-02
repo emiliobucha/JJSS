@@ -211,13 +211,31 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.Label lbl_FechaCierreInscripcion;
         
         /// <summary>
-        /// Control lbl_HoraCierre.
+        /// Control Label7.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_HoraCierre;
+        protected global::System.Web.UI.WebControls.Label Label7;
+        
+        /// <summary>
+        /// Control lbl_HoraCierreTorneo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_HoraCierreTorneo;
+        
+        /// <summary>
+        /// Control Label9.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
         /// Control Label4.

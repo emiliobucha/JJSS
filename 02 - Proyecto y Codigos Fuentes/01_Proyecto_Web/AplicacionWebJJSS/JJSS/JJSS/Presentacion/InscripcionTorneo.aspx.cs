@@ -172,6 +172,29 @@ namespace JJSS
                 pnl_pago.Visible = true;
                 Session["TorneoPagar"] = idTorneo;
                 Session["ParticipanteDNI"] = dni;
+
+                //para usuarios
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+
+
+                try
+                {
+                    string mail = sesionActiva.usuario.mail;
+                    string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, idTorneo).id_inscripcion, mail);
+
+                    Response.Clear();
+                    Response.AddHeader("Content-Type", "Application/octet-stream");
+                    Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                    Response.WriteFile(sFile);
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+                }
+
+
+
+
                 limpiar(true);
 
             }
@@ -240,7 +263,7 @@ namespace JJSS
                 lbl_HoraTorneo.Text = torneoSeleccionado.hora.ToString();
                 lbl_CostoInscripcion.Text = torneoSeleccionado.precio_categoria.ToString();
                 lbl_CostoInscripcionAbsoluto.Text = torneoSeleccionado.precio_absoluto.ToString();
-                lbl_HoraCierre.Text = torneoSeleccionado.hora_cierre.ToString();
+                lbl_HoraCierreTorneo.Text = torneoSeleccionado.hora_cierre.ToString();
             }
 
             pnl_dni.Visible = true;

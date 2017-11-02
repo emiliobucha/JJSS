@@ -38,9 +38,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="Reportes\rptInscripcionTorneo.rdlc">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GestorAcademias.cs" />
@@ -77,6 +74,10 @@
     <Compile Include="modReportes.cs" />
     <Compile Include="modUtilidades.cs" />
     <Compile Include="modUtilidadesTablas.cs" />
+    <Compile Include="Resultados\CompInscripcionTorneo.cs" />
+    <Compile Include="Resultados\CompInscripcionEvento.cs" />
+    <Compile Include="Resultados\ParticipantesEventoResultado.cs" />
+    <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
     <Compile Include="Sesion.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +136,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\rptCompInscripcionTorneoPago.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptCompInscripcionTorneo.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptCompInscripcionEvento.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptListadoEvento.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptListadoTorneo.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>

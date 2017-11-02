@@ -32,7 +32,7 @@ namespace JJSS_Negocio
 
         public void Enviar()
         {
-            Prueba();
+            //Prueba();
             System.Web.Mail.MailMessage mailMsg = new System.Web.Mail.MailMessage();
 
             foreach (String sAux in Msg_CC)

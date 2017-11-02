@@ -20,6 +20,7 @@ namespace JJSS.Presentacion
         private GestorAlumnos gestorAlumnos;
         private GestorParametro gestorParametro;
         private GestorTipoClase gestorTipoClase;
+        private GestorEventos gestorEventos;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -56,9 +57,11 @@ namespace JJSS.Presentacion
             gestorDeClases = new GestorClases();
             gestorTipoClase = new GestorTipoClase();
             gestorInscripcionClase = new GestorInscripcionesClase();
+            gestorEventos = new GestorEventos();
             if (!IsPostBack)
             {
                 cargarTorneosExportarListado();
+                cargarEventosExportarListado();
                 cargarClasesView();
                 cargarRecarga();
                 cargarTorneosAbiertosView();
@@ -94,15 +97,21 @@ namespace JJSS.Presentacion
         }
 
 
-        protected void btnGenerarListado()
+
+        protected void btn_acpetarEventoExportarLista_Click(object sender, EventArgs e)
         {
-            int idTorneo = 0;
-            int.TryParse(ddl_torneoExportarListado.SelectedValue, out idTorneo);
+            btnGenerarListadoEvento();
+        }
+
+        protected void btnGenerarListadoEvento()
+        {
+            int idEvento = 0;
+            int.TryParse(ddl_eventoExportarListado.SelectedValue, out idEvento);
 
             // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
             try
             {
-                String sFile = gestorDeTorneos.GenerarListado(idTorneo);
+                String sFile = gestorEventos.GenerarListado(idEvento);
 
                 Response.Clear();
                 Response.AddHeader("Content-Type", "Application/octet-stream");
@@ -111,9 +120,12 @@ namespace JJSS.Presentacion
             }
             catch (Exception ex)
             {
-                Response.Write("<script>window.alert('" + "No se encuentran alumnos inscriptos a ese torneo".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+                Response.Write("<script>window.alert('" + "No se encuentran alumnos inscriptos a ese evento".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
             }
         }
+
+
+      
 
         /*
          * Carga de datos en las cuadriculas correspondientes de  torneo y clases
@@ -157,18 +169,49 @@ namespace JJSS.Presentacion
             ddl_torneoExportarListado.DataBind();
         }
 
+        protected void cargarEventosExportarListado()
+        {
+            List<evento_especial> eventosExportar = gestorEventos.ObtenerEventosAbiertosCerrados();
+            ddl_eventoExportarListado.DataSource = eventosExportar;
+            ddl_eventoExportarListado.DataTextField = "nombre";
+            ddl_eventoExportarListado.DataValueField = "id_evento";
+            ddl_eventoExportarListado.DataBind();
+        }
+
         //protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
         //{
         //    btnGenerarListado();
         //}
 
-                   
+
 
 
         protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
         {
             btnGenerarListado();
         }
+
+        protected void btnGenerarListado()
+        {
+            int idTorneo = 0;
+            int.TryParse(ddl_torneoExportarListado.SelectedValue, out idTorneo);
+
+            // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
+            try
+            {
+                String sFile = gestorDeTorneos.GenerarListado(idTorneo);
+
+                Response.Clear();
+                Response.AddHeader("Content-Type", "Application/octet-stream");
+                Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                Response.WriteFile(sFile);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + "No se encuentran alumnos inscriptos a ese torneo".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+            }
+        }
+
 
         private void mensaje(string pMensaje)
         {

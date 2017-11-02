@@ -19,6 +19,7 @@ namespace JJSS.Presentacion
         private GestorParticipantes gestorParticipantes;
         private GestorMercadoPago gestorMP;
         private participante participanteElegido;
+        private GestorInscripciones gestorInscripciones;
         private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
 
 
@@ -87,6 +88,28 @@ namespace JJSS.Presentacion
                         if (sReturn.CompareTo("") == 0)
                         {
                             mensaje("Se ha registrado el pago exitosamente", true);
+
+                            //para usuarios
+                            Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+
+
+                            try
+                            {
+                                string mail = sesionActiva.usuario.mail;
+                                string sFile = gestorInscripciones.ComprobanteInscripcionPago(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, id).id_inscripcion, mail);
+
+                                Response.Clear();
+                                Response.AddHeader("Content-Type", "Application/octet-stream");
+                                Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                                Response.WriteFile(sFile);
+                            }
+                            catch (Exception ex)
+                            {
+                                Response.Write("<script>window.alert('" + "Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+                            }
+
+
+
                             limpiar();
                         }
                         else mensaje(sReturn, false);

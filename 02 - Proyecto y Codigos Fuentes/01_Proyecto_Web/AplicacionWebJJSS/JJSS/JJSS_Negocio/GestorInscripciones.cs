@@ -41,7 +41,7 @@ namespace JJSS_Negocio
             {
                 var transaction = db.Database.BeginTransaction();
 
-                
+
                 try
                 {
                     //Foraneos
@@ -126,7 +126,7 @@ namespace JJSS_Negocio
                         torneo = torneoInscripto,
                         peso = pPeso,
                         faja = fajaElegida
-                        
+
 
                     };
 
@@ -147,9 +147,21 @@ namespace JJSS_Negocio
         }
 
 
-        
-         
-        
+
+        public inscripcion obtenerInscripcionAEventoPorIdParticipantePorDni(int pDni, int pIdTorneo)
+        {
+            using (var db = new JJSSEntities())
+            {
+                inscripcion inscripcion = (from ins in db.inscripcion
+                                           join part in db.participante on ins.id_participante equals part.id_participante
+                                           where part.dni == pDni && ins.id_torneo == pIdTorneo
+                                           select ins).FirstOrDefault();
+                return inscripcion;
+            }
+        }
+
+
+
 
 
         /*
@@ -227,11 +239,149 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 inscripcion inscripcion = (from ins in db.inscripcion
-                                             join part in db.participante on ins.id_participante  equals part.id_participante
-                                             where part.id_participante == pId && ins.id_torneo == pIDTorneo
-                                             select ins).FirstOrDefault();
+                                           join part in db.participante on ins.id_participante equals part.id_participante
+                                           where part.id_participante == pId && ins.id_torneo == pIDTorneo
+                                           select ins).FirstOrDefault();
                 return inscripcion;
             }
         }
+
+        /*
+        * Obtenemos un listado de todos los participantes que estan en un torneo con datos de su categoria a la cual esta inscripto, la faja, y datos
+        * propios del participante
+        */
+        public string ComprobanteInscripcion(int pID, string pMail)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+
+            using (var db = new JJSSEntities())
+            {
+                var participantes = from inscr in db.inscripcion
+                                    join part in db.participante on inscr.id_participante equals part.id_participante
+                                    where inscr.id_inscripcion == pID
+                                    select new CompInscripcionTorneo()
+                                    {
+                                        tor_nombre = inscr.torneo.nombre,
+                                        tor_sede = inscr.torneo.sede.nombre,
+                                        tor_direccion = inscr.torneo.sede.direccion.calle + " " + inscr.torneo.sede.direccion.numero + " - " + inscr.torneo.sede.direccion.ciudad.nombre + " - " + inscr.torneo.sede.direccion.ciudad.provincia.nombre + " - " + inscr.torneo.sede.direccion.ciudad.provincia.pais.nombre,
+                                        tor_fechaD = inscr.torneo.fecha,
+                                        tor_hora = inscr.torneo.hora,
+                                        tor_tipo = inscr.torneo.tipo_clase.nombre,
+                                        tor_precio = inscr.torneo.precio_absoluto.ToString(),
+                                        par_nombre = part.nombre,
+                                        par_apellido = part.apellido,
+                                        par_fecha_nacD = part.fecha_nacimiento,
+                                        par_sexo = part.sexo,
+                                        par_dni = part.dni.ToString(),
+                                        par_faja = inscr.faja.descripcion,
+                                        par_categoria = inscr.categoria.nombre
+                                        
+
+                                    };
+                List<CompInscripcionTorneo> participantesList = participantes.ToList<CompInscripcionTorneo>();
+
+
+                foreach (CompInscripcionTorneo part in participantesList)
+                {
+                    if (part.par_sexo == 1)
+                    {
+                        part.par_sexo_nombre = "M";
+
+                    }
+                    else
+                    {
+                        part.par_sexo_nombre = "F";
+                    }
+                    part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
+                    part.tor_fecha = part.tor_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
+
+                }
+
+                string sFile = gestorReportes.GenerarReporteComprInscripcionTorneo(participantesList);
+                if (pMail != null)
+                {
+                    EnviarMail(sFile, pMail);
+                }
+
+                return sFile;
+
+            }
+
+        }
+
+        /*
+       * Obtenemos un listado de todos los participantes que estan en un torneo con datos de su categoria a la cual esta inscripto, la faja, y datos
+       * propios del participante
+       */
+        public string ComprobanteInscripcionPago(int pID, string pMail)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+
+            using (var db = new JJSSEntities())
+            {
+                var participantes = from inscr in db.inscripcion
+                                    join part in db.participante on inscr.id_participante equals part.id_participante
+                                    where inscr.id_inscripcion == pID
+                                    select new CompInscripcionTorneo()
+                                    {
+                                        tor_nombre = inscr.torneo.nombre,
+                                        tor_sede = inscr.torneo.sede.nombre,
+                                        tor_direccion = inscr.torneo.sede.direccion.calle + " " + inscr.torneo.sede.direccion.numero + " - " + inscr.torneo.sede.direccion.ciudad.nombre + " - " + inscr.torneo.sede.direccion.ciudad.provincia.nombre + " - " + inscr.torneo.sede.direccion.ciudad.provincia.pais.nombre,
+                                        tor_fechaD = inscr.torneo.fecha,
+                                        tor_hora = inscr.torneo.hora,
+                                        tor_tipo = inscr.torneo.tipo_clase.nombre,
+                                        tor_precio = inscr.torneo.precio_absoluto.ToString(),
+                                        par_nombre = part.nombre,
+                                        par_apellido = part.apellido,
+                                        par_fecha_nacD = part.fecha_nacimiento,
+                                        par_sexo = part.sexo,
+                                        par_dni = part.dni.ToString(),
+                                        par_faja = inscr.faja.descripcion,
+                                        par_categoria = inscr.categoria.nombre
+
+
+                                    };
+                List<CompInscripcionTorneo> participantesList = participantes.ToList<CompInscripcionTorneo>();
+
+
+                foreach (CompInscripcionTorneo part in participantesList)
+                {
+                    if (part.par_sexo == 1)
+                    {
+                        part.par_sexo_nombre = "M";
+
+                    }
+                    else
+                    {
+                        part.par_sexo_nombre = "F";
+                    }
+                    part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
+                    part.tor_fecha = part.tor_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
+
+                }
+
+                string sFile = gestorReportes.GenerarReporteComprInscripcionTorneo(participantesList);
+                if (pMail != null)
+                {
+                    EnviarMail(sFile, pMail);
+                }
+
+                return sFile;
+
+            }
+
+        }
+
+
+        private void EnviarMail(string sFile, string mail)
+        {
+            modEmails md = new modEmails();
+            md.Msg_Adjuntos.Add(sFile);
+            md.Msg_Destinatarios.Add(mail);
+            md.Msg_Asunto = "Comprobante de Inscripción a Torneo de Lotus Club - Equipo Hinojal";
+            md.Enviar();
+
+        }
+
     }
 }

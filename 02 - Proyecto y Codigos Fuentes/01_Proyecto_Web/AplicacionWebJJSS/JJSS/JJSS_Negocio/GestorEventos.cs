@@ -230,5 +230,99 @@ namespace JJSS_Negocio
 
             }
         }
+        /*
+ * Obtenemos un listado de todos los participantes que estan en un torneo con datos de su categoria a la cual esta inscripto, la faja, y datos
+ * propios del participante
+ */
+        public List<ParticipantesEventoResultado> ListadoParticipantes(int pID)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var participantes = from inscr in db.inscripcion_evento
+                                    join part in db.participante_evento on inscr.id_participante equals part.id_participante
+                                    where inscr.id_evento == pID
+                                    select new ParticipantesEventoResultado()
+                                    {
+                                        ev_nombre = inscr.evento_especial.nombre,
+                                        ev_sede = inscr.evento_especial.sede.nombre,
+                                        ev_direccion = inscr.evento_especial.sede.direccion.calle + " " + inscr.evento_especial.sede.direccion.numero + " - " + inscr.evento_especial.sede.direccion.ciudad.nombre + " - " + inscr.evento_especial.sede.direccion.ciudad.provincia.nombre + " - " + inscr.evento_especial.sede.direccion.ciudad.provincia.pais.nombre,
+                                        ev_fechaD = inscr.evento_especial.fecha,
+                                        ev_hora = inscr.evento_especial.hora,
+                                        ev_tipo = inscr.evento_especial.tipo_evento_especial.nombre,
+                                        par_nombre = part.nombre,
+                                        par_apellido = part.apellido,
+                                        par_fecha_nacD = part.fecha_nacimiento,
+                                        par_sexo = part.sexo,
+                                        par_dni = part.dni.ToString()
+                                      
+                                    };
+                List<ParticipantesEventoResultado> participantesList = participantes.ToList<ParticipantesEventoResultado>();
+
+
+                foreach (ParticipantesEventoResultado part in participantesList)
+                {
+                    if (part.par_sexo == 1)
+                    {
+                        part.par_sexo_nombre = "M";
+
+                    }
+                    else
+                    {
+                        part.par_sexo_nombre = "F";
+                    }
+                    part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
+                    part.ev_fecha = part.ev_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
+
+                }
+
+
+                return participantesList;
+            }
+        }
+
+
+
+        /*
+         * Aun no aplica
+         */
+
+        /*
+         * Aun no aplica
+         */
+
+
+        /*
+         * Genera listado de participantes a un torneo con su reporte.
+         * Retorno: String del archivo resultante de la generacion del reporte en PDF
+         */
+        public String GenerarListado(int pID)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+          
+            List<ParticipantesEventoResultado> listado = ListadoParticipantes(pID);
+
+            if (listado.Count == 0)
+                throw new Exception("No posee inscriptos el torneo seleccionado");
+
+            return gestorReportes.GenerarReporteListadoParticipantesEvento(listado);
+
+
+        }
+
+        public List<evento_especial> ObtenerEventosAbiertosCerrados()
+        {
+
+            using (var db = new JJSSEntities())
+            {
+                var eventosAbiertos =
+                    from evento in db.evento_especial
+                    where evento.id_estado == 1 || evento.id_estado == 2
+                    select evento;
+                return eventosAbiertos.ToList();
+            }
+        }
     }
+
+
+
 }

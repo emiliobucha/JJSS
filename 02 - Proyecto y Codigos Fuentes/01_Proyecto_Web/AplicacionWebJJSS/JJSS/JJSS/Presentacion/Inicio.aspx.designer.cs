@@ -337,6 +337,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div11;
         
         /// <summary>
+        /// Control Div12.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div12;
+        
+        /// <summary>
         /// Control pnl_torneoExportarListado.
         /// </summary>
         /// <remarks>
@@ -362,6 +371,33 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_acpetarTorneoExportarLista;
+        
+        /// <summary>
+        /// Control pnl_eventoExportarListado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_eventoExportarListado;
+        
+        /// <summary>
+        /// Control ddl_eventoExportarListado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_eventoExportarListado;
+        
+        /// <summary>
+        /// Control btn_acpetarEventoExportarLista.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_acpetarEventoExportarLista;
         
         /// <summary>
         /// Control pnl_modal_recarga.
