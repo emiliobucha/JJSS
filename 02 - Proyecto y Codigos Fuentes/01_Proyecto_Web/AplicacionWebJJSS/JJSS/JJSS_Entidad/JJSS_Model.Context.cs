@@ -51,6 +51,8 @@ namespace JJSS_Entidad
         public virtual DbSet<inscripcion_evento> inscripcion_evento { get; set; }
         public virtual DbSet<lucha> lucha { get; set; }
         public virtual DbSet<pago_clase> pago_clase { get; set; }
+        public virtual DbSet<pago_evento> pago_evento { get; set; }
+        public virtual DbSet<pago_torneo> pago_torneo { get; set; }
         public virtual DbSet<pais> pais { get; set; }
         public virtual DbSet<parametro> parametro { get; set; }
         public virtual DbSet<participante> participante { get; set; }
@@ -73,7 +75,5 @@ namespace JJSS_Entidad
         public virtual DbSet<tipo_evento_especial> tipo_evento_especial { get; set; }
         public virtual DbSet<torneo> torneo { get; set; }
         public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }
-        public virtual DbSet<pago_evento> pago_evento { get; set; }
-        public virtual DbSet<pago_torneo> pago_torneo { get; set; }
     }
 }

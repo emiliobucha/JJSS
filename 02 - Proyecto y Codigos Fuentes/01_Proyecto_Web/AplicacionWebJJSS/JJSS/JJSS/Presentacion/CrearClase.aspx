@@ -10,8 +10,7 @@
         <div id="registrarAlumnowrap">
 
             <div class="container">
-
-
+                
 
                 <form id="form1" runat="server">
 
@@ -51,7 +50,7 @@
                         <p>&nbsp;</p>
                     </div>
 
-                    <!--Nombre-->
+                   
                     <asp:Panel ID="pnl_datosClase" CssClass="panel panel-default" runat="server">
                         <div>
                             <div class="row centered">
@@ -61,7 +60,8 @@
                                 &nbsp;
                             </div>
 
-                            <div class="row centered">
+                            <div class="row centered center-block">
+                            <!--Nombre-->
                                 <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
                                     <label class="pull-left">Nombre</label>
                                 </div>
@@ -70,11 +70,11 @@
                                 </div>
                             </div>
 
-                            <div class="row centered">
+                            <div class="row centered  center-block">
                                 &nbsp;
                             </div>
                             <!-- precio-->
-                            <div class="row centered">
+                            <div class="row centered center-block">
                                 <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
                                     <label class="pull-left">Precio</label>
                                 </div>
@@ -83,12 +83,12 @@
                                 </div>
                             </div>
 
-                            <div class="row centered">
+                            <div class="row centered center-block">
                                 &nbsp;
                             </div>
 
                             <!-- tipoclase-->
-                            <div class="row centered">
+                            <div class="row centered center-block">
                                 <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
                                     <label class="pull-left">Tipo de Clase</label>
                                 </div>
@@ -104,7 +104,7 @@
                             </div>
 
                             <!-- ubicacion-->
-                            <div class="row centered">
+                            <div class="row centered center-block">
                                 <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
                                     <label class="pull-left">Ubicación</label>
                                 </div>
@@ -118,7 +118,7 @@
                                 &nbsp;
                             </div>
                             <!-- profesor-->
-                            <div class="row centered">
+                            <div class="row centered center-block">
                                 <div class="col-md-2 col-lg-2 col-xs-4 col-sm-4">
                                     <label class="pull-left">Profesor</label>
                                 </div>
@@ -144,8 +144,8 @@
                             &nbsp;
                         </div>
                         <!--Horarios-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
+                        <div class="row centered center-block">
+                            <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
                                 <asp:DropDownList runat="server" ID="ddl_dia" CausesValidation="true" CssClass="caja2">
                                     <asp:ListItem Value="Lunes">Lunes</asp:ListItem>
                                     <asp:ListItem Value="Martes">Martes</asp:ListItem>
@@ -157,22 +157,34 @@
                                 </asp:DropDownList>
 
                             </div>
-                            <div class="col-xs-2 col-md-2">
-                                <label class="pull-left">Hora Desde:</label>
+                            <div class=" hidden-lg hidden-md">
+                                &nbsp;
                             </div>
-                            <div class="col-xs-2 col-md-2">
+
+                            <div class="col-md-2 col-lg-2 col-xs-6 col-sm-6">
+                                <label class="pull-left">Hora Desde:</label>
+                            </div>                            
+                            <div class="col-md-2 col-lg-2 col-xs-6 col-sm-6">
                                 <asp:TextBox ID="txt_horadesde" runat="server" required="true" type="time" CssClass="caja2"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="regex_horadesde" runat="server" ControlToValidate="txt_horadesde" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"> </asp:RegularExpressionValidator>
                             </div>
-                            <div class="col-xs-2 col-md-2">
+
+                            <div class=" hidden-lg hidden-md">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-xs-6 col-sm-6">
                                 <label class="pull-left">Hora Hasta:</label>
                             </div>
-                            <div class="col-xs-2 col-md-2">
+                            <div class="col-md-2 col-lg-2 col-xs-6 col-sm-6">
                                 <asp:TextBox ID="txt_horahasta" type="time" required="true" runat="server" CssClass="caja2"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="regex_horahasta" runat="server" ControlToValidate="txt_horahasta" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"> </asp:RegularExpressionValidator>
                                 <asp:CompareValidator ID="cmp_hora" ControlToValidate="txt_horadesde" ControlToCompare="txt_horahasta" CssClass="text-danger" Display="Dynamic" runat="server" ErrorMessage="La hora desde debe ser menor que la hora hasta" SetFocusOnError="true" Operator="LessThan" ></asp:CompareValidator>
                             </div>
-                            <div class="col-xs-2 col-md-2">
+
+                            <div class=" hidden-lg hidden-md">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
                                 <asp:Button ID="btn_agregar" runat="server" OnClick="btn_agregar_Click" Text="Agregar" CssClass="btn btn-default" ValidationGroup="vg_agregar_horario"></asp:Button>
                             </div>
                         </div>
@@ -180,7 +192,7 @@
                             &nbsp;
                         </div>
 
-                        <div class="row centered">
+                        <div class="row centered center-block">
 
                             <!--OnRowDataBound="dg_horarios_RowDataBound"-->
                             <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" CssClass="table" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_horarios_RowCommand" OnRowDataBound="dg_horarios_RowDataBound" BorderColor="Black" BorderStyle="Double">
@@ -209,10 +221,14 @@
                         &nbsp;
                     </div>
 
-                    <div class="row centered">
+                    <div class="row centered center-block">
                         <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_cancelar_Click" formnovalidate="true"></asp:Button>
                         <asp:Button ID="btn_aceptar" runat="server" OnClick="btn_aceptar_Click" Text="Aceptar" CssClass="btn btn-default" ValidationGroup="vg_aceptar"></asp:Button>
                         <asp:Button ID="btn_nueva_clase" runat="server" Text="Limpiar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_nueva_clase_Click" formnovalidate="true"></asp:Button>
+                    </div>
+
+                    <div class="row centered">
+                        &nbsp;
                     </div>
                 </form>
             </div>

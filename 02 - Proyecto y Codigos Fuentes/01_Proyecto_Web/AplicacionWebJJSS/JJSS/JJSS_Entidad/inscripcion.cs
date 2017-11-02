@@ -24,9 +24,9 @@ namespace JJSS_Entidad
         public Nullable<double> peso { get; set; }
         public Nullable<int> id_faja { get; set; }
     
+        public virtual categoria_torneo categoria_torneo { get; set; }
         public virtual faja faja { get; set; }
         public virtual participante participante { get; set; }
         public virtual torneo torneo { get; set; }
-        public virtual categoria_torneo categoria_torneo { get; set; }
     }
 }

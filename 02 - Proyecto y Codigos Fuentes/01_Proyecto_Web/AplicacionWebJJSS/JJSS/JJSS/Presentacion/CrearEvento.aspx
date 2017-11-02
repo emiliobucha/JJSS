@@ -51,138 +51,160 @@
 
 
                     <div class="form-group ">
-                        <!--Nombre-->
-                        <div class="row centered">
-                            <div class="col-md-2">
-                                <label class="pull-left 4">Nombre</label>
-                            </div>
-                            <div class="col-md-5">
-                                <asp:TextBox ID="txt_nombre" required="true" runat="server" MaxLength="50" onblur="ValidatorOnChange(event)" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
-                            </div>
-                        </div>
+                        <asp:Panel runat="server" CssClass="panel panel-default">
 
-                        <div class="row centered">
-                            <p>&nbsp;</p>
-                        </div>
-
-                        <!--tipo evento-->
-                        <div class="row centered">
-                            <div class="col-md-2">
-                                <label class="pull-left 4">Tipo de Evento</label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:DropDownList ID="dll_tipo_evento" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
-                                <asp:Button ID="btn_tipo_evento" class="btn btn-default" runat="server" Text="+" formnovalidate="true"  OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
-                            </div>
-                            <%--<div class="col-md-1">
-                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
-                            </div>--%>
-                        </div>
-
-                        <!--Sedes-->
-                        <div class="row centered">
-                            <div class="col-md-2">
-                                <label class="pull-left 4">Sede</label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
-                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
-                            </div>
-                            <%--<div class="col-md-1">
-                                <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+"  OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
-                            </div>--%>
-                        </div>
-
-                        <div class="row centered">
-                            <p>&nbsp;</p>
-                        </div>
-
-                        <!--Fecha de torneo-->
-                        <div class="row centered">
-                            <div class="col-md-2">
-                                <label class="pull-left">Fecha a producirse</label>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="dp_fecha" required="true" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha del evento" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$"></asp:TextBox>
+                             <div class="row centered">
+                                <p>&nbsp;</p>
                             </div>
 
-                            <div class="col-md-2">
-                                <label class="pull-left">Hora de inicio</label>
+                            <!--Nombre-->
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left 4">Nombre</label>
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                                    <asp:TextBox ID="txt_nombre" required="true" runat="server" MaxLength="50" onblur="ValidatorOnChange(event)" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3 col-lg-3  col-sm-12 col-xs-12 ">
+                                    <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
+                                </div>
                             </div>
 
-                            <div class="col-md-2">
-                                <asp:TextBox ID="txt_hora" required="true" runat="server" CssClass="caja2" type="time" placeholder="Ingrese la hora del evento"></asp:TextBox>
+                            <div class="row centered">
+                                <p>&nbsp;</p>
                             </div>
-                            <div class="col-md-3">
-                                <%--<asp:RegularExpressionValidator ID="rev_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de torneo" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>--%>
-                            </div>
-                        </div>
 
-                        <div class="row centered">
-                            <p>&nbsp;</p>
-                        </div>
+                            <!--tipo evento-->
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left 4">Tipo de Evento</label>
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-10 col-xs-10">
+                                    <asp:DropDownList ID="dll_tipo_evento" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
+                                    <asp:Button ID="btn_tipo_evento" class="btn btn-default" runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
+                                </div>
+                            </div>
 
-                        <!--Fecha de cierre de inscripcion-->
-                        <div class="row centered">
-                            <div class="col-md-2">
-                                <label class="pull-left ">Cierre de inscripcion</label>
+                            <div class="row centered">
+                                <p>&nbsp;</p>
                             </div>
-                            <div class="col-md-3">
-                                <asp:TextBox ID="dp_fecha_cierre" required="true" placeholder="Seleccione fecha de cierre de inscripciones" CssClass="datepicker caja2" runat="server" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$"></asp:TextBox>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="pull-left">Hora de cierre</label>
-                            </div>
-                            <div class="col-md-2">
-                                <asp:TextBox ID="txt_hora_cierre" required="true" runat="server" CssClass="caja2" type="time" placeholder="Ingrese la hora de cierre de inscripciones"></asp:TextBox>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:CustomValidator ID="val_fechas" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha de cierre de inscripción no puede ser mayor a la fecha de comienzo del evento" OnServerValidate="val_fechas_ServerValidate" ValidationGroup="vgTorneo"> </asp:CustomValidator>
-                                <asp:CustomValidator ID="val_fecha_actual" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha no puede ser anterior a la actual" OnServerValidate="val_fecha_actual_ServerValidate" ValidationGroup="vgTorneo"> </asp:CustomValidator>
-                                <%--<asp:RegularExpressionValidator ID="rev_fecha_cierre" runat="server" ControlToValidate="dp_fecha_cierre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de cierre" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>--%>
-                            </div>
-                        </div>
 
-                        <div class="row centered">
-                            <p>&nbsp;</p>
-                        </div>
-
-                        <!--Precio-->
-                        <div class="row centered">
-                            <div class="col-md-3">
-                                <label class="pull-left left">Precio de inscripción $</label>
+                            <!--Sedes-->
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left 4">Sede</label>
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-10 col-xs-10">
+                                    <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
+                                    <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                               <asp:TextBox ID="txt_precio" required="true" min="0" max="1000000" type="number" placeholder="Ingrese el precio de la inscripción" step ="0.1" CssClass="form-control" runat="server" ></asp:TextBox>
+
+                            <div class="row centered">
+                                <p>&nbsp;</p>
                             </div>
-                        </div>
 
-                        <div class="row centered">
-                            <p>&nbsp;</p>
-                        </div>
+                            <!--Fecha de evento-->
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left">Fecha a producirse</label>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                                    <asp:TextBox ID="dp_fecha" required="true" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha del evento" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$"></asp:TextBox>
+                                </div>
 
-                        <!--Foto-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left">Hora de inicio</label>
+                                </div>
+
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <asp:TextBox ID="txt_hora" required="true" runat="server" CssClass="caja2" type="time" placeholder="Ingrese la hora del evento"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                                    <%--<asp:RegularExpressionValidator ID="rev_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de torneo" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>--%>
+                                </div>
+                            </div>
+
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
+                            <!--Fecha de cierre de inscripcion-->
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left ">Cierre de inscripcion</label>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                                    <asp:TextBox ID="dp_fecha_cierre" required="true" placeholder="Seleccione fecha de cierre de inscripciones" CssClass="datepicker caja2" runat="server" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$"></asp:TextBox>
+                                </div>
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left">Hora de cierre</label>
+                                </div>
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <asp:TextBox ID="txt_hora_cierre" required="true" runat="server" CssClass="caja2" type="time" placeholder="Ingrese la hora de cierre de inscripciones"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                                    <asp:CustomValidator ID="val_fechas" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha de cierre de inscripción no puede ser mayor a la fecha de comienzo del evento" OnServerValidate="val_fechas_ServerValidate" ValidationGroup="vgTorneo"> </asp:CustomValidator>
+                                    <asp:CustomValidator ID="val_fecha_actual" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha no puede ser anterior a la actual" OnServerValidate="val_fecha_actual_ServerValidate" ValidationGroup="vgTorneo"> </asp:CustomValidator>
+                                    <%--<asp:RegularExpressionValidator ID="rev_fecha_cierre" runat="server" ControlToValidate="dp_fecha_cierre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de cierre" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>--%>
+                                </div>
+                            </div>
+
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
+                            <!--Precio-->
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left left">Precio inscripción $</label>
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                                    <asp:TextBox ID="txt_precio" required="true" min="0" max="1000000" type="number" placeholder="Ingrese el precio de la inscripción" step="0.1" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
+                            <!--Foto-->
+                            <div class="row centered center-block">
                                 <asp:Panel ID="Panel1" runat="server">
 
-                                    <label class=" pull-left">Imagen</label>
-                                    <input id="avatarUpload" type="file" name="file" onchange="previewFile()" runat="server" />
-                                    <%--<asp:FileUpload ID="avatarUpload" runat="server" />--%>
-                                    <asp:Image ID="Avatar" runat="server" Height="225px" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
+                                    <div class="row centered center-block">
+                                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                            <label class="pull-left left">Imagen</label>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                                            <input id="avatarUpload" type="file" name="file" onchange="previewFile()" runat="server" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row centered center-block">
+                                        <div class="col-md-2 col-lg-2 hidden-sm hidden-xs">
+                                            <p>&nbsp;</p>
+                                        </div>
+
+                                        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                                            <asp:Image ID="Avatar" runat="server" CssClass="pull-left left" Height="225px" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
+                                        </div>
+                                    </div>
+
                                 </asp:Panel>
                             </div>
-                        </div>
-                        <div class="row centered">
-                            <p>&nbsp;</p>
-                        </div>
-                       
+
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+                        </asp:Panel>
 
                         <!--Boton-->
-                        <div class="row centered">
+                        <div class="row centered center-block   ">
                             <asp:Button ID="btn_aceptar" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" OnClientClick="btn_aceptar_Click1" ValidationGroup="vgTorneo" />
                             <asp:Button ID="btn_cancelar" class="btn btn-default" runat="server" Text="Cancelar" formnovalidate="true" OnClick="btn_cancelar_Click" CausesValidation="false" />
                         </div>

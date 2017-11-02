@@ -24,6 +24,18 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
         Alumnos
     </a>
+      <a href="#section_tienda" class="smoothScroll">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        Tienda
+    </a>
+      <a href="#section_eventos" class="smoothScroll">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        Eventos
+    </a>
+      <a href="#section_permisos" class="smoothScroll">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        Perfiles y Permisos
+    </a>
 
 </asp:Content>
 
@@ -82,65 +94,11 @@
     <!-- /aboutwrap -->
 
     <!-- ABOUT SEPARATOR -->
-    <div class="sep" data-stellar-background-ratio="0.5"></div>
 
     <form runat="server">
 
-        <%--  <!--SECTOR PERFIL -->
-        <section id="perfil" title="clases" runat="server"></section>
-        <div id="perfilwrap">
-
-            <!--APARTADO DE PERFIL-->
-            <div class="container">
-                <div class="row mt centered">
-
-                    <h1>MI PERFIL</h1>
-
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row mt centered">
-
-
-                    <!--col modificar_perfil-->
-                    <div class="col-lg-4 proc" id="item_modificar_perfil" runat="server">
-                        <i class="fa fa-pencil"></i>
-                        <h3><a href="../Presentacion/Perfil.aspx" style="color: #000000">Modificar mi perfil</a></h3>
-                        <p>Permite modificar los datos del usuario.</p>
-                    </div>
-                    <!--/col-->
-
-                    <!--col cerrar_sesion-->
-                    <div class="col-lg-4 proc" id="item_cerrar_sesion">
-                        <i class="fa fa-pencil"></i>
-                        <h3>
-                            <asp:Button ID="btn_cerrar_sesion" runat="server" Text="Cerrar Sesión" OnClick="btn_cerrar_sesion_Click" /></h3>
-
-
-                    </div>
-
-                    <!--col iniciar_sesion-->
-                    <div class="col-lg-4 proc" id="item_iniciar_sesion">
-                        <i class="fa fa-pencil"></i>
-                        <h3>
-                            <asp:Button ID="Button1" runat="server" Text="Iniciar Sesión" OnClick="Button1_Click" /></h3>
-
-
-                    </div>
-
-                </div>
-                <!--/row -->
-            </div>
-            <!--/container -->
-        </div>
-        <!--/Portfoliowrap -->--%>
-
-
         <!-- ABOUT SEPARATOR -->
         <div class="sep paraTorneos" data-stellar-background-ratio="0.5"></div>
-
-
 
 
         <!--SECTOR TORNEOS -->
@@ -294,40 +252,7 @@
                     <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
-
-                    <%--  <div class="row centered">
-                        <p>&nbsp;</p>
-                    </div>
-                    <!---------------------------------**************Grilla de clase************---------------------------------------->
-                    <asp:GridView ID="gv_clasesDisponibles" runat="server" DataKeyNames="id_clase" CssClass="table" AutoGenerateColumns="False" EmptyDataText="No hay clases por el momento" OnRowCommand="gv_clasesDisponibles_RowCommand">
-                        <Columns>
-                            <asp:BoundField DataField="id_clase" HeaderText="ID de clase" />
-                            <asp:BoundField DataField="nombre" HeaderText="Clase" />
-                            <asp:BoundField DataField="tipo_clase" HeaderText="Tipo de Clase" />
-                            <asp:BoundField DataField="ubicacion" HeaderText="Ubicación" />
-                            <asp:BoundField DataField="profesor" HeaderText="Profesor" />
-                            <asp:BoundField DataField="precio" HeaderText="Precio" />
-
-                            <asp:CommandField SelectText="Inscribir" EditText="Inscribir" ShowEditButton="True" />
-
-
-
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <input type="button" id="btn_inscribirClase" class="btn btn-link " onclick="seleccionarClaseInscripcion(this)" value="Inscribir" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-
-                            <asp:ButtonField Text="Seleccionar" CommandName="Seleccionar" />
-                            <asp:ButtonField Text="Eliminar" CommandName="Eliminar" />
-
-                        </Columns>
-                    </asp:GridView>--%>
-
-                    <%--                </div>
-            </div>--%>
-                    <!---------------FIN Grilla-------------------->
+                 
 
                     <!---------------------------------**************Muestra de Clases************---------------------------------------->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -563,6 +488,10 @@
 
 
 
+        <!--SECTOR TIENDA -->
+
+            <section id="section_tienda" title="tienda"></section>
+
             <!--APARTADO DE TIENDA -->
             <div class="container" id="Div4" runat="server">
                 <div class="row mt centered">
@@ -603,6 +532,11 @@
                 </div>
             </div>
 
+            
+          <!--SECTOR EVENTOS -->
+
+            <section id="section_eventos" title="eventos"></section>
+
             <!--APARTADO DE EVENTOS -->
             <div class="container" id="Div7" runat="server">
                 <div class="row mt centered">
@@ -634,6 +568,33 @@
             </div>
 
         </div>
+
+
+        
+        <!--SECTOR PERMISOS -->
+
+
+          <!--APARTADO DE PERMISOS -->
+         <section id="section_permisos" title="permisos"></section>
+
+            <div class="container" id="Div13" runat="server">
+                <div class="row mt centered">
+                    <h1>PERFILES Y PERMISOS</h1>
+
+                    <!--col Administrar permisos-->
+                    <div class="col-lg-4 proc" id="Div14" runat="server">
+                        <i class="fa fa-pencil"></i>
+                        <h3><a href="Usuarios.aspx" style="color: #000000">Administrar Permisos </a></h3>
+                        <p>Administra los diferentes permisos de los usuarios.</p>
+                    </div>
+                    <!--/col-->
+
+                  
+                   
+                </div>
+            </div>
+
+        
         <!--/Portfoliowrap -->
 
 
