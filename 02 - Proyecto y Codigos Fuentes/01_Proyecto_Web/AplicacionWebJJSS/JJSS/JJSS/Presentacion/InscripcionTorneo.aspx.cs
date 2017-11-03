@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 using System.Globalization;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS
 {
@@ -110,6 +111,7 @@ namespace JJSS
             ddl_fajas.Enabled = true;
             rbSexo.Enabled = true;
 
+
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
 
@@ -143,8 +145,8 @@ namespace JJSS
             //solo para invitados
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
-            double peso = float.Parse(txt_peso.Text);
-            string[] formats = { "MM/dd/yyyy" };
+            double peso = float.Parse(txt_peso.Text.Replace(".",","));
+            string[] formats = {"MM/dd/yyyy"};
 
             DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"),
                 System.Globalization.DateTimeStyles.None);
@@ -163,8 +165,12 @@ namespace JJSS
             if (alumnoEncontrado != null) idAlumno = alumnoEncontrado.id_alumno;
 
             //para todos
+
+            short tipoInsc = 0;
+            if (rb_tipo.SelectedIndex == 0) tipoInsc = 0;//categoria
+            if (rb_tipo.SelectedIndex == 1) tipoInsc = 1;//absoluto
             string sReturn = gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, fechaNac.Date,
-                idFaja, sexo, dni, idAlumno);
+                idFaja, sexo, dni, idAlumno,tipoInsc);
 
 
 
@@ -189,6 +195,7 @@ namespace JJSS
                 }
                 catch (Exception ex)
                 {
+                    //Response.Write("<script>window.alert('" + "Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario".Trim() + "');</script>");
                     mensaje("Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario", true);
                 }
 
@@ -254,6 +261,10 @@ namespace JJSS
                 int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
                 CargarComboFajas(idTipoClase);
                 torneoSeleccionado = gestorDeTorneos.BuscarTorneoPorID(idTorneo);
+                GestorSedes gestorSede = new GestorSedes();
+                SedeDireccion sede= gestorSede.ObtenerDireccionSede((int)torneoSeleccionado.id_sede);
+
+
                 pnl_InfoTorneo.Visible = true;
                 pnl_Inscripcion.Visible = true;
                 btn_aceptar.Visible = true;
@@ -264,6 +275,8 @@ namespace JJSS
                 lbl_CostoInscripcion.Text = torneoSeleccionado.precio_categoria.ToString();
                 lbl_CostoInscripcionAbsoluto.Text = torneoSeleccionado.precio_absoluto.ToString();
                 lbl_HoraCierreTorneo.Text = torneoSeleccionado.hora_cierre.ToString();
+                lbl_sede.Text= sede.sede;
+                lbl_direccion_sede.Text = sede.calle+" "+sede.numero+" - "+sede.ciudad+" - "+sede.provincia+" - "+sede.pais;
             }
 
             pnl_dni.Visible = true;
@@ -291,7 +304,7 @@ namespace JJSS
             //if (Page.IsValid)
             //{
             limpiar(false);
-            pnl_Inscripcion.Visible = true;
+            
             int idTorneo;
             if (Session["torneoSeleccionado"] != null)
             {
@@ -314,7 +327,7 @@ namespace JJSS
             {
                 mensaje("Este participante ya está inscripto a este torneo", false);
                 return;
-            }
+            }else pnl_Inscripcion.Visible = true;
 
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
             if (alumnoEncontrado != null)
@@ -397,6 +410,10 @@ namespace JJSS
             }
         }
 
-
+        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            limpiar(true);
+            Response.Redirect("../Presentacion/Inicio.aspx");
+        }
     }
 }
