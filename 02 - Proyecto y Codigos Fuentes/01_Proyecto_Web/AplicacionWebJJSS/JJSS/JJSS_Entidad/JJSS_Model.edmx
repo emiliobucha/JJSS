@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -890,18 +890,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_clase_id_profe">
-          <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
-          <End Role="clase" Type="Self.clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="profesor">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="clase">
-              <PropertyRef Name="id_profe" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_clase_id_tipo_clase">
           <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
@@ -1549,10 +1537,6 @@
             <End Role="academia" EntitySet="academia" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
-          <AssociationSet Name="FK_clase_id_profe" Association="Self.FK_clase_id_profe">
-            <End Role="profesor" EntitySet="profesor" />
-            <End Role="clase" EntitySet="clase" />
-          </AssociationSet>
           <AssociationSet Name="FK_clase_id_tipo_clase" Association="Self.FK_clase_id_tipo_clase">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="clase" EntitySet="clase" />
@@ -1702,7 +1686,8 @@
             <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1839,7 +1824,6 @@
           <NavigationProperty Name="horario" Relationship="Self.FK_horario_id_clase" FromRole="clase" ToRole="horario" />
           <NavigationProperty Name="inscripcion_clase" Relationship="Self.FK_inscripcion_clase" FromRole="clase" ToRole="inscripcion_clase" />
           <NavigationProperty Name="pago_clase" Relationship="Self.FK_pagoclase_id_clase" FromRole="clase" ToRole="pago_clase" />
-          <NavigationProperty Name="profesor" Relationship="JJSSModel.FK_clase_id_profe" FromRole="clase" ToRole="profesor" />
         </EntityType>
         <EntityType Name="compra">
           <Key>
@@ -2173,7 +2157,6 @@
           <NavigationProperty Name="direccion" Relationship="Self.FK_profesor_id_direccion" FromRole="profesor" ToRole="direccion" />
           <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK_profesor_id_usuario" FromRole="profesor" ToRole="seguridad_usuario" />
           <NavigationProperty Name="profesor_imagen" Relationship="Self.FK_profesorimagen_id_profesor" FromRole="profesor" ToRole="profesor_imagen" />
-          <NavigationProperty Name="clase" Relationship="JJSSModel.FK_clase_id_profe" FromRole="profesor" ToRole="clase" />
         </EntityType>
         <EntityType Name="profesor_imagen">
           <Key>
@@ -3524,23 +3507,7 @@
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
-          <AssociationSet Name="FK_clase_id_profe" Association="JJSSModel.FK_clase_id_profe">
-            <End Role="profesor" EntitySet="profesor" />
-            <End Role="clase" EntitySet="clase" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_clase_id_profe">
-          <End Type="JJSSModel.profesor" Role="profesor" Multiplicity="0..1" />
-          <End Type="JJSSModel.clase" Role="clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="profesor">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="clase">
-              <PropertyRef Name="id_profe" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

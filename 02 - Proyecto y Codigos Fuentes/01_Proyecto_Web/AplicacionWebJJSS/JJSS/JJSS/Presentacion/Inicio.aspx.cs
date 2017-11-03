@@ -21,7 +21,6 @@ namespace JJSS.Presentacion
         private GestorParametro gestorParametro;
         private GestorTipoClase gestorTipoClase;
         private GestorEventos gestorEventos;
-        private GestorAsistencia gestorAsistencia;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -59,12 +58,10 @@ namespace JJSS.Presentacion
             gestorTipoClase = new GestorTipoClase();
             gestorInscripcionClase = new GestorInscripcionesClase();
             gestorEventos = new GestorEventos();
-            gestorAsistencia = new GestorAsistencia();
             if (!IsPostBack)
             {
                 cargarTorneosExportarListado();
                 cargarEventosExportarListado();
-                cargarClasesExportarListado();
                 cargarClasesView();
                 cargarRecarga();
                 cargarTorneosAbiertosView();
@@ -100,40 +97,11 @@ namespace JJSS.Presentacion
         }
 
 
-        protected void btn_acpetarAsistenciaExportarLista_Click(object sender, EventArgs e)
-        {
-            btnGenerarListadoAsistencia();
-
-
-        }
-        protected void btnGenerarListadoAsistencia()
-        {
-            int idClase = 0;
-            int.TryParse(ddl_clasesListado.SelectedValue, out idClase);
-
-            // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
-            try
-            {
-                String sFile = gestorAsistencia.GenerarListado(idClase, DateTime.Today);
-
-                Response.Clear();
-                Response.AddHeader("Content-Type", "Application/octet-stream");
-                Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
-                Response.WriteFile(sFile);
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>window.alert('" + "No se encuentran alumnos asistentes a esta clase".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
-            }
-        }
-
-
 
         protected void btn_acpetarEventoExportarLista_Click(object sender, EventArgs e)
         {
             btnGenerarListadoEvento();
         }
-
 
         protected void btnGenerarListadoEvento()
         {
@@ -210,15 +178,6 @@ namespace JJSS.Presentacion
             ddl_eventoExportarListado.DataBind();
         }
 
-
-        protected void cargarClasesExportarListado()
-        {
-            List<Object> clases = gestorDeClases.ObtenerClasesDisponibles();
-            ddl_clasesListado.DataSource = clases;
-            ddl_clasesListado.DataTextField = "nombre";
-            ddl_clasesListado.DataValueField = "id_clase";
-            ddl_clasesListado.DataBind();
-        }
         //protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
         //{
         //    btnGenerarListado();

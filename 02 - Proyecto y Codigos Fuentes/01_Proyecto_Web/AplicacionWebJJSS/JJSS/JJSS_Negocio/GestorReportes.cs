@@ -14,25 +14,6 @@ namespace JJSS_Negocio
     class GestorReportes
     {
 
-
-        /*
-       * Método que sirve para generar un Reporte en PDF con el listado de asistentes a una clase un dia
-       * Parámetros: Listado de Participantes
-       * Retorno: String ruta y nombre completo del archivo generado en PDF
-       */
-      
-        public string GenerarReporteListadoAsistentes(List<ListadoAsistencia> pListado)
-        {
-            Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
-
-            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ListadoAsistencias", "pdf");
-            System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptListadoAsistencia"));
-            return sFile;
-
-        }
-
-
-
         /*
       * Método que sirve para generar un Reporte en PDF con el comprobante de evento
       * Parámetros: Listado de un objeto participante

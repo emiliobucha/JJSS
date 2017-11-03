@@ -51,17 +51,9 @@ namespace JJSS.Presentacion
                 }
 
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorIdUsuario(gestorSesiones.getActual().usuario.id_usuario);
-
-                if (alumnoElegido != null)
-                {
-                    int dni = alumnoElegido.dni;
-                    Session["AlumnoDNI"] = dni;
-                    cargarClases();
-                }else
-                {
-                    Response.Write("<script>window.alert('" + "No es un alumno correctamente registrado".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
-
-                }
+                int dni = alumnoElegido.dni;
+                Session["AlumnoDNI"] = dni;
+                cargarClases();
 
             }
         }
