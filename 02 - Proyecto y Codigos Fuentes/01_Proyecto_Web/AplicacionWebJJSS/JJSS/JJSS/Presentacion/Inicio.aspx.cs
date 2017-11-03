@@ -484,6 +484,11 @@ namespace JJSS.Presentacion
                         item_recarga_por_atraso.Style["display"] = "none";
                     }                  
 
+
+
+
+
+
                 }
             }
             catch (Exception ex)
