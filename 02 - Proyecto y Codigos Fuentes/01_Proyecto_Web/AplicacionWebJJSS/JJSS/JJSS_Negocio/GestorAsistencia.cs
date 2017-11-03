@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using JJSS_Negocio;
+using System.Data.Entity;
 
 namespace JJSS_Negocio
 {
@@ -87,6 +89,71 @@ namespace JJSS_Negocio
                 return ex.Message;
             }
         }
+
+
+        public List<ListadoAsistencia> ListadoAsistentes(int pIdClase, DateTime? pFecha)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var participantes = from asis in db.asistencia_clase
+                                    where asis.id_clase == pIdClase && DbFunctions.TruncateTime(asis.fecha_hora) == DbFunctions.TruncateTime(pFecha)
+                                    select new ListadoAsistencia()
+                                    {
+                                      cla_fechaD = DbFunctions.TruncateTime(asis.fecha_hora),
+                                      cla_nombre = asis.clase.nombre,
+                                      cla_profesor = asis.clase.profesor.apellido + " " + asis.clase.profesor.nombre,
+                                      cla_tipo = asis.clase.tipo_clase.nombre,
+                                      alu_apellido = asis.alumno.apellido,
+                                      alu_dni = asis.alumno.dni.ToString(),
+                                      alu_nombre = asis.alumno.nombre,
+                                      alu_sexoI = asis.alumno.sexo,
+                                      alu_telefono = asis.alumno.telefono.ToString(),
+                                      alu_horaT = DbFunctions.CreateTime(asis.fecha_hora.Hour, asis.fecha_hora.Minute,0),
+                                      
+
+                                    };
+                List<ListadoAsistencia> asistenciaList = participantes.ToList();
+
+
+                foreach (ListadoAsistencia asistencia in asistenciaList)
+                {
+                    if (asistencia.alu_sexoI == 1)
+                    {
+                        asistencia.alu_sexo = "M";
+
+                    }
+                    else
+                    {
+                        asistencia.alu_sexo = "F";
+                    }
+                    asistencia.cla_fecha = asistencia.cla_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
+                    asistencia.alu_hora = asistencia.alu_horaT?.ToString(@"hh\:mm") ?? " - ";
+
+                }
+
+
+                return asistenciaList;
+            }
+        }
+
+
+        public String GenerarListado(int pID, DateTime pFechaDateTime)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+            //torneo torneoAListar = BuscarTorneoPorID(pID);
+            //GestorSedes gestorSedes = new GestorSedes();
+            //gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
+            //gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
+            List<ListadoAsistencia> listado = ListadoAsistentes(pID, pFechaDateTime);
+
+            if (listado.Count == 0)
+                throw new Exception("No asistió ningún alumno a la clase");
+
+            return gestorReportes.GenerarReporteListadoAsistentes(listado);
+
+
+        }
+
 
     }
 }

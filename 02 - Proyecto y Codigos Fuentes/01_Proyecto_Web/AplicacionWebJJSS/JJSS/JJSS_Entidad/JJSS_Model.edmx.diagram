@@ -123,6 +123,7 @@
         <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_usuario" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_torneo_tipoclase" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_torneo_imagen_id_torneo" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_clase_id_profe" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

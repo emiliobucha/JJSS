@@ -148,6 +148,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_recarga_por_atraso;
         
         /// <summary>
+        /// Control item_listado_asistencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_listado_asistencia;
+        
+        /// <summary>
         /// Control item_registrar_asistencia.
         /// </summary>
         /// <remarks>
@@ -416,6 +425,33 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_acpetarEventoExportarLista;
+        
+        /// <summary>
+        /// Control pnl_asistenciaExportarListado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_asistenciaExportarListado;
+        
+        /// <summary>
+        /// Control ddl_clasesListado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_clasesListado;
+        
+        /// <summary>
+        /// Control Button1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// Control pnl_modal_recarga.
