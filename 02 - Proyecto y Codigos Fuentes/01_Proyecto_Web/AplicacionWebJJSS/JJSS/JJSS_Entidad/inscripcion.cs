@@ -23,6 +23,7 @@ namespace JJSS_Entidad
         public Nullable<int> id_categoria { get; set; }
         public Nullable<double> peso { get; set; }
         public Nullable<int> id_faja { get; set; }
+        public Nullable<short> tipo_inscripcion { get; set; }
     
         public virtual categoria_torneo categoria_torneo { get; set; }
         public virtual faja faja { get; set; }

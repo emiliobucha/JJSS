@@ -155,6 +155,25 @@
                                         </div>
                                     </div>
 
+                                    <!--direccion de la sede-->
+                                    <div class="row centered">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="row centered">
+                                        <div class="col-md-2 hidden-sm hidden-xs"></div>
+                                        <div class="col-md-6">
+                                            <label class="pull-left">Sede:&nbsp;</label>
+                                            <asp:Label ID="lbl_sede" CssClass="pull-left" runat="server" Text=""></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="row centered">
+                                        <div class="col-md-2 hidden-sm hidden-xs"></div>
+                                        <div class="col-md-6">
+                                            <label class="pull-left">Dirección:&nbsp;</label>
+                                            <asp:Label ID="lbl_direccion_sede" CssClass="pull-left" runat="server" Text=""></asp:Label>
+                                        </div>
+                                    </div>
                                     <!--Precio-->
                                     <div class="row centered">
                                         <p>&nbsp;</p>

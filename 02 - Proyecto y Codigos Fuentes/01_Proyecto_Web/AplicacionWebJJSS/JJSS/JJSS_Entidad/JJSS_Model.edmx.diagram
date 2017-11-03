@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0557be2300264e3f90d329cf65053bc8" Name="Diagram1">
+      <Diagram DiagramId="0557be2300264e3f90d329cf65053bc8" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="6.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.alumno_imagen" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
@@ -123,6 +123,7 @@
         <AssociationConnector Association="JJSSModel.fk_usuarioxgrupo_id_usuario" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_torneo_tipoclase" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_torneo_imagen_id_torneo" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_clase_id_profe" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -102,7 +102,7 @@ namespace JJSS.Presentacion
                             ddl_provincia.SelectedValue = row["idProvincia"].ToString();
                             CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
                             ddl_localidad.SelectedValue = row["idCiudad"].ToString();
-
+                            txt_torre.Text = row["torre"].ToString();
                         }
                     }
 
@@ -130,6 +130,7 @@ namespace JJSS.Presentacion
                         ddl_provincia.SelectedValue = row["idProvincia"].ToString();
                         CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
                         ddl_localidad.SelectedValue = row["idCiudad"].ToString();
+                        txt_torre.Text = row["torre"].ToString();
                         
                         
                     }
@@ -216,6 +217,7 @@ namespace JJSS.Presentacion
             {
                 numero = int.Parse(txt_numero.Text);
             }
+            string torre = txt_torre.Text;
 
             int idCiudad = int.Parse(ddl_localidad.SelectedValue);
 
@@ -223,7 +225,7 @@ namespace JJSS.Presentacion
             //modifica los datos
             try
             {
-                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad);
+                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad,torre);
                 mensaje("Se modificaron los datos correctamente", true);
             }
             catch (Exception ex)
@@ -233,7 +235,7 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad);
+                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad,torre);
                         mensaje("Se modificaron los datos correctamente", true);
                     }
                     catch(Exception exx)
