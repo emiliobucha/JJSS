@@ -133,6 +133,7 @@ namespace JJSS.Presentacion
             string mail = txt_email.Text;
             string calle = txt_calle.Text;
             string departamento = txt_nro_dpto.Text;
+            string torre = txt_torre.Text;
 
             int? piso = null;
             if (txt_piso.Text != "")
@@ -156,7 +157,7 @@ namespace JJSS.Presentacion
 
             int ciudad = int.Parse(ddl_localidad.SelectedValue);
 
-            string sReturn = gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
+            string sReturn = gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad,torre);
             Boolean estado;
             if (sReturn.CompareTo("") == 0)
             {

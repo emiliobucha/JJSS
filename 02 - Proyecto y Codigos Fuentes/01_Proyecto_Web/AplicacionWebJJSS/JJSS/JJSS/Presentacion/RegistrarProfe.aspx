@@ -237,6 +237,13 @@
                                         <asp:TextBox ID="txt_nro_dpto" class="caja2" runat="server"></asp:TextBox>
                                         <asp:RegularExpressionValidator ID="caracteres_departamento" runat="server" ControlToValidate="txt_nro_dpto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgProfes"> </asp:RegularExpressionValidator>
                                     </div>
+                                    <div class="col-xs-1">
+                                        <label class=" pull-right">Torre</label>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txt_torre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgAlumnos"> </asp:RegularExpressionValidator>
+                                    </div>
                                 </div>
 
                                 <!-- Provincia -->
@@ -297,9 +304,9 @@
                                 <asp:CompareValidator ID="menor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="DNI demasiado largo" Operator="LessThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="2147483647"></asp:CompareValidator>
                                 <strong>Apellido</strong>
                                 <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
-                                 <asp:RegularExpressionValidator ID="regex_apellido_filtro" runat="server" ControlToValidate="txt_filtro_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
-                                
-                                
+                                <asp:RegularExpressionValidator ID="regex_apellido_filtro" runat="server" ControlToValidate="txt_filtro_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
+
+
                                 <asp:Button ID="btn_buscar_profe" runat="server" Text="Buscar profesores" OnClick="btn_buscar_profe_Click" ValidationGroup="vgFiltro" CssClass="btn btn-default" />
 
                                 <asp:Button ID="btn_registro" runat="server" CausesValidation="false" CssClass="btn btn-default" OnClick="btn_registro_Click" Text="Volver a registrar" />
@@ -309,7 +316,7 @@
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
-                                        
+
                                         <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
                                     </Columns>

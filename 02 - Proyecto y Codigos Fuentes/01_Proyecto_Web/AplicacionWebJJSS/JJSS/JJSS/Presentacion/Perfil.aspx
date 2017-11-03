@@ -147,7 +147,7 @@
                         </div>
                         <div class="col-xs-3">
                             <asp:TextBox ID="txt_telefono_urgencia" CssClass="caja2" runat="server" placeholder="Ingrese teléfono en caso de urgencia"></asp:TextBox>
-                        
+
                             <asp:RequiredFieldValidator ID="requerido_telemergencia" runat="server" ErrorMessage="Debe ingresar el teléfono de urgencia" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,15}$"></asp:RegularExpressionValidator>
                         </div>
@@ -204,6 +204,13 @@
                         <div class="col-xs-1">
                             <asp:TextBox ID="txt_nro_dpto" class="caja2" runat="server"></asp:TextBox>
                             <asp:RegularExpressionValidator ID="caracteres_departamento" runat="server" ControlToValidate="txt_nro_dpto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgContacto"></asp:RegularExpressionValidator>
+                        </div>
+                        <div class="col-xs-1">
+                            <label class=" pull-right">Torre</label>
+                        </div>
+                        <div class="col-xs-1">
+                            <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txt_torre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgAlumnos"> </asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="row centered">
