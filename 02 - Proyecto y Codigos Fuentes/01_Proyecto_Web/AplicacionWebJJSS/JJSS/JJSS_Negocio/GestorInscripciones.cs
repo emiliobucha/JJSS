@@ -33,7 +33,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, DateTime pFechaNacimiento, int pFaja, short pSexo, int pDni, int? pIDAlumno, short pTipoInscripcion)
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, DateTime pFechaNacimiento, int pFaja, short pSexo, int pDni, int? pIDAlumno)
         {
 
             String sReturn = "";
@@ -53,7 +53,7 @@ namespace JJSS_Negocio
                     var cat =
                         from categoria in db.categoria
                         where (categoria.edad_desde <= edad)
-                        && (categoria.edad_hasta >= edad)
+                        && (categoria.edad_hasta > edad)
                         && (categoria.peso_desde <= pPeso)
                         && (categoria.peso_hasta > pPeso)
                         && (categoria.sexo == pSexo)
@@ -125,8 +125,8 @@ namespace JJSS_Negocio
                         peso = pPeso,
                         id_faja = pFaja,
                         faja=fajaElegida,
-                        categoria_torneo=nuevaCategoriaTorneo,
-                        tipo_inscripcion=pTipoInscripcion,
+                        categoria_torneo=nuevaCategoriaTorneo
+
                     };
 
 
@@ -190,7 +190,6 @@ namespace JJSS_Negocio
             {
                 var fajasEncontradas = from faj in db.faja
                                        where faj.id_tipo_clase == pIdTipoClase
-                                       orderby faj.orden
                                        select faj;
                 return fajasEncontradas.ToList();
             }

@@ -62,7 +62,7 @@ namespace JJSS_Negocio
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento,
             short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
-            string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad, string pTorre)
+            string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -101,9 +101,7 @@ namespace JJSS_Negocio
                             departamento = pDpto,
                             numero = pNumero,
                             piso = pPiso,
-                            ciudad = ciudadElegida,
-                            torre=pTorre,
-
+                            ciudad = ciudadElegida
                         };
                         db.direccion.Add(nuevaDireccion);
 
@@ -310,7 +308,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, int pDni, int pIdCiudad, string pTorre)
+        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, int pDni, int pIdCiudad)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -347,8 +345,7 @@ namespace JJSS_Negocio
                                 departamento = pDepto,
                                 numero = pNumero,
                                 piso = pPiso,
-                                id_ciudad = pIdCiudad,
-                                torre=pTorre,
+                                id_ciudad = pIdCiudad
 
                             };
                             db.direccion.Add(nuevaDireccion);
@@ -366,7 +363,6 @@ namespace JJSS_Negocio
                         direccionModificar.numero = pNumero;
                         direccionModificar.piso = pPiso;
                         direccionModificar.id_ciudad = pIdCiudad;
-                        direccionModificar.torre = pTorre;
                     }
 
                     db.SaveChanges();
@@ -422,8 +418,7 @@ namespace JJSS_Negocio
                                               depto = dir.departamento,
                                               piso = dir.piso,
                                               idCiudad = dir.id_ciudad,
-                                              idProvincia = ciu.id_provincia,
-                                              torre=dir.torre,
+                                              idProvincia = ciu.id_provincia
                                           };
                 return modUtilidadesTablas.ToDataTable(direccionEncontrada.ToList());
             }

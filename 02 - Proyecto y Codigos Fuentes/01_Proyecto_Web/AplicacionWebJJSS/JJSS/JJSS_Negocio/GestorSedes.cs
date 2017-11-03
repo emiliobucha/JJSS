@@ -42,7 +42,7 @@ namespace JJSS_Negocio
                 }
                 catch (Exception ex)
                 {
-
+                    
                     transaction.Rollback();
                     return ex.Message;
                 }
@@ -58,9 +58,8 @@ namespace JJSS_Negocio
         public sede BuscarSedePorID(int? pID)
         {
             sede sedeEncontrada = null;
-            using (var db = new JJSSEntities())
-            {
-                sedeEncontrada = db.sede.Find(pID);
+            using (var db = new JJSSEntities()) {
+                sedeEncontrada= db.sede.Find(pID);
             }
             return sedeEncontrada;
         }
@@ -81,7 +80,7 @@ namespace JJSS_Negocio
         }
 
 
-
+       
         /*
          * Obtenemos todas las sedes
          * Retorno: Listado total de todas las sedes
@@ -101,28 +100,9 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 sede sedeEncontrada = db.sede.Find(pID);
-                // direccion = sedeEncontrada.direccion.calle + " " + sedeEncontrada.direccion.numero;
+               // direccion = sedeEncontrada.direccion.calle + " " + sedeEncontrada.direccion.numero;
             }
             return direccion;
-        }
-
-        public Resultados.SedeDireccion ObtenerDireccionSede(int pIDSede)
-        {
-            using (var db = new JJSSEntities())
-            {
-                var sede = from s in db.sede
-                           where s.id_sede == pIDSede
-                           select new Resultados.SedeDireccion()
-                           {
-                               sede = s.nombre,
-                               calle = s.direccion.calle,
-                               numero = (int)s.direccion.numero,
-                               ciudad = s.direccion.ciudad.nombre,
-                               provincia = s.direccion.ciudad.provincia.nombre,
-                               pais = s.direccion.ciudad.provincia.pais.nombre,
-                           };
-                return sede.FirstOrDefault();
-            }
         }
     }
 }

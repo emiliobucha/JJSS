@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 using System.Globalization;
-using JJSS_Negocio.Resultados;
 
 namespace JJSS.Presentacion
 {
@@ -120,18 +119,12 @@ namespace JJSS.Presentacion
                 pnl_InfoTorneo.Visible = true;
                 pnl_Inscripcion.Visible = true;
                 btn_aceptar.Visible = true;
-                GestorSedes gestorSede = new GestorSedes();
-                SedeDireccion sede = gestorSede.ObtenerDireccionSede((int)eventoSeleccionado.id_sede);
-
-
                 lbl_nombreEvento.Text = eventoSeleccionado.nombre;
                 lbl_FechaCierreInscripcion.Text = eventoSeleccionado.fecha_cierre.Value.ToLongDateString();
                 lbl_FechaDeEvento.Text = eventoSeleccionado.fecha.Value.ToLongDateString();
                 lbl_HoraEvento.Text = eventoSeleccionado.hora.ToString();
                 lbl_CostoInscripcion.Text = eventoSeleccionado.precio.ToString();
                 lbl_HoraCierre.Text = eventoSeleccionado.hora_cierre.ToString();
-                lbl_sede.Text = sede.sede;
-                lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
             }
 
             pnl_dni.Visible = true;

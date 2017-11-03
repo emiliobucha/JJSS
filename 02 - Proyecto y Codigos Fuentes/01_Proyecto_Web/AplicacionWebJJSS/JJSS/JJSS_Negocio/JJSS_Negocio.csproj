@@ -78,7 +78,6 @@
     <Compile Include="Resultados\CompInscripcionEvento.cs" />
     <Compile Include="Resultados\ParticipantesEventoResultado.cs" />
     <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
-    <Compile Include="Resultados\SedeDireccion.cs" />
     <Compile Include="Sesion.cs" />
   </ItemGroup>
   <ItemGroup>

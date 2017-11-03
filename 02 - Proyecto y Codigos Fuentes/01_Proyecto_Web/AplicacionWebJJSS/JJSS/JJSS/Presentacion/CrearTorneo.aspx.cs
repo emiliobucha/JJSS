@@ -106,8 +106,8 @@ namespace JJSS.Presentacion
 
                 decimal precio_abs = decimal.Parse(txt_precio_abs.Text.Replace(".", ","));
                 decimal precio_cat = decimal.Parse(txt_precio_cat.Text.Replace(".", ","));
-                string hora = txt_hora.Text;
-                string hora_cierre = txt_hora_cierre.Text;
+                string hora = ddl_hora.SelectedValue;
+                string hora_cierre = ddl_hora_cierre.SelectedValue;
                 int sede = 0;
                 int.TryParse(ddl_sedes.SelectedValue, out sede);
                 System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
@@ -122,7 +122,6 @@ namespace JJSS.Presentacion
                 if (sReturn.CompareTo("") == 0)
                 {
                     sReturn = "El torneo se ha creado exitosamente";
-                    limpiar();
                     mensaje(sReturn, true);
                 }
                 else mensaje(sReturn, false);
@@ -217,26 +216,7 @@ namespace JJSS.Presentacion
 
         }
 
-        protected void btn_Cancelar_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx");
-        }
 
-        private void limpiar()
-        {
-            txt_hora.Text = "";
-            txt_hora_cierre.Text = "";
-            txt_nombre.Text = "";
-            txt_precio_abs.Text = "";
-            txt_precio_cat.Text = "";
-            dp_fecha.Text = "";
-            dp_fecha_cierre.Text = "";
-            if (ddl_sedes.Items.Count>0) ddl_sedes.SelectedIndex = 0;
-            pnl_mensaje_error.Visible = false;
-            pnl_mensaje_exito.Visible = false;
-
-        }
     }
 
 

@@ -158,7 +158,6 @@ namespace JJSS.Presentacion
             string mail = txt_email.Text;
             string calle = txt_calle.Text;
             string departamento = txt_nro_dpto.Text;
-            string torre = txt_torre.Text;
 
             int? piso = null;
             if (txt_piso.Text != "")
@@ -182,7 +181,7 @@ namespace JJSS.Presentacion
                 try
                 {
                     gestorAlumnos.ModificarAlumno(dni, nombre, apellido,fechaNac,sexo);
-                    gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad,torre);
+                    gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad);
                     mensaje("Se modificaron los datos correctamente", true);
                     MultiView1.SetActiveView(view_grilla);
                     pnl_mostrar_alumnos.Visible = true;
@@ -209,7 +208,7 @@ namespace JJSS.Presentacion
                 //registra un nuevo alumno
                 try
                 {
-                    gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad,torre);
+                    gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
                     mensaje("Se ha creado el alumno exitosamente", true);
                     MultiView1.SetActiveView(view_grilla);
                     pnl_mostrar_alumnos.Visible = true;
@@ -388,8 +387,6 @@ namespace JJSS.Presentacion
                     ddl_provincia.SelectedValue = row["idProvincia"].ToString();
                     CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
                     ddl_localidad.SelectedValue = row["idCiudad"].ToString();
-                    txt_torre.Text = row["torre"].ToString();
-
                 }
 
                 txtDni.Enabled = false;
