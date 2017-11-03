@@ -375,6 +375,15 @@
                         <p>Modifica el valor de recarga en caso de atraso de pago de tus alumnos.</p>
                     </div>
                     <!--/col-->
+                    
+                    <!--col listado_asistencia-->
+                    <div class="col-lg-4 proc" id="item_listado_asistencia" runat="server">
+                        <i class="fa fa-cogs"></i>
+                        <h3 class="logo"><a id="btn_generar_Listado_asistencia" href="" data-toggle="modal" data-target="#exportarListadoAsistencia" style="color: #000000">Generar listado de asistencia a clase</a></h3>
+                        <p>Genera e imprime un listado de los asistencia del día de una clase.</p>
+                    </div>
+                    <!--/col-->
+                    
 
                     <!--col registrar_asistencia-->
                     <div class="col-lg-4 proc" id="item_registrar_asistencia" runat="server">
@@ -384,6 +393,7 @@
 
                     </div>
                     <!--/col-->
+  
 
 
                 </div>
@@ -751,6 +761,55 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <asp:Button ID="btn_acpetarEventoExportarLista" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_acpetarEventoExportarLista_Click" />
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!----------------------*********  Fin ventana emergente   *********--------------------->
+        
+              <!--Implementando ventana emergente --------------------*********     Exportar Listado  Asistencia a Clase   *********--------------------->
+        <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="exportarListadoAsistencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <!--Cabecera-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabe21">Exportar listado de asistencia del día</h4>
+                    </div>
+
+                    <!--Cuerpo-->
+
+                    <div class="modal-body">
+                        <div class="form-group">
+
+                            <!--Seleccione Torneo-->
+                            <asp:Panel ID="pnl_asistenciaExportarListado" CssClass="panel panel-default" runat="server">
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <div class="row center-block">
+                                    <div class="col-sm-1 col-xs-1"></div>
+                                    <div class="col-sm-2 col-xs-2">
+                                        <label for="recipient-name" class="control-label">Clase:</label>
+                                    </div>
+                                    <div class="col-sm-5 col-xs-5">
+                                        <asp:DropDownList ID="ddl_clasesListado" CssClass="caja2" runat="server" AutoPostBack="false"></asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </div>
+
+                    <!--Botonero-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="Button1" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_acpetarAsistenciaExportarLista_Click" />
 
                     </div>
 
