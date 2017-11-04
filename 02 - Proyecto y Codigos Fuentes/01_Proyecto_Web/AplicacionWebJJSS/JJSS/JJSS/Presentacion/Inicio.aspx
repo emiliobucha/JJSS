@@ -98,8 +98,9 @@
     <form runat="server">
 
         <!-- ABOUT SEPARATOR -->
-        <div class="sep paraTorneos" data-stellar-background-ratio="0.5"></div>
-
+        <div class="hidden-sm hidden-xs">
+            <div class="sep paraTorneos" data-stellar-background-ratio="0.5"></div>
+        </div>
 
         <!--SECTOR TORNEOS -->
 
@@ -232,8 +233,9 @@
 
 
         <!-- ABOUT SEPARATOR -->
-        <div class="sep paraClases" data-stellar-background-ratio="0.5"></div>
-
+        <div class="hidden-sm hidden-xs">
+            <div class="sep paraClases" data-stellar-background-ratio="0.5 "></div>
+        </div>
 
         <!--SECTOR CLASES -->
         <section id="section_clases" title="clases"></section>
@@ -405,7 +407,9 @@
 
 
         <!-- ABOUT SEPARATOR -->
-        <div class="sep paraAlumnos" data-stellar-background-ratio="0.5"></div>
+        <div class="hidden-sm hidden-xs">
+            <div class="sep paraAlumnos" data-stellar-background-ratio="0.5"></div>
+        </div>
 
         <!--SECTOR ALUMNOS -->
         <section id="alumnos" title="clases" runat="server"></section>
@@ -447,8 +451,7 @@
                         <p>Puedes modificar el cinturón y grado de cada alumno de manera fácil y rápida.</p>
                     </div>
                     <!--/col-->
-
-
+                    
 
                 </div>
             </div>

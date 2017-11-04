@@ -12,28 +12,28 @@
 
         
         <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-        <div class="col-md-2 hidden-xs"></div>
-        <div class="col-md-8 col-xs-12 col-sm-12">
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <div>
-                    <a class="ui-icon ui-icon-check"></a>
-                    <strong>
-                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
-                        <br />
-                    </strong>
+            <div class="col-md-2 hidden-xs"></div>
+            <div class="col-md-8 col-xs-12 col-sm-12">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div>
+                        <a class="ui-icon ui-icon-check"></a>
+                        <strong>
+                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
+                            <br />
+                        </strong>
+                    </div>
+
+                    <asp:Panel ID="pnl_comprobante" runat="server" Visible="False">
+                        <a class="ui-icon ui-icon-check"></a>
+                        <strong>Descargar comprobante <a runat="server" id="btn_descargar">Aquí</a>
+                            <br />
+                        </strong>
+                    </asp:Panel>
+
                 </div>
-
-                <asp:Panel ID="pnl_comprobante" runat="server" Visible="False">
-                    <a class="ui-icon ui-icon-check"></a>
-                    <strong>
-                        Descargar comprobante <a  runat="server" id="btn_descargar">Aquí</a>
-                        <br />
-                    </strong>
-                </asp:Panel>
-
             </div>
-        </div>
+        </asp:Panel>
 
 
             <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
@@ -46,8 +46,8 @@
                         <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
-                <div class="row centered">                    
-                <p>&nbsp;</p>
+                <div class="row centered">
+                    <p>&nbsp;</p>
                 </div>
             </asp:Panel>
 
@@ -79,7 +79,6 @@
                                 <asp:Label ID="lbl_profesor" runat="server" />
                             </div>
                             <div>
-                                
                                 <asp:Label ID="lbl_precio" runat="server" />
                             </div>
 
@@ -126,7 +125,7 @@
 
                         <div>
                             <!--Boton-->
-                            <div class="row centered">
+                            <div class="row centered center-block">
                                 <strong>DNI</strong>
                                 <asp:TextBox ID="txt_filtro_dni" runat="server"></asp:TextBox>
                                 <asp:CompareValidator ID="mayor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="El DNI debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="0"></asp:CompareValidator>
@@ -139,11 +138,11 @@
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
-                                
+
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
-                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
+                                <asp:GridView ID="gvAlumnos" runat="server" CssClass="table text-left" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
@@ -158,7 +157,7 @@
                         </div>
 
                         <div>
-                            <asp:Button ID="btn_registrar_alumno" CssClass="btn btn-default btn-link" ForeColor="Black" Font-Bold="true" runat="server" Text="Registrar nuevo alumno" CausesValidation="false" OnClick="btn_registrar_alumno_Click"/>
+                            <asp:Button ID="btn_registrar_alumno" CssClass="btn btn-default btn-link" ForeColor="Black" Font-Bold="true" runat="server" Text="Registrar nuevo alumno" CausesValidation="false" OnClick="btn_registrar_alumno_Click" />
                         </div>
                     </asp:Panel>
 
@@ -234,7 +233,7 @@
                         </div>
 
                     </asp:Panel>
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link"  CausesValidation="false" OnClick="btn_Cancelar_Click1" />
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_Cancelar_Click1" />
 
                 </div>
             </div>

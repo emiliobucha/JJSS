@@ -49,6 +49,11 @@
                     </div>
 
                     <div class="form-group">
+
+                        <div class="row centered">
+                            &nbsp;
+                        </div>
+
                         <div class="row centered">
                             <h2>
                                 <asp:Label ID="lbl1" runat="server" Text="Participante: "></asp:Label>
@@ -64,8 +69,7 @@
                             <div class="col-xs-3">
                                 <asp:Label ID="lbl_evento" runat="server" Text="Evento"></asp:Label>
                             </div>
-                            <div class="col-xs-3">
-                                
+                            <div class="col-xs-3">                                
                             </div>
                         </div>
 
