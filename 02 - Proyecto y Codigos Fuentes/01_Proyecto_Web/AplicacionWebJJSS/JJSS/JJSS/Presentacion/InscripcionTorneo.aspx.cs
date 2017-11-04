@@ -145,8 +145,8 @@ namespace JJSS
             //solo para invitados
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
-            double peso = float.Parse(txt_peso.Text.Replace(".",","));
-            string[] formats = {"MM/dd/yyyy"};
+            double peso = float.Parse(txt_peso.Text.Replace(".", ","));
+            string[] formats = { "MM/dd/yyyy" };
 
             DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"),
                 System.Globalization.DateTimeStyles.None);
@@ -170,7 +170,7 @@ namespace JJSS
             if (rb_tipo.SelectedIndex == 0) tipoInsc = 0;//categoria
             if (rb_tipo.SelectedIndex == 1) tipoInsc = 1;//absoluto
             string sReturn = gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, fechaNac.Date,
-                idFaja, sexo, dni, idAlumno,tipoInsc);
+                idFaja, sexo, dni, idAlumno, tipoInsc);
 
 
 
@@ -181,17 +181,30 @@ namespace JJSS
                 Session["TorneoPagar"] = idTorneo;
                 Session["ParticipanteDNI"] = dni;
 
-                ////para usuarios
-                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+
 
 
                 try
                 {
-                    string mail = sesionActiva.usuario.mail;
-                    string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, idTorneo).id_inscripcion, mail);
+
+                    string sFile;
+                    string mail = null;
+                    if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+                    {
+
+                    }
+                    else
+                    {
+
+                        ////para usuarios
+                        Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                        mail = sesionActiva.usuario.mail;
+
+                    }
+                    sFile = gestorInscripciones.ComprobanteInscripcion(
+                        gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, idTorneo).id_inscripcion, mail);
                     pnl_comprobante.Visible = true;
                     btn_descargar.Attributes.Add("href", "Downloader.ashx?" + "sFile=" + sFile);
-                    
                 }
                 catch (Exception ex)
                 {
@@ -262,7 +275,7 @@ namespace JJSS
                 CargarComboFajas(idTipoClase);
                 torneoSeleccionado = gestorDeTorneos.BuscarTorneoPorID(idTorneo);
                 GestorSedes gestorSede = new GestorSedes();
-                SedeDireccion sede= gestorSede.ObtenerDireccionSede((int)torneoSeleccionado.id_sede);
+                SedeDireccion sede = gestorSede.ObtenerDireccionSede((int)torneoSeleccionado.id_sede);
 
 
                 pnl_InfoTorneo.Visible = true;
@@ -275,8 +288,8 @@ namespace JJSS
                 lbl_CostoInscripcion.Text = torneoSeleccionado.precio_categoria.ToString();
                 lbl_CostoInscripcionAbsoluto.Text = torneoSeleccionado.precio_absoluto.ToString();
                 lbl_HoraCierreTorneo.Text = torneoSeleccionado.hora_cierre.ToString();
-                lbl_sede.Text= sede.sede;
-                lbl_direccion_sede.Text = sede.calle+" "+sede.numero+" - "+sede.ciudad+" - "+sede.provincia+" - "+sede.pais;
+                lbl_sede.Text = sede.sede;
+                lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
             }
 
             pnl_dni.Visible = true;
@@ -304,7 +317,7 @@ namespace JJSS
             //if (Page.IsValid)
             //{
             limpiar(false);
-            
+
             int idTorneo;
             if (Session["torneoSeleccionado"] != null)
             {
@@ -327,7 +340,8 @@ namespace JJSS
             {
                 mensaje("Este participante ya está inscripto a este torneo", false);
                 return;
-            }else pnl_Inscripcion.Visible = true;
+            }
+            else pnl_Inscripcion.Visible = true;
 
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
             if (alumnoEncontrado != null)

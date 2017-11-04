@@ -76,6 +76,7 @@
     <Compile Include="modUtilidadesTablas.cs" />
     <Compile Include="Resultados\CompInscripcionTorneo.cs" />
     <Compile Include="Resultados\CompInscripcionEvento.cs" />
+    <Compile Include="Resultados\ListadoAsistencia.cs" />
     <Compile Include="Resultados\ParticipantesEventoResultado.cs" />
     <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
     <Compile Include="Resultados\SedeDireccion.cs" />
@@ -146,6 +147,7 @@
     <EmbeddedResource Include="Reportes\rptCompInscripcionEvento.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptListadoAsistencia.rdlc" />
     <EmbeddedResource Include="Reportes\rptListadoEvento.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>

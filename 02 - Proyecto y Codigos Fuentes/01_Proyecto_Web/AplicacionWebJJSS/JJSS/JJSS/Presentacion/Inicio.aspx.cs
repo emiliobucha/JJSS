@@ -28,6 +28,9 @@ namespace JJSS.Presentacion
 
             try
             {
+
+
+
                 if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                 {
                     ocultarInvitado();

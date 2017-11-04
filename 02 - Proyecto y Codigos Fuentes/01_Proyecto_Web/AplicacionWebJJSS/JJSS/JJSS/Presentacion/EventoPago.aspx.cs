@@ -80,7 +80,7 @@ namespace JJSS.Presentacion
                 
                 String sInit_Point = "";
                 gestorMP = new GestorMercadoPago();
-                sInit_Point = gestorMP.NuevoPago(monto);
+                sInit_Point = gestorMP.NuevoPago(monto, "Pago de Evento");
                 mp_checkout.Attributes.Add("href", sInit_Point);
             }
         }
