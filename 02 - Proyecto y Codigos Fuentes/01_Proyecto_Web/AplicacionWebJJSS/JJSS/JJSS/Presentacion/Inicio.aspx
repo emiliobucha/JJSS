@@ -24,15 +24,15 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
         Alumnos
     </a>
-      <a href="#section_tienda" class="smoothScroll">
+    <a href="#section_tienda" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Tienda
     </a>
-      <a href="#section_eventos" class="smoothScroll">
+    <a href="#section_eventos" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Eventos
     </a>
-      <a href="#section_permisos" class="smoothScroll">
+    <a href="#section_permisos" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Perfiles y Permisos
     </a>
@@ -254,7 +254,7 @@
                     <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
-                 
+
 
                     <!---------------------------------**************Muestra de Clases************---------------------------------------->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -377,7 +377,7 @@
                         <p>Modifica el valor de recarga en caso de atraso de pago de tus alumnos.</p>
                     </div>
                     <!--/col-->
-                    
+
                     <!--col listado_-->
                     <div class="col-lg-4 proc" id="item_listado_asistencia" runat="server">
                         <i class="fa fa-cogs"></i>
@@ -385,7 +385,7 @@
                         <p>Genera e imprime un listado de los asistencia del día de una clase.</p>
                     </div>
                     <!--/col-->
-                    
+
 
                     <!--col registrar_asistencia-->
                     <div class="col-lg-4 proc" id="item_registrar_asistencia" runat="server">
@@ -395,7 +395,7 @@
 
                     </div>
                     <!--/col-->
-  
+
 
 
                 </div>
@@ -451,7 +451,7 @@
                         <p>Puedes modificar el cinturón y grado de cada alumno de manera fácil y rápida.</p>
                     </div>
                     <!--/col-->
-                    
+
 
                 </div>
             </div>
@@ -460,9 +460,10 @@
         <!--/Portfoliowrap -->
 
 
-        <!--SECTOR ALUMNOS -->
-        <section id="section_alumnos" title="alumnos"></section>
-        <div id="alumnoswrap">
+        <!--SECTOR PROFESORES -->
+
+        <section id="section_profesores" title="profesores" runat="server"></section>
+        <div id="profesoreswrap">
 
 
             <div class="row centered">
@@ -470,7 +471,7 @@
             </div>
 
 
-            <!--APARTADO DE ADMINISTRACION DE ALUMNOS -->
+            <!--APARTADO DE ADMINISTRACION DE PROFESORES -->
             <div class="container" id="Div1" runat="server">
                 <div class="row mt centered">
                     <h1>ADMINISTRACIÓN DE PROFESORES</h1>
@@ -478,7 +479,7 @@
                     <!--col registrar_profesor-->
                     <div class="col-lg-4 proc" id="Div2" runat="server">
                         <i class="fa fa-pencil"></i>
-                        <h3><%--<a href="../Presentacion/RegistrarAlumno.aspx" style="color: #000000">Registrar Alumno</a>--%></h3>
+                        
                         <h3>
                             <asp:LinkButton ID="lnk_registrar_profe" runat="server" Style="color: #000000" OnClick="lnk_registrar_profe_Click">Registrar Profesor</asp:LinkButton>
                         </h3>
@@ -501,7 +502,7 @@
 
 
 
-        <!--SECTOR TIENDA -->
+            <!--SECTOR TIENDA -->
 
             <section id="section_tienda" title="tienda"></section>
 
@@ -545,8 +546,8 @@
                 </div>
             </div>
 
-            
-          <!--SECTOR EVENTOS -->
+
+            <!--SECTOR EVENTOS -->
 
             <section id="section_eventos" title="eventos"></section>
 
@@ -569,7 +570,7 @@
                         <h3 class="logo"><a href="../Presentacion/CrearEvento.aspx" style="color: #000000">Generar un nuevo evento</a></h3>
                         <p>Crea un nuevo evento para luego ver su seguimiento.</p>
                     </div>
-                    
+
                     <!--col Generar_Listado_inscriptos-->
                     <div class="col-lg-4 proc" id="Div12" runat="server">
                         <i class="fa fa-cogs"></i>
@@ -583,31 +584,30 @@
         </div>
 
 
-        
+
         <!--SECTOR PERMISOS -->
 
+        <!--APARTADO DE PERMISOS -->
+        <section id="section_permisos" title="permisos" runat="server"></section>
 
-          <!--APARTADO DE PERMISOS -->
-         <section id="section_permisos" title="permisos"></section>
+        <div class="container" id="Div13" runat="server">
+            <div class="row mt centered">
+                <h1>PERFILES Y PERMISOS</h1>
 
-            <div class="container" id="Div13" runat="server">
-                <div class="row mt centered">
-                    <h1>PERFILES Y PERMISOS</h1>
-
-                    <!--col Administrar permisos-->
-                    <div class="col-lg-4 proc" id="Div14" runat="server">
-                        <i class="fa fa-pencil"></i>
-                        <h3><a href="Usuarios.aspx" style="color: #000000">Administrar Permisos </a></h3>
-                        <p>Administra los diferentes permisos de los usuarios.</p>
-                    </div>
-                    <!--/col-->
-
-                  
-                   
+                <!--col Administrar permisos-->
+                <div class="col-lg-4 proc" id="Div14" runat="server">
+                    <i class="fa fa-pencil"></i>
+                    <h3><a href="Usuarios.aspx" style="color: #000000">Administrar Permisos </a></h3>
+                    <p>Administra los diferentes permisos de los usuarios.</p>
                 </div>
-            </div>
+                <!--/col-->
 
-        
+
+
+            </div>
+        </div>
+
+
         <!--/Portfoliowrap -->
 
 
@@ -723,7 +723,7 @@
         </div>
         <!----------------------*********  Fin ventana emergente   *********--------------------->
 
-            <!--Implementando ventana emergente --------------------*********     Exportar Listado  Evento   *********--------------------->
+        <!--Implementando ventana emergente --------------------*********     Exportar Listado  Evento   *********--------------------->
         <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="exportarListadoEvento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -771,8 +771,8 @@
             </div>
         </div>
         <!----------------------*********  Fin ventana emergente   *********--------------------->
-        
-              <!--Implementando ventana emergente --------------------*********     Exportar Listado  Asistencia a Clase   *********--------------------->
+
+        <!--Implementando ventana emergente --------------------*********     Exportar Listado  Asistencia a Clase   *********--------------------->
         <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="exportarListadoAsistencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -799,7 +799,7 @@
                                         <label for="recipient-name" class="control-label">Clase:</label>
                                     </div>
                                     <div class="col-sm-7 col-xs-7">
-                                        <asp:DropDownList ID="ddl_clasesListado" CssClass="caja2" runat="server" AutoPostBack="false" ></asp:DropDownList>
+                                        <asp:DropDownList ID="ddl_clasesListado" CssClass="caja2" runat="server" AutoPostBack="false"></asp:DropDownList>
                                     </div>
                                 </div>
 

@@ -333,8 +333,47 @@ namespace JJSS.Presentacion
                 Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                 if (sesionActiva.estado == "INGRESO ACEPTADO")
                 {
+
+                    //Administración de torneos
+
                     int permiso = 0;
-                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_Generar_Torneo.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION_LISTA'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_Generar_Listado_inscriptos.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_mis_Torneos.Style["display"] = "none";
+                    }
+
+
+                    //Administración de Clases
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
                     if (drsAux.Length > 0)
                     {
                         int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -344,7 +383,6 @@ namespace JJSS.Presentacion
                     {
                         item_inscribir_Alumno_Clase.Style["display"] = "none";
                     }
-
 
 
                     permiso = 0;
@@ -360,16 +398,7 @@ namespace JJSS.Presentacion
                     }
 
 
-                    permiso = 0;
-                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
-                    if (drsAux.Length > 0)
-                    {
-                        int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
-                    }
-                    if (permiso != 1)
-                    {
-                        item_mis_Torneos.Style["display"] = "none";
-                    }
+
 
                     permiso = 0;
                     drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_HORARIO'");
@@ -403,18 +432,11 @@ namespace JJSS.Presentacion
                     if (permiso != 1)
                     {
                         item_crear_nueva_clase.Style["display"] = "none";
+                        item_listado_asistencia.Style["display"] = "none";
+                        item_registrar_asistencia.Style["display"] = "none";
                     }
 
-                    permiso = 0;
-                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
-                    if (drsAux.Length > 0)
-                    {
-                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
-                    }
-                    if (permiso != 1)
-                    {
-                        item_Generar_Torneo.Style["display"] = "none";
-                    }
+
 
                     permiso = 0;
                     drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_CREACION'");
@@ -425,6 +447,8 @@ namespace JJSS.Presentacion
                     if (permiso != 1)
                     {
                         item_registrar_alumno.Style["display"] = "none";
+                        item_graduacion_alumnos.Style["display"] = "none";
+                        alumnos.Style["display"] = "none";
                     }
 
                     permiso = 0;
@@ -437,32 +461,21 @@ namespace JJSS.Presentacion
                     {
                         item_administrar_alumnos.Style["display"] = "none";
                         item_graduacion_alumnos.Style["display"] = "none";
-                    }
-
-
-                    permiso = 0;
-                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION_LISTA'");
-                    if (drsAux.Length > 0)
-                    {
-                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
-                    }
-                    if (permiso != 1)
-                    {
-                        item_Generar_Listado_inscriptos.Style["display"] = "none";
+                        alumnos.Style["display"] = "none";
                     }
 
 
 
-                    permiso = 0;
-                    drsAux = sesionActiva.permisos.Select("perm_clave = 'SEGURIDAD_USUARIOS'");
-                    if (drsAux.Length > 0)
-                    {
-                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
-                    }
-                    if (permiso != 1)
-                    {
-
-                    }
+                    //permiso = 0;
+                    //drsAux = sesionActiva.permisos.Select("perm_clave = 'SEGURIDAD_USUARIOS'");
+                    //if (drsAux.Length > 0)
+                    //{
+                    //    int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    //}
+                    //if (permiso != 1)
+                    //{
+                    //    section_permisos.Style["display"] = "none";
+                    //}
 
                     permiso = 0;
                     drsAux = sesionActiva.permisos.Select("perm_clave = 'SEGURIDAD_PERMISOS'");
@@ -472,7 +485,7 @@ namespace JJSS.Presentacion
                     }
                     if (permiso != 1)
                     {
-
+                        section_permisos.Style["display"] = "none";
                     }
 
                     permiso = 0;
@@ -483,7 +496,7 @@ namespace JJSS.Presentacion
                     }
                     if (permiso != 1)
                     {
-                        //item_registrar_profesor.Style["display"] = "none";
+                        section_profesores.Style["display"] = "none";
                     }
 
                     permiso = 0;

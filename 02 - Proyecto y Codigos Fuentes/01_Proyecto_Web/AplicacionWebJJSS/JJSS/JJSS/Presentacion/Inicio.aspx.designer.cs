@@ -229,6 +229,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_graduacion_alumnos;
         
         /// <summary>
+        /// Control section_profesores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl section_profesores;
+        
+        /// <summary>
         /// Control Div1.
         /// </summary>
         /// <remarks>
@@ -353,6 +362,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div12;
+        
+        /// <summary>
+        /// Control section_permisos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl section_permisos;
         
         /// <summary>
         /// Control Div13.
