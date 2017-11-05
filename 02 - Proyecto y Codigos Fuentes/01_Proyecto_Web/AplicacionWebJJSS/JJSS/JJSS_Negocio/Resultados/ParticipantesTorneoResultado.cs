@@ -22,5 +22,6 @@ namespace JJSS_Negocio
         public string par_sexo_nombre { get; set; }
         public string par_faja { get; set; }
         public string par_categoria { get; set; }
+        public string par_dni { get; set; }
     }
 }

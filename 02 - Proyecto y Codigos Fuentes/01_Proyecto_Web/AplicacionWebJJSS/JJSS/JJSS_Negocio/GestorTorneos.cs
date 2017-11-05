@@ -319,6 +319,7 @@ namespace JJSS_Negocio
                                         par_sexo = part.sexo,
                                         par_faja = inscr.faja.descripcion,
                                         par_categoria = cat.nombre,
+                                        par_dni = part.dni.ToString()
                                     };
                 List<ParticipantesTorneoResultado> participantesList = participantes.ToList<ParticipantesTorneoResultado>();
 

@@ -147,13 +147,13 @@
                         <div class="row centered center-block">
                             <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
                                 <asp:DropDownList runat="server" ID="ddl_dia" CausesValidation="true" CssClass="caja2">
+                                    <asp:ListItem Value="Domingo">Domingo</asp:ListItem>
                                     <asp:ListItem Value="Lunes">Lunes</asp:ListItem>
                                     <asp:ListItem Value="Martes">Martes</asp:ListItem>
                                     <asp:ListItem Value="Miércoles">Miércoles</asp:ListItem>
                                     <asp:ListItem Value="Jueves">Jueves</asp:ListItem>
                                     <asp:ListItem Value="Viernes">Viernes</asp:ListItem>
-                                    <asp:ListItem Value="Sábado">Sábado</asp:ListItem>
-                                    <asp:ListItem Value="Domingo">Domingo</asp:ListItem>
+                                    <asp:ListItem Value="Sábado">Sábado</asp:ListItem>        
                                 </asp:DropDownList>
 
                             </div>

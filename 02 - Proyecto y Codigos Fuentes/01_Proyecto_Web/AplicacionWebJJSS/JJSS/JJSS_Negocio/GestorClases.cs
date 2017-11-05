@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.Linq;
 using System.Configuration;
 using System.Globalization;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -111,6 +112,33 @@ namespace JJSS_Negocio
                 return modUtilidadesTablas.ToDataTable(horarios.ToList());
             }
         }
+
+
+        /*
+         * Método que devuelve los horarios disponibles de una clase, si esta no existe devuelve una lista vacia que nos permite ver el formato de dicha tabla
+         * Parametros:
+         *              int pID indica el id de clase a la que se quiere ver los horarios
+         * Retorno:
+         *          Datatable con todos los horarios
+         */
+        public List<HorariosResultado> ObtenerHorariosResultadosDeFecha(DateTime pFecha)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var horarios = from hor in db.horario
+                               where hor.dia == (int)pFecha.DayOfWeek 
+                    select new HorariosResultado
+                    {
+                        id = hor.id_horario,
+                        nombre_horario =hor.clase.nombre + " / " + hor.nombre_dia + " - " + hor.hora_desde + " - " + hor.hora_hasta,
+                        id_clase = hor.id_clase
+                    };
+
+                return horarios.ToList();
+            }
+        }
+
+  
 
 
 
@@ -443,15 +471,19 @@ namespace JJSS_Negocio
          * Retorno:     entero - 0: no se esta dando ninguna clase
          *                      >0 : ID de la clase actual
          */
-        public clase buscarClaseSegunHoraActual(int pIdUbicacion)
+        public ClasesHorariosAsistencia buscarClaseSegunHoraActual(int pIdUbicacion)
         {
-            string hora = DateTime.Now.ToShortTimeString();
-            TimeSpan horaActual = TimeSpan.Parse(hora);
-            
+
             CultureInfo ci = new CultureInfo("Es-Es");
+
+
+           
+            TimeSpan horaActual = DateTime.Now.TimeOfDay;
+            
             string nombreDia = ci.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
 
             DataTable dtClases;
+            List<ClasesHorariosAsistencia> listaClases;
 
             using (var db = new JJSSEntities())
             {
@@ -460,32 +492,50 @@ namespace JJSS_Negocio
                                       join tipo in db.tipo_clase on clase.id_tipo_clase equals tipo.id_tipo_clase
                                       where clase.id_ubicacion == pIdUbicacion
                                       && horario.nombre_dia == nombreDia
-                                      select new
+                                      select new ClasesHorariosAsistencia()
                                       {
+                                          idHorario= horario.id_horario,
                                           idClase = clase.id_clase,
                                           dia = horario.nombre_dia,
                                           desde = horario.hora_desde,
                                           hasta = horario.hora_hasta,
-                                          tipoClase = tipo.id_tipo_clase
+                                          tipoClase = tipo.id_tipo_clase,
+                                          
                                       };
-                dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
+                //dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
+                listaClases = claseEncontrada.ToList();
             }
-            int idClase = 0;
-            for (int i = 0; i < dtClases.Rows.Count; i++)
+         
+            ClasesHorariosAsistencia claseActual = null;
+
+            foreach (var clase in listaClases)
             {
-                DataRow dr = dtClases.Rows[i];
-                
-                TimeSpan horaDesde = TimeSpan.Parse( dr["desde"].ToString());
-                if (horaActual > horaDesde.Subtract(TimeSpan.FromMinutes(15)) && horaActual<= horaDesde.Add(TimeSpan.FromMinutes(45)))
+                TimeSpan horaDesde = TimeSpan.Parse(clase.desde);
+                if (horaActual > horaDesde.Subtract(TimeSpan.FromMinutes(15)) && horaActual <= horaDesde.Add(TimeSpan.FromMinutes(45)))
                 {
-                    idClase = int.Parse(dr["idClase"].ToString());
+                    claseActual = clase;
                     break;
                 }
+
             }
 
-            if (idClase != 0) return ObtenerClasePorId(idClase);
-            else return null;
-            
+
+            //int idClase = 0;
+            //int idHorario = 0;
+            //for (int i = 0; i < dtClases.Rows.Count; i++)
+            //{
+            //    DataRow dr = dtClases.Rows[i];
+
+            //    TimeSpan horaDesde = TimeSpan.Parse( dr["desde"].ToString());
+            //    if (horaActual > horaDesde.Subtract(TimeSpan.FromMinutes(15)) && horaActual<= horaDesde.Add(TimeSpan.FromMinutes(45)))
+            //    {
+            //        idHorario = int.Parse(dr["idHorario"].ToString());
+            //        break;
+            //    }
+            //}
+
+            return claseActual;
+
         }
 
 

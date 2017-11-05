@@ -411,7 +411,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -476,7 +475,7 @@
         <Top>2.60815cm</Top>
         <Left>0.81958cm</Left>
         <Height>1.35875cm</Height>
-        <Width>14.90646cm</Width>
+        <Width>14.90645cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -663,7 +662,7 @@
   <Width>6.5in</Width>
   <Page>
     <PageHeader>
-      <Height>4.24849cm</Height>
+      <Height>4.98932cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -716,7 +715,7 @@
           </Style>
         </Image>
         <Line Name="Line1">
-          <Top>4.07141cm</Top>
+          <Top>4.81293cm</Top>
           <Height>0cm</Height>
           <Width>16.51cm</Width>
           <ZIndex>2</ZIndex>
@@ -752,6 +751,41 @@
           <Height>0.97042cm</Height>
           <Width>12.67756cm</Width>
           <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox11">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!horario_nombre.Value, "DATOS")</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>3.66613cm</Top>
+          <Left>3.04847cm</Left>
+          <Height>0.97042cm</Height>
+          <Width>12.67756cm</Width>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -837,6 +871,10 @@
         <CommandText />
       </Query>
       <Fields>
+        <Field Name="horario_nombre">
+          <DataField>horario_nombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="cla_nombre">
           <DataField>cla_nombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>

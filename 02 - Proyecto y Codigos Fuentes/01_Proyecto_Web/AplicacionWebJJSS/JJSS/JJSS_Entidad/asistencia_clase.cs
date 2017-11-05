@@ -18,8 +18,10 @@ namespace JJSS_Entidad
         public System.DateTime fecha_hora { get; set; }
         public int id_clase { get; set; }
         public int id_alumno { get; set; }
+        public Nullable<int> id_horario { get; set; }
     
         public virtual alumno alumno { get; set; }
         public virtual clase clase { get; set; }
+        public virtual horario horario { get; set; }
     }
 }

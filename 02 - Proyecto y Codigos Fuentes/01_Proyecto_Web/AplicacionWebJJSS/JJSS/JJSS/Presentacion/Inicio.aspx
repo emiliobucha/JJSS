@@ -378,7 +378,7 @@
                     </div>
                     <!--/col-->
                     
-                    <!--col listado_asistencia-->
+                    <!--col listado_-->
                     <div class="col-lg-4 proc" id="item_listado_asistencia" runat="server">
                         <i class="fa fa-cogs"></i>
                         <h3 class="logo"><a id="btn_generar_Listado_asistencia" href="" data-toggle="modal" data-target="#exportarListadoAsistencia" style="color: #000000">Generar listado de asistencia a clase</a></h3>
@@ -798,10 +798,11 @@
                                     <div class="col-sm-2 col-xs-2">
                                         <label for="recipient-name" class="control-label">Clase:</label>
                                     </div>
-                                    <div class="col-sm-5 col-xs-5">
-                                        <asp:DropDownList ID="ddl_clasesListado" CssClass="caja2" runat="server" AutoPostBack="false"></asp:DropDownList>
+                                    <div class="col-sm-7 col-xs-7">
+                                        <asp:DropDownList ID="ddl_clasesListado" CssClass="caja2" runat="server" AutoPostBack="false" ></asp:DropDownList>
                                     </div>
                                 </div>
+
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>

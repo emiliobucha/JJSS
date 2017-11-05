@@ -12,10 +12,13 @@
               <Width>2.12958cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.48958cm</Width>
+              <Width>1.7649cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.43657cm</Width>
+              <Width>2.02389cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.31383cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.8852cm</Width>
@@ -84,6 +87,41 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox9</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox6">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>DNI</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox6</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -313,6 +351,40 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="par_dni">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!par_dni.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>par_dni</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="par_fecha_nac">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -459,6 +531,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -473,9 +546,9 @@
         </TablixRowHierarchy>
         <DataSetName>DATOS</DataSetName>
         <Top>3.56065cm</Top>
-        <Left>0.81958cm</Left>
-        <Height>1.35876cm</Height>
-        <Width>14.51395cm</Width>
+        <Left>0.48986cm</Left>
+        <Height>1.35875cm</Height>
+        <Width>15.69042cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -789,7 +862,7 @@
     <Height>2.66875in</Height>
     <Style />
   </Body>
-  <Width>6.5in</Width>
+  <Width>6.51858in</Width>
   <Page>
     <PageHeader>
       <Height>4.24849cm</Height>
@@ -846,7 +919,6 @@
         </Image>
         <Line Name="Line1">
           <Top>4.07141cm</Top>
-          <Left>0cm</Left>
           <Height>0cm</Height>
           <Width>16.51cm</Width>
           <ZIndex>2</ZIndex>
@@ -993,6 +1065,10 @@
         </Field>
         <Field Name="par_apellido">
           <DataField>par_apellido</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="par_dni">
+          <DataField>par_dni</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="par_fecha_nac">

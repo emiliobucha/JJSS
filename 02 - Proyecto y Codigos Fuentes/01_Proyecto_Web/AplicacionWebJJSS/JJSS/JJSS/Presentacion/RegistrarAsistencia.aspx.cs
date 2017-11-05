@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS.Presentacion
 {
@@ -47,26 +48,33 @@ namespace JJSS.Presentacion
             gestorAlumno = new GestorAlumnos();
             int ubicacion = int.Parse(ddl_ubicacion.SelectedValue);
 
-            clase claseActual = gestorAsistencia.buscarClaseSegunHoraActual(ubicacion);
+            ClasesHorariosAsistencia claseActual = gestorAsistencia.buscarClaseSegunHoraActual(ubicacion);
 
             if (claseActual == null) mensaje("No hay clases disponibles en este horario", false);
             else
             {
                 alumno alu = gestorAlumno.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
-
-                string resultado = gestorAsistencia.ValidarTipoClaseAlumno(alu.id_alumno, (int)claseActual.id_tipo_clase);
-                if (resultado == "")
+                if (alu != null)
                 {
-                    if (gestorAsistencia.ValidarPagoParaAsistencia(alu.id_alumno, (int)claseActual.id_tipo_clase))
-                    {
-                        resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, (int)claseActual.id_clase);
-                        if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
-                        else mensaje(resultado, false);
-                    }
-                    else mensaje("Falta pago", false);
 
+
+
+                    string resultado = gestorAsistencia.ValidarTipoClaseAlumno(alu.id_alumno, claseActual.tipoClase);
+                    if (resultado == "")
+                    {
+                        if (gestorAsistencia.ValidarPagoParaAsistencia(alu.id_alumno, claseActual.tipoClase))
+                        {
+                            resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
+                                claseActual.idHorario);
+                            if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
+                            else mensaje(resultado, false);
+                        }
+                        else mensaje("Falta pago", false);
+
+                    }
+                    else mensaje(resultado, false);
                 }
-                else mensaje(resultado, false);
+                else mensaje("No esta inscripto el alumno con ese DNI", false);
             }
         }
 

@@ -58,6 +58,7 @@
           <Property Name="fecha_hora" Type="datetime" Nullable="false" />
           <Property Name="id_clase" Type="int" Nullable="false" />
           <Property Name="id_alumno" Type="int" Nullable="false" />
+          <Property Name="id_horario" Type="int" />
         </EntityType>
         <EntityType Name="categoria">
           <Key>
@@ -843,6 +844,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_asistencia_clase_id_horario">
+          <End Role="horario" Type="Self.horario" Multiplicity="0..1" />
+          <End Role="asistencia_clase" Type="Self.asistencia_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario">
+              <PropertyRef Name="id_horario" />
+            </Principal>
+            <Dependent Role="asistencia_clase">
+              <PropertyRef Name="id_horario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_categoria_tipoclase">
           <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
           <End Role="categoria" Type="Self.categoria" Multiplicity="*" />
@@ -1534,6 +1547,10 @@
             <End Role="clase" EntitySet="clase" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
+          <AssociationSet Name="FK_asistencia_clase_id_horario" Association="Self.FK_asistencia_clase_id_horario">
+            <End Role="horario" EntitySet="horario" />
+            <End Role="asistencia_clase" EntitySet="asistencia_clase" />
+          </AssociationSet>
           <AssociationSet Name="FK_categoria_tipoclase" Association="Self.FK_categoria_tipoclase">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="categoria" EntitySet="categoria" />
@@ -1776,6 +1793,8 @@
           <Property Name="id_alumno" Type="Int32" Nullable="false" />
           <NavigationProperty Name="alumno" Relationship="Self.FK_asistencia_alumno" FromRole="asistencia_clase" ToRole="alumno" />
           <NavigationProperty Name="clase" Relationship="Self.FK_asistencia_clase" FromRole="asistencia_clase" ToRole="clase" />
+          <Property Name="id_horario" Type="Int32" />
+          <NavigationProperty Name="horario" Relationship="JJSSModel.FK_asistencia_clase_id_horario" FromRole="asistencia_clase" ToRole="horario" />
         </EntityType>
         <EntityType Name="categoria">
           <Key>
@@ -1986,6 +2005,7 @@
           <Property Name="id_clase" Type="Int32" />
           <Property Name="dia" Type="Int32" />
           <NavigationProperty Name="clase" Relationship="Self.FK_horario_id_clase" FromRole="horario" ToRole="clase" />
+          <NavigationProperty Name="asistencia_clase" Relationship="JJSSModel.FK_asistencia_clase_id_horario" FromRole="horario" ToRole="asistencia_clase" />
         </EntityType>
         <EntityType Name="inscripcion">
           <Key>
@@ -3530,6 +3550,10 @@
             <End Role="profesor" EntitySet="profesor" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
+          <AssociationSet Name="FK_asistencia_clase_id_horario" Association="JJSSModel.FK_asistencia_clase_id_horario">
+            <End Role="horario" EntitySet="horario" />
+            <End Role="asistencia_clase" EntitySet="asistencia_clase" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_clase_id_profe">
           <End Type="JJSSModel.profesor" Role="profesor" Multiplicity="0..1" />
@@ -3540,6 +3564,18 @@
             </Principal>
             <Dependent Role="clase">
               <PropertyRef Name="id_profe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_asistencia_clase_id_horario">
+          <End Type="JJSSModel.horario" Role="horario" Multiplicity="0..1" />
+          <End Type="JJSSModel.asistencia_clase" Role="asistencia_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario">
+              <PropertyRef Name="id_horario" />
+            </Principal>
+            <Dependent Role="asistencia_clase">
+              <PropertyRef Name="id_horario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3601,6 +3637,7 @@
           <EntitySetMapping Name="asistencia_clase">
             <EntityTypeMapping TypeName="JJSSModel.asistencia_clase">
               <MappingFragment StoreEntitySet="asistencia_clase">
+                <ScalarProperty Name="id_horario" ColumnName="id_horario" />
                 <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
                 <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
                 <ScalarProperty Name="id_clase" ColumnName="id_clase" />

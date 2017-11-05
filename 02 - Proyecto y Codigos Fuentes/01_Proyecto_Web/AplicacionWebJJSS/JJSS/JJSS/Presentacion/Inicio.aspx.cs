@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS.Presentacion
 {
@@ -71,6 +73,7 @@ namespace JJSS.Presentacion
                 cargarClasesView();
                 cargarRecarga();
                 cargarTorneosAbiertosView();
+
             }
 
 
@@ -87,7 +90,7 @@ namespace JJSS.Presentacion
 
         }
 
-   
+
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -111,18 +114,23 @@ namespace JJSS.Presentacion
         }
         protected void btnGenerarListadoAsistencia()
         {
-            int idClase = 0;
-            int.TryParse(ddl_clasesListado.SelectedValue, out idClase);
+            int idHorario = 0;
+            int.TryParse(ddl_clasesListado.SelectedValue, out idHorario);
+      
 
             // int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
             try
             {
-                String sFile = gestorAsistencia.GenerarListado(idClase, DateTime.Today);
+              
 
-                Response.Clear();
-                Response.AddHeader("Content-Type", "Application/octet-stream");
-                Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
-                Response.WriteFile(sFile);
+                    String sFile = gestorAsistencia.GenerarListado(idHorario, DateTime.Today);
+
+                    Response.Clear();
+                    Response.AddHeader("Content-Type", "Application/octet-stream");
+                    Response.AddHeader("Content-Disposition",
+                        "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                    Response.WriteFile(sFile);
+                
             }
             catch (Exception ex)
             {
@@ -160,7 +168,7 @@ namespace JJSS.Presentacion
         }
 
 
-      
+
 
         /*
          * Carga de datos en las cuadriculas correspondientes de  torneo y clases
@@ -216,11 +224,13 @@ namespace JJSS.Presentacion
 
         protected void cargarClasesExportarListado()
         {
-            List<Object> clases = gestorDeClases.ObtenerClasesDisponibles();
-            ddl_clasesListado.DataSource = clases;
-            ddl_clasesListado.DataTextField = "nombre";
-            ddl_clasesListado.DataValueField = "id_clase";
+            List<HorariosResultado> horarios = gestorDeClases.ObtenerHorariosResultadosDeFecha(DateTime.Now);
+            ddl_clasesListado.DataSource = horarios;
+            ddl_clasesListado.DataTextField = "nombre_horario";
+            ddl_clasesListado.DataValueField = "id";
             ddl_clasesListado.DataBind();
+
+
         }
         //protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
         //{
@@ -451,7 +461,7 @@ namespace JJSS.Presentacion
                     }
                     if (permiso != 1)
                     {
-                        
+
                     }
 
                     permiso = 0;
@@ -485,7 +495,7 @@ namespace JJSS.Presentacion
                     if (permiso != 1)
                     {
                         item_recarga_por_atraso.Style["display"] = "none";
-                    }                  
+                    }
 
                 }
             }
@@ -494,8 +504,8 @@ namespace JJSS.Presentacion
                 Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
             }
-         }
-        
+        }
+
         protected void lv_clasesDisponibles_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
@@ -536,6 +546,14 @@ namespace JJSS.Presentacion
         {
             Session["clase"] = null;
             Response.Redirect("../Presentacion/CrearClase.aspx");
+        }
+
+        protected void ddl_clasesListado_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddl_clasesListado.SelectedIndex > 0)
+            {
+
+            }
         }
     }
 }

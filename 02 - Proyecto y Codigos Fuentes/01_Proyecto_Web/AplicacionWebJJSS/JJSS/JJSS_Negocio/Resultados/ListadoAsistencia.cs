@@ -8,6 +8,7 @@ namespace JJSS_Negocio
 {
     public class ListadoAsistencia
     {
+        public string horario_nombre { get; set; }
         public string cla_nombre { get; set; }
         public string cla_tipo { get; set; }
         public string cla_profesor { get; set; }

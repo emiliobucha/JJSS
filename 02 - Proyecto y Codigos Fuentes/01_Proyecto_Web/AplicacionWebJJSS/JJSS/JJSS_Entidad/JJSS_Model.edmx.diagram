@@ -124,6 +124,7 @@
         <AssociationConnector Association="JJSSModel.FK_torneo_tipoclase" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_torneo_imagen_id_torneo" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK_clase_id_profe" />
+        <AssociationConnector Association="JJSSModel.FK_asistencia_clase_id_horario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
