@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data.Entity;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace JJSS_Negocio
 {
@@ -147,7 +148,7 @@ namespace JJSS_Negocio
 
 
 
-        public inscripcion obtenerInscripcionAEventoPorIdParticipantePorDni(int pDni, int pIdTorneo)
+        public inscripcion obtenerInscripcionATorneoPorIdParticipantePorDni(int pDni, int pIdTorneo)
         {
             using (var db = new JJSSEntities())
             {
@@ -258,8 +259,6 @@ namespace JJSS_Negocio
             {
                 var participantes = from inscr in db.inscripcion
                                     join part in db.participante on inscr.id_participante equals part.id_participante
-                                    join cat_tor in db.categoria_torneo on inscr.id_categoria equals cat_tor.id_categoria_torneo
-                                    join cat in db.categoria on cat_tor.id_categoria equals cat.id_categoria
                                     where inscr.id_inscripcion == pID
                                     select new CompInscripcionTorneo()
                                     {
@@ -276,24 +275,26 @@ namespace JJSS_Negocio
                                         par_sexo = part.sexo,
                                         par_dni = part.dni.ToString(),
                                         par_faja = inscr.faja.descripcion,
-                                        par_categoria = cat.nombre
+                                        par_categoria = inscr.categoria_torneo.categoria.nombre,
+                                        inscr_tipoI = inscr.tipo_inscripcion
                                        
 
                                     };
-                List<CompInscripcionTorneo> participantesList = participantes.ToList<CompInscripcionTorneo>();
+                List<CompInscripcionTorneo> participantesList = participantes.ToList();
 
 
-                foreach (CompInscripcionTorneo part in participantesList)
+                foreach (var part in participantesList)
                 {
-                    if (part.par_sexo == 1)
-                    {
-                        part.par_sexo_nombre = "M";
+                    part.par_sexo_nombre = part.par_sexo == 1 ? "M" : "F";
 
-                    }
-                    else
+                    if (string.IsNullOrEmpty(part.par_categoria))
                     {
-                        part.par_sexo_nombre = "F";
+                        part.par_categoria = "Sin categoría";
                     }
+
+                    part.inscr_tipo = part.inscr_tipoI == 0 ? "Inscripción a categoria" : "Inscripción absoluta";
+
+
                     part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
                     part.tor_fecha = part.tor_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
 

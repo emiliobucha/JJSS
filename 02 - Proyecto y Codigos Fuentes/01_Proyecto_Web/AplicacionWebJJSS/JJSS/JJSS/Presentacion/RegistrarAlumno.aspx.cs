@@ -149,10 +149,10 @@ namespace JJSS.Presentacion
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
 
-            int tel = 0;
+            long tel = 0;
             if (txt_telefono.Text != "")
             {
-                tel = int.Parse(txt_telefono.Text);
+                tel = long.Parse(txt_telefono.Text);
             }
 
             string mail = txt_email.Text;
@@ -170,8 +170,8 @@ namespace JJSS.Presentacion
             {
                 numero = int.Parse(txt_numero.Text);
             }
-            
-            int telEmergencia = int.Parse(txt_telefono_urgencia.Text);
+
+            long telEmergencia = long.Parse(txt_telefono_urgencia.Text);
             //Image imagenPerfil = Avatar;
 
             int ciudad = int.Parse(ddl_localidad.SelectedValue);

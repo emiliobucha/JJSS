@@ -202,7 +202,7 @@ namespace JJSS
 
                     }
                     sFile = gestorInscripciones.ComprobanteInscripcion(
-                        gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, idTorneo).id_inscripcion, mail);
+                        gestorInscripciones.obtenerInscripcionATorneoPorIdParticipantePorDni(dni, idTorneo).id_inscripcion, mail);
                     pnl_comprobante.Visible = true;
                     btn_descargar.Attributes.Add("href", "Downloader.ashx?" + "sFile=" + sFile);
                 }

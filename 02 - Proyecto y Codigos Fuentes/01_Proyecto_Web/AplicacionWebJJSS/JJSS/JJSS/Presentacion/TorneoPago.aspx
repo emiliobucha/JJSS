@@ -121,6 +121,11 @@
                                 <asp:Label ID="lbl_monto" runat="server" Text="$"></asp:Label>
                             </div>
 
+                            <div class="col-xs-3">
+                                <asp:Label ID="lbl_tipo_inscripcion" runat="server" Text="$"></asp:Label>
+
+                            </div>
+
                         </div>
 
                          <div class="row centered">

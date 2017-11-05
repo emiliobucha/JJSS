@@ -607,7 +607,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>2.82473cm</Top>
+        <Top>3.14223cm</Top>
         <Left>0.81958cm</Left>
         <Height>0.6cm</Height>
         <Width>2.02917cm</Width>
@@ -637,7 +637,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.82473cm</Top>
+        <Top>3.14223cm</Top>
         <Left>2.79843cm</Left>
         <Height>0.6cm</Height>
         <Width>9.58482cm</Width>
@@ -798,6 +798,69 @@
         <Height>0.6cm</Height>
         <Width>6.62651cm</Width>
         <ZIndex>25</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox36">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Tipo Inscripción:</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox19</rd:DefaultName>
+        <Top>2.60573cm</Top>
+        <Left>0.81958cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.03459cm</Width>
+        <ZIndex>26</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox37">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!inscr_tipo.Value, "DATOS")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>2.60573cm</Top>
+        <Left>3.75892cm</Left>
+        <Height>0.6cm</Height>
+        <Width>9.58482cm</Width>
+        <ZIndex>27</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1043,6 +1106,10 @@
         </Field>
         <Field Name="par_categoria">
           <DataField>par_categoria</DataField>
+          <rd:TypeName>String.String</rd:TypeName>
+        </Field>
+        <Field Name="inscr_tipo">
+          <DataField>inscr_tipo</DataField>
           <rd:TypeName>String.String</rd:TypeName>
         </Field>
       </Fields>

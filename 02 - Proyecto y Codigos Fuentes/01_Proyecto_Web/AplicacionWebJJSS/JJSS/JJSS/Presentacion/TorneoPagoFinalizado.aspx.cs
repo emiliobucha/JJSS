@@ -96,7 +96,7 @@ namespace JJSS.Presentacion
                             try
                             {
                                 string mail = sesionActiva.usuario.mail;
-                                string sFile = gestorInscripciones.ComprobanteInscripcionPago(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, id).id_inscripcion, mail);
+                                string sFile = gestorInscripciones.ComprobanteInscripcionPago(gestorInscripciones.obtenerInscripcionATorneoPorIdParticipantePorDni(dni, id).id_inscripcion, mail);
 
                                 Response.Clear();
                                 Response.AddHeader("Content-Type", "Application/octet-stream");

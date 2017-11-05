@@ -19,6 +19,7 @@ namespace JJSS.Presentacion
         private GestorParticipantes gestorParticipantes;
         private GestorMercadoPago gestorMP;
         private participante participanteElegido;
+        private GestorInscripciones gestorInscripciones;
         private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
 
 
@@ -28,6 +29,7 @@ namespace JJSS.Presentacion
             gestorFPago = new GestorFormaPago();
             gestorParticipantes = new GestorParticipantes();
             gestorPago = new GestorPagoClase();
+           gestorInscripciones = new GestorInscripciones();
 
             if (!IsPostBack)
             {
@@ -72,7 +74,23 @@ namespace JJSS.Presentacion
                 lbl_torneo.Text = torneo.nombre;
                 lbl_fechatorneo.Text = torneo.fecha.ToString();
 
-                double monto = (double)torneo.precio_absoluto ;
+                inscripcion inscripcion =
+                    gestorInscripciones.obtenerInscripcionATorneoPorIdParticipante(participanteElegido.id_participante,
+                        torneo.id_torneo);
+
+                double monto;
+                if (inscripcion.tipo_inscripcion == 0)
+                {
+
+                    monto = (double) torneo.precio_categoria;
+                    lbl_tipo_inscripcion.Text = "Inscripción a Categoría";
+                }
+                else
+                {
+                    monto = (double)torneo.precio_absoluto;
+                    lbl_tipo_inscripcion.Text = "Inscripción Absoluta";
+                }
+
                 lbl_monto.Text = "$" + monto;
 
                 String sInit_Point = "";

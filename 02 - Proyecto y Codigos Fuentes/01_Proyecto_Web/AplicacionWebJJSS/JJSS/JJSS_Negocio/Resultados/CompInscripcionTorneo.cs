@@ -25,5 +25,9 @@ namespace JJSS_Negocio
         public string par_faja { get; set; }
         public string par_categoria { get; set; }
         public string par_dni { get; set; }
+        
+        
+        public short? inscr_tipoI { get; set; }
+        public string inscr_tipo { get; set; }
     }
 }

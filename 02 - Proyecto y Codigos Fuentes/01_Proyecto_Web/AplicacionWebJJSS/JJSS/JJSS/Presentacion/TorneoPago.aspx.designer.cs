@@ -148,6 +148,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_monto;
         
         /// <summary>
+        /// Control lbl_tipo_inscripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tipo_inscripcion;
+        
+        /// <summary>
         /// Control mp_checkout.
         /// </summary>
         /// <remarks>

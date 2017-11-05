@@ -61,7 +61,7 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento,
-            short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
+            short? pSexo, int pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
             string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad, string pTorre)
         {
             string sReturn = "";
@@ -310,7 +310,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, int pDni, int pIdCiudad, string pTorre)
+        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, int pDni, int pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
