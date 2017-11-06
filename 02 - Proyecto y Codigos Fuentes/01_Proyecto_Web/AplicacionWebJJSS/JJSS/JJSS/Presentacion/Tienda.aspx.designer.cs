@@ -76,6 +76,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.GridView gv_items;
         
         /// <summary>
+        /// Control lbl_total.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_total;
+        
+        /// <summary>
         /// Control pnl_usuarios.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,24 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnl_usuarios;
+        
+        /// <summary>
+        /// Control txt_filtro_apellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
+        
+        /// <summary>
+        /// Control btn_buscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_buscar;
         
         /// <summary>
         /// Control gv_usuarios.

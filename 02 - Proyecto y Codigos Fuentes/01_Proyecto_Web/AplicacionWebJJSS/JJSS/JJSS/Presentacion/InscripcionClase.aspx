@@ -10,30 +10,30 @@
     <form id="formRegAlumno" runat="server">
         <div class="container">
 
-        
-        <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-            <div class="col-md-2 hidden-xs"></div>
-            <div class="col-md-8 col-xs-12 col-sm-12">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div>
-                        <a class="ui-icon ui-icon-check"></a>
-                        <strong>
-                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
-                            <br />
-                        </strong>
+
+            <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+                <div class="col-md-2 hidden-xs"></div>
+                <div class="col-md-8 col-xs-12 col-sm-12">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div>
+                            <a class="ui-icon ui-icon-check"></a>
+                            <strong>
+                                <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
+                                <br />
+                            </strong>
+                        </div>
+
+                        <asp:Panel ID="pnl_comprobante" runat="server" Visible="False">
+                            <a class="ui-icon ui-icon-check"></a>
+                            <strong>Descargar comprobante <a runat="server" id="btn_descargar">Aquí</a>
+                                <br />
+                            </strong>
+                        </asp:Panel>
+
                     </div>
-
-                    <asp:Panel ID="pnl_comprobante" runat="server" Visible="False">
-                        <a class="ui-icon ui-icon-check"></a>
-                        <strong>Descargar comprobante <a runat="server" id="btn_descargar">Aquí</a>
-                            <br />
-                        </strong>
-                    </asp:Panel>
-
                 </div>
-            </div>
-        </asp:Panel>
+            </asp:Panel>
 
 
             <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
@@ -127,12 +127,11 @@
                             <!--Boton-->
                             <div class="row centered center-block">
                                 <strong>DNI</strong>
-                                <asp:TextBox ID="txt_filtro_dni" runat="server"></asp:TextBox>
-                                <asp:CompareValidator ID="mayor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="El DNI debe ser un valor mayor a 0" Operator="GreaterThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="0"></asp:CompareValidator>
-                                <asp:CompareValidator ID="menor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="DNI demasiado largo" Operator="LessThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="2147483647"></asp:CompareValidator>
+                                <asp:TextBox ID="txt_filtro_dni" type="number" min="1000000" CssClass="form-control" max="100000000" runat="server"></asp:TextBox>
+
                                 <strong>Apellido</strong>
-                                <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
-                                <asp:RegularExpressionValidator ID="caracteres_apellido" runat="server" ControlToValidate="txt_filtro_apellido" CssClass="text-danger" Display="Dynamic" ErrorMessage="Apellido demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgFiltro"> </asp:RegularExpressionValidator>
+                                <asp:TextBox ID="txt_filtro_apellido" CssClass="form-control" runat="server"></asp:TextBox>
+
 
                                 <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar" OnClick="btn_buscar_alumno_Click" ValidationGroup="vgFiltro" CssClass="btn btn-default" />
                                 <div class="row centered">
@@ -157,7 +156,7 @@
                         </div>
 
                         <div>
-                            <asp:Button ID="btn_registrar_alumno" CssClass="btn btn-default btn-link" ForeColor="Black" Font-Bold="true" runat="server" Text="Registrar nuevo alumno" CausesValidation="false" OnClick="btn_registrar_alumno_Click" />
+                            <asp:Button ID="btn_registrar_alumno" CssClass="btn btn-default btn-link" runat="server" formnovalidate="true" Text="Registrar nuevo alumno" CausesValidation="false" OnClick="btn_registrar_alumno_Click" />
                         </div>
                     </asp:Panel>
 
@@ -225,15 +224,15 @@
 
                         <!--Boton para aceptar inscripcion-->
                         <div class="row centered">
-                            <asp:Button CssClass="btn btn-default" ID="btn_aceptar_inscripcion" runat="server" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
-                            <asp:Button CssClass="btn-link" ID="btn_alumnos" runat="server" Text="Alumnos" OnClick="btn_alumnos_Click" />
+                            <asp:Button CssClass="btn btn-default" ID="btn_aceptar_inscripcion" runat="server" formnovalidate="true" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
+                            <asp:Button CssClass="btn-link" ID="btn_alumnos" runat="server" Text="Alumnos" formnovalidate="true" OnClick="btn_alumnos_Click" />
                         </div>
                         <div class="row centered">
                             <p>&nbsp;</p>
                         </div>
 
                     </asp:Panel>
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_Cancelar_Click1" />
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_Cancelar_Click1" />
 
                 </div>
             </div>

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
+using System.Data;
 
 using System.Collections;
 
@@ -58,7 +59,22 @@ namespace JJSS.Presentacion
 
         protected void cargarUsuarios()
         {
-            gvUsuarios.DataSource = gestorUsuarios.obtenerTablaUsuarios();
+            DataTable dtCompleta= gestorUsuarios.obtenerTablaUsuarios();
+            DataTable dtConFiltro;
+
+            dtConFiltro = dtCompleta.Clone();
+            string filtroApellido = txt_filtro_apellido.Text.ToUpper().Trim();
+            string filtroGrupo = txt_filtro_grupo.Text.ToUpper().Trim();
+
+            for (int i = 0; i < dtCompleta.Rows.Count; i++)
+            {
+                DataRow dr = dtCompleta.Rows[i];
+                if (dr["nombre"].ToString().ToUpper().StartsWith(filtroApellido) && dr["grupo_nombre"].ToString().ToUpper().Contains(filtroGrupo))
+                {
+                    dtConFiltro.ImportRow(dr);
+                };
+            }
+            gvUsuarios.DataSource = dtConFiltro;
             gvUsuarios.DataBind();
         }
 
@@ -104,6 +120,16 @@ namespace JJSS.Presentacion
         {
             gvUsuarios.PageIndex = e.NewPageIndex;
             cargarUsuarios();
+        }
+
+        protected void btn_buscar_Click(object sender, EventArgs e)
+        {
+            cargarUsuarios();
+        }
+
+        protected void btn_Cancelar_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("../Presentacion/Inicio.aspx");
         }
     }
 }

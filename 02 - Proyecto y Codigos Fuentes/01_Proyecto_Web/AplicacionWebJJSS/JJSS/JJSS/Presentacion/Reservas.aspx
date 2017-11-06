@@ -41,33 +41,30 @@
 
         <div class="row mt centered">
 
-            <h1>ADMINISTRACIÓN DE RESERVAS</h1>
+            <h1>SEGUIMIENTO DE RESERVAS</h1>
             <p>&nbsp;</p>
         </div>
 
-        <asp:Button ID="btn_grilla" runat="server" CssClass="btn btn-default" Text="Ver reservas" CausesValidation="false" OnClick="btn_grilla_Click" />
-        <asp:Button ID="btn_sin_reserva" runat="server" CssClass="btn btn-default" Text="Venta sin reserva" CausesValidation="false" OnClick="btn_sin_reserva_Click" />
 
-        <div class="row mt centered">
-            <p>&nbsp;</p>
-            <h2>Filtros</h2>
-
-            <div class="col-md-2"><strong>Apellido</strong></div>
-            <div class="col-md-3">
-                <asp:TextBox ID="txt_filtro_apellido" MaxLength="45" CssClass="form-control" runat="server"></asp:TextBox>
-
-            </div>
-            <asp:Button ID="btn_buscar" OnClick="btn_buscar_Click" runat="server" Text="Buscar" CssClass="btn btn-default" />
-        </div>
 
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="view_grilla" runat="server">
-                <div class="row centered">
 
-                    <div class="row centered">
-                        <p>&nbsp;</p>
+                <div class="row mt centered">
+                    <h2>Filtros</h2>
+
+                    <div class="col-md-2"><strong>Apellido</strong></div>
+                    <div class="col-md-3">
+                        <asp:TextBox ID="txt_filtro_apellido" MaxLength="45" CssClass="form-control" runat="server"></asp:TextBox>
+
                     </div>
+                    <asp:Button ID="btn_buscar" OnClick="btn_buscar_Click" runat="server" Text="Buscar" CssClass="btn btn-default" />
                 </div>
+
+                <div class="row centered">
+                    <p>&nbsp;</p>
+                </div>
+
 
                 <asp:GridView ID="gv_reservas" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="id_reserva" EmptyDataText="No existen elementos para esta selección" AllowPaging="True" OnPageIndexChanging="gv_reservas_PageIndexChanging" OnRowCommand="gv_reservas_RowCommand" PageSize="20">
                     <Columns>
@@ -75,6 +72,7 @@
                         <asp:BoundField DataField="nombre" HeaderText="Nombre" />
 
                         <asp:BoundField DataField="fecha" HeaderText="Fecha de Reserva" />
+
                         <asp:ButtonField CommandName="retirado" Text="Retirar" />
                         <asp:ButtonField CommandName="cancelado" Text="Cancelar" />
                         <asp:ButtonField CommandName="detalle" Text="Ver" />
@@ -87,23 +85,28 @@
             <asp:View ID="view_detalle_reserva" runat="server">
 
                 <div class="row centered">
-
-                    <div class="row centered">
-                        <p>&nbsp;</p>
-                    </div>
+                    <p>&nbsp;</p>
+                    <h2>Detalle de reserva</h2>
+                    <p>&nbsp;</p>
                 </div>
-                <p>&nbsp;</p>
-                <h2>Detalle de reserva</h2>
-                <p>&nbsp;</p>
+
                 <asp:GridView ID="gv_items" CssClass="table" runat="server" DataKeyNames="id_detalle" EmptyDataText="No hay productos para mostrar" AutoGenerateColumns="false">
                     <Columns>
+                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
                         <asp:BoundField DataField="nombre" HeaderText="Producto" />
                         <asp:BoundField DataField="precio_venta" HeaderText="Precio Unitario ($)" />
-                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+
+                        <asp:BoundField DataField="total" HeaderText="Precio Total ($)" />
                     </Columns>
 
                 </asp:GridView>
+                <div>
 
+                    <strong>
+                        <asp:Label ID="lbl_total" CssClass="pull-right" Text="0" runat="server"></asp:Label>
+                        <asp:Label CssClass="pull-right" runat="server">Total: $ </asp:Label></strong>
+
+                </div>
             </asp:View>
 
             <asp:View ID="view_sin_reserva" runat="server">
@@ -119,7 +122,7 @@
 
         </asp:MultiView>
         <div class="row centered">
-            <asp:Button ID="btn_cancelar" OnClick="btn_cancelar_Click" runat="server" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" />
+            <asp:Button ID="btn_cancelar" OnClick="btn_cancelar_Click" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" />
         </div>
     </form>
 </asp:Content>

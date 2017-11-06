@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS.Presentacion
 {
@@ -24,16 +25,22 @@ namespace JJSS.Presentacion
                 gestorReservas = new GestorReservas();
                 CargarGrillaReservas();
                 MultiView1.SetActiveView(view_grilla);
-                btn_sin_reserva.CssClass = "btn btn-default";
-                btn_grilla.CssClass = "btn btn-info";
                 
             }
         }
 
         private void CargarGrillaItems(int pIDReserva)
         {
-            gv_items.DataSource = gestorReservas.ObtenerDetalles(pIDReserva);
+            List<DetalleReservaResultado> lista = gestorReservas.ObtenerDetalles(pIDReserva);
+            gv_items.DataSource = lista;
             gv_items.DataBind();
+
+            
+            decimal total = 0;
+            foreach(DetalleReservaResultado i in lista){
+                total += (decimal)i.total;
+            }
+            lbl_total.Text = total+"";
         }
 
         private void CargarGrillaReservas()
@@ -127,8 +134,6 @@ namespace JJSS.Presentacion
         protected void btn_grilla_Click(object sender, EventArgs e)
         {
             MultiView1.SetActiveView(view_grilla);
-            btn_sin_reserva.CssClass = "btn btn-default";
-            btn_grilla.CssClass = "btn btn-info";
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
             CargarGrillaReservas();
@@ -137,8 +142,6 @@ namespace JJSS.Presentacion
         protected void btn_sin_reserva_Click(object sender, EventArgs e)
         {
             MultiView1.SetActiveView(view_sin_reserva);
-            btn_grilla.CssClass = "btn btn-default";
-            btn_sin_reserva.CssClass = "btn btn-info";
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
         }

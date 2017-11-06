@@ -80,6 +80,7 @@ namespace JJSS.Presentacion
             {
                 dtItems = auxdt.Clone();
                 dtItems.Columns.Add("cantidad");
+                dtItems.Columns.Add("total");
             }
             else
             {
@@ -90,6 +91,7 @@ namespace JJSS.Presentacion
                     if (int.Parse(dr1["id_producto"].ToString()) == int.Parse(auxdt.Rows[0]["id_producto"].ToString()))
                     {
                         dr1["cantidad"] = int.Parse(dr1["cantidad"].ToString()) + cantidad;
+                        dr1["total"] = int.Parse(dr1["cantidad"].ToString()) * decimal.Parse(dr1["precio_venta"].ToString());
                         aux = true;
                         break;
                     }
@@ -101,11 +103,18 @@ namespace JJSS.Presentacion
                 dtItems.ImportRow(auxdt.Rows[0]);
                 DataRow dr = dtItems.Rows[dtItems.Rows.Count - 1];
                 dr["cantidad"] = cantidad;
+                dr["total"] = int.Parse(dr["cantidad"].ToString()) * decimal.Parse(dr["precio_venta"].ToString());
             }
 
             cargarGrillaProductos();
 
-
+            decimal total = 0;
+            for (int i = 0; i < dtItems.Rows.Count; i++)
+            {
+                DataRow dr = dtItems.Rows[i];
+                total += decimal.Parse(dr["total"].ToString());
+            }
+            lbl_total.Text = total+"";
         }
 
         protected void btn_confirmar_reserva_Click(object sender, EventArgs e)
@@ -116,8 +125,9 @@ namespace JJSS.Presentacion
             string sReturn = gestorReservas.ConfirmarReserva(idUsuario, dtItems, _idUsuarioSeleccionado);
             if (sReturn.CompareTo("") == 0)
             {
-                mensaje("Se reservaron los productos correctamente", true);
+                mensaje("La reserva se realizó correctamente", true);
                 dtItems = null;
+                lbl_total.Text = 0+"";
                 cargarGrillaProductos();
                 cargarClasesView();
             }
@@ -195,8 +205,27 @@ namespace JJSS.Presentacion
 
         private void cargarGrillaUsuarios()
         {
-            gv_usuarios.DataSource = gestorUsuarios.BuscarProfesAlumnos();
+            DataTable dtCompleta = gestorUsuarios.BuscarProfesAlumnos();
+            DataTable dtConFiltro;
+
+            dtConFiltro = dtCompleta.Clone();
+            string filtroApellido = txt_filtro_apellido.Text.ToUpper().Trim();
+
+            for (int i = 0; i < dtCompleta.Rows.Count; i++)
+            {
+                DataRow dr = dtCompleta.Rows[i];
+                if (dr["apellido"].ToString().ToUpper().StartsWith(filtroApellido))
+                {
+                    dtConFiltro.ImportRow(dr);
+                };
+            }
+            gv_usuarios.DataSource = dtConFiltro;
             gv_usuarios.DataBind();
+        }
+
+        protected void btn_buscar_Click(object sender, EventArgs e)
+        {
+            cargarGrillaUsuarios();
         }
     }
 }

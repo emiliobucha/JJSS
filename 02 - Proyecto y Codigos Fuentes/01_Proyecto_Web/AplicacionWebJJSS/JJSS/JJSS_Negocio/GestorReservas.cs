@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -191,21 +192,23 @@ namespace JJSS_Negocio
         /*
          * devuelve el detalle de la reserva pasada por parametro
          */
-        public List<object> ObtenerDetalles(int pIDReserva)
+        public List<DetalleReservaResultado> ObtenerDetalles(int pIDReserva)
         {
             using (var db = new JJSSEntities())
             {
                 var detalle = from det in db.detalle_reserva
                               join pro in db.producto on det.id_producto equals pro.id_producto
                               where det.id_reserva == pIDReserva
-                              select new
+                              select new DetalleReservaResultado
                               {
                                   cantidad = det.cantidad,
                                   precio_venta = det.precio,
                                   nombre = pro.nombre,
                                   id_detalle = det.id_detalle_reserva,
+                                  total = det.precio * det.cantidad,
                               };
-                return detalle.ToList<Object>();
+                List<DetalleReservaResultado> lista = detalle.ToList<DetalleReservaResultado>();
+                return lista;
             }
         }
 
