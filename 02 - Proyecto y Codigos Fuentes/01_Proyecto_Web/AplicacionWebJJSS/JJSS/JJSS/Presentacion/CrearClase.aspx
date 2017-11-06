@@ -222,7 +222,7 @@
                     </div>
 
                     <div class="row centered center-block">
-                        <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_cancelar_Click" formnovalidate="true"></asp:Button>
+                        <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" OnClick="btn_cancelar_Click" formnovalidate="true"></asp:Button>
                         <asp:Button ID="btn_aceptar" runat="server" OnClick="btn_aceptar_Click" Text="Aceptar" CssClass="btn btn-default" ValidationGroup="vg_aceptar"></asp:Button>
                         <asp:Button ID="btn_nueva_clase" runat="server" Text="Limpiar" CssClass="btn btn-default" CausesValidation="false" OnClick="btn_nueva_clase_Click" formnovalidate="true"></asp:Button>
                     </div>

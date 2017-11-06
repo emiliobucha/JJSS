@@ -230,7 +230,7 @@
                                             <label class="pull-left">DNI del participante:</label>
                                         </div>
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                            <asp:TextBox ID="txtDni" autofocus="true" required="true"  type="number" class="form-control" min="1" max="1000000000" runat="server" placeholder="Ingrese DNI" ValidationGroup="grupoDni"></asp:TextBox>
+                                            <asp:TextBox ID="txtDni" autofocus="true" required="true"  type="number" class="form-control" min="1000000" max="1000000000" runat="server" placeholder="Ingrese DNI" ValidationGroup="grupoDni"></asp:TextBox>
                                         </div>
 
                                         <div class="col-sm-12 col-xs-12 hidden-lg hidden-md">
@@ -238,12 +238,12 @@
                                         </div>
 
                                         <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-                                            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscar_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
+                                            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscar_Click" />
                                         </div>
-                                        <div class="col-md-3">
+                                        <%--<div class="col-md-3">
                                             <asp:RequiredFieldValidator ID="requeridoDni" runat="server" ErrorMessage="Debe ingresar el DNI" ValidationGroup="grupoDni" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                                            <%--<asp:RegularExpressionValidator ID="regex_dni" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ValidationGroup="grupoDni" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>--%>
-                                        </div>
+                                            <asp:RegularExpressionValidator ID="regex_dni" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txtDni" CssClass="text-danger" Display="Dynamic" ValidationGroup="grupoDni" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
+                                        </div>--%>
                                     </div>
                                     <div class="row centered">
                                         <p>&nbsp;</p>
@@ -353,14 +353,14 @@
                                     <!--Boton Aceptar-->
                                     <div class="row centered center-block">
                                         <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
-                                        <asp:Button ID="btn_cancelar" class="btn btn-default" runat="server" Text="Cancelar" OnClick="btn_cancelar_Click" CausesValidation="false"  OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
+                                        
                                     </div>
 
                                       <div class="row centered">
                                         <p>&nbsp;</p>
                                     </div>
                                 </asp:Panel>
-
+                                <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
                             </div>
                         </form>
                     </div>

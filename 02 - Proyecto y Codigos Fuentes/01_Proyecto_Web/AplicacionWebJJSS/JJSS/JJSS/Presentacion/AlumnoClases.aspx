@@ -76,6 +76,7 @@
 
                                             </div>
                                         </div>
+                                        <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
                                     </div>
                                 </div>
                             </asp:Panel>

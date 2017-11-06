@@ -142,7 +142,7 @@
                         </div>
 
                         <asp:Button CssClass="btn btn-default" ID="btn_aceptar" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" />
-                        <asp:Button Text="Volver a inicio" CssClass="btn-link" ID="btn_cancelar" formnovalidate="true" runat="server" OnClick="btn_cancelar_Click" />
+                        <asp:Button Text="Volver a inicio" CssClass="btn-link pull-left" ID="btn_cancelar" formnovalidate="true" runat="server" OnClick="btn_cancelar_Click" />
                     </div>
                 </div>
 

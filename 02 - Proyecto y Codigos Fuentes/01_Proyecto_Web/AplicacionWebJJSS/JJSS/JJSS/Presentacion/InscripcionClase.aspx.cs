@@ -338,10 +338,6 @@ namespace JJSS.Presentacion
 
         //____________  Metodos y Botones generales __________
 
-        protected void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("../Presentacion/Inicio.aspx");
-        }
 
         protected void btn_alumnos_Click(object sender, EventArgs e)
         {
@@ -364,7 +360,7 @@ namespace JJSS.Presentacion
         {
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_clases");
         }
     }
 }

@@ -93,7 +93,7 @@
 
                             <!--Boton-->
                             <div class="row centered">
-                                <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_cancelar_Click" />
+                                <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" formnovalidate="true" CssClass="btn-link pull-left" CausesValidation="false" OnClick="btn_cancelar_Click" />
                                 <asp:Button ID="btn_aceptar" runat="server" CssClass="btn btn-default" Text="Aceptar" ValidationGroup="vgRegistro" OnClick="btn_aceptar_Click" />
 
                             </div>

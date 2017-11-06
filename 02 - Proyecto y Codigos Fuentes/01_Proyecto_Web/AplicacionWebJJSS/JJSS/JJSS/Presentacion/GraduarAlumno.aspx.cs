@@ -110,7 +110,7 @@ namespace JJSS.Presentacion
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_alumnos");
         }
 
         protected void btn_aceptar_Click(object sender, EventArgs e)

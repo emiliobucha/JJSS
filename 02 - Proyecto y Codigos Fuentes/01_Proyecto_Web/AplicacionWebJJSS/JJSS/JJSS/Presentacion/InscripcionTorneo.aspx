@@ -414,12 +414,12 @@
 
                                     <!--Boton Aceptar-->
                                     <div class="row centered">
-                                        <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link" formnovalidate="true" CausesValidation="false" OnClick="btn_Cancelar_Click" />
+                                        
                                         <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
                                         
                                     </div>
                                 </asp:Panel>
-
+                                <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" formnovalidate="true" CausesValidation="false" OnClick="btn_Cancelar_Click" />
                             </div>
                         </form>
                     </div>

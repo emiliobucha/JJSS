@@ -77,7 +77,7 @@ namespace JJSS.Presentacion
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_clases");
         }
 
 

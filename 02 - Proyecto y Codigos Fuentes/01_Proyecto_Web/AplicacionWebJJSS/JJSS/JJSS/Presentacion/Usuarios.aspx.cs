@@ -78,15 +78,6 @@ namespace JJSS.Presentacion
             gvUsuarios.DataBind();
         }
 
-
-        protected void btn_cancelar_Click(object sender, EventArgs e)
-        {
-
-            Response.Redirect("../Presentacion/Inicio.aspx");
-        }
-
-
-
         private void mensaje(string pMensaje, Boolean pEstado)
         {
             // Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
@@ -129,7 +120,7 @@ namespace JJSS.Presentacion
 
         protected void btn_Cancelar_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_permisos");
         }
     }
 }

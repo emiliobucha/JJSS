@@ -212,12 +212,13 @@
                                 <p>&nbsp;</p>
                             </div>
                         </asp:Panel>
-
+                        
                         <!--Boton-->
                         <div class="row centered center-block">
-                            <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" formnovalidate="true" CssClass="btn-link" CausesValidation="false" OnClick="btn_Cancelar_Click" />
+                            
                             <asp:Button ID="btn_aceptar" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1" OnClientClick="btn_aceptar_Click1" CausesValidation="true" ValidationGroup="vgTorneo" />
                         </div>
+                        <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" formnovalidate="true" CssClass="btn-link" CausesValidation="false" OnClick="btn_Cancelar_Click" />
                     </div>
 
                 </form>

@@ -301,15 +301,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
-        /// Control requeridoDni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoDni;
-        
-        /// <summary>
         /// Control pnl_Inscripcion.
         /// </summary>
         /// <remarks>
@@ -382,12 +373,12 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
         
         /// <summary>
-        /// Control btn_cancelar.
+        /// Control btn_Cancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar;
+        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
     }
 }

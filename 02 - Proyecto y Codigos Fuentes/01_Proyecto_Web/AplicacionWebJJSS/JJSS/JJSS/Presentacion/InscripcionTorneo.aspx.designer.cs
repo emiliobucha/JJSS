@@ -427,15 +427,6 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.RadioButtonList rb_tipo;
         
         /// <summary>
-        /// Control btn_Cancelar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
-        
-        /// <summary>
         /// Control btn_aceptar.
         /// </summary>
         /// <remarks>
@@ -443,6 +434,15 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
+        
+        /// <summary>
+        /// Control btn_Cancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
         
         /// <summary>
         /// Control inscripcionCorrecta.

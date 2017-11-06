@@ -197,13 +197,14 @@ namespace JJSS.Presentacion
                 string[] formats = { "MM/dd/yyyy" };
                 DateTime fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 DateTime fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
-                if (fecha_cierre <= fecha)
+                if (fecha_cierre < fecha) args.IsValid = true;
+                else if (fecha_cierre > fecha) args.IsValid = false;
+                else //son iguales
                 {
-                    args.IsValid = true;
-                }
-                else
-                {
-                    args.IsValid = false;
+                    TimeSpan hora = TimeSpan.Parse(txt_hora.Text);
+                    TimeSpan horaCierre = TimeSpan.Parse(txt_hora_cierre.Text);
+                    if (horaCierre <= hora) args.IsValid = true;
+                    else args.IsValid = false;
                 }
             }
             catch
@@ -220,7 +221,7 @@ namespace JJSS.Presentacion
         protected void btn_Cancelar_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_torneos");
         }
 
         private void limpiar()

@@ -232,9 +232,10 @@
                         </div>
 
                     </asp:Panel>
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_Cancelar_Click1" />
+                    
 
                 </div>
+                <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_Cancelar_Click1" />
             </div>
 
         </div>

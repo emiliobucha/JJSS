@@ -184,13 +184,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
         
         /// <summary>
-        /// Control btn_cancelar.
+        /// Control Button1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// Control view_grilla.

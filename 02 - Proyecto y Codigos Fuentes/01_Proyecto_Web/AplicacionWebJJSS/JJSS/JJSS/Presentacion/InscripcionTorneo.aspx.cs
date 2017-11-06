@@ -427,7 +427,7 @@ namespace JJSS
         protected void btn_Cancelar_Click(object sender, EventArgs e)
         {
             limpiar(true);
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_torneos");
         }
     }
 }

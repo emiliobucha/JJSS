@@ -128,9 +128,10 @@
                                     <div class="row centered">
                                         <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" ValidationGroup="vgDatos" OnClick="btn_aceptar_Click" />
 
-                                        <asp:Button ID="btn_cancelar" runat="server" CausesValidation="False" class="btn btn-default" OnClick="btn_cancelar_Click" Text="Cancelar" type="submit" />
+                                        
 
                                     </div>
+                                    <asp:Button ID="Button1" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
 
 
                                 </div>
@@ -192,6 +193,7 @@
 
 
         </asp:MultiView>
+        
     </form>
 
 

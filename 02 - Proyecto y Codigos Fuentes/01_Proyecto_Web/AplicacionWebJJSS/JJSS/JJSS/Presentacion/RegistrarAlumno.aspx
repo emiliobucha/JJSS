@@ -277,10 +277,11 @@
 
                                 <!--Boton-->
                                 <div class="row centered">
-                                    <asp:Button ID="btn_cancelar" runat="server" formnovalidate="true" Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_cancelar_Click" />
+                                    
                                     <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgAlumnos" />
                                     <asp:Button ID="btn_ver_alumnos" runat="server" CssClass=" btn-link" formnovalidate="true" Text="Ver Alumnos" CausesValidation="False" OnClick="btn_ver_alumnos_Click" />
                                 </div>
+                                <asp:Button ID="btn_cancelar" runat="server" formnovalidate="true" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" OnClick="btn_cancelar_Click" />
                             </div>
                         </div>
 

@@ -206,7 +206,7 @@
                         <!--Boton-->
                         <div class="row centered center-block   ">
                             <asp:Button ID="btn_aceptar" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" OnClientClick="btn_aceptar_Click1" ValidationGroup="vgTorneo" />
-                            <asp:Button ID="btn_cancelar" class="btn btn-default" runat="server" Text="Cancelar" formnovalidate="true" OnClick="btn_cancelar_Click" CausesValidation="false" />
+                            <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
                         </div>
                     </div>
 

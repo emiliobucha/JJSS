@@ -427,15 +427,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_localidad;
         
         /// <summary>
-        /// Control btn_cancelar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar;
-        
-        /// <summary>
         /// Control btn_guardar.
         /// </summary>
         /// <remarks>
@@ -452,6 +443,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_ver_profes;
+        
+        /// <summary>
+        /// Control btn_Cancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
         
         /// <summary>
         /// Control pnl_mostrar_profes.

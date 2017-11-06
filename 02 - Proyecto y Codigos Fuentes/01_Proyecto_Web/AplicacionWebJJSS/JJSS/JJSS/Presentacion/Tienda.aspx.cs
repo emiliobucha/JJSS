@@ -166,7 +166,7 @@ namespace JJSS.Presentacion
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
             _idUsuarioSeleccionado = 0;
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_tienda");
 
         }
 
