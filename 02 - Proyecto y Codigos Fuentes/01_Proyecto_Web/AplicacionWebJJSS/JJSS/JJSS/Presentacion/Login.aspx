@@ -13,9 +13,9 @@
 
     <form id="form2" runat="server" >
 
-        <asp:Panel ID="pnlLogin" runat="server" CssClass="panel panel-default" Height="100%">
+        <asp:Panel ID="pnlLogin" runat="server" CssClass="panel panel-default" Height="100%" style="background-color:#9EBDC9">
             <div id="loginwrap">
-                <div class="container">
+                <div class="container" style="background-color:white">
                     <div class="row mt centered">
 
                         <h1>Iniciar Sesión</h1>
@@ -27,7 +27,7 @@
                         <div class="row centered">
                             <div class="col-md-3"></div>
                             <div class="col-md-2">
-                                <label class="pull-left 4">Usuario</label>
+                                <label class="pull-right 4">Usuario</label>
                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txt_usuario" runat="server" required="true" placeholder="Nombre de usuario" CssClass="caja2"></asp:TextBox>
@@ -42,7 +42,7 @@
                         <div class="row centered">
                             <div class="col-md-3"></div>
                             <div class="col-md-2">
-                                <label class="pull-left 4">Contraseña</label>
+                                <label class="pull-right 4">Contraseña</label>
                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txt_pass" runat="server" TextMode="Password" required="true" placeholder="Contraseña" CssClass="caja2"></asp:TextBox>
@@ -55,7 +55,7 @@
                         <!--Recordarme-->
                         <div class="row centered">
                             <div>
-                                <asp:CheckBox ID="chk_recordar" Text="  Recordarme" runat="server" />
+                                <asp:CheckBox ID="chk_recordar" Text="  &nbsp Recordarme" runat="server" />
                             </div>
                         </div>
                         <div class="row centered">
@@ -144,6 +144,8 @@
                         <div class="row centered">
                             <p>&nbsp;</p>
                         </div>
+
+
 
 
                         <!--Boton-->

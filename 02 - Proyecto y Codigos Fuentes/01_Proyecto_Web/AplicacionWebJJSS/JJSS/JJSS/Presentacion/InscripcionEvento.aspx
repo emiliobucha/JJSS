@@ -336,7 +336,10 @@
                                             <label class="pull-left text-left">Fecha de Nacimiento</label>
                                         </div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="dp_fecha" required="true" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" value="01/01/2000" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha "></asp:TextBox>
+                                            <!--SOMEE-->
+                                            <%--<asp:TextBox ID="dp_fecha" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
+                                            <!--LOCAL-->
+                                            <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                         </div>
 
                                         <div class="col-md-3">
@@ -374,11 +377,24 @@
     <script type="text/javascript">
 
 </script>
-    <script type="text/javascript">
+    <!-- FECHA SOMEE-->
+    <%--<script type="text/javascript">
         $(document).ready(
             function () {
                 $(".datepicker").datepicker({
                     dateFormat: "mm/dd/yy",
+                    monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
+                });
+            }
+        );
+    </script>--%>
+    <!--LOCAL-->
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".datepicker").datepicker({
+                    dateFormat: "dd/mm/yy",
                     monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                     dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
                 });

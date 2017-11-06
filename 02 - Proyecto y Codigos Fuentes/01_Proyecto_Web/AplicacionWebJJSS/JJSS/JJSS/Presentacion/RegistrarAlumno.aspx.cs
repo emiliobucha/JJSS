@@ -141,9 +141,12 @@ namespace JJSS.Presentacion
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
 
+            /*FECHA SOMEE
             string[] formats = { "MM/dd/yyyy" };
-
             DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+            */
+            //LOCAL
+            DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
 
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
@@ -370,9 +373,12 @@ namespace JJSS.Presentacion
                 txt_telefono_urgencia.Text = alu.telefono_emergencia.ToString();
 
                 DateTime fecha = (DateTime)alu.fecha_nacimiento;
+                /*FECHA SOMEE
                 string format = "MM/dd/yyyy";
                 dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
-                
+                */
+                //LOCAL
+                dp_fecha.Text = fecha.ToShortDateString();
 
                 if (alu.sexo == 0) rbSexo.SelectedIndex = 0;
                 if (alu.sexo == 1) rbSexo.SelectedIndex = 1;

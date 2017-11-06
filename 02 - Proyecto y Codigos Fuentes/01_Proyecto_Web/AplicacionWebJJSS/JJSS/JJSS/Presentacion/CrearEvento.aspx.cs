@@ -65,6 +65,8 @@ namespace JJSS.Presentacion
                 string nombre = txt_nombre.Text;
                 DateTime fecha = new DateTime(99, 01, 01);
                 DateTime fecha_cierre = fecha;
+
+                /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
                 if (dp_fecha.Text != "")
                 {
@@ -74,6 +76,10 @@ namespace JJSS.Presentacion
                 {
                     fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 }
+                */
+                //LOCAL
+                fecha = DateTime.Parse(dp_fecha.Text);
+                fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
 
                 decimal precio = decimal.Parse(txt_precio.Text.Replace(".", ","));
                 string hora = txt_hora.Text;
@@ -153,11 +159,18 @@ namespace JJSS.Presentacion
         {
             try
             {
+                /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
                 DateTime fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 DateTime fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 string fecha_act = DateTime.Now.ToString("MM/dd/yyyy");
                 DateTime fecha_actual = DateTime.ParseExact(fecha_act, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+                */
+                //LOCAL
+                DateTime fecha = DateTime.Parse(dp_fecha.Text);
+                DateTime fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
+                DateTime fecha_actual = DateTime.Today;
+
                 if (fecha >= fecha_actual && fecha_cierre >= fecha_actual)
                 {
                     args.IsValid = true;
@@ -177,9 +190,15 @@ namespace JJSS.Presentacion
         {
             try
             {
+                /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
                 DateTime fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 DateTime fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+                */
+                //LOCAL
+                DateTime fecha = DateTime.Parse(dp_fecha.Text);
+                DateTime fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
+
                 if (fecha_cierre < fecha) args.IsValid = true;
                 else if (fecha_cierre > fecha) args.IsValid = false;
                 else //son iguales

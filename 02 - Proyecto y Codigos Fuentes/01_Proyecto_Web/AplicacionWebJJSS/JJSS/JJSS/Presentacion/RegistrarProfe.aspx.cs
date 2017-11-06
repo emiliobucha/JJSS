@@ -117,9 +117,13 @@ namespace JJSS.Presentacion
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
 
+            /*FECHA SOMEE
             string[] formats = { "MM/dd/yyyy" };
             DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
-            
+            */
+            //LOCAL
+            DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
+
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino

@@ -112,15 +112,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox dp_fecha;
         
         /// <summary>
-        /// Control rev_fecha.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_fecha;
-        
-        /// <summary>
         /// Control rbSexo.
         /// </summary>
         /// <remarks>

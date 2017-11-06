@@ -146,10 +146,14 @@ namespace JJSS
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
             double peso = float.Parse(txt_peso.Text.Replace(".", ","));
-            string[] formats = { "MM/dd/yyyy" };
 
-            DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"),
-                System.Globalization.DateTimeStyles.None);
+            /*FECHA SOMEE
+            string[] formats = { "MM/dd/yyyy" };
+            DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+            */
+            //LOCAL
+            DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
+
             int dni = int.Parse(txtDni.Text);
 
 
@@ -358,9 +362,12 @@ namespace JJSS
                 txt_nombre.Text = alumnoEncontrado.nombre;
 
                 DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
+                /*FECHA SOMEE
                 string format = "MM/dd/yyyy";
                 dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
-
+                */
+                //LOCAL
+                dp_fecha.Text = fecha.ToShortDateString();
 
                 // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 

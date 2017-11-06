@@ -94,7 +94,10 @@
                                     <label class="pull-left">Fecha a realizarse</label>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="dp_fecha" runat="server" required="true" CssClass="datepicker caja2" placeholder="Seleccione fecha del torneo"></asp:TextBox>
+                                    <!--SOMEE-->
+                                            <%--<asp:TextBox ID="dp_fecha" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
+                                            <!--LOCAL-->
+                                            <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
 
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
@@ -120,7 +123,10 @@
                                     <label class="pull-left ">Cierre de inscripción</label>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="dp_fecha_cierre" required="true" placeholder="Seleccione fecha de cierre de inscripción" CssClass="datepicker caja2" runat="server"></asp:TextBox>
+                                    <!--SOMEE-->
+                                            <%--<asp:TextBox ID="dp_fecha_cierre" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
+                                            <!--LOCAL-->
+                                            <asp:TextBox ID="dp_fecha_cierre" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                                     <label class="pull-left">Hora de cierre</label>
@@ -132,7 +138,7 @@
 
                                     <asp:CustomValidator ID="val_fechas" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha de cierre de inscripción no puede ser mayor a la fecha de comienzo del torneo" OnServerValidate="val_fechas_ServerValidate" ValidationGroup="vgTorneo"> </asp:CustomValidator>
                                     <asp:CustomValidator ID="val_fecha_actual" runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="La fecha no puede ser anterior a la actual" OnServerValidate="val_fecha_actual_ServerValidate" ValidationGroup="vgTorneo"> </asp:CustomValidator>
-                                    <asp:RegularExpressionValidator ID="rev_fecha_cierre" runat="server" ControlToValidate="dp_fecha_cierre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de cierre" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
+                                    <%--<asp:RegularExpressionValidator ID="rev_fecha_cierre" runat="server" ControlToValidate="dp_fecha_cierre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de cierre" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>--%>
                                 </div>
                             </div>
 
@@ -233,11 +239,24 @@
 </asp:Content>
 
 <asp:Content ID="cphP" ContentPlaceHolderID="cphP" runat="server">
-    <script type="text/javascript">
+    <!-- FECHA SOMEE-->
+    <%--<script type="text/javascript">
         $(document).ready(
             function () {
                 $(".datepicker").datepicker({
                     dateFormat: "mm/dd/yy",
+                    monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
+                });
+            }
+        );
+    </script>--%>
+    <!--LOCAL-->
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".datepicker").datepicker({
+                    dateFormat: "dd/mm/yy",
                     monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                     dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
                 });

@@ -114,7 +114,10 @@
                                     <label class="pull-left">Fecha a producirse</label>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="dp_fecha" required="true" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha del evento" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$"></asp:TextBox>
+                                    <!--SOMEE-->
+                                            <%--<asp:TextBox ID="dp_fecha" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
+                                            <!--LOCAL-->
+                                            <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
 
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
@@ -139,7 +142,10 @@
                                     <label class="pull-left ">Cierre de inscripcion</label>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="dp_fecha_cierre" required="true" placeholder="Seleccione fecha de cierre de inscripciones" CssClass="datepicker caja2" runat="server" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$"></asp:TextBox>
+                                    <!--SOMEE-->
+                                            <%--<asp:TextBox ID="dp_fecha_cierre" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
+                                            <!--LOCAL-->
+                                            <asp:TextBox ID="dp_fecha_cierre" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                                     <label class="pull-left">Hora de cierre</label>
@@ -226,11 +232,24 @@
 
 </script>
 
-    <script type="text/javascript">
+    <!-- FECHA SOMEE-->
+    <%--<script type="text/javascript">
         $(document).ready(
             function () {
                 $(".datepicker").datepicker({
                     dateFormat: "mm/dd/yy",
+                    monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
+                });
+            }
+        );
+    </script>--%>
+    <!--LOCAL-->
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".datepicker").datepicker({
+                    dateFormat: "dd/mm/yy",
                     monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                     dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
                 });
