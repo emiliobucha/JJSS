@@ -109,12 +109,12 @@
 
                 </div>
             </div>
+
             <asp:Panel ID="pnl_usuarios" runat="server" Visible="false">
+
                 <div class="centered">
                     <p>&nbsp;</p>
                     <h2>Seleccionar usuario</h2>
-                    <p>&nbsp;</p>
-                    <div class="row mt centered">
                         <h3>Filtros</h3>
 
                         <div class="col-md-2"><strong>Apellido</strong></div>
@@ -124,14 +124,13 @@
                         </div>
                         <asp:Button ID="btn_buscar" OnClick="btn_buscar_Click" runat="server" Text="Buscar" CssClass="btn btn-default" />
                         <p>&nbsp;</p>
-                    </div>
                     <asp:GridView ID="gv_usuarios" CssClass="table" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_usuarios_PageIndexChanging" runat="server" DataKeyNames="id" EmptyDataText="No hay usuarios para mostrar" OnRowCommand="gv_usuarios_RowCommand" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundField DataField="apellido" HeaderText="Apellido" />
                             <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                             <asp:BoundField DataField="dni" HeaderText="DNI" />
 
-                            <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="" />
+                            <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText=""/>
                         </Columns>
 
                     </asp:GridView>

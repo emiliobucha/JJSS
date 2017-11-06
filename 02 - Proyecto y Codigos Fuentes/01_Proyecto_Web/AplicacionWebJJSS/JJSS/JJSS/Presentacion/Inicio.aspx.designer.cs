@@ -490,24 +490,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_modal_recarga;
         
         /// <summary>
-        /// Control requeridoMonto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoMonto;
-        
-        /// <summary>
-        /// Control regex_monto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_monto;
-        
-        /// <summary>
         /// Control btn_modal_recarga_aceptar.
         /// </summary>
         /// <remarks>

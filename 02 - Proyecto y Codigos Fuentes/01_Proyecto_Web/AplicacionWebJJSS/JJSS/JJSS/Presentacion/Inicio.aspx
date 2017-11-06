@@ -851,11 +851,7 @@
                                         <label for="recipient-name" class="control-label">Recarga:</label>
                                     </div>
                                     <div class="col-xs-5">
-                                        <asp:TextBox ID="txt_modal_recarga" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <asp:RequiredFieldValidator ID="requeridoMonto" ValidationGroup="vg_recarga" CssClass="text text-danger" runat="server" ErrorMessage="Debe ingresar un valor de recarga" ControlToValidate="txt_modal_recarga" Display="Dynamic"> </asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="regex_monto" ValidationGroup="vg_recarga" runat="server" ControlToValidate="txt_modal_recarga" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido del valor de recarga" ValidationExpression="^[0-9]{0,16}(,?[0-9][0-9]{0,1})$"> </asp:RegularExpressionValidator>
+                                        <asp:TextBox ID="txt_modal_recarga" required="true" type="number" step="0.01" min="0" max="10000" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="row centered">
@@ -867,8 +863,8 @@
 
                     <!--Botonero-->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="btn_modal_recarga_aceptar" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_modal_recarga_aceptar_Click" ValidationGroup="vg_recarga" />
+                        <button type="button" formnovalidate class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="btn_modal_recarga_aceptar" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_modal_recarga_aceptar_Click"/>
                     </div>
 
                 </div>

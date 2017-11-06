@@ -18,10 +18,10 @@ namespace JJSS_Negocio
         /*
          * Metodo que reserva los productos seleccionados para un usuario
          */
-        public String ConfirmarReserva(int pIDUsuario, DataTable pItems, int pIDUsuario2)
+        public String ConfirmarReserva(int pIDUsuarioLogueado, DataTable pItems, int? pIDUsuarioQueReserva)
         {
             DateTime fechaActual = DateTime.Now;
-            int usuarioQueReserva = pIDUsuario;
+            int? usuarioQueReserva = pIDUsuarioLogueado;
             int estado=Reservada;
             using (var db = new JJSSEntities())
             {
@@ -30,7 +30,7 @@ namespace JJSS_Negocio
                 {
                     if (usuarioQueReserva == 1)//es admin
                     {
-                        usuarioQueReserva = pIDUsuario2; //se le asigna la reserva otro usuario
+                        usuarioQueReserva = pIDUsuarioQueReserva; //se le asigna la reserva otro usuario
                         estado = Retirada; // se crea la reserva como retirada
                     }
                     reserva nuevaReserva = new reserva()

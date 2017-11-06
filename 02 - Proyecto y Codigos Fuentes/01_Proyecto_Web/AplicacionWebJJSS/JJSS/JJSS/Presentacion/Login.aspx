@@ -30,10 +30,7 @@
                                 <label class="pull-left 4">Usuario</label>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txt_usuario" runat="server" placeholder="Nombre de usuario" CssClass="caja2"></asp:TextBox>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:RequiredFieldValidator ID="requeridoUsuario" runat="server" ErrorMessage="Debe ingresar un nombre de usuario" ControlToValidate="txt_usuario" CssClass="text-danger" ValidationGroup="val_inicio_sesion" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txt_usuario" runat="server" required="true" placeholder="Nombre de usuario" CssClass="caja2"></asp:TextBox>
                             </div>
                         </div>
 
@@ -48,10 +45,7 @@
                                 <label class="pull-left 4">Contraseña</label>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txt_pass" runat="server" TextMode="Password" placeholder="Contraseña" CssClass="caja2"></asp:TextBox>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:RequiredFieldValidator ID="requeridoPass" runat="server" ErrorMessage="Debe ingresar una contraseña" ControlToValidate="txt_pass" CssClass="text-danger" ValidationGroup="val_inicio_sesion" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txt_pass" runat="server" TextMode="Password" required="true" placeholder="Contraseña" CssClass="caja2"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row centered">
@@ -84,7 +78,7 @@
                         </div>
                          <!--Invitado-->
                         <div class="row centered">
-                            <asp:Button ID="btn_invitado" CssClass="btn btn-default btn-link" ForeColor="Black" Font-Bold="true" runat="server" Text="Iniciar como Invitado" OnClick="btn_invitado_Click" />
+                            <asp:Button ID="btn_invitado" CssClass="btn btn-default btn-link" formnovalidate="true" ForeColor="Black" Font-Bold="true" runat="server" Text="Iniciar como Invitado" OnClick="btn_invitado_Click" />
                         </div>
                     </div>
                 </div>
@@ -109,10 +103,7 @@
                                 <label class="pull-left 4">Contraseña anterior</label>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txt_pass_anterior" runat="server" CssClass="caja2" TextMode="Password"></asp:TextBox>
-                            </div>
-                            <div class="col-md-3">
-                                <asp:RequiredFieldValidator ID="requeridoPassAnterios" runat="server" ErrorMessage="Debe ingresar una contraseña anterior" ControlToValidate="txt_pass_anterior" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txt_pass_anterior" runat="server" required="true" CssClass="caja2" TextMode="Password"></asp:TextBox>
                             </div>
                         </div>
 
@@ -127,10 +118,9 @@
                                 <label class="pull-left 4">Contraseña nueva</label>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txt_pass_nueva" TextMode="Password" runat="server" CssClass="caja2"></asp:TextBox>
+                                <asp:TextBox ID="txt_pass_nueva" TextMode="Password" MaxLength="100" required="true" runat="server" CssClass="caja2"></asp:TextBox>
                             </div>
                             <div class="col-md-3">
-                                <asp:RequiredFieldValidator ID="requeridoPassNueva" runat="server" ErrorMessage="Debe ingresar una contraseña nueva" ControlToValidate="txt_pass_nueva" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:CompareValidator ID="compararNueva" runat="server" CssClass="text-danger" ErrorMessage="La contraseña nueva debe ser distinta a la anterior" Display="Dynamic" ControlToValidate="txt_pass_nueva" ControlToCompare="txt_pass_anterior" ValidationGroup="val_cambiar_pass" Operator="NotEqual"></asp:CompareValidator>
                             </div>
                         </div>
@@ -145,10 +135,9 @@
                                 <label class="pull-left 4">Repetir contraseña nueva</label>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txt_pass_repetida" runat="server" CssClass="caja2" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="txt_pass_repetida" runat="server" required="true" MaxLength="100" CssClass="caja2" TextMode="Password"></asp:TextBox>
                             </div>
                             <div class="col-md-3">
-                                <asp:RequiredFieldValidator ID="requeridoPassRepetida" runat="server" ErrorMessage="Debe repetir la contraseña nueva" ControlToValidate="txt_pass_repetida" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:CompareValidator ID="compararPass" runat="server" CssClass="text-danger" ErrorMessage="Las contraseñas nuevas deben ser iguales" Display="Dynamic" ControlToValidate="txt_pass_repetida" ControlToCompare="txt_pass_nueva" ValidationGroup="val_cambiar_pass"></asp:CompareValidator>
                             </div>
                         </div>

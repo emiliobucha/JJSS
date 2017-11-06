@@ -47,7 +47,7 @@
         </div>
 
         <asp:MultiView ID="MultiView1" runat="server">
-             
+
             <!-------------AGREGAR PRODUCTOS--------------->
 
             <asp:View ID="view_formulario" runat="server">
@@ -64,7 +64,7 @@
                                     <div class="row centered col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <p>&nbsp;</p>
                                     </div>
-                                    
+
                                     <!--Ingresar nombre-->
 
                                     <div class="row centered">
@@ -72,11 +72,7 @@
                                             <label class="pull-left">Nombre</label>
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-sm-10 col-xs-10">
-                                            <asp:TextBox ID="txt_nombre" class="caja2" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-3 col-lg-3  col-sm-10 col-xs-10">
-                                            <asp:RequiredFieldValidator ID="requeridoNombre" runat="server" ErrorMessage="Debe ingresar el nombre" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgDatos"></asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgDatos"></asp:RegularExpressionValidator>
+                                            <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="50" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
                                         </div>
                                     </div>
 
@@ -119,7 +115,7 @@
                                             </div>
                                         </asp:Panel>
                                     </div>
-                                    
+
                                     <div class="row centered">
                                         <p>&nbsp;</p>
                                     </div>
@@ -128,7 +124,7 @@
                                     <div class="row centered">
                                         <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" ValidationGroup="vgDatos" OnClick="btn_aceptar_Click" />
 
-                                        
+
 
                                     </div>
                                     <asp:Button ID="Button1" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
@@ -176,7 +172,7 @@
                         <p>&nbsp;</p>
                     </div>
 
-                     <!-------------grilla--------------->
+                    <!-------------grilla--------------->
                     <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12">
                         <div>
                             <asp:GridView ID="gv_productos" CssClass="table" EmptyDataText="No hay productos para mostrar" AllowPaging="True" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="gv_productos_PageIndexChanging" PageSize="20">
@@ -193,7 +189,7 @@
 
 
         </asp:MultiView>
-        
+
     </form>
 
 

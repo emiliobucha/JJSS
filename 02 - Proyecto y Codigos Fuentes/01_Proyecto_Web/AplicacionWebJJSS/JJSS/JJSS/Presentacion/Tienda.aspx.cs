@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JJSS_Negocio;
 using JJSS_Entidad;
 using System.Data;
+using System.Drawing;
 
 namespace JJSS.Presentacion
 {
@@ -17,7 +18,7 @@ namespace JJSS.Presentacion
         private static GestorUsuarios gestorUsuarios;
         private static GestorSesiones gestorSesion;
         private static DataTable dtItems;
-        private static int _idUsuarioSeleccionado;
+        private static int? _idUsuarioSeleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +31,7 @@ namespace JJSS.Presentacion
                 cargarClasesView();
                 cargarGrillaProductos();
 
-                _idUsuarioSeleccionado = 0;
+                _idUsuarioSeleccionado = null;
 
                 seguridad_usuario alumnoActual = gestorSesion.getActual().usuario;
                 int idUsuario = alumnoActual.id_usuario;
@@ -114,7 +115,7 @@ namespace JJSS.Presentacion
                 DataRow dr = dtItems.Rows[i];
                 total += decimal.Parse(dr["total"].ToString());
             }
-            lbl_total.Text = total+"";
+            lbl_total.Text = total + "";
         }
 
         protected void btn_confirmar_reserva_Click(object sender, EventArgs e)
@@ -127,7 +128,7 @@ namespace JJSS.Presentacion
             {
                 mensaje("La reserva se realizó correctamente", true);
                 dtItems = null;
-                lbl_total.Text = 0+"";
+                lbl_total.Text = 0 + "";
                 cargarGrillaProductos();
                 cargarClasesView();
             }
@@ -176,13 +177,24 @@ namespace JJSS.Presentacion
             int id = Convert.ToInt32(gv_items.DataKeys[index].Value);
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
+                decimal total = decimal.Parse(lbl_total.Text);
                 for (int i = 0; i < dtItems.Rows.Count; i++)
                 {
                     DataRow dr = dtItems.Rows[i];
-                    if (int.Parse(dr["id_producto"].ToString()) == id) dtItems.Rows.Remove(dr);
-                    break;
+                    int idProd = int.Parse(dr["id_producto"].ToString());
+                    if (idProd == id)
+                    {
+                        total -= decimal.Parse(dr["total"].ToString());
+                        dtItems.Rows.Remove(dr);
+                        break;
+                    }
+
                 }
                 cargarGrillaProductos();
+                lbl_total.Text = total + "";
+                pnl_mensaje_error.Visible = false;
+                pnl_mensaje_exito.Visible = false;
+
             }
         }
 
@@ -190,6 +202,14 @@ namespace JJSS.Presentacion
         {
             int index = Convert.ToInt32(e.CommandArgument);
             int id = Convert.ToInt32(gv_usuarios.DataKeys[index].Value);
+
+            foreach (GridViewRow row in gv_usuarios.Rows)
+            {
+                row.BackColor = Color.Transparent;
+            }
+
+
+            gv_usuarios.Rows[index].BackColor = Color.LightBlue;
 
             if (e.CommandName.CompareTo("seleccionar") == 0)
             {

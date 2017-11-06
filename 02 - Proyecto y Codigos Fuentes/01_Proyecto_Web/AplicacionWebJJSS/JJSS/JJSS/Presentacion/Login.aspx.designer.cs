@@ -40,15 +40,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_usuario;
         
         /// <summary>
-        /// Control requeridoUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoUsuario;
-        
-        /// <summary>
         /// Control txt_pass.
         /// </summary>
         /// <remarks>
@@ -56,15 +47,6 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_pass;
-        
-        /// <summary>
-        /// Control requeridoPass.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPass;
         
         /// <summary>
         /// Control chk_recordar.
@@ -121,15 +103,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_pass_anterior;
         
         /// <summary>
-        /// Control requeridoPassAnterios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPassAnterios;
-        
-        /// <summary>
         /// Control txt_pass_nueva.
         /// </summary>
         /// <remarks>
@@ -137,15 +110,6 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_pass_nueva;
-        
-        /// <summary>
-        /// Control requeridoPassNueva.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPassNueva;
         
         /// <summary>
         /// Control compararNueva.
@@ -164,15 +128,6 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_pass_repetida;
-        
-        /// <summary>
-        /// Control requeridoPassRepetida.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requeridoPassRepetida;
         
         /// <summary>
         /// Control compararPass.

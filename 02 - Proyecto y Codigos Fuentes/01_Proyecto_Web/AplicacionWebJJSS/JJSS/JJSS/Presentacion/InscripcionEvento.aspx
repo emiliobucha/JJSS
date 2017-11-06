@@ -33,8 +33,8 @@
                 <asp:Panel ID="pnl_pago" runat="server" Visible="False">
                     <div class="text-center">
                         ¿Desea pagar ahora?<br />
-                        <asp:Button ID="btn_pagar" runat="server" class="btn btn-default" Text="Si" OnClientClick="btn_pagar_click()" />
-                        <asp:Button ID="btn_no" runat="server" class="btn btn-default" Text="No" OnClientClick="btn_no_click()" />
+                        <asp:Button ID="btn_pagar" runat="server" class="btn btn-default" Text="Si" formnovalidate="true" OnClientClick="btn_pagar_click()" />
+                        <asp:Button ID="btn_no" runat="server" class="btn btn-default" Text="No" formnovalidate="true" OnClientClick="btn_no_click()" />
                     </div>
                 </asp:Panel>
             </div>
@@ -96,7 +96,7 @@
                                         </div>
 
                                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                            <asp:Button ID="btnAceptarEvento" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnAceptarEvento_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
+                                            <asp:Button ID="btnAceptarEvento" runat="server" Text="Aceptar" CssClass="btn btn-default" formnovalidate="true" OnClick="btnAceptarEvento_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
                                         </div>
                                     </div>
 
@@ -336,7 +336,7 @@
                                             <label class="pull-left text-left">Fecha de Nacimiento</label>
                                         </div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="dp_fecha" required="true" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha "></asp:TextBox>
+                                            <asp:TextBox ID="dp_fecha" required="true" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" value="01/01/2000" runat="server" CssClass="datepicker caja2" placeholder="Seleccione fecha "></asp:TextBox>
                                         </div>
 
                                         <div class="col-md-3">
