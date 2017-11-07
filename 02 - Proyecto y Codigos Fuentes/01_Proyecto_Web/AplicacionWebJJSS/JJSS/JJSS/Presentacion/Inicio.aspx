@@ -69,8 +69,10 @@
                     <div class="name-label"></div>
                 </div>
                 <! --/col-lg-4-->
-				<div class="col-lg-8 name-desc">
+			
+                <div class="col-lg-8 name-desc">
                     <h2>LOTUS CLUB
+                       
                         <br />
                         equipo HINOJAL</h2>
                     <div class="name-zig"></div>
@@ -86,6 +88,7 @@
                 </div>
                 <! --/col-lg-8-->
 		
+           
             </div>
             <!-- /row -->
         </div>
@@ -147,10 +150,12 @@
                                     </div>
                                     <div>
                                         Fecha:
+                                       
                                         <asp:Label ID="lv_lbl_fecha" runat="server" Text='<%# Eval("fecha") %>' />
                                     </div>
                                     <div>
                                         Hora:
+                                       
                                         <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
                                     </div>
                                     <div>
@@ -283,14 +288,17 @@
                             </div>--%>
                                     <div>
                                         Tipo de Clase:
+                                       
                                         <asp:Label ID="lv_lbl_tipo_clase" runat="server" Text='<%# Eval("tipo_clase") %>' />
                                     </div>
                                     <div>
                                         Ubicación:
+                                       
                                         <asp:Label ID="lv_lbl_ubicacion" runat="server" Text='<%# Eval("ubicacion") %>' />
                                     </div>
                                     <div>
                                         Profesor:
+                                       
                                         <asp:Label ID="lv_lbl_profesor" runat="server" Text='<%# Eval("profesor") %>' />
                                     </div>
                                     <div>
@@ -479,7 +487,7 @@
                     <!--col registrar_profesor-->
                     <div class="col-lg-4 proc" id="Div2" runat="server">
                         <i class="fa fa-pencil"></i>
-                        
+
                         <h3>
                             <asp:LinkButton ID="lnk_registrar_profe" runat="server" Style="color: #000000" OnClick="lnk_registrar_profe_Click">Registrar Profesor</asp:LinkButton>
                         </h3>
@@ -550,34 +558,91 @@
             <!--SECTOR EVENTOS -->
 
             <section id="section_eventos" title="eventos"></section>
-
-            <!--APARTADO DE EVENTOS -->
-            <div class="container" id="Div7" runat="server">
+            <div class="container">
                 <div class="row mt centered">
-                    <h1>EVENTOS ESPECIALES</h1>
-
-                    <!--col insrcibir_evento-->
-                    <div class="col-lg-4 proc" id="Div8" runat="server">
-                        <i class="fa fa-pencil"></i>
-                        <h3><a href="../Presentacion/InscripcionEvento.aspx" style="color: #000000">Inscripciones </a></h3>
-                        <p>Accede a los próximos eventos e inscríbite para participar.</p>
+                    <h1>ÚLTIMOS EVENTOS</h1>
+                    <div class="row centered">
+                        <p>&nbsp;</p>
                     </div>
-                    <!--/col-->
+                    <!---------------------------------**************Muestra de Torneos************---------------------------------------->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <asp:ListView ID="lv_eventos" GroupPlaceholderID="groupPlaceHolder1" ItemPlaceholderID="itemPlaceHolder1" GroupItemCount="3" runat="server" OnItemCommand="lv_eventos_ItemCommand">
 
-                    <!--col Generar_evento-->
-                    <div class="col-lg-4 proc" id="Div11" runat="server">
-                        <i class="fa fa-cogs"></i>
-                        <h3 class="logo"><a href="../Presentacion/CrearEvento.aspx" style="color: #000000">Generar un nuevo evento</a></h3>
-                        <p>Crea un nuevo evento para luego ver su seguimiento.</p>
+                            <LayoutTemplate>
+                                <table>
+                                    <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
+                                </table>
+                            </LayoutTemplate>
+
+                            <GroupTemplate>
+                                <tr>
+                                    <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
+                                </tr>
+                            </GroupTemplate>
+
+                            <ItemTemplate>
+
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px medium gray">
+                                    <div>
+                                        <asp:Label ID="lv_lbl_nombre" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
+                                    </div>
+                                    <div>
+                                        <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
+                                        <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
+                                    </div>
+                                    <div>
+                                        Fecha:
+                                       
+                                        <asp:Label ID="lv_lbl_fecha" runat="server" Text='<%# Eval("fecha") %>' />
+                                    </div>
+                                    <div>
+                                        Hora:
+                                       
+                                        <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
+                                    </div>
+                                    <div>
+                                        <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_evento") %>' CssClass=" btn-link" Text="Inscribir" />
+                                    </div>
+                                </div>
+
+                            </ItemTemplate>
+                            <EmptyDataTemplate>
+                                <h3>No hay eventos disponibles por el momento</h3>
+                            </EmptyDataTemplate>
+                        </asp:ListView>
+
+
                     </div>
 
-                    <!--col Generar_Listado_inscriptos-->
-                    <div class="col-lg-4 proc" id="Div12" runat="server">
-                        <i class="fa fa-cogs"></i>
-                        <h3 class="logo"><a id="btn_generar_Listado_inscriptos_evento" href="" data-toggle="modal" data-target="#exportarListadoEvento" style="color: #000000">Generar listado de inscriptos</a></h3>
-                        <p>Genera e imprime un listado de los inscriptos a un evento.</p>
-                    </div>
+                    <!--APARTADO DE EVENTOS -->
+                    <div class="container" id="Div7" runat="server">
+                        <div class="row mt centered">
+                            <h1>ADMINISTRACIÓN DE EVENTOS</h1>
 
+                            <!--col insrcibir_evento-->
+                            <div class="col-lg-4 proc" id="Div8" runat="server">
+                                <i class="fa fa-pencil"></i>
+                                <h3><a href="../Presentacion/InscripcionEvento.aspx" style="color: #000000">Inscripciones </a></h3>
+                                <p>Accede a los próximos eventos e inscríbite para participar.</p>
+                            </div>
+                            <!--/col-->
+
+                            <!--col Generar_evento-->
+                            <div class="col-lg-4 proc" id="Div11" runat="server">
+                                <i class="fa fa-cogs"></i>
+                                <h3 class="logo"><a href="../Presentacion/CrearEvento.aspx" style="color: #000000">Generar un nuevo evento</a></h3>
+                                <p>Crea un nuevo evento para luego ver su seguimiento.</p>
+                            </div>
+
+                            <!--col Generar_Listado_inscriptos-->
+                            <div class="col-lg-4 proc" id="Div12" runat="server">
+                                <i class="fa fa-cogs"></i>
+                                <h3 class="logo"><a id="btn_generar_Listado_inscriptos_evento" href="" data-toggle="modal" data-target="#exportarListadoEvento" style="color: #000000">Generar listado de inscriptos</a></h3>
+                                <p>Genera e imprime un listado de los inscriptos a un evento.</p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -864,7 +929,7 @@
                     <!--Botonero-->
                     <div class="modal-footer">
                         <button type="button" formnovalidate class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="btn_modal_recarga_aceptar" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_modal_recarga_aceptar_Click"/>
+                        <asp:Button ID="btn_modal_recarga_aceptar" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_modal_recarga_aceptar_Click" />
                     </div>
 
                 </div>

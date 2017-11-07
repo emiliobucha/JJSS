@@ -73,7 +73,7 @@ namespace JJSS.Presentacion
                 cargarClasesView();
                 cargarRecarga();
                 cargarTorneosAbiertosView();
-
+                CargarListViewEventos();
             }
 
 
@@ -567,6 +567,20 @@ namespace JJSS.Presentacion
             {
 
             }
+        }
+
+        protected void lv_eventos_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            Session["eventoSeleccionado"] = id;
+            Response.Redirect("~/Presentacion/InscripcionEvento.aspx");
+        }
+
+        private void CargarListViewEventos()
+        {
+            gestorEventos = new GestorEventos();
+            lv_eventos.DataSource = gestorEventos.ObtenerEventosConImagen();
+            lv_eventos.DataBind();
         }
     }
 }
