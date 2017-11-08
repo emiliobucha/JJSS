@@ -150,7 +150,7 @@
                                     </div>
                                     <div>
                                         <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
-                                        <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
+                                        <asp:Image ID="lv_imagen"   ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                                     </div>
                                     <div>
                                         Fecha:
@@ -1068,7 +1068,6 @@
 
 
     </script>
-
 
 
 </asp:Content>

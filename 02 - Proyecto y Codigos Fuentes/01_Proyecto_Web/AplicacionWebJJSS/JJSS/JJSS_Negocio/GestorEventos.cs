@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -153,7 +154,7 @@ namespace JJSS_Negocio
             return encontrado;
         }
 
-        public List<Object> ObtenerEventosConImagen()
+        public List<EventoResultado> ObtenerEventosConImagen()
         {
             cambiarEstadoEventos();
             using (var db = new JJSSEntities())
@@ -164,17 +165,17 @@ namespace JJSS_Negocio
                                            into ps
                                            from i in ps.DefaultIfEmpty()
                                            where t.id_estado == 1
-                                           select new
+                                           select new EventoResultado
                                            {
                                                id_evento = t.id_evento,
                                                nombre = t.nombre,
                                                fecha = t.fecha,
                                                hora = t.hora,
-                                               imagen = i.imagen
+                                               imagenB = i.imagen
                                            };
 
 
-                List<Object> lista = eventosAbiertos.ToList<Object>();
+                List<EventoResultado> lista = eventosAbiertos.ToList<EventoResultado>();
                 return lista;
             }
         }

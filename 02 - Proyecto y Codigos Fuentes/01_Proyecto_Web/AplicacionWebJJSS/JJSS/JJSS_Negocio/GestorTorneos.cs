@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data;
 using System.Configuration;
 using System.Globalization;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -152,9 +153,9 @@ namespace JJSS_Negocio
                     select torneo;
                 return torneosAbiertos.ToList();
             }
-        }
+    }
 
-        public List<Object> ObtenerTorneosConImagen()
+        public List<TorneoResultado> ObtenerTorneosConImagen()
         {
             cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
@@ -165,17 +166,17 @@ namespace JJSS_Negocio
                                            into ps
                                            from i in ps.DefaultIfEmpty()
                                            where t.id_estado == 1
-                                           select new
+                                           select new TorneoResultado()
                                            {
                                                id_torneo = t.id_torneo,
                                                nombre = t.nombre,
                                                fecha = t.fecha,
                                                hora = t.hora,
-                                               imagen = i.imagen
+                                               imagenB = i.imagen
                                            };
 
 
-                List<Object> listaTorneos = torneosAbiertos.ToList<Object>();
+                List<TorneoResultado> listaTorneos = torneosAbiertos.ToList<TorneoResultado>();
                 return listaTorneos;
             }
         }
