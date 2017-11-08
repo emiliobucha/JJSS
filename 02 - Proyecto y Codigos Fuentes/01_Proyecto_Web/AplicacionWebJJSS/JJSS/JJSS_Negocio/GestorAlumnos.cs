@@ -490,5 +490,60 @@ namespace JJSS_Negocio
                 }
             }
         }
+
+        public string CambiarFotoPerfil(int pDni, byte[] pImagen)
+        {
+           
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    var alumno = ObtenerAlumnoPorDNI(pDni);
+                    var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == alumno.id_alumno);
+
+                    if (alumno != null)
+                    {
+                        if (alumnoImagen != null)
+                        {
+                            alumnoImagen.imagen = pImagen;
+                            db.SaveChanges();
+                            return "";
+                        }
+                        else
+                            return "Hubo un problema";
+                    }
+                    else
+                    {
+                        throw new Exception("El usuario no existe");
+                    }
+                   
+                
+                
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("El usuario no existe");
+                }
+            }
+        }
+
+
+        public byte[] ObtenerImagenPerfil(int pId)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    
+                    var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == pId);
+
+                    return alumnoImagen?.imagen;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

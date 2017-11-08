@@ -7,6 +7,10 @@ using System.Web.UI.WebControls;
 using JJSS_Negocio;
 using JJSS_Entidad;
 using System.Data;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+using Image = System.Drawing.Image;
 
 namespace JJSS.Presentacion
 {
@@ -38,9 +42,10 @@ namespace JJSS.Presentacion
                     CargarComboProvincias();
                     CargarDatos();
                     //CargarComboCiudades(1);
-                    
+
                 }
-                else {
+                else
+                {
                     Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 }
@@ -81,10 +86,12 @@ namespace JJSS.Presentacion
                 if (alumnoEncontrado == null) //es un profe
                 {
                     profesor profeEncontrado = gestorProfe.ObtenerProfesorPorIdUsuario(id_usuario);
-                    if (profeEncontrado == null) mensaje("No se encontró el usuario o es admin", false); //no existe o es admin
+                    if (profeEncontrado == null)
+                        mensaje("No se encontró el usuario o es admin", false); //no existe o es admin
                     else
                     {
-                        DataTable direccionEncontrada = gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
+                        DataTable direccionEncontrada =
+                            gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
 
                         txt_dni.Text = profeEncontrado.dni.ToString();
                         txt_nombre.Text = profeEncontrado.nombre;
@@ -104,11 +111,53 @@ namespace JJSS.Presentacion
                             ddl_localidad.SelectedValue = row["idCiudad"].ToString();
                             txt_torre.Text = row["torre"].ToString();
                         }
+
+                        var imgBytes = gestorProfe.ObtenerImagenPerfil(profeEncontrado.id_profesor);
+                        if (imgBytes != null)
+                        {
+                            using (MemoryStream ms = new MemoryStream(imgBytes))
+                            {
+                                try
+                                {
+
+                                    string sDir = System.Web.HttpContext.Current.Server.MapPath("//temp");
+
+                                    if (!System.IO.Directory.Exists(sDir))
+                                    {
+                                        System.IO.Directory.CreateDirectory(sDir);
+                                    }
+
+
+                                    var archivo =
+                                        (profeEncontrado.nombre + profeEncontrado.apellido + profeEncontrado.dni)
+                                        .Replace(" ", "") + ".jpeg";
+                                    var imagenI = Image.FromStream(ms);
+
+                                    char[] sTrim = "\\".ToCharArray();
+                                    var archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
+
+                                    //if (!File.Exists(archivo))
+                                    //{
+                                    imagenI.Save(archivoGuardar, ImageFormat.Jpeg);
+                                    //}
+
+
+                                    var link = "\\temp\\" + archivo;
+                                    Avatar.ImageUrl = link;
+
+                                }
+                                catch (Exception ex)
+                                {
+                                }
+
+                            }
+                        }
                     }
 
-
-
                 }
+
+
+
                 else
                 {
                     // busco la direccion
@@ -131,11 +180,50 @@ namespace JJSS.Presentacion
                         CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
                         ddl_localidad.SelectedValue = row["idCiudad"].ToString();
                         txt_torre.Text = row["torre"].ToString();
-                        
-                        
+
                     }
 
+                    var imgBytes = gestorAlumnos.ObtenerImagenPerfil(alumnoEncontrado.id_alumno);
 
+                    if (imgBytes != null)
+                    {
+
+
+                        using (MemoryStream ms = new MemoryStream(imgBytes))
+                        {
+                            try
+                            {
+
+                                string sDir = System.Web.HttpContext.Current.Server.MapPath("//temp");
+
+                                if (!System.IO.Directory.Exists(sDir))
+                                {
+                                    System.IO.Directory.CreateDirectory(sDir);
+                                }
+
+
+                                var archivo = (alumnoEncontrado.nombre + alumnoEncontrado.apellido + alumnoEncontrado.dni).Replace(" ", "") + ".jpeg";
+                                var imagenI = Image.FromStream(ms);
+
+                                char[] sTrim = "\\".ToCharArray();
+                                var archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
+
+                                //if (!File.Exists(archivo))
+                                //{
+                                imagenI.Save(archivoGuardar, ImageFormat.Jpeg);
+                                //}
+
+
+                                var link = "\\temp\\" + archivo;
+                                Avatar.ImageUrl = link;
+
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+
+                        }
+                    }
 
                 }
 
@@ -188,7 +276,7 @@ namespace JJSS.Presentacion
             txt_pass_nueva.Text = "";
             txt_pass_repetida.Text = "";
         }
-        
+
 
         protected void btn_guardar_contaco_Click(object sender, EventArgs e)
         {
@@ -225,24 +313,25 @@ namespace JJSS.Presentacion
             //modifica los datos
             try
             {
-                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad,torre);
+                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad, torre);
                 mensaje("Se modificaron los datos correctamente", true);
             }
             catch (Exception ex)
             {
                 if (ex.Message.CompareTo("El usuario no existe") == 0)
-                    
+
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad,torre);
+                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad, torre);
                         mensaje("Se modificaron los datos correctamente", true);
                     }
-                    catch(Exception exx)
+                    catch (Exception exx)
                     {
                         mensaje(exx.Message, false);
                     }
-                }else mensaje(ex.Message, false);
+                }
+                else mensaje(ex.Message, false);
             }
 
 
@@ -265,7 +354,42 @@ namespace JJSS.Presentacion
 
         protected void btn_cambiar_foto_Click(object sender, EventArgs e)
         {
-            mensaje("Todavia no :)", false);
+            System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
+            byte[] imagenByte;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imagen.CopyTo(ms);
+                imagenByte = ms.ToArray();
+            }
+
+
+            try
+            {
+                gestorAlumnos.CambiarFotoPerfil(int.Parse(txt_dni.Text), imagenByte);
+                mensaje("Se modificaron los datos correctamente", true);
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.CompareTo("El usuario no existe") == 0)
+
+                {
+                    try
+                    {
+                        gestorProfe.CambiarFotoPerfil(int.Parse(txt_dni.Text), imagenByte);
+                        mensaje("Se modificaron los datos correctamente", true);
+                        CargarDatos();
+                    }
+                    catch (Exception exx)
+                    {
+                        mensaje(exx.Message, false);
+                    }
+                }
+                else mensaje(ex.Message, false);
+            }
+
+
+
         }
 
         protected void btn_guardar_personal_Click(object sender, EventArgs e)
@@ -279,7 +403,7 @@ namespace JJSS.Presentacion
             //modifica los datos
             try
             {
-                gestorAlumnos.ModificarAlumno(dni,nombre,apellido,null,null);
+                gestorAlumnos.ModificarAlumno(dni, nombre, apellido, null, null);
                 mensaje("Se modificaron los datos correctamente", true);
             }
             catch (Exception ex)
@@ -289,7 +413,7 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesor(dni,nombre,apellido);
+                        gestorProfe.ModificarProfesor(dni, nombre, apellido);
                         mensaje("Se modificaron los datos correctamente", true);
                     }
                     catch (Exception exx)
@@ -299,7 +423,7 @@ namespace JJSS.Presentacion
                 }
                 else mensaje(ex.Message, false);
             }
-            
+
         }
 
         protected void btn_datos_personales_Click(object sender, EventArgs e)
