@@ -590,6 +590,7 @@
         <div class="hidden-sm hidden-xs">
             <div class="sep paraTienda" data-stellar-background-ratio="0.5"></div>
         </div>
+
         <!-- ABOUT SEPARATOR -->
 
         <section id="section_tienda" title="tienda" runat="server"></section>
