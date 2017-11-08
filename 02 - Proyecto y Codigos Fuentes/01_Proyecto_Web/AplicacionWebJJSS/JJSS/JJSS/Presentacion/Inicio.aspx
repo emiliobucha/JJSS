@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
+﻿﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="JJSS.Presentacion.Inicio" %>
 
 
 <asp:Content ID="InicioMenu" ContentPlaceHolderID="cphMenu" runat="server">
@@ -150,7 +150,7 @@
                                     </div>
                                     <div>
                                         <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
-                                        <asp:Image ID="lv_imagen"   ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
+                                        <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                                     </div>
                                     <div>
                                         Fecha:
@@ -585,10 +585,13 @@
         </div>
 
         <!--SECTOR TIENDA -->
+
         <!-- ABOUT SEPARATOR -->
         <div class="hidden-sm hidden-xs">
-            <div class="sep paraAlumnos" data-stellar-background-ratio="0.5"></div>
+            <div class="sep paraTienda" data-stellar-background-ratio="0.5"></div>
         </div>
+
+        <!-- ABOUT SEPARATOR -->
 
         <section id="section_tienda" title="tienda" runat="server"></section>
         <div id="tiendawrap" runat="server">
@@ -627,7 +630,7 @@
                     <!--/col-->
 
                     <!--col compra-->
-                    <div class="col-lg-4 proc" id="Div10" runat="server">
+                    <div class="col-lg-4 proc" id="item_seguimiento_reserva" runat="server">
                         <i class="fa fa-eye"></i>
                         <h3 class="logo"><a href="../Presentacion/Reservas.aspx" style="color: #000000">Seguimiento de las reservas</a> </h3>
                         <p>Puedes cancelar o registrar el retiro de una reserva</p>
@@ -697,6 +700,9 @@
                     </asp:ListView>
 
 
+                </div>
+                <div class="row centered">
+                    <p>&nbsp;</p>
                 </div>
 
                 <!--APARTADO DE EVENTOS -->
@@ -1068,6 +1074,7 @@
 
 
     </script>
+
 
 
 </asp:Content>

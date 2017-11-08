@@ -89,15 +89,19 @@ namespace JJSS.Presentacion
                     string resultado = gestorAsistencia.ValidarTipoClaseAlumno(alu.id_alumno, claseActual.tipoClase);
                     if (resultado == "")
                     {
-                        if (gestorAsistencia.ValidarPagoParaAsistencia(alu.id_alumno, claseActual.tipoClase))
+                        asistencia_clase asistenciaDeHoy = gestorAsistencia.ValidarAsistenciaAnterior(alu.id_alumno);
+                        if (asistenciaDeHoy !=null) mensaje("Este alumno ya asistió a una clase hoy",false);
+                        else
                         {
-                            resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
-                                claseActual.idHorario);
-                            if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
-                            else mensaje(resultado, false);
+                            if (gestorAsistencia.ValidarPagoParaAsistencia(alu.id_alumno, claseActual.tipoClase))
+                            {
+                                resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
+                                    claseActual.idHorario);
+                                if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
+                                else mensaje(resultado, false);
+                            }
+                            else mensaje("Falta pago", false);
                         }
-                        else mensaje("Falta pago", false);
-
                     }
                     else mensaje(resultado, false);
                 }

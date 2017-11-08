@@ -84,7 +84,7 @@
                           <asp:Label ID="lbl_sesion_nombre" runat="server" Text="" style="text-transform:capitalize"></asp:Label>
                           <label>&nbsp;</label>
                           <span class="glyphicon glyphicon-user icon-size"></span>
-                          <label>Rol/es:</label>
+                          <label>Rol/es:</label><br />
                           <asp:Label ID="lbl_roles" runat="server" Text="" style="text-transform: capitalize; "></asp:Label>
 
                       </a>

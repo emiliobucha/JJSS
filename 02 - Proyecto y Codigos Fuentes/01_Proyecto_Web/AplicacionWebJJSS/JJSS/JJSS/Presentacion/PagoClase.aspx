@@ -146,7 +146,7 @@
                         <!-- BOTONES-->
                         <div class="row centered">
 
-                            <asp:Button ID="btn_cancelar" runat="server"Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_cancelar_Click" />
+                            <%--<asp:Button ID="btn_cancelar" runat="server"Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_cancelar_Click1" />--%>
                             <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" CssClass="caja2" ValidationGroup="vgRegistrarPago" OnClick="btn_aceptar_Click" />
    							
                     </div>
