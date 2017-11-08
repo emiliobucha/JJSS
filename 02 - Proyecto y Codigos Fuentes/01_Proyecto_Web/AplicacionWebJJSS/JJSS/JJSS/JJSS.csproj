@@ -145,6 +145,7 @@
     <Content Include="img\logo_mariano.jpg" />
     <Content Include="img\logo_mariano.png" />
     <Content Include="img\Mariano.jpg" />
+    <Content Include="img\noimage.jpg" />
     <Content Include="img\paraAlumnos.jpg" />
     <Content Include="img\paraClases.jpg" />
     <Content Include="img\paraTienda.jpg" />

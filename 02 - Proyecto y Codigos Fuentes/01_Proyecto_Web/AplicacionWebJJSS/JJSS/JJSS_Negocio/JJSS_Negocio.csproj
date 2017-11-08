@@ -82,6 +82,7 @@
     <Compile Include="Resultados\ListadoAsistencia.cs" />
     <Compile Include="Resultados\ParticipantesEventoResultado.cs" />
     <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
+    <Compile Include="Resultados\ProductosResultados.cs" />
     <Compile Include="Resultados\SedeDireccion.cs" />
     <Compile Include="Resultados\EventoResultado.cs" />
     <Compile Include="Resultados\TorneoResultado.cs" />
@@ -161,6 +162,9 @@
     <EmbeddedResource Include="Reportes\rptListadoTorneo.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resultados\noimage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

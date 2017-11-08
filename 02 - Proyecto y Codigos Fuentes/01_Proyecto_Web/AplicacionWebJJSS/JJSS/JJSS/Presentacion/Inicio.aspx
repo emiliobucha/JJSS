@@ -777,7 +777,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 mt">
-
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
@@ -788,7 +787,6 @@
                                     <img class="img-circle" src="assets/img/pic-t1.jpg" width="80">
                                 </p>
                             </div>
-
                             <div class="item mb centered">
                                 <h3>PAUL LEVINGSTON</h3>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -796,7 +794,6 @@
                                     <img class="img-circle" src="assets/img/pic-t2.jpg" width="80">
                                 </p>
                             </div>
-
                             <div class="item mb centered">
                                 <h3>LUCY LENNIN</h3>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -804,7 +801,6 @@
                                     <img class="img-circle" src="assets/img/pic-t3.jpg" width="80">
                                 </p>
                             </div>
-
                         </div>
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
@@ -813,7 +809,6 @@
                             <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                         </ol>
                     </div>
-
                 </div>
                 <! --/col-lg-8 -->
             </div>
@@ -833,7 +828,6 @@
         <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="exportarListado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-
                     <!--Cabecera-->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -877,12 +871,10 @@
             </div>
         </div>
         <!----------------------*********  Fin ventana emergente   *********--------------------->
-
         <!--Implementando ventana emergente --------------------*********     Exportar Listado  Evento   *********--------------------->
         <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="exportarListadoEvento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-
                     <!--Cabecera-->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -926,12 +918,10 @@
             </div>
         </div>
         <!----------------------*********  Fin ventana emergente   *********--------------------->
-
         <!--Implementando ventana emergente --------------------*********     Exportar Listado  Asistencia a Clase   *********--------------------->
         <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="exportarListadoAsistencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-
                     <!--Cabecera-->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -976,14 +966,10 @@
             </div>
         </div>
         <!----------------------*********  Fin ventana emergente   *********--------------------->
-
-
         <!--Implementando ventana emergente --------------------*********     Administrar recarga     *********--------------------->
-
         <div class="modal fade" id="modal_recarga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-
                     <!--Cabecera-->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -1027,22 +1013,16 @@
         </div>
         <!----------------------*********  Fin ventana emergente   *********--------------------->
     </form>
-
-
-
     <!---------------------------************              SCRIPTS              **************---------------------------->
 
 
     <script type="text/javascript">
-
         $(document).ready(function () {
-
             var elements = document.getElementsById('lv_imagen');
             var inscribir = document.getElementsById('lv_btn_inscribir');
             for (var i = 0; i < elements.length; i++) {
                 elements[i].Attributes.Add("onclick", "clickAImagenes(inscribir[i]);");
             }
-
             $("nav").find("a").click(function (e) {
                 e.preventDefault();
                 var section = $(this).attr("href");
@@ -1050,29 +1030,19 @@
                     scrollTop: $(section).offset().top
                 });
             });
-
         });
-
-
-
         function clickAImagenes(id_inscribir) {
-
             $(id_inscribir).click();
         }
-
         window.onload = function () {
             var imagenes = $('*[id^="cphContenido_lv_torneos_abiertos_ctrl0_lv_imagen"]');
             var inscribir = $('*[id^="cphContenido_lv_torneos_abiertos_ctrl0_lv_btn_inscribir"]');
-
             for (var i = 0; i < 3; i++) {
                 var imagenes = $('*[id^="cphContenido_lv_torneos_abiertos_ctrl0_lv_imagen"]');
                 var inscribir = $('*[id^="cphContenido_lv_torneos_abiertos_ctrl0_lv_btn_inscribir"]');
                 imagenes[i].addEventListener('onclick', function () { inscribir[i].click(); });
             };
         }
-
-
-
     </script>
 
 

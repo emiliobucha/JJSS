@@ -124,11 +124,11 @@
                         </div>
                         <asp:Button ID="btn_buscar" OnClick="btn_buscar_Click" runat="server" Text="Buscar" CssClass="btn btn-default" />
                         <p>&nbsp;</p>
-                    <asp:GridView ID="gv_usuarios" CssClass="table" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_usuarios_PageIndexChanging" runat="server" DataKeyNames="id" EmptyDataText="No hay usuarios para mostrar" OnRowCommand="gv_usuarios_RowCommand" AutoGenerateColumns="false">
+                    <asp:GridView ID="gv_usuarios" CssClass="table text-center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_usuarios_PageIndexChanging" runat="server" DataKeyNames="id" EmptyDataText="No hay usuarios para mostrar" OnRowCommand="gv_usuarios_RowCommand" AutoGenerateColumns="false">
                         <Columns>
-                            <asp:BoundField DataField="apellido" HeaderText="Apellido" />
-                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                            <asp:BoundField DataField="dni" HeaderText="DNI" />
+                            <asp:BoundField DataField="apellido" HeaderStyle-CssClass="text-center" HeaderText="Apellido" />
+                            <asp:BoundField DataField="nombre" HeaderStyle-CssClass="text-center" HeaderText="Nombre" />
+                            <asp:BoundField DataField="dni" HeaderStyle-CssClass="text-center" HeaderText="DNI" />
 
                             <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText=""/>
                         </Columns>
