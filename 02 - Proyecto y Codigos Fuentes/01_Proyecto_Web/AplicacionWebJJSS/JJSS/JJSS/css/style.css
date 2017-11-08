@@ -416,6 +416,10 @@ h1, h2, h3, h4, h5, h6 {
     background-image: url(../img/paraAlumnos.jpg);
 }
 
+.paraTienda {
+    background-image: url(../img/paraTienda.jpg);
+}
+
 /* Portfolio Wrap Section */
 #portfoliowrap {
 	display: block;

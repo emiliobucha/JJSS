@@ -585,10 +585,12 @@
         </div>
 
         <!--SECTOR TIENDA -->
+
         <!-- ABOUT SEPARATOR -->
         <div class="hidden-sm hidden-xs">
-            <div class="sep paraAlumnos" data-stellar-background-ratio="0.5"></div>
+            <div class="sep paraTienda" data-stellar-background-ratio="0.5"></div>
         </div>
+        <!-- ABOUT SEPARATOR -->
 
         <section id="section_tienda" title="tienda" runat="server"></section>
         <div id="tiendawrap" runat="server">
@@ -697,6 +699,9 @@
                     </asp:ListView>
 
 
+                </div>
+                <div class="row centered">
+                    <p>&nbsp;</p>
                 </div>
 
                 <!--APARTADO DE EVENTOS -->
