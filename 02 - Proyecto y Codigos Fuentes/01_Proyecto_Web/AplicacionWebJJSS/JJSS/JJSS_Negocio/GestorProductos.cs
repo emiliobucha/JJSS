@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -89,7 +90,7 @@ namespace JJSS_Negocio
         /*
         * Obtener Productos Para la Tienda
         */
-        public List<Object> ObtenerProductosTienda()
+        public List<ProductosResultados> ObtenerProductosTienda()
         {
             using (var db = new JJSSEntities())
             {
@@ -99,16 +100,19 @@ namespace JJSS_Negocio
                                            into ps
                                            from img in ps.DefaultIfEmpty()
                                            where prod.stock > 0
-                                           select new
+                                           select new ProductosResultados
                                            {
                                                id_producto = prod.id_producto,
                                                categoria = cat.nombre,
                                                nombre = prod.nombre,
                                                stock = prod.stock,
                                                precio = prod.precio_venta,
-                                               imagen = img.imagen,
+                                               imagenB = img.imagen,
                                            };
-                return productosEncontrados.ToList<Object>();
+
+                List<ProductosResultados> productos = productosEncontrados.ToList();
+
+                return productos;
             }
         }
 

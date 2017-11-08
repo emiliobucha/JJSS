@@ -70,11 +70,19 @@ namespace JJSS.Presentacion
 
             System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
             byte[] imagenByte;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imagen.CopyTo(ms);
-                imagenByte = ms.ToArray();
-            }
+            //if (imagen == null)
+            //{
+            //    imagenByte = null;
+            //}
+            //else
+            //{
+                
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    imagen.CopyTo(ms);
+                    imagenByte = ms.ToArray();
+                }
+            //}
 
             gestorProductos = new GestorProductos();
             string sReturn = gestorProductos.AgregarProducto(idCategoria, nombre, imagenByte);
