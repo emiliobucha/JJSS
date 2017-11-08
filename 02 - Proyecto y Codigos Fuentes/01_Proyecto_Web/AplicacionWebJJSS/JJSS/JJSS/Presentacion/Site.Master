@@ -84,12 +84,22 @@
                           <asp:Label ID="lbl_sesion_nombre" runat="server" Text="" style="text-transform:capitalize"></asp:Label>
                           <label>&nbsp;</label>
                           <span class="glyphicon glyphicon-user icon-size"></span>
+                          <label>Rol/es:</label>
+                          <asp:Label ID="lbl_roles" runat="server" Text="" style="text-transform: capitalize; "></asp:Label>
+
                       </a>
+
+                      <div class="row centered">
+                          <p>&nbsp;</p>
+                      </div>
+                      
+                                         
+                         
 
                       <div id="sesion" class="collapse">
 
                           <a href="../Presentacion/Perfil.aspx"  style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Modificar Perfil</a>
-                          <a onclick="cerrar_sesion_Click"  style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Cerrar Sesión</a>
+                          <a href="../Presentacion/Login.aspx" style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Cerrar Sesión</a>
 
                       </div>
                   </asp:Panel>

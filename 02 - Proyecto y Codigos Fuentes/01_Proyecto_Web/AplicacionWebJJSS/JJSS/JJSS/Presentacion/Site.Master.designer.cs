@@ -40,6 +40,15 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.Label lbl_sesion_nombre;
         
         /// <summary>
+        /// Control lbl_roles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_roles;
+        
+        /// <summary>
         /// Control cphMenu.
         /// </summary>
         /// <remarks>

@@ -182,6 +182,9 @@ namespace JJSS.Presentacion
         {
             lv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClasesDisponibles();
             lv_clasesDisponibles.DataBind();
+
+            lv_clasesDisponibles_invitado.DataSource = gestorDeClases.ObtenerClasesDisponibles();
+            lv_clasesDisponibles_invitado.DataBind();
         }
 
 
@@ -320,9 +323,24 @@ namespace JJSS.Presentacion
         protected void ocultarInvitado()
         {
             //item_modificar_perfil.Style["display"] = "none";
+
             administracion_torneos.Style["display"] = "none";
             administracion_clases.Style["display"] = "none";
             administracion_alumnos.Style["display"] = "none";
+            administracion_profesores.Style["diplay"] = "none";
+            administracion_tienda.Style["diplay"] = "none";
+            administracion_permisos.Style["display"] = "none";
+           
+            muetra_clases_profe_admin.Style["display"] = "none";
+            item_crear_evento.Style["display"] = "none";
+            item_listado_evento.Style["display"] = "none";
+
+            menuAlumnos.Style["display"] = "none";
+            menuProfesores.Style["display"] = "none";
+            menuTienda.Style["display"] = "none";
+            menuPermisos.Style["display"] = "none";
+            menuClases.Style["display"] = "none";
+
 
         }
 
@@ -333,6 +351,9 @@ namespace JJSS.Presentacion
                 Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                 if (sesionActiva.estado == "INGRESO ACEPTADO")
                 {
+
+
+                   
 
                     //Administración de torneos
 
@@ -359,6 +380,18 @@ namespace JJSS.Presentacion
                     }
 
                     permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_INSCRIPCION_LISTA'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_listado_evento.Style["display"] = "none";
+                    }
+
+
+                    permiso = 0;
                     drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
                     if (drsAux.Length > 0)
                     {
@@ -366,7 +399,7 @@ namespace JJSS.Presentacion
                     }
                     if (permiso != 1)
                     {
-                        item_mis_Torneos.Style["display"] = "none";
+                        //item_mis_Torneos.Style["display"] = "none";
                     }
 
 
@@ -377,24 +410,27 @@ namespace JJSS.Presentacion
                     if (drsAux.Length > 0)
                     {
                         int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
-
+                        muetra_clases_invitado.Style["display"] = "none";
                     }
                     if (permiso != 1)
                     {
                         item_inscribir_Alumno_Clase.Style["display"] = "none";
+                       
+
                     }
 
 
                     permiso = 0;
-                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASES_MIS_CLASES'");
                     if (drsAux.Length > 0)
                     {
-                        int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
-
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                        muetra_clases_profe_admin.Style["display"] = "none";
                     }
                     if (permiso != 1)
                     {
                         item_mis_Clases.Style["display"] = "none";
+                        
                     }
 
 
@@ -428,12 +464,15 @@ namespace JJSS.Presentacion
                     if (drsAux.Length > 0)
                     {
                         int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                        muetra_clases_invitado.Style["display"] = "none";
                     }
                     if (permiso != 1)
                     {
                         item_crear_nueva_clase.Style["display"] = "none";
                         item_listado_asistencia.Style["display"] = "none";
                         item_registrar_asistencia.Style["display"] = "none";
+                        muetra_clases_profe_admin.Style["display"] = "none";
+
                     }
 
 
@@ -448,7 +487,21 @@ namespace JJSS.Presentacion
                     {
                         item_registrar_alumno.Style["display"] = "none";
                         item_graduacion_alumnos.Style["display"] = "none";
-                        alumnos.Style["display"] = "none";
+                       
+                        administracion_alumnos.Style["display"] = "none";
+                        menuAlumnos.Style["display"] = "none";
+                    }
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_crear_evento.Style["display"] = "none";
                     }
 
                     permiso = 0;
@@ -485,7 +538,8 @@ namespace JJSS.Presentacion
                     }
                     if (permiso != 1)
                     {
-                        section_permisos.Style["display"] = "none";
+                        administracion_permisos.Style["display"] = "none";
+                        menuPermisos.Style["display"] = "none";
                     }
 
                     permiso = 0;
@@ -496,7 +550,8 @@ namespace JJSS.Presentacion
                     }
                     if (permiso != 1)
                     {
-                        section_profesores.Style["display"] = "none";
+                        administracion_profesores.Style["display"] = "none";
+                        menuProfesores.Style["display"] = "none";
                     }
 
                     permiso = 0;
@@ -508,6 +563,31 @@ namespace JJSS.Presentacion
                     if (permiso != 1)
                     {
                         item_recarga_por_atraso.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'PRODUCTO_COMPRA'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_modificar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_compra_producto.Style["display"] = "none";
+
+                        
+                    }
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave= 'PRODUCTOS_AGREGAR'");
+                    if (drsAux.Length >0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        btn_agregarProducto.Style["display"] = "none";
                     }
 
                 }

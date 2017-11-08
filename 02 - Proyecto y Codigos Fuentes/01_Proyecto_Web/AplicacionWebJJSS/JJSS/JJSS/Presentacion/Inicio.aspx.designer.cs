@@ -13,6 +13,78 @@ namespace JJSS.Presentacion {
     public partial class Inicio {
         
         /// <summary>
+        /// Control menuSobreNostros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuSobreNostros;
+        
+        /// <summary>
+        /// Control menuTorneos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuTorneos;
+        
+        /// <summary>
+        /// Control menuClases.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuClases;
+        
+        /// <summary>
+        /// Control menuAlumnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuAlumnos;
+        
+        /// <summary>
+        /// Control menuProfesores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuProfesores;
+        
+        /// <summary>
+        /// Control menuTienda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuTienda;
+        
+        /// <summary>
+        /// Control menuEventos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuEventos;
+        
+        /// <summary>
+        /// Control menuPermisos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuPermisos;
+        
+        /// <summary>
         /// Control lv_torneos_abiertos.
         /// </summary>
         /// <remarks>
@@ -40,24 +112,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_insrcibir_Torneo;
         
         /// <summary>
-        /// Control item_mis_Torneos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_mis_Torneos;
-        
-        /// <summary>
-        /// Control item_visualizar_Torneo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_visualizar_Torneo;
-        
-        /// <summary>
         /// Control item_Generar_Torneo.
         /// </summary>
         /// <remarks>
@@ -76,6 +130,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_Generar_Listado_inscriptos;
         
         /// <summary>
+        /// Control muetra_clases_profe_admin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl muetra_clases_profe_admin;
+        
+        /// <summary>
         /// Control lv_clasesDisponibles.
         /// </summary>
         /// <remarks>
@@ -83,6 +146,24 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lv_clasesDisponibles;
+        
+        /// <summary>
+        /// Control muetra_clases_invitado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl muetra_clases_invitado;
+        
+        /// <summary>
+        /// Control lv_clasesDisponibles_invitado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lv_clasesDisponibles_invitado;
         
         /// <summary>
         /// Control administracion_clases.
@@ -119,15 +200,6 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_mis_Clases;
-        
-        /// <summary>
-        /// Control item_visualizar_clases.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_visualizar_clases;
         
         /// <summary>
         /// Control item_inscribir_Alumno_Clase.
@@ -173,6 +245,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alumnos;
+        
+        /// <summary>
+        /// Control alumnoswrap.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alumnoswrap;
         
         /// <summary>
         /// Control administracion_alumnos.
@@ -238,13 +319,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl section_profesores;
         
         /// <summary>
-        /// Control Div1.
+        /// Control profesoreswrap.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl profesoreswrap;
+        
+        /// <summary>
+        /// Control administracion_profesores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administracion_profesores;
         
         /// <summary>
         /// Control Div2.
@@ -283,22 +373,40 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.LinkButton lnk_administrar_profes;
         
         /// <summary>
-        /// Control Div4.
+        /// Control section_tienda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl section_tienda;
         
         /// <summary>
-        /// Control Div5.
+        /// Control tiendawrap.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tiendawrap;
+        
+        /// <summary>
+        /// Control administracion_tienda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administracion_tienda;
+        
+        /// <summary>
+        /// Control btn_agregarProducto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btn_agregarProducto;
         
         /// <summary>
         /// Control Div6.
@@ -310,13 +418,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div6;
         
         /// <summary>
-        /// Control Div9.
+        /// Control item_compra_producto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div9;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_compra_producto;
         
         /// <summary>
         /// Control Div10.
@@ -355,22 +463,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div8;
         
         /// <summary>
-        /// Control Div11.
+        /// Control item_crear_evento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div11;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_crear_evento;
         
         /// <summary>
-        /// Control Div12.
+        /// Control item_listado_evento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div12;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl item_listado_evento;
         
         /// <summary>
         /// Control section_permisos.
@@ -382,13 +490,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl section_permisos;
         
         /// <summary>
-        /// Control Div13.
+        /// Control administracion_permisos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div13;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administracion_permisos;
         
         /// <summary>
         /// Control Div14.

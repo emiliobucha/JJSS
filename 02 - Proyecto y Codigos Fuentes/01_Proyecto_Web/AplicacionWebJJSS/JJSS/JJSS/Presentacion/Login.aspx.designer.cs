@@ -13,6 +13,15 @@ namespace JJSS.Presentacion {
     public partial class Login {
         
         /// <summary>
+        /// Control Content4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Content4;
+        
+        /// <summary>
         /// Control form2.
         /// </summary>
         /// <remarks>

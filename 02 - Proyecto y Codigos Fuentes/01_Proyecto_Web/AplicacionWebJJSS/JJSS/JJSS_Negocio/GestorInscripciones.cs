@@ -126,8 +126,8 @@ namespace JJSS_Negocio
                         peso = pPeso,
                         id_faja = pFaja,
                         faja=fajaElegida,
-                        categoria_torneo=nuevaCategoriaTorneo,
-                        tipo_inscripcion=pTipoInscripcion,
+                        categoria_torneo = nuevaCategoriaTorneo,
+                        tipo_inscripcion = pTipoInscripcion,
                     };
 
 

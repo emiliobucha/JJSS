@@ -114,6 +114,8 @@
                     <div class="row centered">
                         &nbsp;
                     </div>
+                    
+
                 </asp:Panel>
                 <div class="row centered">
                     <asp:Button ID="btn_guardar_personal" CssClass="btn btn-default" ValidationGroup="vgPersonal" runat="server" Text="Aceptar" OnClick="btn_guardar_personal_Click" />

@@ -83,11 +83,14 @@
                           <label>&nbsp;</label>
                           <span class="glyphicon glyphicon-user icon-size"></span>
                       </a>
+                      
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                      <asp:Label ID="lbl_roles" runat="server" Text="" ></asp:Label>
 
                       <div id="sesion" class="collapse">
 
                           <a href="../Presentacion/Perfil.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Modificar Perfil</a>
-                          <a onclick="cerrar_sesion_Click" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Cerrar Sesión</a>
+                          <a href="../Presentacion/Login.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Cerrar Sesión</a>
 
                       </div>
                   </asp:Panel>
@@ -112,10 +115,12 @@
                           <asp:Label ID="Label1" runat="server" Text="torneos"></asp:Label>
                       </a>
 
-                      <div id="submenu_torneos" class="collapse">
+                      <div id="submenu_torneos" class="collapse" runat="server">
 
-                          <a href="CrearTorneo.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Crear Nuevo</a>
-                          <a href="InscripcionTorneo.aspx" style="text-transform:capitalize" >&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
+                          <a href="CrearTorneo.aspx" style="text-transform:capitalize"  runat="server" id="crearTorneo">&nbsp; <span class="fa fa-circle" ></span>Crear Nuevo</a>
+                          <a href="InscripcionTorneo.aspx" style="text-transform:capitalize"  runat="server" id="inscribirTorneo" >&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
+                          <a href="Inicio.aspx#exportarListado" style="text-transform:capitalize"  runat="server" id="listadoTorneo" >&nbsp; <span class="fa fa-circle"></span>Listado de Asistentes</a>
+                          
 
                       </div>
                   </asp:Panel>
@@ -130,9 +135,15 @@
 
                       <div id="submenu_clases" class="collapse">
 
-                          <a href="CrearTorneo.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Crear Nueva</a>
-                          <a href="Inicio.aspx#section_clases" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
-                          <a href="PagoClase.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Registrar Pago</a>
+                          <a href="CrearClase.aspx" style="text-transform:capitalize" runat="server" id="crearClase">&nbsp; <span class="fa fa-circle"></span>Crear Nueva</a>
+                          <a href="AlumnoClases.aspx" style="text-transform:capitalize" runat="server"  id="misClases">&nbsp; <span class="fa fa-circle"></span>Mis Clases</a>
+                          <a href="Inicio.aspx#section_clases" style="text-transform:capitalize" runat="server" id="inscribirClase">&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
+                          <a href="Inicio.aspx#item_recarga_por_atraso" style="text-transform:capitalize" runat="server" id="recargaClase">&nbsp; <span class="fa fa-circle"></span>Recarga por Atraso</a>
+                          <a href="Inicio.aspx#exportarListadoAsistencia" style="text-transform:capitalize"  runat="server" id="asisteciaClases">&nbsp; <span class="fa fa-circle"></span>Listado de Asistencia</a>
+                          <a href="RegistrarAsistencia.aspx" style="text-transform:capitalize"  runat="server" id="listadoClase">&nbsp; <span class="fa fa-circle"></span>Registrar Asistencia</a>
+                          
+
+                          
 
                       </div>
                   </asp:Panel>
@@ -147,14 +158,14 @@
 
                       <div id="submenu_alumnos" class="collapse">
 
-                          <a href="RegistrarAlumno.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Registrar Alumno</a>
-                          <a href="GraduarAlumno.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Graduar</a>
+                          <a href="RegistrarAlumno.aspx" style="text-transform:capitalize " runat="server" id="registrarAlumno">&nbsp; <span class="fa fa-circle"></span>Registrar</a>        
+                          <a href="GraduarAlumno.aspx" style="text-transform:capitalize" runat="server" id="graduarAlumno">&nbsp; <span class="fa fa-circle"></span>Graduar</a>
 
                       </div>
                   </asp:Panel>
 
                   <!-------------------- PROFESORES ------------------------->
-                  <asp:Panel ID="Panel1" runat="server">
+                  <asp:Panel ID="pnl_profesores" runat="server">
 
                       <a href="#submenu_profesores" data-toggle="collapse" data-target="#submenu_profesores">
                           <span class="glyphicon glyphicon-chevron-right"></span>
@@ -163,7 +174,7 @@
 
                       <div id="submenu_profesores" class="collapse">
 
-                          <a href="RegistrarProfe.aspx" style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Registrar Profesor</a>
+                          <a href="RegistrarProfe.aspx" style="text-transform:capitalize" runat="server" id="registrarProfe" >&nbsp; <span class="fa fa-circle"></span>Registrar</a>
 
                       </div>
                   </asp:Panel>
@@ -177,8 +188,13 @@
                       </a>
 
                       <div id="submenu_tienda" class="collapse">
+                          
 
-                          <a href="AgregarProducto.aspx"  style="text-transform:capitalize">&nbsp; <span class="fa fa-circle"></span>Agregar Producto</a>
+                          <a href="Tienda.aspx" style="text-transform:capitalize" runat="server" id="tienda" >&nbsp; <span class="fa fa-circle"></span>Tienda</a>
+                          <a href="AgregarProducto.aspx"  style="text-transform:capitalize" runat="server" id="agregarProducto" >&nbsp; <span class="fa fa-circle"></span>Agregar Producto</a>
+                          <a href="ComprarProducto.aspx"  style="text-transform:capitalize" runat="server" id="comprarProducto" >&nbsp; <span class="fa fa-circle"></span>Comprar Producto</a>
+                        
+
 
                       </div>
                   </asp:Panel>
@@ -192,10 +208,36 @@
                       </a>
 
                       <div id="submenu_eventos_especiales" class="collapse">
+                          <a href="CrearEvento.aspx.aspx"  style="text-transform:capitalize" runat="server" id="crearEvento" >&nbsp; <span class="fa fa-circle"></span>Crear Nuevo</a>
+                          <a href="InscripcionEvento.aspx" style="text-transform:capitalize" runat="server" id="inscripcionEvento" >&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
+                          <a href="Inicio.aspx#btn_generar_Listado_inscriptos_evento" style="text-transform:capitalize" runat="server" id="listadoEvento" >&nbsp; <span class="fa fa-circle"></span>Listado de Asistentes</a>
+                          
+                        
+                          
+
                       </div>
 
                   </asp:Panel>
                   
+                  
+                  <!----------------- Permisos --------------------->
+                  <asp:Panel ID="pnl_permisos" runat="server">
+
+                      <a href="#submenu_eventos_especiales" data-toggle="collapse" data-target="#submenu_permisos">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <asp:Label ID="Label7" runat="server" Text="Eventos Especiales"></asp:Label>
+                      </a>
+
+                      <div id="submenu_permisos" class="collapse">
+                          <a href="Usuarios.aspx"  style="text-transform:capitalize" runat="server" id="usuarios" >&nbsp; <span class="fa fa-circle"></span>Permisos</a>
+                      
+                        
+                          
+
+                      </div>
+
+                  </asp:Panel>
+
 
                   <div class="row centered">
                       <p>&nbsp;</p>

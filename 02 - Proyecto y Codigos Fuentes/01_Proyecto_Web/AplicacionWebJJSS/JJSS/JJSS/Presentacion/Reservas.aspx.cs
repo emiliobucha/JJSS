@@ -22,6 +22,10 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
+
+
+
+
                 gestorReservas = new GestorReservas();
                 CargarGrillaReservas();
                 MultiView1.SetActiveView(view_grilla);

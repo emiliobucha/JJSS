@@ -8,31 +8,35 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
         INICIO
     </a>
-    <a href="#section_about" class="smoothScroll">
+    <a runat="server" id="menuSobreNostros" href="#section_about" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Sobre Nosotros
     </a>
-    <a href="#section_torneos" class="smoothScroll">
+    <a runat="server" id="menuTorneos"  href="#section_torneos" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Torneos
     </a>
-    <a href="#section_clases" class="smoothScroll">
+    <a runat="server" id="menuClases"  href="#section_clases" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Clases
     </a>
-    <a href="#section_alumnos" class="smoothScroll">
+    <a  runat="server" id="menuAlumnos"  href="#section_alumnos" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Alumnos
     </a>
-    <a href="#section_tienda" class="smoothScroll">
+    <a runat="server" id="menuProfesores"  href="#section_profesores" class="smoothScroll">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        Profesores
+    </a>
+    <a runat="server" id="menuTienda"  href="#section_tienda" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Tienda
     </a>
-    <a href="#section_eventos" class="smoothScroll">
+    <a runat="server" id="menuEventos"  href="#section_eventos" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Eventos
     </a>
-    <a href="#section_permisos" class="smoothScroll">
+    <a runat="server" id="menuPermisos"  href="#section_permisos" class="smoothScroll">
         <span class="glyphicon glyphicon-chevron-right"></span>
         Perfiles y Permisos
     </a>
@@ -43,7 +47,7 @@
 
 <asp:Content ID="InicioEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
 
-    <section id="section_home" title="home"></section>
+    <section  id="section_home" title="home"></section>
     <img src="../img/logo_mariano.png" class="hidden-lg hidden-md img-responsive" />
     <div id="headerwrap2" class="hidden-xs hidden-sm"></div>
     <! --/headerwrap -->
@@ -196,21 +200,21 @@
                             </div>
                             <!--/col-->
 
-                            <!--col mis_Torneos-->
+                            <%--  <!--col mis_Torneos-->
                             <div class="col-lg-4 proc" id="item_mis_Torneos" runat="server">
                                 <i class="fa fa-heart"></i>
                                 <h3>Mis torneos</h3>
                                 <p>Accede al historial de torneos en los que has competido.</p>
                             </div>
-                            <!--/col-->
+                            <!--/col-->--%>
 
-                            <!--col visualizar_Torneo-->
+                            <%--   <!--col visualizar_Torneo-->
                             <div class="col-lg-4 proc" id="item_visualizar_Torneo" runat="server">
                                 <i class="fa fa-eye"></i>
                                 <h3>Visualizar torneos</h3>
                                 <p>Accede a todos los torneos que se han desarrollado y busca el que te interese mediante un filtro.</p>
                             </div>
-                            <!--/col-->
+                            <!--/col-->--%>
 
                             <!--col Generar_Torneo-->
                             <div class="col-lg-4 proc" id="item_Generar_Torneo" runat="server">
@@ -262,7 +266,7 @@
 
 
                     <!---------------------------------**************Muestra de Clases************---------------------------------------->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="muetra_clases_profe_admin" runat="server">
                         <asp:ListView ID="lv_clasesDisponibles" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase" GroupItemCount="3" OnItemCommand="lv_clasesDisponibles_ItemCommand" runat="server">
 
                             <LayoutTemplate>
@@ -324,15 +328,82 @@
                         </asp:ListView>
 
                     </div>
+
+
+                    <!---------------FIN Cuadricula-------------------->
+
+
+
+
+
+
+                    <!---------------------------------**************Muestra de Clases Invitado************---------------------------------------->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered" id="muetra_clases_invitado" runat="server">
+                        <asp:ListView ID="lv_clasesDisponibles_invitado" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase" GroupItemCount="3" runat="server">
+
+                            <LayoutTemplate>
+                                <table>
+                                    <asp:PlaceHolder runat="server" ID="groupPlaceHolder_clase"></asp:PlaceHolder>
+                                </table>
+                            </LayoutTemplate>
+
+                            <GroupTemplate>
+                                <tr>
+                                    <asp:PlaceHolder runat="server" ID="itemPlaceHolder_clase"></asp:PlaceHolder>
+                                </tr>
+                            </GroupTemplate>
+
+                            <ItemTemplate>
+
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px medium gray">
+                                    <div>
+                                        <asp:Label ID="lv_lbl_nombre_clase" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
+                                    </div>
+                                    <%-- <div>                           
+                                <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
+                            </div>--%>
+                                    <div>
+                                        Tipo de Clase:
+                                       
+                                        <asp:Label ID="lv_lbl_tipo_clase" runat="server" Text='<%# Eval("tipo_clase") %>' />
+                                    </div>
+                                    <div>
+                                        Ubicación:
+                                       
+                                        <asp:Label ID="lv_lbl_ubicacion" runat="server" Text='<%# Eval("ubicacion") %>' />
+                                    </div>
+                                    <div>
+                                        Profesor:
+                                       
+                                        <asp:Label ID="lv_lbl_profesor" runat="server" Text='<%# Eval("profesor") %>' />
+                                    </div>
+                                    <div>
+                                        Precio: $<asp:Label ID="lv_lbl_precio" runat="server" Text='<%# Eval("precio") %>' />
+
+                                    </div>
+
+
+                                </div>
+
+                            </ItemTemplate>
+                            <EmptyDataTemplate>
+                                <h3>No hay clases disponibles por el momento</h3>
+                            </EmptyDataTemplate>
+                        </asp:ListView>
+
+                    </div>
+                    <!---------------FIN Cuadricula-------------------->
+
                 </div>
             </div>
-            <!---------------FIN Cuadricula-------------------->
+
+
+
 
 
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
-
 
 
             <!--APARTADO DE ADMINISTRACION DE CLASES -->
@@ -360,18 +431,18 @@
 
 
 
-                    <!--col visualizar_Clase-->
+                    <%--                    <!--col visualizar_Clase-->
                     <div class="col-lg-4 proc" id="item_visualizar_clases" runat="server">
                         <i class="fa fa-eye"></i>
                         <h3>Visualizar horarios</h3>
                         <p>Consulta los horarios en que se desarrollan las diferentes clases que se dictan en la academia</p>
                     </div>
-                    <!--/col-->
+                    <!--/col-->--%>
 
                     <!--col inscribir_Alumno_Clase-->
                     <div class="col-lg-4 proc" id="item_inscribir_Alumno_Clase" runat="server">
                         <i class="fa fa-cogs"></i>
-                        <h3 class="logo"><a style="color: #000000">Inscribir a un alumno</a></h3>
+                        <h3 class="logo"><a href="../Presentacion/InscripcionClase.aspx" style="color: #000000">Inscribir a un alumno</a></h3>
                         <p>Inscribe alumnos a una clase.</p>
                     </div>
                     <!--/col-->
@@ -421,7 +492,7 @@
 
         <!--SECTOR ALUMNOS -->
         <section id="alumnos" title="clases" runat="server"></section>
-        <div id="alumnoswrap">
+        <div id="alumnoswrap" runat="server">
 
             <div class="row centered">
                 <p>&nbsp;</p>
@@ -471,7 +542,7 @@
         <!--SECTOR PROFESORES -->
 
         <section id="section_profesores" title="profesores" runat="server"></section>
-        <div id="profesoreswrap">
+        <div id="profesoreswrap" runat="server">
 
 
             <div class="row centered">
@@ -480,7 +551,7 @@
 
 
             <!--APARTADO DE ADMINISTRACION DE PROFESORES -->
-            <div class="container" id="Div1" runat="server">
+            <div class="container" id="administracion_profesores" runat="server">
                 <div class="row mt centered">
                     <h1>ADMINISTRACIÓN DE PROFESORES</h1>
 
@@ -510,17 +581,29 @@
 
 
 
-            <!--SECTOR TIENDA -->
 
-            <section id="section_tienda" title="tienda"></section>
+        </div>
 
+        <!--SECTOR TIENDA -->
+        <!-- ABOUT SEPARATOR -->
+        <div class="hidden-sm hidden-xs">
+            <div class="sep paraAlumnos" data-stellar-background-ratio="0.5"></div>
+        </div>
+
+        <section id="section_tienda" title="tienda" runat="server"></section>
+        <div id="tiendawrap" runat="server">
+
+
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
             <!--APARTADO DE TIENDA -->
-            <div class="container" id="Div4" runat="server">
+            <div class="container" id="administracion_tienda" runat="server">
                 <div class="row mt centered">
                     <h1>TIENDA</h1>
 
                     <!--col agregar_productos-->
-                    <div class="col-lg-4 proc" id="Div5" runat="server">
+                    <div id="btn_agregarProducto" class="col-lg-4 proc" runat="server">
                         <i class="fa fa-pencil"></i>
                         <h3 class="logo"><a href="../Presentacion/AgregarProducto.aspx" style="color: #000000">Dar de alta productos</a> </h3>
                         <p>Puedes registrar nuevos productos para que luego sean mostrados en la tienda.</p>
@@ -536,7 +619,7 @@
                     <!--/col-->
 
                     <!--col compra-->
-                    <div class="col-lg-4 proc" id="Div9" runat="server">
+                    <div class="col-lg-4 proc" id="item_compra_producto" runat="server">
                         <i class="fa fa-eye"></i>
                         <h3 class="logo"><a href="../Presentacion/ComprarProducto.aspx" style="color: #000000">Registrar compra de productos</a> </h3>
                         <p>Puedes registrar la compra de un producto a un proveedor, agregar stock al mismo y modificar su precio</p>
@@ -554,99 +637,100 @@
                 </div>
             </div>
 
+        </div>
 
-            <!--SECTOR EVENTOS -->
 
-            <section id="section_eventos" title="eventos"></section>
-            <div class="container">
-                <div class="row mt centered">
-                    <h1>ÚLTIMOS EVENTOS</h1>
-                    <div class="row centered">
-                        <p>&nbsp;</p>
-                    </div>
-                    <!---------------------------------**************Muestra de Torneos************---------------------------------------->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <asp:ListView ID="lv_eventos" GroupPlaceholderID="groupPlaceHolder1" ItemPlaceholderID="itemPlaceHolder1" GroupItemCount="3" runat="server" OnItemCommand="lv_eventos_ItemCommand">
+        <!--SECTOR EVENTOS -->
 
-                            <LayoutTemplate>
-                                <table>
-                                    <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
-                                </table>
-                            </LayoutTemplate>
+        <section id="section_eventos" title="eventos"></section>
+        <div class="container">
+            <div class="row mt centered">
+                <h1>ÚLTIMOS EVENTOS</h1>
+                <div class="row centered">
+                    <p>&nbsp;</p>
+                </div>
+                <!---------------------------------**************Muestra de Torneos************---------------------------------------->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <asp:ListView ID="lv_eventos" GroupPlaceholderID="groupPlaceHolder1" ItemPlaceholderID="itemPlaceHolder1" GroupItemCount="3" runat="server" OnItemCommand="lv_eventos_ItemCommand">
 
-                            <GroupTemplate>
-                                <tr>
-                                    <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
-                                </tr>
-                            </GroupTemplate>
+                        <LayoutTemplate>
+                            <table>
+                                <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
+                            </table>
+                        </LayoutTemplate>
 
-                            <ItemTemplate>
+                        <GroupTemplate>
+                            <tr>
+                                <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
+                            </tr>
+                        </GroupTemplate>
 
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px medium gray">
-                                    <div>
-                                        <asp:Label ID="lv_lbl_nombre" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
-                                    </div>
-                                    <div>
-                                        <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
-                                        <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
-                                    </div>
-                                    <div>
-                                        Fecha:
+                        <ItemTemplate>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px medium gray">
+                                <div>
+                                    <asp:Label ID="lv_lbl_nombre" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
+                                </div>
+                                <div>
+                                    <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
+                                    <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
+                                </div>
+                                <div>
+                                    Fecha:
                                        
                                         <asp:Label ID="lv_lbl_fecha" runat="server" Text='<%# Eval("fecha") %>' />
-                                    </div>
-                                    <div>
-                                        Hora:
+                                </div>
+                                <div>
+                                    Hora:
                                        
                                         <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
-                                    </div>
-                                    <div>
-                                        <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_evento") %>' CssClass=" btn-link" Text="Inscribir" />
-                                    </div>
                                 </div>
-
-                            </ItemTemplate>
-                            <EmptyDataTemplate>
-                                <h3>No hay eventos disponibles por el momento</h3>
-                            </EmptyDataTemplate>
-                        </asp:ListView>
-
-
-                    </div>
-
-                    <!--APARTADO DE EVENTOS -->
-                    <div class="container" id="Div7" runat="server">
-                        <div class="row mt centered">
-                            <h1>ADMINISTRACIÓN DE EVENTOS</h1>
-
-                            <!--col insrcibir_evento-->
-                            <div class="col-lg-4 proc" id="Div8" runat="server">
-                                <i class="fa fa-pencil"></i>
-                                <h3><a href="../Presentacion/InscripcionEvento.aspx" style="color: #000000">Inscripciones </a></h3>
-                                <p>Accede a los próximos eventos e inscríbite para participar.</p>
-                            </div>
-                            <!--/col-->
-
-                            <!--col Generar_evento-->
-                            <div class="col-lg-4 proc" id="Div11" runat="server">
-                                <i class="fa fa-cogs"></i>
-                                <h3 class="logo"><a href="../Presentacion/CrearEvento.aspx" style="color: #000000">Generar un nuevo evento</a></h3>
-                                <p>Crea un nuevo evento para luego ver su seguimiento.</p>
+                                <div>
+                                    <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_evento") %>' CssClass=" btn-link" Text="Inscribir" />
+                                </div>
                             </div>
 
-                            <!--col Generar_Listado_inscriptos-->
-                            <div class="col-lg-4 proc" id="Div12" runat="server">
-                                <i class="fa fa-cogs"></i>
-                                <h3 class="logo"><a id="btn_generar_Listado_inscriptos_evento" href="" data-toggle="modal" data-target="#exportarListadoEvento" style="color: #000000">Generar listado de inscriptos</a></h3>
-                                <p>Genera e imprime un listado de los inscriptos a un evento.</p>
-                            </div>
+                        </ItemTemplate>
+                        <EmptyDataTemplate>
+                            <h3>No hay eventos disponibles por el momento</h3>
+                        </EmptyDataTemplate>
+                    </asp:ListView>
 
+
+                </div>
+
+                <!--APARTADO DE EVENTOS -->
+                <div class="container" id="Div7" runat="server">
+                    <div class="row mt centered">
+                        <h1>ADMINISTRACIÓN DE EVENTOS</h1>
+
+                        <!--col insrcibir_evento-->
+                        <div class="col-lg-4 proc" id="Div8" runat="server">
+                            <i class="fa fa-pencil"></i>
+                            <h3><a href="../Presentacion/InscripcionEvento.aspx" style="color: #000000">Inscripciones </a></h3>
+                            <p>Accede a los próximos eventos e inscríbite para participar.</p>
                         </div>
+                        <!--/col-->
+
+                        <!--col Generar_evento-->
+                        <div class="col-lg-4 proc" id="item_crear_evento" runat="server">
+                            <i class="fa fa-cogs"></i>
+                            <h3 class="logo"><a href="../Presentacion/CrearEvento.aspx" style="color: #000000">Generar un nuevo evento</a></h3>
+                            <p>Crea un nuevo evento para luego ver su seguimiento.</p>
+                        </div>
+
+                        <!--col Generar_Listado_inscriptos-->
+                        <div class="col-lg-4 proc" id="item_listado_evento" runat="server">
+                            <i class="fa fa-cogs"></i>
+                            <h3 class="logo"><a id="btn_generar_Listado_inscriptos_evento" href="" data-toggle="modal" data-target="#exportarListadoEvento" style="color: #000000">Generar listado de inscriptos</a></h3>
+                            <p>Genera e imprime un listado de los inscriptos a un evento.</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
-
         </div>
+
 
 
 
@@ -655,7 +739,7 @@
         <!--APARTADO DE PERMISOS -->
         <section id="section_permisos" title="permisos" runat="server"></section>
 
-        <div class="container" id="Div13" runat="server">
+        <div class="container" id="administracion_permisos" runat="server">
             <div class="row mt centered">
                 <h1>PERFILES Y PERMISOS</h1>
 
@@ -952,6 +1036,15 @@
             for (var i = 0; i < elements.length; i++) {
                 elements[i].Attributes.Add("onclick", "clickAImagenes(inscribir[i]);");
             }
+
+            $("nav").find("a").click(function (e) {
+                e.preventDefault();
+                var section = $(this).attr("href");
+                $("html, body").animate({
+                    scrollTop: $(section).offset().top
+                });
+            });
+
         });
 
 
@@ -971,6 +1064,8 @@
                 imagenes[i].addEventListener('onclick', function () { inscribir[i].click(); });
             };
         }
+
+
 
     </script>
 
