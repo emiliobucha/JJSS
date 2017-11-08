@@ -578,6 +578,20 @@ namespace JJSS.Presentacion
                         
                     }
 
+                    //+REVER ESTOOOOO
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'PRODUCTO_COMPRA'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_modificar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        item_seguimiento_reserva.Style["display"] = "none";
+
+
+                    }
+
 
                     permiso = 0;
                     drsAux = sesionActiva.permisos.Select("perm_clave= 'PRODUCTOS_AGREGAR'");

@@ -164,6 +164,25 @@ namespace JJSS_Negocio
 
         }
 
+        //+SOLO MIRA LA ASISTENCIA DE ESE DIA PARA CUALQUIER LUGAR
+        public asistencia_clase ValidarAsistenciaAnterior(int pIDAlumno)
+        {
+            DateTime fechaActual = DateTime.Now;
+            using (var db = new JJSSEntities())
+            {
+                asistencia_clase asistencia = (from a in db.asistencia_clase
+                                 where a.id_alumno == pIDAlumno 
+                                 orderby a.fecha_hora descending
+                                 select a).FirstOrDefault();
+
+                if (asistencia != null)
+                {
+                    if (asistencia.fecha_hora.Date == fechaActual.Date) return asistencia;
+                    else return null;
+                }
+                else return null;
+            }
+        }
 
     }
 }

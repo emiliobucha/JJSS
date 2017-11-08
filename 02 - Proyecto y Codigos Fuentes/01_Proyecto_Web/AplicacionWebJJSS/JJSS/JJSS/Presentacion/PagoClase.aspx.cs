@@ -169,6 +169,14 @@ namespace JJSS.Presentacion
 
         }
 
+        protected void btn_cancelar_Click1(object sender, EventArgs e)
+        {
+
+            limpiar();
+            Session["alumnos"] = "Administrar";
+            Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
+        }
+
 
 
 
