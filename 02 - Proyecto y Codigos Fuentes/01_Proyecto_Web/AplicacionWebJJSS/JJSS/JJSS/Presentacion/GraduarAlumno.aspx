@@ -22,6 +22,8 @@
 
         </asp:Panel>
 
+
+
         <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
             <div class="col-md-2"></div>
             <div class="col-md-8">

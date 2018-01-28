@@ -116,7 +116,6 @@ namespace JJSS_Negocio
         }
 
 
-
         /*Método para generar el archivo PDF final listo para ser escrito. También se encarga de eliminar de la memoria con el Garbage Collector los restos que queden
          * Parametros:
          *              pDatos: List de objetos que se quieren mostrar en el reporte, coleccion de datos para ser agregados al datasource del reporte
