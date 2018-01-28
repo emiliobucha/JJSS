@@ -9,8 +9,9 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
 
     <form id="formPerfil" runat="server">
-
+    <div class="row centered center-block">
         <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+            
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -20,12 +21,13 @@
                         <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
                 </div>
             </div>
-
+          
         </asp:Panel>
-
+    </div>
+    <div class="row centered center-block">
         <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
             <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <a class="ui-icon ui-icon-alert"></a>
@@ -35,7 +37,7 @@
             </div>
 
         </asp:Panel>
-
+    </div>
         <div class="row mt centered">
             <h1>MI PERFIL</h1>
             <p>&nbsp;</p>
