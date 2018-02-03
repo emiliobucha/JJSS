@@ -40,6 +40,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\GestorDireccion.cs" />
     <Compile Include="GestorAcademias.cs" />
     <Compile Include="GestorAsistencia.cs" />
     <Compile Include="GestorCiudades.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="GestorProvincias.cs" />
     <Compile Include="GestorReportes.cs" />
     <Compile Include="GestorReservas.cs" />
-    <Compile Include="GestorSedes.cs" />
+    <Compile Include="Administracion\GestorSedes.cs" />
     <Compile Include="GestorSesiones.cs" />
     <Compile Include="GestorTipoClase.cs" />
     <Compile Include="GestorTorneos.cs" />

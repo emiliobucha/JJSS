@@ -8,6 +8,7 @@ using JJSS_Entidad;
 using JJSS_Negocio;
 using System.Globalization;
 using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Administracion;
 
 namespace JJSS.Presentacion
 {
