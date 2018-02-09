@@ -18,7 +18,7 @@ namespace JJSS_Negocio.Administracion
          *              pNombre : String que indica el nombre de la nueva sede
          *              pDireccion: String que indica la direccion de esta nueva sede
          */
-        public String GenerarNuevaSede(string pNombre, direccion pDireccion)
+        public String GenerarNuevaSede(string pNombre, direccion pDireccion, long? pTelefono)
         {
             String sReturn = "";
             using (var db = new JJSSEntities())
@@ -29,7 +29,7 @@ namespace JJSS_Negocio.Administracion
                     direccion nuevaDireccion = new direccion()
                     {
                         barrio = pDireccion.barrio,
-                           calle=pDireccion.calle,
+                        calle=pDireccion.calle,
                         departamento= pDireccion.departamento,
                         id_ciudad=pDireccion.id_ciudad,
                         numero=pDireccion.numero,
@@ -43,6 +43,7 @@ namespace JJSS_Negocio.Administracion
                     {
                         nombre = pNombre,
                         direccion = nuevaDireccion,
+                        telefono=pTelefono,
                     };
 
                     db.sede.Add(nuevaSede);

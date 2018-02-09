@@ -15,15 +15,17 @@ namespace JJSS.Presentacion.Administracion
         private static GestorCiudades gestorCiudades;
         private static GestorProvincias gestorProvincias;
         private static GestorSedes gestorSedes;
+        private static GestorAcademias gestorAcademias;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gestorCiudades = new GestorCiudades();
-            gestorProvincias = new GestorProvincias();
-            gestorSedes = new GestorSedes();
-
             if (!IsPostBack)
             {
+                gestorCiudades = new GestorCiudades();
+                gestorProvincias = new GestorProvincias();
+                gestorSedes = new GestorSedes();
+                gestorAcademias = new GestorAcademias();
+
                 CargarComboProvincias();
             }
         }
@@ -99,7 +101,7 @@ namespace JJSS.Presentacion.Administracion
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
-
+            
             string calle = txt_calle.Text;
             string departamento = txt_nro_dpto.Text;
             string torre = txt_torre.Text;
@@ -115,6 +117,11 @@ namespace JJSS.Presentacion.Administracion
                 numero = int.Parse(txt_numero.Text);
             }
             int ciudad = int.Parse(ddl_localidad.SelectedValue);
+            int? telefono = null;
+            if (txt_telefono.Text != "")
+            {
+                telefono = int.Parse(txt_telefono.Text);
+            }
 
             direccion nuevaDireccion = new direccion();
             nuevaDireccion.calle = calle;
@@ -126,14 +133,39 @@ namespace JJSS.Presentacion.Administracion
 
             string nombre = txt_nombre.Text;
 
-           String res = gestorSedes.GenerarNuevaSede(nombre, nuevaDireccion);
+            if (rbCrear.SelectedValue.CompareTo("sede") == 0)
+            {
+                crearSede(nombre,nuevaDireccion,telefono);
+            }else if (rbCrear.SelectedValue.CompareTo("academia") == 0)
+            {
+                crearAcademia(nombre, nuevaDireccion,telefono);
+            }
+
+
+        }
+
+        private void crearSede(String nombre, direccion nuevaDireccion,long? telefono)
+        {
+            String res = gestorSedes.GenerarNuevaSede(nombre, nuevaDireccion,telefono);
             if (res.CompareTo("") == 0)
             {
-                mensaje("Se ha creado la sede correctamente", true);
                 limpiar();
+                mensaje("Se ha creado la sede correctamente", true);
+                
             }
             else mensaje(res, false);
+        }
 
+        private void crearAcademia(String nombre, direccion nuevaDireccion, long? telefono)
+        {
+            String res = gestorAcademias.GenerarAcademia(nombre, nuevaDireccion, telefono);
+            if (res.CompareTo("") == 0)
+            {
+                limpiar();
+                mensaje("Se ha creado la academia correctamente", true);
+                
+            }
+            else mensaje(res, false);
         }
     }
 }

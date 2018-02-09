@@ -37,10 +37,7 @@
     </asp:Panel>
 
     <form id="form1" runat="server">
-        <div class="row centered">
-            <p>&nbsp;</p>
-        </div>
-
+        
         <asp:Panel ID="pnlFormulario" runat="server">
             <div id="agregarProductoswrap">
                 <div class="container">
@@ -52,6 +49,21 @@
                         <div class="form-group ">
 
                             <div class="row centered col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                <p>&nbsp;</p>
+                            </div>
+
+                            <div class="row centered">
+                                <div class="col-xs-2">
+                                    <label class="pull-left">Que deseas crear?</label>
+                                </div>
+                                <div class="col-xs-2">
+                                    <asp:RadioButtonList ID="rbCrear" runat="server" AutoPostBack="False">
+                                        <asp:ListItem Selected="True" Value="sede">Sede</asp:ListItem>
+                                        <asp:ListItem Value="academia">Academia</asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </div>
+                            </div>
+                            <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
 
@@ -70,10 +82,29 @@
                                 <p>&nbsp;</p>
                             </div>
 
+
+                            <div class="row centered">
+                                <div class="col-md-2 col-lg-2 col-sm-10 col-xs-10">
+                                    <label class="pull-left">Telefono</label>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-10 col-xs-10">
+                                    <asp:TextBox ID="txt_telefono" class="caja2" required="true" type="number" min="0" max="9999999999999" runat="server" placeholder="Ingrese teléfono"></asp:TextBox>
+                                </div>
+                            </div>
+                            
+
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
                             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                 <asp:Label ID="lbl_direccion" runat="server" Text="Direccion" Font-Size="Large"></asp:Label>
                             </div>
                             <!--Ingresar calle y numero-->
+
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
 
                             <!-- Calle y numero -->
                             <div class="row centered">
@@ -100,14 +131,12 @@
                                 </div>
                                 <div class="col-xs-1">
                                     <asp:TextBox ID="txt_nro_dpto" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="caracteres_departamento" runat="server" ControlToValidate="txt_nro_dpto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgDatos"> </asp:RegularExpressionValidator>
                                 </div>
                                 <div class="col-xs-1">
                                     <label class=" pull-right">Torre</label>
                                 </div>
                                 <div class="col-xs-1">
                                     <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txt_torre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgDatos"> </asp:RegularExpressionValidator>
                                 </div>
                             </div>
 
@@ -120,6 +149,9 @@
                                     <asp:DropDownList class="caja2" ID="ddl_provincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_provincia_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
+                            </div>
+                            <div class="row centered">
+                                <p>&nbsp;</p>
                             </div>
 
                             <!-- Localidad -->

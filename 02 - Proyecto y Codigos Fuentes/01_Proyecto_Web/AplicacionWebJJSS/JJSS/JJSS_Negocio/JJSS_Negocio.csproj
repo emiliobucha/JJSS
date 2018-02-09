@@ -40,8 +40,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\GestorCategoria.cs" />
     <Compile Include="Administracion\GestorDireccion.cs" />
-    <Compile Include="GestorAcademias.cs" />
+    <Compile Include="Administracion\GestorAcademias.cs" />
     <Compile Include="GestorAsistencia.cs" />
     <Compile Include="GestorCiudades.cs" />
     <Compile Include="GestorClases.cs" />

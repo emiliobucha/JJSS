@@ -136,6 +136,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administracion\CrearCategoria.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\MisEstilos.css" />
     <Content Include="css\shop-homepage.css" />
@@ -292,6 +293,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\CrearCategoria.aspx.cs">
+      <DependentUpon>CrearCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\CrearCategoria.aspx.designer.cs">
+      <DependentUpon>CrearCategoria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Administracion\CrearSede.aspx.cs">

@@ -10,6 +10,7 @@ using System.Data.Linq;
 using System.Configuration;
 using System.Globalization;
 using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Administracion;
 
 namespace JJSS_Negocio
 {

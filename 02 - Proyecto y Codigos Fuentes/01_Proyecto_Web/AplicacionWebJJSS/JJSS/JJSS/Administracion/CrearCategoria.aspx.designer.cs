@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace JJSS.Presentacion.Administracion {
+namespace JJSS.Administracion {
     
     
-    public partial class CrearSede {
+    public partial class CrearCategoria {
         
         /// <summary>
         /// Control pnl_mensaje_exito.
@@ -76,15 +76,6 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.WebControls.Label lbl_crear_sede;
         
         /// <summary>
-        /// Control rbCrear.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbCrear;
-        
-        /// <summary>
         /// Control txt_nombre.
         /// </summary>
         /// <remarks>
@@ -94,85 +85,58 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.WebControls.TextBox txt_nombre;
         
         /// <summary>
-        /// Control txt_telefono.
+        /// Control rbSexo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_telefono;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
         
         /// <summary>
-        /// Control lbl_direccion.
+        /// Control txtPesoMinimo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_direccion;
+        protected global::System.Web.UI.WebControls.TextBox txtPesoMinimo;
         
         /// <summary>
-        /// Control txt_calle.
+        /// Control txtPesoMaximo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_calle;
+        protected global::System.Web.UI.WebControls.TextBox txtPesoMaximo;
         
         /// <summary>
-        /// Control txt_numero.
+        /// Control txtEdadMinima.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_numero;
+        protected global::System.Web.UI.WebControls.TextBox txtEdadMinima;
         
         /// <summary>
-        /// Control txt_piso.
+        /// Control txtEdadMaxima.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_piso;
+        protected global::System.Web.UI.WebControls.TextBox txtEdadMaxima;
         
         /// <summary>
-        /// Control txt_nro_dpto.
+        /// Control ddlDisciplina.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_nro_dpto;
-        
-        /// <summary>
-        /// Control txt_torre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_torre;
-        
-        /// <summary>
-        /// Control ddl_provincia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_provincia;
-        
-        /// <summary>
-        /// Control ddl_localidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_localidad;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDisciplina;
         
         /// <summary>
         /// Control btn_aceptar.
@@ -184,12 +148,12 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
         
         /// <summary>
-        /// Control Button1.
+        /// Control btnInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnInicio;
     }
 }
