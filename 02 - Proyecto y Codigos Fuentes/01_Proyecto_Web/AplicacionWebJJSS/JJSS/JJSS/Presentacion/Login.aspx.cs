@@ -62,7 +62,7 @@ namespace JJSS.Presentacion
                     Response.Cookies["Password"].Value = txt_pass.Text.Trim();
                   
 
-                    Response.Redirect("~/Presentacion/Inicio.aspx", false);
+                    Response.Redirect("~/Presentacion/MenuInicial.aspx", false);
                 }
                 else 
                 {
@@ -82,7 +82,7 @@ namespace JJSS.Presentacion
             try
             {
                 HttpContext.Current.Session["SEGURIDAD_SESION"]= "INVITADO";
-                Response.Redirect("~/Presentacion/Inicio.aspx", false);
+                Response.Redirect("~/Presentacion/MenuInicial.aspx", false);
             }
             catch (Exception ex)
             {
