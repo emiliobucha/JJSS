@@ -156,6 +156,7 @@
     <Content Include="img\paraClases.jpg" />
     <Content Include="img\paraTienda.jpg" />
     <Content Include="img\paraTorneos.jpg" />
+    <Content Include="img\torneo.png" />
     <Content Include="img\torneo01.jpg" />
     <Content Include="img\torneo02.jpg" />
     <Content Include="img\torneo03.jpg" />
@@ -185,6 +186,7 @@
     <Content Include="Presentacion\EventoPago.aspx" />
     <Content Include="Presentacion\EventoPagoFinalizado.aspx" />
     <Content Include="Presentacion\MenuInicial.aspx" />
+    <Content Include="Presentacion\MenuTorneo.aspx" />
     <Content Include="Presentacion\Reservas.aspx" />
     <Content Include="Presentacion\SobreNosotros.aspx" />
     <Content Include="Presentacion\TorneoPagoFinalizado.aspx" />
@@ -370,6 +372,13 @@
     </Compile>
     <Compile Include="Presentacion\MenuInicial.aspx.designer.cs">
       <DependentUpon>MenuInicial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\MenuTorneo.aspx.cs">
+      <DependentUpon>MenuTorneo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\MenuTorneo.aspx.designer.cs">
+      <DependentUpon>MenuTorneo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Reservas.aspx.cs">
       <DependentUpon>Reservas.aspx</DependentUpon>
