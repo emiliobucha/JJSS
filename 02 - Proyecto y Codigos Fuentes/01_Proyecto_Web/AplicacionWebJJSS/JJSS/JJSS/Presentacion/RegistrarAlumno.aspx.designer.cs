@@ -355,6 +355,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
         
         /// <summary>
+        /// Control chFiltroEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chFiltroEstado;
+        
+        /// <summary>
         /// Control btn_buscar_alumno.
         /// </summary>
         /// <remarks>

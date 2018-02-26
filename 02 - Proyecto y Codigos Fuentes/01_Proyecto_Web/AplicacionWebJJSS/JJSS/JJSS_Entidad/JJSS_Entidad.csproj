@@ -39,7 +39,7 @@
     <None Include="App.Config" />
     <EntityDeploy Include="JJSS_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>JJSS_Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>JJSS_Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="JJSS_Model.edmx.diagram">
       <DependentUpon>JJSS_Model.edmx</DependentUpon>
@@ -170,6 +170,11 @@
       <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="JJSS_Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JJSS_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="JJSS_Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>JJSS_Model.edmx</DependentUpon>

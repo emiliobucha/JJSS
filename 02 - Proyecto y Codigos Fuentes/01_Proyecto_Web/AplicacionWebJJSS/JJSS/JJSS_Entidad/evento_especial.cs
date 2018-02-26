@@ -34,7 +34,6 @@ namespace JJSS_Entidad
         public string hora { get; set; }
     
         public virtual estado estado { get; set; }
-        public virtual sede sede { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion_evento> inscripcion_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -42,5 +41,6 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_especial_imagen> evento_especial_imagen { get; set; }
         public virtual tipo_evento_especial tipo_evento_especial { get; set; }
+        public virtual sede sede { get; set; }
     }
 }

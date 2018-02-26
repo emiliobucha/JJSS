@@ -65,7 +65,6 @@ namespace JJSS_Entidad
         public virtual DbSet<provincia> provincia { get; set; }
         public virtual DbSet<reserva> reserva { get; set; }
         public virtual DbSet<resultado> resultado { get; set; }
-        public virtual DbSet<sede> sede { get; set; }
         public virtual DbSet<seguridad_grupo> seguridad_grupo { get; set; }
         public virtual DbSet<seguridad_grupoxopcion> seguridad_grupoxopcion { get; set; }
         public virtual DbSet<seguridad_opcion> seguridad_opcion { get; set; }
@@ -75,5 +74,6 @@ namespace JJSS_Entidad
         public virtual DbSet<tipo_evento_especial> tipo_evento_especial { get; set; }
         public virtual DbSet<torneo> torneo { get; set; }
         public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }
+        public virtual DbSet<sede> sede { get; set; }
     }
 }

@@ -20,10 +20,12 @@ namespace JJSS_Entidad
             this.evento_especial = new HashSet<evento_especial>();
             this.torneo = new HashSet<torneo>();
             this.estado_reserva = new HashSet<estado_reserva>();
+            this.alumno = new HashSet<alumno>();
         }
     
         public int id_estado { get; set; }
         public string nombre { get; set; }
+        public string ambito { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_especial> evento_especial { get; set; }
@@ -31,5 +33,7 @@ namespace JJSS_Entidad
         public virtual ICollection<torneo> torneo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<estado_reserva> estado_reserva { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<alumno> alumno { get; set; }
     }
 }

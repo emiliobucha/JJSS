@@ -280,7 +280,7 @@
 
                                 <!--Boton-->
                                 <div class="row centered">
-                                    
+
                                     <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgAlumnos" />
                                     <asp:Button ID="btn_ver_alumnos" runat="server" CssClass=" btn-link" formnovalidate="true" Text="Ver Alumnos" CausesValidation="False" OnClick="btn_ver_alumnos_Click" />
                                 </div>
@@ -312,16 +312,21 @@
                                 <asp:CompareValidator ID="menor_dni0" runat="server" ControlToValidate="txt_filtro_dni" CssClass="text text-danger" Display="Dynamic" ErrorMessage="DNI demasiado largo" Operator="LessThan" Type="Integer" ValidationGroup="vgFiltro" ValueToCompare="2147483647"></asp:CompareValidator>
                                     --%><strong>Apellido</strong>
                                     <asp:TextBox ID="txt_filtro_apellido" runat="server"></asp:TextBox>
-
+                                    <p>&nbsp;</p>
+                                    <div class="row centered">
+                                        <strong>Estado</strong>
+                                        <asp:CheckBoxList ID="chFiltroEstado" runat="server"></asp:CheckBoxList>
+                                    </div>
                                     <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar alumnos" OnClick="btn_buscar_alumno_Click" ValidationGroup="vgFiltro" CssClass="btn btn-default" />
 
                                     <asp:Button ID="btn_registro" runat="server" CausesValidation="false" formnovalidate="true" CssClass=" btn-link" OnClick="btn_registro_Click" Text="Volver a registrar" />
 
-                                    <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
+                                    <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
                                         <Columns>
-                                            <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
-                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                            <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
+                                            <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
+                                            <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
+                                            <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
+                                            <asp:BoundField DataField="alu_estado" HeaderText="Estado" SortExpression="estado" />
                                             <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
                                             <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
                                             <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />

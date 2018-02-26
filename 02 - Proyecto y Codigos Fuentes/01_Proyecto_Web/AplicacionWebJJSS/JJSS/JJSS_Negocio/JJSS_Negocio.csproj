@@ -43,6 +43,7 @@
     <Compile Include="Administracion\GestorCategoria.cs" />
     <Compile Include="Administracion\GestorDireccion.cs" />
     <Compile Include="Administracion\GestorAcademias.cs" />
+    <Compile Include="Administracion\GestorEstados.cs" />
     <Compile Include="GestorAsistencia.cs" />
     <Compile Include="GestorCiudades.cs" />
     <Compile Include="GestorClases.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="modReportes.cs" />
     <Compile Include="modUtilidades.cs" />
     <Compile Include="modUtilidadesTablas.cs" />
+    <Compile Include="Resultados\AlumnoConEstado.cs" />
     <Compile Include="Resultados\ClasesHorariosAsistencia.cs" />
     <Compile Include="Resultados\CompInscripcionTorneo.cs" />
     <Compile Include="Resultados\CompInscripcionEvento.cs" />

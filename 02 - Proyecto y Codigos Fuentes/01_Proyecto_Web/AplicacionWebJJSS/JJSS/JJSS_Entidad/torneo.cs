@@ -42,9 +42,9 @@ namespace JJSS_Entidad
         public virtual ICollection<lucha> lucha { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_torneo> pago_torneo { get; set; }
-        public virtual sede sede { get; set; }
         public virtual tipo_clase tipo_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<torneo_imagen> torneo_imagen { get; set; }
+        public virtual sede sede { get; set; }
     }
 }

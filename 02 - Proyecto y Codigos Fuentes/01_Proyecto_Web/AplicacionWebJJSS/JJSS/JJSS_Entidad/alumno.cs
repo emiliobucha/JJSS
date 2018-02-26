@@ -39,6 +39,7 @@ namespace JJSS_Entidad
         public long telefono_emergencia { get; set; }
         public Nullable<int> id_usuario { get; set; }
         public Nullable<short> baja_logica { get; set; }
+        public Nullable<int> id_estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }
@@ -56,5 +57,6 @@ namespace JJSS_Entidad
         public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_clase> pago_clase { get; set; }
+        public virtual estado estado { get; set; }
     }
 }
