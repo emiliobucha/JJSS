@@ -21,6 +21,7 @@ namespace JJSS_Entidad
             this.lucha = new HashSet<lucha>();
             this.pago_torneo = new HashSet<pago_torneo>();
             this.torneo_imagen = new HashSet<torneo_imagen>();
+            this.resultado = new HashSet<resultado>();
         }
     
         public int id_torneo { get; set; }
@@ -46,5 +47,7 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<torneo_imagen> torneo_imagen { get; set; }
         public virtual sede sede { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<resultado> resultado { get; set; }
     }
 }

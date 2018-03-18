@@ -126,6 +126,12 @@
         <AssociationConnector Association="JJSSModel.FK__sede__id_direcci__51300E55" />
         <AssociationConnector Association="JJSSModel.FK__evento_es__id_se__30C33EC3" />
         <AssociationConnector Association="JJSSModel.FK__torneo__id_sede__56E8E7AB" />
+        <AssociationConnector Association="JJSSModel.fk_cat_torneo" />
+        <AssociationConnector Association="JJSSModel.fk_primero" />
+        <AssociationConnector Association="JJSSModel.fk_segundo" />
+        <AssociationConnector Association="JJSSModel.fk_tercero1" />
+        <AssociationConnector Association="JJSSModel.fk_tercero2" />
+        <AssociationConnector Association="JJSSModel.fk_torneo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

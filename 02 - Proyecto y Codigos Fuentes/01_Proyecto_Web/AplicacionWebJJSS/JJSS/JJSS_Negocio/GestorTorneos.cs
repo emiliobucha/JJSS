@@ -154,7 +154,7 @@ namespace JJSS_Negocio
                     select torneo;
                 return torneosAbiertos.ToList();
             }
-    }
+        }
 
         public List<TorneoResultado> ObtenerTorneosConImagen()
         {
@@ -347,7 +347,30 @@ namespace JJSS_Negocio
             }
         }
 
-
+        /*
+         * busca los torneos con su imagen que comiencen con filtroNombre y la fecha sea mayor a filtroFecha
+         */
+        public List<TorneoResultado> BuscarTorneosConFiltrosEImagen(String filtroNombre, DateTime filtroFecha)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var torneos = from tor in db.torneo
+                              join i in db.torneo_imagen on tor.id_torneo equals i.id_torneo
+                              into ps
+                              from i in ps.DefaultIfEmpty()
+                              where tor.nombre.StartsWith(filtroNombre) &&
+                              tor.fecha >= filtroFecha
+                              select new TorneoResultado()
+                              {
+                                  id_torneo = tor.id_torneo,
+                                  nombre = tor.nombre,
+                                  fecha = tor.fecha,
+                                  hora = tor.hora,
+                                  imagenB = i.imagen
+                              };
+                return torneos.ToList<TorneoResultado>();
+            }
+        }
 
         /*
          * Aun no aplica

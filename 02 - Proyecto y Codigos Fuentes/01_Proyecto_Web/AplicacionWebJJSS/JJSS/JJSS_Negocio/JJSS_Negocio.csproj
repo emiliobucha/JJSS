@@ -69,6 +69,7 @@
     <Compile Include="GestorReportes.cs" />
     <Compile Include="GestorReservas.cs" />
     <Compile Include="Administracion\GestorSedes.cs" />
+    <Compile Include="GestorResultados.cs" />
     <Compile Include="GestorSesiones.cs" />
     <Compile Include="GestorTipoClase.cs" />
     <Compile Include="GestorTorneos.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="modUtilidades.cs" />
     <Compile Include="modUtilidadesTablas.cs" />
     <Compile Include="Resultados\AlumnoConEstado.cs" />
+    <Compile Include="Resultados\CategoriasTorneoResultado.cs" />
     <Compile Include="Resultados\ClasesHorariosAsistencia.cs" />
     <Compile Include="Resultados\CompInscripcionTorneo.cs" />
     <Compile Include="Resultados\CompInscripcionEvento.cs" />
