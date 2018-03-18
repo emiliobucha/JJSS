@@ -675,6 +675,6 @@ namespace JJSS.Presentacion
             gestorEventos = new GestorEventos();
             lv_eventos.DataSource = gestorEventos.ObtenerEventosConImagen();
             lv_eventos.DataBind();
-        }
+        } 
     }
 }

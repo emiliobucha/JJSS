@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -40,7 +40,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GestorAcademias.cs" />
+    <Compile Include="Administracion\GestorCategoria.cs" />
+    <Compile Include="Administracion\GestorDireccion.cs" />
+    <Compile Include="Administracion\GestorAcademias.cs" />
+    <Compile Include="Administracion\GestorEstados.cs" />
     <Compile Include="GestorAsistencia.cs" />
     <Compile Include="GestorCiudades.cs" />
     <Compile Include="GestorClases.cs" />
@@ -65,7 +68,8 @@
     <Compile Include="GestorProvincias.cs" />
     <Compile Include="GestorReportes.cs" />
     <Compile Include="GestorReservas.cs" />
-    <Compile Include="GestorSedes.cs" />
+    <Compile Include="Administracion\GestorSedes.cs" />
+    <Compile Include="GestorResultados.cs" />
     <Compile Include="GestorSesiones.cs" />
     <Compile Include="GestorTipoClase.cs" />
     <Compile Include="GestorTorneos.cs" />
@@ -74,14 +78,12 @@
     <Compile Include="modReportes.cs" />
     <Compile Include="modUtilidades.cs" />
     <Compile Include="modUtilidadesTablas.cs" />
-    <Compile Include="Resultados\AlumnoFaja.cs" />
-    <Compile Include="Resultados\ClaseHorario.cs" />
-    <Compile Include="Resultados\ClasesDisponibles..cs" />
+    <Compile Include="Resultados\AlumnoConEstado.cs" />
+    <Compile Include="Resultados\CategoriasTorneoResultado.cs" />
     <Compile Include="Resultados\ClasesHorariosAsistencia.cs" />
     <Compile Include="Resultados\CompInscripcionTorneo.cs" />
     <Compile Include="Resultados\CompInscripcionEvento.cs" />
     <Compile Include="Resultados\DetalleReservaResultado.cs" />
-    <Compile Include="Resultados\DireccionAlumno.cs" />
     <Compile Include="Resultados\HorariosResultado.cs" />
     <Compile Include="Resultados\ListadoAsistencia.cs" />
     <Compile Include="Resultados\ParticipantesEventoResultado.cs" />

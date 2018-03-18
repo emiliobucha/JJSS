@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Administracion;
 
 namespace JJSS_Negocio
 {

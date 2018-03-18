@@ -22,6 +22,10 @@ namespace JJSS_Entidad
             this.lucha1 = new HashSet<lucha>();
             this.pago_evento = new HashSet<pago_evento>();
             this.pago_torneo = new HashSet<pago_torneo>();
+            this.resultado = new HashSet<resultado>();
+            this.resultado1 = new HashSet<resultado>();
+            this.resultado2 = new HashSet<resultado>();
+            this.resultado3 = new HashSet<resultado>();
         }
     
         public int id_participante { get; set; }
@@ -43,5 +47,13 @@ namespace JJSS_Entidad
         public virtual ICollection<pago_evento> pago_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_torneo> pago_torneo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<resultado> resultado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<resultado> resultado1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<resultado> resultado2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<resultado> resultado3 { get; set; }
     }
 }

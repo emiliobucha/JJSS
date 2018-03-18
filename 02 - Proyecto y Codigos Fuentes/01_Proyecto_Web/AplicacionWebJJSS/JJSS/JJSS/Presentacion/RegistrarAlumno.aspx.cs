@@ -12,6 +12,7 @@ using System.IO;
 using System.Globalization;
 using System.Data;
 using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Administracion;
 
 namespace JJSS.Presentacion
 {
@@ -21,6 +22,7 @@ namespace JJSS.Presentacion
         private GestorAlumnos gestorAlumnos;
         private GestorCiudades gestorCiudades;
         private GestorProvincias gestorProvincias;
+        private GestorEstados gestorEstados;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -47,6 +49,7 @@ namespace JJSS.Presentacion
             gestorInscripciones = new GestorInscripciones();
             gestorCiudades = new GestorCiudades();
             gestorProvincias = new GestorProvincias();
+            gestorEstados = new GestorEstados();
 
             if (!IsPostBack)
             {
@@ -82,6 +85,7 @@ namespace JJSS.Presentacion
                 gvAlumnos.AllowPaging = true;
                 gvAlumnos.AutoGenerateColumns = false;
                 gvAlumnos.PageSize = 20;
+                CargarCheckboxEstados();
                 CargarGrilla();
                 mostrarPaneles();
             }
@@ -125,6 +129,15 @@ namespace JJSS.Presentacion
             ddl_provincia.DataBind();
         }
 
+        protected void CargarCheckboxEstados()
+        {
+            List<estado> estados = gestorEstados.obtenerEstados("ALUMNOS");
+            chFiltroEstado.DataSource = estados;
+            chFiltroEstado.DataTextField = "nombre";
+            chFiltroEstado.DataValueField = "id_estado";
+            chFiltroEstado.DataBind();
+        }
+
         protected void CargarComboCiudades(int pProvincia)
         {
             List<ciudad> ciudades = gestorCiudades.ObtenerCiudadesPorProvincia(pProvincia);
@@ -137,7 +150,7 @@ namespace JJSS.Presentacion
 
         protected void btn_guardar_click(object sender, EventArgs e)
         {
-            
+
             int dni = int.Parse(txtDni.Text);
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
@@ -177,16 +190,20 @@ namespace JJSS.Presentacion
 
             long telEmergencia = long.Parse(txt_telefono_urgencia.Text);
             //Image imagenPerfil = Avatar;
+            int? ciudad = null;
+            if (ddl_localidad.SelectedValue != "")
+            {
+                ciudad = int.Parse(ddl_localidad.SelectedValue);
+            }
 
-            int ciudad = int.Parse(ddl_localidad.SelectedValue);
 
-            if (txtDni.Enabled==false)
+            if (txtDni.Enabled == false)
             {
                 //actualiza datos
                 try
                 {
-                    gestorAlumnos.ModificarAlumno(dni, nombre, apellido,fechaNac,sexo);
-                    gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad,torre);
+                    gestorAlumnos.ModificarAlumno(dni, nombre, apellido, fechaNac, sexo);
+                    gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad, torre);
                     mensaje("Se modificaron los datos correctamente", true);
                     MultiView1.SetActiveView(view_grilla);
                     pnl_mostrar_alumnos.Visible = true;
@@ -213,7 +230,7 @@ namespace JJSS.Presentacion
                 //registra un nuevo alumno
                 try
                 {
-                    gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad,torre);
+                    gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad, torre);
                     mensaje("Se ha creado el alumno exitosamente", true);
                     MultiView1.SetActiveView(view_grilla);
                     pnl_mostrar_alumnos.Visible = true;
@@ -256,21 +273,33 @@ namespace JJSS.Presentacion
 
         protected void CargarGrilla()
         {
-            int dni = 0;
-            if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
-            List<alumno> listaCompleta = gestorAlumnos.BuscarAlumno();
-            List<alumno> listaConFiltro = new List<alumno>();
-            string filtroApellido = txt_filtro_apellido.Text.ToUpper();
+            int filtroDni = 0;
+            if (txt_filtro_dni.Text.CompareTo("") != 0) filtroDni = int.Parse(txt_filtro_dni.Text);
+            int[] filtroEstados = new int[5];
 
-            foreach (alumno i in listaCompleta)
+            for (int i = 0; i < chFiltroEstado.Items.Count; i++)
             {
-                string apellido = i.apellido.ToUpper();
-                if (dni == 0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
-
-                if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
+                if (chFiltroEstado.Items[i].Selected)
+                {
+                    filtroEstados[i] = int.Parse(chFiltroEstado.Items[i].Value);
+                }
+                else filtroEstados[i] = 0;
             }
 
-            gvAlumnos.DataSource = listaConFiltro;
+            Boolean sinFiltro = true;
+            foreach(int i in filtroEstados)
+            {
+                if (i != 0)
+                {
+                    sinFiltro = false;
+                    break;
+                }
+            }
+            if (sinFiltro) filtroEstados[0] = 8;
+
+            List<AlumnoConEstado> listaCompleta = gestorAlumnos.BuscarAlumnoConEstado(filtroEstados, txt_filtro_apellido.Text, filtroDni);
+
+            gvAlumnos.DataSource = listaCompleta;
             gvAlumnos.DataBind();
         }
 

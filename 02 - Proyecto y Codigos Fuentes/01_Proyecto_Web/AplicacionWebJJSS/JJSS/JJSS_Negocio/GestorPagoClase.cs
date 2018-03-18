@@ -11,6 +11,7 @@ namespace JJSS_Negocio
 {
     public class GestorPagoClase
     {
+        private const int ALUMNO_ACTIVO = 9;
         /*
          *Metodo que registra un pago
          * Parametros:
@@ -82,6 +83,7 @@ namespace JJSS_Negocio
                         recargo=pPagoRecargo
                     };
                     db.detalle_pago_clase.Add(nuevoDetalle);
+                    alumnoSelect.id_estado = ALUMNO_ACTIVO;
 
                     db.SaveChanges();
                     transaction.Commit();

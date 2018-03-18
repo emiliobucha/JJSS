@@ -15,6 +15,9 @@ namespace JJSS_Negocio
      */
     public class GestorAlumnos
     {
+        private const int ALUMNO_CREADO = 8;
+        private const int ALUMNO_DE_BAJA = 12;
+        private const int ALUMNO_ACTIVO = 9;
 
         /*
          * Método que nos permite obtener a un alumno buscandolo por DNI
@@ -28,7 +31,7 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var alumnoEncontrado = from alu in db.alumno
-                                       where alu.dni == pDni && alu.baja_logica==1
+                                       where alu.dni == pDni && alu.baja_logica == 1
                                        select alu;
                 return alumnoEncontrado.FirstOrDefault();
             }
@@ -63,7 +66,7 @@ namespace JJSS_Negocio
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento,
             short? pSexo, int pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
-            string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad, string pTorre)
+            string pCalle, int? pNumero, string pDpto, int? pPiso, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -103,7 +106,7 @@ namespace JJSS_Negocio
                             numero = pNumero,
                             piso = pPiso,
                             ciudad = ciudadElegida,
-                            torre=pTorre,
+                            torre = pTorre,
 
                         };
                         db.direccion.Add(nuevaDireccion);
@@ -121,7 +124,8 @@ namespace JJSS_Negocio
                             fecha_ingreso = DateTime.Today,
                             telefono_emergencia = pTelEmergencia,
                             seguridad_usuario = usuario,
-                            baja_logica=1
+                            baja_logica = 1,
+                            id_estado = ALUMNO_CREADO
                         };
                     }
                     else //no ingresa direccion
@@ -138,7 +142,8 @@ namespace JJSS_Negocio
                             fecha_ingreso = DateTime.Today,
                             telefono_emergencia = pTelEmergencia,
                             seguridad_usuario = usuario,
-                            baja_logica=1
+                            baja_logica = 1,
+                            id_estado = ALUMNO_CREADO
                         };
                     }
 
@@ -167,11 +172,9 @@ namespace JJSS_Negocio
         }
 
 
-        /*Método que busca un alumno con filtro de dni
+        /*Método que busca un alumno
          * 
-         * Parametros: 
-         *              
-         *              pApellido : String filtro para buscar alumnos
+         * 
          *  Retornos: List<Object>
          *              "" : Transaccion Correcta
          *              null : Error en la transaccion
@@ -186,11 +189,75 @@ namespace JJSS_Negocio
                 try
                 {
                     var alumnosPorApellido = from alumno in db.alumno
-                                                 where alumno.baja_logica == 1
+
+                                             where alumno.baja_logica == 1
+                                             orderby alumno.apellido
+                                             select alumno;
+                    return alumnosPorApellido.ToList<alumno>();
+
+
+                }
+                catch (Exception ex)
+                {
+                    sReturn = ex.Message;
+                    return null;
+                }
+            }
+        }
+
+        public List<AlumnoConEstado> BuscarAlumnoConEstado(int[] filtroEstados, String filtroApellido, int filtroDni)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    int filtroEstado0 = filtroEstados[0];
+                    int filtroEstado1 = filtroEstados[1];
+                    int filtroEstado2 = filtroEstados[2];
+                    int filtroEstado3 = filtroEstados[3];
+                    int filtroEstado4 = filtroEstados[4];
+                    if (filtroDni == 0)
+                    {
+                        var alumnosPorApellido = from alumno in db.alumno
+                                                 join est in db.estado on alumno.id_estado equals est.id_estado
+                                                 where
+                                                 (alumno.id_estado == filtroEstado0 || alumno.id_estado == filtroEstado1 || alumno.id_estado == filtroEstado2 ||
+                                                 alumno.id_estado == filtroEstado3 || alumno.id_estado == filtroEstado4)
+                                                 && alumno.apellido.StartsWith(filtroApellido)
                                                  orderby alumno.apellido
-                                                 select alumno;
-                        return alumnosPorApellido.ToList<alumno>();
+                                                 select new AlumnoConEstado
+                                                 {
+                                                     alu_apellido = alumno.apellido,
+                                                     alu_nombre = alumno.nombre,
+                                                     alu_dni = alumno.dni,
+                                                     alu_estado = est.nombre,
+                                                     alu_id_estado = est.id_estado,
+                                                 };
+                        return alumnosPorApellido.ToList<AlumnoConEstado>();
+                    }
+                    else
+                    {
+                        var alumnosPorApellido = from alumno in db.alumno
+                                                 join est in db.estado on alumno.id_estado equals est.id_estado
+                                                 where
+                                                 (alumno.id_estado == filtroEstado0 || alumno.id_estado == filtroEstado1 || alumno.id_estado == filtroEstado2 ||
+                                                 alumno.id_estado == filtroEstado3 || alumno.id_estado == filtroEstado4)
+                                                 && alumno.apellido.StartsWith(filtroApellido)
+                                                 && alumno.dni == filtroDni
+                                                 orderby alumno.apellido
+                                                 select new AlumnoConEstado
+                                                 {
+                                                     alu_apellido = alumno.apellido,
+                                                     alu_nombre = alumno.nombre,
+                                                     alu_dni = alumno.dni,
+                                                     alu_estado = est.nombre,
+                                                     alu_id_estado = est.id_estado,
+                                                 };
+                        return alumnosPorApellido.ToList<AlumnoConEstado>();
+                    }
                     
+
 
                 }
                 catch (Exception ex)
@@ -223,14 +290,15 @@ namespace JJSS_Negocio
                                            where alu.dni == pDni
                                            select alu;
                     alumno alumnoBorrar = alumnoEncontrado.FirstOrDefault();
-                    
+
                     if (alumnoBorrar == null) throw new Exception("El alumno no existe");
                     alumnoBorrar.baja_logica = 0;
+                    alumnoBorrar.id_estado = ALUMNO_DE_BAJA;
                     db.SaveChanges();
 
                     seguridad_usuario usuario = (from usu in db.seguridad_usuario
-                                   where usu.id_usuario == alumnoBorrar.id_usuario
-                                   select usu).FirstOrDefault();
+                                                 where usu.id_usuario == alumnoBorrar.id_usuario
+                                                 select usu).FirstOrDefault();
                     if (usuario == null) throw new Exception("El usuario no existe");
                     usuario.baja_logica = 0;
                     db.SaveChanges();
@@ -311,7 +379,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, int pDni, int pIdCiudad, string pTorre)
+        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, int pDni, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -349,7 +417,7 @@ namespace JJSS_Negocio
                                 numero = pNumero,
                                 piso = pPiso,
                                 id_ciudad = pIdCiudad,
-                                torre=pTorre,
+                                torre = pTorre,
 
                             };
                             db.direccion.Add(nuevaDireccion);
@@ -424,7 +492,7 @@ namespace JJSS_Negocio
                                               piso = dir.piso,
                                               idCiudad = dir.id_ciudad,
                                               idProvincia = ciu.id_provincia,
-                                              torre=dir.torre,
+                                              torre = dir.torre,
                                           };
                 return direccionEncontrada.FirstOrDefault();
             }
@@ -447,7 +515,7 @@ namespace JJSS_Negocio
                 var fajaEncontrada = from alu in db.alumno
                                      join axf in db.alumnoxfaja on alu.id_alumno equals axf.id_alumno
                                      join faj in db.faja on axf.id_faja equals faj.id_faja
-                                     where alu.id_alumno == pIdAlumno && faj.id_tipo_clase == pIdTipoClase && alu.baja_logica == 1 && axf.actual==1
+                                     where alu.id_alumno == pIdAlumno && faj.id_tipo_clase == pIdTipoClase && alu.baja_logica == 1 && axf.actual == 1
                                      select faj;
                 return fajaEncontrada.FirstOrDefault();
             }
@@ -472,7 +540,7 @@ namespace JJSS_Negocio
             {
                 try
                 {
-                    
+
                     alumnoxfaja nuevoAxF;
                     nuevoAxF = new alumnoxfaja
                     {
@@ -494,7 +562,7 @@ namespace JJSS_Negocio
 
         public string CambiarFotoPerfil(int pDni, byte[] pImagen)
         {
-           
+
             using (var db = new JJSSEntities())
             {
                 try
@@ -517,9 +585,9 @@ namespace JJSS_Negocio
                     {
                         throw new Exception("El usuario no existe");
                     }
-                   
-                
-                
+
+
+
                 }
                 catch (Exception ex)
                 {
@@ -535,7 +603,7 @@ namespace JJSS_Negocio
             {
                 try
                 {
-                    
+
                     var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == pId);
 
                     return alumnoImagen?.imagen;
