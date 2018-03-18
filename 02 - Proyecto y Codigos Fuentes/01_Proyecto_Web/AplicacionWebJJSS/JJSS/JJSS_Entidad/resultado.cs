@@ -31,6 +31,7 @@ namespace JJSS_Entidad
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
+        public virtual categoria_torneo categoria_torneo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lucha> lucha { get; set; }
         public virtual participante participante { get; set; }

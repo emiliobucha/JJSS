@@ -27,10 +27,10 @@ namespace JJSS_Entidad
         public Nullable<int> id_resultado { get; set; }
     
         public virtual categoria categoria { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<inscripcion> inscripcion { get; set; }
         public virtual faja faja { get; set; }
         public virtual resultado resultado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<inscripcion> inscripcion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<resultado> resultado1 { get; set; }
     }
