@@ -13,8 +13,9 @@
     <title>JJSS</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet" />
+      <link href="../css/bootstrap.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
+
       <link href="../css/style.css" rel="stylesheet" />
       <link href="../css/font-awesome.min.css" rel="stylesheet" />
       <link href="../js/fancybox/jquery.fancybox.css" rel="stylesheet" />
@@ -51,12 +52,71 @@
 
   </head>
 
-  <body data-spy="scroll" data-offset="0" data-target="#theMenu">
-      
+  <body>
+
 
       <!-- Menu -->
-      <div class="container">
+
+          <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark" style="background-color: #2f2f2f;"  >
+              <div class="navbar-nav nav-item">
+                  <a class="navbar-brand" href="#">Hinojal</a>
+              </div>
+              
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse navbar-dark text-white" id="navbarNavDropdown">
+                  <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                          <a class=" nav-item  text-white" href="#">&nbsp; Home &nbsp; </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class=" nav-item  text-white" href="SobreNosotros.aspx">&nbsp; Sobre Nosotros &nbsp; </a>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarTorneo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Torneo &nbsp; 
+                          </a>
+                          <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item text-white" href="CrearTorneo.aspx">Crear </a>
+                              <a class="dropdown-item text-white" href="#">Ver </a>
+                              <a class="dropdown-item text-white" href="InscripcionTorneo.aspx">Inscribir </a>                                                    
+                              <a class="dropdown-item text-white" >Registrar Pago </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarClase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Clase &nbsp; 
+                          </a>
+                          <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item text-white" href="CrearClase.aspx">Crear </a>
+                              <a class="dropdown-item text-white" href="#">Ver </a>
+                              <a class="dropdown-item text-white" href="InscripcionClase.aspx">Inscribir </a>                              
+                              <a class="dropdown-item text-white" href="RegistrarAsistencia.aspx">Asistencia </a>                                                    
+                              <a class="dropdown-item text-white" >Registrar Pago </a>
+                          </div>
+                      </li>
+                          <li class="nav-item dropdown">
+                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarEvento" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Evento &nbsp; 
+                          </a>
+                          <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item text-white"  href="CrearEvento.aspx">Crear </a>
+                              <a class="dropdown-item text-white" href="#">Ver </a>
+                              <a class="dropdown-item text-white" href="InscripcionEvento.aspx">Inscribir </a>                                                    
+                              <a class="dropdown-item text-white" >Registrar Pago </a>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+
+          </nav>
+
+
+
+
+      <%--<div class="container">
           <nav class="menu nav" id="theMenu" >
+
+
               <div class="menu-wrap">
 
                   <i class="fa fa-times menu-close"></i>
@@ -64,14 +124,12 @@
                   <div class="row centered">
                       <p>&nbsp;</p>
                   </div>
-
-                                    
+                                                      
                   <!---------------- SESSION ------------------->       
                   
                   <!--si NO hay una sesion activa-->
                   <asp:Panel ID="pnl_iniciar_sesion" runat="server">
                       <a id="iniciar_sesion" href="Login.aspx" style="text-transform:capitalize" >
-                          <%--<span class="glyphicon glyphicon-chevron-right"></span>--%>
                           Iniciar Sesión
                       </a>
                   </asp:Panel>
@@ -128,10 +186,9 @@
               
               <!-- Menu button -->
               <div id="menuToggle"><i class="fa fa-bars"></i></div>
-          </nav>
-      </div>
-      
-                   
+          </nav>--%>
+    
+                       
 
 
       
@@ -148,11 +205,15 @@
        <!-- CONTACT SEPARATOR -->
        
 
-        <div id="contactwrap">
-            <div class="container">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <p>Contacto</p>
-                    <div class=" col-xs-6 col-sm-6 col-md-3 col-lg-3">
+        <div id="contactwrap" style="background-color: #2f2f2f;">
+
+            <div class="row justify-content-center">
+
+                <div class=" col col-md-2 col-lg-2 col-sm-3">
+                    <div class="col">
+                        <p>Contacto</p>
+                    </div>
+                    <div class="col">
                         <p>
                             <small>Buchaillot, Emilio<br />
                                 Moll, Luciana<br />
@@ -160,21 +221,20 @@
                                 Tita, Romina</small>
                         </p>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                        <p>
-                            <small>emiliobuchaillot@gmail.com<br />
-                                lucianam910@gmail.com<br />
-                                melinasolovey@gmail.com<br />
-                                rominaftita@gmail.com</small>
-                        </p>
+                </div>
+                <div class="col col-md-3 col-lg-3 col-sm-5">
+                     <div class="row centered">
+                        <p>&nbsp;</p>
                     </div>
+                    <p>
+                        <small>emiliobuchaillot@gmail.com<br />
+                            lucianam910@gmail.com<br />
+                            melinasolovey@gmail.com<br />
+                            rominaftita@gmail.com</small>
+                    </p>
                 </div>
-
-                <div class="col-lg-2 col-md-2 hidden-xs hidden-sm ">
-                    <p>&nbsp;</p>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-lg-4 col-md-4">
+                
+                <div class="col-sm-12 col-lg-4 col-md-4 centered">
                     <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
@@ -184,30 +244,13 @@
                             Argentina.</small>
                     </p>
                 </div>
-
-                <div class=" col-sm-12 col-md-12 col-lg-12 centered">
-                    <p>
-                        <small>JJSS (Jiu-Jitsu Sport System)<br />
-                        </small>
-                    </p>
-                </div>
-
-
-                <%-- <div class="col-lg-6" style="left: 0px; top: 0px">
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="exampleInputName1">Your Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
-                                <label for="exampleInputText1">Message</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
-                    </div>--%>
-
-                <!--/row -->
             </div>
-            <!-- /container -->
+            <div class="col col-sm-12 col-md-12 col-lg-12 centered">
+                <p>
+                    <small>JJSS (Jiu-Jitsu Sport System)<br />
+                    </small>
+                </p>
+            </div>
         </div>
 
 
@@ -215,7 +258,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-      <link href="../css/MisEstilos.css" rel="stylesheet" />
+    <link href="../css/MisEstilos.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
