@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS.Presentacion
 {
@@ -59,35 +60,26 @@ namespace JJSS.Presentacion
         {
             int tipoClase = 0;
             int.TryParse(rb_tipo_clase.SelectedValue, out tipoClase);
-            DataTable dtCompleta=new DataTable();
-            DataTable dtConFiltro = new DataTable();
-            
-            List<Object> lista = new List<Object>();
+
+            List<AlumnoFaja> listaAlumnos;
+            List<AlumnoFaja> listaAlumnosFiltrada;
+
             
             if (tipoClase == 0)
             {
                 gestorGraduacion = new GestorGraduacion();
-                dtCompleta = gestorGraduacion.buscarFajasAlumnos();
+                listaAlumnos = gestorGraduacion.buscarFajasAlumnos();
             }
             else
             {
                 gestorGraduacion = new GestorGraduacion();
-                dtCompleta = gestorGraduacion.buscarFajasAlumnosConFiltro(tipoClase);
+                listaAlumnos = gestorGraduacion.buscarFajasAlumnosConFiltro(tipoClase);
             }
-            dtConFiltro= dtCompleta.Clone();
+
             string filtroApellido = txt_filtro_apellido.Text.ToUpper().Trim();
+            listaAlumnosFiltrada = listaAlumnos.FindAll(x => x.apellido.ToUpper().StartsWith(filtroApellido));
 
-            for (int i =0; i < dtCompleta.Rows.Count; i++)
-            {
-                DataRow dr = dtCompleta.Rows[i];
-                if (dr["apellido"].ToString().ToUpper().StartsWith(filtroApellido))
-                {
-                    dtConFiltro.ImportRow(dr);
-                };
-            }
-
-            gv_graduacion.DataSource = dtConFiltro;
-
+            gv_graduacion.DataSource = listaAlumnosFiltrada;
 
             gv_graduacion.DataBind();
 

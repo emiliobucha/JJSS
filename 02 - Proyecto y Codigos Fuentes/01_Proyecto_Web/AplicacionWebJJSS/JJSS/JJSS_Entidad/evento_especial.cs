@@ -17,9 +17,9 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public evento_especial()
         {
+            this.evento_especial_imagen = new HashSet<evento_especial_imagen>();
             this.inscripcion_evento = new HashSet<inscripcion_evento>();
             this.pago_evento = new HashSet<pago_evento>();
-            this.evento_especial_imagen = new HashSet<evento_especial_imagen>();
         }
     
         public int id_evento { get; set; }
@@ -34,13 +34,13 @@ namespace JJSS_Entidad
         public string hora { get; set; }
     
         public virtual estado estado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<evento_especial_imagen> evento_especial_imagen { get; set; }
         public virtual sede sede { get; set; }
+        public virtual tipo_evento_especial tipo_evento_especial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion_evento> inscripcion_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_evento> pago_evento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<evento_especial_imagen> evento_especial_imagen { get; set; }
-        public virtual tipo_evento_especial tipo_evento_especial { get; set; }
     }
 }

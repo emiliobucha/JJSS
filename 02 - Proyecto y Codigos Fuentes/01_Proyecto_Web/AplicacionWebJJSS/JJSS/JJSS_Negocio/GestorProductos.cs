@@ -76,7 +76,7 @@ namespace JJSS_Negocio
                 var productosEncontrados = from prod in db.producto
                                            join cat in db.categoria_producto on prod.id_categoria equals cat.id_categoria
                                            orderby prod.nombre
-                                           select new
+                                           select new 
                                            {
                                                nombre = prod.nombre,
                                                categoria = cat.nombre,

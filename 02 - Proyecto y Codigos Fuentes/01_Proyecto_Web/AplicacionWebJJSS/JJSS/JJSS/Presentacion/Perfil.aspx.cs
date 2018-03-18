@@ -10,6 +10,7 @@ using System.Data;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using JJSS_Negocio.Resultados;
 using Image = System.Drawing.Image;
 
 namespace JJSS.Presentacion
@@ -160,8 +161,7 @@ namespace JJSS.Presentacion
 
                 else
                 {
-                    // busco la direccion
-                    DataTable direccionEncontrada = gestorAlumnos.ObtenerDireccionAlumno(alumnoEncontrado.id_alumno);
+                   
 
                     txt_dni.Text = alumnoEncontrado.dni.ToString();
                     txt_nombre.Text = alumnoEncontrado.nombre;
@@ -169,17 +169,19 @@ namespace JJSS.Presentacion
                     txt_email.Text = alumnoEncontrado.mail;
                     txt_telefono.Text = alumnoEncontrado.telefono.ToString();
                     txt_telefono_urgencia.Text = alumnoEncontrado.telefono_emergencia.ToString();
-                    if (direccionEncontrada.Rows.Count > 0)
+
+                    // busco la direccion
+                    DireccionAlumno direccionEncontrada = gestorAlumnos.ObtenerDireccionAlumno(alumnoEncontrado.id_alumno);
+                    if (direccionEncontrada != null)
                     {
-                        DataRow row = direccionEncontrada.Rows[0];
-                        txt_calle.Text = row["calle"].ToString();
-                        txt_nro_dpto.Text = row["depto"].ToString();
-                        txt_numero.Text = row["numero"].ToString();
-                        txt_piso.Text = row["piso"].ToString();
-                        ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                        txt_calle.Text = direccionEncontrada.calle;
+                        txt_nro_dpto.Text = direccionEncontrada.depto;
+                        txt_numero.Text = direccionEncontrada.numero.ToString();
+                        txt_piso.Text = direccionEncontrada.piso.ToString();
+                        ddl_provincia.SelectedValue = direccionEncontrada.idProvincia.ToString();
                         CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
-                        ddl_localidad.SelectedValue = row["idCiudad"].ToString();
-                        txt_torre.Text = row["torre"].ToString();
+                        ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
+                        txt_torre.Text = direccionEncontrada.torre;
 
                     }
 
@@ -187,8 +189,6 @@ namespace JJSS.Presentacion
 
                     if (imgBytes != null)
                     {
-
-
                         using (MemoryStream ms = new MemoryStream(imgBytes))
                         {
                             try

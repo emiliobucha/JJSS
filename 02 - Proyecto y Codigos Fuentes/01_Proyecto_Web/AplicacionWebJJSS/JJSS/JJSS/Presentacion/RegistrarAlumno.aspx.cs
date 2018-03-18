@@ -11,6 +11,7 @@ using JJSS_Negocio;
 using System.IO;
 using System.Globalization;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS.Presentacion
 {
@@ -383,18 +384,17 @@ namespace JJSS.Presentacion
                 if (alu.sexo == 0) rbSexo.SelectedIndex = 0;
                 if (alu.sexo == 1) rbSexo.SelectedIndex = 1;
 
-                DataTable direccionEncontrada = gestorAlumnos.ObtenerDireccionAlumno(alu.id_alumno);
-                if (direccionEncontrada.Rows.Count > 0)
+                DireccionAlumno direccionEncontrada = gestorAlumnos.ObtenerDireccionAlumno(alu.id_alumno);
+                if (direccionEncontrada != null)
                 {
-                    DataRow row = direccionEncontrada.Rows[0];
-                    txt_calle.Text = row["calle"].ToString();
-                    txt_nro_dpto.Text = row["depto"].ToString();
-                    txt_numero.Text = row["numero"].ToString();
-                    txt_piso.Text = row["piso"].ToString();
-                    ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                    txt_calle.Text = direccionEncontrada.calle;
+                    txt_nro_dpto.Text = direccionEncontrada.depto;
+                    txt_numero.Text = direccionEncontrada.numero.ToString();
+                    txt_piso.Text = direccionEncontrada.piso.ToString();
+                    ddl_provincia.SelectedValue = direccionEncontrada.idProvincia.ToString();
                     CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
-                    ddl_localidad.SelectedValue = row["idCiudad"].ToString();
-                    txt_torre.Text = row["torre"].ToString();
+                    ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
+                    txt_torre.Text = direccionEncontrada.torre;
 
                 }
 

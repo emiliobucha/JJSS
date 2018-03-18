@@ -74,10 +74,14 @@
     <Compile Include="modReportes.cs" />
     <Compile Include="modUtilidades.cs" />
     <Compile Include="modUtilidadesTablas.cs" />
+    <Compile Include="Resultados\AlumnoFaja.cs" />
+    <Compile Include="Resultados\ClaseHorario.cs" />
+    <Compile Include="Resultados\ClasesDisponibles..cs" />
     <Compile Include="Resultados\ClasesHorariosAsistencia.cs" />
     <Compile Include="Resultados\CompInscripcionTorneo.cs" />
     <Compile Include="Resultados\CompInscripcionEvento.cs" />
     <Compile Include="Resultados\DetalleReservaResultado.cs" />
+    <Compile Include="Resultados\DireccionAlumno.cs" />
     <Compile Include="Resultados\HorariosResultado.cs" />
     <Compile Include="Resultados\ListadoAsistencia.cs" />
     <Compile Include="Resultados\ParticipantesEventoResultado.cs" />

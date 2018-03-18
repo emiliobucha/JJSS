@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -407,7 +408,7 @@ namespace JJSS_Negocio
          *          null: si no encuentra ninguno
          * 
          */
-        public DataTable ObtenerDireccionAlumno(int pIdAlumno)
+        public DireccionAlumno ObtenerDireccionAlumno(int pIdAlumno)
         {
             using (var db = new JJSSEntities())
             {
@@ -415,7 +416,7 @@ namespace JJSS_Negocio
                                           join alu in db.alumno on dir.id_direccion equals alu.id_direccion
                                           join ciu in db.ciudad on dir.id_ciudad equals ciu.id_ciudad
                                           where alu.id_alumno == pIdAlumno
-                                          select new
+                                          select new DireccionAlumno
                                           {
                                               calle = dir.calle,
                                               numero = dir.numero,
@@ -425,7 +426,7 @@ namespace JJSS_Negocio
                                               idProvincia = ciu.id_provincia,
                                               torre=dir.torre,
                                           };
-                return modUtilidadesTablas.ToDataTable(direccionEncontrada.ToList());
+                return direccionEncontrada.FirstOrDefault();
             }
         }
 

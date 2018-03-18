@@ -147,7 +147,7 @@ namespace JJSS_Negocio
          * Retorno: List<clase> 
          *          Listado de todas las clases
          */
-        public List<Object> ObtenerClasesDisponibles()
+        public List<ClasesDisponibles> ObtenerClasesDisponibles()
         {
             using (var db = new JJSSEntities())
             {
@@ -156,7 +156,7 @@ namespace JJSS_Negocio
                                         join tipo in db.tipo_clase on clases.id_tipo_clase equals tipo.id_tipo_clase
                                         join profe in db.profesor on clases.id_profe equals profe.id_profesor
                                         where clases.baja_logica == 1
-                                        select new
+                                        select new ClasesDisponibles()
                                         {
                                             id_clase = clases.id_clase,
                                             nombre = clases.nombre,
@@ -166,7 +166,7 @@ namespace JJSS_Negocio
                                             profesor = profe.nombre + " " + profe.apellido,
 
                                         };
-                List<Object> claseLista = clasesDisponibles.ToList<Object>();
+                List<ClasesDisponibles> claseLista = clasesDisponibles.ToList();
 
                 return claseLista;
             }
@@ -390,26 +390,24 @@ namespace JJSS_Negocio
                     var claseEncontrada = from clase in db.clase
                                           join hora in db.horario on clase.id_clase equals hora.id_clase
                                           where clase.id_ubicacion == pIdUbicacion && hora.dia == dia
-                                          select new
+                                          select new ClaseHorario()
                                           {
                                               desde = hora.hora_desde,
                                               hasta = hora.hora_hasta,
                                               id = clase.id_clase
                                           };
 
-                    DataTable dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
-                    for (int i = 0; i < dtClases.Rows.Count; i++)
+                    var claseEncontradaHorarios = claseEncontrada.ToList();
+
+                    foreach (var horario in claseEncontradaHorarios)
                     {
-                        DataRow dr = dtClases.Rows[i];
-                        if (int.Parse(dr["id"].ToString()) == pidClase) break;
-                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) == 0) return false;
-                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0) return false;
-                        if (dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) == 0) return false;
-                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) > 0) return false;
-                        if (dr["desde"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0 && dr["hasta"].ToString().CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0) return false;
-
+                        if (horario.id == pidClase) break;
+                        if (horario.desde.CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) == 0) return false;
+                        if (horario.desde.CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) < 0 && horario.hasta.CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0) return false;
+                        if (horario.hasta.CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) == 0) return false;
+                        if (horario.desde.CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0 && horario.hasta.CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) > 0) return false;
+                        if (horario.desde.CompareTo(pDTHorarios.Rows[j]["hora_desde"].ToString()) > 0 && horario.hasta.CompareTo(pDTHorarios.Rows[j]["hora_hasta"].ToString()) < 0) return false;
                     }
-
                 }
             }
             return true;
@@ -564,7 +562,7 @@ namespace JJSS_Negocio
          * Retornos: List<clase> - lista de las clases
          * 
          */
-        public List<Object> ObtenerClaseSegunAlumnoGrilla(int pIdAlumno)
+        public List<ClasesDisponibles> ObtenerClaseSegunAlumnoGrilla(int pIdAlumno)
         {
             using (var db = new JJSSEntities())
             {
@@ -576,7 +574,7 @@ namespace JJSS_Negocio
                                         where clases.baja_logica == 1
                                           && ins.id_alumno == pIdAlumno
                                           orderby clases.nombre
-                                        select new
+                                        select new ClasesDisponibles
                                         {
                                             id_clase = clases.id_clase,
                                             nombre = clases.nombre,
@@ -586,7 +584,7 @@ namespace JJSS_Negocio
                                             profesor = profe.nombre + " " + profe.apellido,
 
                                         };
-                List<Object> claseLista = clasesDisponibles.ToList<Object>();
+                List<ClasesDisponibles> claseLista = clasesDisponibles.ToList();
 
                 return claseLista;
             }

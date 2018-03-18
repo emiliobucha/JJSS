@@ -34,6 +34,7 @@ namespace JJSS_Entidad
         public virtual academia academia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<asistencia_clase> asistencia_clase { get; set; }
+        public virtual profesor profesor { get; set; }
         public virtual tipo_clase tipo_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<horario> horario { get; set; }
@@ -41,6 +42,5 @@ namespace JJSS_Entidad
         public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_clase> pago_clase { get; set; }
-        public virtual profesor profesor { get; set; }
     }
 }

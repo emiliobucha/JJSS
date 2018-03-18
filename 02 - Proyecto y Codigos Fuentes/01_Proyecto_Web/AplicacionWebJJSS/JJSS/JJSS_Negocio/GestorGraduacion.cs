@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -16,7 +17,7 @@ namespace JJSS_Negocio
          * Retorno: Lista de object  -  apellido y nombre del alumno, faja, fecha de ultima graduacion, tipo de clase, id de alumno
          * 
          */
-        public DataTable buscarFajasAlumnos()
+        public List<AlumnoFaja> buscarFajasAlumnos()
         {
             using (var db = new JJSSEntities())
             {
@@ -26,7 +27,7 @@ namespace JJSS_Negocio
                                  join tip in db.tipo_clase on faj.id_tipo_clase equals tip.id_tipo_clase
                                  where axf.actual == 1
                                  orderby alu.apellido
-                                 select new
+                                 select new AlumnoFaja
                                  {
                                      apellido = alu.apellido,
                                      nombre= alu.nombre,
@@ -35,8 +36,8 @@ namespace JJSS_Negocio
                                      tipo = tip.nombre,
                                      idAlu = alu.id_alumno
                                  };
-                
-                return modUtilidadesTablas.ToDataTable(graduacion.ToList());
+
+                return graduacion.ToList();
             }
         }
 
@@ -48,7 +49,7 @@ namespace JJSS_Negocio
          * 
          */
 
-        public DataTable buscarFajasAlumnosConFiltro( int pIdTipoClase)
+        public List<AlumnoFaja> buscarFajasAlumnosConFiltro( int pIdTipoClase)
         {
             using (var db = new JJSSEntities())
             {
@@ -58,7 +59,7 @@ namespace JJSS_Negocio
                                  join tip in db.tipo_clase on faj.id_tipo_clase equals tip.id_tipo_clase
                                  where axf.actual == 1 && tip.id_tipo_clase==pIdTipoClase
                                  orderby alu.apellido
-                                 select new
+                                 select new AlumnoFaja
                                  {
                                      apellido = alu.apellido,
                                      nombre= alu.nombre,
@@ -67,7 +68,7 @@ namespace JJSS_Negocio
                                      tipo = tip.nombre,
                                      idAlu = alu.id_alumno
                                  };
-                return modUtilidadesTablas.ToDataTable(graduacion.ToList());
+                return graduacion.ToList();
             }
         }
 
