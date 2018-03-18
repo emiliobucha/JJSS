@@ -29,22 +29,50 @@ namespace JJSS.Presentacion
             //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
             //    if (sesionActiva.estado != "INGRESO ACEPTADO")
             //    {
-            //        Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+            //        Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
             //    }
             //}
             //catch (Exception ex)
             //{
-            //    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+            //    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
             //}
 
             gestorTorneos = new GestorTorneos();
-            if (!IsPostBack) CargarComboSedes();
+            if (!IsPostBack)
+            {
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
+                CargarComboSedes();
 
 
 
 
+            }
         }
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -64,6 +92,8 @@ namespace JJSS.Presentacion
                 string nombre = txt_nombre.Text;
                 DateTime fecha = new DateTime(99, 01, 01);
                 DateTime fecha_cierre = fecha;
+
+                /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
                 if (dp_fecha.Text != "")
                 {
@@ -73,13 +103,17 @@ namespace JJSS.Presentacion
                 {
                     fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 }
+                */
+                //LOCAL
+                fecha = DateTime.Parse(dp_fecha.Text);
+                fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
 
 
 
                 decimal precio_abs = decimal.Parse(txt_precio_abs.Text.Replace(".", ","));
                 decimal precio_cat = decimal.Parse(txt_precio_cat.Text.Replace(".", ","));
-                string hora = ddl_hora.SelectedValue;
-                string hora_cierre = ddl_hora_cierre.SelectedValue;
+                string hora = txt_hora.Text;
+                string hora_cierre = txt_hora_cierre.Text;
                 int sede = 0;
                 int.TryParse(ddl_sedes.SelectedValue, out sede);
                 System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
@@ -94,10 +128,11 @@ namespace JJSS.Presentacion
                 if (sReturn.CompareTo("") == 0)
                 {
                     sReturn = "El torneo se ha creado exitosamente";
+                    limpiar();
                     mensaje(sReturn, true);
                 }
                 else mensaje(sReturn, false);
-                
+
             }
 
 
@@ -141,11 +176,18 @@ namespace JJSS.Presentacion
         {
             try
             {
+                /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
                 DateTime fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 DateTime fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 string fecha_act = DateTime.Now.ToString("MM/dd/yyyy");
                 DateTime fecha_actual = DateTime.ParseExact(fecha_act, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
+                */
+                //LOCAL
+                DateTime fecha = DateTime.Parse(dp_fecha.Text);
+                DateTime fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
+                DateTime fecha_actual = DateTime.Today;
+
                 if (fecha >= fecha_actual && fecha_cierre >= fecha_actual)
                 {
                     args.IsValid = true;
@@ -165,16 +207,23 @@ namespace JJSS.Presentacion
         {
             try
             {
+                /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
                 DateTime fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 DateTime fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
-                if (fecha_cierre <= fecha)
+                */
+                //LOCAL
+                DateTime fecha = DateTime.Parse(dp_fecha.Text);
+                DateTime fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
+
+                if (fecha_cierre < fecha) args.IsValid = true;
+                else if (fecha_cierre > fecha) args.IsValid = false;
+                else //son iguales
                 {
-                    args.IsValid = true;
-                }
-                else
-                {
-                    args.IsValid = false;
+                    TimeSpan hora = TimeSpan.Parse(txt_hora.Text);
+                    TimeSpan horaCierre = TimeSpan.Parse(txt_hora_cierre.Text);
+                    if (horaCierre <= hora) args.IsValid = true;
+                    else args.IsValid = false;
                 }
             }
             catch
@@ -188,7 +237,26 @@ namespace JJSS.Presentacion
 
         }
 
+        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+            Response.Redirect("../Presentacion/Inicio.aspx#section_torneos");
+        }
 
+        private void limpiar()
+        {
+            txt_hora.Text = "";
+            txt_hora_cierre.Text = "";
+            txt_nombre.Text = "";
+            txt_precio_abs.Text = "";
+            txt_precio_cat.Text = "";
+            dp_fecha.Text = "";
+            dp_fecha_cierre.Text = "";
+            if (ddl_sedes.Items.Count>0) ddl_sedes.SelectedIndex = 0;
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+
+        }
     }
 
 

@@ -7,6 +7,9 @@ using JJSS_Entidad;
 using System.Data.Entity;
 using System.Data;
 using System.Configuration;
+using System.Globalization;
+using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Administracion;
 
 namespace JJSS_Negocio
 {
@@ -43,7 +46,7 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    torneo torneoEncontrado= BuscarTorneoPorNombreFecha(pNombre, pFecha);
+                    torneo torneoEncontrado = BuscarTorneoPorNombreFecha(pNombre, pFecha);
                     if (torneoEncontrado != null)
                     {
                         sReturn = "El torneo ya ha sido creado";
@@ -59,8 +62,9 @@ namespace JJSS_Negocio
                         precio_absoluto = pPrecio_absoluto,
                         hora = pHora,
                         hora_cierre = pHora_cierre,
-                        id_sede = pSede, 
-                        estado = estadoTorneo
+                        id_sede = pSede,
+                        estado = estadoTorneo,
+                        id_tipo_clase = 1
                     };
                     db.torneo.Add(nuevoTorneo);
                     db.SaveChanges();
@@ -97,10 +101,10 @@ namespace JJSS_Negocio
          * Retorno: torneo 
          *          torneo encontrado, si no existe devuelve null
          */
-        public torneo BuscarTorneoPorNombreFecha(string pNombre,DateTime pFecha)
+        public torneo BuscarTorneoPorNombreFecha(string pNombre, DateTime pFecha)
         {
-            
-            using (var db=new JJSSEntities())
+
+            using (var db = new JJSSEntities())
             {
                 var encontradoTorneo = from torneo in db.torneo
                                        where torneo.nombre == pNombre && torneo.fecha == pFecha
@@ -115,7 +119,8 @@ namespace JJSS_Negocio
         public torneo BuscarTorneoPorID(int pID)
         {
             torneo encontradoTorneo = null;
-            using (var db = new JJSSEntities()) {
+            using (var db = new JJSSEntities())
+            {
                 encontradoTorneo = db.torneo.Find(pID);
             }
             return encontradoTorneo;
@@ -151,6 +156,79 @@ namespace JJSS_Negocio
             }
         }
 
+        public List<TorneoResultado> ObtenerTorneosConImagen()
+        {
+            cambiarEstadoTorneos();
+            using (var db = new JJSSEntities())
+            {
+                var torneosAbiertos =
+                                           from t in db.torneo
+                                           join i in db.torneo_imagen on t.id_torneo equals i.id_torneo
+                                           into ps
+                                           from i in ps.DefaultIfEmpty()
+                                           where t.id_estado == 1
+                                           select new TorneoResultado()
+                                           {
+                                               id_torneo = t.id_torneo,
+                                               nombre = t.nombre,
+                                               fecha = t.fecha,
+                                               hora = t.hora,
+                                               imagenB = i.imagen
+                                           };
+
+
+                List<TorneoResultado> listaTorneos = torneosAbiertos.ToList<TorneoResultado>();
+                return listaTorneos;
+            }
+        }
+
+        public void cambiarEstadoTorneos()
+        {
+            using (var db = new JJSSEntities())
+            {
+                // del estado 1 al 2
+                List<torneo> torneosAbiertos =
+                        (from torneo in db.torneo
+                         where torneo.id_estado == 1
+                         select torneo).ToList<torneo>();
+
+                foreach (torneo x in torneosAbiertos)
+                {
+                    DateTime cierre = (DateTime)x.fecha_cierre;
+                    if (cierre.Date < DateTime.Now.Date) x.id_estado = 2;
+                    else if (cierre.Date == DateTime.Now.Date && x.hora_cierre.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = 2;
+                    db.SaveChanges();
+                }
+
+                //del estado 2 al 3
+                List<torneo> torneosCerrados =
+                        (from torneo in db.torneo
+                         where torneo.id_estado == 2
+                         select torneo).ToList<torneo>();
+
+                foreach (torneo x in torneosCerrados)
+                {
+                    DateTime fecha = (DateTime)x.fecha;
+                    if (fecha.Date < DateTime.Now.Date) x.id_estado = 3;
+                    else if (fecha.Date == DateTime.Now.Date && x.hora.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = 3;
+                    db.SaveChanges();
+                }
+
+                //del estado 3 al 4
+                List<torneo> torneosEnCurso =
+                        (from torneo in db.torneo
+                         where torneo.id_estado == 3
+                         select torneo).ToList<torneo>();
+
+                foreach (torneo x in torneosEnCurso)
+                {
+                    DateTime fecha = (DateTime)x.fecha;
+                    if (fecha.Date < DateTime.Now.Date) x.id_estado = 4;
+                    db.SaveChanges();
+                }
+
+            }
+        }
 
         public List<torneo> ObtenerTorneosAbiertosCerrados()
         {
@@ -178,7 +256,8 @@ namespace JJSS_Negocio
         /*
          * Eliminar un torneo indicando el ID
          */
-        public String EliminarTorneoPorID(int pID) {
+        public String EliminarTorneoPorID(int pID)
+        {
             String sReturn = "";
             using (var db = new JJSSEntities())
             {
@@ -203,13 +282,14 @@ namespace JJSS_Negocio
         /*
          * Obtenemos un listado de los paticipantes a un torneo 
          */
-        public List<participante> ObtenerParticipantesATorneo(int pID) {
+        public List<participante> ObtenerParticipantesATorneo(int pID)
+        {
             List<inscripcion> inscripcionesTorneo = ObtenerInscripcionesATorneo(pID);
             List<participante> participantes = new List<participante>();
 
             foreach (var auxInscripcion in inscripcionesTorneo)
             {
-                    participantes.Add(auxInscripcion.participante);
+                participantes.Add(auxInscripcion.participante);
             }
 
             return participantes;
@@ -219,43 +299,79 @@ namespace JJSS_Negocio
          * Obtenemos un listado de todos los participantes que estan en un torneo con datos de su categoria a la cual esta inscripto, la faja, y datos
          * propios del participante
          */
-        public List<Object> ListadoParticipantes(int pID)
+        public List<ParticipantesTorneoResultado> ListadoParticipantes(int pID)
         {
             using (var db = new JJSSEntities())
             {
                 var participantes = from inscr in db.inscripcion
                                     join part in db.participante on inscr.id_participante equals part.id_participante
-                                    join cat_tor in db.categoria_torneo on inscr.id_categoria_torneo equals cat_tor.id_categoria_torneo
+                                    join cat_tor in db.categoria_torneo on inscr.id_categoria equals cat_tor.id_categoria_torneo
+                                    join cat in db.categoria on cat_tor.id_categoria equals cat.id_categoria
                                     where inscr.id_torneo == pID
-                                    select new
+                                    select new ParticipantesTorneoResultado()
                                     {
                                         tor_nombre = inscr.torneo.nombre,
                                         tor_sede = inscr.torneo.sede.nombre,
-                                        tor_direccion = inscr.torneo.sede.direccion.calle1 + " " + inscr.torneo.sede.direccion.numero,
-                                        tor_fecha = inscr.torneo.fecha,
+                                        tor_direccion = inscr.torneo.sede.direccion.calle + " " + inscr.torneo.sede.direccion.numero + " - " + inscr.torneo.sede.direccion.ciudad.nombre + " - " + inscr.torneo.sede.direccion.ciudad.provincia.nombre + " - " + inscr.torneo.sede.direccion.ciudad.provincia.pais.nombre,
+                                        tor_fechaD = inscr.torneo.fecha,
                                         tor_hora = inscr.torneo.hora,
                                         par_nombre = part.nombre,
                                         par_apellido = part.apellido,
-                                        par_fecha_nac = part.fecha_nacimiento,
+                                        par_fecha_nacD = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
-                                        par_faja = cat_tor.faja.color,
-                                        par_categoria = cat_tor.categoria.nombre,
-
+                                        par_faja = inscr.faja.descripcion,
+                                        par_categoria = cat.nombre,
+                                        par_dni = part.dni.ToString()
                                     };
-                List<Object> participantesList = participantes.ToList<Object>();
-              
+                List<ParticipantesTorneoResultado> participantesList = participantes.ToList<ParticipantesTorneoResultado>();
+
+
+                foreach (ParticipantesTorneoResultado part in participantesList)
+                {
+                    if (part.par_sexo == 1)
+                    {
+                        part.par_sexo_nombre = "M";
+
+                    }
+                    else
+                    {
+                        part.par_sexo_nombre = "F";
+                    }
+                    part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
+                    part.tor_fecha = part.tor_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
+
+                }
+
+
                 return participantesList;
             }
         }
 
-
-        private string Sexo(string pSexo)
+        /*
+         * busca los torneos con su imagen que comiencen con filtroNombre y la fecha sea mayor a filtroFecha
+         */
+        public List<TorneoResultado> BuscarTorneosConFiltrosEImagen(String filtroNombre, DateTime filtroFecha)
         {
-            if (pSexo == "0")
-                return  "Femenino";
-            else
-                return "Masculino";
+            using (var db = new JJSSEntities())
+            {
+                var torneos = from tor in db.torneo
+                              join i in db.torneo_imagen on tor.id_torneo equals i.id_torneo
+                              into ps
+                              from i in ps.DefaultIfEmpty()
+                              where tor.nombre.StartsWith(filtroNombre) &&
+                              tor.fecha >= filtroFecha
+                              select new TorneoResultado()
+                              {
+                                  id_torneo = tor.id_torneo,
+                                  nombre = tor.nombre,
+                                  fecha = tor.fecha,
+                                  hora = tor.hora,
+                                  imagenB = i.imagen
+                              };
+                return torneos.ToList<TorneoResultado>();
+            }
         }
+
         /*
          * Aun no aplica
          */
@@ -263,6 +379,29 @@ namespace JJSS_Negocio
         /*
          * Aun no aplica
          */
+
+
+        /*
+         * Genera listado de participantes a un torneo con su reporte.
+         * Retorno: String del archivo resultante de la generacion del reporte en PDF
+         */
+        public String GenerarListado(int pID)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+            //torneo torneoAListar = BuscarTorneoPorID(pID);
+            //GestorSedes gestorSedes = new GestorSedes();
+            //gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
+            //gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
+            List<ParticipantesTorneoResultado> listado = ListadoParticipantes(pID);
+
+            if (listado.Count == 0)
+                throw new Exception("No posee inscriptos el torneo seleccionado");
+
+            return gestorReportes.GenerarReporteListadoParticipantes(listado);
+
+
+        }
+
 
         public string GenerarDuelos(torneo pTorneo)
         {
@@ -276,7 +415,8 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    lucha nuevaLucha = new lucha() {
+                    lucha nuevaLucha = new lucha()
+                    {
                         torneo = pTorneo,
                     };
                     db.lucha.Add(nuevaLucha);
@@ -293,30 +433,6 @@ namespace JJSS_Negocio
                 }
             }
         }
-
-
-        /*
-         * Genera listado de participantes a un torneo con su reporte.
-         * Retorno: String del archivo resultante de la generacion del reporte en PDF
-         */
-        public String GenerarListado(int pID)
-        {
-            GestorReportes gestorReportes = new GestorReportes();
-            //torneo torneoAListar = BuscarTorneoPorID(pID);
-            //GestorSedes gestorSedes = new GestorSedes();
-            //gestorSedes.BuscarSedePorID(torneoAListar.id_sede);
-            //gestorSedes.ObtenerDireccion(torneoAListar.id_sede);
-            List<Object> listado = ListadoParticipantes(pID);
-
-            if (listado.Count == 0)
-                throw new Exception("No posee inscriptos el torneo seleccionado");
-
-            return gestorReportes.GenerarReporteListadoParticipantes(listado);
-                
-
-        }
-
-        
 
 
     }

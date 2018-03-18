@@ -7,6 +7,11 @@ using System.Web.UI.WebControls;
 using JJSS_Negocio;
 using JJSS_Entidad;
 using System.Data;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+using JJSS_Negocio.Resultados;
+using Image = System.Drawing.Image;
 
 namespace JJSS.Presentacion
 {
@@ -28,10 +33,23 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
-                MultiView1.SetActiveView(view_datos_personales);
-                CargarDatos();
-                CargarComboCiudades(1);
-                CargarComboProvincias();
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                if (sesionActiva.estado == "INGRESO ACEPTADO")
+                {
+
+
+
+                    MultiView1.SetActiveView(view_datos_personales);
+                    CargarComboProvincias();
+                    CargarDatos();
+                    //CargarComboCiudades(1);
+
+                }
+                else
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
             }
         }
 
@@ -57,7 +75,7 @@ namespace JJSS.Presentacion
         {
             GestorSesiones gestorSesion = new GestorSesiones();
             seguridad_usuario alumnoActual = gestorSesion.getActual().usuario;
-            if (alumnoActual == null) mensaje("No esta logueado", false);
+            if (alumnoActual == null) mensaje("No está logueado", false);
             else
             {
 
@@ -69,10 +87,12 @@ namespace JJSS.Presentacion
                 if (alumnoEncontrado == null) //es un profe
                 {
                     profesor profeEncontrado = gestorProfe.ObtenerProfesorPorIdUsuario(id_usuario);
-                    if (profeEncontrado == null) mensaje("No se encontró el usuario o es admin", false); //no existe o es admin
+                    if (profeEncontrado == null)
+                        mensaje("No se encontró el usuario o es admin", false); //no existe o es admin
                     else
                     {
-                        DataTable direccionEncontrada = gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
+                        DataTable direccionEncontrada =
+                            gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
 
                         txt_dni.Text = profeEncontrado.dni.ToString();
                         txt_nombre.Text = profeEncontrado.nombre;
@@ -87,18 +107,61 @@ namespace JJSS.Presentacion
                             txt_nro_dpto.Text = row["depto"].ToString();
                             txt_numero.Text = row["numero"].ToString();
                             txt_piso.Text = row["piso"].ToString();
-                            ddl_localidad.SelectedValue = row["idCiudad"].ToString();
                             ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                            CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
+                            ddl_localidad.SelectedValue = row["idCiudad"].ToString();
+                            txt_torre.Text = row["torre"].ToString();
+                        }
+
+                        var imgBytes = gestorProfe.ObtenerImagenPerfil(profeEncontrado.id_profesor);
+                        if (imgBytes != null)
+                        {
+                            using (MemoryStream ms = new MemoryStream(imgBytes))
+                            {
+                                try
+                                {
+
+                                    string sDir = System.Web.HttpContext.Current.Server.MapPath("//temp");
+
+                                    if (!System.IO.Directory.Exists(sDir))
+                                    {
+                                        System.IO.Directory.CreateDirectory(sDir);
+                                    }
+
+
+                                    var archivo =
+                                        (profeEncontrado.nombre + profeEncontrado.apellido + profeEncontrado.dni)
+                                        .Replace(" ", "") + ".jpeg";
+                                    var imagenI = Image.FromStream(ms);
+
+                                    char[] sTrim = "\\".ToCharArray();
+                                    var archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
+
+                                    //if (!File.Exists(archivo))
+                                    //{
+                                    imagenI.Save(archivoGuardar, ImageFormat.Jpeg);
+                                    //}
+
+
+                                    var link = "\\temp\\" + archivo;
+                                    Avatar.ImageUrl = link;
+
+                                }
+                                catch (Exception ex)
+                                {
+                                }
+
+                            }
                         }
                     }
 
-
-
                 }
+
+
+
                 else
                 {
-                    // busco la direccion
-                    DataTable direccionEncontrada = gestorAlumnos.ObtenerDireccionAlumno(alumnoEncontrado.id_alumno);
+                   
 
                     txt_dni.Text = alumnoEncontrado.dni.ToString();
                     txt_nombre.Text = alumnoEncontrado.nombre;
@@ -106,18 +169,61 @@ namespace JJSS.Presentacion
                     txt_email.Text = alumnoEncontrado.mail;
                     txt_telefono.Text = alumnoEncontrado.telefono.ToString();
                     txt_telefono_urgencia.Text = alumnoEncontrado.telefono_emergencia.ToString();
-                    if (direccionEncontrada.Rows.Count > 0)
+
+                    // busco la direccion
+                    DireccionAlumno direccionEncontrada = gestorAlumnos.ObtenerDireccionAlumno(alumnoEncontrado.id_alumno);
+                    if (direccionEncontrada != null)
                     {
-                        DataRow row = direccionEncontrada.Rows[0];
-                        txt_calle.Text = row["calle"].ToString();
-                        txt_nro_dpto.Text = row["depto"].ToString();
-                        txt_numero.Text = row["numero"].ToString();
-                        txt_piso.Text = row["piso"].ToString();
-                        ddl_localidad.SelectedValue = row["idCiudad"].ToString();
-                        ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                        txt_calle.Text = direccionEncontrada.calle;
+                        txt_nro_dpto.Text = direccionEncontrada.depto;
+                        txt_numero.Text = direccionEncontrada.numero.ToString();
+                        txt_piso.Text = direccionEncontrada.piso.ToString();
+                        ddl_provincia.SelectedValue = direccionEncontrada.idProvincia.ToString();
+                        CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
+                        ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
+                        txt_torre.Text = direccionEncontrada.torre;
+
                     }
 
+                    var imgBytes = gestorAlumnos.ObtenerImagenPerfil(alumnoEncontrado.id_alumno);
 
+                    if (imgBytes != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream(imgBytes))
+                        {
+                            try
+                            {
+
+                                string sDir = System.Web.HttpContext.Current.Server.MapPath("//temp");
+
+                                if (!System.IO.Directory.Exists(sDir))
+                                {
+                                    System.IO.Directory.CreateDirectory(sDir);
+                                }
+
+
+                                var archivo = (alumnoEncontrado.nombre + alumnoEncontrado.apellido + alumnoEncontrado.dni).Replace(" ", "") + ".jpeg";
+                                var imagenI = Image.FromStream(ms);
+
+                                char[] sTrim = "\\".ToCharArray();
+                                var archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
+
+                                //if (!File.Exists(archivo))
+                                //{
+                                imagenI.Save(archivoGuardar, ImageFormat.Jpeg);
+                                //}
+
+
+                                var link = "\\temp\\" + archivo;
+                                Avatar.ImageUrl = link;
+
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+
+                        }
+                    }
 
                 }
 
@@ -170,7 +276,7 @@ namespace JJSS.Presentacion
             txt_pass_nueva.Text = "";
             txt_pass_repetida.Text = "";
         }
-        
+
 
         protected void btn_guardar_contaco_Click(object sender, EventArgs e)
         {
@@ -199,21 +305,36 @@ namespace JJSS.Presentacion
             {
                 numero = int.Parse(txt_numero.Text);
             }
+            string torre = txt_torre.Text;
 
             int idCiudad = int.Parse(ddl_localidad.SelectedValue);
 
-            string sreturn =gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel,telUrg, mail,int.Parse(txt_dni.Text),idCiudad);
-            if (sreturn.CompareTo("NO") == 0)//es un profe
-            {
-                sreturn = gestorProfe.ModificarProfesor(calle,departamento,numero,piso,tel,telUrg,mail, int.Parse(txt_dni.Text), idCiudad);
-                if (sreturn.CompareTo("NO") == 0) mensaje("No se encontró el usuario o es admin", false);//no existe o es admin
-            }
-            if (sreturn.CompareTo("") == 0)
-            {
-                mensaje("Se modificaron los datos correctamente", true);
 
+            //modifica los datos
+            try
+            {
+                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad, torre);
+                mensaje("Se modificaron los datos correctamente", true);
             }
-            else mensaje(sreturn, false);
+            catch (Exception ex)
+            {
+                if (ex.Message.CompareTo("El usuario no existe") == 0)
+
+                {
+                    try
+                    {
+                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad, torre);
+                        mensaje("Se modificaron los datos correctamente", true);
+                    }
+                    catch (Exception exx)
+                    {
+                        mensaje(exx.Message, false);
+                    }
+                }
+                else mensaje(ex.Message, false);
+            }
+
+
         }
 
         protected void btn_cambiar_pass_Click(object sender, EventArgs e)
@@ -233,7 +354,42 @@ namespace JJSS.Presentacion
 
         protected void btn_cambiar_foto_Click(object sender, EventArgs e)
         {
-            mensaje("Todavia no :)", false);
+            System.IO.Stream imagen = avatarUpload.PostedFile.InputStream;
+            byte[] imagenByte;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imagen.CopyTo(ms);
+                imagenByte = ms.ToArray();
+            }
+
+
+            try
+            {
+                gestorAlumnos.CambiarFotoPerfil(int.Parse(txt_dni.Text), imagenByte);
+                mensaje("Se modificaron los datos correctamente", true);
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.CompareTo("El usuario no existe") == 0)
+
+                {
+                    try
+                    {
+                        gestorProfe.CambiarFotoPerfil(int.Parse(txt_dni.Text), imagenByte);
+                        mensaje("Se modificaron los datos correctamente", true);
+                        CargarDatos();
+                    }
+                    catch (Exception exx)
+                    {
+                        mensaje(exx.Message, false);
+                    }
+                }
+                else mensaje(ex.Message, false);
+            }
+
+
+
         }
 
         protected void btn_guardar_personal_Click(object sender, EventArgs e)
@@ -243,18 +399,31 @@ namespace JJSS.Presentacion
             int dni = int.Parse(txt_dni.Text);
 
             //+ NO ESTA CONTEMPLADO SI ES ADMIN...
-            string sreturn = gestorAlumnos.ModificarAlumno(dni, nombre, apellido);
-            if (sreturn.CompareTo("NO") == 0)//es un profe
+
+            //modifica los datos
+            try
             {
-                sreturn = gestorProfe.Modificarprofesor(dni, nombre, apellido);
-                if (sreturn.CompareTo("NO") == 0) mensaje("No se encontró el usuario o es admin", false);//no existe o es admin
-            }
-            if (sreturn.CompareTo("") == 0)
-            {
+                gestorAlumnos.ModificarAlumno(dni, nombre, apellido, null, null);
                 mensaje("Se modificaron los datos correctamente", true);
-                
             }
-            else mensaje(sreturn, false);
+            catch (Exception ex)
+            {
+                if (ex.Message.CompareTo("El usuario no existe") == 0)
+
+                {
+                    try
+                    {
+                        gestorProfe.ModificarProfesor(dni, nombre, apellido);
+                        mensaje("Se modificaron los datos correctamente", true);
+                    }
+                    catch (Exception exx)
+                    {
+                        mensaje(exx.Message, false);
+                    }
+                }
+                else mensaje(ex.Message, false);
+            }
+
         }
 
         protected void btn_datos_personales_Click(object sender, EventArgs e)
@@ -288,7 +457,7 @@ namespace JJSS.Presentacion
 
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarComboCiudades(int.Parse(ddl_localidad.SelectedValue));
+            CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
         }
     }
 }

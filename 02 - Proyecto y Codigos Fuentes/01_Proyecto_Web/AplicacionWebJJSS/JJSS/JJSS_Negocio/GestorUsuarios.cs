@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,7 +92,7 @@ namespace JJSS_Negocio
                         {
                             login = pLogin,
                             clave = claveMD5,
-                            mail= pMail,
+                            mail = pMail,
                             nombre = pNombre
                         };
 
@@ -127,6 +128,102 @@ namespace JJSS_Negocio
                 sReturn = ex.Message;
             }
             return sReturn;
+        }
+
+        public List<seguridad_usuario> obtenerListaUsuarios()
+        {
+            using (var db = new JJSSEntities())
+            {
+                var usuarios = from usu in db.seguridad_usuario
+                               where usu.baja_logica == 1
+                               select usu;
+                return usuarios.ToList();
+            }
+        }
+
+        public DataTable obtenerTablaUsuarios()
+        {
+            using (var db = new JJSSEntities())
+            {
+                var usuarios = from usu in db.seguridad_usuario
+                               join uxg in db.seguridad_usuarioxgrupo on usu.id_usuario equals uxg.id_usuario
+                               join gru in db.seguridad_grupo on uxg.id_grupo equals gru.id_grupo
+
+                               where usu.baja_logica == 1
+                               select new
+                               {
+                                   id_usuario = usu.id_usuario,
+                                   nombre = usu.nombre,
+                                   mail = usu.mail,
+                                   login = usu.login,
+                                   grupo_nombre = gru.nombre
+
+                               };
+
+                var tabla = usuarios.ToList().ToDataTable();
+                DataTable tablaFinal = new DataTable();
+                tablaFinal.Columns.Add("id_usuario",Type.GetType("System.Int32"));
+                tablaFinal.Columns.Add("nombre", Type.GetType("System.String"));
+                tablaFinal.Columns.Add("mail", Type.GetType("System.String"));
+                tablaFinal.Columns.Add("login", Type.GetType("System.String"));
+                tablaFinal.Columns.Add("grupo_nombre", Type.GetType("System.String"));
+                foreach (DataRow grupo in tabla.Rows)
+                {
+                    DataRow[] viejas = tablaFinal.Select("id_usuario = " + grupo["id_usuario"]);
+                    if (viejas.Length == 0)
+                    {
+                        DataRow nueva = tablaFinal.NewRow();
+                        nueva["id_usuario"] = grupo["id_usuario"];
+                        nueva["nombre"] = grupo["nombre"];
+                        nueva["mail"] = grupo["mail"];
+                        nueva["login"] = grupo["login"];
+                        nueva["grupo_nombre"] = grupo["grupo_nombre"];
+                        tablaFinal.Rows.Add(nueva);
+
+                    }
+                    else
+                    {
+                        viejas[0]["grupo_nombre"] = viejas[0]["grupo_nombre"] + " - " +  grupo["grupo_nombre"];
+                    }
+                }
+
+
+                return tablaFinal;
+            }
+        }
+
+        /*
+         *  busca todas los profesores y alumnos inscriptos
+         */
+        public DataTable BuscarProfesAlumnos()
+        {
+            using (var db = new JJSSEntities())
+            {
+                var alumnos = from usu in db.seguridad_usuario
+                               join alu in db.alumno on usu.id_usuario equals alu.id_usuario
+                               where alu.baja_logica == 1
+                               select new
+                               {
+                                   nombre = alu.nombre,
+                                   apellido = alu.apellido,
+                                   dni = alu.dni,
+                                   id=usu.id_usuario,
+                               }; 
+
+                var profesores = from usu in db.seguridad_usuario
+                              join pro in db.profesor on usu.id_usuario equals pro.id_usuario
+                              select new
+                              {
+                                  nombre = pro.nombre,
+                                  apellido = pro.apellido,
+                                  dni = pro.dni,
+                                  id=usu.id_usuario
+                              };
+
+                DataTable dt = modUtilidadesTablas.unirDataTable(modUtilidadesTablas.ToDataTable(alumnos.ToList()), modUtilidadesTablas.ToDataTable(profesores.ToList()));
+
+                return dt;
+            }
         }
     }
 }

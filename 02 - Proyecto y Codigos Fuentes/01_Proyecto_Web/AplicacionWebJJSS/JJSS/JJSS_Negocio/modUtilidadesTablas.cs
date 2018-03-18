@@ -63,6 +63,30 @@ namespace JJSS_Negocio
             return dt;
         }
 
+
+        /*
+         * concatena dos datatable uno a continuacion del otro
+         */
+        public static DataTable unirDataTable(DataTable dt1, DataTable dt2)
+        {
+            DataTable dt = new DataTable();
+
+            dt = dt1.Clone();
+
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                DataRow dr = dt1.Rows[i];
+                dt.ImportRow(dr);
+            }
+            for (int i = 0; i < dt2.Rows.Count; i++)
+            {
+                DataRow dr = dt2.Rows[i];
+                dt.ImportRow(dr);
+            }
+
+
+            return dt;
+        }
     }
 }
 

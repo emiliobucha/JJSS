@@ -20,8 +20,8 @@ namespace JJSS_Entidad
             this.provincia = new HashSet<provincia>();
         }
     
-        public int id_pais { get; set; }
         public string nombre { get; set; }
+        public int id_pais { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<provincia> provincia { get; set; }

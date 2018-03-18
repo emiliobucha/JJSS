@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="JJSS.Presentacion.Perfil" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="JJSS.Presentacion.Perfil" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphMenu" runat="server">
-</asp:Content>
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
@@ -9,8 +9,9 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
 
     <form id="formPerfil" runat="server">
-
+    <div class="row centered center-block">
         <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+            
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -20,12 +21,13 @@
                         <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
                 </div>
             </div>
-
+          
         </asp:Panel>
-
+    </div>
+    <div class="row centered center-block">
         <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
             <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <a class="ui-icon ui-icon-alert"></a>
@@ -35,7 +37,7 @@
             </div>
 
         </asp:Panel>
-
+    </div>
         <div class="row mt centered">
             <h1>MI PERFIL</h1>
             <p>&nbsp;</p>
@@ -114,9 +116,11 @@
                     <div class="row centered">
                         &nbsp;
                     </div>
+                    
+
                 </asp:Panel>
                 <div class="row centered">
-                    <asp:Button ID="btn_guardar_personal" CssClass="btn btn-default" ValidationGroup="vgPersonal" runat="server" Text="Guardar" OnClick="btn_guardar_personal_Click" />
+                    <asp:Button ID="btn_guardar_personal" CssClass="btn btn-default" ValidationGroup="vgPersonal" runat="server" Text="Aceptar" OnClick="btn_guardar_personal_Click" />
                 </div>
             </asp:View>
 
@@ -138,7 +142,7 @@
                         <div class="col-xs-3">
                             <asp:TextBox ID="txt_telefono" CssClass="caja2" runat="server" placeholder="Ingrese télefono"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el teléfono" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regex_telefono" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="regex_telefono" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_telefono" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,15}$"></asp:RegularExpressionValidator>
                         </div>
                         <div class="col-xs-2">
 
@@ -147,9 +151,9 @@
                         </div>
                         <div class="col-xs-3">
                             <asp:TextBox ID="txt_telefono_urgencia" CssClass="caja2" runat="server" placeholder="Ingrese teléfono en caso de urgencia"></asp:TextBox>
-                        
+
                             <asp:RequiredFieldValidator ID="requerido_telemergencia" runat="server" ErrorMessage="Debe ingresar el teléfono de urgencia" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_telefono_urgencia" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,15}$"></asp:RegularExpressionValidator>
                         </div>
                     </div>
 
@@ -205,6 +209,13 @@
                             <asp:TextBox ID="txt_nro_dpto" class="caja2" runat="server"></asp:TextBox>
                             <asp:RegularExpressionValidator ID="caracteres_departamento" runat="server" ControlToValidate="txt_nro_dpto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgContacto"></asp:RegularExpressionValidator>
                         </div>
+                        <div class="col-xs-1">
+                            <label class=" pull-right">Torre</label>
+                        </div>
+                        <div class="col-xs-1">
+                            <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txt_torre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgAlumnos"> </asp:RegularExpressionValidator>
+                        </div>
                     </div>
                     <div class="row centered">
                         &nbsp;
@@ -235,7 +246,7 @@
                     </div>
                 </asp:Panel>
                 <div class="row centered">
-                    <asp:Button ID="btn_guardar_contacto" CssClass="btn btn-default" ValidationGroup="vgContacto" runat="server" Text="Guardar" OnClick="btn_guardar_contaco_Click" />
+                    <asp:Button ID="btn_guardar_contacto" CssClass="btn btn-default" ValidationGroup="vgContacto" runat="server" Text="Aceptar" OnClick="btn_guardar_contaco_Click" />
                 </div>
             </asp:View>
 
@@ -331,7 +342,7 @@
             </asp:View>
         </asp:MultiView>
         <div class="row centered">
-            <asp:Button ID="btn_cancelar" runat="server" Text="Volver" CssClass="btn btn-default" OnClick="btn_cancelar_Click" />
+            <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
         </div>
     </form>
 

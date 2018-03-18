@@ -32,10 +32,34 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
-                CargarComboFajas();
-                CargarComboCiudades(1);
+
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'PROFESOR_CREACION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
+
+                //CargarComboCiudades(1);
                 CargarComboProvincias();
-                ViewState["gvAlumnosOrden"] = "dni";
                 gvprofes.AllowPaging = true;
                 gvprofes.AutoGenerateColumns = false;
                 gvprofes.PageSize = 20;
@@ -67,16 +91,7 @@ namespace JJSS.Presentacion
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
                server control at run time. */
         }
-
-        protected void CargarComboFajas()
-        {
-            List<faja> fajas = gestorInscripciones.ObtenerFajas();
-            ddl_fajas.DataSource = fajas;
-            ddl_fajas.DataTextField = "color";
-            ddl_fajas.DataValueField = "id_faja";
-            ddl_fajas.DataBind();
-        }
-
+        
         protected void CargarComboProvincias()
         {
             List<provincia> provincias = gestorProvincias.ObtenerProvincias();
@@ -102,9 +117,13 @@ namespace JJSS.Presentacion
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
 
+            /*FECHA SOMEE
             string[] formats = { "MM/dd/yyyy" };
             DateTime fechaNac = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
-            int idFaja = int.Parse(ddl_fajas.SelectedValue);
+            */
+            //LOCAL
+            DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
+
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
             if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
@@ -118,6 +137,7 @@ namespace JJSS.Presentacion
             string mail = txt_email.Text;
             string calle = txt_calle.Text;
             string departamento = txt_nro_dpto.Text;
+            string torre = txt_torre.Text;
 
             int? piso = null;
             if (txt_piso.Text != "")
@@ -141,7 +161,7 @@ namespace JJSS.Presentacion
 
             int ciudad = int.Parse(ddl_localidad.SelectedValue);
 
-            string sReturn = gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, idFaja, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad);
+            string sReturn = gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad,torre);
             Boolean estado;
             if (sReturn.CompareTo("") == 0)
             {
@@ -182,13 +202,13 @@ namespace JJSS.Presentacion
 
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarComboCiudades(int.Parse(ddl_localidad.SelectedValue));
+            CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_profesores");
         }
 
         private void limpiar()
@@ -204,7 +224,6 @@ namespace JJSS.Presentacion
             txt_piso.Text = "";
             txt_telefono.Text = "";
             txt_telefono_urgencia.Text = "";
-            ddl_fajas.SelectedIndex = 0;
             ddl_localidad.SelectedIndex = 0;
             ddl_provincia.SelectedIndex = 0;
         }
@@ -213,8 +232,20 @@ namespace JJSS.Presentacion
         {
             int dni = 0;
             if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
+            List<profesor> listaCompleta = gestorProfes.ObtenerProfesores();
+            List<profesor> listaConFiltro = new List<profesor>();
 
-            gvprofes.DataSource = gestorProfes.BuscarProfePorDni(dni);
+            string filtroApellido = txt_filtro_apellido.Text.ToUpper();
+
+            foreach (profesor i in listaCompleta)
+            {
+                string apellido = i.apellido.ToUpper();
+                if (dni == 0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
+
+                if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
+            }
+
+            gvprofes.DataSource = listaConFiltro;
             gvprofes.DataBind();
         }
 

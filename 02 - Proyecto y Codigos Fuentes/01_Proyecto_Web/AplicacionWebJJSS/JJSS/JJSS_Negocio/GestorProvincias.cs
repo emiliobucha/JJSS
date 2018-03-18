@@ -21,7 +21,10 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
-                return db.provincia.ToList();
+                var provincias = from prov in db.provincia
+                                 orderby prov.nombre
+                                 select prov;
+                return provincias.ToList();
             }
         }
     }

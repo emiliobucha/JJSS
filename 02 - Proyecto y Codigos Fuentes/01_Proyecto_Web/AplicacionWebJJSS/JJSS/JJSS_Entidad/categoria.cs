@@ -18,8 +18,6 @@ namespace JJSS_Entidad
         public categoria()
         {
             this.categoria_torneo = new HashSet<categoria_torneo>();
-            this.participante = new HashSet<participante>();
-            this.alumno = new HashSet<alumno>();
         }
     
         public int id_categoria { get; set; }
@@ -29,12 +27,10 @@ namespace JJSS_Entidad
         public Nullable<int> edad_desde { get; set; }
         public Nullable<int> edad_hasta { get; set; }
         public Nullable<short> sexo { get; set; }
+        public Nullable<int> id_tipo_clase { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<participante> participante { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alumno> alumno { get; set; }
+        public virtual tipo_clase tipo_clase { get; set; }
     }
 }

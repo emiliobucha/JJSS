@@ -55,9 +55,9 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string RegistrarProfesor(string pNombre, string pApellido, DateTime? pFechaNacimiento, int? pIdFaja,
+        public string RegistrarProfesor(string pNombre, string pApellido, DateTime? pFechaNacimiento, 
             short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
-            string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad)
+            string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -77,10 +77,7 @@ namespace JJSS_Negocio
                     }
                     seguridad_usuario usuario = db.seguridad_usuario.Find(idUsuario);
 
-                    faja fajaElegida = db.faja.Find(pIdFaja);
-                    //+Rever categorias en la BD
-                    //categoria catElegida = db.categoria.Find(pIdCategoria);
-
+                    
                     if (ObtenerProfesorPorDNI(pDni) != null)
                     {
                         return "Profesor existente";
@@ -96,11 +93,13 @@ namespace JJSS_Negocio
                         direccion nuevaDireccion;
                         nuevaDireccion = new direccion()
                         {
-                            calle1 = pCalle,
+                            calle = pCalle,
                             departamento = pDpto,
                             numero = pNumero,
                             piso = pPiso,
-                            ciudad = ciudadElegida
+                            ciudad = ciudadElegida,
+                            torre=pTorre
+                            
                         };
                         db.direccion.Add(nuevaDireccion);
 
@@ -109,7 +108,6 @@ namespace JJSS_Negocio
                             nombre = pNombre,
                             apellido = pApellido,
                             fecha_nacimiento = pFechaNacimiento,
-                            faja = fajaElegida,
                             sexo = pSexo,
                             dni = pDni,
                             telefono = pTelefono,
@@ -127,7 +125,6 @@ namespace JJSS_Negocio
                             nombre = pNombre,
                             apellido = pApellido,
                             fecha_nacimiento = pFechaNacimiento,
-                            faja = fajaElegida,
                             sexo = pSexo,
                             dni = pDni,
                             telefono = pTelefono,
@@ -177,42 +174,18 @@ namespace JJSS_Negocio
 
 
         /*
-         * Metodo que devuelve un listado con nombre, apellido y dni de todos los profesores
-         * Parametros: pDni: dni del profe a buscar
-         * Retorno: List<Object>
-         * */
-        public List<Object> BuscarProfePorDni(int pDni)
+         * Método que devuelve un profe segun su id
+         * Parametros: pIDProfe: entero que representa el id del tipo de clase a buscar
+         * Retorno: profe
+         *          null
+         */
+        public profesor ObtenerProfesorPorID(int pIDProfe)
         {
             using (var db = new JJSSEntities())
             {
-                if (pDni == 0)
-                {
-                    var profesores = from profe in db.profesor
-                                     select new
-                                     {
-                                         alu_dni=profe.dni,
-                                         alu_nombre=profe.nombre,
-                                         alu_apellido=profe.apellido
-                                     };
-                    return profesores.ToList<Object>();
-                }
-                else
-                {
-                    var profesores = from profe in db.profesor
-                                     where profe.dni==pDni
-                                     select new
-                                     {
-                                         alu_dni = profe.dni,
-                                         alu_nombre = profe.nombre,
-                                         alu_apellido = profe.apellido
-                                     };
-                    return profesores.ToList<Object>();
-                }
-                
+                return db.profesor.Find(pIDProfe);
             }
         }
-
-       
 
         /*Método que permite eliminar profe
          * 
@@ -256,7 +229,7 @@ namespace JJSS_Negocio
          *              ex.Message : Mensaje de error provocado por una excepción
          * 
          */
-        public string Modificarprofesor(int pDni, string pNombre, string pApellido)
+        public string ModificarProfesor(int pDni, string pNombre, string pApellido)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -267,7 +240,7 @@ namespace JJSS_Negocio
                     //+ se tienen que poder modificar mas datos
                     
                     profesor profesorModificar = ObtenerProfesorPorDNI(pDni);
-                    if (profesorModificar == null) return "NO";
+                    if (profesorModificar == null) throw new Exception("El usuario no existe");
                     profesorModificar.apellido = pApellido;
                     profesorModificar.nombre = pNombre;
                     db.SaveChanges();
@@ -300,7 +273,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el profesor
          * 
          */
-        public string ModificarProfesor(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, int pDni, int pIdCiudad)
+        public string ModificarProfesor(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, int pDni, int pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -309,7 +282,7 @@ namespace JJSS_Negocio
                 try
                 {
                     profesor profesorModificar = ObtenerProfesorPorDNI(pDni);
-                    if (profesorModificar == null) return "NO";
+                    if (profesorModificar == null) throw new Exception("El usuario no existe");
                     profesorModificar.telefono = pTelefono;
                     profesorModificar.telefono_emergencia = pTelUrgencia;
                     profesorModificar.mail = pMail;
@@ -329,12 +302,12 @@ namespace JJSS_Negocio
                             direccion nuevaDireccion;
                             nuevaDireccion = new direccion
                             {
-                                calle1 = pCalle,
+                                calle = pCalle,
                                 departamento = pDepto,
                                 numero = pNumero,
                                 piso = pPiso,
-                                id_ciudad = pIdCiudad
-
+                                id_ciudad = pIdCiudad,
+                                torre=pTorre,
                             };
                             db.direccion.Add(nuevaDireccion);
                             profesorModificar.direccion = nuevaDireccion;
@@ -342,11 +315,12 @@ namespace JJSS_Negocio
                     }
                     else //tenia direccion, entonces la modifico
                     {
-                        direccionModificar.calle1 = pCalle;
+                        direccionModificar.calle = pCalle;
                         direccionModificar.departamento = pDepto;
                         direccionModificar.numero = pNumero;
                         direccionModificar.piso = pPiso;
                         direccionModificar.id_ciudad = pIdCiudad;
+                        direccionModificar.torre = pTorre;
                     }
 
                     db.SaveChanges();
@@ -398,14 +372,66 @@ namespace JJSS_Negocio
                                           where pro.id_profesor == pIdProfe
                                           select new
                                           {
-                                              calle = dir.calle1,
+                                              calle = dir.calle,
                                               numero = dir.numero,
                                               depto = dir.departamento,
                                               piso = dir.piso,
                                               idCiudad = dir.id_ciudad,
-                                              idProvincia = ciu.id_provincia
+                                              idProvincia = ciu.id_provincia,
+                                              torre=dir.torre,
                                           };
                 return modUtilidadesTablas.ToDataTable(direccionEncontrada.ToList());
+            }
+        }
+
+
+        public string CambiarFotoPerfil(int pDni, byte[] pImagen)
+        {
+
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    var profesor = ObtenerProfesorPorDNI(pDni);
+                    var profesorImagen = db.profesor_imagen.FirstOrDefault(imag => imag.id_profesor == profesor.id_profesor);
+
+                    if (profesorImagen != null)
+                    {
+                        profesorImagen.imagen = pImagen;
+                        db.SaveChanges();
+                        return "";
+                    }
+                    else
+                    {
+                        throw new Exception("El usuario no existe");
+                    }
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("El usuario no existe");
+                }
+            }
+        }
+
+
+        public byte[] ObtenerImagenPerfil(int pID)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                   
+                    var profesorImagen = db.profesor_imagen.FirstOrDefault(imag => imag.id_profesor == pID);
+
+                    return profesorImagen?.imagen;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
             }
         }
 

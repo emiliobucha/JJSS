@@ -14,9 +14,9 @@ namespace JJSS_Entidad
     
     public partial class alumno_imagen
     {
-        public int id_alumnoimagen { get; set; }
         public int id_alumno { get; set; }
         public byte[] imagen { get; set; }
+        public int id_alumnoimagen { get; set; }
     
         public virtual alumno alumno { get; set; }
     }

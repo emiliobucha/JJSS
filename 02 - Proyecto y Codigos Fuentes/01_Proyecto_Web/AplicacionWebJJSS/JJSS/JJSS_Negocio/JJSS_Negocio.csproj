@@ -40,13 +40,63 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\GestorCategoria.cs" />
+    <Compile Include="Administracion\GestorDireccion.cs" />
+    <Compile Include="Administracion\GestorAcademias.cs" />
+    <Compile Include="Administracion\GestorEstados.cs" />
+    <Compile Include="GestorAsistencia.cs" />
+    <Compile Include="GestorCiudades.cs" />
+    <Compile Include="GestorClases.cs" />
+    <Compile Include="GestorCompras.cs" />
+    <Compile Include="GestorEventos.cs" />
+    <Compile Include="GestorFormaPago.cs" />
+    <Compile Include="GestorGraduacion.cs" />
+    <Compile Include="GestorInscripcionesClase.cs" />
+    <Compile Include="GestorInscripcionesEvento.cs" />
+    <Compile Include="GestorMercadoPago.cs" />
+    <Compile Include="GestorPagoEvento.cs" />
+    <Compile Include="GestorPagoTorneo.cs" />
+    <Compile Include="GestorPagoClase.cs" />
+    <Compile Include="GestorParametro.cs" />
+    <Compile Include="GestorParticipantesEvento.cs" />
     <Compile Include="GestorParticipantes.cs" />
     <Compile Include="GestorAlumnos.cs" />
     <Compile Include="GestorInscripciones.cs" />
+    <Compile Include="GestorPermisos.cs" />
+    <Compile Include="GestorProductos.cs" />
+    <Compile Include="GestorProfesores.cs" />
+    <Compile Include="GestorProvincias.cs" />
     <Compile Include="GestorReportes.cs" />
-    <Compile Include="GestorSedes.cs" />
+    <Compile Include="GestorReservas.cs" />
+    <Compile Include="Administracion\GestorSedes.cs" />
+    <Compile Include="GestorResultados.cs" />
+    <Compile Include="GestorSesiones.cs" />
+    <Compile Include="GestorTipoClase.cs" />
     <Compile Include="GestorTorneos.cs" />
+    <Compile Include="GestorUsuarios.cs" />
+    <Compile Include="modEmails.cs" />
     <Compile Include="modReportes.cs" />
+    <Compile Include="modUtilidades.cs" />
+    <Compile Include="modUtilidadesTablas.cs" />
+    <Compile Include="Resultados\AlumnoConEstado.cs" />
+    <Compile Include="Resultados\AlumnoFaja.cs" />
+    <Compile Include="Resultados\CategoriasTorneoResultado.cs" />
+    <Compile Include="Resultados\ClaseHorario.cs" />
+    <Compile Include="Resultados\ClasesDisponibles..cs" />
+    <Compile Include="Resultados\ClasesHorariosAsistencia.cs" />
+    <Compile Include="Resultados\CompInscripcionTorneo.cs" />
+    <Compile Include="Resultados\CompInscripcionEvento.cs" />
+    <Compile Include="Resultados\DetalleReservaResultado.cs" />
+    <Compile Include="Resultados\DireccionAlumno.cs" />
+    <Compile Include="Resultados\HorariosResultado.cs" />
+    <Compile Include="Resultados\ListadoAsistencia.cs" />
+    <Compile Include="Resultados\ParticipantesEventoResultado.cs" />
+    <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
+    <Compile Include="Resultados\ProductosResultados.cs" />
+    <Compile Include="Resultados\SedeDireccion.cs" />
+    <Compile Include="Resultados\EventoResultado.cs" />
+    <Compile Include="Resultados\TorneoResultado.cs" />
+    <Compile Include="Sesion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -55,20 +105,33 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="mercadopago">
+      <HintPath>..\Librerias\mercadopago.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Scaffolding.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AspNet.Scaffolding.EntityFramework.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Data.Entity.Design.Extensibility, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ExtendedReflection, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WebForms.10.0.40219.1\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -76,6 +139,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
@@ -90,9 +154,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="rptListadoTorneo.rdlc">
+    <EmbeddedResource Include="Reportes\rptCompInscripcionTorneoPago.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptCompInscripcionTorneo.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptCompInscripcionEvento.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptListadoAsistencia.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptListadoEvento.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptListadoTorneo.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resultados\noimage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

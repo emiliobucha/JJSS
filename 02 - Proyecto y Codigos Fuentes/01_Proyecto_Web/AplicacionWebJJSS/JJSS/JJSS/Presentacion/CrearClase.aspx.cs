@@ -19,24 +19,33 @@ namespace JJSS.Presentacion
         {
 
 
-            //try
-            //{
-            //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-            //    if (sesionActiva.estado != "INGRESO ACEPTADO")
-            //    {
-            //        Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.Write("<script>window.alert('" + "No se encuentra logeado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
-
-            //}
-
 
             if (!IsPostBack)
             {
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CREACION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
                 dg_horarios.AutoGenerateColumns = false;
                 gestorClases = new GestorClases();
                 CargarComboTipos();
@@ -45,6 +54,7 @@ namespace JJSS.Presentacion
                 CargarComboProfes();
             }
         }
+
 
         protected void cargarDatosClase()
         {
@@ -72,7 +82,7 @@ namespace JJSS.Presentacion
             dv_horarios.Sort = "dia asc, hora_desde asc";
             dg_horarios.DataSource = dv_horarios;
             dg_horarios.DataBind();
-            
+
             //Session.Add("dtHorarios", dtHorarios);
             Session["dtHorarios"] = dtHorarios;
         }
@@ -98,21 +108,21 @@ namespace JJSS.Presentacion
                     return;
                 }
             }
-            
-                DataRow drNuevoHorario = dtHorarios.NewRow();
-                drNuevoHorario["nombre_dia"] = ddl_dia.SelectedValue;
-                drNuevoHorario["dia"] = ddl_dia.SelectedIndex;
-                drNuevoHorario["hora_desde"] = txt_horadesde.Text;
-                drNuevoHorario["hora_hasta"] = txt_horahasta.Text;
-                dtHorarios.Rows.Add(drNuevoHorario);
 
-                dtHorarios.AcceptChanges();
-                DataView dv_horarios = dtHorarios.DefaultView;
-                dv_horarios.Sort = "dia asc, hora_desde asc";
-                dg_horarios.DataSource = dv_horarios;
-                dg_horarios.DataBind();
-                Session["dtHorarios"] = dtHorarios;
-            
+            DataRow drNuevoHorario = dtHorarios.NewRow();
+            drNuevoHorario["nombre_dia"] = ddl_dia.SelectedValue;
+            drNuevoHorario["dia"] = ddl_dia.SelectedIndex;
+            drNuevoHorario["hora_desde"] = txt_horadesde.Text;
+            drNuevoHorario["hora_hasta"] = txt_horahasta.Text;
+            dtHorarios.Rows.Add(drNuevoHorario);
+
+            dtHorarios.AcceptChanges();
+            DataView dv_horarios = dtHorarios.DefaultView;
+            dv_horarios.Sort = "dia asc, hora_desde asc";
+            dg_horarios.DataSource = dv_horarios;
+            dg_horarios.DataBind();
+            Session["dtHorarios"] = dtHorarios;
+
         }
 
         private void CargarComboTipos()
@@ -183,17 +193,22 @@ namespace JJSS.Presentacion
             gestorClases = new GestorClases();
             string sReturn = "";
             Boolean estado = false;
+            int idClase=0;
+            if (Session["clase"] != null)
+            {
+                idClase = int.Parse(Session["clase"].ToString());
+            }
+            
 
             //validacion con los horarios de otras clases
             DataTable dt = (DataTable)Session["dtHorarios"];
-            Boolean bReturn = gestorClases.validarDisponibilidadHorario(dt,int.Parse(ddl_ubicacion.SelectedValue.ToString()));
-            if (bReturn ==false) sReturn= "Hay un horario que se superpone con otra clase";
+            Boolean bReturn = gestorClases.validarDisponibilidadHorario(dt, int.Parse(ddl_ubicacion.SelectedValue.ToString()),idClase);
+            if (bReturn == false) sReturn = "Hay un horario que se superpone con otra clase";
             else
             {
-                if (Session["clase"] != null)
+                if (idClase != 0)
                 {
-                    int idClase = 0;
-                    idClase = int.Parse(Session["clase"].ToString());
+                    
                     int profe = int.Parse(ddl_profesor.SelectedValue.ToString());
                     sReturn = gestorClases.modificarClase(idClase, (DataTable)Session["dtHorarios"], double.Parse(txt_precio.Text), profe);
                     if (sReturn.CompareTo("") == 0)
@@ -217,10 +232,10 @@ namespace JJSS.Presentacion
                     }
                 }
             }
-            mensaje(sReturn,estado);
+            mensaje(sReturn, estado);
 
         }
-        
+
         protected void dg_horarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName.CompareTo("Eliminar") == 0)
@@ -233,7 +248,7 @@ namespace JJSS.Presentacion
                 dtHorarios.Rows.RemoveAt(horario);
                 dg_horarios.DataSource = dtHorarios;
                 dg_horarios.DataBind();
-                
+
             }
         }
 
@@ -255,17 +270,11 @@ namespace JJSS.Presentacion
             ddl_tipo_clase.Enabled = true;
             Session["clase"] = null;
             dtHorarios = (DataTable)Session["dtHorarios"];
-            //if (dtHorarios != null)
-            //{
-            //    for (int i = 0; i < dtHorarios.Rows.Count; i++)
-            //    {
-            //        dtHorarios.Rows.RemoveAt(i);
-            //    }
-            //}
+            if (dtHorarios!=null)dtHorarios.Clear();
 
             dg_horarios.DataSource = null;
             dg_horarios.DataBind();
-            Session["dtHorarios"] = null;
+            Session["dtHorarios"] = dtHorarios;
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -287,7 +296,7 @@ namespace JJSS.Presentacion
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Presentacion/Inicio.aspx#section_clases");
         }
     }
 

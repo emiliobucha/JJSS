@@ -36,25 +36,31 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <EntityDeploy Include="JJSS_Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>JJSS_Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="JJSS_Model.edmx.diagram">
-      <DependentUpon>JJSS_Model.edmx</DependentUpon>
+    <EntityDeploy Include="JJSSModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JJSSModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="JJSSModel.edmx.diagram">
+      <DependentUpon>JJSSModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="mercadopago">
+      <HintPath>..\Librerias\mercadopago.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Scaffolding.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AspNet.Scaffolding.EntityFramework.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -64,7 +70,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.IdentityModel" />
@@ -83,94 +88,181 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="academia.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="alumno.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="alumnoxfaja.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="alumno_imagen.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="asistencia_clase.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="categoria.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="categoria_producto.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="categoria_torneo.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ciudad.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="clase.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="compra.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalle_pago_clase.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalle_reserva.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="direccion.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="estado.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="estado_reserva.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="evento_especial.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="evento_especial_imagen.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="faja.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="forma_pago.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="horario.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="inscripcion.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="inscripcion_clase.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="JJSS_Model.Context.cs">
+    <Compile Include="inscripcion_evento.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JJSSModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JJSS_Model.Context.tt</DependentUpon>
+      <DependentUpon>JJSSModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="JJSS_Model.cs">
+    <Compile Include="JJSSModel.Designer.cs">
+      <DependentUpon>JJSSModel.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="JJSS_Model.Designer.cs">
+    <Compile Include="JJSSModel1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JJSS_Model.edmx</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="lucha.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pago_clase.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pago_evento.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pago_torneo.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pais.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="parametro.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="participante.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="participante_evento.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="producto.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="producto_imagen.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="profesor.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="profesor_imagen.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proveedor.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="provincia.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reserva.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="resultado.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sede.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_grupo.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_grupoxopcion.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_opcion.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_usuario.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="seguridad_usuarioxgrupo.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tipo_clase.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipo_evento_especial.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="torneo.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="torneo_imagen.cs">
-      <DependentUpon>JJSS_Model.tt</DependentUpon>
+      <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JJSS_Model.Context.tt">
+    <Content Include="JJSSModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JJSS_Model.edmx</DependentUpon>
-      <LastGenOutput>JJSS_Model.Context.cs</LastGenOutput>
+      <DependentUpon>JJSSModel.edmx</DependentUpon>
+      <LastGenOutput>JJSSModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="JJSS_Model.tt">
+    <Content Include="JJSSModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JJSS_Model.edmx</DependentUpon>
-      <LastGenOutput>JJSS_Model.cs</LastGenOutput>
+      <DependentUpon>JJSSModel.edmx</DependentUpon>
+      <LastGenOutput>JJSSModel1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

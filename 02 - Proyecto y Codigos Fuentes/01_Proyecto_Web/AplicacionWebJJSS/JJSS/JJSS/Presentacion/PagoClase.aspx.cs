@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
 
+using System.Collections;
+
 namespace JJSS.Presentacion
 {
     public partial class PagoClase : System.Web.UI.Page
@@ -15,7 +17,10 @@ namespace JJSS.Presentacion
         private GestorFormaPago gestorFPago;
         private GestorPagoClase gestorPago;
         private GestorAlumnos gestorAlumnos;
+
         private alumno alumnoElegido;
+        private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,19 +31,47 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASES_MIS_CLASES'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                }
+
                 CargarComboClase();
                 CargarComboFormaPago();
                 int dni = int.Parse(Session["PagoClase"].ToString());
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
-                lbl_alumno.Text = alumnoElegido.apellido+", "+ alumnoElegido.nombre;
+                lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
+
             }
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiar();
+            Session["alumnos"] = "Administrar";
             Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
         }
+
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
@@ -51,7 +84,7 @@ namespace JJSS.Presentacion
             {
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
 
-                string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago);
+                string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago, pagoRecargo);
                 if (sReturn.CompareTo("") == 0)
                 {
                     mensaje("Se ha registrado el pago exitosamente", true);
@@ -60,17 +93,19 @@ namespace JJSS.Presentacion
                 else mensaje(sReturn, false);
             }
             else mensaje("No hay alumno seleccionado", false);
-            
+
         }
 
         protected void limpiar()
         {
             txt_monto.Text = "";
-            ddl_clase.SelectedIndex = 0;
+            if (ddl_clase.Items.Count>0) ddl_clase.SelectedIndex = 0;
+
             ddl_forma_pago.SelectedIndex = 0;
             ddl_mes.SelectedIndex = 0;
             lbl_alumno.Text = "No hay alumno seleccionado";
             Session["PagoClase"] = "";
+            pagoRecargo = 0;
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -92,11 +127,19 @@ namespace JJSS.Presentacion
 
         protected void CargarComboClase()
         {
-            List<Object> clase = gestorClase.ObtenerClasesDisponibles();
+            int dni;
+            int.TryParse(Session["PagoClase"].ToString(), out dni);
+            alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+            List<clase> clase = gestorClase.ObtenerClaseSegunAlumno(alumnoElegido.id_alumno);
             ddl_clase.DataSource = clase;
             ddl_clase.DataTextField = "nombre";
             ddl_clase.DataValueField = "id_clase";
             ddl_clase.DataBind();
+
+            if (clase.Count == 0)
+            {
+                mensaje("El alumno no está inscripto a ninguna clase", false);
+            }
         }
 
         protected void CargarComboFormaPago()
@@ -110,8 +153,50 @@ namespace JJSS.Presentacion
 
         protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clase claseSelect=gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
-            txt_monto.Text = claseSelect.precio.ToString();
+            clase claseSelect = gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
+            int dni;
+            int.TryParse(Session["PagoClase"].ToString(), out dni);
+            alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+
+            double recargo = gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno);
+            if (recargo == -1) mensaje("El alumno no está inscripto a esa clase", false);
+            else
+            {
+                double monto = recargo + (double)claseSelect.precio;
+                txt_monto.Text = monto.ToString();
+            }
+            if (recargo > 0) pagoRecargo = 1;
+
         }
+
+        protected void btn_cancelar_Click1(object sender, EventArgs e)
+        {
+
+            limpiar();
+            Session["alumnos"] = "Administrar";
+            Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
+        }
+
+
+
+
+        //protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    clase claseSelect = gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
+        //    int dni;
+        //    int.TryParse(Session["PagoClase"].ToString(), out dni);
+        //    alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
+
+        //    double recargo = gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno);
+        //    if (recargo == -1) mensaje("El alumno no está inscripto a esa clase", false);
+        //    else
+        //    {
+        //        double monto = recargo + (double)claseSelect.precio;
+        //        txt_monto.Text = monto.ToString();
+        //    }
+        //    if (recargo > 0) pagoRecargo = 1;
+
+
+        //}
     }
 }

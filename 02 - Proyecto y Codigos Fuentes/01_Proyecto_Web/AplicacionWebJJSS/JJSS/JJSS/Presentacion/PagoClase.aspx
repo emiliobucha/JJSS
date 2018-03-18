@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="PagoClase.aspx.cs" Inherits="JJSS.Presentacion.PagoClase" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="PagoClase.aspx.cs" Inherits="JJSS.Presentacion.PagoClase" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphMenu" runat="server">
-</asp:Content>
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
@@ -44,13 +44,15 @@
             <asp:Panel ID="pnlPago" runat="server">
                 <div class="container">
                     <div class="row mt centered">
-                        <h1>FORMULARIO DE REGISTRO DE PAGO DE CLASE</h1>
+                       
+                        <h1>REGISTRO DE PAGO DE CLASE</h1>
                         <p>&nbsp;</p>
                     </div>
 
                     <div class="form-group">
                         <div class="row centered">
                             <h2>
+                                <asp:Label ID="lbl1" runat="server" Text="Alumno: "></asp:Label>
                                 <asp:Label ID="lbl_alumno" runat="server" Text="No hay alumno seleccionado"></asp:Label></h2>
                             <p>&nbsp;</p>
                         </div>
@@ -105,7 +107,7 @@
                         <!-- MONTO-->
                         <div class="row centered">
                             <div class="col-xs-2">
-                                <label class="pull-left">Monto</label>
+                                <label class="pull-left">Importe</label>
                             </div>
                             <div class="col-xs-3">
                                 <asp:TextBox ID="txt_monto" runat="server" CssClass="caja2"></asp:TextBox>
@@ -143,15 +145,26 @@
 
                         <!-- BOTONES-->
                         <div class="row centered">
-                            <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
-                            <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" ValidationGroup="vgRegistrarPago" OnClick="btn_aceptar_Click" />
-                        </div>
 
+                            <%--<asp:Button ID="btn_cancelar" runat="server"Text="Volver a inicio" CssClass="btn-link" CausesValidation="false" OnClick="btn_cancelar_Click1" />--%>
+                            <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" CssClass="caja2" ValidationGroup="vgRegistrarPago" OnClick="btn_aceptar_Click" />
+   							
                     </div>
                 </div>
 
             </asp:Panel>
         </div>
 
+
+
+
     </form>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+     <script type="text/javascript">
+     (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+    </script>
+   
+
+   
+
 </asp:Content>

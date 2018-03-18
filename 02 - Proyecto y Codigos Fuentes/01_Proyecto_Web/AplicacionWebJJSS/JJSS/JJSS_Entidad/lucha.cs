@@ -21,9 +21,9 @@ namespace JJSS_Entidad
         public Nullable<int> ronda { get; set; }
         public Nullable<int> id_torneo { get; set; }
     
-        public virtual resultado resultado { get; set; }
-        public virtual torneo torneo { get; set; }
         public virtual participante participante { get; set; }
         public virtual participante participante1 { get; set; }
+        public virtual resultado resultado { get; set; }
+        public virtual torneo torneo { get; set; }
     }
 }

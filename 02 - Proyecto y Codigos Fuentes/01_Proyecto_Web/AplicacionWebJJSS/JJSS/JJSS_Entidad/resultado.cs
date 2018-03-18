@@ -17,17 +17,27 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public resultado()
         {
+            this.categoria_torneo = new HashSet<categoria_torneo>();
             this.lucha = new HashSet<lucha>();
         }
     
         public int id_resultado { get; set; }
-        public Nullable<short> tipo_finalizacion { get; set; }
-        public string tiempo { get; set; }
-        public Nullable<int> punto_participante_1 { get; set; }
-        public Nullable<int> punto_participante_2 { get; set; }
-        public Nullable<int> id_ganador { get; set; }
+        public Nullable<int> id_torneo { get; set; }
+        public Nullable<int> id_categoria_torneo { get; set; }
+        public Nullable<int> id_primer { get; set; }
+        public Nullable<int> id_segundo { get; set; }
+        public Nullable<int> id_tercero1 { get; set; }
+        public Nullable<int> id_tercero2 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }
+        public virtual categoria_torneo categoria_torneo1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lucha> lucha { get; set; }
+        public virtual participante participante { get; set; }
+        public virtual participante participante1 { get; set; }
+        public virtual participante participante2 { get; set; }
+        public virtual participante participante3 { get; set; }
+        public virtual torneo torneo { get; set; }
     }
 }

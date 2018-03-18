@@ -69,6 +69,7 @@ textarea {
 
 html,
 body {
+
     height: 100%;
 }
 
@@ -252,24 +253,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 
 #headerwrap {
-	background: url(../img/back.jpg) no-repeat center top;
-	margin-top: 0px;
-	padding-top:120px;
-	text-align:center;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 700px;
-	width: 100%;
-	
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url(../img/logo_mariano.jpg) no-repeat center top;
 }
 
 #headerwrap2 {
@@ -420,8 +404,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*Sperador de Torneo*/
-.torneo {
-    background-image: url(../img/Torneo1.jpg);
+.paraTorneos {
+    background-image: url(../img/paraTorneos.jpg);
+}
+
+.paraClases {
+    background-image: url(../img/paraClases.jpg);
+}
+
+.paraAlumnos {
+    background-image: url(../img/paraAlumnos.jpg);
+}
+
+.paraTienda {
+    background-image: url(../img/paraTienda.jpg);
 }
 
 /* Portfolio Wrap Section */
@@ -530,6 +526,28 @@ h1, h2, h3, h4, h5, h6 {
 	color: #f2f2f2;
 	margin-top: 10px;
 }
+
+/* Contact Wrap */
+#encabezado {
+    background-color: #2f2f2f;
+    margin-top: 0px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+#encabezado p {
+    color: #f2f2f2;
+
+}
+#encabezado small {
+    font-size: 13px;
+
+}
+
+#encabezado label {
+    color: #f2f2f2;
+    margin-top: 10px;
+}
+
 
 
 /* Gallery Configuration */
