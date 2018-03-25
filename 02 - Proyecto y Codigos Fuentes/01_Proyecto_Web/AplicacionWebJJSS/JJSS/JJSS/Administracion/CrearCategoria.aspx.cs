@@ -68,8 +68,8 @@ namespace JJSS.Administracion
                 nuevaCategoria.edad_hasta = int.Parse(txtEdadMaxima.Text);
 
                 short? sexo = null;
-                if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
-                if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
+                if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO; 
+                if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO; 
 
                 nuevaCategoria.sexo = sexo;
                 nuevaCategoria.id_tipo_clase = int.Parse(ddlDisciplina.SelectedValue);

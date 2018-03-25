@@ -163,8 +163,8 @@ namespace JJSS.Presentacion
             DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
 
             short sexo = 0;
-            if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
-            if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
+            if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO; 
+            if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
 
             long tel = 0;
             if (txt_telefono.Text != "")

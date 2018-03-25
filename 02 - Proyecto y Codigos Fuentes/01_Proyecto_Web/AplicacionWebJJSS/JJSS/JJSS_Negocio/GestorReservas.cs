@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
 using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Constantes;
 
 namespace JJSS_Negocio
 {
     public class GestorReservas
     {
-        private const int Reservada = 5;
-        private const int Cancelada = 6;
-        private const int Retirada = 7;
 
         /*
          * Metodo que reserva los productos seleccionados para un usuario
@@ -22,7 +20,7 @@ namespace JJSS_Negocio
         {
             DateTime fechaActual = DateTime.Now;
             int? usuarioQueReserva = pIDUsuarioLogueado;
-            int estado=Reservada;
+            int estado = ConstantesEstado.RESERVA_RESERVADO;
             using (var db = new JJSSEntities())
             {
                 var transaction = db.Database.BeginTransaction();
@@ -31,7 +29,7 @@ namespace JJSS_Negocio
                     if (usuarioQueReserva == 1)//es admin
                     {
                         usuarioQueReserva = pIDUsuarioQueReserva; //se le asigna la reserva otro usuario
-                        estado = Retirada; // se crea la reserva como retirada
+                        estado = ConstantesEstado.RESERVA_RETIRADO; // se crea la reserva como retirada
                     }
                     reserva nuevaReserva = new reserva()
                     {
@@ -104,7 +102,7 @@ namespace JJSS_Negocio
                 try
                 {
                     estado_reserva estadoActual = (from est in db.estado_reserva
-                                                   where est.id_reserva == pIDReserva && est.actual == 1 && est.id_estado == Reservada
+                                                   where est.id_reserva == pIDReserva && est.actual == 1 && est.id_estado == ConstantesEstado.RESERVA_RESERVADO
                                                    select est).FirstOrDefault();
 
                     estadoActual.actual = 0;
@@ -120,7 +118,7 @@ namespace JJSS_Negocio
                     db.estado_reserva.Add(nuevoEstado);
                     db.SaveChanges();
 
-                    if (pIDNuevoEstado == Cancelada)
+                    if (pIDNuevoEstado == ConstantesEstado.RESERVA_CANCELADO)
                     {
                         List<detalle_reserva> detalles = (from det in db.detalle_reserva
                                                           where det.id_reserva == pIDReserva
@@ -159,7 +157,7 @@ namespace JJSS_Negocio
                                join alu in db.alumno on usu.id_usuario equals alu.id_usuario
 
 
-                               where est.actual == 1 && est.id_estado == Reservada
+                               where est.actual == 1 && est.id_estado == ConstantesEstado.RESERVA_RESERVADO
                                select new
                                {
                                    nombre = alu.nombre,
@@ -174,7 +172,7 @@ namespace JJSS_Negocio
                                 join pro in db.profesor on usu.id_usuario equals pro.id_usuario
 
 
-                                where est.actual == 1 && est.id_estado == Reservada
+                                where est.actual == 1 && est.id_estado == ConstantesEstado.RESERVA_RESERVADO
                                 select new
                                 {
                                     nombre = pro.nombre,

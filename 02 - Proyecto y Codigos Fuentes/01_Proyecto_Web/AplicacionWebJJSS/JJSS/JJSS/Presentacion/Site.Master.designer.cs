@@ -31,6 +31,15 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder cphP;
         
         /// <summary>
+        /// Control cphMenu.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cphMenu;
+        
+        /// <summary>
         /// Control cphContenido.
         /// </summary>
         /// <remarks>

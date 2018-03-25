@@ -244,8 +244,8 @@ namespace JJSS.Presentacion
             int dni = int.Parse(txtDni.Text);
             
             short sexo = 0;
-            if (rbSexo.SelectedIndex == 0) sexo = 0; //Femenino
-            if (rbSexo.SelectedIndex == 1) sexo = 1; //Masculino
+            if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO;
+            if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
 
             //para alumnos
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));

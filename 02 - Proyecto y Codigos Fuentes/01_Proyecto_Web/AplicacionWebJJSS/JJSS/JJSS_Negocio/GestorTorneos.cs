@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Globalization;
 using JJSS_Negocio.Resultados;
 using JJSS_Negocio.Administracion;
+using JJSS_Negocio.Constantes;
 
 namespace JJSS_Negocio
 {
@@ -18,7 +19,6 @@ namespace JJSS_Negocio
      */
     public class GestorTorneos
     {
-        private const int InscripcionAbierta = 1;
 
         /*
          * Generar Nuevo torneo nos permite crear un nuevo torneo 
@@ -42,7 +42,7 @@ namespace JJSS_Negocio
             String sReturn = "";
             using (var db = new JJSSEntities())
             {
-                estado estadoTorneo = db.estado.Find(InscripcionAbierta);
+                estado estadoTorneo = db.estado.Find(ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
@@ -64,7 +64,7 @@ namespace JJSS_Negocio
                         hora_cierre = pHora_cierre,
                         id_sede = pSede,
                         estado = estadoTorneo,
-                        id_tipo_clase = 1
+                        id_tipo_clase = ConstantesTipoClase.JIU_JITSU
                     };
                     db.torneo.Add(nuevoTorneo);
                     db.SaveChanges();
@@ -150,7 +150,7 @@ namespace JJSS_Negocio
             {
                 var torneosAbiertos =
                     from torneo in db.torneo
-                    where torneo.id_estado == 1
+                    where torneo.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
                     select torneo;
                 return torneosAbiertos.ToList();
             }
@@ -166,7 +166,7 @@ namespace JJSS_Negocio
                                            join i in db.torneo_imagen on t.id_torneo equals i.id_torneo
                                            into ps
                                            from i in ps.DefaultIfEmpty()
-                                           where t.id_estado == 1
+                                           where t.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
                                            select new TorneoResultado()
                                            {
                                                id_torneo = t.id_torneo,
@@ -189,41 +189,41 @@ namespace JJSS_Negocio
                 // del estado 1 al 2
                 List<torneo> torneosAbiertos =
                         (from torneo in db.torneo
-                         where torneo.id_estado == 1
+                         where torneo.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
                          select torneo).ToList<torneo>();
 
                 foreach (torneo x in torneosAbiertos)
                 {
                     DateTime cierre = (DateTime)x.fecha_cierre;
-                    if (cierre.Date < DateTime.Now.Date) x.id_estado = 2;
-                    else if (cierre.Date == DateTime.Now.Date && x.hora_cierre.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = 2;
+                    if (cierre.Date < DateTime.Now.Date) x.id_estado = ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA;
+                    else if (cierre.Date == DateTime.Now.Date && x.hora_cierre.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA;
                     db.SaveChanges();
                 }
 
                 //del estado 2 al 3
                 List<torneo> torneosCerrados =
                         (from torneo in db.torneo
-                         where torneo.id_estado == 2
+                         where torneo.id_estado == ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA
                          select torneo).ToList<torneo>();
 
                 foreach (torneo x in torneosCerrados)
                 {
                     DateTime fecha = (DateTime)x.fecha;
-                    if (fecha.Date < DateTime.Now.Date) x.id_estado = 3;
-                    else if (fecha.Date == DateTime.Now.Date && x.hora.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = 3;
+                    if (fecha.Date < DateTime.Now.Date) x.id_estado = ConstantesEstado.TORNEO_EN_CURSO;
+                    else if (fecha.Date == DateTime.Now.Date && x.hora.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = ConstantesEstado.TORNEO_EN_CURSO;
                     db.SaveChanges();
                 }
 
                 //del estado 3 al 4
                 List<torneo> torneosEnCurso =
                         (from torneo in db.torneo
-                         where torneo.id_estado == 3
+                         where torneo.id_estado == ConstantesEstado.TORNEO_EN_CURSO
                          select torneo).ToList<torneo>();
 
                 foreach (torneo x in torneosEnCurso)
                 {
                     DateTime fecha = (DateTime)x.fecha;
-                    if (fecha.Date < DateTime.Now.Date) x.id_estado = 4;
+                    if (fecha.Date < DateTime.Now.Date) x.id_estado = ConstantesEstado.TORNEO_FINALIZADO;
                     db.SaveChanges();
                 }
 
@@ -237,7 +237,7 @@ namespace JJSS_Negocio
             {
                 var torneosAbiertos =
                     from torneo in db.torneo
-                    where torneo.id_estado == 1 || torneo.id_estado == 2
+                    where torneo.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA || torneo.id_estado == ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA
                     select torneo;
                 return torneosAbiertos.ToList();
             }
@@ -434,6 +434,66 @@ namespace JJSS_Negocio
             }
         }
 
+        public String modificarTorneo(torneo pTorneo, byte[] pImagen)
+        {
+            String sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                estado estadoTorneo = db.estado.Find(ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    torneo torneoEncontrado = db.torneo.Find(pTorneo.id_torneo);
+                    if (torneoEncontrado == null) return "El torneo no existe";
 
+                    torneoEncontrado.fecha = pTorneo.fecha;
+                    torneoEncontrado.fecha_cierre = pTorneo.fecha_cierre;
+                    torneoEncontrado.hora = pTorneo.hora;
+                    torneoEncontrado.hora_cierre = pTorneo.hora_cierre;
+                    torneoEncontrado.id_sede = pTorneo.id_sede;
+                    torneoEncontrado.nombre = pTorneo.nombre;
+                    torneoEncontrado.precio_absoluto = pTorneo.precio_absoluto;
+                    torneoEncontrado.precio_categoria = pTorneo.precio_categoria;
+                    db.SaveChanges();
+
+                    torneo_imagen imagenAnterior = buscarImagenTorneo(pTorneo.id_torneo);
+                    if (imagenAnterior == null)
+                    {
+                        torneo_imagen nuevoTorneoImagen = new torneo_imagen()
+                        {
+                            id_torneo = torneoEncontrado.id_torneo,
+                            imagen = pImagen
+                        };
+                        db.torneo_imagen.Add(nuevoTorneoImagen);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        imagenAnterior.imagen = pImagen;
+                        db.SaveChanges();
+                    }
+                    
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+
+        }
+
+        public torneo_imagen buscarImagenTorneo(int idTorneo)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var imagen = from ima in db.torneo_imagen
+                             where ima.id_torneo == idTorneo
+                             select ima;
+                return imagen.FirstOrDefault();
+            }
+        }
     }
 }
