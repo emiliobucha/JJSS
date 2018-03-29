@@ -4,57 +4,56 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="058a9d1dff7747f0b88f7eadf96665c8" Name="Diagram1">
-        <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="6.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="3" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.alumno_imagen" Width="1.5" PointX="5.25" PointY="19.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.alumnoxfaja" Width="1.5" PointX="8.25" PointY="28.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.asistencia_clase" Width="1.5" PointX="11.25" PointY="28" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.categoria" Width="1.5" PointX="8.25" PointY="47.125" IsExpanded="true" />
+      <Diagram DiagramId="249b71cff4454db180446e5234f134ff" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="6.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="3" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.alumno_imagen" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.alumnoxfaja" Width="1.5" PointX="8.25" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.asistencia_clase" Width="1.5" PointX="11.25" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.categoria" Width="1.5" PointX="3.75" PointY="52.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.categoria_producto" Width="1.5" PointX="8.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.categoria_torneo" Width="1.5" PointX="10.5" PointY="44.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.ciudad" Width="1.5" PointX="1.5" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.clase" Width="1.5" PointX="9" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.categoria_torneo" Width="1.5" PointX="6" PointY="52.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.ciudad" Width="1.5" PointX="1.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.clase" Width="1.5" PointX="9" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.compra" Width="1.5" PointX="13.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.detalle_pago_clase" Width="1.5" PointX="16.5" PointY="31.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.detalle_reserva" Width="1.5" PointX="13.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.direccion" Width="1.5" PointX="1.5" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.estado" Width="1.5" PointX="0.75" PointY="28.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.estado_reserva" Width="1.5" PointX="6" PointY="28" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.evento_especial" Width="1.5" PointX="6" PointY="22.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.evento_especial_imagen" Width="1.5" PointX="8.25" PointY="23.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.faja" Width="1.5" PointX="6" PointY="48" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.forma_pago" Width="1.5" PointX="14.25" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.horario" Width="1.5" PointX="9" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.detalle_pago_clase" Width="1.5" PointX="16.5" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.detalle_reserva" Width="1.5" PointX="13.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.direccion" Width="1.5" PointX="1.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.estado" Width="1.5" PointX="0.75" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.estado_reserva" Width="1.5" PointX="6" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.evento_especial" Width="1.5" PointX="6" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.evento_especial_imagen" Width="1.5" PointX="8.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.faja" Width="1.5" PointX="6" PointY="47.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.forma_pago" Width="1.5" PointX="14.25" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.horario" Width="1.5" PointX="9" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.inscripcion" Width="1.5" PointX="8.25" PointY="36.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.inscripcion_clase" Width="1.5" PointX="11.25" PointY="24.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.inscripcion_evento" Width="1.5" PointX="14.25" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.inscripcion_clase" Width="1.5" PointX="11.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.inscripcion_evento" Width="1.5" PointX="14.25" PointY="35.25" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.lucha" Width="1.5" PointX="11.25" PointY="36.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.pago_clase" Width="1.5" PointX="11.25" PointY="32.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.pago_evento" Width="1.5" PointX="14.25" PointY="31.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.pago_torneo" Width="1.5" PointX="11.25" PointY="40.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.pais" Width="1.5" PointX="1.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.pago_torneo" Width="1.5" PointX="11.25" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.pais" Width="1.5" PointX="1.5" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.parametro" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.participante" Width="1.5" PointX="5.25" PointY="39.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.participante_evento" Width="1.5" PointX="5.25" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.participante" Width="1.5" PointX="5.25" PointY="39" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.participante_evento" Width="1.5" PointX="5.25" PointY="44" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.producto" Width="1.5" PointX="11" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.producto_imagen" Width="1.5" PointX="13.25" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.profesor" Width="1.5" PointX="6.75" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.profesor_imagen" Width="1.5" PointX="9" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.profesor" Width="1.5" PointX="6.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.profesor_imagen" Width="1.5" PointX="9" PointY="16.25" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.proveedor" Width="1.5" PointX="11" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.provincia" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.provincia" Width="1.5" PointX="1.5" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.reserva" Width="1.5" PointX="3.75" PointY="33.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.resultado" Width="1.5" PointX="8.25" PointY="41.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.sede" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_grupo" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_grupoxopcion" Width="1.5" PointX="4" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_opcion" Width="1.5" PointX="1.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_usuario" Width="1.5" PointX="0.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.seguridad_usuarioxgrupo" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.sede" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.seguridad_grupo" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.seguridad_grupoxopcion" Width="1.5" PointX="4" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.seguridad_opcion" Width="1.5" PointX="1.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.seguridad_usuario" Width="1.5" PointX="0.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.seguridad_usuarioxgrupo" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="6.75" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.tipo_evento_especial" Width="1.5" PointX="3.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.tipo_evento_especial" Width="1.5" PointX="3.75" PointY="23.5" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.torneo" Width="1.5" PointX="6" PointY="31.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.torneo_imagen" Width="1.5" PointX="8.25" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.torneo_imagen" Width="1.5" PointX="8.25" PointY="33.25" IsExpanded="true" />
         <AssociationConnector Association="JJSSModel.FK__academia__id_dir__17036CC0" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__clase__id_ubicac__2645B050" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__alumno__id_direc__17F790F9" ManuallyRouted="false" />
@@ -74,9 +73,7 @@
         <AssociationConnector Association="JJSSModel.FK__categoria__id_ti__1F98B2C1" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__producto__id_cat__4A8310C6" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__categoria__id_fa__2180FB33" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__categoria__id_re__22751F6C" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__inscripci__id_ca__3587F3E0" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.fk_cat_torneo" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__ciudad__id_provi__236943A5" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__direccion__id_ci__2CF2ADDF" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__clase__id_profe__245D67DE" ManuallyRouted="false" />
@@ -110,21 +107,15 @@
         <AssociationConnector Association="JJSSModel.FK__inscripci__id_pa__3C34F16F" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__lucha__id_partic__3D2915A8" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__lucha__id_partic__3E1D39E1" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.FK__lucha__id_result__3F115E1A" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__lucha__id_torneo__40058253" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__pago_even__id_pa__44CA3770" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__pago_torn__id_pa__46B27FE2" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__pago_torn__id_to__47A6A41B" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__provincia__id_pa__4F47C5E3" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.fk_primero" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.fk_segundo" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.fk_tercero1" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.fk_tercero2" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__producto___id_pr__4B7734FF" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__profesor___id_pr__4E53A1AA" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__profesor__id_usu__4D5F7D71" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__reserva__id_usua__503BEA1C" ManuallyRouted="false" />
-        <AssociationConnector Association="JJSSModel.fk_torneo" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__torneo__id_sede__56E8E7AB" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__seguridad__id_gr__531856C7" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__seguridad__id_gr__540C7B00" ManuallyRouted="false" />
@@ -132,7 +123,15 @@
         <AssociationConnector Association="JJSSModel.FK__seguridad__id_us__55009F39" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__torneo__id_tipo___57DD0BE4" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__torneo_im__id_to__58D1301D" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="JJSSModel.resultado" Width="1.5" PointX="8.25" PointY="41.5" />
+        <AssociationConnector Association="JJSSModel.FK__resultado__id_ca__1A9EF37A" />
+        <AssociationConnector Association="JJSSModel.FK__lucha__id_result__0880433F" />
+        <AssociationConnector Association="JJSSModel.FK__resultado__id_pr__1B9317B3" />
+        <AssociationConnector Association="JJSSModel.FK__resultado__id_se__1C873BEC" />
+        <AssociationConnector Association="JJSSModel.FK__resultado__id_te__1D7B6025" />
+        <AssociationConnector Association="JJSSModel.FK__resultado__id_te__1E6F845E" />
+        <AssociationConnector Association="JJSSModel.FK__resultado__id_to__1F63A897" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -352,21 +352,24 @@ namespace JJSS_Negocio
          */
         public List<TorneoResultado> BuscarTorneosConFiltrosEImagen(String filtroNombre, DateTime filtroFecha)
         {
+            cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
             {
                 var torneos = from tor in db.torneo
+                              join est in db.estado on tor.id_estado equals est.id_estado
                               join i in db.torneo_imagen on tor.id_torneo equals i.id_torneo
                               into ps
                               from i in ps.DefaultIfEmpty()
                               where tor.nombre.StartsWith(filtroNombre) &&
-                              tor.fecha >= filtroFecha
+                              tor.fecha >= filtroFecha &&
+                              (est.id_estado == ConstantesEstado.TORNEO_CANCELADO || est.id_estado == ConstantesEstado.TORNEO_FINALIZADO)
                               select new TorneoResultado()
                               {
                                   id_torneo = tor.id_torneo,
                                   nombre = tor.nombre,
                                   fecha = tor.fecha,
-                                  hora = tor.hora,
-                                  imagenB = i.imagen
+                                  imagenB = i.imagen,
+                                  estado = est.nombre,
                               };
                 return torneos.ToList<TorneoResultado>();
             }
@@ -472,7 +475,7 @@ namespace JJSS_Negocio
                         imagenAnterior.imagen = pImagen;
                         db.SaveChanges();
                     }
-                    
+
                     transaction.Commit();
                     return sReturn;
                 }
@@ -493,6 +496,39 @@ namespace JJSS_Negocio
                              where ima.id_torneo == idTorneo
                              select ima;
                 return imagen.FirstOrDefault();
+            }
+        }
+
+        public estado buscarEstadoTorneo(int idTorneo)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var estado = from est in db.estado
+                             join tor in db.torneo on est.id_estado equals tor.id_estado
+                             where tor.id_torneo == idTorneo
+                             select est;
+                return estado.First();
+            }
+        }
+
+        public List<ResultadoDeTorneo> buscarResultados(int idTorneo)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var resultados = from res in db.resultado
+                                 join catt in db.categoria_torneo on res.id_categoria_torneo equals catt.id_categoria_torneo
+                                 join tor in db.torneo on res.id_torneo equals tor.id_torneo
+                                 where tor.id_torneo==idTorneo
+                                 select new ResultadoDeTorneo()
+                                 {
+                                     categoria = catt.categoria.nombre,
+                                     faja = catt.faja.descripcion,
+                                     primero = res.participante.nombre + res.participante.apellido,
+                                     segundo = res.participante1.nombre + res.participante1.apellido,
+                                     tercero1 = res.participante2.nombre + res.participante2.apellido,
+                                     tercero2 = res.participante3.nombre + res.participante3.apellido,
+                                 };
+                return resultados.ToList();
             }
         }
     }

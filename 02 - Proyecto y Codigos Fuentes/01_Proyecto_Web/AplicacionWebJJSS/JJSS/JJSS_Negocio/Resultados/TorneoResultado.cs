@@ -17,7 +17,8 @@ namespace JJSS_Negocio.Resultados
         public string nombre { get; set; }
         public DateTime? fecha { get; set; }
         public string hora { get; set; }
-        
+        public string estado { get; set; }
+
         public Image imagenI { get; set; }
         public string imagen { get; set; }
 
@@ -27,43 +28,50 @@ namespace JJSS_Negocio.Resultados
             set
             {
                 _imagenB = value;
-                using (MemoryStream ms = new MemoryStream(imagenB))
+                if (imagenB != null)
                 {
-                    try
+                    using (MemoryStream ms = new MemoryStream(imagenB))
                     {
-
-                        string sDir = System.Web.HttpContext.Current.Server.MapPath("//temp");
-
-                        if (!System.IO.Directory.Exists(sDir))
+                        try
                         {
-                            System.IO.Directory.CreateDirectory(sDir);
-                        }
-                        
 
-                        var archivo = nombre.Replace(" ","") + ".jpeg";
-                        imagenI = Image.FromStream(ms);
+                            string sDir = System.Web.HttpContext.Current.Server.MapPath("//temp");
 
-                        char[] sTrim = "\\".ToCharArray();
-                        var archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
+                            if (!System.IO.Directory.Exists(sDir))
+                            {
+                                System.IO.Directory.CreateDirectory(sDir);
+                            }
 
-                        //if (!File.Exists(archivo))
-                        //{
+
+                            var archivo = nombre.Replace(" ", "") + ".jpeg";
+                            imagenI = Image.FromStream(ms);
+
+                            char[] sTrim = "\\".ToCharArray();
+                            var archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
+
+                            //if (!File.Exists(archivo))
+                            //{
                             imagenI.Save(archivoGuardar, ImageFormat.Jpeg);
-                        //}
+                            //}
 
-                       
-                        imagen = "\\temp\\" + archivo;
+
+                            imagen = "\\temp\\" + archivo;
+
+                        }
+                        catch (Exception ex)
+                        {
+                        }
 
                     }
-                    catch (Exception ex)
-                    {
-                    }
-
+                }
+                else
+                {
+                    //TODO imagen por defecto
                 }
             }
         }
 
-      
+
 
     }
 }
