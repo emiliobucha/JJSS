@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 using JJSS_Entidad;
 using JJSS_Negocio.Resultados;
 using JJSS_Negocio.Administracion;
+using JJSS_Negocio.Constantes;
 
 namespace JJSS_Negocio
 {
     public class GestorEventos
     {
-        private const int InscripcionAbierta = 1;
-        private const int InscripcionCerrada = 2;
-        private const int EnCurso = 3;
-        private const int Finalizado = 4;
 
         /*
          * Generar Nuevo torneo nos permite crear un nuevo torneo 
@@ -38,7 +35,7 @@ namespace JJSS_Negocio
             String sReturn = "";
             using (var db = new JJSSEntities())
             {
-                estado estado = db.estado.Find(InscripcionAbierta);
+                estado estado = db.estado.Find(ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
@@ -135,7 +132,7 @@ namespace JJSS_Negocio
             {
                 var eventosAbiertos =
                     from evento in db.evento_especial
-                    where evento.id_estado == InscripcionAbierta
+                    where evento.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
                     select evento;
                 return eventosAbiertos.ToList();
             }
@@ -192,41 +189,41 @@ namespace JJSS_Negocio
                 // del estado 1 al 2
                 List<evento_especial> eventosAbiertos =
                         (from ev in db.evento_especial
-                         where ev.id_estado == InscripcionAbierta
+                         where ev.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
                          select ev).ToList<evento_especial>();
 
                 foreach (evento_especial x in eventosAbiertos)
                 {
                     DateTime cierre = (DateTime)x.fecha_cierre;
-                    if (cierre.Date < DateTime.Now.Date) x.id_estado = InscripcionCerrada;
-                    else if (cierre.Date == DateTime.Now.Date && x.hora_cierre.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = InscripcionCerrada;
+                    if (cierre.Date < DateTime.Now.Date) x.id_estado = ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA;
+                    else if (cierre.Date == DateTime.Now.Date && x.hora_cierre.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA;
                     db.SaveChanges();
                 }
 
                 //del estado 2 al 3
                 List<evento_especial> eventosCerrados =
                         (from ev in db.evento_especial
-                         where ev.id_estado == InscripcionCerrada
+                         where ev.id_estado == ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA
                          select ev).ToList<evento_especial>();
 
                 foreach (evento_especial x in eventosCerrados)
                 {
                     DateTime fecha = (DateTime)x.fecha;
-                    if (fecha.Date < DateTime.Now.Date) x.id_estado = EnCurso;
-                    else if (fecha.Date == DateTime.Now.Date && x.hora.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = EnCurso;
+                    if (fecha.Date < DateTime.Now.Date) x.id_estado = ConstantesEstado.TORNEO_EN_CURSO;
+                    else if (fecha.Date == DateTime.Now.Date && x.hora.CompareTo(DateTime.Now.ToShortTimeString()) < 0) x.id_estado = ConstantesEstado.TORNEO_EN_CURSO;
                     db.SaveChanges();
                 }
 
                 //del estado 3 al 4
                 List<evento_especial> eventoEnCurso =
                         (from ev in db.evento_especial
-                         where ev.id_estado == EnCurso
+                         where ev.id_estado == ConstantesEstado.TORNEO_EN_CURSO
                          select ev).ToList<evento_especial>();
 
                 foreach (evento_especial x in eventoEnCurso)
                 {
                     DateTime fecha = (DateTime)x.fecha;
-                    if (fecha.Date < DateTime.Now.Date) x.id_estado = Finalizado;
+                    if (fecha.Date < DateTime.Now.Date) x.id_estado = ConstantesEstado.TORNEO_FINALIZADO;
                     db.SaveChanges();
                 }
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -512,7 +512,7 @@
           <Property Name="id_torneo" Type="int" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
         </EntityType>
-        <Association Name="FK__academia__id_dir__17036CC0">
+        <Association Name="FK__academia__id_dir__607251E5">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="academia" Type="Self.academia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -524,7 +524,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__alumno__id_direc__17F790F9">
+        <Association Name="FK__alumno__id_direc__6166761E">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
           <ReferentialConstraint>
@@ -536,7 +536,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__alumno__id_usuar__18EBB532">
+        <Association Name="FK__alumno__id_estad__634EBE90">
+          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__alumno__id_usuar__625A9A57">
           <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
           <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
           <ReferentialConstraint>
@@ -548,7 +560,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__alumno_im__id_al__19DFD96B">
+        <Association Name="FK__alumno_im__id_al__6442E2C9">
           <End Role="alumno" Type="Self.alumno" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -562,7 +574,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__alumnoxfa__id_al__1AD3FDA4">
+        <Association Name="FK__alumnoxfa__id_al__65370702">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -576,7 +588,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__alumnoxfa__id_fa__1BC821DD">
+        <Association Name="FK__alumnoxfa__id_fa__662B2B3B">
           <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
           <End Role="alumnoxfaja" Type="Self.alumnoxfaja" Multiplicity="*" />
           <ReferentialConstraint>
@@ -588,7 +600,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__asistenci__id_al__1CBC4616">
+        <Association Name="FK__asistenci__id_al__671F4F74">
           <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
           <End Role="asistencia_clase" Type="Self.asistencia_clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -600,7 +612,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__asistenci__id_cl__1DB06A4F">
+        <Association Name="FK__asistenci__id_cl__681373AD">
           <End Role="clase" Type="Self.clase" Multiplicity="1" />
           <End Role="asistencia_clase" Type="Self.asistencia_clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -612,7 +624,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__asistenci__id_ho__1EA48E88">
+        <Association Name="FK__asistenci__id_ho__690797E6">
           <End Role="horario" Type="Self.horario" Multiplicity="0..1" />
           <End Role="asistencia_clase" Type="Self.asistencia_clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -624,7 +636,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__categoria__id_ca__208CD6FA">
+        <Association Name="FK__categoria__id_ca__6AEFE058">
           <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
           <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -636,7 +648,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__categoria__id_fa__2180FB33">
+        <Association Name="FK__categoria__id_fa__6BE40491">
           <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
           <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -648,19 +660,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__categoria__id_re__22751F6C">
-          <End Role="resultado" Type="Self.resultado" Multiplicity="0..1" />
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="resultado">
-              <PropertyRef Name="id_resultado" />
-            </Principal>
-            <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_resultado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__categoria__id_ti__1F98B2C1">
+        <Association Name="FK__categoria__id_ti__69FBBC1F">
           <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
           <End Role="categoria" Type="Self.categoria" Multiplicity="*" />
           <ReferentialConstraint>
@@ -672,7 +672,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ciudad__id_provi__236943A5">
+        <Association Name="FK__ciudad__id_provi__6CD828CA">
           <End Role="provincia" Type="Self.provincia" Multiplicity="0..1" />
           <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
           <ReferentialConstraint>
@@ -684,7 +684,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__clase__id_profe__245D67DE">
+        <Association Name="FK__clase__id_profe__6DCC4D03">
           <End Role="profesor" Type="Self.profesor" Multiplicity="0..1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -696,7 +696,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__clase__id_tipo_c__25518C17">
+        <Association Name="FK__clase__id_tipo_c__6EC0713C">
           <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -708,7 +708,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__clase__id_ubicac__2645B050">
+        <Association Name="FK__clase__id_ubicac__6FB49575">
           <End Role="academia" Type="Self.academia" Multiplicity="0..1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -720,7 +720,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__compra__id_produ__2739D489">
+        <Association Name="FK__compra__id_produ__70A8B9AE">
           <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
           <End Role="compra" Type="Self.compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -732,7 +732,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__compra__id_prove__282DF8C2">
+        <Association Name="FK__compra__id_prove__719CDDE7">
           <End Role="proveedor" Type="Self.proveedor" Multiplicity="0..1" />
           <End Role="compra" Type="Self.compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -744,7 +744,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__detalle_p__id_fo__29221CFB">
+        <Association Name="FK__detalle_p__id_fo__72910220">
           <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="1" />
           <End Role="detalle_pago_clase" Type="Self.detalle_pago_clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -756,7 +756,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__detalle_p__id_pa__2A164134">
+        <Association Name="FK__detalle_p__id_pa__73852659">
           <End Role="pago_clase" Type="Self.pago_clase" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -770,7 +770,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__detalle_r__id_pr__2B0A656D">
+        <Association Name="FK__detalle_r__id_pr__74794A92">
           <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
           <End Role="detalle_reserva" Type="Self.detalle_reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -782,7 +782,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__detalle_r__id_re__2BFE89A6">
+        <Association Name="FK__detalle_r__id_re__756D6ECB">
           <End Role="reserva" Type="Self.reserva" Multiplicity="0..1" />
           <End Role="detalle_reserva" Type="Self.detalle_reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -794,7 +794,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__direccion__id_ci__2CF2ADDF">
+        <Association Name="FK__direccion__id_ci__76619304">
           <End Role="ciudad" Type="Self.ciudad" Multiplicity="0..1" />
           <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -806,7 +806,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__estado_re__id_es__2DE6D218">
+        <Association Name="FK__estado_re__id_es__7755B73D">
           <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
           <End Role="estado_reserva" Type="Self.estado_reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -818,7 +818,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__estado_re__id_re__2EDAF651">
+        <Association Name="FK__estado_re__id_re__7849DB76">
           <End Role="reserva" Type="Self.reserva" Multiplicity="0..1" />
           <End Role="estado_reserva" Type="Self.estado_reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -830,7 +830,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__evento_es__id_es__2FCF1A8A">
+        <Association Name="FK__evento_es__id_es__793DFFAF">
           <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
           <End Role="evento_especial" Type="Self.evento_especial" Multiplicity="*" />
           <ReferentialConstraint>
@@ -842,7 +842,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__evento_es__id_ev__32AB8735">
+        <Association Name="FK__evento_es__id_ev__7C1A6C5A">
           <End Role="evento_especial" Type="Self.evento_especial" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -856,7 +856,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__evento_es__id_se__30C33EC3">
+        <Association Name="FK__evento_es__id_se__7A3223E8">
           <End Role="sede" Type="Self.sede" Multiplicity="0..1" />
           <End Role="evento_especial" Type="Self.evento_especial" Multiplicity="*" />
           <ReferentialConstraint>
@@ -868,7 +868,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__evento_es__id_ti__31B762FC">
+        <Association Name="FK__evento_es__id_ti__7B264821">
           <End Role="tipo_evento_especial" Type="Self.tipo_evento_especial" Multiplicity="0..1" />
           <End Role="evento_especial" Type="Self.evento_especial" Multiplicity="*" />
           <ReferentialConstraint>
@@ -880,7 +880,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__faja__id_tipo_cl__339FAB6E">
+        <Association Name="FK__faja__id_tipo_cl__7D0E9093">
           <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
           <End Role="faja" Type="Self.faja" Multiplicity="*" />
           <ReferentialConstraint>
@@ -892,7 +892,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__horario__id_clas__3493CFA7">
+        <Association Name="FK__horario__id_clas__7E02B4CC">
           <End Role="clase" Type="Self.clase" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -906,7 +906,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__inscripci__id_al__395884C4">
+        <Association Name="FK__inscripci__id_al__02C769E9">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -920,7 +920,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__inscripci__id_ca__3587F3E0">
+        <Association Name="FK__inscripci__id_ca__7EF6D905">
           <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="0..1" />
           <End Role="inscripcion" Type="Self.inscripcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -932,7 +932,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__inscripci__id_cl__3A4CA8FD">
+        <Association Name="FK__inscripci__id_cl__03BB8E22">
           <End Role="clase" Type="Self.clase" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -946,7 +946,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__inscripci__id_ev__3B40CD36">
+        <Association Name="FK__inscripci__id_ev__04AFB25B">
           <End Role="evento_especial" Type="Self.evento_especial" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -960,7 +960,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__inscripci__id_fa__367C1819">
+        <Association Name="FK__inscripci__id_fa__7FEAFD3E">
           <End Role="faja" Type="Self.faja" Multiplicity="0..1" />
           <End Role="inscripcion" Type="Self.inscripcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -972,7 +972,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__inscripci__id_pa__37703C52">
+        <Association Name="FK__inscripci__id_pa__00DF2177">
           <End Role="participante" Type="Self.participante" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -986,7 +986,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__inscripci__id_pa__3C34F16F">
+        <Association Name="FK__inscripci__id_pa__05A3D694">
           <End Role="participante_evento" Type="Self.participante_evento" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1000,7 +1000,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__inscripci__id_to__3864608B">
+        <Association Name="FK__inscripci__id_to__01D345B0">
           <End Role="torneo" Type="Self.torneo" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1014,7 +1014,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__lucha__id_partic__3D2915A8">
+        <Association Name="FK__lucha__id_partic__0697FACD">
           <End Role="participante" Type="Self.participante" Multiplicity="1" />
           <End Role="lucha" Type="Self.lucha" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1026,7 +1026,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__lucha__id_partic__3E1D39E1">
+        <Association Name="FK__lucha__id_partic__078C1F06">
           <End Role="participante" Type="Self.participante" Multiplicity="1" />
           <End Role="lucha" Type="Self.lucha" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1038,7 +1038,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__lucha__id_result__3F115E1A">
+        <Association Name="FK__lucha__id_result__0880433F">
           <End Role="resultado" Type="Self.resultado" Multiplicity="0..1" />
           <End Role="lucha" Type="Self.lucha" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1050,7 +1050,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__lucha__id_torneo__40058253">
+        <Association Name="FK__lucha__id_torneo__09746778">
           <End Role="torneo" Type="Self.torneo" Multiplicity="0..1" />
           <End Role="lucha" Type="Self.lucha" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1062,7 +1062,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pago_clas__id_al__40F9A68C">
+        <Association Name="FK__pago_clas__id_al__0A688BB1">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1076,7 +1076,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pago_clas__id_cl__41EDCAC5">
+        <Association Name="FK__pago_clas__id_cl__0B5CAFEA">
           <End Role="clase" Type="Self.clase" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1090,7 +1090,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pago_even__id_ev__42E1EEFE">
+        <Association Name="FK__pago_even__id_ev__0C50D423">
           <End Role="evento_especial" Type="Self.evento_especial" Multiplicity="0..1" />
           <End Role="pago_evento" Type="Self.pago_evento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1102,7 +1102,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pago_even__id_fo__43D61337">
+        <Association Name="FK__pago_even__id_fo__0D44F85C">
           <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="0..1" />
           <End Role="pago_evento" Type="Self.pago_evento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1114,7 +1114,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pago_even__id_pa__44CA3770">
+        <Association Name="FK__pago_even__id_pa__0E391C95">
           <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
           <End Role="pago_evento" Type="Self.pago_evento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1126,7 +1126,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pago_torn__id_fo__45BE5BA9">
+        <Association Name="FK__pago_torn__id_fo__0F2D40CE">
           <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="0..1" />
           <End Role="pago_torneo" Type="Self.pago_torneo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1138,7 +1138,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pago_torn__id_pa__46B27FE2">
+        <Association Name="FK__pago_torn__id_pa__10216507">
           <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
           <End Role="pago_torneo" Type="Self.pago_torneo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1150,7 +1150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pago_torn__id_to__47A6A41B">
+        <Association Name="FK__pago_torn__id_to__11158940">
           <End Role="torneo" Type="Self.torneo" Multiplicity="0..1" />
           <End Role="pago_torneo" Type="Self.pago_torneo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1162,7 +1162,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__participa__id_al__489AC854">
+        <Association Name="FK__participa__id_al__1209AD79">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="participante" Type="Self.participante" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1174,7 +1174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__participa__id_al__498EEC8D">
+        <Association Name="FK__participa__id_al__12FDD1B2">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="participante_evento" Type="Self.participante_evento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1186,7 +1186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__producto___id_pr__4B7734FF">
+        <Association Name="FK__producto___id_pr__14E61A24">
           <End Role="producto" Type="Self.producto" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1200,7 +1200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__producto__id_cat__4A8310C6">
+        <Association Name="FK__producto__id_cat__13F1F5EB">
           <End Role="categoria_producto" Type="Self.categoria_producto" Multiplicity="0..1" />
           <End Role="producto" Type="Self.producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1212,7 +1212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__profesor___id_pr__4E53A1AA">
+        <Association Name="FK__profesor___id_pr__17C286CF">
           <End Role="profesor" Type="Self.profesor" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1226,7 +1226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__profesor__id_dir__4C6B5938">
+        <Association Name="FK__profesor__id_dir__15DA3E5D">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1238,7 +1238,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__profesor__id_usu__4D5F7D71">
+        <Association Name="FK__profesor__id_usu__16CE6296">
           <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
           <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1250,7 +1250,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__provincia__id_pa__4F47C5E3">
+        <Association Name="FK__provincia__id_pa__18B6AB08">
           <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
           <End Role="provincia" Type="Self.provincia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1262,7 +1262,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__reserva__id_usua__503BEA1C">
+        <Association Name="FK__reserva__id_usua__19AACF41">
           <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
           <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1274,7 +1274,79 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__sede__id_direcci__51300E55">
+        <Association Name="FK__resultado__id_ca__1A9EF37A">
+          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="0..1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria_torneo">
+              <PropertyRef Name="id_categoria_torneo" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_categoria_torneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_pr__1B9317B3">
+          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_primer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_se__1C873BEC">
+          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_segundo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_te__1D7B6025">
+          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_tercero1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_te__1E6F845E">
+          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_tercero2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_to__1F63A897">
+          <End Role="torneo" Type="Self.torneo" Multiplicity="0..1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="torneo">
+              <PropertyRef Name="id_torneo" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_torneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sede__id_direcci__2057CCD0">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="sede" Type="Self.sede" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1286,7 +1358,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__seguridad__clave__5224328E">
+        <Association Name="FK__seguridad__clave__214BF109">
           <End Role="seguridad_opcion" Type="Self.seguridad_opcion" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1300,7 +1372,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__seguridad__id_gr__531856C7">
+        <Association Name="FK__seguridad__id_gr__22401542">
           <End Role="seguridad_grupo" Type="Self.seguridad_grupo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1314,7 +1386,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__seguridad__id_gr__540C7B00">
+        <Association Name="FK__seguridad__id_gr__2334397B">
           <End Role="seguridad_grupo" Type="Self.seguridad_grupo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1328,7 +1400,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__seguridad__id_us__55009F39">
+        <Association Name="FK__seguridad__id_us__24285DB4">
           <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1342,7 +1414,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__torneo__id_estad__55F4C372">
+        <Association Name="FK__torneo__id_estad__251C81ED">
           <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
           <End Role="torneo" Type="Self.torneo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1354,7 +1426,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__torneo__id_sede__56E8E7AB">
+        <Association Name="FK__torneo__id_sede__2610A626">
           <End Role="sede" Type="Self.sede" Multiplicity="0..1" />
           <End Role="torneo" Type="Self.torneo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1366,7 +1438,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__torneo__id_tipo___57DD0BE4">
+        <Association Name="FK__torneo__id_tipo___2704CA5F">
           <End Role="tipo_clase" Type="Self.tipo_clase" Multiplicity="0..1" />
           <End Role="torneo" Type="Self.torneo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1378,7 +1450,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__torneo_im__id_to__58D1301D">
+        <Association Name="FK__torneo_im__id_to__27F8EE98">
           <End Role="torneo" Type="Self.torneo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1388,90 +1460,6 @@
               <PropertyRef Name="id_torneo" />
             </Principal>
             <Dependent Role="torneo_imagen">
-              <PropertyRef Name="id_torneo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_alumno_id_estado">
-          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estado">
-              <PropertyRef Name="id_estado" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_cat_torneo">
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categoria_torneo">
-              <PropertyRef Name="id_categoria_torneo" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_categoria_torneo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_primero">
-          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_primer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_segundo">
-          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_segundo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_tercero1">
-          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_tercero1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_tercero2">
-          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_tercero2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_torneo">
-          <End Role="torneo" Type="Self.torneo" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="torneo">
-              <PropertyRef Name="id_torneo" />
-            </Principal>
-            <Dependent Role="resultado">
               <PropertyRef Name="id_torneo" />
             </Dependent>
           </ReferentialConstraint>
@@ -1527,317 +1515,312 @@
           <EntitySet Name="tipo_evento_especial" EntityType="Self.tipo_evento_especial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="torneo" EntityType="Self.torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="torneo_imagen" EntityType="Self.torneo_imagen" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__academia__id_dir__17036CC0" Association="Self.FK__academia__id_dir__17036CC0">
+          <AssociationSet Name="FK__academia__id_dir__607251E5" Association="Self.FK__academia__id_dir__607251E5">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="academia" EntitySet="academia" />
           </AssociationSet>
-          <AssociationSet Name="FK__alumno__id_direc__17F790F9" Association="Self.FK__alumno__id_direc__17F790F9">
+          <AssociationSet Name="FK__alumno__id_direc__6166761E" Association="Self.FK__alumno__id_direc__6166761E">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
-          <AssociationSet Name="FK__alumno__id_usuar__18EBB532" Association="Self.FK__alumno__id_usuar__18EBB532">
+          <AssociationSet Name="FK__alumno__id_estad__634EBE90" Association="Self.FK__alumno__id_estad__634EBE90">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK__alumno__id_usuar__625A9A57" Association="Self.FK__alumno__id_usuar__625A9A57">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
-          <AssociationSet Name="FK__alumno_im__id_al__19DFD96B" Association="Self.FK__alumno_im__id_al__19DFD96B">
+          <AssociationSet Name="FK__alumno_im__id_al__6442E2C9" Association="Self.FK__alumno_im__id_al__6442E2C9">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="alumno_imagen" EntitySet="alumno_imagen" />
           </AssociationSet>
-          <AssociationSet Name="FK__alumnoxfa__id_al__1AD3FDA4" Association="Self.FK__alumnoxfa__id_al__1AD3FDA4">
+          <AssociationSet Name="FK__alumnoxfa__id_al__65370702" Association="Self.FK__alumnoxfa__id_al__65370702">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="alumnoxfaja" EntitySet="alumnoxfaja" />
           </AssociationSet>
-          <AssociationSet Name="FK__alumnoxfa__id_fa__1BC821DD" Association="Self.FK__alumnoxfa__id_fa__1BC821DD">
+          <AssociationSet Name="FK__alumnoxfa__id_fa__662B2B3B" Association="Self.FK__alumnoxfa__id_fa__662B2B3B">
             <End Role="faja" EntitySet="faja" />
             <End Role="alumnoxfaja" EntitySet="alumnoxfaja" />
           </AssociationSet>
-          <AssociationSet Name="FK__asistenci__id_al__1CBC4616" Association="Self.FK__asistenci__id_al__1CBC4616">
+          <AssociationSet Name="FK__asistenci__id_al__671F4F74" Association="Self.FK__asistenci__id_al__671F4F74">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__asistenci__id_cl__1DB06A4F" Association="Self.FK__asistenci__id_cl__1DB06A4F">
+          <AssociationSet Name="FK__asistenci__id_cl__681373AD" Association="Self.FK__asistenci__id_cl__681373AD">
             <End Role="clase" EntitySet="clase" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__asistenci__id_ho__1EA48E88" Association="Self.FK__asistenci__id_ho__1EA48E88">
+          <AssociationSet Name="FK__asistenci__id_ho__690797E6" Association="Self.FK__asistenci__id_ho__690797E6">
             <End Role="horario" EntitySet="horario" />
             <End Role="asistencia_clase" EntitySet="asistencia_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_ca__208CD6FA" Association="Self.FK__categoria__id_ca__208CD6FA">
+          <AssociationSet Name="FK__categoria__id_ca__6AEFE058" Association="Self.FK__categoria__id_ca__6AEFE058">
             <End Role="categoria" EntitySet="categoria" />
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_fa__2180FB33" Association="Self.FK__categoria__id_fa__2180FB33">
+          <AssociationSet Name="FK__categoria__id_fa__6BE40491" Association="Self.FK__categoria__id_fa__6BE40491">
             <End Role="faja" EntitySet="faja" />
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_re__22751F6C" Association="Self.FK__categoria__id_re__22751F6C">
-            <End Role="resultado" EntitySet="resultado" />
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_ti__1F98B2C1" Association="Self.FK__categoria__id_ti__1F98B2C1">
+          <AssociationSet Name="FK__categoria__id_ti__69FBBC1F" Association="Self.FK__categoria__id_ti__69FBBC1F">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="categoria" EntitySet="categoria" />
           </AssociationSet>
-          <AssociationSet Name="FK__ciudad__id_provi__236943A5" Association="Self.FK__ciudad__id_provi__236943A5">
+          <AssociationSet Name="FK__ciudad__id_provi__6CD828CA" Association="Self.FK__ciudad__id_provi__6CD828CA">
             <End Role="provincia" EntitySet="provincia" />
             <End Role="ciudad" EntitySet="ciudad" />
           </AssociationSet>
-          <AssociationSet Name="FK__clase__id_profe__245D67DE" Association="Self.FK__clase__id_profe__245D67DE">
+          <AssociationSet Name="FK__clase__id_profe__6DCC4D03" Association="Self.FK__clase__id_profe__6DCC4D03">
             <End Role="profesor" EntitySet="profesor" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__clase__id_tipo_c__25518C17" Association="Self.FK__clase__id_tipo_c__25518C17">
+          <AssociationSet Name="FK__clase__id_tipo_c__6EC0713C" Association="Self.FK__clase__id_tipo_c__6EC0713C">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__clase__id_ubicac__2645B050" Association="Self.FK__clase__id_ubicac__2645B050">
+          <AssociationSet Name="FK__clase__id_ubicac__6FB49575" Association="Self.FK__clase__id_ubicac__6FB49575">
             <End Role="academia" EntitySet="academia" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__compra__id_produ__2739D489" Association="Self.FK__compra__id_produ__2739D489">
+          <AssociationSet Name="FK__compra__id_produ__70A8B9AE" Association="Self.FK__compra__id_produ__70A8B9AE">
             <End Role="producto" EntitySet="producto" />
             <End Role="compra" EntitySet="compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__compra__id_prove__282DF8C2" Association="Self.FK__compra__id_prove__282DF8C2">
+          <AssociationSet Name="FK__compra__id_prove__719CDDE7" Association="Self.FK__compra__id_prove__719CDDE7">
             <End Role="proveedor" EntitySet="proveedor" />
             <End Role="compra" EntitySet="compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__detalle_p__id_fo__29221CFB" Association="Self.FK__detalle_p__id_fo__29221CFB">
+          <AssociationSet Name="FK__detalle_p__id_fo__72910220" Association="Self.FK__detalle_p__id_fo__72910220">
             <End Role="forma_pago" EntitySet="forma_pago" />
             <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__detalle_p__id_pa__2A164134" Association="Self.FK__detalle_p__id_pa__2A164134">
+          <AssociationSet Name="FK__detalle_p__id_pa__73852659" Association="Self.FK__detalle_p__id_pa__73852659">
             <End Role="pago_clase" EntitySet="pago_clase" />
             <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__detalle_r__id_pr__2B0A656D" Association="Self.FK__detalle_r__id_pr__2B0A656D">
+          <AssociationSet Name="FK__detalle_r__id_pr__74794A92" Association="Self.FK__detalle_r__id_pr__74794A92">
             <End Role="producto" EntitySet="producto" />
             <End Role="detalle_reserva" EntitySet="detalle_reserva" />
           </AssociationSet>
-          <AssociationSet Name="FK__detalle_r__id_re__2BFE89A6" Association="Self.FK__detalle_r__id_re__2BFE89A6">
+          <AssociationSet Name="FK__detalle_r__id_re__756D6ECB" Association="Self.FK__detalle_r__id_re__756D6ECB">
             <End Role="reserva" EntitySet="reserva" />
             <End Role="detalle_reserva" EntitySet="detalle_reserva" />
           </AssociationSet>
-          <AssociationSet Name="FK__direccion__id_ci__2CF2ADDF" Association="Self.FK__direccion__id_ci__2CF2ADDF">
+          <AssociationSet Name="FK__direccion__id_ci__76619304" Association="Self.FK__direccion__id_ci__76619304">
             <End Role="ciudad" EntitySet="ciudad" />
             <End Role="direccion" EntitySet="direccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__estado_re__id_es__2DE6D218" Association="Self.FK__estado_re__id_es__2DE6D218">
+          <AssociationSet Name="FK__estado_re__id_es__7755B73D" Association="Self.FK__estado_re__id_es__7755B73D">
             <End Role="estado" EntitySet="estado" />
             <End Role="estado_reserva" EntitySet="estado_reserva" />
           </AssociationSet>
-          <AssociationSet Name="FK__estado_re__id_re__2EDAF651" Association="Self.FK__estado_re__id_re__2EDAF651">
+          <AssociationSet Name="FK__estado_re__id_re__7849DB76" Association="Self.FK__estado_re__id_re__7849DB76">
             <End Role="reserva" EntitySet="reserva" />
             <End Role="estado_reserva" EntitySet="estado_reserva" />
           </AssociationSet>
-          <AssociationSet Name="FK__evento_es__id_es__2FCF1A8A" Association="Self.FK__evento_es__id_es__2FCF1A8A">
+          <AssociationSet Name="FK__evento_es__id_es__793DFFAF" Association="Self.FK__evento_es__id_es__793DFFAF">
             <End Role="estado" EntitySet="estado" />
             <End Role="evento_especial" EntitySet="evento_especial" />
           </AssociationSet>
-          <AssociationSet Name="FK__evento_es__id_ev__32AB8735" Association="Self.FK__evento_es__id_ev__32AB8735">
+          <AssociationSet Name="FK__evento_es__id_ev__7C1A6C5A" Association="Self.FK__evento_es__id_ev__7C1A6C5A">
             <End Role="evento_especial" EntitySet="evento_especial" />
             <End Role="evento_especial_imagen" EntitySet="evento_especial_imagen" />
           </AssociationSet>
-          <AssociationSet Name="FK__evento_es__id_se__30C33EC3" Association="Self.FK__evento_es__id_se__30C33EC3">
+          <AssociationSet Name="FK__evento_es__id_se__7A3223E8" Association="Self.FK__evento_es__id_se__7A3223E8">
             <End Role="sede" EntitySet="sede" />
             <End Role="evento_especial" EntitySet="evento_especial" />
           </AssociationSet>
-          <AssociationSet Name="FK__evento_es__id_ti__31B762FC" Association="Self.FK__evento_es__id_ti__31B762FC">
+          <AssociationSet Name="FK__evento_es__id_ti__7B264821" Association="Self.FK__evento_es__id_ti__7B264821">
             <End Role="tipo_evento_especial" EntitySet="tipo_evento_especial" />
             <End Role="evento_especial" EntitySet="evento_especial" />
           </AssociationSet>
-          <AssociationSet Name="FK__faja__id_tipo_cl__339FAB6E" Association="Self.FK__faja__id_tipo_cl__339FAB6E">
+          <AssociationSet Name="FK__faja__id_tipo_cl__7D0E9093" Association="Self.FK__faja__id_tipo_cl__7D0E9093">
             <End Role="tipo_clase" EntitySet="tipo_clase" />
             <End Role="faja" EntitySet="faja" />
           </AssociationSet>
-          <AssociationSet Name="FK__horario__id_clas__3493CFA7" Association="Self.FK__horario__id_clas__3493CFA7">
+          <AssociationSet Name="FK__horario__id_clas__7E02B4CC" Association="Self.FK__horario__id_clas__7E02B4CC">
             <End Role="clase" EntitySet="clase" />
             <End Role="horario" EntitySet="horario" />
           </AssociationSet>
-          <AssociationSet Name="FK__inscripci__id_al__395884C4" Association="Self.FK__inscripci__id_al__395884C4">
+          <AssociationSet Name="FK__inscripci__id_al__02C769E9" Association="Self.FK__inscripci__id_al__02C769E9">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__inscripci__id_ca__3587F3E0" Association="Self.FK__inscripci__id_ca__3587F3E0">
+          <AssociationSet Name="FK__inscripci__id_ca__7EF6D905" Association="Self.FK__inscripci__id_ca__7EF6D905">
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
             <End Role="inscripcion" EntitySet="inscripcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__inscripci__id_cl__3A4CA8FD" Association="Self.FK__inscripci__id_cl__3A4CA8FD">
+          <AssociationSet Name="FK__inscripci__id_cl__03BB8E22" Association="Self.FK__inscripci__id_cl__03BB8E22">
             <End Role="clase" EntitySet="clase" />
             <End Role="inscripcion_clase" EntitySet="inscripcion_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__inscripci__id_ev__3B40CD36" Association="Self.FK__inscripci__id_ev__3B40CD36">
+          <AssociationSet Name="FK__inscripci__id_ev__04AFB25B" Association="Self.FK__inscripci__id_ev__04AFB25B">
             <End Role="evento_especial" EntitySet="evento_especial" />
             <End Role="inscripcion_evento" EntitySet="inscripcion_evento" />
           </AssociationSet>
-          <AssociationSet Name="FK__inscripci__id_fa__367C1819" Association="Self.FK__inscripci__id_fa__367C1819">
+          <AssociationSet Name="FK__inscripci__id_fa__7FEAFD3E" Association="Self.FK__inscripci__id_fa__7FEAFD3E">
             <End Role="faja" EntitySet="faja" />
             <End Role="inscripcion" EntitySet="inscripcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__inscripci__id_pa__37703C52" Association="Self.FK__inscripci__id_pa__37703C52">
+          <AssociationSet Name="FK__inscripci__id_pa__00DF2177" Association="Self.FK__inscripci__id_pa__00DF2177">
             <End Role="participante" EntitySet="participante" />
             <End Role="inscripcion" EntitySet="inscripcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__inscripci__id_pa__3C34F16F" Association="Self.FK__inscripci__id_pa__3C34F16F">
+          <AssociationSet Name="FK__inscripci__id_pa__05A3D694" Association="Self.FK__inscripci__id_pa__05A3D694">
             <End Role="participante_evento" EntitySet="participante_evento" />
             <End Role="inscripcion_evento" EntitySet="inscripcion_evento" />
           </AssociationSet>
-          <AssociationSet Name="FK__inscripci__id_to__3864608B" Association="Self.FK__inscripci__id_to__3864608B">
+          <AssociationSet Name="FK__inscripci__id_to__01D345B0" Association="Self.FK__inscripci__id_to__01D345B0">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="inscripcion" EntitySet="inscripcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__lucha__id_partic__3D2915A8" Association="Self.FK__lucha__id_partic__3D2915A8">
+          <AssociationSet Name="FK__lucha__id_partic__0697FACD" Association="Self.FK__lucha__id_partic__0697FACD">
             <End Role="participante" EntitySet="participante" />
             <End Role="lucha" EntitySet="lucha" />
           </AssociationSet>
-          <AssociationSet Name="FK__lucha__id_partic__3E1D39E1" Association="Self.FK__lucha__id_partic__3E1D39E1">
+          <AssociationSet Name="FK__lucha__id_partic__078C1F06" Association="Self.FK__lucha__id_partic__078C1F06">
             <End Role="participante" EntitySet="participante" />
             <End Role="lucha" EntitySet="lucha" />
           </AssociationSet>
-          <AssociationSet Name="FK__lucha__id_result__3F115E1A" Association="Self.FK__lucha__id_result__3F115E1A">
+          <AssociationSet Name="FK__lucha__id_result__0880433F" Association="Self.FK__lucha__id_result__0880433F">
             <End Role="resultado" EntitySet="resultado" />
             <End Role="lucha" EntitySet="lucha" />
           </AssociationSet>
-          <AssociationSet Name="FK__lucha__id_torneo__40058253" Association="Self.FK__lucha__id_torneo__40058253">
+          <AssociationSet Name="FK__lucha__id_torneo__09746778" Association="Self.FK__lucha__id_torneo__09746778">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="lucha" EntitySet="lucha" />
           </AssociationSet>
-          <AssociationSet Name="FK__pago_clas__id_al__40F9A68C" Association="Self.FK__pago_clas__id_al__40F9A68C">
+          <AssociationSet Name="FK__pago_clas__id_al__0A688BB1" Association="Self.FK__pago_clas__id_al__0A688BB1">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="pago_clase" EntitySet="pago_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__pago_clas__id_cl__41EDCAC5" Association="Self.FK__pago_clas__id_cl__41EDCAC5">
+          <AssociationSet Name="FK__pago_clas__id_cl__0B5CAFEA" Association="Self.FK__pago_clas__id_cl__0B5CAFEA">
             <End Role="clase" EntitySet="clase" />
             <End Role="pago_clase" EntitySet="pago_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__pago_even__id_ev__42E1EEFE" Association="Self.FK__pago_even__id_ev__42E1EEFE">
+          <AssociationSet Name="FK__pago_even__id_ev__0C50D423" Association="Self.FK__pago_even__id_ev__0C50D423">
             <End Role="evento_especial" EntitySet="evento_especial" />
             <End Role="pago_evento" EntitySet="pago_evento" />
           </AssociationSet>
-          <AssociationSet Name="FK__pago_even__id_fo__43D61337" Association="Self.FK__pago_even__id_fo__43D61337">
+          <AssociationSet Name="FK__pago_even__id_fo__0D44F85C" Association="Self.FK__pago_even__id_fo__0D44F85C">
             <End Role="forma_pago" EntitySet="forma_pago" />
             <End Role="pago_evento" EntitySet="pago_evento" />
           </AssociationSet>
-          <AssociationSet Name="FK__pago_even__id_pa__44CA3770" Association="Self.FK__pago_even__id_pa__44CA3770">
+          <AssociationSet Name="FK__pago_even__id_pa__0E391C95" Association="Self.FK__pago_even__id_pa__0E391C95">
             <End Role="participante" EntitySet="participante" />
             <End Role="pago_evento" EntitySet="pago_evento" />
           </AssociationSet>
-          <AssociationSet Name="FK__pago_torn__id_fo__45BE5BA9" Association="Self.FK__pago_torn__id_fo__45BE5BA9">
+          <AssociationSet Name="FK__pago_torn__id_fo__0F2D40CE" Association="Self.FK__pago_torn__id_fo__0F2D40CE">
             <End Role="forma_pago" EntitySet="forma_pago" />
             <End Role="pago_torneo" EntitySet="pago_torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK__pago_torn__id_pa__46B27FE2" Association="Self.FK__pago_torn__id_pa__46B27FE2">
+          <AssociationSet Name="FK__pago_torn__id_pa__10216507" Association="Self.FK__pago_torn__id_pa__10216507">
             <End Role="participante" EntitySet="participante" />
             <End Role="pago_torneo" EntitySet="pago_torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK__pago_torn__id_to__47A6A41B" Association="Self.FK__pago_torn__id_to__47A6A41B">
+          <AssociationSet Name="FK__pago_torn__id_to__11158940" Association="Self.FK__pago_torn__id_to__11158940">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="pago_torneo" EntitySet="pago_torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK__participa__id_al__489AC854" Association="Self.FK__participa__id_al__489AC854">
+          <AssociationSet Name="FK__participa__id_al__1209AD79" Association="Self.FK__participa__id_al__1209AD79">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="participante" EntitySet="participante" />
           </AssociationSet>
-          <AssociationSet Name="FK__participa__id_al__498EEC8D" Association="Self.FK__participa__id_al__498EEC8D">
+          <AssociationSet Name="FK__participa__id_al__12FDD1B2" Association="Self.FK__participa__id_al__12FDD1B2">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="participante_evento" EntitySet="participante_evento" />
           </AssociationSet>
-          <AssociationSet Name="FK__producto___id_pr__4B7734FF" Association="Self.FK__producto___id_pr__4B7734FF">
+          <AssociationSet Name="FK__producto___id_pr__14E61A24" Association="Self.FK__producto___id_pr__14E61A24">
             <End Role="producto" EntitySet="producto" />
             <End Role="producto_imagen" EntitySet="producto_imagen" />
           </AssociationSet>
-          <AssociationSet Name="FK__producto__id_cat__4A8310C6" Association="Self.FK__producto__id_cat__4A8310C6">
+          <AssociationSet Name="FK__producto__id_cat__13F1F5EB" Association="Self.FK__producto__id_cat__13F1F5EB">
             <End Role="categoria_producto" EntitySet="categoria_producto" />
             <End Role="producto" EntitySet="producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__profesor___id_pr__4E53A1AA" Association="Self.FK__profesor___id_pr__4E53A1AA">
+          <AssociationSet Name="FK__profesor___id_pr__17C286CF" Association="Self.FK__profesor___id_pr__17C286CF">
             <End Role="profesor" EntitySet="profesor" />
             <End Role="profesor_imagen" EntitySet="profesor_imagen" />
           </AssociationSet>
-          <AssociationSet Name="FK__profesor__id_dir__4C6B5938" Association="Self.FK__profesor__id_dir__4C6B5938">
+          <AssociationSet Name="FK__profesor__id_dir__15DA3E5D" Association="Self.FK__profesor__id_dir__15DA3E5D">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
-          <AssociationSet Name="FK__profesor__id_usu__4D5F7D71" Association="Self.FK__profesor__id_usu__4D5F7D71">
+          <AssociationSet Name="FK__profesor__id_usu__16CE6296" Association="Self.FK__profesor__id_usu__16CE6296">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
-          <AssociationSet Name="FK__provincia__id_pa__4F47C5E3" Association="Self.FK__provincia__id_pa__4F47C5E3">
+          <AssociationSet Name="FK__provincia__id_pa__18B6AB08" Association="Self.FK__provincia__id_pa__18B6AB08">
             <End Role="pais" EntitySet="pais" />
             <End Role="provincia" EntitySet="provincia" />
           </AssociationSet>
-          <AssociationSet Name="FK__reserva__id_usua__503BEA1C" Association="Self.FK__reserva__id_usua__503BEA1C">
+          <AssociationSet Name="FK__reserva__id_usua__19AACF41" Association="Self.FK__reserva__id_usua__19AACF41">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="reserva" EntitySet="reserva" />
           </AssociationSet>
-          <AssociationSet Name="FK__sede__id_direcci__51300E55" Association="Self.FK__sede__id_direcci__51300E55">
-            <End Role="direccion" EntitySet="direccion" />
-            <End Role="sede" EntitySet="sede" />
-          </AssociationSet>
-          <AssociationSet Name="FK__seguridad__clave__5224328E" Association="Self.FK__seguridad__clave__5224328E">
-            <End Role="seguridad_opcion" EntitySet="seguridad_opcion" />
-            <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__seguridad__id_gr__531856C7" Association="Self.FK__seguridad__id_gr__531856C7">
-            <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
-            <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__seguridad__id_gr__540C7B00" Association="Self.FK__seguridad__id_gr__540C7B00">
-            <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
-            <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__seguridad__id_us__55009F39" Association="Self.FK__seguridad__id_us__55009F39">
-            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
-            <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__torneo__id_estad__55F4C372" Association="Self.FK__torneo__id_estad__55F4C372">
-            <End Role="estado" EntitySet="estado" />
-            <End Role="torneo" EntitySet="torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__torneo__id_sede__56E8E7AB" Association="Self.FK__torneo__id_sede__56E8E7AB">
-            <End Role="sede" EntitySet="sede" />
-            <End Role="torneo" EntitySet="torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__torneo__id_tipo___57DD0BE4" Association="Self.FK__torneo__id_tipo___57DD0BE4">
-            <End Role="tipo_clase" EntitySet="tipo_clase" />
-            <End Role="torneo" EntitySet="torneo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__torneo_im__id_to__58D1301D" Association="Self.FK__torneo_im__id_to__58D1301D">
-            <End Role="torneo" EntitySet="torneo" />
-            <End Role="torneo_imagen" EntitySet="torneo_imagen" />
-          </AssociationSet>
-          <AssociationSet Name="FK_alumno_id_estado" Association="Self.FK_alumno_id_estado">
-            <End Role="estado" EntitySet="estado" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="fk_cat_torneo" Association="Self.fk_cat_torneo">
+          <AssociationSet Name="FK__resultado__id_ca__1A9EF37A" Association="Self.FK__resultado__id_ca__1A9EF37A">
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
             <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
-          <AssociationSet Name="fk_primero" Association="Self.fk_primero">
+          <AssociationSet Name="FK__resultado__id_pr__1B9317B3" Association="Self.FK__resultado__id_pr__1B9317B3">
             <End Role="participante" EntitySet="participante" />
             <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
-          <AssociationSet Name="fk_segundo" Association="Self.fk_segundo">
+          <AssociationSet Name="FK__resultado__id_se__1C873BEC" Association="Self.FK__resultado__id_se__1C873BEC">
             <End Role="participante" EntitySet="participante" />
             <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
-          <AssociationSet Name="fk_tercero1" Association="Self.fk_tercero1">
+          <AssociationSet Name="FK__resultado__id_te__1D7B6025" Association="Self.FK__resultado__id_te__1D7B6025">
             <End Role="participante" EntitySet="participante" />
             <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
-          <AssociationSet Name="fk_tercero2" Association="Self.fk_tercero2">
+          <AssociationSet Name="FK__resultado__id_te__1E6F845E" Association="Self.FK__resultado__id_te__1E6F845E">
             <End Role="participante" EntitySet="participante" />
             <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
-          <AssociationSet Name="fk_torneo" Association="Self.fk_torneo">
+          <AssociationSet Name="FK__resultado__id_to__1F63A897" Association="Self.FK__resultado__id_to__1F63A897">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
+          <AssociationSet Name="FK__sede__id_direcci__2057CCD0" Association="Self.FK__sede__id_direcci__2057CCD0">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="sede" EntitySet="sede" />
+          </AssociationSet>
+          <AssociationSet Name="FK__seguridad__clave__214BF109" Association="Self.FK__seguridad__clave__214BF109">
+            <End Role="seguridad_opcion" EntitySet="seguridad_opcion" />
+            <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__seguridad__id_gr__22401542" Association="Self.FK__seguridad__id_gr__22401542">
+            <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
+            <End Role="seguridad_grupoxopcion" EntitySet="seguridad_grupoxopcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__seguridad__id_gr__2334397B" Association="Self.FK__seguridad__id_gr__2334397B">
+            <End Role="seguridad_grupo" EntitySet="seguridad_grupo" />
+            <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__seguridad__id_us__24285DB4" Association="Self.FK__seguridad__id_us__24285DB4">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="seguridad_usuarioxgrupo" EntitySet="seguridad_usuarioxgrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__torneo__id_estad__251C81ED" Association="Self.FK__torneo__id_estad__251C81ED">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="torneo" EntitySet="torneo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__torneo__id_sede__2610A626" Association="Self.FK__torneo__id_sede__2610A626">
+            <End Role="sede" EntitySet="sede" />
+            <End Role="torneo" EntitySet="torneo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__torneo__id_tipo___2704CA5F" Association="Self.FK__torneo__id_tipo___2704CA5F">
+            <End Role="tipo_clase" EntitySet="tipo_clase" />
+            <End Role="torneo" EntitySet="torneo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__torneo_im__id_to__27F8EE98" Association="Self.FK__torneo_im__id_to__27F8EE98">
+            <End Role="torneo" EntitySet="torneo" />
+            <End Role="torneo_imagen" EntitySet="torneo_imagen" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1948,9 +1931,8 @@
           <Property Name="id_resultado" Type="Int32" />
           <NavigationProperty Name="categoria" Relationship="Self.FK__categoria__id_ca__208CD6FA" FromRole="categoria_torneo" ToRole="categoria" />
           <NavigationProperty Name="faja" Relationship="Self.FK__categoria__id_fa__2180FB33" FromRole="categoria_torneo" ToRole="faja" />
-          <NavigationProperty Name="resultado" Relationship="Self.FK__categoria__id_re__22751F6C" FromRole="categoria_torneo" ToRole="resultado" />
           <NavigationProperty Name="inscripcion" Relationship="Self.FK__inscripci__id_ca__3587F3E0" FromRole="categoria_torneo" ToRole="inscripcion" />
-          <NavigationProperty Name="resultado1" Relationship="Self.fk_cat_torneo" FromRole="categoria_torneo" ToRole="resultado" />
+          <NavigationProperty Name="resultado" Relationship="JJSSModel.FK__resultado__id_ca__1A9EF37A" FromRole="categoria_torneo" ToRole="resultado" />
         </EntityType>
         <EntityType Name="ciudad">
           <Key>
@@ -2184,8 +2166,8 @@
           <Property Name="id_torneo" Type="Int32" />
           <NavigationProperty Name="participante" Relationship="Self.FK__lucha__id_partic__3D2915A8" FromRole="lucha" ToRole="participante" />
           <NavigationProperty Name="participante1" Relationship="Self.FK__lucha__id_partic__3E1D39E1" FromRole="lucha" ToRole="participante" />
-          <NavigationProperty Name="resultado" Relationship="Self.FK__lucha__id_result__3F115E1A" FromRole="lucha" ToRole="resultado" />
           <NavigationProperty Name="torneo" Relationship="Self.FK__lucha__id_torneo__40058253" FromRole="lucha" ToRole="torneo" />
+          <NavigationProperty Name="resultado" Relationship="JJSSModel.FK__lucha__id_result__0880433F" FromRole="lucha" ToRole="resultado" />
         </EntityType>
         <EntityType Name="pago_clase">
           <Key>
@@ -2260,11 +2242,11 @@
           <NavigationProperty Name="lucha1" Relationship="Self.FK__lucha__id_partic__3E1D39E1" FromRole="participante" ToRole="lucha" />
           <NavigationProperty Name="pago_evento" Relationship="Self.FK__pago_even__id_pa__44CA3770" FromRole="participante" ToRole="pago_evento" />
           <NavigationProperty Name="pago_torneo" Relationship="Self.FK__pago_torn__id_pa__46B27FE2" FromRole="participante" ToRole="pago_torneo" />
-          <NavigationProperty Name="resultado" Relationship="Self.fk_primero" FromRole="participante" ToRole="resultado" />
-          <NavigationProperty Name="resultado1" Relationship="Self.fk_segundo" FromRole="participante" ToRole="resultado" />
-          <NavigationProperty Name="resultado2" Relationship="Self.fk_tercero1" FromRole="participante" ToRole="resultado" />
-          <NavigationProperty Name="resultado3" Relationship="Self.fk_tercero2" FromRole="participante" ToRole="resultado" />
-        </EntityType>
+          <NavigationProperty Name="resultado" Relationship="JJSSModel.FK__resultado__id_pr__1B9317B3" FromRole="participante" ToRole="resultado" />
+          <NavigationProperty Name="resultado1" Relationship="JJSSModel.FK__resultado__id_se__1C873BEC" FromRole="participante" ToRole="resultado" />
+          <NavigationProperty Name="resultado2" Relationship="JJSSModel.FK__resultado__id_te__1D7B6025" FromRole="participante" ToRole="resultado" />
+          <NavigationProperty Name="resultado3" Relationship="JJSSModel.FK__resultado__id_te__1E6F845E" FromRole="participante" ToRole="resultado" />
+          </EntityType>
         <EntityType Name="participante_evento">
           <Key>
             <PropertyRef Name="id_participante" />
@@ -2360,26 +2342,6 @@
           <NavigationProperty Name="detalle_reserva" Relationship="Self.FK__detalle_r__id_re__2BFE89A6" FromRole="reserva" ToRole="detalle_reserva" />
           <NavigationProperty Name="estado_reserva" Relationship="Self.FK__estado_re__id_re__2EDAF651" FromRole="reserva" ToRole="estado_reserva" />
           <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK__reserva__id_usua__503BEA1C" FromRole="reserva" ToRole="seguridad_usuario" />
-        </EntityType>
-        <EntityType Name="resultado">
-          <Key>
-            <PropertyRef Name="id_resultado" />
-          </Key>
-          <Property Name="id_resultado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_torneo" Type="Int32" />
-          <Property Name="id_categoria_torneo" Type="Int32" />
-          <Property Name="id_primer" Type="Int32" />
-          <Property Name="id_segundo" Type="Int32" />
-          <Property Name="id_tercero1" Type="Int32" />
-          <Property Name="id_tercero2" Type="Int32" />
-          <NavigationProperty Name="categoria_torneo" Relationship="Self.FK__categoria__id_re__22751F6C" FromRole="resultado" ToRole="categoria_torneo" />
-          <NavigationProperty Name="categoria_torneo1" Relationship="Self.fk_cat_torneo" FromRole="resultado" ToRole="categoria_torneo" />
-          <NavigationProperty Name="lucha" Relationship="Self.FK__lucha__id_result__3F115E1A" FromRole="resultado" ToRole="lucha" />
-          <NavigationProperty Name="participante" Relationship="Self.fk_primero" FromRole="resultado" ToRole="participante" />
-          <NavigationProperty Name="participante1" Relationship="Self.fk_segundo" FromRole="resultado" ToRole="participante" />
-          <NavigationProperty Name="participante2" Relationship="Self.fk_tercero1" FromRole="resultado" ToRole="participante" />
-          <NavigationProperty Name="participante3" Relationship="Self.fk_tercero2" FromRole="resultado" ToRole="participante" />
-          <NavigationProperty Name="torneo" Relationship="Self.fk_torneo" FromRole="resultado" ToRole="torneo" />
         </EntityType>
         <EntityType Name="sede">
           <Key>
@@ -2488,10 +2450,10 @@
           <NavigationProperty Name="inscripcion" Relationship="Self.FK__inscripci__id_to__3864608B" FromRole="torneo" ToRole="inscripcion" />
           <NavigationProperty Name="lucha" Relationship="Self.FK__lucha__id_torneo__40058253" FromRole="torneo" ToRole="lucha" />
           <NavigationProperty Name="pago_torneo" Relationship="Self.FK__pago_torn__id_to__47A6A41B" FromRole="torneo" ToRole="pago_torneo" />
-          <NavigationProperty Name="resultado" Relationship="Self.fk_torneo" FromRole="torneo" ToRole="resultado" />
           <NavigationProperty Name="sede" Relationship="Self.FK__torneo__id_sede__56E8E7AB" FromRole="torneo" ToRole="sede" />
           <NavigationProperty Name="tipo_clase" Relationship="Self.FK__torneo__id_tipo___57DD0BE4" FromRole="torneo" ToRole="tipo_clase" />
           <NavigationProperty Name="torneo_imagen" Relationship="Self.FK__torneo_im__id_to__58D1301D" FromRole="torneo" ToRole="torneo_imagen" />
+          <NavigationProperty Name="resultado" Relationship="JJSSModel.FK__resultado__id_to__1F63A897" FromRole="torneo" ToRole="resultado" />
         </EntityType>
         <EntityType Name="torneo_imagen">
           <Key>
@@ -2738,18 +2700,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__categoria__id_re__22751F6C">
-          <End Role="resultado" Type="Self.resultado" Multiplicity="0..1" />
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="resultado">
-              <PropertyRef Name="id_resultado" />
-            </Principal>
-            <Dependent Role="categoria_torneo">
-              <PropertyRef Name="id_resultado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__inscripci__id_ca__3587F3E0">
           <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="0..1" />
           <End Role="inscripcion" Type="Self.inscripcion" Multiplicity="*" />
@@ -2759,18 +2709,6 @@
             </Principal>
             <Dependent Role="inscripcion">
               <PropertyRef Name="id_categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_cat_torneo">
-          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categoria_torneo">
-              <PropertyRef Name="id_categoria_torneo" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_categoria_torneo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3188,18 +3126,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__lucha__id_result__3F115E1A">
-          <End Role="resultado" Type="Self.resultado" Multiplicity="0..1" />
-          <End Role="lucha" Type="Self.lucha" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="resultado">
-              <PropertyRef Name="id_resultado" />
-            </Principal>
-            <Dependent Role="lucha">
-              <PropertyRef Name="id_resultado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__lucha__id_torneo__40058253">
           <End Role="torneo" Type="Self.torneo" Multiplicity="0..1" />
           <End Role="lucha" Type="Self.lucha" Multiplicity="*" />
@@ -3260,54 +3186,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_primero">
-          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_primer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_segundo">
-          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_segundo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_tercero1">
-          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_tercero1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_tercero2">
-          <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="participante">
-              <PropertyRef Name="id_participante" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_tercero2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__producto___id_pr__4B7734FF">
           <End Role="producto" Type="Self.producto" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -3357,18 +3235,6 @@
             </Principal>
             <Dependent Role="reserva">
               <PropertyRef Name="id_usuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_torneo">
-          <End Role="torneo" Type="Self.torneo" Multiplicity="0..1" />
-          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="torneo">
-              <PropertyRef Name="id_torneo" />
-            </Principal>
-            <Dependent Role="resultado">
-              <PropertyRef Name="id_torneo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3506,7 +3372,6 @@
           <EntitySet Name="proveedor" EntityType="Self.proveedor" />
           <EntitySet Name="provincia" EntityType="Self.provincia" />
           <EntitySet Name="reserva" EntityType="Self.reserva" />
-          <EntitySet Name="resultado" EntityType="Self.resultado" />
           <EntitySet Name="sede" EntityType="Self.sede" />
           <EntitySet Name="seguridad_grupo" EntityType="Self.seguridad_grupo" />
           <EntitySet Name="seguridad_grupoxopcion" EntityType="Self.seguridad_grupoxopcion" />
@@ -3593,17 +3458,9 @@
             <End Role="faja" EntitySet="faja" />
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK__categoria__id_re__22751F6C" Association="Self.FK__categoria__id_re__22751F6C">
-            <End Role="resultado" EntitySet="resultado" />
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-          </AssociationSet>
           <AssociationSet Name="FK__inscripci__id_ca__3587F3E0" Association="Self.FK__inscripci__id_ca__3587F3E0">
             <End Role="categoria_torneo" EntitySet="categoria_torneo" />
             <End Role="inscripcion" EntitySet="inscripcion" />
-          </AssociationSet>
-          <AssociationSet Name="fk_cat_torneo" Association="Self.fk_cat_torneo">
-            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
-            <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
           <AssociationSet Name="FK__ciudad__id_provi__236943A5" Association="Self.FK__ciudad__id_provi__236943A5">
             <End Role="provincia" EntitySet="provincia" />
@@ -3737,10 +3594,6 @@
             <End Role="participante" EntitySet="participante" />
             <End Role="lucha" EntitySet="lucha" />
           </AssociationSet>
-          <AssociationSet Name="FK__lucha__id_result__3F115E1A" Association="Self.FK__lucha__id_result__3F115E1A">
-            <End Role="resultado" EntitySet="resultado" />
-            <End Role="lucha" EntitySet="lucha" />
-          </AssociationSet>
           <AssociationSet Name="FK__lucha__id_torneo__40058253" Association="Self.FK__lucha__id_torneo__40058253">
             <End Role="torneo" EntitySet="torneo" />
             <End Role="lucha" EntitySet="lucha" />
@@ -3761,22 +3614,6 @@
             <End Role="pais" EntitySet="pais" />
             <End Role="provincia" EntitySet="provincia" />
           </AssociationSet>
-          <AssociationSet Name="fk_primero" Association="Self.fk_primero">
-            <End Role="participante" EntitySet="participante" />
-            <End Role="resultado" EntitySet="resultado" />
-          </AssociationSet>
-          <AssociationSet Name="fk_segundo" Association="Self.fk_segundo">
-            <End Role="participante" EntitySet="participante" />
-            <End Role="resultado" EntitySet="resultado" />
-          </AssociationSet>
-          <AssociationSet Name="fk_tercero1" Association="Self.fk_tercero1">
-            <End Role="participante" EntitySet="participante" />
-            <End Role="resultado" EntitySet="resultado" />
-          </AssociationSet>
-          <AssociationSet Name="fk_tercero2" Association="Self.fk_tercero2">
-            <End Role="participante" EntitySet="participante" />
-            <End Role="resultado" EntitySet="resultado" />
-          </AssociationSet>
           <AssociationSet Name="FK__producto___id_pr__4B7734FF" Association="Self.FK__producto___id_pr__4B7734FF">
             <End Role="producto" EntitySet="producto" />
             <End Role="producto_imagen" EntitySet="producto_imagen" />
@@ -3792,10 +3629,6 @@
           <AssociationSet Name="FK__reserva__id_usua__503BEA1C" Association="Self.FK__reserva__id_usua__503BEA1C">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="reserva" EntitySet="reserva" />
-          </AssociationSet>
-          <AssociationSet Name="fk_torneo" Association="Self.fk_torneo">
-            <End Role="torneo" EntitySet="torneo" />
-            <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
           <AssociationSet Name="FK__torneo__id_sede__56E8E7AB" Association="Self.FK__torneo__id_sede__56E8E7AB">
             <End Role="sede" EntitySet="sede" />
@@ -3825,8 +3658,140 @@
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="resultado" EntityType="JJSSModel.resultado" />
+          <AssociationSet Name="FK__resultado__id_ca__1A9EF37A" Association="JJSSModel.FK__resultado__id_ca__1A9EF37A">
+            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__lucha__id_result__0880433F" Association="JJSSModel.FK__lucha__id_result__0880433F">
+            <End Role="resultado" EntitySet="resultado" />
+            <End Role="lucha" EntitySet="lucha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_pr__1B9317B3" Association="JJSSModel.FK__resultado__id_pr__1B9317B3">
+            <End Role="participante" EntitySet="participante" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_se__1C873BEC" Association="JJSSModel.FK__resultado__id_se__1C873BEC">
+            <End Role="participante" EntitySet="participante" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_te__1D7B6025" Association="JJSSModel.FK__resultado__id_te__1D7B6025">
+            <End Role="participante" EntitySet="participante" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_te__1E6F845E" Association="JJSSModel.FK__resultado__id_te__1E6F845E">
+            <End Role="participante" EntitySet="participante" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_to__1F63A897" Association="JJSSModel.FK__resultado__id_to__1F63A897">
+            <End Role="torneo" EntitySet="torneo" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="resultado">
+          <Key>
+            <PropertyRef Name="id_resultado" />
+          </Key>
+          <Property Name="id_resultado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_torneo" Type="Int32" />
+          <Property Name="id_categoria_torneo" Type="Int32" />
+          <Property Name="id_primer" Type="Int32" />
+          <Property Name="id_segundo" Type="Int32" />
+          <Property Name="id_tercero1" Type="Int32" />
+          <Property Name="id_tercero2" Type="Int32" />
+          <NavigationProperty Name="categoria_torneo" Relationship="JJSSModel.FK__resultado__id_ca__1A9EF37A" FromRole="resultado" ToRole="categoria_torneo" />
+          <NavigationProperty Name="lucha" Relationship="JJSSModel.FK__lucha__id_result__0880433F" FromRole="resultado" ToRole="lucha" />
+          <NavigationProperty Name="participante" Relationship="JJSSModel.FK__resultado__id_pr__1B9317B3" FromRole="resultado" ToRole="participante" />
+          <NavigationProperty Name="participante1" Relationship="JJSSModel.FK__resultado__id_se__1C873BEC" FromRole="resultado" ToRole="participante" />
+          <NavigationProperty Name="participante2" Relationship="JJSSModel.FK__resultado__id_te__1D7B6025" FromRole="resultado" ToRole="participante" />
+          <NavigationProperty Name="participante3" Relationship="JJSSModel.FK__resultado__id_te__1E6F845E" FromRole="resultado" ToRole="participante" />
+          <NavigationProperty Name="torneo" Relationship="JJSSModel.FK__resultado__id_to__1F63A897" FromRole="resultado" ToRole="torneo" />
+        </EntityType>
+        <Association Name="FK__resultado__id_ca__1A9EF37A">
+          <End Type="JJSSModel.categoria_torneo" Role="categoria_torneo" Multiplicity="0..1" />
+          <End Type="JJSSModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria_torneo">
+              <PropertyRef Name="id_categoria_torneo" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_categoria_torneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__lucha__id_result__0880433F">
+          <End Type="JJSSModel.resultado" Role="resultado" Multiplicity="0..1" />
+          <End Type="JJSSModel.lucha" Role="lucha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resultado">
+              <PropertyRef Name="id_resultado" />
+            </Principal>
+            <Dependent Role="lucha">
+              <PropertyRef Name="id_resultado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_pr__1B9317B3">
+          <End Type="JJSSModel.participante" Role="participante" Multiplicity="0..1" />
+          <End Type="JJSSModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_primer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_se__1C873BEC">
+          <End Type="JJSSModel.participante" Role="participante" Multiplicity="0..1" />
+          <End Type="JJSSModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_segundo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_te__1D7B6025">
+          <End Type="JJSSModel.participante" Role="participante" Multiplicity="0..1" />
+          <End Type="JJSSModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_tercero1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_te__1E6F845E">
+          <End Type="JJSSModel.participante" Role="participante" Multiplicity="0..1" />
+          <End Type="JJSSModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participante">
+              <PropertyRef Name="id_participante" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_tercero2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_to__1F63A897">
+          <End Type="JJSSModel.torneo" Role="torneo" Multiplicity="0..1" />
+          <End Type="JJSSModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="torneo">
+              <PropertyRef Name="id_torneo" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_torneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -4273,19 +4238,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="resultado">
-            <EntityTypeMapping TypeName="JJSSModel.resultado">
-              <MappingFragment StoreEntitySet="resultado">
-                <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
-                <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
-                <ScalarProperty Name="id_categoria_torneo" ColumnName="id_categoria_torneo" />
-                <ScalarProperty Name="id_primer" ColumnName="id_primer" />
-                <ScalarProperty Name="id_segundo" ColumnName="id_segundo" />
-                <ScalarProperty Name="id_tercero1" ColumnName="id_tercero1" />
-                <ScalarProperty Name="id_tercero2" ColumnName="id_tercero2" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sede">
             <EntityTypeMapping TypeName="JJSSModel.sede">
               <MappingFragment StoreEntitySet="sede">
@@ -4386,6 +4338,19 @@
                 <ScalarProperty Name="id_torneo_imagen" ColumnName="id_torneo_imagen" />
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resultado">
+            <EntityTypeMapping TypeName="JJSSModel.resultado">
+              <MappingFragment StoreEntitySet="resultado">
+                <ScalarProperty Name="id_tercero2" ColumnName="id_tercero2" />
+                <ScalarProperty Name="id_tercero1" ColumnName="id_tercero1" />
+                <ScalarProperty Name="id_segundo" ColumnName="id_segundo" />
+                <ScalarProperty Name="id_primer" ColumnName="id_primer" />
+                <ScalarProperty Name="id_categoria_torneo" ColumnName="id_categoria_torneo" />
+                <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
+                <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

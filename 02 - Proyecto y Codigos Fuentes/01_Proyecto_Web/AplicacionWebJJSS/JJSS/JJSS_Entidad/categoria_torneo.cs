@@ -18,7 +18,7 @@ namespace JJSS_Entidad
         public categoria_torneo()
         {
             this.inscripcion = new HashSet<inscripcion>();
-            this.resultado1 = new HashSet<resultado>();
+            this.resultado = new HashSet<resultado>();
         }
     
         public int id_categoria_torneo { get; set; }
@@ -28,10 +28,9 @@ namespace JJSS_Entidad
     
         public virtual categoria categoria { get; set; }
         public virtual faja faja { get; set; }
-        public virtual resultado resultado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion> inscripcion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<resultado> resultado1 { get; set; }
+        public virtual ICollection<resultado> resultado { get; set; }
     }
 }

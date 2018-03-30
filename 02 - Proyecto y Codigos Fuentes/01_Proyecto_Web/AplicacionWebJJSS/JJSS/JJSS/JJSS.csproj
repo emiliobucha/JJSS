@@ -188,6 +188,7 @@
     <Content Include="Presentacion\ComprarProducto.aspx" />
     <Content Include="Presentacion\EventoPago.aspx" />
     <Content Include="Presentacion\EventoPagoFinalizado.aspx" />
+    <Content Include="Presentacion\HistoricoTorneos.aspx" />
     <Content Include="Presentacion\MenuInicial.aspx" />
     <Content Include="Presentacion\MenuTorneo.aspx" />
     <Content Include="Presentacion\Reservas.aspx" />
@@ -269,6 +270,7 @@
     <Content Include="Presentacion\RegistrarAsistencia.aspx" />
     <Content Include="Presentacion\RegistrarProfe.aspx" />
     <Content Include="Presentacion\Tienda.aspx" />
+    <Content Include="Presentacion\VerTorneo.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -382,6 +384,13 @@
     </Compile>
     <Compile Include="Presentacion\EventoPagoFinalizado.aspx.designer.cs">
       <DependentUpon>EventoPagoFinalizado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\HistoricoTorneos.aspx.cs">
+      <DependentUpon>HistoricoTorneos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\HistoricoTorneos.aspx.designer.cs">
+      <DependentUpon>HistoricoTorneos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\MenuInicial.aspx.cs">
       <DependentUpon>MenuInicial.aspx</DependentUpon>
@@ -574,6 +583,13 @@
     </Compile>
     <Compile Include="Presentacion\Tienda.aspx.designer.cs">
       <DependentUpon>Tienda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\VerTorneo.aspx.cs">
+      <DependentUpon>VerTorneo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\VerTorneo.aspx.designer.cs">
+      <DependentUpon>VerTorneo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presentacion\Site.Master.cs">

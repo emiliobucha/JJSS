@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
 using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Constantes;
 
 namespace JJSS_Negocio
 {
@@ -15,9 +16,6 @@ namespace JJSS_Negocio
      */
     public class GestorAlumnos
     {
-        private const int ALUMNO_CREADO = 8;
-        private const int ALUMNO_DE_BAJA = 12;
-        private const int ALUMNO_ACTIVO = 9;
 
         /*
          * Método que nos permite obtener a un alumno buscandolo por DNI
@@ -125,7 +123,7 @@ namespace JJSS_Negocio
                             telefono_emergencia = pTelEmergencia,
                             seguridad_usuario = usuario,
                             baja_logica = 1,
-                            id_estado = ALUMNO_CREADO
+                            id_estado = ConstantesEstado.ALUMNOS_CREADO
                         };
                     }
                     else //no ingresa direccion
@@ -142,8 +140,8 @@ namespace JJSS_Negocio
                             fecha_ingreso = DateTime.Today,
                             telefono_emergencia = pTelEmergencia,
                             seguridad_usuario = usuario,
-                            baja_logica = 1,
-                            id_estado = ALUMNO_CREADO
+                            baja_logica = ConstatesBajaLogica.BAJA_LOGICA,
+                            id_estado = ConstantesEstado.ALUMNOS_CREADO
                         };
                     }
 
@@ -256,7 +254,7 @@ namespace JJSS_Negocio
                                                  };
                         return alumnosPorApellido.ToList<AlumnoConEstado>();
                     }
-                    
+
 
 
                 }
@@ -293,7 +291,7 @@ namespace JJSS_Negocio
 
                     if (alumnoBorrar == null) throw new Exception("El alumno no existe");
                     alumnoBorrar.baja_logica = 0;
-                    alumnoBorrar.id_estado = ALUMNO_DE_BAJA;
+                    alumnoBorrar.id_estado = ConstantesEstado.ALUMNOS_DE_BAJA;
                     db.SaveChanges();
 
                     seguridad_usuario usuario = (from usu in db.seguridad_usuario

@@ -34,5 +34,36 @@ namespace JJSS_Negocio
                 return db.participante.Find(pId);
             }
         }
+
+        public String crearParticipante(String pNombre, String pApellido, short pSexo, DateTime pFechaNacimiento, int pDni, int? pAlumno)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    participante nuevoParticipante;
+
+                    nuevoParticipante = new participante()
+                    {
+                        nombre = pNombre,
+                        apellido = pApellido,
+                        sexo = pSexo,
+                        fecha_nacimiento = pFechaNacimiento,
+                        dni = pDni,
+                        id_alumno = pAlumno
+                    };
+                    db.participante.Add(nuevoParticipante);
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return "";
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
     }
 }

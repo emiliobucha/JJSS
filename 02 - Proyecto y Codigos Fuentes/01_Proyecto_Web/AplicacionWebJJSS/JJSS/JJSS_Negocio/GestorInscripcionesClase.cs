@@ -14,7 +14,6 @@ namespace JJSS_Negocio
      */
     public class GestorInscripcionesClase
     {
-        private const int ALUMNO_ACTIVO = 9;
 
         /*
          * Método que nos permite obtener un listado de todas las inscripciones a clases
@@ -92,7 +91,7 @@ namespace JJSS_Negocio
                             db.SaveChanges();
                         }
                         alumno alumnoInscribir = db.alumno.Find(pAlumno.id_alumno);
-                        alumnoInscribir.id_estado = ALUMNO_ACTIVO;
+                        alumnoInscribir.id_estado = Constantes.ConstantesEstado.ALUMNOS_ACTIVO;
                         
                         db.SaveChanges();
 

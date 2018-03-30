@@ -8,14 +8,13 @@ using JJSS_Entidad;
 using JJSS_Negocio;
 using System.Data;
 using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Constantes;
 
 namespace JJSS.Presentacion
 {
     public partial class Reservas : System.Web.UI.Page
     {
         private static GestorReservas gestorReservas;
-        private const int Retirado = 7;
-        private const int Cancelado = 6;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -90,13 +89,13 @@ namespace JJSS.Presentacion
 
             if (e.CommandName.CompareTo("retirado") == 0)
             {
-                string sReturn = gestorReservas.cambiarEstadoReserva(id_reserva, Retirado);
+                string sReturn = gestorReservas.cambiarEstadoReserva(id_reserva, ConstantesEstado.RESERVA_RETIRADO);
                 if (sReturn.CompareTo("") == 0) mensaje("Se registró la venta correctamente", true);
                 else mensaje(sReturn, false);
             }
             if (e.CommandName.CompareTo("cancelado") == 0)
             {
-                string sReturn = gestorReservas.cambiarEstadoReserva(id_reserva, Cancelado);
+                string sReturn = gestorReservas.cambiarEstadoReserva(id_reserva, ConstantesEstado.RESERVA_CANCELADO);
                 if (sReturn.CompareTo("") == 0) mensaje("Se canceló la reserva correctamente", true);
                 else mensaje(sReturn, false);
             }

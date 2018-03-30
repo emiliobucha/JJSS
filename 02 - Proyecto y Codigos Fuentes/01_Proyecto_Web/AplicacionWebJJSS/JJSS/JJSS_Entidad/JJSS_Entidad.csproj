@@ -36,7 +36,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="JJSSModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JJSSModel.Designer.cs</LastGenOutput>
@@ -164,15 +166,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JJSSModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="JJSSModel.Designer.cs">
-      <DependentUpon>JJSSModel.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="JJSSModel1.cs">
+    <Compile Include="JJSSModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JJSSModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JJSSModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="lucha.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
@@ -262,7 +264,7 @@
     <Content Include="JJSSModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>JJSSModel.edmx</DependentUpon>
-      <LastGenOutput>JJSSModel1.cs</LastGenOutput>
+      <LastGenOutput>JJSSModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
