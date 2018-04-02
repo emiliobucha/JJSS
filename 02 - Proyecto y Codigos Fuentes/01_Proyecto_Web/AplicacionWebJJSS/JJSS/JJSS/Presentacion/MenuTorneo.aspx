@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContenido" runat="server">
 
-
+    <form id="form1" runat="server">
 
 
     <h1>ÚLTIMOS TORNEOS</h1>
@@ -13,7 +13,7 @@
         <p>&nbsp;</p>
     </div>
     <!---------------------------------**************Muestra de Torneos************---------------------------------------->
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" runat="server">
         <asp:ListView ID="lv_torneos_abiertos" GroupPlaceholderID="groupPlaceHolder1" ItemPlaceholderID="itemPlaceHolder1" GroupItemCount="3" runat="server" OnItemCommand="lv_torneos_abiertos_ItemCommand">
 
             <LayoutTemplate>
@@ -30,25 +30,25 @@
 
             <ItemTemplate>
 
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px medium gray">
-                    <div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px gray" runat="server">
+                    <div runat="server">
                         <asp:Label ID="lv_lbl_nombre" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
                     </div>
-                    <div>
+                    <div runat="server">
                         <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
                         <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                     </div>
-                    <div>
+                    <div runat="server">
                         Fecha:
                                        
                                         <asp:Label ID="lv_lbl_fecha" runat="server" Text='<%# Eval("fecha") %>' />
                     </div>
-                    <div>
+                    <div runat="server">
                         Hora:
                                        
                                         <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
                     </div>
-                    <div>
+                    <div runat="server">
                         <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass=" btn-link" Text="Inscribir" />
                     </div>
                 </div>
@@ -61,5 +61,5 @@
 
 
     </div>
-
+</form>
 </asp:Content>
