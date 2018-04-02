@@ -42,6 +42,7 @@ namespace JJSS_Entidad
         public Nullable<int> id_estado { get; set; }
     
         public virtual direccion direccion { get; set; }
+        public virtual estado estado { get; set; }
         public virtual seguridad_usuario seguridad_usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno_imagen> alumno_imagen { get; set; }
@@ -57,6 +58,5 @@ namespace JJSS_Entidad
         public virtual ICollection<participante> participante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante_evento> participante_evento { get; set; }
-        public virtual estado estado { get; set; }
     }
 }
