@@ -40,7 +40,7 @@ namespace JJSS.Presentacion
 
         private void cargarTabla()
         {
-            gvResultados.DataSource = gestorTorneos.buscarResultados(torneoSeleccionado.id_torneo);
+            gvResultados.DataSource = resultadosTorneo;
             gvResultados.DataBind();
         }
 
@@ -67,6 +67,7 @@ namespace JJSS.Presentacion
             int idEstado = estadoTorneo.id_estado;
             Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
             //si es ADMIN
+            btn_imprimir_listado.Visible = true;
             if (idEstado == ConstantesEstado.TORNEO_FINALIZADO)
             {
                 if (resultadosTorneo != null && resultadosTorneo.Count > 0)
@@ -100,47 +101,97 @@ namespace JJSS.Presentacion
 
         protected void btn_cargar_resultados_Click(object sender, EventArgs e)
         {
-
+            limpiarMensaje();
         }
 
         protected void btn_editar_resultados_Click(object sender, EventArgs e)
         {
-
+            limpiarMensaje();
         }
 
         protected void btn_inscribir_Click(object sender, EventArgs e)
         {
-
+            limpiarMensaje();
+            Response.Redirect("../Presentacion/InscripcionTorneo.aspx");
+            Session["torneoSeleccionado"] = torneoSeleccionado.id_torneo;
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
-
+            limpiarMensaje();
+            gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_CANCELADO);
         }
 
         protected void btn_suspender_Click(object sender, EventArgs e)
         {
-
+            limpiarMensaje();
+            gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_SUSPENDIDO);
         }
 
         protected void btn_editar_Click(object sender, EventArgs e)
         {
-
+            limpiarMensaje();
         }
 
         protected void btn_habilitar_Click(object sender, EventArgs e)
         {
-
+            limpiarMensaje();
+            gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
+            gestorTorneos.cambiarEstadoTorneos();
         }
 
         protected void btn_volver_Click(object sender, EventArgs e)
         {
-
+            limpiarMensaje();
+            Response.Redirect("../Presentacion/HistoricoTorneos.aspx");
         }
 
         protected void gvResultados_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            gvResultados.PageIndex = e.NewPageIndex;
+            cargarTabla();
+        }
 
+        protected void btn_imprimir_listado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String sFile = gestorTorneos.GenerarListado(torneoSeleccionado.id_torneo);
+
+                Response.Clear();
+                Response.AddHeader("Content-Type", "Application/octet-stream");
+                Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                Response.WriteFile(sFile);
+            }
+            catch (Exception ex)
+            {
+                mensaje("No se encuentran alumnos inscriptos a ese torneo", false);
+            }
+        }
+
+        private void limpiarMensaje()
+        {
+            pnl_mensaje_exito.Visible = false;
+            pnl_mensaje_error.Visible = false;
+            lbl_exito.Text = "";
+            lbl_error.Text = "";
+        }
+
+        private void mensaje(string pMensaje, Boolean pEstado)
+        {
+            // Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");
+            if (pEstado == true)
+            {
+                pnl_mensaje_exito.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = pMensaje;
+            }
+            else
+            {
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = true;
+                lbl_error.Text = pMensaje;
+            }
         }
     }
 }

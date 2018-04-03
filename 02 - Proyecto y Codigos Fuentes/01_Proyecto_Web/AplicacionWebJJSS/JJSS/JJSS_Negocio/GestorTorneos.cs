@@ -171,13 +171,18 @@ namespace JJSS_Negocio
                                            {
                                                id_torneo = t.id_torneo,
                                                nombre = t.nombre,
-                                               fecha = t.fecha,
+                                               dtFecha = t.fecha,
                                                hora = t.hora,
                                                imagenB = i.imagen
                                            };
 
 
                 List<TorneoResultado> listaTorneos = torneosAbiertos.ToList<TorneoResultado>();
+
+                foreach (TorneoResultado t in listaTorneos)
+                {
+                    t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
+                }
                 return listaTorneos;
             }
         }
@@ -350,7 +355,7 @@ namespace JJSS_Negocio
         /*
          * busca los torneos con su imagen que comiencen con filtroNombre y la fecha sea mayor a filtroFecha
          */
-        public List<TorneoResultado> BuscarTorneosConFiltrosEImagen(String filtroNombre, DateTime filtroFecha)
+        public List<TorneoResultado> BuscarTorneosConFiltrosEImagen(String filtroNombre, DateTime filtroFecha, DateTime filtroFechaHasta)
         {
             cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
@@ -361,17 +366,40 @@ namespace JJSS_Negocio
                               into ps
                               from i in ps.DefaultIfEmpty()
                               where tor.nombre.StartsWith(filtroNombre) &&
-                              tor.fecha >= filtroFecha &&
+                              tor.fecha >= filtroFecha && tor.fecha <= filtroFechaHasta &&
                               (est.id_estado == ConstantesEstado.TORNEO_CANCELADO || est.id_estado == ConstantesEstado.TORNEO_FINALIZADO)
+                              orderby tor.fecha descending
                               select new TorneoResultado()
                               {
                                   id_torneo = tor.id_torneo,
                                   nombre = tor.nombre,
-                                  fecha = tor.fecha,
+                                  dtFecha = tor.fecha,
                                   imagenB = i.imagen,
                                   estado = est.nombre,
                               };
-                return torneos.ToList<TorneoResultado>();
+                List<TorneoResultado> tr = torneos.ToList();
+                foreach (TorneoResultado t in tr)
+                {
+                    t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
+                }
+                return tr;
+            }
+        }
+
+        public string cancelarTorneo(int idTorneo, int idEstado)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    torneo torneoSeleccionado = db.torneo.Find(idTorneo);
+                    torneoSeleccionado.id_estado = idEstado;
+                    db.SaveChanges();
+                    return "";
+                }catch (Exception ex)
+                {
+                    return ex.Message;
+                }
             }
         }
 
@@ -518,15 +546,15 @@ namespace JJSS_Negocio
                 var resultados = from res in db.resultado
                                  join catt in db.categoria_torneo on res.id_categoria_torneo equals catt.id_categoria_torneo
                                  join tor in db.torneo on res.id_torneo equals tor.id_torneo
-                                 where tor.id_torneo==idTorneo
+                                 where tor.id_torneo == idTorneo
                                  select new ResultadoDeTorneo()
                                  {
                                      categoria = catt.categoria.nombre,
                                      faja = catt.faja.descripcion,
-                                     primero = res.participante.nombre + res.participante.apellido,
-                                     segundo = res.participante1.nombre + res.participante1.apellido,
-                                     tercero1 = res.participante2.nombre + res.participante2.apellido,
-                                     tercero2 = res.participante3.nombre + res.participante3.apellido,
+                                     primero = res.participante.nombre + " " + res.participante.apellido,
+                                     segundo = res.participante1.nombre + " " + res.participante1.apellido,
+                                     tercero1 = res.participante2.nombre + " " + res.participante2.apellido,
+                                     tercero2 = res.participante3.nombre + " " + res.participante3.apellido,
                                  };
                 return resultados.ToList();
             }
