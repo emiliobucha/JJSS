@@ -155,7 +155,7 @@ namespace JJSS
             //LOCAL
             DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
 
-            int dni = int.Parse(txtDni.Text);
+            var dni = txtDni.Text;
 
 
             int idFaja = 0;
@@ -166,7 +166,7 @@ namespace JJSS
             if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO; 
 
             //para alumnos
-            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
+            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
             if (alumnoEncontrado != null) idAlumno = alumnoEncontrado.id_alumno;
 
             //para todos
@@ -338,7 +338,7 @@ namespace JJSS
 
 
             participante participanteEncontrado =
-                gestorInscripciones.obtenerParticipanteDeTorneo(int.Parse(txtDni.Text), idTorneo);
+                gestorInscripciones.obtenerParticipanteDeTorneo(txtDni.Text, idTorneo);
 
             //Partipante ya estaba inscripto con ese dni
             if (participanteEncontrado != null)
@@ -348,7 +348,7 @@ namespace JJSS
             }
             else pnl_Inscripcion.Visible = true;
 
-            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
+            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
             if (alumnoEncontrado != null)
             {
                 //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes

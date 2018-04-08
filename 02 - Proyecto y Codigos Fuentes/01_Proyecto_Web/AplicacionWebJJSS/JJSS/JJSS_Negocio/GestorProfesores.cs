@@ -21,7 +21,7 @@ namespace JJSS_Negocio
          * Retornos:
          *              profesor encontrado, o si no estaba devuelve null
          */
-        public profesor ObtenerProfesorPorDNI(int pDni)
+        public profesor ObtenerProfesorPorDNI(string pDni)
         {
             using (var db = new JJSSEntities())
             {
@@ -56,7 +56,7 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarProfesor(string pNombre, string pApellido, DateTime? pFechaNacimiento, 
-            short? pSexo, int pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
+            short? pSexo, string pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
             string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad, string pTorre)
         {
             string sReturn = "";
@@ -69,7 +69,7 @@ namespace JJSS_Negocio
                     string nombreUsuario = pNombre + " " + pApellido;
                     string login = pNombre.Substring(0, 1).ToLower();
                     login += pApellido.ToLower();
-                    string iduser = nuevoUsuario.GenerarNuevoUsuario(login, pDni.ToString(), 2, pMail, nombreUsuario);
+                    string iduser = nuevoUsuario.GenerarNuevoUsuario(login, pDni, 2, pMail, nombreUsuario);
                     int idUsuario;
                     if (int.TryParse(iduser, out idUsuario) == false)
                     {
@@ -206,7 +206,7 @@ namespace JJSS_Negocio
          *              "" : Transaccion Correcta
          *              ex.Message : Mensaje de error provocado por una excepción
          */
-        public string EliminarProfesor(int pDni)
+        public string EliminarProfesor(string pDni)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -240,7 +240,7 @@ namespace JJSS_Negocio
          *              ex.Message : Mensaje de error provocado por una excepción
          * 
          */
-        public string ModificarProfesor(int pDni, string pNombre, string pApellido)
+        public string ModificarProfesor(string pDni, string pNombre, string pApellido)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -284,7 +284,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el profesor
          * 
          */
-        public string ModificarProfesor(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, int pDni, int pIdCiudad, string pTorre)
+        public string ModificarProfesor(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, string pDni, int pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -396,7 +396,7 @@ namespace JJSS_Negocio
         }
 
 
-        public string CambiarFotoPerfil(int pDni, byte[] pImagen)
+        public string CambiarFotoPerfil(string pDni, byte[] pImagen)
         {
 
             using (var db = new JJSSEntities())

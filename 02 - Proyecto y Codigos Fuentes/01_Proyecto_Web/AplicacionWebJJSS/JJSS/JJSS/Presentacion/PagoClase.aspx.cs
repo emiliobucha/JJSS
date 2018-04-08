@@ -58,7 +58,7 @@ namespace JJSS.Presentacion
 
                 CargarComboClase();
                 CargarComboFormaPago();
-                int dni = int.Parse(Session["PagoClase"].ToString());
+                var dni = Session["PagoClase"].ToString();
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
                 lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
 
@@ -79,13 +79,13 @@ namespace JJSS.Presentacion
             string mes = ddl_mes.SelectedValue;
             int idClase = int.Parse(ddl_clase.SelectedValue);
             int idFormaPago = int.Parse(ddl_forma_pago.SelectedValue);
-            int dni;
-            if (int.TryParse(Session["PagoClase"].ToString(), out dni))
+            var dni = Session["PagoClase"].ToString();
+            if (!string.IsNullOrEmpty(dni))
             {
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
 
                 string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago, pagoRecargo);
-                if (sReturn.CompareTo("") == 0)
+                if (string.IsNullOrEmpty(sReturn))
                 {
                     mensaje("Se ha registrado el pago exitosamente", true);
                     limpiar();
@@ -127,8 +127,7 @@ namespace JJSS.Presentacion
 
         protected void CargarComboClase()
         {
-            int dni;
-            int.TryParse(Session["PagoClase"].ToString(), out dni);
+            var dni =Session["PagoClase"].ToString();
             alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
             List<clase> clase = gestorClase.ObtenerClaseSegunAlumno(alumnoElegido.id_alumno);
             ddl_clase.DataSource = clase;
@@ -154,8 +153,7 @@ namespace JJSS.Presentacion
         protected void ddl_clase_SelectedIndexChanged(object sender, EventArgs e)
         {
             clase claseSelect = gestorClase.ObtenerClasePorId(int.Parse(ddl_clase.SelectedValue));
-            int dni;
-            int.TryParse(Session["PagoClase"].ToString(), out dni);
+            var dni =Session["PagoClase"].ToString();
             alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
 
             double recargo = gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno);

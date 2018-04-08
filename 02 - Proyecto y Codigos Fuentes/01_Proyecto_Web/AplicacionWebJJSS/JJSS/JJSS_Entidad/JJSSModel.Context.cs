@@ -72,6 +72,7 @@ namespace JJSS_Entidad
         public virtual DbSet<seguridad_usuario> seguridad_usuario { get; set; }
         public virtual DbSet<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
         public virtual DbSet<tipo_clase> tipo_clase { get; set; }
+        public virtual DbSet<tipo_documento> tipo_documento { get; set; }
         public virtual DbSet<tipo_evento_especial> tipo_evento_especial { get; set; }
         public virtual DbSet<torneo> torneo { get; set; }
         public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }

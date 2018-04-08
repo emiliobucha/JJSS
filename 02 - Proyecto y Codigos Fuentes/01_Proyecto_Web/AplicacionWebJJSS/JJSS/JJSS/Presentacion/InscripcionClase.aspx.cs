@@ -134,8 +134,7 @@ namespace JJSS.Presentacion
          */
         protected void CargarGrilla()
         {
-            int dni = 0;
-            if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
+            var dni = txt_filtro_dni.Text;
             List<alumno> listaCompleta = mostrarAlumnosNoInscriptos();
             List<alumno> listaConFiltro = new List<alumno>();
             string filtroApellido = txt_filtro_apellido.Text.ToUpper();
@@ -143,7 +142,7 @@ namespace JJSS.Presentacion
             foreach (alumno i in listaCompleta)
             {
                 string apellido = i.apellido.ToUpper();
-                if (dni == 0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
+                if (string.IsNullOrEmpty(dni)) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
 
                 if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
             }
@@ -307,7 +306,7 @@ namespace JJSS.Presentacion
         */
         protected void btn_aceptar_inscripcion_Click(object sender, EventArgs e)
         {
-            int dniAlumno = Convert.ToInt32(lbl_alumno_dni.Text);
+            var dniAlumno = lbl_alumno_dni.Text;
             DateTime pfecha = DateTime.Now;
 
             string phora = pfecha.ToShortTimeString();

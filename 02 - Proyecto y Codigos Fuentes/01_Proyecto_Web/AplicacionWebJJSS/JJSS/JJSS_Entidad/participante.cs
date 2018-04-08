@@ -33,8 +33,9 @@ namespace JJSS_Entidad
         public string apellido { get; set; }
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
         public Nullable<short> sexo { get; set; }
-        public int dni { get; set; }
+        public string dni { get; set; }
         public Nullable<int> id_alumno { get; set; }
+        public Nullable<int> id_tipo_documento { get; set; }
     
         public virtual alumno alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -55,5 +56,6 @@ namespace JJSS_Entidad
         public virtual ICollection<resultado> resultado2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<resultado> resultado3 { get; set; }
+        public virtual tipo_documento tipo_documento { get; set; }
     }
 }

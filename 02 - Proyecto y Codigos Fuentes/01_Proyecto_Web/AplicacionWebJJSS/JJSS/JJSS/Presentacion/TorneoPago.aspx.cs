@@ -66,7 +66,7 @@ namespace JJSS.Presentacion
                 lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
 
                 int id = int.Parse(Session["TorneoPagar"].ToString());
-                int dni = int.Parse(Session["ParticipanteDNI"].ToString());
+                var dni = Session["ParticipanteDNI"].ToString();
                 participanteElegido = gestorInscripciones.obtenerParticipanteDeTorneo(dni,id);
                 lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
 

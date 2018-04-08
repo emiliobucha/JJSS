@@ -34,7 +34,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, DateTime pFechaNacimiento, int pFaja, short pSexo, int pDni, int? pIDAlumno, short pTipoInscripcion)
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, DateTime pFechaNacimiento, int pFaja, short pSexo, string pDni, int? pIDAlumno, short pTipoInscripcion)
         {
 
             String sReturn = "";
@@ -148,7 +148,7 @@ namespace JJSS_Negocio
 
 
 
-        public inscripcion obtenerInscripcionATorneoPorIdParticipantePorDni(int pDni, int pIdTorneo)
+        public inscripcion obtenerInscripcionATorneoPorIdParticipantePorDni(string pDni, int pIdTorneo)
         {
             using (var db = new JJSSEntities())
             {
@@ -202,7 +202,7 @@ namespace JJSS_Negocio
          * Parámetros:
          *              pDni: entero que representa el dni a buscar
          */
-        public alumno ObtenerAlumnoPorDNI(int pDni)
+        public alumno ObtenerAlumnoPorDNI(string pDni)
         {
             GestorAlumnos gestorAlumnos = new GestorAlumnos();
 
@@ -215,14 +215,14 @@ namespace JJSS_Negocio
          *              pDni: entero que representa el dni a buscar
          */
 
-        public participante ObtenerParticipanteporDNI(int pDni)
+        public participante ObtenerParticipanteporDNI(string pDni)
         {
             GestorParticipantes gestorParticipantes = new GestorParticipantes();
             return gestorParticipantes.ObtenerParticipantePorDNI(pDni);
         }
 
 
-        public participante obtenerParticipanteDeTorneo(int pDni, int pIDTorneo)
+        public participante obtenerParticipanteDeTorneo(string pDni, int pIDTorneo)
         {
             using (var db = new JJSSEntities())
             {

@@ -17,7 +17,7 @@ namespace JJSS_Negocio
          * Parámetros:
          *              pDni: entero que representa el dni a buscar
          */
-        public alumno ObtenerAlumnoPorDNI(int pDni)
+        public alumno ObtenerAlumnoPorDNI(string pDni)
         {
             GestorAlumnos gestorAlumnos = new GestorAlumnos();
 

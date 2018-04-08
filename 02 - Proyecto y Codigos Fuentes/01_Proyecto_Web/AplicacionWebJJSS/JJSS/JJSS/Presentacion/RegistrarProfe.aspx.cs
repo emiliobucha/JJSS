@@ -113,7 +113,7 @@ namespace JJSS.Presentacion
         protected void btn_guardar_click(object sender, EventArgs e)
         {
             //+ver categorias, direccion y foto perfil
-            int dni = int.Parse(txtDni.Text);
+            var dni = txtDni.Text;
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
 
@@ -230,8 +230,7 @@ namespace JJSS.Presentacion
 
         protected void CargarGrilla()
         {
-            int dni = 0;
-            if (txt_filtro_dni.Text.CompareTo("") != 0) dni = int.Parse(txt_filtro_dni.Text);
+            var dni = txt_filtro_dni.Text;
             List<profesor> listaCompleta = gestorProfes.ObtenerProfesores();
             List<profesor> listaConFiltro = new List<profesor>();
 
@@ -240,7 +239,7 @@ namespace JJSS.Presentacion
             foreach (profesor i in listaCompleta)
             {
                 string apellido = i.apellido.ToUpper();
-                if (dni == 0) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
+                if (string.IsNullOrEmpty(dni)) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
 
                 if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
             }
@@ -291,7 +290,7 @@ namespace JJSS.Presentacion
             {
                 //if (confirmar("¿Está seguro de eliminar este alumno?") == true) { }
                 int index = Convert.ToInt32(e.CommandArgument);
-                int dni = Convert.ToInt32(gvprofes.DataKeys[index].Value);
+                var dni = gvprofes.DataKeys[index].Value.ToString();
                 string sReturn = gestorProfes.EliminarProfesor(dni);
                 Boolean estado = true;
                 if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el profesor correctamente";

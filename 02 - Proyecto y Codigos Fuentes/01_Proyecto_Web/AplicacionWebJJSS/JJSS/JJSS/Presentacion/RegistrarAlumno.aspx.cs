@@ -152,7 +152,7 @@ namespace JJSS.Presentacion
         protected void btn_guardar_click(object sender, EventArgs e)
         {
 
-            int dni = int.Parse(txtDni.Text);
+            var dni = txtDni.Text;
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
 
@@ -274,8 +274,8 @@ namespace JJSS.Presentacion
 
         protected void CargarGrilla()
         {
-            int filtroDni = 0;
-            if (txt_filtro_dni.Text.CompareTo("") != 0) filtroDni = int.Parse(txt_filtro_dni.Text);
+            var filtroDni = "";
+            if (!string.IsNullOrEmpty(txt_filtro_dni.Text)) filtroDni = txt_filtro_dni.Text;
             int[] filtroEstados = new int[5];
 
             for (int i = 0; i < chFiltroEstado.Items.Count; i++)
@@ -376,7 +376,7 @@ namespace JJSS.Presentacion
         protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            int dni = Convert.ToInt32(gvAlumnos.DataKeys[index].Value);
+            var dni = gvAlumnos.DataKeys[index].Value.ToString();
 
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
