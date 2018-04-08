@@ -5,8 +5,36 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContenido" runat="server">
+    <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <a class="ui-icon ui-icon-check"></a>
+                    <strong>
+                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                </div>
+            </div>
 
-    <div class="row centered">
+        </asp:Panel>
+
+
+
+        <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <a class="ui-icon ui-icon-alert"></a>
+                    <strong>Error! </strong>
+                    <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+                </div>
+            </div>
+
+        </asp:Panel>
+
+
+ <div class="row centered">
         <p>&nbsp;</p>
     </div>
 
@@ -22,11 +50,10 @@
         <p>&nbsp;</p>
     </div>
 
+   <div class="container">
+           <asp:Panel ID="pnl_InfoTorneo" CssClass="panel centered justify-content-center border rounded p-2" runat="server">
 
-    <div class="container">
-        <asp:Panel ID="pnl_InfoTorneo" CssClass="panel centered justify-content-center border rounded p-2" runat="server">
-
-            <!--Nombre-->
+  <!--Nombre-->
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
@@ -41,28 +68,19 @@
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
+        <!--Fecha-->
+        <div class="row centered">
+            <p>&nbsp;</p>
+        </div>
 
-            <!--Direccion-->
-            <!--  <div class="row centered"><p>&nbsp;</p></div>
-
-                                    <div class="row centered">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-4">
-                                        <label class="pull-left">Direccion del evento:&nbsp; </label>
-                                        <asp:Label ID="lbl_Direccion" CssClass="pull-left" runat="server" Text=""></asp:Label>
-                                    </div>
-                                </div>
-                                -->
-            <!--Fecha-->
-
-            <div class="row centered justify-content-center">
+            <div class="row centered">
                 <div class="col-md-2 hidden-sm hidden-xs"></div>
-                <div class="col-md-6 col-sm-10 ">
-                    <label class="pull-left h6">Fecha del torneo:&nbsp; </label>
+                <div class="col-md-4 ">
+                    <strong class="pull-left">Fecha:&nbsp; </strong>
                     <asp:Label ID="lbl_FechaDeTorneo" CssClass="pull-left" runat="server" Text=""></asp:Label>
-                    <asp:Label ID="Label1" CssClass="pull-left" runat="server" Text=", "></asp:Label>
+                    <a class="pull-left">, </a>
                     <asp:Label ID="lbl_HoraTorneo" CssClass="pull-left" runat="server" Text=""></asp:Label>
-                    <asp:Label ID="Label2" CssClass="pull-left" runat="server" Text=" hs"></asp:Label>
+                    <a class="pull-left">&nbsp;hs </a>
                 </div>
             </div>
 
@@ -108,12 +126,11 @@
                     <asp:Label ID="lbl_CostoInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
 
 
-                </div>
             </div>
-
-            <div class="row centered justify-content-center">
-                <div class="col-md-2 hidden-sm hidden-xs"></div>
-                <div class="col-md-6 col-sm-10">
+        </div>
+        <div class="row centered">
+            <div class="col-md-2 hidden-sm hidden-xs"></div>
+            <div class="col-md-5 col-lg-10 col-sm-10">
 
                     <label class="pull-left h6">Costo Absoluto:&nbsp;</label>
                     <asp:Label ID="Label3" CssClass="pull-left" runat="server" Text="$ "></asp:Label>
@@ -158,6 +175,8 @@
                 <asp:Button ID="btn_suspender" runat="server" CssClass="btn btn-outline-dark" Text="Suspender Torneo" OnClick="btn_suspender_Click" Visible="false" />
                 <asp:Button ID="btn_editar" runat="server" CssClass="btn btn-outline-dark" Text="Editar Torneo" OnClick="btn_editar_Click" Visible="false" />
                 <asp:Button ID="btn_habilitar" runat="server" CssClass="btn btn-outline-dark" Text="Habilitar Torneo" OnClick="btn_habilitar_Click" Visible="false" />
+                <asp:Button ID="btn_imprimir_listado" runat="server" CssClass="btn btn-default pull-right" Text="Imprimir Listado" OnClick="btn_imprimir_listado_Click" Visible="false" />
+
             </asp:Panel>
 
 
@@ -175,6 +194,6 @@
     </div>
 
 
-        
+
 
 </asp:Content>

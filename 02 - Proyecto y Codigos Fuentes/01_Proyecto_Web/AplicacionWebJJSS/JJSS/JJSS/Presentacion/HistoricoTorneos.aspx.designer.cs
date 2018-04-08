@@ -31,13 +31,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_filtro_nombre;
         
         /// <summary>
-        /// Control dp_filtro_fecha.
+        /// Control dp_filtro_fecha_desde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dp_filtro_fecha;
+        protected global::System.Web.UI.WebControls.TextBox dp_filtro_fecha_desde;
+        
+        /// <summary>
+        /// Control dp_filtro_fecha_hasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_filtro_fecha_hasta;
         
         /// <summary>
         /// Control btn_buscar.

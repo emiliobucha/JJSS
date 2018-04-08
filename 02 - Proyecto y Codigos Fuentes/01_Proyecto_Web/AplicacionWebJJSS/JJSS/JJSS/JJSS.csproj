@@ -210,6 +210,7 @@
     <Content Include="Administracion\CrearSede.aspx" />
     <Content Include="Presentacion\AgregarProducto.aspx" />
     <Content Include="Presentacion\AlumnoPagoClase.aspx" />
+    <Content Include="Presentacion\CargarResultadosTorneo.aspx" />
     <Content Include="Presentacion\ComprarProducto.aspx" />
     <Content Include="Presentacion\EventoPago.aspx" />
     <Content Include="Presentacion\EventoPagoFinalizado.aspx" />
@@ -394,6 +395,13 @@
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoClase.aspx.designer.cs">
       <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\CargarResultadosTorneo.aspx.cs">
+      <DependentUpon>CargarResultadosTorneo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\CargarResultadosTorneo.aspx.designer.cs">
+      <DependentUpon>CargarResultadosTorneo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComprarProducto.aspx.cs">
       <DependentUpon>ComprarProducto.aspx</DependentUpon>

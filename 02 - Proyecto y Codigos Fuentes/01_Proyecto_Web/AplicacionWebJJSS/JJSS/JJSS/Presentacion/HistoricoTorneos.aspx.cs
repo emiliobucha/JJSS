@@ -17,7 +17,8 @@ namespace JJSS.Presentacion
             if (!IsPostBack)
             {
                 gestorDeTorneos = new GestorTorneos();
-                dp_filtro_fecha.Text = DateTime.Today.AddYears(-1).ToString("dd/MM/yyyy");
+                dp_filtro_fecha_desde.Text = DateTime.Today.AddYears(-1).ToString("dd/MM/yyyy");
+                dp_filtro_fecha_hasta.Text = DateTime.Today.ToString("dd/MM/yyyy");
                 cargarTorneosAbiertosView();
             }
         }
@@ -32,18 +33,22 @@ namespace JJSS.Presentacion
             String filtroNombre = txt_filtro_nombre.Text;
 
             DateTime filtroFecha = new DateTime();
-            if (dp_filtro_fecha.Text.CompareTo("") != 0)
+            if (dp_filtro_fecha_desde.Text.CompareTo("") != 0)
             {
                 /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
                 DateTime filtroFecha = DateTime.ParseExact(dp_filtro_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
                 */
                 //LOCAL
-                filtroFecha = DateTime.Parse(dp_filtro_fecha.Text);
+                filtroFecha = DateTime.Parse(dp_filtro_fecha_desde.Text);
             }
-            
-
-            lv_torneos.DataSource = gestorDeTorneos.BuscarTorneosConFiltrosEImagen(filtroNombre, filtroFecha);
+            DateTime filtroFechaHasta = new DateTime();
+            if (dp_filtro_fecha_hasta.Text.CompareTo("") != 0)
+            {
+                filtroFechaHasta = DateTime.Parse(dp_filtro_fecha_hasta.Text);
+            }
+            List<JJSS_Negocio.Resultados.TorneoResultado> tr = gestorDeTorneos.BuscarTorneosConFiltrosEImagen(filtroNombre, filtroFecha, filtroFechaHasta);
+            lv_torneos.DataSource = tr;
             lv_torneos.DataBind();
         }
 
