@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Security.Cryptography;
 
 namespace JJSS_Negocio
@@ -63,6 +66,56 @@ namespace JJSS_Negocio
                 return sBuilder.ToString();
             }
 
+        }
+
+        /*
+         *  Método que permite guardar una imagen en una carpeta del servidor y retorna la ruta
+         * 
+         */
+
+        public static string SaveImage(byte[] arrayBytes, string nombre, string origen)
+        {
+            using (MemoryStream ms = new MemoryStream(arrayBytes))
+            {
+                try
+                {
+                    
+                    string sDir = System.Web.HttpContext.Current.Server.MapPath("//images//" + origen);
+
+                    if (!System.IO.Directory.Exists(sDir))
+                    {
+                        System.IO.Directory.CreateDirectory(sDir);
+                    }
+
+
+
+
+                    int cont = 0;
+                    string archivoGuardar;
+                    Image imagenImage;
+                    string archivo;
+                    char[] sTrim;
+                    do
+                    {
+                         archivo = nombre.Replace(" ", "-") + cont + ".jpeg";
+                         imagenImage = Image.FromStream(ms);
+
+                        sTrim = "\\".ToCharArray();
+                        archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
+                        cont++;
+
+                    } while (File.Exists(archivoGuardar));
+
+                    imagenImage.Save(archivoGuardar, ImageFormat.Jpeg);
+
+                    return "\\images\\" + origen + "\\" + archivo;
+
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
         }
     }
 }

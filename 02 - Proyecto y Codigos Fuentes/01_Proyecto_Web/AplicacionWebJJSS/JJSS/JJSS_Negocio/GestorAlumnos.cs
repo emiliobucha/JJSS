@@ -148,10 +148,23 @@ namespace JJSS_Negocio
                     db.alumno.Add(nuevoAlumno);
 
                     db.SaveChanges();
+
+
+                    byte[] arrayImagen = pImagen;
+                    if (arrayImagen.Length > 7000)
+                    {
+                        arrayImagen = new byte[0];
+                    }
+
+                    string imagenUrl = modUtilidades.SaveImage(pImagen, pNombre, "alumnos");
+
+
+
                     alumno_imagen nuevoAlumno_imagen = new alumno_imagen()
                     {
                         id_alumno = nuevoAlumno.id_alumno,
-                        imagen = pImagen
+                        imagen = arrayImagen,
+                        imagen_url = imagenUrl
                     };
                     db.alumno_imagen.Add(nuevoAlumno_imagen);
                     db.SaveChanges();

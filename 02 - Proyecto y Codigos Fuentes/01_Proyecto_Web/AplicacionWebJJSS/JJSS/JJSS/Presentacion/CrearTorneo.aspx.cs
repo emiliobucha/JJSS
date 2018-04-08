@@ -23,22 +23,6 @@ namespace JJSS.Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-            //try
-            //{
-            //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-            //    if (sesionActiva.estado != "INGRESO ACEPTADO")
-            //    {
-            //        Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
-
-            //}
-
             gestorTorneos = new GestorTorneos();
             if (!IsPostBack)
             {
@@ -79,9 +63,6 @@ namespace JJSS.Presentacion
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
                server control at run time. */
         }
-
-
-
 
         protected void btn_aceptar_Click1(object sender, EventArgs e)
         {

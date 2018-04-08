@@ -46,10 +46,22 @@ namespace JJSS_Negocio
                     db.producto.Add(nuevoProducto);
                     db.SaveChanges();
 
+                    byte[] arrayImagen = pImagen;
+                    if (arrayImagen.Length > 7000)
+                    {
+                        arrayImagen = new byte[0];
+                    }
+
+                    string imagenUrl = modUtilidades.SaveImage(pImagen, pNombre, "productos");
+
+
+
+
                     producto_imagen nuevoProductoImagen = new producto_imagen()
                     {
-                        imagen = pImagen,
+                        imagen = arrayImagen,
                         id_producto = nuevoProducto.id_producto,
+                        imagen_url = imagenUrl
                     };
                     db.producto_imagen.Add(nuevoProductoImagen);
                     db.SaveChanges();

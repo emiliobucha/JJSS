@@ -71,7 +71,5 @@ namespace JJSS_Negocio.Resultados
             }
         }
 
-
-
     }
 }

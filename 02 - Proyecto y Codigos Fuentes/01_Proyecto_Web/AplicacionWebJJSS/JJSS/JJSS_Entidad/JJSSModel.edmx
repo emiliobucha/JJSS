@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -40,6 +40,7 @@
           <Property Name="id_alumno" Type="int" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
           <Property Name="id_alumnoimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="alumnoxfaja">
           <Key>
@@ -197,6 +198,7 @@
           <Property Name="id_evento_imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_evento" Type="int" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="faja">
           <Key>
@@ -358,6 +360,7 @@
           <Property Name="id_productoimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
           <Property Name="id_producto" Type="int" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="profesor">
           <Key>
@@ -383,6 +386,7 @@
           <Property Name="id_profesorimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
           <Property Name="id_profesor" Type="int" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="proveedor">
           <Key>
@@ -511,6 +515,7 @@
           <Property Name="id_torneo_imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_torneo" Type="int" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK__academia__id_dir__11007AA7">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
@@ -1820,8 +1825,7 @@
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1873,6 +1877,7 @@
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <Property Name="id_alumnoimagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="alumno" Relationship="Self.FK__alumno_im__id_al__14D10B8B" FromRole="alumno_imagen" ToRole="alumno" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="alumnoxfaja">
           <Key>
@@ -2075,6 +2080,7 @@
           <Property Name="id_evento" Type="Int32" Nullable="false" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <NavigationProperty Name="evento_especial" Relationship="Self.FK__evento_es__id_ev__2CA8951C" FromRole="evento_especial_imagen" ToRole="evento_especial" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="faja">
           <Key>
@@ -2284,6 +2290,7 @@
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <Property Name="id_producto" Type="Int32" />
           <NavigationProperty Name="producto" Relationship="Self.FK__producto___id_pr__457442E6" FromRole="producto_imagen" ToRole="producto" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="profesor">
           <Key>
@@ -2314,6 +2321,7 @@
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <Property Name="id_profesor" Type="Int32" />
           <NavigationProperty Name="profesor" Relationship="Self.FK__profesor___id_pr__4850AF91" FromRole="profesor_imagen" ToRole="profesor" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="proveedor">
           <Key>
@@ -2483,6 +2491,7 @@
           <Property Name="id_torneo" Type="Int32" Nullable="false" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <NavigationProperty Name="torneo" Relationship="Self.FK__torneo_im__id_to__5887175A" FromRole="torneo_imagen" ToRole="torneo" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__academia__id_dir__11007AA7">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
@@ -3831,6 +3840,7 @@
           <EntitySetMapping Name="alumno_imagen">
             <EntityTypeMapping TypeName="JJSSModel.alumno_imagen">
               <MappingFragment StoreEntitySet="alumno_imagen">
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="id_alumnoimagen" ColumnName="id_alumnoimagen" />
@@ -4003,6 +4013,7 @@
           <EntitySetMapping Name="evento_especial_imagen">
             <EntityTypeMapping TypeName="JJSSModel.evento_especial_imagen">
               <MappingFragment StoreEntitySet="evento_especial_imagen">
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
                 <ScalarProperty Name="id_evento_imagen" ColumnName="id_evento_imagen" />
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
@@ -4180,6 +4191,7 @@
           <EntitySetMapping Name="producto_imagen">
             <EntityTypeMapping TypeName="JJSSModel.producto_imagen">
               <MappingFragment StoreEntitySet="producto_imagen">
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
                 <ScalarProperty Name="id_productoimagen" ColumnName="id_productoimagen" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
@@ -4207,6 +4219,7 @@
           <EntitySetMapping Name="profesor_imagen">
             <EntityTypeMapping TypeName="JJSSModel.profesor_imagen">
               <MappingFragment StoreEntitySet="profesor_imagen">
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
                 <ScalarProperty Name="id_profesorimagen" ColumnName="id_profesorimagen" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
@@ -4349,6 +4362,7 @@
           <EntitySetMapping Name="torneo_imagen">
             <EntityTypeMapping TypeName="JJSSModel.torneo_imagen">
               <MappingFragment StoreEntitySet="torneo_imagen">
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
                 <ScalarProperty Name="id_torneo_imagen" ColumnName="id_torneo_imagen" />
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />

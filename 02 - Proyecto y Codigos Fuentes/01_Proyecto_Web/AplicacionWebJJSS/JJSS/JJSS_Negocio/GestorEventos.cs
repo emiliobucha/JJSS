@@ -30,9 +30,9 @@ namespace JJSS_Negocio
          *          ex.message Resultado erroneo indicando el mensaje de la excepcion
          */
 
-        public String GenerarNuevoEvento(DateTime pFecha, String pNombre, Decimal pPrecio, String pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre, byte[] pImagen, int pTipo)
+        public string GenerarNuevoEvento(DateTime pFecha, string pNombre, decimal pPrecio, string pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre, byte[] pImagen, int pTipo)
         {
-            String sReturn = "";
+            string sReturn = "";
             using (var db = new JJSSEntities())
             {
                 estado estado = db.estado.Find(ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
@@ -61,11 +61,25 @@ namespace JJSS_Negocio
                     db.evento_especial.Add(nuevoEvento);
                     db.SaveChanges();
 
+
+                    byte[] arrayImagen = pImagen;
+                    if (arrayImagen.Length > 7000)
+                    {
+                        arrayImagen = new byte[0];
+                    }
+
+                    string imagenUrl = modUtilidades.SaveImage(pImagen, pNombre, "eventos");
+
+
+
                     evento_especial_imagen nuevoEventoImagen = new evento_especial_imagen()
                     {
                         id_evento = nuevoEvento.id_evento,
-                        imagen = pImagen
+                        imagen = arrayImagen,
+                        imagen_url = imagenUrl
                     };
+
+
 
                     db.evento_especial_imagen.Add(nuevoEventoImagen);
                     db.SaveChanges();

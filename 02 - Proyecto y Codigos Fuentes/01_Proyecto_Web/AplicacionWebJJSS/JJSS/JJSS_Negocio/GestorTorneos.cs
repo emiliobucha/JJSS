@@ -37,9 +37,9 @@ namespace JJSS_Negocio
          *          ex.message Resultado erroneo indicando el mensaje de la excepcion
          */
 
-        public String GenerarNuevoTorneo(DateTime pFecha, String pNombre, Decimal pPrecio_categoria, Decimal pPrecio_absoluto, String pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre, byte[] pImagen)
+        public string GenerarNuevoTorneo(DateTime pFecha, string pNombre, decimal pPrecio_categoria, decimal pPrecio_absoluto, string pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre, byte[] pImagen)
         {
-            String sReturn = "";
+            string sReturn = "";
             using (var db = new JJSSEntities())
             {
                 estado estadoTorneo = db.estado.Find(ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
@@ -69,17 +69,24 @@ namespace JJSS_Negocio
                     db.torneo.Add(nuevoTorneo);
                     db.SaveChanges();
 
+                    byte[] arrayImagen = pImagen;
+                    if (arrayImagen.Length > 7000)
+                    {
+                        arrayImagen = new byte[0];
+                    }
+
+                    string imagenUrl = modUtilidades.SaveImage(pImagen, pNombre, "torneos");
+
                     torneo_imagen nuevoTorneoImagen = new torneo_imagen()
                     {
                         id_torneo = nuevoTorneo.id_torneo,
-                        imagen = pImagen
+                        imagen = arrayImagen,
+                        imagen_url = imagenUrl
                     };
 
                     db.torneo_imagen.Add(nuevoTorneoImagen);
                     db.SaveChanges();
-                    //+Acá puede ser asincrono, asi que puede quedar guardandose y seguir ejecutandose lo demas /
-
-
+                   
                     transaction.Commit();
                     return sReturn;
                 }
@@ -161,6 +168,7 @@ namespace JJSS_Negocio
             cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
             {
+
                 var torneosAbiertos =
                                            from t in db.torneo
                                            join i in db.torneo_imagen on t.id_torneo equals i.id_torneo
@@ -173,11 +181,11 @@ namespace JJSS_Negocio
                                                nombre = t.nombre,
                                                fecha = t.fecha,
                                                hora = t.hora,
-                                               imagenB = i.imagen
+                                               imagen = i.imagen_url
                                            };
 
 
-                List<TorneoResultado> listaTorneos = torneosAbiertos.ToList<TorneoResultado>();
+                List<TorneoResultado> listaTorneos = torneosAbiertos.ToList();
                 return listaTorneos;
             }
         }

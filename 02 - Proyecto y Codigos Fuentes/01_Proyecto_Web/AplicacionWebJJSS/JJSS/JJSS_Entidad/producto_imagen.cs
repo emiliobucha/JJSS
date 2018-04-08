@@ -17,6 +17,7 @@ namespace JJSS_Entidad
         public int id_productoimagen { get; set; }
         public byte[] imagen { get; set; }
         public Nullable<int> id_producto { get; set; }
+        public string imagen_url { get; set; }
     
         public virtual producto producto { get; set; }
     }

@@ -13,6 +13,7 @@ using System.Globalization;
 using System.Data;
 using JJSS_Negocio.Resultados;
 using JJSS_Negocio.Administracion;
+using JJSS_Negocio.Constantes;
 
 namespace JJSS.Presentacion
 {
@@ -163,8 +164,8 @@ namespace JJSS.Presentacion
             DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
 
             short sexo = 0;
-            if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO; 
-            if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
+            if (rbSexo.SelectedIndex == 0) sexo = ContantesSexo.FEMENINO; 
+            if (rbSexo.SelectedIndex == 1) sexo = ContantesSexo.MASCULINO;
 
             long tel = 0;
             if (txt_telefono.Text != "")
