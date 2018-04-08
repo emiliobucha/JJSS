@@ -12,57 +12,133 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
 
 
-    <div class="row mt centered">
-
-        <!--Torneo-->
-        <div class="col-sm-12 col-md-6 col-lg-2  ">
-            <a class="text-dark" href="MenuTorneo.aspx">
-                <div class="btn " style="width: 10rem;">
-                    <img class=" img-fluid" src="../img/torneo.png" alt="Card image cap">
-                    <div class="">
-                        <h4 class="mb-5">Torneos</h4>
-                    </div>
-                </div>
-            </a>
+    <div style="background-image: url(../img/d.png); background-position:right;
+       background-repeat:no-repeat; background-attachment:scroll" >
+       
+        <div class="row centered">
+            <p>&nbsp;</p>
         </div>
 
-        <!--Clase-->
-        <div class="col-sm-12 col-md-6 col-lg-2  ">
-            <a class="text-dark" href="MenuTorneo.aspx">
-                <div class="btn " style="width: 10rem;">
-                    <img class=" img-fluid" src="../img/Clase.png"  alt="Card image cap">
-                    <div class="">
-                        <h4 class="mb-5">Clases</h4>
-                    </div>
-                </div>
-            </a>
+
+        <div class="row centered justify-content-center">
+
+            <h1 class=" centered ">Academia Hinojal</h1>
+
         </div>
 
-         <!--Eventos-->
-        <div class="col-sm-12 col-md-6 col-lg-2  ">
-            <a class="text-dark" href="MenuTorneo.aspx">
-                <div class="btn " style="width: 10rem;">
-                    <img class=" img-fluid" src="../img/Evento.png"  alt="Card image cap">
-                    <div class="">
-                        <h4 class="mb-5">Eventos</h4>
-                    </div>
-                </div>
-            </a>
+        <div class="row centered">
+            <p>&nbsp;</p>
         </div>
 
-          <!--Permisos-->
-        <div class="col-sm-12 col-md-6 col-lg-2  ">
-            <a class="text-dark" href="MenuTorneo.aspx">
-                <div class="btn " style="width: 10rem;">
-                    <img class=" img-fluid" src="../img/Permisos.png"  alt="Card image cap">
-                    <div class="">
-                        <h4 class="mb-5">Perfiles y Permisos</h4>
+
+        <div class="row mt centered justify-content-center">
+
+            <!--Torneo-->
+            <div class="col-sm-12 col-md-6 col-lg-2  ">
+                <a class="text-dark" href="MenuTorneo.aspx">
+                    <div class="btn " style="width: 10rem;">
+                        <img class=" img-fluid" src="../img/torneo.png" alt="Card image cap">
+                        <div class="">
+                            <h4 class="mb-5">Torneos</h4>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+
+            <!--Clase-->
+            <div class="col-sm-12 col-md-6 col-lg-2  ">
+                <a class="text-dark" href="">
+                    <div class="btn " style="width: 10rem;">
+                        <img class=" img-fluid" src="../img/Clase.png" alt="Card image cap">
+                        <div class="">
+                            <h4 class="mb-5">Clases</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!--Eventos-->
+            <div class="col-sm-12 col-md-6 col-lg-2  ">
+                <a class="text-dark" href="">
+                    <div class="btn " style="width: 10rem;">
+                        <img class=" img-fluid" src="../img/Evento.png" alt="Card image cap">
+                        <div class="">
+                            <h4 class="mb-5">Eventos</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!--Permisos-->
+            <div class="col-sm-12 col-md-6 col-lg-2  ">
+                <a class="text-dark" href="">
+                    <div class="btn " style="width: 10rem;">
+                        <img class=" img-fluid" src="../img/Permisos.png" alt="Card image cap">
+                        <div class="">
+                            <h4 class="mb-5">Perfiles y Permisos</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <div class="row mt centered justify-content-center">
+            <!--BI-->
+            <div class="col-sm-12 col-md-6 col-lg-2  ">
+                <a class="text-dark" href="">
+                    <div class="btn " style="width: 10rem;">
+                        <img class=" img-fluid" src="../img/BI.png" alt="Card image cap">
+                        <div class="">
+                            <h4 class="mb-5">BI</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!--Pagos-->
+            <div class="col-sm-12 col-md-6 col-lg-2  ">
+                <a class="text-dark" href="">
+                    <div class="btn " style="width: 10rem;">
+                        <img class=" img-fluid" src="../img/Pago.png" alt="Card image cap">
+                        <div class="">
+                            <h4 class="mb-5">Pagos</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!--Administracion-->
+            <div class="col-sm-12 col-md-6 col-lg-2  ">
+                <a class="text-dark" href="">
+                    <div class="btn " style="width: 10rem;">
+                        <img class=" img-fluid" src="../img/Administracion.png" alt="Card image cap">
+                        <div class="">
+                            <h4 class="mb-5">Administracion</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!--Info-->
+            <div class="col-sm-12 col-md-6 col-lg-2  ">
+                <a class="text-dark" href="SobreNosotros.aspx">
+                    <div class="btn " style="width: 10rem;">
+                        <img class=" img-fluid" src="../img/Info.png" alt="Card image cap">
+                        <div class="">
+                            <h4 class="mb-5">Info</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+
+
+
+        </div>
+
+        <div class="row centered">
+            <p>&nbsp;</p>
         </div>
 
     </div>
-
-
 </asp:Content>

@@ -34,26 +34,26 @@ namespace JJSS
 
 
 
-                try
-                {
-                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-                    if (sesionActiva.estado == "INGRESO ACEPTADO")
-                    {
-                        usuario = sesionActiva.usuario;
+                //try
+                //{
+                //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                //    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                //    {
+                //        usuario = sesionActiva.usuario;
 
-                        alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
-                        txtDni.Text = alumno.dni.ToString();
-                        limpiar(false);
-                    }
-                    else
-                    {
-                        limpiar(true);
-                    }
-                }
-                catch
-                {
-                    limpiar(true);
-                }
+                //        alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
+                //        txtDni.Text = alumno.dni.ToString();
+                //        limpiar(false);
+                //    }
+                //    else
+                //    {
+                //        limpiar(true);
+                //    }
+                //}
+                //catch
+                //{
+                //    limpiar(true);
+                //}
 
 
 

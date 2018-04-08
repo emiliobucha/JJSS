@@ -99,3 +99,7 @@
     width: 270px;
     text-align: center;
 }
+
+.fondoOscuro {
+    background-color: #2f2f2f;
+}
