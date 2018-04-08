@@ -70,14 +70,7 @@ namespace JJSS.Presentacion
             btn_imprimir_listado.Visible = true;
             if (idEstado == ConstantesEstado.TORNEO_FINALIZADO)
             {
-                if (resultadosTorneo != null && resultadosTorneo.Count > 0)
-                {
-                    btn_editar_resultados.Visible = true;
-                }
-                else
-                {
-                    btn_cargar_resultados.Visible = true;
-                }
+                btn_cargar_resultados.Visible = true;
             }
             if (idEstado != ConstantesEstado.TORNEO_FINALIZADO && idEstado != ConstantesEstado.TORNEO_CANCELADO)
             {
@@ -102,6 +95,7 @@ namespace JJSS.Presentacion
         protected void btn_cargar_resultados_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
+            Response.Redirect("../Presentacion/CargarResultadosTorneo.aspx");
         }
 
         protected void btn_editar_resultados_Click(object sender, EventArgs e)

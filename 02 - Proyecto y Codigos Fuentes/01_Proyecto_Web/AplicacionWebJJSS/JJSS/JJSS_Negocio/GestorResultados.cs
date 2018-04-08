@@ -23,12 +23,23 @@ namespace JJSS_Negocio
                                   join cat in db.categoria on catt.id_categoria equals cat.id_categoria
                                   join faj in db.faja on catt.id_faja equals faj.id_faja
                                   where tor.id_torneo == idTorneo && cat.id_tipo_clase == ConstantesTipoClase.JIU_JITSU
+                                  orderby cat.nombre
                                   select new CategoriasTorneoResultado
                                   {
                                       nombreCategoria = cat.nombre,
-                                      nombreFaja = faj.descripcion
+                                      nombreFaja = faj.descripcion,
+                                      idCategoriaTorneo = catt.id_categoria_torneo,
+                                      sexo = cat.sexo
                                   }).Distinct();
-                return categorias.ToList();
+                List<CategoriasTorneoResultado> res = categorias.ToList();
+                foreach( CategoriasTorneoResultado cat in res)
+                {
+                    cat.nombreFaja=cat.nombreFaja.Split(new char[] {'-'})[0];
+                    string sexo = cat.sexo.Equals(ContantesSexo.FEMENINO) ? " F " : " M ";
+                    cat.nombreParaMostrar = cat.nombreCategoria + " " + sexo + " " + cat.nombreFaja;
+                }
+                
+                return res;
             }
         }
 
@@ -55,7 +66,15 @@ namespace JJSS_Negocio
             List<CategoriasTorneoResultado> conInscriptos = mostrarCategoriasConInscriptos(idTorneo);
 
             List<CategoriasTorneoResultado> sinInscriptos = quitarCategorias(todas, conInscriptos);
-            return sinInscriptos;
+
+            List<CategoriasTorneoResultado> res = sinInscriptos.ToList();
+            foreach (CategoriasTorneoResultado cat in res)
+            {
+                cat.nombreFaja = cat.nombreFaja.Split(new char[] { '-' })[0];
+                string sexo = cat.sexo.Equals(ContantesSexo.FEMENINO) ? " F " : " M ";
+                cat.nombreParaMostrar = cat.nombreCategoria + " " + sexo + " " + cat.nombreFaja;
+            }
+            return res;
         }
 
         public List<CategoriasTorneoResultado> quitarCategorias(List<CategoriasTorneoResultado> primera, List<CategoriasTorneoResultado> segunda)
@@ -102,7 +121,7 @@ namespace JJSS_Negocio
                 {
                     if (validarCargaResultados(idTorneo, idCategoria) != null)
                     {
-                        return "Ya se cargaron resultados para esa categoria del torneo";
+                        return "Ya se cargaron resultados para esa categoría del torneo";
                     }
 
                     resultado nuevoResultado = new resultado()
