@@ -43,16 +43,21 @@
                         </div>
                     </asp:Panel>
 
-
-                    <div class="row mt centered">
-
-                        <h1>ALTA DE TORNEO</h1>
+                    <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
 
+                    <div class="row centered justify-content-center">
+                        <h1 class=" centered ">Alta de Torneo</h1>
+                        <%--<asp:Label ID="lbl_Inscripcion" runat="server" Text="INSCRIPCIÓN DE TORNEO" CssClass=" h2 font-weight-light"></asp:Label>--%>
+                    </div>
+
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
 
                     <div class="form-group ">
-                        <asp:Panel runat="server" CssClass="panel panel-default">
+                        <asp:Panel runat="server" CssClass="panel panel-default border rounded p-2">
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
@@ -95,9 +100,9 @@
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                                     <!--SOMEE-->
-                                            <%--<asp:TextBox ID="dp_fecha" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
-                                            <!--LOCAL-->
-                                            <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
+                                    <%--<asp:TextBox ID="dp_fecha" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
+                                    <!--LOCAL-->
+                                    <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
 
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
@@ -124,9 +129,9 @@
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                                     <!--SOMEE-->
-                                            <%--<asp:TextBox ID="dp_fecha_cierre" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
-                                            <!--LOCAL-->
-                                            <asp:TextBox ID="dp_fecha_cierre" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
+                                    <%--<asp:TextBox ID="dp_fecha_cierre" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
+                                    <!--LOCAL-->
+                                    <asp:TextBox ID="dp_fecha_cierre" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                                     <label class="pull-left">Hora de cierre</label>
@@ -175,30 +180,26 @@
                             </div>
 
                             <!--Foto-->
+
                             <div class="row centered center-block">
-                                <asp:Panel ID="Panel1" runat="server">
-
-                                    <div class="row centered center-block">
-                                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                            <label class="pull-left left">Imagen</label>
-                                        </div>
-                                        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-                                            <input id="avatarUpload" type="file" name="file" onchange="previewFile()" runat="server" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row centered center-block">
-                                        <div class="col-md-2 col-lg-2 hidden-sm hidden-xs">
-                                            <p>&nbsp;</p>
-                                        </div>
-
-                                        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
-                                            <asp:Image ID="Avatar" runat="server" Height="225px" CssClass="pull-left left" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
-                                        </div>
-                                    </div>
-
-                                </asp:Panel>
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left">Imagen</label>
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                                    <input id="avatarUpload" type="file" name="file" onchange="previewFile()" runat="server" />
+                                </div>
                             </div>
+
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 hidden-sm hidden-xs">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                                    <asp:Image ID="Avatar" runat="server" Height="225px" CssClass="pull-left left" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
+                                </div>
+                            </div>
+
 
                             <div class="row centered">
                                 <p>&nbsp;</p>
@@ -217,13 +218,24 @@
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
+
+                            <!--Boton-->
+
+                            <div class="row centered justify-content-center">
+                                <asp:Button ID="btn_aceptar" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1" OnClientClick="btn_aceptar_Click1" CausesValidation="true" ValidationGroup="vgTorneo" />
+                            </div>
+
+                             <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
                         </asp:Panel>
-                        
-                        <!--Boton-->
-                        <div class="row centered center-block">
-                            
-                            <asp:Button ID="btn_aceptar" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1" OnClientClick="btn_aceptar_Click1" CausesValidation="true" ValidationGroup="vgTorneo" />
+
+
+                        <div class="row centered">
+                            <p>&nbsp;</p>
                         </div>
+
                         <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" formnovalidate="true" CssClass="btn-link" CausesValidation="false" OnClick="btn_Cancelar_Click" />
                     </div>
 
