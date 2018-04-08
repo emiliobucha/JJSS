@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="HistoricoTorneos.aspx.cs" Inherits="JJSS.Presentacion.HistoricoTorneos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="HistoricoTorneos.aspx.cs" Inherits="JJSS.Presentacion.HistoricoTorneos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
