@@ -15,7 +15,8 @@ namespace JJSS.Presentacion
         private static GestorResultados gestorResultados;
         private static GestorTorneos gestorTorneos;
         private static List<CategoriasTorneoResultado> categoriasConInscriptos;
-        private static List<CategoriasTorneoResultado> categoriasSinInscriptos;
+        private static List<categoria> categorias;
+        private static List<faja> fajas;
         private List<DatosParticipanteTorneo> participantes;
         private static torneo torneoSeleccionado;
 
@@ -31,7 +32,8 @@ namespace JJSS.Presentacion
                     torneoSeleccionado = gestorTorneos.BuscarTorneoPorID(idTorneo);
 
                     categoriasConInscriptos = gestorResultados.mostrarCategoriasConInscriptos(idTorneo);
-                    categoriasSinInscriptos = gestorResultados.mostrarCategoriasSinInscriptos(idTorneo);
+                    categorias = gestorResultados.mostrarCategorias();
+                    fajas = gestorResultados.mostrarFajas();
                     cargarCombosCategorias();
                 }
                 else
@@ -48,10 +50,15 @@ namespace JJSS.Presentacion
             ddl_categoriasConInscriptos.DataValueField = "idCategoriaTorneo";
             ddl_categoriasConInscriptos.DataBind();
 
-            ddl_categoriasSinInscriptos.DataSource = categoriasSinInscriptos;
-            ddl_categoriasSinInscriptos.DataTextField = "nombreParaMostrar";
-            ddl_categoriasSinInscriptos.DataValueField = "idCategoriaTorneo";
-            ddl_categoriasSinInscriptos.DataBind();
+            ddl_categorias.DataSource = categorias;
+            ddl_categorias.DataTextField = "nombre";
+            ddl_categorias.DataValueField = "id_categoria";
+            ddl_categorias.DataBind();
+
+            ddl_fejas.DataSource = fajas;
+            ddl_fejas.DataTextField = "descripcion";
+            ddl_fejas.DataValueField = "id_faja";
+            ddl_fejas.DataBind();
         }
 
         private void cargarComboParticipantes()
@@ -77,25 +84,32 @@ namespace JJSS.Presentacion
             ddl_3_2.DataBind();
         }
 
-        protected void btn_menos_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btn_mas_Click(object sender, EventArgs e)
         {
-
+            int idFaja = int.Parse(ddl_fejas.SelectedItem.Value);
+            int idCategoria = int.Parse(ddl_categorias.SelectedItem.Value);
+            CategoriasTorneoResultado categoriaAAgregar = gestorResultados.categoriaAAgregar(idFaja, idCategoria);
+            categoriasConInscriptos.Add(categoriaAAgregar);
+            cargarCombosCategorias();
         }
 
         protected void btn_agregar_Click(object sender, EventArgs e)
         {
-            int idCategoria = int.Parse(ddl_categoriasConInscriptos.SelectedItem.Value);
-            participantes = gestorResultados.mostrarParticipantesDeCategoria(idCategoria, torneoSeleccionado.id_torneo);
-            cargarComboParticipantes();
-            lbl_nombreCategoria.Text = ddl_categoriasConInscriptos.SelectedItem.Text;
-            pnl_mensaje_error.Visible = false;
-            pnl_mensaje_exito.Visible = false;
-            pnl_participantes.Visible = true;
+            try
+            {
+                int idCategoria = int.Parse(ddl_categoriasConInscriptos.SelectedItem.Value);
+                participantes = gestorResultados.mostrarParticipantesDeCategoria(idCategoria, torneoSeleccionado.id_torneo);
+                cargarComboParticipantes();
+                lbl_nombreCategoria.Text = ddl_categoriasConInscriptos.SelectedItem.Text;
+                pnl_mensaje_error.Visible = false;
+                pnl_mensaje_exito.Visible = false;
+                pnl_participantes.Visible = true;
+            }
+            catch (NullReferenceException ex)
+            {
+                mensaje("Debe seleccionar una categoría", false);
+            }
+
         }
 
         protected void btn_volver_Click(object sender, EventArgs e)
@@ -121,11 +135,12 @@ namespace JJSS.Presentacion
                 {
                     mensaje(res, false);
                 }
-            }catch (NullReferenceException ex)
+            }
+            catch (NullReferenceException ex)
             {
                 mensaje("Debe seleccionar un participante", false);
             }
-            
+
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -145,17 +160,12 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void btn_masParticipante_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         protected void btn_aceptar_participante_Click(object sender, EventArgs e)
         {
             int idCategoria = int.Parse(ddl_categoriasConInscriptos.SelectedItem.Value);
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
-            int dni = int.Parse(txt_dni.Text);
+            var dni = txt_dni.Text;
             //TODO nacionalidad y tipo dni
             GestorInscripciones gi = new GestorInscripciones();
             string res = gi.InscribirATorneo(torneoSeleccionado.id_torneo, nombre, apellido, dni, idCategoria);
@@ -168,6 +178,15 @@ namespace JJSS.Presentacion
             {
                 mensaje(res, false);
             }
+        }
+
+        private void limpiarModal()
+        {
+            txt_apellido.Text = "";
+            txt_dni.Text = "";
+            txt_nombre.Text = "";
+            ddl_nacionalidad.SelectedIndex = -1;
+            ddl_tipo_dni.SelectedIndex = -1;
         }
     }
 }

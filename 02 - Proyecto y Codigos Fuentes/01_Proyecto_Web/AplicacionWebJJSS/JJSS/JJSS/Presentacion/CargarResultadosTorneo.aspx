@@ -38,9 +38,18 @@
                 <div class="col-md-4">
                     <p>&nbsp;</p>
                     <h1>CARGA DE RESULTADOS</h1>
+
                 </div>
             </div>
-
+            <div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="row centered">
+                <h5>* Si a una categoría se le cargó resultados y se vuelven a cargar, los resultados se sobreescribirán.</h5>
+            </div>
+            <div>
+                <p>&nbsp;</p>
+            </div>
             <asp:Panel ID="pnl_categorias" CssClass="panel panel-default" runat="server">
                 <div class="row centered center-block">
                     <div class="col-md-3">
@@ -49,60 +58,72 @@
                     <div class="col-md-4">
                         <asp:DropDownList ID="ddl_categoriasConInscriptos" runat="server" class="caja2 pull-right"></asp:DropDownList>
                     </div>
-                    <div class="col-md-5">
-                        <asp:Button ID="btn_menos" class="btn btn-default" runat="server" Text="-" formnovalidate="true" CausesValidation="false" OnClick="btn_menos_Click" Visible="false" />
-                    </div>
                 </div>
                 <div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row centered center-block">
                     <div class="col-md-2">
                         <label class="pull-left 4">Otras categorías</label>
                     </div>
                     <div class="col-md-4">
-                        <asp:DropDownList ID="ddl_categoriasSinInscriptos" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
+                        <asp:DropDownList ID="ddl_categorias" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                     </div>
-                    <div class="col-md-1">
-                        <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+" formnovalidate="true" CausesValidation="false" OnClick="btn_mas_Click" Visible="false" />
+                    <div class="col-md-4">
+                        <asp:DropDownList ID="ddl_fejas" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
+                    </div>
+                    <div class="col-md-2">
+                        <asp:Button ID="btn_mas" class="btn btn-outline-dark" runat="server" Text="Agregar categoría" formnovalidate="true" CausesValidation="false" OnClick="btn_mas_Click" />
                     </div>
                 </div>
                 <div>
-                    <asp:Button ID="btn_agregar" class="btn btn-default pull-right" runat="server" Text="Agregar" formnovalidate="true" CausesValidation="false" OnClick="btn_agregar_Click" />
+                    <p>&nbsp;</p>
+                </div>
+                <div>
+                    <asp:Button ID="btn_agregar" class="btn btn-outline-dark pull-right" runat="server" Text="Agregar resultado" formnovalidate="true" CausesValidation="false" OnClick="btn_agregar_Click" />
                 </div>
             </asp:Panel>
             <p>&nbsp;</p>
             <asp:Panel ID="pnl_participantes" CssClass="panel panel-default" runat="server" Visible="false">
                 <p>&nbsp;</p>
-                <h2>
-                    <asp:Label ID="lbl_nombreCategoria" runat="server" Text="Sin Categoría"></asp:Label>
-                </h2>
+                <div class="row centered">
+                    <h2>
+                        <asp:Label ID="lbl_nombreCategoria" runat="server" Text="Sin Categoría"></asp:Label>
+                    </h2>
+                </div>
                 <div>
                     <div>
                         <div class="centered">
+                            Primer puesto
                             <asp:DropDownList ID="ddl_1" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                             <p>&nbsp;</p>
                         </div>
                         <div class="centered">
+                            Segundo puesto
                             <asp:DropDownList ID="ddl_2" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                             <p>&nbsp;</p>
                         </div>
                         <div class="centered">
+                            Tercer puesto 1
                             <asp:DropDownList ID="ddl_3_1" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                             <p>&nbsp;</p>
                         </div>
                         <div class="centered">
+                            Tercer puesto 2
                             <asp:DropDownList ID="ddl_3_2" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                             <p>&nbsp;</p>
                         </div>
                     </div>
                     <div>
-                        <a id="btn_agregar_participante" href="" data-toggle="modal" data-target="#nuevoParticipante" class="btn btn-link" >Agregar nuevo participante</a>
+                        <a id="btn_agregar_participante" href="" data-toggle="modal" data-target="#nuevoParticipante" class="btn btn-outline-dark">Agregar nuevo participante</a>
                     </div>
                 </div>
                 <p>&nbsp;</p>
-                <asp:Button ID="btn_agregarResultado" class="btn btn-default pull-right" runat="server" Text="Aceptar" formnovalidate="true" CausesValidation="false" OnClick="btn_agregarResultado_Click" />
+                <asp:Button ID="btn_agregarResultado" class="btn btn-outline-dark pull-right" runat="server" Text="Aceptar" formnovalidate="true" CausesValidation="false" OnClick="btn_agregarResultado_Click" />
             </asp:Panel>
 
             <p>&nbsp;</p>
-            
+
             <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass="btn btn-link pull-left" OnClick="btn_volver_Click" />
         </div>
 
@@ -176,7 +197,7 @@
                                         <label class="pull-left">DNI:</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <asp:TextBox ID="txt_dni" required="true"  type="number" class="form-control" min="1000000" max="1000000000"  runat="server" placeholder="Ingrese DNI"></asp:TextBox>
+                                        <asp:TextBox ID="txt_dni" required="true" class="form-control" MaxLength="20" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -200,7 +221,7 @@
                     <!--Botonero-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="btn_aceptar_participante" CssClass="btn btn-default" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_aceptar_participante_Click"/>
+                        <asp:Button ID="btn_aceptar_participante" CssClass="btn btn-outline-dark" AutoPostBack="true" runat="server" Text="Aceptar" OnClick="btn_aceptar_participante_Click" />
 
                     </div>
 

@@ -67,22 +67,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_categoriasConInscriptos;
         
         /// <summary>
-        /// Control btn_menos.
+        /// Control ddl_categorias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_menos;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_categorias;
         
         /// <summary>
-        /// Control ddl_categoriasSinInscriptos.
+        /// Control ddl_fejas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_categoriasSinInscriptos;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_fejas;
         
         /// <summary>
         /// Control btn_mas.

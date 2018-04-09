@@ -14,6 +14,8 @@ namespace JJSS_Negocio
     {
         private alumno alumnoExistente;
 
+
+        //TODO nacionalidad y tipo dni
         /*Método que permite crear un objeto de Entidad de la clase Inscripción
          * Como asi tambien genera una nueva categoria si esta no estaba 
          * Y si el participante no estaba ya inscripto
@@ -88,12 +90,13 @@ namespace JJSS_Negocio
                     };
                     db.participante.Add(nuevoParticipante);
                     db.SaveChanges();
+
                     var catTorneoExistente = from catTor in db.categoria_torneo
                                              where (catTor.id_categoria == categoriaPerteneciente.id_categoria)
                                              && catTor.id_faja==pFaja
                                              select catTor;
                     categoria_torneo nuevaCategoriaTorneo;
-                    //+rever esto
+
                     if (catTorneoExistente.Count() == 0)
 
                     {
@@ -103,13 +106,14 @@ namespace JJSS_Negocio
                             faja = fajaElegida,
 
                         };
+                        db.categoria_torneo.Add(nuevaCategoriaTorneo);
+                        db.SaveChanges();
                     }
                     else
                     {
                         nuevaCategoriaTorneo = catTorneoExistente.First();
                     }
-                    db.categoria_torneo.Add(nuevaCategoriaTorneo);
-                    db.SaveChanges();
+                    
 
                     string hora = hora = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;
@@ -145,7 +149,65 @@ namespace JJSS_Negocio
                 }
             }
         }
+        //TODO nacionalidad y tipo dni
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, string pDni, int pIdCategoriaTorneo)
+        {
+            String sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                
+                try
+                {
+                    //Foraneos
+                    torneo torneoInscripto = db.torneo.Find(pTorneo);
 
+                    //Nuevos
+                    if (obtenerParticipanteDeTorneo(pDni, pTorneo) != null)
+                    {
+                        return "El participante ya se inscribió a este torneo";
+                    }
+                    
+                    participante nuevoParticipante;
+
+                    nuevoParticipante = new participante()
+                    {
+                        nombre = pNombre,
+                        apellido = pApellido,
+                        dni = pDni
+                    };
+                    db.participante.Add(nuevoParticipante);
+                    db.SaveChanges();
+
+                    categoria_torneo nuevaCategoriaTorneo = db.categoria_torneo.Find(pIdCategoriaTorneo); 
+                    
+                    string hora = hora = DateTime.Now.ToString("hh:mm tt");
+                    DateTime fecha = DateTime.Now.Date;
+                    inscripcion nuevaInscripcion = new inscripcion()
+                    {
+
+                        hora = hora,
+                        fecha = fecha,
+                        codigo_barra = 123456789,
+                        participante = nuevoParticipante,
+                        id_participante = nuevoParticipante.id_participante,
+                        id_torneo = torneoInscripto.id_torneo,
+                        torneo = torneoInscripto,
+                        categoria_torneo = nuevaCategoriaTorneo,
+                    };
+                    
+                    db.inscripcion.Add(nuevaInscripcion);
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
 
 
         public inscripcion obtenerInscripcionATorneoPorIdParticipantePorDni(string pDni, int pIdTorneo)
@@ -221,7 +283,7 @@ namespace JJSS_Negocio
             return gestorParticipantes.ObtenerParticipantePorDNI(pDni);
         }
 
-
+        //TODO nacionalidad y tipo dni
         public participante obtenerParticipanteDeTorneo(string pDni, int pIDTorneo)
         {
             using (var db = new JJSSEntities())

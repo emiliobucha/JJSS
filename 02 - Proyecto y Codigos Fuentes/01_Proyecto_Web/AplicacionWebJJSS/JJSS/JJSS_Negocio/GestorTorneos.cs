@@ -555,6 +555,7 @@ namespace JJSS_Negocio
                                  join catt in db.categoria_torneo on res.id_categoria_torneo equals catt.id_categoria_torneo
                                  join tor in db.torneo on res.id_torneo equals tor.id_torneo
                                  where tor.id_torneo == idTorneo
+                                 orderby catt.categoria.nombre
                                  select new ResultadoDeTorneo()
                                  {
                                      categoria = catt.categoria.nombre,
@@ -563,8 +564,16 @@ namespace JJSS_Negocio
                                      segundo = res.participante1.nombre + " " + res.participante1.apellido,
                                      tercero1 = res.participante2.nombre + " " + res.participante2.apellido,
                                      tercero2 = res.participante3.nombre + " " + res.participante3.apellido,
+                                     sexo= catt.categoria.sexo,
                                  };
-                return resultados.ToList();
+                List<ResultadoDeTorneo> resu = resultados.ToList();
+                foreach(ResultadoDeTorneo r in resu)
+                {
+                    string sexo = r.sexo.Equals(ContantesSexo.FEMENINO) ? " F " : " M ";
+                    r.categoria = r.categoria + " " + sexo;
+                    r.faja = r.faja.Split(new char[] { '-' })[0]; ;
+                }
+                return resu;
             }
         }
     }

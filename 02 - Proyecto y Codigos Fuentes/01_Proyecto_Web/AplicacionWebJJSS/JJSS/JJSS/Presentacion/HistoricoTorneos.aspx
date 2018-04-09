@@ -47,7 +47,7 @@
         </div>
         <div class="row mt centered">
             <div class="col-md-9"></div>
-            <div class="col-md-2"><asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btn_buscar_Click"/></div>
+            <div class="col-md-2"><asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click"/></div>
         </div>
 
         <!--APARTADO DE TORNEOS FUTUROS-->
@@ -94,7 +94,7 @@
                                         <asp:Label ID="lv_lbl_estado" runat="server" Text='<%# Eval("estado") %>' />
                                 </div>
                                 <div>
-                                    <asp:Button ID="lv_btn_seleccionar" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass=" btn-link" Text="Seleccionar" />
+                                    <asp:Button ID="lv_btn_seleccionar" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass="btn btn-outline-dark" Text="Seleccionar" />
                                 </div>
                             </div>
 
