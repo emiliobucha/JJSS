@@ -35,7 +35,7 @@
 
                 <!--Torneo-->
                 <div class="col-sm-12 col-md-6 col-lg-3  ">
-                    <a class="text-dark" href="MenuTorneo.aspx">
+                    <a class="text-dark" href="Torneos/MenuTorneo.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/torneo.png" alt="Card image cap">
                             <div class="">
