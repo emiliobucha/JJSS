@@ -81,7 +81,7 @@ namespace JJSS.Presentacion
             if (claseActual == null) mensaje("No hay clases disponibles en este horario", false);
             else
             {
-                alumno alu = gestorAlumno.ObtenerAlumnoPorDNI(int.Parse(txtDni.Text));
+                alumno alu = gestorAlumno.ObtenerAlumnoPorDNI(txtDni.Text);
                 if (alu != null)
                 {
 

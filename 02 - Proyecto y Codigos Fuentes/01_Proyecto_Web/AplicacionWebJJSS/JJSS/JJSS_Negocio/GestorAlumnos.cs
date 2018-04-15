@@ -24,7 +24,7 @@ namespace JJSS_Negocio
          * Retornos:
          *              Alumno encontrado, o si no estaba devuelve null
          */
-        public alumno ObtenerAlumnoPorDNI(int pDni)
+        public alumno ObtenerAlumnoPorDNI(string pDni)
         {
             using (var db = new JJSSEntities())
             {
@@ -63,7 +63,7 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento,
-            short? pSexo, int pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
+            short? pSexo, string pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
             string pCalle, int? pNumero, string pDpto, int? pPiso, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
@@ -148,10 +148,23 @@ namespace JJSS_Negocio
                     db.alumno.Add(nuevoAlumno);
 
                     db.SaveChanges();
+
+
+                    byte[] arrayImagen = pImagen;
+                    if (arrayImagen.Length > 7000)
+                    {
+                        arrayImagen = new byte[0];
+                    }
+
+                    string imagenUrl = modUtilidades.SaveImage(pImagen, pNombre, "alumnos");
+
+
+
                     alumno_imagen nuevoAlumno_imagen = new alumno_imagen()
                     {
                         id_alumno = nuevoAlumno.id_alumno,
-                        imagen = pImagen
+                        imagen = arrayImagen,
+                        imagen_url = imagenUrl
                     };
                     db.alumno_imagen.Add(nuevoAlumno_imagen);
                     db.SaveChanges();
@@ -203,7 +216,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public List<AlumnoConEstado> BuscarAlumnoConEstado(int[] filtroEstados, String filtroApellido, int filtroDni)
+        public List<AlumnoConEstado> BuscarAlumnoConEstado(int[] filtroEstados, string filtroApellido, string filtroDni)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -215,7 +228,7 @@ namespace JJSS_Negocio
                     int filtroEstado2 = filtroEstados[2];
                     int filtroEstado3 = filtroEstados[3];
                     int filtroEstado4 = filtroEstados[4];
-                    if (filtroDni == 0)
+                    if (string.IsNullOrEmpty(filtroDni))
                     {
                         var alumnosPorApellido = from alumno in db.alumno
                                                  join est in db.estado on alumno.id_estado equals est.id_estado
@@ -232,7 +245,7 @@ namespace JJSS_Negocio
                                                      alu_estado = est.nombre,
                                                      alu_id_estado = est.id_estado,
                                                  };
-                        return alumnosPorApellido.ToList<AlumnoConEstado>();
+                        return alumnosPorApellido.ToList();
                     }
                     else
                     {
@@ -276,7 +289,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string EliminarAlumno(int pDni)
+        public string EliminarAlumno(string pDni)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -327,7 +340,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(int pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo)
+        public string ModificarAlumno(string pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -377,7 +390,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, int pDni, int? pIdCiudad, string pTorre)
+        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, string pDni, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -530,7 +543,7 @@ namespace JJSS_Negocio
          *              ex.message: error en la BD
          * 
          */
-        public string AsignarFaja(int pDniAlumno, int pIDFaja)
+        public string AsignarFaja(string pDniAlumno, int pIDFaja)
         {
             alumno alu = ObtenerAlumnoPorDNI(pDniAlumno);
             DateTime fechaActual = DateTime.Today.Date;
@@ -558,7 +571,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public string CambiarFotoPerfil(int pDni, byte[] pImagen)
+        public string CambiarFotoPerfil(string pDni, byte[] pImagen)
         {
 
             using (var db = new JJSSEntities())

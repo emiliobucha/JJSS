@@ -16,7 +16,7 @@ namespace JJSS_Negocio
          * Retornos: participante
          *          Retorna el participante buscado por DNI
          */
-        public participante ObtenerParticipantePorDNI(int pDni)
+        public participante ObtenerParticipantePorDNI(string pDni)
         {
             using (var db = new JJSSEntities())
             {
@@ -35,7 +35,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public String crearParticipante(String pNombre, String pApellido, short pSexo, DateTime pFechaNacimiento, int pDni, int? pAlumno)
+        public String crearParticipante(String pNombre, String pApellido, short pSexo, DateTime pFechaNacimiento, string pDni, int? pAlumno)
         {
             using (var db = new JJSSEntities())
             {

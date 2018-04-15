@@ -10,7 +10,7 @@ namespace JJSS_Negocio.Resultados
     {
         public string alu_nombre { get; set; }
         public string alu_apellido { get; set; }
-        public int alu_dni { get; set; }
+        public string alu_dni { get; set; }
         public string alu_estado { get; set; }
         public int alu_id_estado { get; set; }
     }

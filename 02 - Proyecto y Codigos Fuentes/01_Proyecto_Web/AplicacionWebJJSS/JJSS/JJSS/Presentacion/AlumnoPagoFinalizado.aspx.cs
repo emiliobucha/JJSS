@@ -68,7 +68,7 @@ namespace JJSS.Presentacion
 
                     lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
                     int id = int.Parse(Session["Clase"].ToString());
-                    int dni = int.Parse(Session["AlumnoDNI"].ToString());
+                    var dni = Session["AlumnoDNI"].ToString();
                     alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
                     clase oClase = gestorClase.ObtenerClasePorId(id);
                     lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
@@ -80,7 +80,7 @@ namespace JJSS.Presentacion
 
 
 
-                    if (int.TryParse(Session["AlumnoDNI"].ToString(), out dni))
+                    if (!string.IsNullOrEmpty(Session["AlumnoDNI"].ToString()) )
                     {
                         alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
 

@@ -245,6 +245,9 @@
     <Compile Include="tipo_clase.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tipo_documento.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tipo_evento_especial.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>

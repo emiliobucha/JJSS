@@ -17,6 +17,7 @@ namespace JJSS_Entidad
         public int id_evento_imagen { get; set; }
         public int id_evento { get; set; }
         public byte[] imagen { get; set; }
+        public string imagen_url { get; set; }
     
         public virtual evento_especial evento_especial { get; set; }
     }

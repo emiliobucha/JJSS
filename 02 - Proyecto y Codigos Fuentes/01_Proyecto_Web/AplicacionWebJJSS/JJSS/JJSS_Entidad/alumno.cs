@@ -31,7 +31,7 @@ namespace JJSS_Entidad
         public string apellido { get; set; }
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
         public Nullable<short> sexo { get; set; }
-        public int dni { get; set; }
+        public string dni { get; set; }
         public long telefono { get; set; }
         public string mail { get; set; }
         public Nullable<int> id_direccion { get; set; }
@@ -40,6 +40,7 @@ namespace JJSS_Entidad
         public Nullable<int> id_usuario { get; set; }
         public Nullable<short> baja_logica { get; set; }
         public Nullable<int> id_estado { get; set; }
+        public Nullable<int> id_tipo_documento { get; set; }
     
         public virtual direccion direccion { get; set; }
         public virtual estado estado { get; set; }
@@ -58,5 +59,6 @@ namespace JJSS_Entidad
         public virtual ICollection<participante> participante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante_evento> participante_evento { get; set; }
+        public virtual tipo_documento tipo_documento { get; set; }
     }
 }

@@ -67,7 +67,7 @@ namespace JJSS.Presentacion
 
                     lbl_fecha.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
                     int id = int.Parse(Session["EventoPagar"].ToString());
-                    int dni = int.Parse(Session["ParticipanteDNI"].ToString());
+                    var dni =Session["ParticipanteDNI"].ToString();
                     participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
                     evento_especial eventoPagar = gestorEventos.BuscarEventoPorID(id);
                     lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
@@ -79,7 +79,7 @@ namespace JJSS.Presentacion
 
 
 
-                    if (int.TryParse(Session["ParticipanteDNI"].ToString(), out dni))
+                    if (!string.IsNullOrEmpty( Session["ParticipanteDNI"].ToString()))
                     {
                         participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
 
