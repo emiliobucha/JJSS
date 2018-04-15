@@ -34,13 +34,15 @@ namespace JJSS_Entidad
         public System.DateTime fecha_ingreso { get; set; }
         public Nullable<int> id_direccion { get; set; }
         public Nullable<int> id_tipo_documento { get; set; }
+        public Nullable<int> id_pais { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<clase> clase { get; set; }
         public virtual direccion direccion { get; set; }
+        public virtual pais pais { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<profesor_imagen> profesor_imagen { get; set; }
-        public virtual seguridad_usuario seguridad_usuario { get; set; }
         public virtual tipo_documento tipo_documento { get; set; }
+        public virtual seguridad_usuario seguridad_usuario { get; set; }
     }
 }

@@ -36,6 +36,7 @@ namespace JJSS_Entidad
         public string dni { get; set; }
         public Nullable<int> id_alumno { get; set; }
         public Nullable<int> id_tipo_documento { get; set; }
+        public Nullable<int> id_pais { get; set; }
     
         public virtual alumno alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -48,6 +49,7 @@ namespace JJSS_Entidad
         public virtual ICollection<pago_evento> pago_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_torneo> pago_torneo { get; set; }
+        public virtual pais pais { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<resultado> resultado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

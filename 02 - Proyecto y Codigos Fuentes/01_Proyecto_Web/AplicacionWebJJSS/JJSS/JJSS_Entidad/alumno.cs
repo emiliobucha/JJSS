@@ -22,8 +22,8 @@ namespace JJSS_Entidad
             this.asistencia_clase = new HashSet<asistencia_clase>();
             this.inscripcion_clase = new HashSet<inscripcion_clase>();
             this.pago_clase = new HashSet<pago_clase>();
-            this.participante = new HashSet<participante>();
             this.participante_evento = new HashSet<participante_evento>();
+            this.participante = new HashSet<participante>();
         }
     
         public int id_alumno { get; set; }
@@ -41,10 +41,8 @@ namespace JJSS_Entidad
         public Nullable<short> baja_logica { get; set; }
         public Nullable<int> id_estado { get; set; }
         public Nullable<int> id_tipo_documento { get; set; }
+        public Nullable<int> id_pais { get; set; }
     
-        public virtual direccion direccion { get; set; }
-        public virtual estado estado { get; set; }
-        public virtual seguridad_usuario seguridad_usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno_imagen> alumno_imagen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -56,9 +54,13 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_clase> pago_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<participante> participante { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante_evento> participante_evento { get; set; }
+        public virtual direccion direccion { get; set; }
+        public virtual estado estado { get; set; }
+        public virtual pais pais { get; set; }
         public virtual tipo_documento tipo_documento { get; set; }
+        public virtual seguridad_usuario seguridad_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<participante> participante { get; set; }
     }
 }
