@@ -85,7 +85,7 @@
                                     <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
-                                    <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
+                                    <a class="btn btn-outline-dark" runat="server" formnovalidate="true" href="~/Administracion/CrearSede.aspx" >+ </a>
                                 </div>
                             </div>
 
@@ -222,7 +222,7 @@
                             <!--Boton-->
 
                             <div class="row centered justify-content-center">
-                                <asp:Button ID="btn_aceptar" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1" OnClientClick="btn_aceptar_Click1" CausesValidation="true" ValidationGroup="vgTorneo" />
+                                <asp:Button ID="btn_aceptar" class=" btn btn-outline-dark" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click1" OnClientClick="btn_aceptar_Click1" CausesValidation="true" ValidationGroup="vgTorneo" />
                             </div>
 
                              <div class="row centered">
@@ -236,7 +236,7 @@
                             <p>&nbsp;</p>
                         </div>
 
-                        <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" formnovalidate="true" CssClass="btn-link" CausesValidation="false" OnClick="btn_Cancelar_Click" />
+                        <asp:Button ID="btn_Cancelar" runat="server" Text="Volver" formnovalidate="true" CssClass="btn btn-link" CausesValidation="false" OnClick="btn_Cancelar_Click" />
                     </div>
 
                 </form>

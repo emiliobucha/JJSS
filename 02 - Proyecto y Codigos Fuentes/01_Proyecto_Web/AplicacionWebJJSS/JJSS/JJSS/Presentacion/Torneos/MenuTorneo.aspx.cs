@@ -31,8 +31,15 @@ namespace JJSS.Presentacion
         protected void lv_torneos_abiertos_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
-            Session["torneoSeleccionado"] = id;
-            Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
+            if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                Session["idTorneo"] = id;
+                Response.Redirect("~/Presentacion/Torneos/VerTorneo.aspx");
+            }else if (e.CommandName.CompareTo("inscribir") == 0)
+            {
+                Session["idTorneo_inscribirTorneo"] = id;
+                Response.Redirect("~/Presentacion/Torneos/InscripcionTorneo.aspx");
+            }
         }
     }
 }

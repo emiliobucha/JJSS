@@ -57,9 +57,9 @@ namespace JJSS
 
 
 
-                if (Session["torneoSeleccionado"] != null)
+                if (Session["idTorneo_inscribirTorneo"] != null)
                 {
-                    int id = (int)Session["torneoSeleccionado"];
+                    int id = (int)Session["idTorneo_inscribirTorneo"];
 
                     cargarInfoTorneo(id);
                     pnl_elegirTorneo.Visible = false;
@@ -131,9 +131,9 @@ namespace JJSS
             pnl_mensaje_exito.Visible = false;
 
             int idTorneo;
-            if (Session["torneoSeleccionado"] != null)
+            if (Session["idTorneo_inscribirTorneo"] != null)
             {
-                idTorneo = (int)Session["torneoSeleccionado"];
+                idTorneo = (int)Session["idTorneo_inscribirTorneo"];
 
             }
             else
@@ -241,9 +241,9 @@ namespace JJSS
                 ddl_torneos.DataBind();
             }
 
-            if (Session["torneoSeleccionado"] != null)
+            if (Session["idTorneo_inscribirTorneo"] != null)
             {
-                int id = (int)Session["torneoSeleccionado"];
+                int id = (int)Session["idTorneo_inscribirTorneo"];
                 ddl_torneos.SelectedValue = id.ToString();
             }
         }
@@ -324,9 +324,9 @@ namespace JJSS
             limpiar(false);
 
             int idTorneo;
-            if (Session["torneoSeleccionado"] != null)
+            if (Session["idTorneo_inscribirTorneo"] != null)
             {
-                idTorneo = (int)Session["torneoSeleccionado"];
+                idTorneo = (int)Session["idTorneo_inscribirTorneo"];
 
             }
             else

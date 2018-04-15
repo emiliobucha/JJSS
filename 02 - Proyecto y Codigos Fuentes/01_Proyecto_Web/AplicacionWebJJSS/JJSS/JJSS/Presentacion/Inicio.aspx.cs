@@ -315,7 +315,7 @@ namespace JJSS.Presentacion
         protected void lv_torneos_abiertos_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
-            Session["torneoSeleccionado"] = id;
+            Session["idTorneo_inscribirTorneo"] = id;
             Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
         }
 

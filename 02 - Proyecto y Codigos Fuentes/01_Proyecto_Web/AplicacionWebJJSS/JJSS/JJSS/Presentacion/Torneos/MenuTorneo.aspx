@@ -37,23 +37,23 @@
                     <p>&nbsp;</p>
                 </div>
 
-                <!--Incribir-->
+                <%--<!--Incribir-->
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto">
                     <a class="text-dark" href="InscripcionTorneo.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../img/Inscribir.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Inscribir.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Incribir</h4>
                             </div>
                         </div>
                     </a>
-                </div>
+                </div>--%>
 
                 <!--Crear-->
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
                     <a class="text-dark" href="CrearTorneo.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../img/Crear2.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Crear</h4>
                             </div>
@@ -65,7 +65,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
                     <a class="text-dark" href="HistoricoTorneos.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../img/Historial.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Histórico</h4>
                             </div>
@@ -73,11 +73,11 @@
                     </a>
                 </div>
 
-                <!--Ver-->
+                <%--<!--Ver-->
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
                     <a class="text-dark" href="VerTorneo.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../img/Ver.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Ver</h4>
                             </div>
@@ -89,13 +89,13 @@
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
                     <a class="text-dark" href="TorneoPago.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../img/Pago.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Pago.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Pagar</h4>
                             </div>
                         </div>
                     </a>
-                </div>
+                </div>--%>
 
             </div>
 
@@ -157,7 +157,8 @@
                                         <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
                             </div>
                             <div runat="server">
-                                <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass=" btn btn-outline-dark" Text="Inscribir" />
+                                <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass=" btn btn-outline-dark" Text="Inscribir" CommandName="inscribir" />
+                                <asp:Button ID="lv_btn_seleccionar" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass=" btn btn-outline-dark" Text="Seleccionar" CommandName="seleccionar" />
                             </div>
                             <div class="row centered ">
                                 <p>&nbsp;</p>
