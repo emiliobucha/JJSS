@@ -13,14 +13,14 @@
     <title>JJSS</title>
 
     <!-- Bootstrap core CSS -->
-      <link href="../css/bootstrap.css" rel="stylesheet" />
+      <link href="/css/bootstrap.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
 
-      <link href="../css/style.css" rel="stylesheet" />
-      <link href="../css/font-awesome.min.css" rel="stylesheet" />
-      <link href="../js/fancybox/jquery.fancybox.css" rel="stylesheet" />
+      <link href="/css/style.css" rel="stylesheet" />
+      <link href="/css/font-awesome.min.css" rel="stylesheet" />
+      <link href="/js/fancybox/jquery.fancybox.css" rel="stylesheet" />
     <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="//assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -54,14 +54,14 @@
 
   <body>
 
-      <div class="row justify-content-between" style="background:url(../img/4.png); background-size:cover" > 
+      <div class="row justify-content-between" style="background:url(/img/4.png); background-size:cover" > 
           
           <div class=" col-lg-2 centered">
             <h1 class="centered modal-dialog-centered justify-content-center text-white" style="font-size:80px" >Hinojal</h1>
           </div>
 
           <div class="col-lg-2  centered">
-              <img class=" img-fluid" src="../img/logo_mariano_pequeño.png" />
+              <img class=" img-fluid" src="/img/logo_mariano_pequeño.png" />
           </div>
       </div>
 
@@ -90,9 +90,9 @@
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarTorneo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Torneo &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item text-white" href="CrearTorneo.aspx">Crear </a>
+                              <a class="dropdown-item text-white" href="Torneos/CrearTorneo.aspx">Crear </a>
                               <a class="dropdown-item text-white" href="#">Ver </a>
-                              <a class="dropdown-item text-white" href="InscripcionTorneo.aspx">Inscribir </a>                                                    
+                              <a class="dropdown-item text-white" href="Torneos/InscripcionTorneo.aspx">Inscribir </a>                                                    
                               <a class="dropdown-item text-white" >Registrar Pago </a>
                           </div>
                       </li>
@@ -168,8 +168,8 @@
 
                       <div id="sesion" class="collapse">
 
-                          <a href="../Presentacion/Perfil.aspx"  style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Modificar Perfil</a>
-                          <a href="../Presentacion/Login.aspx" style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Cerrar Sesión</a>
+                          <a href="/Presentacion/Perfil.aspx"  style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Modificar Perfil</a>
+                          <a href="/Presentacion/Login.aspx" style="text-transform:capitalize"> &nbsp; <span class="fa fa-circle"></span> Cerrar Sesión</a>
 
                       </div>
                   </asp:Panel>
@@ -272,16 +272,16 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <link href="../css/MisEstilos.css" rel="stylesheet" />
+    <link href="/css/MisEstilos.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/classie.js"></script>
-    <script src="../js/smoothscroll.js"></script>
-    <script src="../js/jquery.stellar.min.js"></script>
-    <script src="../js/fancybox/jquery.fancybox.js"></script>  
-    <script src="../js/main.js"></script>
-    <script src="../js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/classie.js"></script>
+    <script src="/js/smoothscroll.js"></script>
+    <script src="/js/jquery.stellar.min.js"></script>
+    <script src="/js/fancybox/jquery.fancybox.js"></script>  
+    <script src="/js/main.js"></script>
+    <script src="/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 
 		<script>
 		$(function(){
