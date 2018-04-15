@@ -17,6 +17,7 @@ namespace JJSS_Entidad
         public int id_profesorimagen { get; set; }
         public byte[] imagen { get; set; }
         public Nullable<int> id_profesor { get; set; }
+        public string imagen_url { get; set; }
     
         public virtual profesor profesor { get; set; }
     }

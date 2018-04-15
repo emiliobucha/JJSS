@@ -117,8 +117,8 @@
 
                       <div id="submenu_torneos" class="collapse" runat="server">
 
-                          <a href="CrearTorneo.aspx" style="text-transform:capitalize"  runat="server" id="crearTorneo">&nbsp; <span class="fa fa-circle" ></span>Crear Nuevo</a>
-                          <a href="InscripcionTorneo.aspx" style="text-transform:capitalize"  runat="server" id="inscribirTorneo" >&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
+                          <a href="Torneos/CrearTorneo.aspx" style="text-transform:capitalize"  runat="server" id="crearTorneo">&nbsp; <span class="fa fa-circle" ></span>Crear Nuevo</a>
+                          <a href="Torneos/InscripcionTorneo.aspx" style="text-transform:capitalize"  runat="server" id="inscribirTorneo" >&nbsp; <span class="fa fa-circle"></span>Inscribir</a>
                           <a href="Inicio.aspx#exportarListado" style="text-transform:capitalize"  runat="server" id="listadoTorneo" >&nbsp; <span class="fa fa-circle"></span>Listado de Asistentes</a>
                           
 

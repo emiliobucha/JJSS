@@ -15,7 +15,8 @@ namespace JJSS_Negocio.Resultados
         private byte[] _imagenB;
         public int id_torneo { get; set; }
         public string nombre { get; set; }
-        public DateTime? fecha { get; set; }
+        public DateTime? dtFecha { get; set; }
+        public string fecha { get; set; }
         public string hora { get; set; }
         public string estado { get; set; }
 
@@ -70,8 +71,6 @@ namespace JJSS_Negocio.Resultados
                 }
             }
         }
-
-
 
     }
 }

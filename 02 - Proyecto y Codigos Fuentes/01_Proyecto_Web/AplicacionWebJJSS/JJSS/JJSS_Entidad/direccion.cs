@@ -19,8 +19,8 @@ namespace JJSS_Entidad
         {
             this.academia = new HashSet<academia>();
             this.alumno = new HashSet<alumno>();
-            this.profesor = new HashSet<profesor>();
             this.sede = new HashSet<sede>();
+            this.profesor = new HashSet<profesor>();
         }
     
         public int id_direccion { get; set; }
@@ -38,8 +38,8 @@ namespace JJSS_Entidad
         public virtual ICollection<alumno> alumno { get; set; }
         public virtual ciudad ciudad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<profesor> profesor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sede> sede { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<profesor> profesor { get; set; }
     }
 }

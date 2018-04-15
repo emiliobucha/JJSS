@@ -313,7 +313,7 @@ namespace JJSS.Presentacion
             //modifica los datos
             try
             {
-                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad, torre);
+                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, txt_dni.Text, idCiudad, torre);
                 mensaje("Se modificaron los datos correctamente", true);
             }
             catch (Exception ex)
@@ -323,7 +323,7 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, int.Parse(txt_dni.Text), idCiudad, torre);
+                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, txt_dni.Text, idCiudad, torre);
                         mensaje("Se modificaron los datos correctamente", true);
                     }
                     catch (Exception exx)
@@ -365,7 +365,7 @@ namespace JJSS.Presentacion
 
             try
             {
-                gestorAlumnos.CambiarFotoPerfil(int.Parse(txt_dni.Text), imagenByte);
+                gestorAlumnos.CambiarFotoPerfil(txt_dni.Text, imagenByte);
                 mensaje("Se modificaron los datos correctamente", true);
                 CargarDatos();
             }
@@ -376,7 +376,7 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.CambiarFotoPerfil(int.Parse(txt_dni.Text), imagenByte);
+                        gestorProfe.CambiarFotoPerfil(txt_dni.Text, imagenByte);
                         mensaje("Se modificaron los datos correctamente", true);
                         CargarDatos();
                     }
@@ -396,7 +396,7 @@ namespace JJSS.Presentacion
         {
             string apellido = txt_apellido.Text;
             string nombre = txt_nombre.Text;
-            int dni = int.Parse(txt_dni.Text);
+            var dni = txt_dni.Text;
 
             //+ NO ESTA CONTEMPLADO SI ES ADMIN...
 

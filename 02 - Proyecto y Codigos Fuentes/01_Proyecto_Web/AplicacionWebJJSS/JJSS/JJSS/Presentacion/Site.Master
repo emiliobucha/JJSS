@@ -54,12 +54,24 @@
 
   <body>
 
+      <div class="row justify-content-between" style="background:url(../img/4.png); background-size:cover" > 
+          
+          <div class=" col-lg-2 centered">
+            <h1 class="centered modal-dialog-centered justify-content-center text-white" style="font-size:80px" >Hinojal</h1>
+          </div>
+
+          <div class="col-lg-2  centered">
+              <img class=" img-fluid" src="../img/logo_mariano_pequeño.png" />
+          </div>
+      </div>
+
+
 
       <!-- Menu -->
 
           <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark" style="background-color: #2f2f2f;"  >
               <div class="navbar-nav nav-item">
-                  <a class="navbar-brand" href="MenuInicial.aspx">Hinojal</a>
+                  <a class="navbar-brand" href="MenuInicial.aspx">Home</a>
               </div>
               
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,9 +80,9 @@
 
               <div class="collapse navbar-collapse navbar-dark text-white" id="navbarNavDropdown">
                   <ul class="navbar-nav mr-auto">
-                      <li class="nav-item active">
+                      <%--<li class="nav-item active">
                           <a class=" nav-item  text-white" href="MenuInicial.aspx">&nbsp; Home &nbsp; </a>
-                      </li>
+                      </li>--%>
                       <li class="nav-item">
                           <a class=" nav-item  text-white" href="SobreNosotros.aspx">&nbsp; Sobre Nosotros &nbsp; </a>
                       </li>
@@ -199,10 +211,10 @@
       </asp:ContentPlaceHolder>
       <asp:ContentPlaceHolder ID="cphMenu" runat="server">
       </asp:ContentPlaceHolder>
-
+      
       <asp:ContentPlaceHolder ID="cphContenido" runat="server">
       </asp:ContentPlaceHolder>
-	
+    
 
        <!-- CONTACT SEPARATOR -->
        

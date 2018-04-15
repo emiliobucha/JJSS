@@ -23,7 +23,7 @@
           <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="date" />
           <Property Name="sexo" Type="smallint" />
-          <Property Name="dni" Type="int" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="telefono" Type="bigint" Nullable="false" />
           <Property Name="mail" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="id_direccion" Type="int" />
@@ -32,6 +32,8 @@
           <Property Name="id_usuario" Type="int" />
           <Property Name="baja_logica" Type="smallint" />
           <Property Name="id_estado" Type="int" />
+          <Property Name="id_tipo_documento" Type="int" />
+          <Property Name="id_pais" Type="int" />
         </EntityType>
         <EntityType Name="alumno_imagen">
           <Key>
@@ -40,6 +42,7 @@
           <Property Name="id_alumno" Type="int" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
           <Property Name="id_alumnoimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="alumnoxfaja">
           <Key>
@@ -197,6 +200,7 @@
           <Property Name="id_evento_imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_evento" Type="int" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="faja">
           <Key>
@@ -326,8 +330,10 @@
           <Property Name="apellido" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="date" />
           <Property Name="sexo" Type="smallint" />
-          <Property Name="dni" Type="int" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="id_alumno" Type="int" />
+          <Property Name="id_tipo_documento" Type="int" />
+          <Property Name="id_pais" Type="int" />
         </EntityType>
         <EntityType Name="participante_evento">
           <Key>
@@ -358,6 +364,7 @@
           <Property Name="id_productoimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
           <Property Name="id_producto" Type="int" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="profesor">
           <Key>
@@ -368,13 +375,15 @@
           <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="date" />
           <Property Name="sexo" Type="smallint" />
-          <Property Name="dni" Type="int" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="telefono" Type="bigint" Nullable="false" />
           <Property Name="mail" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="telefono_emergencia" Type="bigint" Nullable="false" />
           <Property Name="id_usuario" Type="int" />
           <Property Name="fecha_ingreso" Type="date" Nullable="false" />
           <Property Name="id_direccion" Type="int" />
+          <Property Name="id_tipo_documento" Type="int" />
+          <Property Name="id_pais" Type="int" />
         </EntityType>
         <EntityType Name="profesor_imagen">
           <Key>
@@ -383,6 +392,7 @@
           <Property Name="id_profesorimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
           <Property Name="id_profesor" Type="int" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="proveedor">
           <Key>
@@ -481,6 +491,14 @@
           <Property Name="id_tipo_clase" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tipo_documento">
+          <Key>
+            <PropertyRef Name="id_tipo_documento" />
+          </Key>
+          <Property Name="id_tipo_documento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="codigo" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tipo_evento_especial">
           <Key>
             <PropertyRef Name="id_tipo_evento" />
@@ -511,6 +529,7 @@
           <Property Name="id_torneo_imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_torneo" Type="int" Nullable="false" />
           <Property Name="imagen" Type="binary" MaxLength="8000" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK__academia__id_dir__11007AA7">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
@@ -521,42 +540,6 @@
             </Principal>
             <Dependent Role="academia">
               <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__alumno__id_direc__11F49EE0">
-          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="direccion">
-              <PropertyRef Name="id_direccion" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__alumno__id_estad__12E8C319">
-          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estado">
-              <PropertyRef Name="id_estado" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__alumno__id_usuar__13DCE752">
-          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="seguridad_usuario">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1162,18 +1145,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__participa__id_al__4297D63B">
-          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
-          <End Role="participante" Type="Self.participante" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="alumno">
-              <PropertyRef Name="id_alumno" />
-            </Principal>
-            <Dependent Role="participante">
-              <PropertyRef Name="id_alumno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__participa__id_al__438BFA74">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="participante_evento" Type="Self.participante_evento" Multiplicity="*" />
@@ -1223,30 +1194,6 @@
             </Principal>
             <Dependent Role="profesor_imagen">
               <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__profesor__id_dir__4668671F">
-          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
-          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="direccion">
-              <PropertyRef Name="id_direccion" />
-            </Principal>
-            <Dependent Role="profesor">
-              <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__profesor__id_usu__475C8B58">
-          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
-          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="seguridad_usuario">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="profesor">
-              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1464,6 +1411,150 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ALUMNO_ID_DIRECCION">
+          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_ESTADO">
+          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_TIPO_DOCUMENTO">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="id_tipo_documento" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_tipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_USUARIO">
+          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTICIPANTE_ID_ALUMNO">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
+          <End Role="participante" Type="Self.participante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="id_alumno" />
+            </Principal>
+            <Dependent Role="participante">
+              <PropertyRef Name="id_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTICIPANTE_ID_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="participante" Type="Self.participante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="participante">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTICIPANTE_ID_TIPO_DOCUMENTO">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="0..1" />
+          <End Role="participante" Type="Self.participante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="id_tipo_documento" />
+            </Principal>
+            <Dependent Role="participante">
+              <PropertyRef Name="id_tipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROFESOR_ID_DIRECCION">
+          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROFESOR_ID_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROFESOR_ID_TIPO_DOCUMENTO">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="id_tipo_documento" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_tipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROFESOR_ID_USUARIO">
+          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="JJSSModelStoreContainer">
           <EntitySet Name="academia" EntityType="Self.academia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
@@ -1512,24 +1603,13 @@
           <EntitySet Name="seguridad_usuario" EntityType="Self.seguridad_usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="seguridad_usuarioxgrupo" EntityType="Self.seguridad_usuarioxgrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_clase" EntityType="Self.tipo_clase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_documento" EntityType="Self.tipo_documento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo_evento_especial" EntityType="Self.tipo_evento_especial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="torneo" EntityType="Self.torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="torneo_imagen" EntityType="Self.torneo_imagen" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__academia__id_dir__11007AA7" Association="Self.FK__academia__id_dir__11007AA7">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="academia" EntitySet="academia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__alumno__id_direc__11F49EE0" Association="Self.FK__alumno__id_direc__11F49EE0">
-            <End Role="direccion" EntitySet="direccion" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="FK__alumno__id_estad__12E8C319" Association="Self.FK__alumno__id_estad__12E8C319">
-            <End Role="estado" EntitySet="estado" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="FK__alumno__id_usuar__13DCE752" Association="Self.FK__alumno__id_usuar__13DCE752">
-            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
-            <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
           <AssociationSet Name="FK__alumno_im__id_al__14D10B8B" Association="Self.FK__alumno_im__id_al__14D10B8B">
             <End Role="alumno" EntitySet="alumno" />
@@ -1723,10 +1803,6 @@
             <End Role="torneo" EntitySet="torneo" />
             <End Role="pago_torneo" EntitySet="pago_torneo" />
           </AssociationSet>
-          <AssociationSet Name="FK__participa__id_al__4297D63B" Association="Self.FK__participa__id_al__4297D63B">
-            <End Role="alumno" EntitySet="alumno" />
-            <End Role="participante" EntitySet="participante" />
-          </AssociationSet>
           <AssociationSet Name="FK__participa__id_al__438BFA74" Association="Self.FK__participa__id_al__438BFA74">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="participante_evento" EntitySet="participante_evento" />
@@ -1742,14 +1818,6 @@
           <AssociationSet Name="FK__profesor___id_pr__4850AF91" Association="Self.FK__profesor___id_pr__4850AF91">
             <End Role="profesor" EntitySet="profesor" />
             <End Role="profesor_imagen" EntitySet="profesor_imagen" />
-          </AssociationSet>
-          <AssociationSet Name="FK__profesor__id_dir__4668671F" Association="Self.FK__profesor__id_dir__4668671F">
-            <End Role="direccion" EntitySet="direccion" />
-            <End Role="profesor" EntitySet="profesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK__profesor__id_usu__475C8B58" Association="Self.FK__profesor__id_usu__475C8B58">
-            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
-            <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
           <AssociationSet Name="FK__provincia__id_pa__4944D3CA" Association="Self.FK__provincia__id_pa__4944D3CA">
             <End Role="pais" EntitySet="pais" />
@@ -1819,6 +1887,54 @@
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_DIRECCION" Association="Self.FK_ALUMNO_ID_DIRECCION">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_ESTADO" Association="Self.FK_ALUMNO_ID_ESTADO">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_PAIS" Association="Self.FK_ALUMNO_ID_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_TIPO_DOCUMENTO" Association="Self.FK_ALUMNO_ID_TIPO_DOCUMENTO">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_USUARIO" Association="Self.FK_ALUMNO_ID_USUARIO">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTICIPANTE_ID_ALUMNO" Association="Self.FK_PARTICIPANTE_ID_ALUMNO">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="participante" EntitySet="participante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTICIPANTE_ID_PAIS" Association="Self.FK_PARTICIPANTE_ID_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="participante" EntitySet="participante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTICIPANTE_ID_TIPO_DOCUMENTO" Association="Self.FK_PARTICIPANTE_ID_TIPO_DOCUMENTO">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="participante" EntitySet="participante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROFESOR_ID_DIRECCION" Association="Self.FK_PROFESOR_ID_DIRECCION">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROFESOR_ID_PAIS" Association="Self.FK_PROFESOR_ID_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROFESOR_ID_TIPO_DOCUMENTO" Association="Self.FK_PROFESOR_ID_TIPO_DOCUMENTO">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROFESOR_ID_USUARIO" Association="Self.FK_PROFESOR_ID_USUARIO">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -1845,7 +1961,7 @@
           <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
           <Property Name="sexo" Type="Int16" />
-          <Property Name="dni" Type="Int32" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="telefono" Type="Int64" Nullable="false" />
           <Property Name="mail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id_direccion" Type="Int32" />
@@ -1854,16 +1970,20 @@
           <Property Name="id_usuario" Type="Int32" />
           <Property Name="baja_logica" Type="Int16" />
           <Property Name="id_estado" Type="Int32" />
-          <NavigationProperty Name="direccion" Relationship="Self.FK__alumno__id_direc__11F49EE0" FromRole="alumno" ToRole="direccion" />
-          <NavigationProperty Name="estado" Relationship="Self.FK__alumno__id_estad__12E8C319" FromRole="alumno" ToRole="estado" />
-          <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK__alumno__id_usuar__13DCE752" FromRole="alumno" ToRole="seguridad_usuario" />
+          <Property Name="id_tipo_documento" Type="Int32" />
+          <Property Name="id_pais" Type="Int32" />
           <NavigationProperty Name="alumno_imagen" Relationship="Self.FK__alumno_im__id_al__14D10B8B" FromRole="alumno" ToRole="alumno_imagen" />
           <NavigationProperty Name="alumnoxfaja" Relationship="Self.FK__alumnoxfa__id_al__15C52FC4" FromRole="alumno" ToRole="alumnoxfaja" />
           <NavigationProperty Name="asistencia_clase" Relationship="Self.FK__asistenci__id_al__17AD7836" FromRole="alumno" ToRole="asistencia_clase" />
           <NavigationProperty Name="inscripcion_clase" Relationship="Self.FK__inscripci__id_al__335592AB" FromRole="alumno" ToRole="inscripcion_clase" />
           <NavigationProperty Name="pago_clase" Relationship="Self.FK__pago_clas__id_al__3AF6B473" FromRole="alumno" ToRole="pago_clase" />
-          <NavigationProperty Name="participante" Relationship="Self.FK__participa__id_al__4297D63B" FromRole="alumno" ToRole="participante" />
           <NavigationProperty Name="participante_evento" Relationship="Self.FK__participa__id_al__438BFA74" FromRole="alumno" ToRole="participante_evento" />
+          <NavigationProperty Name="direccion" Relationship="Self.FK_ALUMNO_ID_DIRECCION" FromRole="alumno" ToRole="direccion" />
+          <NavigationProperty Name="estado" Relationship="Self.FK_ALUMNO_ID_ESTADO" FromRole="alumno" ToRole="estado" />
+          <NavigationProperty Name="pais" Relationship="Self.FK_ALUMNO_ID_PAIS" FromRole="alumno" ToRole="pais" />
+          <NavigationProperty Name="tipo_documento" Relationship="Self.FK_ALUMNO_ID_TIPO_DOCUMENTO" FromRole="alumno" ToRole="tipo_documento" />
+          <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK_ALUMNO_ID_USUARIO" FromRole="alumno" ToRole="seguridad_usuario" />
+          <NavigationProperty Name="participante" Relationship="Self.FK_PARTICIPANTE_ID_ALUMNO" FromRole="alumno" ToRole="participante" />
         </EntityType>
         <EntityType Name="alumno_imagen">
           <Key>
@@ -1872,6 +1992,7 @@
           <Property Name="id_alumno" Type="Int32" Nullable="false" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <Property Name="id_alumnoimagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="alumno" Relationship="Self.FK__alumno_im__id_al__14D10B8B" FromRole="alumno_imagen" ToRole="alumno" />
         </EntityType>
         <EntityType Name="alumnoxfaja">
@@ -2016,10 +2137,10 @@
           <Property Name="id_ciudad" Type="Int32" />
           <Property Name="torre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="academia" Relationship="Self.FK__academia__id_dir__11007AA7" FromRole="direccion" ToRole="academia" />
-          <NavigationProperty Name="alumno" Relationship="Self.FK__alumno__id_direc__11F49EE0" FromRole="direccion" ToRole="alumno" />
+          <NavigationProperty Name="alumno" Relationship="Self.FK_ALUMNO_ID_DIRECCION" FromRole="direccion" ToRole="alumno" />
           <NavigationProperty Name="ciudad" Relationship="Self.FK__direccion__id_ci__26EFBBC6" FromRole="direccion" ToRole="ciudad" />
-          <NavigationProperty Name="profesor" Relationship="Self.FK__profesor__id_dir__4668671F" FromRole="direccion" ToRole="profesor" />
           <NavigationProperty Name="sede" Relationship="Self.FK__sede__id_direcci__50E5F592" FromRole="direccion" ToRole="sede" />
+          <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_DIRECCION" FromRole="direccion" ToRole="profesor" />
         </EntityType>
         <EntityType Name="estado">
           <Key>
@@ -2028,7 +2149,7 @@
           <Property Name="id_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ambito" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="alumno" Relationship="Self.FK__alumno__id_estad__12E8C319" FromRole="estado" ToRole="alumno" />
+          <NavigationProperty Name="alumno" Relationship="Self.FK_ALUMNO_ID_ESTADO" FromRole="estado" ToRole="alumno" />
           <NavigationProperty Name="estado_reserva" Relationship="Self.FK__estado_re__id_es__27E3DFFF" FromRole="estado" ToRole="estado_reserva" />
           <NavigationProperty Name="evento_especial" Relationship="Self.FK__evento_es__id_es__29CC2871" FromRole="estado" ToRole="evento_especial" />
           <NavigationProperty Name="torneo" Relationship="Self.FK__torneo__id_estad__55AAAAAF" FromRole="estado" ToRole="torneo" />
@@ -2074,6 +2195,7 @@
           <Property Name="id_evento_imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_evento" Type="Int32" Nullable="false" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="evento_especial" Relationship="Self.FK__evento_es__id_ev__2CA8951C" FromRole="evento_especial_imagen" ToRole="evento_especial" />
         </EntityType>
         <EntityType Name="faja">
@@ -2215,7 +2337,10 @@
           </Key>
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="id_pais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="alumno" Relationship="Self.FK_ALUMNO_ID_PAIS" FromRole="pais" ToRole="alumno" />
           <NavigationProperty Name="provincia" Relationship="Self.FK__provincia__id_pa__4944D3CA" FromRole="pais" ToRole="provincia" />
+          <NavigationProperty Name="participante" Relationship="Self.FK_PARTICIPANTE_ID_PAIS" FromRole="pais" ToRole="participante" />
+          <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_PAIS" FromRole="pais" ToRole="profesor" />
         </EntityType>
         <EntityType Name="parametro">
           <Key>
@@ -2235,18 +2360,22 @@
           <Property Name="apellido" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
           <Property Name="sexo" Type="Int16" />
-          <Property Name="dni" Type="Int32" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_alumno" Type="Int32" />
-          <NavigationProperty Name="alumno" Relationship="Self.FK__participa__id_al__4297D63B" FromRole="participante" ToRole="alumno" />
+          <Property Name="id_tipo_documento" Type="Int32" />
+          <Property Name="id_pais" Type="Int32" />
+          <NavigationProperty Name="alumno" Relationship="Self.FK_PARTICIPANTE_ID_ALUMNO" FromRole="participante" ToRole="alumno" />
           <NavigationProperty Name="inscripcion" Relationship="Self.FK__inscripci__id_pa__316D4A39" FromRole="participante" ToRole="inscripcion" />
           <NavigationProperty Name="lucha" Relationship="Self.FK__lucha__id_partic__3726238F" FromRole="participante" ToRole="lucha" />
           <NavigationProperty Name="lucha1" Relationship="Self.FK__lucha__id_partic__381A47C8" FromRole="participante" ToRole="lucha" />
           <NavigationProperty Name="pago_evento" Relationship="Self.FK__pago_even__id_pa__3EC74557" FromRole="participante" ToRole="pago_evento" />
           <NavigationProperty Name="pago_torneo" Relationship="Self.FK__pago_torn__id_pa__40AF8DC9" FromRole="participante" ToRole="pago_torneo" />
+          <NavigationProperty Name="pais" Relationship="Self.FK_PARTICIPANTE_ID_PAIS" FromRole="participante" ToRole="pais" />
           <NavigationProperty Name="resultado" Relationship="Self.FK__resultado__id_pr__4C214075" FromRole="participante" ToRole="resultado" />
           <NavigationProperty Name="resultado1" Relationship="Self.FK__resultado__id_se__4D1564AE" FromRole="participante" ToRole="resultado" />
           <NavigationProperty Name="resultado2" Relationship="Self.FK__resultado__id_te__4E0988E7" FromRole="participante" ToRole="resultado" />
           <NavigationProperty Name="resultado3" Relationship="Self.FK__resultado__id_te__4EFDAD20" FromRole="participante" ToRole="resultado" />
+          <NavigationProperty Name="tipo_documento" Relationship="Self.FK_PARTICIPANTE_ID_TIPO_DOCUMENTO" FromRole="participante" ToRole="tipo_documento" />
         </EntityType>
         <EntityType Name="participante_evento">
           <Key>
@@ -2283,6 +2412,7 @@
           <Property Name="id_productoimagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <Property Name="id_producto" Type="Int32" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="producto" Relationship="Self.FK__producto___id_pr__457442E6" FromRole="producto_imagen" ToRole="producto" />
         </EntityType>
         <EntityType Name="profesor">
@@ -2294,17 +2424,21 @@
           <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
           <Property Name="sexo" Type="Int16" />
-          <Property Name="dni" Type="Int32" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="telefono" Type="Int64" Nullable="false" />
           <Property Name="mail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="telefono_emergencia" Type="Int64" Nullable="false" />
           <Property Name="id_usuario" Type="Int32" />
           <Property Name="fecha_ingreso" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id_direccion" Type="Int32" />
+          <Property Name="id_tipo_documento" Type="Int32" />
+          <Property Name="id_pais" Type="Int32" />
           <NavigationProperty Name="clase" Relationship="Self.FK__clase__id_profe__1E5A75C5" FromRole="profesor" ToRole="clase" />
-          <NavigationProperty Name="direccion" Relationship="Self.FK__profesor__id_dir__4668671F" FromRole="profesor" ToRole="direccion" />
+          <NavigationProperty Name="direccion" Relationship="Self.FK_PROFESOR_ID_DIRECCION" FromRole="profesor" ToRole="direccion" />
+          <NavigationProperty Name="pais" Relationship="Self.FK_PROFESOR_ID_PAIS" FromRole="profesor" ToRole="pais" />
           <NavigationProperty Name="profesor_imagen" Relationship="Self.FK__profesor___id_pr__4850AF91" FromRole="profesor" ToRole="profesor_imagen" />
-          <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK__profesor__id_usu__475C8B58" FromRole="profesor" ToRole="seguridad_usuario" />
+          <NavigationProperty Name="tipo_documento" Relationship="Self.FK_PROFESOR_ID_TIPO_DOCUMENTO" FromRole="profesor" ToRole="tipo_documento" />
+          <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK_PROFESOR_ID_USUARIO" FromRole="profesor" ToRole="seguridad_usuario" />
         </EntityType>
         <EntityType Name="profesor_imagen">
           <Key>
@@ -2313,6 +2447,7 @@
           <Property Name="id_profesorimagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
           <Property Name="id_profesor" Type="Int32" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="profesor" Relationship="Self.FK__profesor___id_pr__4850AF91" FromRole="profesor_imagen" ToRole="profesor" />
         </EntityType>
         <EntityType Name="proveedor">
@@ -2417,8 +2552,8 @@
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="baja_logica" Type="Int16" />
-          <NavigationProperty Name="alumno" Relationship="Self.FK__alumno__id_usuar__13DCE752" FromRole="seguridad_usuario" ToRole="alumno" />
-          <NavigationProperty Name="profesor" Relationship="Self.FK__profesor__id_usu__475C8B58" FromRole="seguridad_usuario" ToRole="profesor" />
+          <NavigationProperty Name="alumno" Relationship="Self.FK_ALUMNO_ID_USUARIO" FromRole="seguridad_usuario" ToRole="alumno" />
+          <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_USUARIO" FromRole="seguridad_usuario" ToRole="profesor" />
           <NavigationProperty Name="reserva" Relationship="Self.FK__reserva__id_usua__4A38F803" FromRole="seguridad_usuario" ToRole="reserva" />
           <NavigationProperty Name="seguridad_usuarioxgrupo" Relationship="Self.FK__seguridad__id_us__54B68676" FromRole="seguridad_usuario" ToRole="seguridad_usuarioxgrupo" />
         </EntityType>
@@ -2442,6 +2577,17 @@
           <NavigationProperty Name="clase" Relationship="Self.FK__clase__id_tipo_c__1F4E99FE" FromRole="tipo_clase" ToRole="clase" />
           <NavigationProperty Name="faja" Relationship="Self.FK__faja__id_tipo_cl__2D9CB955" FromRole="tipo_clase" ToRole="faja" />
           <NavigationProperty Name="torneo" Relationship="Self.FK__torneo__id_tipo___5792F321" FromRole="tipo_clase" ToRole="torneo" />
+        </EntityType>
+        <EntityType Name="tipo_documento">
+          <Key>
+            <PropertyRef Name="id_tipo_documento" />
+          </Key>
+          <Property Name="id_tipo_documento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alumno" Relationship="Self.FK_ALUMNO_ID_TIPO_DOCUMENTO" FromRole="tipo_documento" ToRole="alumno" />
+          <NavigationProperty Name="participante" Relationship="Self.FK_PARTICIPANTE_ID_TIPO_DOCUMENTO" FromRole="tipo_documento" ToRole="participante" />
+          <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_TIPO_DOCUMENTO" FromRole="tipo_documento" ToRole="profesor" />
         </EntityType>
         <EntityType Name="tipo_evento_especial">
           <Key>
@@ -2482,6 +2628,7 @@
           <Property Name="id_torneo_imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_torneo" Type="Int32" Nullable="false" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="torneo" Relationship="Self.FK__torneo_im__id_to__5887175A" FromRole="torneo_imagen" ToRole="torneo" />
         </EntityType>
         <Association Name="FK__academia__id_dir__11007AA7">
@@ -2505,42 +2652,6 @@
             </Principal>
             <Dependent Role="clase">
               <PropertyRef Name="id_ubicacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__alumno__id_direc__11F49EE0">
-          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="direccion">
-              <PropertyRef Name="id_direccion" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__alumno__id_estad__12E8C319">
-          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estado">
-              <PropertyRef Name="id_estado" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__alumno__id_usuar__13DCE752">
-          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="seguridad_usuario">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2612,18 +2723,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__participa__id_al__4297D63B">
-          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
-          <End Role="participante" Type="Self.participante" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="alumno">
-              <PropertyRef Name="id_alumno" />
-            </Principal>
-            <Dependent Role="participante">
-              <PropertyRef Name="id_alumno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__participa__id_al__438BFA74">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="participante_evento" Type="Self.participante_evento" Multiplicity="*" />
@@ -2632,6 +2731,78 @@
               <PropertyRef Name="id_alumno" />
             </Principal>
             <Dependent Role="participante_evento">
+              <PropertyRef Name="id_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_DIRECCION">
+          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_ESTADO">
+          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_TIPO_DOCUMENTO">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="id_tipo_documento" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_tipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ALUMNO_ID_USUARIO">
+          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTICIPANTE_ID_ALUMNO">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
+          <End Role="participante" Type="Self.participante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="id_alumno" />
+            </Principal>
+            <Dependent Role="participante">
               <PropertyRef Name="id_alumno" />
             </Dependent>
           </ReferentialConstraint>
@@ -2908,18 +3079,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__profesor__id_dir__4668671F">
-          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
-          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="direccion">
-              <PropertyRef Name="id_direccion" />
-            </Principal>
-            <Dependent Role="profesor">
-              <PropertyRef Name="id_direccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__sede__id_direcci__50E5F592">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="sede" Type="Self.sede" Multiplicity="*" />
@@ -2928,6 +3087,18 @@
               <PropertyRef Name="id_direccion" />
             </Principal>
             <Dependent Role="sede">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROFESOR_ID_DIRECCION">
+          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="profesor">
               <PropertyRef Name="id_direccion" />
             </Dependent>
           </ReferentialConstraint>
@@ -3230,6 +3401,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PARTICIPANTE_ID_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="participante" Type="Self.participante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="participante">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROFESOR_ID_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__resultado__id_pr__4C214075">
           <End Role="participante" Type="Self.participante" Multiplicity="0..1" />
           <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
@@ -3278,6 +3473,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PARTICIPANTE_ID_TIPO_DOCUMENTO">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="0..1" />
+          <End Role="participante" Type="Self.participante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="id_tipo_documento" />
+            </Principal>
+            <Dependent Role="participante">
+              <PropertyRef Name="id_tipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__producto___id_pr__457442E6">
           <End Role="producto" Type="Self.producto" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -3306,7 +3513,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__profesor__id_usu__475C8B58">
+        <Association Name="FK_PROFESOR_ID_TIPO_DOCUMENTO">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="0..1" />
+          <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="id_tipo_documento" />
+            </Principal>
+            <Dependent Role="profesor">
+              <PropertyRef Name="id_tipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROFESOR_ID_USUARIO">
           <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
           <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -3484,6 +3703,7 @@
           <EntitySet Name="seguridad_usuario" EntityType="Self.seguridad_usuario" />
           <EntitySet Name="seguridad_usuarioxgrupo" EntityType="Self.seguridad_usuarioxgrupo" />
           <EntitySet Name="tipo_clase" EntityType="Self.tipo_clase" />
+          <EntitySet Name="tipo_documento" EntityType="Self.tipo_documento" />
           <EntitySet Name="tipo_evento_especial" EntityType="Self.tipo_evento_especial" />
           <EntitySet Name="torneo" EntityType="Self.torneo" />
           <EntitySet Name="torneo_imagen" EntityType="Self.torneo_imagen" />
@@ -3494,18 +3714,6 @@
           <AssociationSet Name="FK__clase__id_ubicac__2042BE37" Association="Self.FK__clase__id_ubicac__2042BE37">
             <End Role="academia" EntitySet="academia" />
             <End Role="clase" EntitySet="clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK__alumno__id_direc__11F49EE0" Association="Self.FK__alumno__id_direc__11F49EE0">
-            <End Role="direccion" EntitySet="direccion" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="FK__alumno__id_estad__12E8C319" Association="Self.FK__alumno__id_estad__12E8C319">
-            <End Role="estado" EntitySet="estado" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="FK__alumno__id_usuar__13DCE752" Association="Self.FK__alumno__id_usuar__13DCE752">
-            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
-            <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
           <AssociationSet Name="FK__alumno_im__id_al__14D10B8B" Association="Self.FK__alumno_im__id_al__14D10B8B">
             <End Role="alumno" EntitySet="alumno" />
@@ -3527,13 +3735,33 @@
             <End Role="alumno" EntitySet="alumno" />
             <End Role="pago_clase" EntitySet="pago_clase" />
           </AssociationSet>
-          <AssociationSet Name="FK__participa__id_al__4297D63B" Association="Self.FK__participa__id_al__4297D63B">
-            <End Role="alumno" EntitySet="alumno" />
-            <End Role="participante" EntitySet="participante" />
-          </AssociationSet>
           <AssociationSet Name="FK__participa__id_al__438BFA74" Association="Self.FK__participa__id_al__438BFA74">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="participante_evento" EntitySet="participante_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_DIRECCION" Association="Self.FK_ALUMNO_ID_DIRECCION">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_ESTADO" Association="Self.FK_ALUMNO_ID_ESTADO">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_PAIS" Association="Self.FK_ALUMNO_ID_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_TIPO_DOCUMENTO" Association="Self.FK_ALUMNO_ID_TIPO_DOCUMENTO">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ALUMNO_ID_USUARIO" Association="Self.FK_ALUMNO_ID_USUARIO">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTICIPANTE_ID_ALUMNO" Association="Self.FK_PARTICIPANTE_ID_ALUMNO">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="participante" EntitySet="participante" />
           </AssociationSet>
           <AssociationSet Name="FK__alumnoxfa__id_fa__16B953FD" Association="Self.FK__alumnoxfa__id_fa__16B953FD">
             <End Role="faja" EntitySet="faja" />
@@ -3623,13 +3851,13 @@
             <End Role="reserva" EntitySet="reserva" />
             <End Role="detalle_reserva" EntitySet="detalle_reserva" />
           </AssociationSet>
-          <AssociationSet Name="FK__profesor__id_dir__4668671F" Association="Self.FK__profesor__id_dir__4668671F">
-            <End Role="direccion" EntitySet="direccion" />
-            <End Role="profesor" EntitySet="profesor" />
-          </AssociationSet>
           <AssociationSet Name="FK__sede__id_direcci__50E5F592" Association="Self.FK__sede__id_direcci__50E5F592">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="sede" EntitySet="sede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROFESOR_ID_DIRECCION" Association="Self.FK_PROFESOR_ID_DIRECCION">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
           <AssociationSet Name="FK__estado_re__id_es__27E3DFFF" Association="Self.FK__estado_re__id_es__27E3DFFF">
             <End Role="estado" EntitySet="estado" />
@@ -3727,6 +3955,14 @@
             <End Role="pais" EntitySet="pais" />
             <End Role="provincia" EntitySet="provincia" />
           </AssociationSet>
+          <AssociationSet Name="FK_PARTICIPANTE_ID_PAIS" Association="Self.FK_PARTICIPANTE_ID_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="participante" EntitySet="participante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROFESOR_ID_PAIS" Association="Self.FK_PROFESOR_ID_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
           <AssociationSet Name="FK__resultado__id_pr__4C214075" Association="Self.FK__resultado__id_pr__4C214075">
             <End Role="participante" EntitySet="participante" />
             <End Role="resultado" EntitySet="resultado" />
@@ -3743,6 +3979,10 @@
             <End Role="participante" EntitySet="participante" />
             <End Role="resultado" EntitySet="resultado" />
           </AssociationSet>
+          <AssociationSet Name="FK_PARTICIPANTE_ID_TIPO_DOCUMENTO" Association="Self.FK_PARTICIPANTE_ID_TIPO_DOCUMENTO">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="participante" EntitySet="participante" />
+          </AssociationSet>
           <AssociationSet Name="FK__producto___id_pr__457442E6" Association="Self.FK__producto___id_pr__457442E6">
             <End Role="producto" EntitySet="producto" />
             <End Role="producto_imagen" EntitySet="producto_imagen" />
@@ -3751,7 +3991,11 @@
             <End Role="profesor" EntitySet="profesor" />
             <End Role="profesor_imagen" EntitySet="profesor_imagen" />
           </AssociationSet>
-          <AssociationSet Name="FK__profesor__id_usu__475C8B58" Association="Self.FK__profesor__id_usu__475C8B58">
+          <AssociationSet Name="FK_PROFESOR_ID_TIPO_DOCUMENTO" Association="Self.FK_PROFESOR_ID_TIPO_DOCUMENTO">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="profesor" EntitySet="profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROFESOR_ID_USUARIO" Association="Self.FK_PROFESOR_ID_USUARIO">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
@@ -3825,6 +4069,8 @@
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="baja_logica" ColumnName="baja_logica" />
                 <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3834,6 +4080,7 @@
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="id_alumnoimagen" ColumnName="id_alumnoimagen" />
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4006,6 +4253,7 @@
                 <ScalarProperty Name="id_evento_imagen" ColumnName="id_evento_imagen" />
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4150,6 +4398,8 @@
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="dni" ColumnName="dni" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+                <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4183,6 +4433,7 @@
                 <ScalarProperty Name="id_productoimagen" ColumnName="id_productoimagen" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4201,6 +4452,8 @@
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4210,6 +4463,7 @@
                 <ScalarProperty Name="id_profesorimagen" ColumnName="id_profesorimagen" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4321,6 +4575,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tipo_documento">
+            <EntityTypeMapping TypeName="JJSSModel.tipo_documento">
+              <MappingFragment StoreEntitySet="tipo_documento">
+                <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tipo_evento_especial">
             <EntityTypeMapping TypeName="JJSSModel.tipo_evento_especial">
               <MappingFragment StoreEntitySet="tipo_evento_especial">
@@ -4352,6 +4615,7 @@
                 <ScalarProperty Name="id_torneo_imagen" ColumnName="id_torneo_imagen" />
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -45,7 +45,7 @@ namespace JJSS_Negocio
          *              Ya esta inscripto el alumno
          *  
          */
-        public String InscribirAlumnoAClase(int pDNIAlumno, int pClase, string pHora, DateTime pFecha, int pIdFaja)
+        public String InscribirAlumnoAClase(string pDNIAlumno, int pClase, string pHora, DateTime pFecha, int pIdFaja)
         {
             String sReturn = "";
             GestorAlumnos gestorAlumnos = new GestorAlumnos();

@@ -54,7 +54,7 @@ namespace JJSS.Presentacion
 
                 if (alumnoElegido != null)
                 {
-                    int dni = alumnoElegido.dni;
+                    string dni = alumnoElegido.dni;
                     Session["AlumnoDNI"] = dni;
                     cargarClases();
                 }else

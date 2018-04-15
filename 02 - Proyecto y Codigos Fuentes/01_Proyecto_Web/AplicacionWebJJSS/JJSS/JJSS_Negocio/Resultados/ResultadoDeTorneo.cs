@@ -15,5 +15,6 @@ namespace JJSS_Negocio.Resultados
         public string segundo { get; set; }
         public string tercero1 { get; set; }
         public string tercero2 { get; set; }
+        public short? sexo { get; set; }
     }
 }

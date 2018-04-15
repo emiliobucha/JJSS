@@ -37,9 +37,9 @@ namespace JJSS_Negocio
          *          ex.message Resultado erroneo indicando el mensaje de la excepcion
          */
 
-        public String GenerarNuevoTorneo(DateTime pFecha, String pNombre, Decimal pPrecio_categoria, Decimal pPrecio_absoluto, String pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre, byte[] pImagen)
+        public string GenerarNuevoTorneo(DateTime pFecha, string pNombre, decimal pPrecio_categoria, decimal pPrecio_absoluto, string pHora, int pSede, DateTime pFecha_cierre, string pHora_cierre, byte[] pImagen)
         {
-            String sReturn = "";
+            string sReturn = "";
             using (var db = new JJSSEntities())
             {
                 estado estadoTorneo = db.estado.Find(ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
@@ -69,16 +69,23 @@ namespace JJSS_Negocio
                     db.torneo.Add(nuevoTorneo);
                     db.SaveChanges();
 
+                    byte[] arrayImagen = pImagen;
+                    if (arrayImagen.Length > 7000)
+                    {
+                        arrayImagen = new byte[0];
+                    }
+
+                    string imagenUrl = modUtilidades.SaveImage(pImagen, pNombre, "torneos");
+
                     torneo_imagen nuevoTorneoImagen = new torneo_imagen()
                     {
                         id_torneo = nuevoTorneo.id_torneo,
-                        imagen = pImagen
+                        imagen = arrayImagen,
+                        imagen_url = imagenUrl
                     };
 
                     db.torneo_imagen.Add(nuevoTorneoImagen);
                     db.SaveChanges();
-                    //+Acá puede ser asincrono, asi que puede quedar guardandose y seguir ejecutandose lo demas /
-
 
                     transaction.Commit();
                     return sReturn;
@@ -161,6 +168,7 @@ namespace JJSS_Negocio
             cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
             {
+
                 var torneosAbiertos =
                                            from t in db.torneo
                                            join i in db.torneo_imagen on t.id_torneo equals i.id_torneo
@@ -171,13 +179,18 @@ namespace JJSS_Negocio
                                            {
                                                id_torneo = t.id_torneo,
                                                nombre = t.nombre,
-                                               fecha = t.fecha,
+                                               dtFecha = t.fecha,
                                                hora = t.hora,
-                                               imagenB = i.imagen
+                                               imagen = i.imagen_url
                                            };
 
 
-                List<TorneoResultado> listaTorneos = torneosAbiertos.ToList<TorneoResultado>();
+                List<TorneoResultado> listaTorneos = torneosAbiertos.ToList();
+
+                foreach (TorneoResultado t in listaTorneos)
+                {
+                    t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
+                }
                 return listaTorneos;
             }
         }
@@ -350,7 +363,7 @@ namespace JJSS_Negocio
         /*
          * busca los torneos con su imagen que comiencen con filtroNombre y la fecha sea mayor a filtroFecha
          */
-        public List<TorneoResultado> BuscarTorneosConFiltrosEImagen(String filtroNombre, DateTime filtroFecha)
+        public List<TorneoResultado> BuscarTorneosConFiltrosEImagen(String filtroNombre, DateTime filtroFecha, DateTime filtroFechaHasta)
         {
             cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
@@ -361,17 +374,40 @@ namespace JJSS_Negocio
                               into ps
                               from i in ps.DefaultIfEmpty()
                               where tor.nombre.StartsWith(filtroNombre) &&
-                              tor.fecha >= filtroFecha &&
+                              tor.fecha >= filtroFecha && tor.fecha <= filtroFechaHasta &&
                               (est.id_estado == ConstantesEstado.TORNEO_CANCELADO || est.id_estado == ConstantesEstado.TORNEO_FINALIZADO)
+                              orderby tor.fecha descending
                               select new TorneoResultado()
                               {
                                   id_torneo = tor.id_torneo,
                                   nombre = tor.nombre,
-                                  fecha = tor.fecha,
+                                  dtFecha = tor.fecha,
                                   imagenB = i.imagen,
                                   estado = est.nombre,
                               };
-                return torneos.ToList<TorneoResultado>();
+                List<TorneoResultado> tr = torneos.ToList();
+                foreach (TorneoResultado t in tr)
+                {
+                    t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
+                }
+                return tr;
+            }
+        }
+
+        public string cancelarTorneo(int idTorneo, int idEstado)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    torneo torneoSeleccionado = db.torneo.Find(idTorneo);
+                    torneoSeleccionado.id_estado = idEstado;
+                    db.SaveChanges();
+                    return "";
+                }catch (Exception ex)
+                {
+                    return ex.Message;
+                }
             }
         }
 
@@ -518,17 +554,26 @@ namespace JJSS_Negocio
                 var resultados = from res in db.resultado
                                  join catt in db.categoria_torneo on res.id_categoria_torneo equals catt.id_categoria_torneo
                                  join tor in db.torneo on res.id_torneo equals tor.id_torneo
-                                 where tor.id_torneo==idTorneo
+                                 where tor.id_torneo == idTorneo
+                                 orderby catt.categoria.nombre
                                  select new ResultadoDeTorneo()
                                  {
                                      categoria = catt.categoria.nombre,
                                      faja = catt.faja.descripcion,
-                                     primero = res.participante.nombre + res.participante.apellido,
-                                     segundo = res.participante1.nombre + res.participante1.apellido,
-                                     tercero1 = res.participante2.nombre + res.participante2.apellido,
-                                     tercero2 = res.participante3.nombre + res.participante3.apellido,
+                                     primero = res.participante.nombre + " " + res.participante.apellido,
+                                     segundo = res.participante1.nombre + " " + res.participante1.apellido,
+                                     tercero1 = res.participante2.nombre + " " + res.participante2.apellido,
+                                     tercero2 = res.participante3.nombre + " " + res.participante3.apellido,
+                                     sexo= catt.categoria.sexo,
                                  };
-                return resultados.ToList();
+                List<ResultadoDeTorneo> resu = resultados.ToList();
+                foreach(ResultadoDeTorneo r in resu)
+                {
+                    string sexo = r.sexo.Equals(ContantesSexo.FEMENINO) ? " F " : " M ";
+                    r.categoria = r.categoria + " " + sexo;
+                    r.faja = r.faja.Split(new char[] { '-' })[0]; ;
+                }
+                return resu;
             }
         }
     }

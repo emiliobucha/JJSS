@@ -10,5 +10,8 @@ namespace JJSS_Negocio.Resultados
     {
         public string nombreCategoria { get; set; }
         public string nombreFaja { get; set; }
+        public int idCategoriaTorneo { get; set; }
+        public string nombreParaMostrar { get; set; }
+        public short? sexo { get; set; }
     }
 }

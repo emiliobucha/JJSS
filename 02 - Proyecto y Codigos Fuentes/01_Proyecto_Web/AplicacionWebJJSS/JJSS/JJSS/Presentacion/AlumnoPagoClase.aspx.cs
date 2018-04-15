@@ -64,7 +64,7 @@ namespace JJSS.Presentacion
                 lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
 
                 int id = int.Parse(Session["Clase"].ToString());
-                int dni = int.Parse(Session["AlumnoDNI"].ToString());
+                var dni = Session["AlumnoDNI"].ToString();
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
                 lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
 
