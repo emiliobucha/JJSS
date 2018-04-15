@@ -56,7 +56,7 @@ namespace JJSS.Presentacion
         {
             int id = Convert.ToInt32(e.CommandArgument);
             Session["idTorneo"] = id;
-            Response.Redirect("~/Presentacion/verTorneo.aspx");
+            Response.Redirect("VerTorneo.aspx");
 
         }
     }

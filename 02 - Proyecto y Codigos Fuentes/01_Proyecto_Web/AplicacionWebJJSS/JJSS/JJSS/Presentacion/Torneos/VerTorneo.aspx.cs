@@ -34,7 +34,7 @@ namespace JJSS.Presentacion
                 cargarInformacion();
                 verBotones();
             }
-            else Response.Redirect("../Presentacion/HistoricoTorneos.aspx");
+            else Response.Redirect("HistoricoTorneos.aspx");
 
         }
 
@@ -95,7 +95,7 @@ namespace JJSS.Presentacion
         protected void btn_cargar_resultados_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            Response.Redirect("../Presentacion/CargarResultadosTorneo.aspx");
+            Response.Redirect("CargarResultadosTorneo.aspx");
         }
 
         protected void btn_editar_resultados_Click(object sender, EventArgs e)
@@ -106,7 +106,7 @@ namespace JJSS.Presentacion
         protected void btn_inscribir_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            Response.Redirect("../Presentacion/InscripcionTorneo.aspx");
+            Response.Redirect("InscripcionTorneo.aspx");
             Session["torneoSeleccionado"] = torneoSeleccionado.id_torneo;
         }
 
@@ -137,7 +137,7 @@ namespace JJSS.Presentacion
         protected void btn_volver_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            Response.Redirect("../Presentacion/HistoricoTorneos.aspx");
+            Response.Redirect("HistoricoTorneos.aspx");
         }
 
         protected void gvResultados_PageIndexChanging(object sender, GridViewPageEventArgs e)
