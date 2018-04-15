@@ -38,7 +38,7 @@ namespace JJSS.Presentacion
                 }
                 else
                 {
-                    Response.Redirect("../Presentacion/HistoricoTorneos.aspx");
+                    Response.Redirect("HistoricoTorneos.aspx");
                 }
             }
         }
@@ -114,7 +114,7 @@ namespace JJSS.Presentacion
 
         protected void btn_volver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Presentacion/VerTorneo.aspx");
+            Response.Redirect("VerTorneo.aspx");
         }
 
         protected void btn_agregarResultado_Click(object sender, EventArgs e)
