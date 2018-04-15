@@ -150,10 +150,6 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\MisEstilos.css" />
     <Content Include="css\shop-homepage.css" />
-    <Content Include="img\1.jpg" />
-    <Content Include="img\11.jpg" />
-    <Content Include="img\111.jpg" />
-    <Content Include="img\1111.png" />
     <Content Include="img\16700476_10212706802211337_1006928008308717976_o.jpg" />
     <Content Include="img\Administracion.png" />
     <Content Include="img\Asistencia.png" />
