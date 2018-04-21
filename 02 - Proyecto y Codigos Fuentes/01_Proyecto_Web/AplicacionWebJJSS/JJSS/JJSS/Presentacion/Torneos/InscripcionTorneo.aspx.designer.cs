@@ -319,22 +319,22 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// Control txt_Nacionalidad.
+        /// Control ddl_nacionalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Nacionalidad;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_nacionalidad;
         
         /// <summary>
-        /// Control txtTipo.
+        /// Control ddl_tipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipo;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo;
         
         /// <summary>
         /// Control txtDni.

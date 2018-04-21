@@ -116,9 +116,11 @@ namespace JJSS
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
 
-            if (limpiaTodo == true)
+            if (limpiaTodo)
             {
                 txtDni.Text = "";
+                ddl_nacionalidad.SelectedIndex = 0;
+                ddl_tipo.SelectedIndex = 0;
                 // ddl_torneos.SelectedIndex = 1;
             }
 
@@ -256,6 +258,18 @@ namespace JJSS
             ddl_fajas.DataValueField = "id_faja";
             ddl_fajas.DataBind();
         }
+
+        protected void CargarComboTipoDocumentos()
+        {
+            
+            List<tipo_documento> tiposdoc = gestorInscripciones.ObtenerTiposDocumentos();
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+
+        }
+
 
         protected void btnAceptarTorneo_Click(object sender, EventArgs e)
         {

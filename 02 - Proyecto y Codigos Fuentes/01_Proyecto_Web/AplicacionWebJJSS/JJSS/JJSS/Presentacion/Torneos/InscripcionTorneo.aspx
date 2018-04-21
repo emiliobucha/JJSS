@@ -253,8 +253,7 @@
                                 <label class="pull-left">Pais:</label>
                             </div>
                             <div class="col-md-3 col-xl-auto">
-                                <asp:TextBox ID="txt_Nacionalidad" class="caja2" required="true" runat="server" placeholder="Ingrese Nacionalidad" ValidationGroup="grupoDni"></asp:TextBox>
-                                <%--<asp:DropDownList class="caja2" ID="ddl_pais" runat="server"></asp:DropDownList>     --%>
+                                <asp:DropDownList ID="ddl_nacionalidad" class="caja2" runat="server" placeholder="Ingrese Nacionalidad" ValidationGroup="grupoDni"></asp:DropDownList>
                             </div>
 
                             <!--Ingresar Tipo-->
@@ -262,8 +261,8 @@
                                 <label class="pull-left">Tipo:</label>
                             </div>
                             <div class="col-md-3 col-xl-auto">
-                                <asp:TextBox ID="txtTipo" class="caja2" required="true" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:TextBox>
-                                <%--<asp:DropDownList class="caja2" ID="ddl_tipo" runat="server"></asp:DropDownList> --%>
+                                <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
+                             
                             </div>
 
                             <!--Ingresar Numero-->
@@ -271,6 +270,7 @@
                                 <label class="pull-left">Número:</label>
                             </div>
                             <div class="col-md-3 col-xl-auto">
+                                
                                 <asp:TextBox ID="txtDni" class="caja2" required="true" max="100000000000" type="number" runat="server" placeholder="Ingrese Número" ValidationGroup="grupoDni"></asp:TextBox>
                             </div>
 

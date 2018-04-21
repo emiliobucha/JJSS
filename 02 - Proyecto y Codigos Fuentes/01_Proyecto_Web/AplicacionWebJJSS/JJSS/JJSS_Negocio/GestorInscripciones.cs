@@ -150,6 +150,7 @@ namespace JJSS_Negocio
             }
         }
         //TODO nacionalidad y tipo dni
+
         public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, string pDni, int pIdCategoriaTorneo)
         {
             String sReturn = "";
@@ -448,6 +449,22 @@ namespace JJSS_Negocio
             md.Msg_Asunto = "Comprobante de Inscripción a Torneo de Lotus Club - Equipo Hinojal";
             md.Enviar();
 
+        }
+
+        public List<tipo_documento> ObtenerTiposDocumentos()
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    var list = db.tipo_documento.ToList();       
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<tipo_documento>();
+            }
         }
 
     }
