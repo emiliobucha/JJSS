@@ -3,10 +3,10 @@
 [/PDF /Text /ImageB /ImageC /ImageI]
 endobj
 6 0 obj
-<< /Length 4625 >> stream 
+<< /Length 4610 >> stream 
 q 28.346 89.846 481.89 526.732 re W n
 q 53.579 593.821 127.232 16.758 re W n
-BT /F3 14 Tf 0 0 0 rg 633.805 TL 53.546 597.93 Td (Datos del Torneo) Tj T* ET 53.546 596.889 107.424 -0.686 re f
+BT /F3 14 Tf 0 0 0 rg 633.805 TL 53.546 597.93 Td (Datos del Torneo) Tj T* ET 53.546 596.889 105.552 -0.686 re f
 Q
 q 386.368 567.563 36.794 13.008 re W n
 BT /F4 10 Tf 0 0 0 rg 452.718 TL 386.403 571.506 Td (Fecha:) Tj T* ET 386.403 570.77 32.256 -0.483 re f
@@ -21,16 +21,16 @@ q 53.579 552.755 53.52 13.008 re W n
 BT /F4 10 Tf 0 0 0 rg 452.718 TL 53.546 556.674 Td (Dirección:) Tj T* ET 53.546 555.938 48.888 -0.483 re f
 Q
 q 89.218 567.563 288.15 13.008 re W n
-BT /F3 10 Tf 0 0 0 rg 452.718 TL 89.186 571.506 Td (Polideportivo Cerutti) Tj T* ET
+BT /F3 10 Tf 0 0 0 rg 452.718 TL 89.186 571.506 Td (Colegio San Martín) Tj T* ET
 Q
 q 109.672 552.755 267.696 13.008 re W n
 BT /F3 10 Tf 0 0 0 rg 452.718 TL 109.707 556.674 Td (Misiones 123 - La Plata - Buenos Aires - Argentina) Tj T* ET
 Q
 q 419.212 567.563 52.25 13.008 re W n
-BT /F3 10 Tf 0 0 0 rg 452.718 TL 421.467 571.506 Td (16/04/2018) Tj T* ET
+BT /F3 10 Tf 0 0 0 rg 452.718 TL 421.467 571.506 Td (31/01/2019) Tj T* ET
 Q
 q 442.618 552.755 28.844 13.008 re W n
-BT /F3 10 Tf 0 0 0 rg 452.718 TL 446.451 556.674 Td (15:00) Tj T* ET
+BT /F3 10 Tf 0 0 0 rg 452.718 TL 446.451 556.674 Td (10:00) Tj T* ET
 Q
 0 0 0 RG 2.0 w [] 0 d 28.346 505.043 m 496.347 505.043 l S
 q 47.497 476.028 152.732 16.758 re W n
@@ -64,7 +64,7 @@ q 53.579 512.5 53.52 13.008 re W n
 BT /F4 10 Tf 0 0 0 rg 452.718 TL 53.546 516.426 Td (Precio:) Tj T* ET 53.546 515.69 33.912 -0.483 re f
 Q
 q 109.672 512.5 267.696 13.008 re W n
-BT /F3 10 Tf 0 0 0 rg 452.718 TL 109.707 516.426 Td ($100.00) Tj T* ET
+BT /F3 10 Tf 0 0 0 rg 452.718 TL 109.707 516.426 Td ($350.00) Tj T* ET
 Q
 q 47.497 342.178 420.956 25.42 re W n
 BT /F3 10 Tf 0 0 0 rg 452.718 TL 47.498 358.53 Td (Usted se ha inscripto de manera exitosa al torneo indicado. Por favor asista con DNI o ) Tj T* ET
@@ -80,7 +80,7 @@ q 195.919 386.596 53.52 13.008 re W n
 BT /F4 10 Tf 0 0 0 rg 452.718 TL 195.891 390.498 Td (Categoria:) Tj T* ET 195.891 389.762 49.464 -0.483 re f
 Q
 q 260.48 386.596 183.838 13.008 re W n
-BT /F3 10 Tf 0 0 0 rg 452.718 TL 260.475 390.498 Td (Ultra Pesado Adulto) Tj T* ET
+BT /F3 10 Tf 0 0 0 rg 452.718 TL 260.475 390.498 Td (Pena Adulto) Tj T* ET
 Q
 q 53.579 527.707 82.02 13.008 re W n
 BT /F4 10 Tf 0 0 0 rg 452.718 TL 53.546 531.618 Td (Tipo Inscripción:) Tj T* ET 53.546 530.882 80.568 -0.483 re f
@@ -101,7 +101,7 @@ Q
 q 39.506 630.828 69.592 90.52 re W n 69.592 0 0 87.25 39.506 634.098 cm /Im5 Do Q
 0 0 0 RG 5.0 w [] 0 d 28.346 621.598 m 496.347 621.598 l S
 q 116.099 641.25 355.364 23.508 re W n
-BT /F4 14 Tf 0 0 0 rg 633.805 TL 225.123 652.12 Td (JiuJitsu - El Torneito) Tj T* ET
+BT /F4 14 Tf 0 0 0 rg 633.805 TL 231.603 652.12 Td (JiuJitsu - BBJ2019) Tj T* ET
 Q
 Q
 q 28.346 28.347 481.89 708.662 re W n
@@ -1403,22 +1403,22 @@ endobj
 /Subject <>
 /Creator (Microsoft Reporting Services 10.0.0.0)
 /Producer (Microsoft Reporting Services PDF Rendering Extension 10.0.0.0)
-/CreationDate (D:20180408190446-03'00')
+/CreationDate (D:20180421202107-03'00')
 >>
 endobj
 xref
 0 10
 0000000000 65535 f
 0000000010 00000 n
-0000004746 00000 n
-0000275267 00000 n
-0000275367 00000 n
-0000004934 00000 n
+0000004731 00000 n
+0000275252 00000 n
+0000275352 00000 n
+0000004919 00000 n
 0000000065 00000 n
-0000275472 00000 n
-0000275534 00000 n
-0000275586 00000 n
+0000275457 00000 n
+0000275519 00000 n
+0000275571 00000 n
 trailer << /Size 10 /Root 8 0 R /Info 9 0 R >>
 startxref
-275812
+275797
 %%EOF

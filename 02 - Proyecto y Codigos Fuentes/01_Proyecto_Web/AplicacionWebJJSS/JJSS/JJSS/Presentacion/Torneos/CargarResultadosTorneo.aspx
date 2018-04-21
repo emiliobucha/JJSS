@@ -171,23 +171,29 @@
                                     </div>
                                     <div class="col-md-6">
                                         <asp:TextBox ID="txt_apellido" MaxLength="50" required="true" class="form-control" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
-                                        </div>
+                                    </div>
                                     <div class="col-md-1"><a class="text-danger">*</a></div>
                                 </div>
 
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
+                                
+                         
+                            
 
                                 <div class="row centered center-block">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-3">
-                                        <label class="pull-left">Tipo de documento:</label>
+                                    <div class="col-md-2 col-xl-auto">
+                                        <label class="pull-left">Tipo:</label>
+                                    </div>
+                                    <div class="col-md-3 col-xl-auto">
+                                        <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
+                                        <a class="text-danger">*</a>
                                     </div>
                                     <div class="col-md-6">
                                         <asp:DropDownList ID="ddl_tipo_dni" runat="server" class="caja2 pull-right"></asp:DropDownList>
-                                        </div>
-                                    <div class="col-md-1"><a class="text-danger">*</a></div>
+                                        <a class="text-danger">*</a>
+                                    </div>
                                 </div>
 
                                 <div class="row centered">
@@ -201,7 +207,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <asp:TextBox ID="txt_dni" required="true" class="form-control" MaxLength="20" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
-                                        </div>
+                                    </div>
                                     <div class="col-md-1"><a class="text-danger">*</a></div>
                                 </div>
 

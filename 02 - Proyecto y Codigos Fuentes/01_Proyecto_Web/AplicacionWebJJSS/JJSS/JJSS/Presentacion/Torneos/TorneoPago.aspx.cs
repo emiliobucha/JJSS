@@ -67,7 +67,8 @@ namespace JJSS.Presentacion
 
                 int id = int.Parse(Session["TorneoPagar"].ToString());
                 var dni = Session["ParticipanteDNI"].ToString();
-                participanteElegido = gestorInscripciones.obtenerParticipanteDeTorneo(dni,id);
+                int tipo = int.Parse(Session["TorneoPagar"].ToString());
+                participanteElegido = gestorInscripciones.obtenerParticipanteDeTorneo(tipo,dni,id);
                 lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
 
                 torneo torneo = gestorTorneo.BuscarTorneoPorID(id);
