@@ -133,6 +133,9 @@ namespace JJSS.Presentacion
                         sReturn = "El torneo se ha creado exitosamente";
                         limpiar();
                         mensaje(sReturn, true);
+                        Session["mensaje"] = sReturn;
+                        Session["exito"] = true;
+                        Response.Redirect("/Presentacion/Torneos/MenuTorneo.aspx");
                     }
                     else mensaje(sReturn, false);
 
@@ -153,8 +156,9 @@ namespace JJSS.Presentacion
                     {
                         sReturn = "El torneo se ha modificado exitosamente";
                         limpiar();
-                        mensaje(sReturn, true);
-                        
+                        Session["mensaje"] = sReturn;
+                        Session["exito"] = true;
+                        Response.Redirect("/Presentacion/Torneos/MenuTorneo.aspx");
                     }
                     else mensaje(sReturn, false);
                 }

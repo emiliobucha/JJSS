@@ -21,8 +21,29 @@ namespace JJSS.Presentacion
                 dp_filtro_fecha_desde.Text = DateTime.Today.ToString("dd/MM/yyyy"); 
                 dp_filtro_fecha_hasta.Text = DateTime.Today.AddYears(2).ToString("dd/MM/yyyy");
                 cargarTorneosAbiertosView();
+                if (Session["mensaje"] != null)
+                {
+                    mensaje(Session["mensaje"].ToString(), Boolean.Parse(Session["exito"].ToString()));
+                    Session["mensaje"] = null;
+                }
             }
 
+        }
+
+        private void mensaje(string pMensaje, Boolean pEstado)
+        {
+            if (pEstado == true)
+            {
+                pnl_mensaje_exito.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = pMensaje;
+            }
+            else
+            {
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = true;
+                lbl_error.Text = pMensaje;
+            }
         }
 
         protected void cargarTorneosAbiertosView()

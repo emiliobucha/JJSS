@@ -17,18 +17,27 @@ namespace JJSS.Presentacion
             if (!IsPostBack)
             {
                 gestorDeTorneos = new GestorTorneos();
+                cargarComboEstados();
                 dp_filtro_fecha_desde.Text = DateTime.Today.AddYears(-1).ToString("dd/MM/yyyy");
                 dp_filtro_fecha_hasta.Text = DateTime.Today.ToString("dd/MM/yyyy");
-                cargarTorneosAbiertosView();
+                cargarTorneosAbiertosView(true);
             }
+        }
+
+        private void cargarComboEstados()
+        {
+            ddl_estados.DataSource = gestorDeTorneos.buscarEstadosTorneo();
+            ddl_estados.DataValueField = "id_estado";
+            ddl_estados.DataTextField = "nombre";
+            ddl_estados.DataBind();
         }
 
         protected void btn_buscar_Click(object sender, EventArgs e)
         {
-            cargarTorneosAbiertosView();
+            cargarTorneosAbiertosView(false);
         }
 
-        protected void cargarTorneosAbiertosView()
+        protected void cargarTorneosAbiertosView(Boolean inicio)
         {
             String filtroNombre = txt_filtro_nombre.Text;
 
@@ -47,7 +56,17 @@ namespace JJSS.Presentacion
             {
                 filtroFechaHasta = DateTime.Parse(dp_filtro_fecha_hasta.Text);
             }
-            List<JJSS_Negocio.Resultados.TorneoResultado> tr = gestorDeTorneos.BuscarTorneosConFiltrosEImagen(filtroNombre, filtroFecha, filtroFechaHasta);
+            int idEstado;
+            if (inicio)
+            {
+                idEstado = 0;
+            }
+            else
+            {
+                idEstado = int.Parse(ddl_estados.SelectedValue);
+            }
+            
+            List<JJSS_Negocio.Resultados.TorneoResultado> tr = gestorDeTorneos.BuscarTorneosConFiltrosEImagen(filtroNombre, filtroFecha, filtroFechaHasta, idEstado);
             lv_torneos.DataSource = tr;
             lv_torneos.DataBind();
         }

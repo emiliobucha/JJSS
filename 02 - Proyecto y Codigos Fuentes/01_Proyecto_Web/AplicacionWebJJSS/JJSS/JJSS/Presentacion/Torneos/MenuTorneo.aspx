@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="MenuTorneo.aspx.cs" Inherits="JJSS.Presentacion.MenuTorneo" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
@@ -18,21 +19,50 @@
 
     <form id="form1" runat="server">
 
-        
-         <div class="row centered">
+
+
+        <div class="row centered">
             <p>&nbsp;</p>
         </div>
+        <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <a class="ui-icon ui-icon-check"></a>
+                    <strong>
+                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                </div>
+            </div>
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+        </asp:Panel>
 
+        <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <a class="ui-icon ui-icon-alert"></a>
+                    <strong>Error! </strong>
+                    <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+                </div>
+            </div>
+            <div class="row centered">
+                <p>&nbsp;</p>
+            </div>
+        </asp:Panel>
 
         <div class="row centered justify-content-center ">
             <h1 class=" centered">Torneos</h1>
         </div>
-              
+
         <div class="row centered">
             <p>&nbsp;</p>
         </div>
 
-        
+
         <!---------------------------------**************Menu**********---------------------------------------->
 
 
@@ -43,7 +73,7 @@
             </div>
 
             <div class="row  centered justify-content-center p-2">
-                
+
                 <div class="row centered">
                     <p>&nbsp;</p>
                 </div>
@@ -107,7 +137,6 @@
                         </div>
                     </a>
                 </div>--%>
-
             </div>
 
         </div>
@@ -115,13 +144,13 @@
         <div class="row centered ">
             <p>&nbsp;</p>
         </div>
-               
-        
+
+
         <!---------------------------------**************Muestra de Torneos************---------------------------------------->
         <div class="row centered">
             <p>&nbsp;</p>
         </div>
-        
+
         <h2 class=" centered">Últimos Torneos</h2>
 
         <div class="row centered">
@@ -151,7 +180,8 @@
         </div>
         <div class="row mt centered">
             <div class="col-md-9"></div>
-            <div class="col-md-2"><asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click"/></div>
+            <div class="col-md-2">
+                <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click" /></div>
         </div>
 
 
@@ -220,5 +250,5 @@
             <p>&nbsp;</p>
         </div>
 
-</form>
+    </form>
 </asp:Content>

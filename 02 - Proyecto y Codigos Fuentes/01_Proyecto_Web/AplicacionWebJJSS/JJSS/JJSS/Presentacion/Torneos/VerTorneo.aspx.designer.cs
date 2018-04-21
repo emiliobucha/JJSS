@@ -67,6 +67,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Panel pnl_InfoTorneo;
         
         /// <summary>
+        /// Control lbl1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl1;
+        
+        /// <summary>
         /// Control lbl_FechaDeTorneo.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label6;
+        
+        /// <summary>
+        /// Control lbl2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2;
         
         /// <summary>
         /// Control lbl_FechaCierreInscripcion.
@@ -139,6 +157,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
+        /// Control lbl3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl3;
+        
+        /// <summary>
         /// Control lbl_sede.
         /// </summary>
         /// <remarks>
@@ -157,6 +184,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_direccion_sede;
         
         /// <summary>
+        /// Control lbl4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl4;
+        
+        /// <summary>
         /// Control Label4.
         /// </summary>
         /// <remarks>
@@ -173,6 +209,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_CostoInscripcion;
+        
+        /// <summary>
+        /// Control lbl5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl5;
         
         /// <summary>
         /// Control Label3.

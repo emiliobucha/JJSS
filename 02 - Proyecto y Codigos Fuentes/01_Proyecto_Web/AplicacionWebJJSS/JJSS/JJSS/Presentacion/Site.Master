@@ -90,10 +90,10 @@
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarTorneo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Torneo &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item text-white" href="/Presentacion/Torneos/CrearTorneo.aspx">Crear </a>
-                              <a class="dropdown-item text-white" href="#">Ver </a>
-                              <a class="dropdown-item text-white" href="/Presentacion/Torneos/InscripcionTorneo.aspx">Inscribir </a>                                                    
-                              <a class="dropdown-item text-white" >Registrar Pago </a>
+                              <a class="dropdown-item text-white" href="/Presentacion/Torneos/MenuTorneo.aspx">Ver</a>
+                              <a class="dropdown-item text-white" href="/Presentacion/Torneos/HistoricoTorneos.aspx">Histórico</a>
+                              <a class="dropdown-item text-white" href="/Presentacion/Torneos/CrearTorneo.aspx">Crear</a>
+                              <a class="dropdown-item text-white" href="/Presentacion/Torneos/InscripcionTorneo.aspx">Inscribir</a>                                                    
                           </div>
                       </li>
                       <li class="nav-item dropdown">

@@ -40,6 +40,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox dp_filtro_fecha_desde;
         
         /// <summary>
+        /// Control ddl_estados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_estados;
+        
+        /// <summary>
         /// Control dp_filtro_fecha_hasta.
         /// </summary>
         /// <remarks>

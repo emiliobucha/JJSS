@@ -39,7 +39,11 @@
             <p>&nbsp;</p>
         </div>
         <div class="row mt centered">
-            <div class="col-md-7"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-2"><strong>Estado</strong></div>
+            <div class="col-md-2">
+                <asp:DropDownList id="ddl_estados" runat="server" class="caja2"></asp:DropDownList>
+            </div>
             <div class="col-md-2"><strong>Fecha hasta</strong></div>
             <div class="col-md-2">
                 <asp:TextBox ID="dp_filtro_fecha_hasta" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
