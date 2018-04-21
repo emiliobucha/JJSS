@@ -36,7 +36,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, DateTime pFechaNacimiento, int pFaja, short pSexo, string pDni, int? pIDAlumno, short pTipoInscripcion)
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, double pPeso, DateTime pFechaNacimiento, int pFaja, short pSexo, int pTipoDoc, string pDni, int? pIDAlumno, short pTipoInscripcion, int pIdPais)
         {
 
             String sReturn = "";
@@ -71,7 +71,7 @@ namespace JJSS_Negocio
                     //Nuevos
 
 
-                    if (obtenerParticipanteDeTorneo(pDni, pTorneo) != null)
+                    if (obtenerParticipanteDeTorneo(pTipoDoc,pDni, pTorneo) != null)
                     {
                         return "El participante ya se inscribió a este torneo";
                     }
@@ -85,11 +85,12 @@ namespace JJSS_Negocio
                         nombre = pNombre,
                         apellido = pApellido,
                         //peso = pPeso,
-
+                        id_tipo_documento = pTipoDoc,
                         sexo = pSexo,
                         fecha_nacimiento = pFechaNacimiento,
                         dni = pDni,
-                        id_alumno = pIDAlumno
+                        id_alumno = pIDAlumno,
+                        id_pais = pIdPais
 
                     };
                     db.participante.Add(nuevoParticipante);
@@ -154,7 +155,8 @@ namespace JJSS_Negocio
             }
         }
         //TODO nacionalidad y tipo dni
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, string pDni, int pIdCategoriaTorneo)
+
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, int pTipoDoc, string pDni, int pIdCategoriaTorneo)
         {
             String sReturn = "";
             using (var db = new JJSSEntities())
@@ -167,7 +169,7 @@ namespace JJSS_Negocio
                     torneo torneoInscripto = db.torneo.Find(pTorneo);
 
                     //Nuevos
-                    if (obtenerParticipanteDeTorneo(pDni, pTorneo) != null)
+                    if (obtenerParticipanteDeTorneo(pTipoDoc,pDni, pTorneo) != null)
                     {
                         return "El participante ya se inscribió a este torneo";
                     }
@@ -214,13 +216,13 @@ namespace JJSS_Negocio
         }
 
 
-        public inscripcion obtenerInscripcionATorneoPorIdParticipantePorDni(string pDni, int pIdTorneo)
+        public inscripcion obtenerInscripcionATorneoPorIdParticipantePorDni(int idTipo ,string pDni, int pIdTorneo)
         {
             using (var db = new JJSSEntities())
             {
                 inscripcion inscripcion = (from ins in db.inscripcion
                                            join part in db.participante on ins.id_participante equals part.id_participante
-                                           where part.dni == pDni && ins.id_torneo == pIdTorneo
+                                           where part.dni == pDni && ins.id_torneo == pIdTorneo && part.id_tipo_documento == idTipo
                                            select ins).FirstOrDefault();
                 return inscripcion;
             }
@@ -288,13 +290,13 @@ namespace JJSS_Negocio
         }
 
         //TODO nacionalidad y tipo dni
-        public participante obtenerParticipanteDeTorneo(string pDni, int pIDTorneo)
+        public participante obtenerParticipanteDeTorneo(int pTipoDoc, string pDni, int pIDTorneo)
         {
             using (var db = new JJSSEntities())
             {
                 participante participante = (from part in db.participante
                                              join ins in db.inscripcion on part.id_participante equals ins.id_participante
-                                             where part.dni == pDni && ins.id_torneo == pIDTorneo
+                                             where part.dni == pDni && ins.id_torneo == pIDTorneo && part.id_tipo_documento == pTipoDoc
                                              select part).FirstOrDefault();
                 return participante;
             }
@@ -452,6 +454,39 @@ namespace JJSS_Negocio
             md.Msg_Asunto = "Comprobante de Inscripción a Torneo de Lotus Club - Equipo Hinojal";
             md.Enviar();
 
+        }
+
+        public List<tipo_documento> ObtenerTiposDocumentos()
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+
+                    var list = db.tipo_documento.ToList();       
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<tipo_documento>();
+            }
+        }
+
+        public List<pais> ObtenerNacionalidades()
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    var list = db.pais.ToList();
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<pais>();
+            }
         }
 
     }

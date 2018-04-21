@@ -69,6 +69,7 @@ namespace JJSS.Presentacion
                     lbl_fecha.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
                     int id = int.Parse(Session["TorneoPagar"].ToString());
                     var dni = Session["ParticipanteDNI"].ToString();
+                    int tipoDoc = int.Parse(Session["ParticipanteTipoDoc"].ToString());
                     participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
                     torneo torneoPagar = gestorTorneos.BuscarTorneoPorID(id);
                     lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
@@ -96,7 +97,7 @@ namespace JJSS.Presentacion
                             try
                             {
                                 string mail = sesionActiva.usuario.mail;
-                                string sFile = gestorInscripciones.ComprobanteInscripcionPago(gestorInscripciones.obtenerInscripcionATorneoPorIdParticipantePorDni(dni, id).id_inscripcion, mail);
+                                string sFile = gestorInscripciones.ComprobanteInscripcionPago(gestorInscripciones.obtenerInscripcionATorneoPorIdParticipantePorDni(tipoDoc,dni, id).id_inscripcion, mail);
 
                                 Response.Clear();
                                 Response.AddHeader("Content-Type", "Application/octet-stream");

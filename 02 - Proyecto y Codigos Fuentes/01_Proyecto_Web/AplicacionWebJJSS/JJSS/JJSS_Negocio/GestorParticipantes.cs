@@ -35,7 +35,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public String crearParticipante(String pNombre, String pApellido, short pSexo, DateTime pFechaNacimiento, string pDni, int? pAlumno)
+        public string crearParticipante(string pNombre, string pApellido, short pSexo, DateTime pFechaNacimiento, string pDni, int? pAlumno)
         {
             using (var db = new JJSSEntities())
             {

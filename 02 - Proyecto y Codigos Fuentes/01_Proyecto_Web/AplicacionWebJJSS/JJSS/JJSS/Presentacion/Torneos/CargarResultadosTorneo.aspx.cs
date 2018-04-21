@@ -166,9 +166,14 @@ namespace JJSS.Presentacion
             string nombre = txt_nombre.Text;
             string apellido = txt_apellido.Text;
             var dni = txt_dni.Text;
-            //TODO nacionalidad y tipo dni
+
             GestorInscripciones gi = new GestorInscripciones();
-            string res = gi.InscribirATorneo(torneoSeleccionado.id_torneo, nombre, apellido, dni, idCategoria);
+
+
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+            string res = gi.InscribirATorneo(torneoSeleccionado.id_torneo, nombre, apellido, idTipo, dni, idCategoria);
             if (res.CompareTo("") == 0)
             {
                 participantes = gestorResultados.mostrarParticipantesDeCategoria(idCategoria, torneoSeleccionado.id_torneo);

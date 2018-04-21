@@ -49,33 +49,6 @@ namespace JJSS {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btn_descargar;
         
         /// <summary>
-        /// Control pnl_pago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_pago;
-        
-        /// <summary>
-        /// Control btn_pagar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_pagar;
-        
-        /// <summary>
-        /// Control btn_no.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_no;
-        
-        /// <summary>
         /// Control pnl_mensaje_error.
         /// </summary>
         /// <remarks>
@@ -319,22 +292,13 @@ namespace JJSS {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// Control txt_Nacionalidad.
+        /// Control ddl_tipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Nacionalidad;
-        
-        /// <summary>
-        /// Control txtTipo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipo;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo;
         
         /// <summary>
         /// Control txtDni.
@@ -407,6 +371,15 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_peso;
+        
+        /// <summary>
+        /// Control ddl_nacionalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_nacionalidad;
         
         /// <summary>
         /// Control dp_fecha.
