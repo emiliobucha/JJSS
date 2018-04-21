@@ -71,7 +71,7 @@
 
           <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark" style="background-color: #2f2f2f;"  >
               <div class="navbar-nav nav-item">
-                  <a class="navbar-brand" href="MenuInicial.aspx">Home</a>
+                  <a class="navbar-brand" href="/Presentacion/MenuInicial.aspx">Home</a>
               </div>
               
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,15 +84,15 @@
                           <a class=" nav-item  text-white" href="MenuInicial.aspx">&nbsp; Home &nbsp; </a>
                       </li>--%>
                       <li class="nav-item">
-                          <a class=" nav-item  text-white" href="SobreNosotros.aspx">&nbsp; Sobre Nosotros &nbsp; </a>
+                          <a class=" nav-item  text-white" href="/Presentacion/SobreNosotros.aspx">&nbsp; Sobre Nosotros &nbsp; </a>
                       </li>
                       <li class="nav-item dropdown">
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarTorneo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Torneo &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item text-white" href="Torneos/CrearTorneo.aspx">Crear </a>
+                              <a class="dropdown-item text-white" href="/Presentacion/Torneos/CrearTorneo.aspx">Crear </a>
                               <a class="dropdown-item text-white" href="#">Ver </a>
-                              <a class="dropdown-item text-white" href="Torneos/InscripcionTorneo.aspx">Inscribir </a>                                                    
+                              <a class="dropdown-item text-white" href="/Presentacion/Torneos/InscripcionTorneo.aspx">Inscribir </a>                                                    
                               <a class="dropdown-item text-white" >Registrar Pago </a>
                           </div>
                       </li>
@@ -100,10 +100,10 @@
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarClase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Clase &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item text-white" href="CrearClase.aspx">Crear </a>
+                              <a class="dropdown-item text-white" href="/Presentacion/CrearClase.aspx">Crear </a>
                               <a class="dropdown-item text-white" href="#">Ver </a>
-                              <a class="dropdown-item text-white" href="InscripcionClase.aspx">Inscribir </a>                              
-                              <a class="dropdown-item text-white" href="RegistrarAsistencia.aspx">Asistencia </a>                                                    
+                              <a class="dropdown-item text-white" href="/Presentacion/InscripcionClase.aspx">Inscribir </a>                              
+                              <a class="dropdown-item text-white" href="/Presentacion/RegistrarAsistencia.aspx">Asistencia </a>                                                    
                               <a class="dropdown-item text-white" >Registrar Pago </a>
                           </div>
                       </li>
@@ -111,9 +111,9 @@
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarEvento" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Evento &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item text-white"  href="CrearEvento.aspx">Crear </a>
+                              <a class="dropdown-item text-white"  href="/Presentacion/CrearEvento.aspx">Crear </a>
                               <a class="dropdown-item text-white" href="#">Ver </a>
-                              <a class="dropdown-item text-white" href="InscripcionEvento.aspx">Inscribir </a>                                                    
+                              <a class="dropdown-item text-white" href="/Presentacion/InscripcionEvento.aspx">Inscribir </a>                                                    
                               <a class="dropdown-item text-white" >Registrar Pago </a>
                           </div>
                       </li>

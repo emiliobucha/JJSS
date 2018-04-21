@@ -16,13 +16,12 @@ namespace JJSS.Presentacion
 {
     public partial class CrearTorneo : System.Web.UI.Page
     {
-        GestorTorneos gestorTorneos;
-
+        private GestorTorneos gestorTorneos;
+        private static torneo torneoAEditar;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             gestorTorneos = new GestorTorneos();
             if (!IsPostBack)
             {
@@ -52,10 +51,29 @@ namespace JJSS.Presentacion
 
                 //}
                 CargarComboSedes();
+                torneoAEditar = null;
+                if (Session["idTorneo_editar"] != null)
+                {
+                    int idTorneo = int.Parse(Session["idTorneo_editar"].ToString());
+                    torneoAEditar = gestorTorneos.BuscarTorneoPorID(idTorneo);
 
+                    txt_nombre.Text = torneoAEditar.nombre;
+                    txt_precio_abs.Text = torneoAEditar.precio_absoluto.ToString().Replace(",", ".");
+                    txt_precio_cat.Text = torneoAEditar.precio_categoria.ToString().Replace(",", ".");
+                    txt_hora.Text = torneoAEditar.hora;
+                    txt_hora_cierre.Text = torneoAEditar.hora_cierre;
+                    DateTime dt = (DateTime)torneoAEditar.fecha;
+                    dp_fecha.Text = dt.ToString("dd/MM/yyyy");
+                    dt = (DateTime)torneoAEditar.fecha_cierre;
+                    dp_fecha_cierre.Text = dt.ToString("dd/MM/yyyy");
 
-
-
+                    ddl_sedes.SelectedItem.Value = torneoAEditar.id_sede.ToString();
+                    Session["idTorneo_editar"] = null;
+                }
+                else
+                {
+                    limpiar();
+                }
             }
         }
         public override void VerifyRenderingInServerForm(Control control)
@@ -70,6 +88,7 @@ namespace JJSS.Presentacion
             //string sReturn;
             if (Page.IsValid)
             {
+
                 string nombre = txt_nombre.Text;
                 DateTime fecha = new DateTime(99, 01, 01);
                 DateTime fecha_cierre = fecha;
@@ -104,20 +123,44 @@ namespace JJSS.Presentacion
                     imagen.CopyTo(ms);
                     imagenByte = ms.ToArray();
                 }
-                string sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre, imagenByte);
+                string sReturn = "";
+                if (torneoAEditar == null)
+                {//nuevo torneo
+                    sReturn = gestorTorneos.GenerarNuevoTorneo(fecha, nombre, precio_cat, precio_abs, hora, sede, fecha_cierre, hora_cierre, imagenByte);
 
-                if (sReturn.CompareTo("") == 0)
-                {
-                    sReturn = "El torneo se ha creado exitosamente";
-                    limpiar();
-                    mensaje(sReturn, true);
+                    if (sReturn.CompareTo("") == 0)
+                    {
+                        sReturn = "El torneo se ha creado exitosamente";
+                        limpiar();
+                        mensaje(sReturn, true);
+                    }
+                    else mensaje(sReturn, false);
+
                 }
-                else mensaje(sReturn, false);
+                else
+                {//editar torneo
+                    torneoAEditar.nombre = nombre;
+                    torneoAEditar.precio_absoluto = precio_abs;
+                    torneoAEditar.precio_categoria = precio_cat;
+                    torneoAEditar.hora_cierre = hora_cierre;
+                    torneoAEditar.hora = hora;
+                    torneoAEditar.id_sede = sede;
+                    torneoAEditar.fecha = fecha;
+                    torneoAEditar.fecha_cierre = fecha_cierre;
+                    sReturn = gestorTorneos.modificarTorneo(torneoAEditar, imagenByte);
 
+                    if (sReturn.CompareTo("") == 0)
+                    {
+                        sReturn = "El torneo se ha modificado exitosamente";
+                        limpiar();
+                        mensaje(sReturn, true);
+                        
+                    }
+                    else mensaje(sReturn, false);
+                }
             }
-
-
         }
+
 
         /*Resumen:
          * Muestra un cuadro de texto en la pantalla
@@ -221,7 +264,7 @@ namespace JJSS.Presentacion
         protected void btn_Cancelar_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx#section_torneos");
+            Response.Redirect("../MenuTorneo.aspx");
         }
 
         private void limpiar()
@@ -233,10 +276,10 @@ namespace JJSS.Presentacion
             txt_precio_cat.Text = "";
             dp_fecha.Text = "";
             dp_fecha_cierre.Text = "";
-            if (ddl_sedes.Items.Count>0) ddl_sedes.SelectedIndex = 0;
+            if (ddl_sedes.Items.Count > 0) ddl_sedes.SelectedIndex = 0;
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
-
+            Session["idTorneo_editar"] = null;
         }
     }
 

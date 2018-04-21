@@ -6,35 +6,35 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContenido" runat="server">
     <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <a class="ui-icon ui-icon-check"></a>
-                    <strong>
-                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
-                </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a class="ui-icon ui-icon-check"></a>
+                <strong>
+                    <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
             </div>
+        </div>
 
-        </asp:Panel>
+    </asp:Panel>
 
 
 
-        <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <a class="ui-icon ui-icon-alert"></a>
-                    <strong>Error! </strong>
-                    <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
-                </div>
+    <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a class="ui-icon ui-icon-alert"></a>
+                <strong>Error! </strong>
+                <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
             </div>
+        </div>
 
-        </asp:Panel>
+    </asp:Panel>
 
 
- <div class="row centered">
+    <div class="row centered">
         <p>&nbsp;</p>
     </div>
 
@@ -50,37 +50,22 @@
         <p>&nbsp;</p>
     </div>
 
-   <div class="container">
-           <asp:Panel ID="pnl_InfoTorneo" CssClass="panel centered justify-content-center border rounded p-2" runat="server">
+    <div class="container">
+        <asp:Panel ID="pnl_InfoTorneo" CssClass="panel centered justify-content-center border rounded p-2" runat="server">
 
-  <!--Nombre-->
+            <!--Fecha-->
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
 
-            <div class="row centered">
-                <div class="col centered col-lg-12 col-md-12 col-sm-12">
-                    <asp:Label ID="Label5" runat="server" Text="Información del Evento: " CssClass=" h3 " Font-Size="Large"></asp:Label>
-                    <asp:Label ID="lbl_NombreTorneo" CssClass="centered h3 " runat="server" Text="" Font-Size="Large"></asp:Label>
-                </div>
-            </div>
-
-            <div class="row centered">
-                <p>&nbsp;</p>
-            </div>
-        <!--Fecha-->
-        <div class="row centered">
-            <p>&nbsp;</p>
-        </div>
-
-            <div class="row centered">
+            <div class="row centered justify-content-center">
                 <div class="col-md-2 hidden-sm hidden-xs"></div>
-                <div class="col-md-4 ">
-                    <strong class="pull-left">Fecha:&nbsp; </strong>
+                <div class="col-md-6 col-sm-10 ">
+                    <label class="pull-left h6">Fecha:&nbsp;</label>
                     <asp:Label ID="lbl_FechaDeTorneo" CssClass="pull-left" runat="server" Text=""></asp:Label>
-                    <a class="pull-left">, </a>
+                    <asp:Label ID="Label2" CssClass="pull-left" runat="server" Text=", "></asp:Label>
                     <asp:Label ID="lbl_HoraTorneo" CssClass="pull-left" runat="server" Text=""></asp:Label>
-                    <a class="pull-left">&nbsp;hs </a>
+                    <asp:Label ID="Label6" CssClass="pull-left" runat="server" Text=" hs"></asp:Label>
                 </div>
             </div>
 
@@ -126,11 +111,11 @@
                     <asp:Label ID="lbl_CostoInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
 
 
+                </div>
             </div>
-        </div>
-        <div class="row centered">
-            <div class="col-md-2 hidden-sm hidden-xs"></div>
-            <div class="col-md-5 col-lg-10 col-sm-10">
+            <div class="row centered justify-content-center">
+                <div class="col-md-2 hidden-sm hidden-xs"></div>
+                <div class="col-md-6 col-sm-10">
 
                     <label class="pull-left h6">Costo Absoluto:&nbsp;</label>
                     <asp:Label ID="Label3" CssClass="pull-left" runat="server" Text="$ "></asp:Label>
@@ -175,7 +160,7 @@
                 <asp:Button ID="btn_suspender" runat="server" CssClass="btn btn-outline-dark" Text="Suspender Torneo" OnClick="btn_suspender_Click" Visible="false" />
                 <asp:Button ID="btn_editar" runat="server" CssClass="btn btn-outline-dark" Text="Editar Torneo" OnClick="btn_editar_Click" Visible="false" />
                 <asp:Button ID="btn_habilitar" runat="server" CssClass="btn btn-outline-dark" Text="Habilitar Torneo" OnClick="btn_habilitar_Click" Visible="false" />
-                <asp:Button ID="btn_imprimir_listado" runat="server" CssClass="btn btn-default pull-right" Text="Imprimir Listado" OnClick="btn_imprimir_listado_Click" Visible="false" />
+                <asp:Button ID="btn_imprimir_listado" runat="server" CssClass="btn btn-outline-dark" Text="Imprimir Listado de Inscrptos" OnClick="btn_imprimir_listado_Click" Visible="false" />
 
             </asp:Panel>
 

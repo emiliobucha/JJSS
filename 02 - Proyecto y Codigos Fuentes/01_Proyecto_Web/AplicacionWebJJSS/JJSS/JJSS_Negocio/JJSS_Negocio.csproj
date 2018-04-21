@@ -46,6 +46,7 @@
     <Compile Include="Administracion\GestorEstados.cs" />
     <Compile Include="Constantes\ConstantesEstado.cs" />
     <Compile Include="Constantes\ConstantesTipoClase.cs" />
+    <Compile Include="Constantes\ConstantesTipoInscripcion.cs" />
     <Compile Include="Constantes\ConstatesBajaLogica.cs" />
     <Compile Include="Constantes\Sexo.cs" />
     <Compile Include="GestorAsistencia.cs" />

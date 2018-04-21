@@ -163,35 +163,36 @@ namespace JJSS_Negocio
             }
         }
 
-        public List<TorneoResultado> ObtenerTorneosConImagen()
+        public List<TorneoResultado> ObtenerTorneosConImagenYFiltro(String filtroNombre, DateTime filtroFecha, DateTime filtroFechaHasta)
         {
             cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
             {
 
-                var torneosAbiertos =
-                                           from t in db.torneo
-                                           join i in db.torneo_imagen on t.id_torneo equals i.id_torneo
-                                           into ps
-                                           from i in ps.DefaultIfEmpty()
-                                           where t.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
-                                           select new TorneoResultado()
-                                           {
-                                               id_torneo = t.id_torneo,
-                                               nombre = t.nombre,
-                                               dtFecha = t.fecha,
-                                               hora = t.hora,
-                                               imagen = i.imagen_url
-                                           };
-
-
-                List<TorneoResultado> listaTorneos = torneosAbiertos.ToList();
-
-                foreach (TorneoResultado t in listaTorneos)
+                var torneos = from tor in db.torneo
+                              join est in db.estado on tor.id_estado equals est.id_estado
+                              join i in db.torneo_imagen on tor.id_torneo equals i.id_torneo
+                              into ps
+                              from i in ps.DefaultIfEmpty()
+                              where tor.nombre.StartsWith(filtroNombre) &&
+                              tor.fecha >= filtroFecha && tor.fecha <= filtroFechaHasta &&
+                              (est.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA || est.id_estado == ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA)
+                              orderby tor.fecha ascending
+                              select new TorneoResultado()
+                              {
+                                  id_torneo = tor.id_torneo,
+                                  nombre = tor.nombre,
+                                  dtFecha = tor.fecha,
+                                  imagenB = i.imagen,
+                                  estado = est.nombre,
+                                  hora = tor.hora,
+                              };
+                List<TorneoResultado> tr = torneos.ToList();
+                foreach (TorneoResultado t in tr)
                 {
                     t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
                 }
-                return listaTorneos;
+                return tr;
             }
         }
 
@@ -375,7 +376,7 @@ namespace JJSS_Negocio
                               from i in ps.DefaultIfEmpty()
                               where tor.nombre.StartsWith(filtroNombre) &&
                               tor.fecha >= filtroFecha && tor.fecha <= filtroFechaHasta &&
-                              (est.id_estado == ConstantesEstado.TORNEO_CANCELADO || est.id_estado == ConstantesEstado.TORNEO_FINALIZADO)
+                              (est.id_estado != ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA)
                               orderby tor.fecha descending
                               select new TorneoResultado()
                               {

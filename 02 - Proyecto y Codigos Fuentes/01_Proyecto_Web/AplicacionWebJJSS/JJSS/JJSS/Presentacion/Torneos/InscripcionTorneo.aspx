@@ -255,6 +255,7 @@
                             <div class="col-md-3 col-xl-auto">
                                 <asp:DropDownList ID="ddl_nacionalidad" class="caja2" runat="server" placeholder="Ingrese Nacionalidad" ValidationGroup="grupoDni"></asp:DropDownList>
                             </div>
+                            <div class="col-md-1"><a class="text-danger">*</a></div>
 
                             <!--Ingresar Tipo-->
                             <div class="col-md-2 col-xl-auto">
@@ -264,6 +265,7 @@
                                 <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
                              
                             </div>
+                            <div class="col-md-1"><a class="text-danger">*</a></div>
 
                             <!--Ingresar Numero-->
                             <div class="col-md-2 col-xl-auto">
@@ -273,6 +275,7 @@
                                 
                                 <asp:TextBox ID="txtDni" class="caja2" required="true" max="100000000000" type="number" runat="server" placeholder="Ingrese Número" ValidationGroup="grupoDni"></asp:TextBox>
                             </div>
+                            <div class="col-md-1"><a class="text-danger">*</a></div>
 
                             <!--Boton-->
                             <div class="col-md-1 col-xl-auto">
@@ -319,6 +322,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="50" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
                             </div>
+                            <div class="col-md-1"><a class="text-danger">*</a></div>
                         </div>
 
                         <div class="row centered">
@@ -334,6 +338,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox ID="txt_apellido" required="true" MaxLength="50" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
                             </div>
+                            <div class="col-md-1"><a class="text-danger">*</a></div>
                         </div>
 
                         <div class="row centered">
@@ -369,6 +374,7 @@
                             <div class="col-md-3">
                                 <asp:TextBox class="caja2" ID="txt_peso" runat="server" required="true" type="number" min="1" max="200" step="0.01" placeholder="Ingrese peso"></asp:TextBox>
                             </div>
+                            <div class="col-md-1"><a class="text-danger">*</a></div>
                         </div>
 
                         <div class="row centered">
@@ -388,6 +394,7 @@
                                 <!--LOCAL-->
                                 <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                             </div>
+                            <div class="col-md-1"><a class="text-danger">*</a></div>
 
                             <div class="col-md-3">
                                 <%--<asp:RequiredFieldValidator ID="rfv_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe ingresar fecha" ValidationGroup="vgDatos"> </asp:RequiredFieldValidator>--%>
@@ -410,6 +417,7 @@
                                 <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
                                 </asp:DropDownList>
                             </div>
+                            <div class="col-md-1"><a class="text-danger">*</a></div>
                         </div>
 
 

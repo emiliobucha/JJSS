@@ -114,7 +114,7 @@ namespace JJSS.Presentacion
 
         protected void btn_volver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("VerTorneo.aspx");
+            Response.Redirect("/Presentacion/Torneos/VerTorneo.aspx");
         }
 
         protected void btn_agregarResultado_Click(object sender, EventArgs e)

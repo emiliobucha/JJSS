@@ -68,7 +68,7 @@ namespace JJSS.Presentacion
             Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
             //si es ADMIN
             btn_imprimir_listado.Visible = true;
-            if (idEstado == ConstantesEstado.TORNEO_FINALIZADO)
+            if (idEstado == ConstantesEstado.TORNEO_FINALIZADO || idEstado == ConstantesEstado.TORNEO_EN_CURSO)
             {
                 btn_cargar_resultados.Visible = true;
             }
@@ -107,7 +107,7 @@ namespace JJSS.Presentacion
         {
             limpiarMensaje();
             Response.Redirect("InscripcionTorneo.aspx");
-            Session["torneoSeleccionado"] = torneoSeleccionado.id_torneo;
+            Session["idTorneo_inscribirTorneo"] = torneoSeleccionado.id_torneo;
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
@@ -125,6 +125,8 @@ namespace JJSS.Presentacion
         protected void btn_editar_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
+            Session["idTorneo_editar"] = torneoSeleccionado.id_torneo;
+            Response.Redirect("CrearTorneo.aspx");
         }
 
         protected void btn_habilitar_Click(object sender, EventArgs e)
@@ -137,7 +139,7 @@ namespace JJSS.Presentacion
         protected void btn_volver_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            Response.Redirect("HistoricoTorneos.aspx");
+            Response.Redirect("/Presentacion/Torneos/MenuTorneo.aspx");
         }
 
         protected void gvResultados_PageIndexChanging(object sender, GridViewPageEventArgs e)

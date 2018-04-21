@@ -18,6 +18,8 @@ namespace JJSS.Presentacion
             gestorDeTorneos = new GestorTorneos();
             if (!IsPostBack)
             {
+                dp_filtro_fecha_desde.Text = DateTime.Today.ToString("dd/MM/yyyy"); 
+                dp_filtro_fecha_hasta.Text = DateTime.Today.AddYears(2).ToString("dd/MM/yyyy");
                 cargarTorneosAbiertosView();
             }
 
@@ -25,14 +27,38 @@ namespace JJSS.Presentacion
 
         protected void cargarTorneosAbiertosView()
         {
-            lv_torneos_abiertos.DataSource = gestorDeTorneos.ObtenerTorneosConImagen();
+            String filtroNombre = txt_filtro_nombre.Text;
+
+            DateTime filtroFecha = new DateTime();
+            if (dp_filtro_fecha_desde.Text.CompareTo("") != 0)
+            {
+                filtroFecha = DateTime.Parse(dp_filtro_fecha_desde.Text);
+            }
+            DateTime filtroFechaHasta = new DateTime();
+            if (dp_filtro_fecha_hasta.Text.CompareTo("") != 0)
+            {
+                filtroFechaHasta = DateTime.Parse(dp_filtro_fecha_hasta.Text);
+            }
+            lv_torneos_abiertos.DataSource = gestorDeTorneos.ObtenerTorneosConImagenYFiltro(filtroNombre,filtroFecha,filtroFechaHasta);
             lv_torneos_abiertos.DataBind();
         }
         protected void lv_torneos_abiertos_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
-            Session["torneoSeleccionado"] = id;
-            Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
+            if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                Session["idTorneo"] = id;
+                Response.Redirect("~/Presentacion/Torneos/VerTorneo.aspx");
+            }else if (e.CommandName.CompareTo("inscribir") == 0)
+            {
+                Session["idTorneo_inscribirTorneo"] = id;
+                Response.Redirect("~/Presentacion/Torneos/InscripcionTorneo.aspx");
+            }
+        }
+
+        protected void btn_buscar_Click(object sender, EventArgs e)
+        {
+            cargarTorneosAbiertosView();
         }
     }
 }
