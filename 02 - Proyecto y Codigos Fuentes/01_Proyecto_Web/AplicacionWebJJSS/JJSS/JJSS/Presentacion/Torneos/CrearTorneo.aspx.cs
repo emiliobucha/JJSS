@@ -68,6 +68,11 @@ namespace JJSS.Presentacion
                     dp_fecha_cierre.Text = dt.ToString("dd/MM/yyyy");
 
                     ddl_sedes.SelectedItem.Value = torneoAEditar.id_sede.ToString();
+                    Session["idTorneo_editar"] = null;
+                }
+                else
+                {
+                    limpiar();
                 }
             }
         }
@@ -149,11 +154,13 @@ namespace JJSS.Presentacion
                         sReturn = "El torneo se ha modificado exitosamente";
                         limpiar();
                         mensaje(sReturn, true);
+                        
                     }
                     else mensaje(sReturn, false);
                 }
             }
         }
+
 
         /*Resumen:
          * Muestra un cuadro de texto en la pantalla
@@ -272,7 +279,7 @@ namespace JJSS.Presentacion
             if (ddl_sedes.Items.Count > 0) ddl_sedes.SelectedIndex = 0;
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
-
+            Session["idTorneo_editar"] = null;
         }
     }
 

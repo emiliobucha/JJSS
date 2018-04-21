@@ -175,7 +175,7 @@ namespace JJSS.Presentacion
          */
         protected void cargarTorneosAbiertosView()
         {
-            lv_torneos_abiertos.DataSource = gestorDeTorneos.ObtenerTorneosConImagen();
+            //lv_torneos_abiertos.DataSource = gestorDeTorneos.ObtenerTorneosConImagen();
             lv_torneos_abiertos.DataBind();
         }
         protected void cargarClasesView()

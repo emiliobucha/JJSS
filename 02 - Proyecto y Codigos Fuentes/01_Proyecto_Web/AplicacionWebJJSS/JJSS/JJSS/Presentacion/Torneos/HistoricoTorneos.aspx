@@ -58,51 +58,57 @@
                     <p>&nbsp;</p>
                 </div>
                 <!---------------------------------**************Muestra de Torneos************---------------------------------------->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class=" row centered mt justify-content-center p-2" runat="server">
+                    
+
                     <asp:ListView ID="lv_torneos" GroupPlaceholderID="groupPlaceHolder1" ItemPlaceholderID="itemPlaceHolder1" GroupItemCount="3" runat="server" OnItemCommand="lv_torneos_ItemCommand">
 
-                        <LayoutTemplate>
-                            <table>
-                                <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
-                            </table>
-                        </LayoutTemplate>
+                    <LayoutTemplate>
+                        <table>
+                            <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
+                        </table>
+                    </LayoutTemplate>
 
-                        <GroupTemplate>
-                            <tr>
-                                <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
-                            </tr>
-                        </GroupTemplate>
+                    <GroupTemplate>
+                        <tr>
+                            <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
+                        </tr>
+                    </GroupTemplate>
 
-                        <ItemTemplate>
+                    <ItemTemplate>
 
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="border: 1px medium gray">
-                                <div>
-                                    <asp:Label ID="lv_lbl_nombre" CssClass="h3" runat="server" Text='<%# Eval("nombre") %>' />
-                                </div>
-                                <div>
-                                    <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
-                                    <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
-                                </div>
-                                <div>
-                                    Fecha:
+                        <div class="col-lg-3 col-md-3  col-sm-12 " runat="server">
+                            <div runat="server">
+                                <asp:Label ID="lv_lbl_nombre" CssClass="h4" runat="server" Text='<%# Eval("nombre") %>' />
+                            </div>
+                            <div runat="server">
+                                <%--   <img src="../img/Imagen%20por%20Defecto.png" Width="250" Height="404"/>--%>
+                                <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
+                            </div>
+                            <div runat="server">
+                                Fecha:
                                        
                                         <asp:Label ID="lv_lbl_fecha" runat="server" Text='<%# Eval("fecha") %>' />
-                                </div>
-                                <div>
-                                    Estado: 
+                            </div>
+                            <div runat="server">
+                                Estado:
                                        
                                         <asp:Label ID="lv_lbl_estado" runat="server" Text='<%# Eval("estado") %>' />
-                                </div>
-                                <div>
-                                    <asp:Button ID="lv_btn_seleccionar" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass="btn btn-outline-dark" Text="Seleccionar" />
-                                </div>
                             </div>
+                            <div runat="server">
+                                                                    <asp:Button ID="lv_btn_seleccionar" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass="btn btn-outline-dark" Text="Seleccionar" />
 
-                        </ItemTemplate>
-                        <EmptyDataTemplate>
-                            <h3>No hay torneos disponibles por el momento</h3>
-                        </EmptyDataTemplate>
-                    </asp:ListView>
+                            </div>
+                            <div class="row centered ">
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+
+                    </ItemTemplate>
+                    <EmptyDataTemplate>
+                        <h3>No hay torneos disponibles por el momento</h3>
+                    </EmptyDataTemplate>
+                </asp:ListView>
 
 
                 </div>

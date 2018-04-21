@@ -68,7 +68,7 @@ namespace JJSS.Presentacion
             Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
             //si es ADMIN
             btn_imprimir_listado.Visible = true;
-            if (idEstado == ConstantesEstado.TORNEO_FINALIZADO)
+            if (idEstado == ConstantesEstado.TORNEO_FINALIZADO || idEstado == ConstantesEstado.TORNEO_EN_CURSO)
             {
                 btn_cargar_resultados.Visible = true;
             }

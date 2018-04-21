@@ -64,6 +64,10 @@ namespace JJSS_Negocio
 
                     categoria categoriaPerteneciente = cat.First();
 
+                    //si es absoluto
+                    //if (pTipoInscripcion)
+
+
                     //Nuevos
 
 
