@@ -13,6 +13,7 @@ namespace JJSS.Presentacion
     public partial class MenuTorneo : System.Web.UI.Page
     {
         private GestorTorneos gestorDeTorneos;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorDeTorneos = new GestorTorneos();
@@ -63,6 +64,7 @@ namespace JJSS.Presentacion
             lv_torneos_abiertos.DataSource = gestorDeTorneos.ObtenerTorneosConImagenYFiltro(filtroNombre,filtroFecha,filtroFechaHasta);
             lv_torneos_abiertos.DataBind();
         }
+
         protected void lv_torneos_abiertos_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);

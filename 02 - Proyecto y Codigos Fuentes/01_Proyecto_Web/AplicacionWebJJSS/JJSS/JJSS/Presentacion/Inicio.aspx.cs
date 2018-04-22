@@ -178,6 +178,7 @@ namespace JJSS.Presentacion
             //lv_torneos_abiertos.DataSource = gestorDeTorneos.ObtenerTorneosConImagen();
             lv_torneos_abiertos.DataBind();
         }
+
         protected void cargarClasesView()
         {
             lv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClasesDisponibles();
@@ -186,7 +187,6 @@ namespace JJSS.Presentacion
             lv_clasesDisponibles_invitado.DataSource = gestorDeClases.ObtenerClasesDisponibles();
             lv_clasesDisponibles_invitado.DataBind();
         }
-
 
         protected void registrarAlumno_Click(object sender, EventArgs e)
         {
@@ -204,7 +204,6 @@ namespace JJSS.Presentacion
         {
             txt_modal_recarga.Text = "100";
         }
-
 
         protected void cargarTorneosExportarListado()
         {
@@ -224,7 +223,6 @@ namespace JJSS.Presentacion
             ddl_eventoExportarListado.DataBind();
         }
 
-
         protected void cargarClasesExportarListado()
         {
             List<HorariosResultado> horarios = gestorDeClases.ObtenerHorariosResultadosDeFecha(DateTime.Now);
@@ -235,13 +233,11 @@ namespace JJSS.Presentacion
 
 
         }
+
         //protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
         //{
         //    btnGenerarListado();
         //}
-
-
-
 
         protected void btn_acpetarTorneoExportarLista_Click(object sender, EventArgs e)
         {
@@ -268,7 +264,6 @@ namespace JJSS.Presentacion
                 Response.Write("<script>window.alert('" + "No se encuentran alumnos inscriptos a ese torneo".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
             }
         }
-
 
         private void mensaje(string pMensaje)
         {
@@ -310,15 +305,12 @@ namespace JJSS.Presentacion
             //cargarComboFajas();
         }
 
-
-
         protected void lv_torneos_abiertos_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
             Session["idTorneo_inscribirTorneo"] = id;
             Response.Redirect("~/Presentacion/InscripcionTorneo.aspx");
         }
-
 
         protected void ocultarInvitado()
         {
