@@ -19,6 +19,8 @@ namespace JJSS.Presentacion.Administracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/MenuInicial.aspx";
+            else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
             if (!IsPostBack)
             {
                 gestorCiudades = new GestorCiudades();
@@ -117,10 +119,10 @@ namespace JJSS.Presentacion.Administracion
                 numero = int.Parse(txt_numero.Text);
             }
             int ciudad = int.Parse(ddl_localidad.SelectedValue);
-            int? telefono = null;
+            long? telefono = null;
             if (txt_telefono.Text != "")
             {
-                telefono = int.Parse(txt_telefono.Text);
+                telefono = long.Parse(txt_telefono.Text);
             }
 
             direccion nuevaDireccion = new direccion();
@@ -166,6 +168,13 @@ namespace JJSS.Presentacion.Administracion
                 
             }
             else mensaje(res, false);
+        }
+
+        protected void btn_cancelar_Click1(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
         }
     }
 }

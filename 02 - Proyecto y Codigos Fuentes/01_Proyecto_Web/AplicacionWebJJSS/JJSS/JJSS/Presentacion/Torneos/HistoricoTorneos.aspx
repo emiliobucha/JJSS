@@ -68,7 +68,7 @@
                             <asp:BoundField DataField="nombre" HeaderText="Torneo" />
                             <asp:BoundField DataField="fecha" HeaderText="Fecha" />
                             <asp:BoundField DataField="estado" HeaderText="Estado" />
-                            <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Ver" />
+                            <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
                         </Columns>
                         <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
 
@@ -135,5 +135,6 @@
             </div>
             
         </div>
+        <asp:Button ID="btn_Cancelar" runat="server" Text="Volver" formnovalidate="true" CssClass="btn btn-link" CausesValidation="false" OnClick="btn_Cancelar_Click"/>
     </form>
 </asp:Content>

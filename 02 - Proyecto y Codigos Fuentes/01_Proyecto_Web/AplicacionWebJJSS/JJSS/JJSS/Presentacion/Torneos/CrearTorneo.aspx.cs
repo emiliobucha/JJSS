@@ -25,6 +25,8 @@ namespace JJSS.Presentacion
             gestorTorneos = new GestorTorneos();
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Torneos/MenuTorneo.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 //try
                 //{
                 //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
@@ -265,12 +267,6 @@ namespace JJSS.Presentacion
 
         }
 
-        protected void btn_Cancelar_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            Response.Redirect("../MenuTorneo.aspx");
-        }
-
         private void limpiar()
         {
             txt_hora.Text = "";
@@ -284,6 +280,13 @@ namespace JJSS.Presentacion
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
             Session["idTorneo_editar"] = null;
+        }
+
+        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
         }
     }
 

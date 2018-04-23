@@ -23,19 +23,24 @@ namespace JJSS.Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorTorneos = new GestorTorneos();
-            int idTorneo = 0;
-            if (Session["idTorneo"] != null)
+            if (!IsPostBack)
             {
-                idTorneo = (int)Session["idTorneo"];
-                torneoSeleccionado = gestorTorneos.BuscarTorneoPorID(idTorneo);
-                estadoTorneo = gestorTorneos.buscarEstadoTorneo(idTorneo);
-                resultadosTorneo = gestorTorneos.buscarResultados(idTorneo);
-                cargarTabla();
-                cargarInformacion();
-                verBotones();
+                int idTorneo = 0;
+                if (Session["idTorneo"] != null)
+                {
+                    object o = Session["idTorneo"];
+                    idTorneo = (int)Session["idTorneo"];
+                    torneoSeleccionado = gestorTorneos.BuscarTorneoPorID(idTorneo);
+                    estadoTorneo = gestorTorneos.buscarEstadoTorneo(idTorneo);
+                    resultadosTorneo = gestorTorneos.buscarResultados(idTorneo);
+                    cargarTabla();
+                    cargarInformacion();
+                    verBotones();
+                    if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Torneos/MenuTorneo.aspx";
+                    else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+                }
+                else volverPaginaAnterior();
             }
-            else Response.Redirect("HistoricoTorneos.aspx");
-
         }
 
         private void cargarTabla()
@@ -106,20 +111,22 @@ namespace JJSS.Presentacion
         protected void btn_inscribir_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            Response.Redirect("InscripcionTorneo.aspx");
             Session["idTorneo_inscribirTorneo"] = torneoSeleccionado.id_torneo;
+            Response.Redirect("InscripcionTorneo.aspx");
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
             gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_CANCELADO);
+            volverPaginaAnterior();
         }
 
         protected void btn_suspender_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
             gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_SUSPENDIDO);
+            volverPaginaAnterior();
         }
 
         protected void btn_editar_Click(object sender, EventArgs e)
@@ -129,11 +136,19 @@ namespace JJSS.Presentacion
             Response.Redirect("CrearTorneo.aspx");
         }
 
+        private void volverPaginaAnterior()
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
+        }
+
         protected void btn_habilitar_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
             gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
             gestorTorneos.cambiarEstadoTorneos();
+            volverPaginaAnterior();
         }
 
         protected void btn_volver_Click(object sender, EventArgs e)
@@ -188,6 +203,12 @@ namespace JJSS.Presentacion
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
             }
+        }
+
+        protected void btn_volver_Click1(object sender, EventArgs e)
+        {
+            limpiarMensaje();
+            volverPaginaAnterior();
         }
     }
 }

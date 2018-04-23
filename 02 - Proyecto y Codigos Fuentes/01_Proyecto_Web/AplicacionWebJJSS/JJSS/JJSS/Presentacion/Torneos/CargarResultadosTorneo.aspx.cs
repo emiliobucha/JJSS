@@ -24,6 +24,8 @@ namespace JJSS.Presentacion
         {
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Torneos/MenuTorneo.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 gestorResultados = new GestorResultados();
                 gestorTorneos = new GestorTorneos();
                 if (Session["idTorneo"] != null)
@@ -38,7 +40,7 @@ namespace JJSS.Presentacion
                 }
                 else
                 {
-                    Response.Redirect("HistoricoTorneos.aspx");
+                    Response.Redirect("MenuTorneo.aspx");
                 }
             }
         }
@@ -88,9 +90,27 @@ namespace JJSS.Presentacion
         {
             int idFaja = int.Parse(ddl_fejas.SelectedItem.Value);
             int idCategoria = int.Parse(ddl_categorias.SelectedItem.Value);
-            CategoriasTorneoResultado categoriaAAgregar = gestorResultados.categoriaAAgregar(idFaja, idCategoria);
-            categoriasConInscriptos.Add(categoriaAAgregar);
-            cargarCombosCategorias();
+            if (validarCategoria())
+            {
+                CategoriasTorneoResultado categoriaAAgregar = gestorResultados.categoriaAAgregar(idFaja, idCategoria);
+                categoriasConInscriptos.Add(categoriaAAgregar);
+                cargarCombosCategorias();
+            }
+        }
+
+        private Boolean validarCategoria()
+        {
+            string faja = ddl_fejas.SelectedItem.Text;
+            string categoria = ddl_categorias.SelectedItem.Text;
+            string categoriaAAgregar = categoria.Trim()+ " "+ faja.Trim();
+            foreach (ListItem li in ddl_categoriasConInscriptos.Items)
+            {
+                if (li.Text.Trim().CompareTo(categoriaAAgregar.Trim()) == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         protected void btn_agregar_Click(object sender, EventArgs e)
@@ -110,11 +130,6 @@ namespace JJSS.Presentacion
                 mensaje("Debe seleccionar una categoría", false);
             }
 
-        }
-
-        protected void btn_volver_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/Presentacion/Torneos/VerTorneo.aspx");
         }
 
         protected void btn_agregarResultado_Click(object sender, EventArgs e)
@@ -187,6 +202,13 @@ namespace JJSS.Presentacion
             txt_nombre.Text = "";
             ddl_nacionalidad.SelectedIndex = -1;
             ddl_tipo_dni.SelectedIndex = -1;
+        }
+
+        protected void btn_volver_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
         }
     }
 }

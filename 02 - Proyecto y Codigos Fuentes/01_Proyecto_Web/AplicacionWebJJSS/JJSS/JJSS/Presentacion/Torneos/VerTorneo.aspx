@@ -169,7 +169,7 @@
                 <p>&nbsp;</p>
             </div>
 
-            <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass=" btn btn-link pull-left" href="../Presentacion/HistoricoTorneos.aspx" />
+            <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass=" btn btn-link pull-left" OnClick="btn_volver_Click1"/>
         </form>
 
         <div class="row centered">

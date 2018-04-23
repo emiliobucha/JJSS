@@ -465,7 +465,7 @@
                         <p>&nbsp;</p>
                     </div>
 
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn btn-link" formnovalidate="true" CausesValidation="false" OnClick="btn_Cancelar_Click" />
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver" CssClass="btn btn-link" formnovalidate="true" CausesValidation="false" OnClick="btn_Cancelar_Click"/>
 
                 </form>
             </div>

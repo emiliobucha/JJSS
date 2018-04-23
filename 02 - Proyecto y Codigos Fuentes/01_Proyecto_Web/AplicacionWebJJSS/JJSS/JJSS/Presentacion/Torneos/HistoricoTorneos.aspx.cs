@@ -16,6 +16,8 @@ namespace JJSS.Presentacion
         {
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Torneos/MenuTorneo.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 gestorDeTorneos = new GestorTorneos();
                 cargarComboEstados();
                 dp_filtro_fecha_desde.Text = DateTime.Today.AddYears(-1).ToString("dd/MM/yyyy");
@@ -76,7 +78,8 @@ namespace JJSS.Presentacion
 
         protected void gv_torneo_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = Convert.ToInt32(e.CommandArgument);
+            int index = Convert.ToInt32(e.CommandArgument);
+            int id = Convert.ToInt32(gv_torneos.DataKeys[index].Value);
             Session["idTorneo"] = id;
             Response.Redirect("VerTorneo.aspx");
         }
@@ -131,5 +134,11 @@ namespace JJSS.Presentacion
 
         }
 
+        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
+        }
     }
 }
