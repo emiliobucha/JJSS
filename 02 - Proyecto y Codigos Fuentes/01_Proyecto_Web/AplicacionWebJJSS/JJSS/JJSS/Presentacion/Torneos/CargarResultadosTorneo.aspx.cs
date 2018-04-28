@@ -141,14 +141,18 @@ namespace JJSS.Presentacion
                 int idSegundoPuesto = int.Parse(ddl_2.SelectedItem.Value);
                 int idTercerPuesto1 = int.Parse(ddl_3_1.SelectedItem.Value);
                 int idTercerPuesto2 = int.Parse(ddl_3_2.SelectedItem.Value);
-                string res = gestorResultados.cargarResultado(torneoSeleccionado.id_torneo, idCategoria, idPrimerPuesto, idSegundoPuesto, idTercerPuesto1, idTercerPuesto2);
-                if (res.CompareTo("") == 0)
+
+                if (validarPuestos())
                 {
-                    mensaje("El resultado se cargó correctamente", true);
-                }
-                else
-                {
-                    mensaje(res, false);
+                    string res = gestorResultados.cargarResultado(torneoSeleccionado.id_torneo, idCategoria, idPrimerPuesto, idSegundoPuesto, idTercerPuesto1, idTercerPuesto2);
+                    if (res.CompareTo("") == 0)
+                    {
+                        mensaje("El resultado se cargó correctamente", true);
+                    }
+                    else
+                    {
+                        mensaje(res, false);
+                    }
                 }
             }
             catch (NullReferenceException ex)
@@ -156,6 +160,20 @@ namespace JJSS.Presentacion
                 mensaje("Debe seleccionar un participante", false);
             }
 
+        }
+
+        private Boolean validarPuestos()
+        {
+            int idPrimerPuesto = int.Parse(ddl_1.SelectedItem.Value);
+            int idSegundoPuesto = int.Parse(ddl_2.SelectedItem.Value);
+            int idTercerPuesto1 = int.Parse(ddl_3_1.SelectedItem.Value);
+            int idTercerPuesto2 = int.Parse(ddl_3_2.SelectedItem.Value);
+            if (idPrimerPuesto == idSegundoPuesto && idPrimerPuesto == idTercerPuesto1 && idPrimerPuesto == idTercerPuesto2)
+            {
+                return false;
+            }
+            //TODO terminar la validacion
+            return true;
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -182,13 +200,17 @@ namespace JJSS.Presentacion
             string apellido = txt_apellido.Text;
             var dni = txt_dni.Text;
 
+            short sexo = 0;
+            if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO;
+            if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
+
             GestorInscripciones gi = new GestorInscripciones();
 
 
-            int idTipo;
+            int idTipo = 1;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
-            string res = gi.InscribirATorneo(torneoSeleccionado.id_torneo, nombre, apellido, idTipo, dni, idCategoria);
+            string res = gi.InscribirATorneo(torneoSeleccionado.id_torneo, nombre, apellido, idTipo, dni, idCategoria, sexo);
             if (res.CompareTo("") == 0)
             {
                 participantes = gestorResultados.mostrarParticipantesDeCategoria(idCategoria, torneoSeleccionado.id_torneo);

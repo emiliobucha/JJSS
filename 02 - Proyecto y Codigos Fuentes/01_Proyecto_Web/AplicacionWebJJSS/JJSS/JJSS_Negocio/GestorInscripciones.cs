@@ -44,7 +44,6 @@ namespace JJSS_Negocio
             {
                 var transaction = db.Database.BeginTransaction();
 
-
                 try
                 {
                     //Foraneos
@@ -60,17 +59,77 @@ namespace JJSS_Negocio
                         && (categoria.peso_desde <= pPeso)
                         && (categoria.peso_hasta > pPeso)
                         && (categoria.sexo == pSexo)
+                        && !categoria.nombre.StartsWith("Absoluto")
                         select categoria;
 
                     categoria categoriaPerteneciente = cat.First();
+                    categoria_torneo categoriaTorneoCat = null;
+
+                    var catTorneoExistente = from catTor in db.categoria_torneo
+                                             where (catTor.id_categoria == categoriaPerteneciente.id_categoria)
+                                             && catTor.id_faja == fajaElegida.id_faja
+                                             
+                                             select catTor;
+
+                    if (catTorneoExistente.Count() == 0)
+
+                    {
+                        categoriaTorneoCat = new categoria_torneo()
+                        {
+                            id_categoria = categoriaPerteneciente.id_categoria,
+                            faja = fajaElegida,
+
+                        };
+                        db.categoria_torneo.Add(categoriaTorneoCat);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        categoriaTorneoCat = catTorneoExistente.First();
+                    }
 
                     //si es absoluto
-                    //if (pTipoInscripcion)
+                    categoria categoriaAbsolutoPerteneciente = null;
+                    categoria_torneo categoriaTorneoAbs = null;
+                    if (pTipoInscripcion == Constantes.ConstantesTipoInscripcion.ABSOLUTO)
+                    {
+                        edad = DateTime.Now.Year - pFechaNacimiento.Year;
+                        var abs =
+                        from categoria in db.categoria
+                        where (categoria.edad_desde <= edad)
+                        && (categoria.edad_hasta >= edad)
+                        && (categoria.sexo == pSexo)
+                        && categoria.nombre.StartsWith("Absoluto")
+                        select categoria;
 
+                        categoriaAbsolutoPerteneciente = abs.First();
+                        
+                        var catTorneoExistenteAbs = from catTor in db.categoria_torneo
+                                                 where (catTor.id_categoria == categoriaAbsolutoPerteneciente.id_categoria)
+                                                 && catTor.id_faja == fajaElegida.id_faja
+                                                 
+                                                 select catTor;
+
+                        if (catTorneoExistenteAbs.Count() == 0)
+
+                        {
+                            categoriaTorneoAbs = new categoria_torneo()
+                            {
+                                id_categoria = categoriaAbsolutoPerteneciente.id_categoria,
+                                faja = fajaElegida,
+
+                            };
+                            db.categoria_torneo.Add(categoriaTorneoAbs);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            categoriaTorneoAbs = catTorneoExistenteAbs.First();
+                        }
+                        
+                    }
 
                     //Nuevos
-
-
                     if (obtenerParticipanteDeTorneo(pTipoDoc,pDni, pTorneo) != null)
                     {
                         return "El participante ya se inscribió a este torneo";
@@ -95,31 +154,7 @@ namespace JJSS_Negocio
                     };
                     db.participante.Add(nuevoParticipante);
                     db.SaveChanges();
-
-                    var catTorneoExistente = from catTor in db.categoria_torneo
-                                             where (catTor.id_categoria == categoriaPerteneciente.id_categoria)
-                                             && catTor.id_faja==pFaja
-                                             select catTor;
-                    categoria_torneo nuevaCategoriaTorneo;
-
-                    if (catTorneoExistente.Count() == 0)
-
-                    {
-                        nuevaCategoriaTorneo = new categoria_torneo()
-                        {
-                            id_categoria = categoriaPerteneciente.id_categoria,
-                            faja = fajaElegida,
-
-                        };
-                        db.categoria_torneo.Add(nuevaCategoriaTorneo);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        nuevaCategoriaTorneo = catTorneoExistente.First();
-                    }
                     
-
                     string hora = hora = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;
                     inscripcion nuevaInscripcion = new inscripcion()
@@ -135,12 +170,11 @@ namespace JJSS_Negocio
                         peso = pPeso,
                         id_faja = pFaja,
                         faja=fajaElegida,
-                        categoria_torneo = nuevaCategoriaTorneo,
+                        id_categoria = categoriaTorneoCat.id_categoria_torneo,
+                        id_absoluto = categoriaTorneoAbs.id_categoria_torneo,
                         tipo_inscripcion = pTipoInscripcion,
                     };
-
-
-
+                    
                     db.inscripcion.Add(nuevaInscripcion);
                     db.SaveChanges();
                     transaction.Commit();
@@ -148,15 +182,14 @@ namespace JJSS_Negocio
                 }
                 catch (Exception ex)
                 {
-
                     transaction.Rollback();
                     return ex.Message;
                 }
             }
         }
-        //TODO nacionalidad y tipo dni
+               
 
-        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, int pTipoDoc, string pDni, int pIdCategoriaTorneo)
+        public string InscribirATorneo(int pTorneo, string pNombre, string pApellido, int pTipoDoc, string pDni, int pIdCategoriaTorneo, short pSexo)
         {
             String sReturn = "";
             using (var db = new JJSSEntities())
@@ -180,12 +213,25 @@ namespace JJSS_Negocio
                     {
                         nombre = pNombre,
                         apellido = pApellido,
-                        dni = pDni
+                        dni = pDni,
+                        sexo = pSexo
                     };
                     db.participante.Add(nuevoParticipante);
                     db.SaveChanges();
 
-                    categoria_torneo nuevaCategoriaTorneo = db.categoria_torneo.Find(pIdCategoriaTorneo); 
+                    short tipoInscripcion;
+                    categoria_torneo categoriaAbsoluto = null;
+                    categoria_torneo categoriaCategoria = null;
+                    if (esAbsoluto(pIdCategoriaTorneo))
+                    {
+                        categoriaAbsoluto = db.categoria_torneo.Find(pIdCategoriaTorneo);
+                        tipoInscripcion = Constantes.ConstantesTipoInscripcion.ABSOLUTO;
+                    }
+                    else
+                    {
+                        categoriaCategoria = db.categoria_torneo.Find(pIdCategoriaTorneo);
+                        tipoInscripcion = Constantes.ConstantesTipoInscripcion.CATEGORIA;
+                    }
                     
                     string hora = hora = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;
@@ -199,7 +245,9 @@ namespace JJSS_Negocio
                         id_participante = nuevoParticipante.id_participante,
                         id_torneo = torneoInscripto.id_torneo,
                         torneo = torneoInscripto,
-                        categoria_torneo = nuevaCategoriaTorneo,
+                        tipo_inscripcion = tipoInscripcion,
+                        categoria_torneo = categoriaCategoria,
+                        categoria_torneo1 = categoriaAbsoluto,
                     };
                     
                     db.inscripcion.Add(nuevaInscripcion);
@@ -215,6 +263,20 @@ namespace JJSS_Negocio
             }
         }
 
+        private Boolean esAbsoluto(int pIDCategoria)
+        {
+            using (var db = new JJSSEntities())
+            {
+                
+                var categoriaSeleccionada= from cat in db.categoria
+                                   join catt in db.categoria_torneo on cat.id_categoria equals catt.id_categoria
+                                   where catt.id_categoria_torneo == pIDCategoria
+                                   select cat;
+
+                categoria cate = categoriaSeleccionada.First();
+                return cate.nombre.StartsWith("Absoluto");
+            }
+        }
 
         public inscripcion obtenerInscripcionATorneoPorIdParticipantePorDni(int idTipo ,string pDni, int pIdTorneo)
         {

@@ -243,6 +243,7 @@
           <Property Name="peso" Type="float" />
           <Property Name="id_faja" Type="int" />
           <Property Name="tipo_inscripcion" Type="smallint" />
+          <Property Name="id_absoluto" Type="int" />
         </EntityType>
         <EntityType Name="inscripcion_clase">
           <Key>
@@ -1471,6 +1472,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_inscripcion_id_absoluto">
+          <End Role="categoria_torneo" Type="Self.categoria_torneo" Multiplicity="0..1" />
+          <End Role="inscripcion" Type="Self.inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria_torneo">
+              <PropertyRef Name="id_categoria_torneo" />
+            </Principal>
+            <Dependent Role="inscripcion">
+              <PropertyRef Name="id_absoluto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PARTICIPANTE_ID_ALUMNO">
           <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
           <End Role="participante" Type="Self.participante" Multiplicity="*" />
@@ -1907,6 +1920,10 @@
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
+          <AssociationSet Name="FK_inscripcion_id_absoluto" Association="Self.FK_inscripcion_id_absoluto">
+            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
+            <End Role="inscripcion" EntitySet="inscripcion" />
+          </AssociationSet>
           <AssociationSet Name="FK_PARTICIPANTE_ID_ALUMNO" Association="Self.FK_PARTICIPANTE_ID_ALUMNO">
             <End Role="alumno" EntitySet="alumno" />
             <End Role="participante" EntitySet="participante" />
@@ -2054,6 +2071,7 @@
           <NavigationProperty Name="faja" Relationship="Self.FK__categoria__id_fa__1C722D53" FromRole="categoria_torneo" ToRole="faja" />
           <NavigationProperty Name="inscripcion" Relationship="Self.FK__inscripci__id_ca__2F8501C7" FromRole="categoria_torneo" ToRole="inscripcion" />
           <NavigationProperty Name="resultado" Relationship="Self.FK__resultado__id_ca__4B2D1C3C" FromRole="categoria_torneo" ToRole="resultado" />
+          <NavigationProperty Name="inscripcion1" Relationship="JJSSModel.FK_inscripcion_id_absoluto" FromRole="categoria_torneo" ToRole="inscripcion" />
         </EntityType>
         <EntityType Name="ciudad">
           <Key>
@@ -2251,6 +2269,8 @@
           <NavigationProperty Name="faja" Relationship="Self.FK__inscripci__id_fa__30792600" FromRole="inscripcion" ToRole="faja" />
           <NavigationProperty Name="participante" Relationship="Self.FK__inscripci__id_pa__316D4A39" FromRole="inscripcion" ToRole="participante" />
           <NavigationProperty Name="torneo" Relationship="Self.FK__inscripci__id_to__32616E72" FromRole="inscripcion" ToRole="torneo" />
+          <Property Name="id_absoluto" Type="Int32" />
+          <NavigationProperty Name="categoria_torneo1" Relationship="JJSSModel.FK_inscripcion_id_absoluto" FromRole="inscripcion" ToRole="categoria_torneo" />
         </EntityType>
         <EntityType Name="inscripcion_clase">
           <Key>
@@ -4034,7 +4054,23 @@
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
+          <AssociationSet Name="FK_inscripcion_id_absoluto" Association="JJSSModel.FK_inscripcion_id_absoluto">
+            <End Role="categoria_torneo" EntitySet="categoria_torneo" />
+            <End Role="inscripcion" EntitySet="inscripcion" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_inscripcion_id_absoluto">
+          <End Type="JJSSModel.categoria_torneo" Role="categoria_torneo" Multiplicity="0..1" />
+          <End Type="JJSSModel.inscripcion" Role="inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria_torneo">
+              <PropertyRef Name="id_categoria_torneo" />
+            </Principal>
+            <Dependent Role="inscripcion">
+              <PropertyRef Name="id_absoluto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4289,6 +4325,7 @@
           <EntitySetMapping Name="inscripcion">
             <EntityTypeMapping TypeName="JJSSModel.inscripcion">
               <MappingFragment StoreEntitySet="inscripcion">
+                <ScalarProperty Name="id_absoluto" ColumnName="id_absoluto" />
                 <ScalarProperty Name="id_inscripcion" ColumnName="id_inscripcion" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />

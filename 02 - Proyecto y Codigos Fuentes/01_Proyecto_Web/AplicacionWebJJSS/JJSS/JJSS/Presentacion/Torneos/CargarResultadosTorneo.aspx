@@ -180,9 +180,9 @@
                                 <div class="row centered">
                                     <p>&nbsp;</p>
                                 </div>
-                                
-                         
-                            
+
+
+
 
                                 <div class="row centered center-block">
                                     <div class="col-md-2 col-xl-auto">
@@ -226,6 +226,24 @@
                                         <asp:DropDownList ID="ddl_nacionalidad" runat="server" class="caja2 pull-right"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-1"><a class="text-danger">*</a></div>
+                                </div>
+
+                                <div class="row centered">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="row centered">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-2">
+                                        <label class="pull-left">Sexo:</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
+                                            <asp:ListItem>Femenino</asp:ListItem>
+                                            <asp:ListItem>Masculino</asp:ListItem>
+                                        </asp:RadioButtonList>
+                                    </div>
+
                                 </div>
                             </asp:Panel>
                         </div>
