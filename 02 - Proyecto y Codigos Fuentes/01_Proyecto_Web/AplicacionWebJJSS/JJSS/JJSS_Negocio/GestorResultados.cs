@@ -38,8 +38,8 @@ namespace JJSS_Negocio
                 foreach (CategoriasTorneoResultado cat in res)
                 {
                     cat.nombreFaja = cat.nombreFaja.Split(new char[] { '-' })[0];
-                    string sexo = cat.sexo.Equals(ContantesSexo.FEMENINO) ? " F " : " M ";
-                    cat.nombreParaMostrar = cat.nombreCategoria + " " + sexo + " " + cat.nombreFaja;
+                    string sexo = cat.sexo.Equals(ContantesSexo.FEMENINO) ? "F" : "M";
+                    cat.nombreParaMostrar = cat.nombreCategoria.Trim() + " " + sexo + " " + cat.nombreFaja.Trim();
                 }
                 res.OrderBy(x => x.nombreParaMostrar);
                 return res; 
@@ -173,7 +173,7 @@ namespace JJSS_Negocio
                 foreach (categoria c in categorias)
                 {
                     string sexo = c.sexo.Equals(ContantesSexo.FEMENINO) ? " F " : " M ";
-                    c.nombre = c.nombre + " " + sexo;
+                    c.nombre = c.nombre + sexo;
                 }
                 return categorias;
             }

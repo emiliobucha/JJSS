@@ -10,87 +10,87 @@
 namespace JJSS.Presentacion {
     
     
-    public partial class HistoricoTorneos {
+    public partial class Menu_Clase {
         
         /// <summary>
-        /// Control form.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control txt_filtro_nombre.
+        /// Control pnl_mensaje_exito.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_filtro_nombre;
+        protected global::System.Web.UI.WebControls.Panel pnl_mensaje_exito;
         
         /// <summary>
-        /// Control ddl_estados.
+        /// Control lbl_exito.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_estados;
+        protected global::System.Web.UI.WebControls.Label lbl_exito;
         
         /// <summary>
-        /// Control dp_filtro_fecha_desde.
+        /// Control pnl_mensaje_error.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dp_filtro_fecha_desde;
+        protected global::System.Web.UI.WebControls.Panel pnl_mensaje_error;
         
         /// <summary>
-        /// Control dp_filtro_fecha_hasta.
+        /// Control lbl_error.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dp_filtro_fecha_hasta;
+        protected global::System.Web.UI.WebControls.Label lbl_error;
         
         /// <summary>
-        /// Control btn_buscar.
+        /// Control muetra_clases_profe_admin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_buscar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl muetra_clases_profe_admin;
         
         /// <summary>
-        /// Control gv_torneos.
+        /// Control lv_clasesDisponibles.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_torneos;
+        protected global::System.Web.UI.WebControls.ListView lv_clasesDisponibles;
         
         /// <summary>
-        /// Control lv_torneos.
+        /// Control muetra_clases_invitado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lv_torneos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl muetra_clases_invitado;
         
         /// <summary>
-        /// Control btn_Cancelar.
+        /// Control lv_clasesDisponibles_invitado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
+        protected global::System.Web.UI.WebControls.ListView lv_clasesDisponibles_invitado;
     }
 }

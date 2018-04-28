@@ -120,11 +120,13 @@
                 </div>
                 <p>&nbsp;</p>
                 <asp:Button ID="btn_agregarResultado" class="btn btn-outline-dark pull-right" runat="server" Text="Aceptar" formnovalidate="true" CausesValidation="false" OnClick="btn_agregarResultado_Click" />
+                <p>&nbsp;</p>
+                
             </asp:Panel>
-
+            <asp:Button ID="btn_volver" class="btn btn-link" OnClick="btn_volver_Click" runat="server" Text="Volver" />
             <p>&nbsp;</p>
 
-            <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass="btn btn-link pull-left" OnClick="btn_volver_Click" />
+            
         </div>
 
 

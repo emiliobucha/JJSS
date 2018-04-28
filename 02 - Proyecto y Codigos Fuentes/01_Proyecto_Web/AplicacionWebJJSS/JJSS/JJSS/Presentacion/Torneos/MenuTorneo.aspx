@@ -20,10 +20,10 @@
     <form id="form1" runat="server">
 
 
-
         <div class="row centered">
             <p>&nbsp;</p>
         </div>
+
         <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -66,7 +66,7 @@
         <!---------------------------------**************Menu**********---------------------------------------->
 
 
-        <div class="container border rounded">
+        <div class="container ">
 
             <div class="row centered">
                 <p>&nbsp;</p>
@@ -157,38 +157,35 @@
             <p>&nbsp;</p>
         </div>
 
-        <div class="row mt centered">
-            <div class="col-md-3">
-                <h2>Filtros</h2>
-            </div>
-            <div class="col-md-2"><strong>Nombre</strong></div>
-            <div class="col-md-2">
-                <asp:TextBox ID="txt_filtro_nombre" class="caja2" runat="server"></asp:TextBox>
-            </div>
-            <div class="col-md-2"><strong>Fecha desde</strong></div>
-            <div class="col-md-2">
-                <asp:TextBox ID="dp_filtro_fecha_desde" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
-            </div>
-            <p>&nbsp;</p>
-        </div>
-        <div class="row mt centered">
-            <div class="col-md-7"></div>
-            <div class="col-md-2"><strong>Fecha hasta</strong></div>
-            <div class="col-md-2">
-                <asp:TextBox ID="dp_filtro_fecha_hasta" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
-            </div>
-        </div>
-        <div class="row mt centered">
-            <div class="col-md-9"></div>
-            <div class="col-md-2">
-                <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click" /></div>
-        </div>
-
-
+     
         <div class="container ">
 
-            <div class=" row centered mt justify-content-center p-2" runat="server">
+             <!-- Filtros  -->
+            <div class="row centered p-2">
 
+                <div class=" col-auto"><a>Nombre</a></div>
+                <div class="col-md-3 col-lg-3">
+                    <asp:TextBox ID="txt_filtro_nombre" class="caja2" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="col-auto "><a>Fecha desde</a></div>
+                <div class="col-md-2 col-lg-2">
+                    <asp:TextBox ID="dp_filtro_fecha_desde" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
+                </div>
+
+                <div class="col-auto "><a>Fecha hasta</a></div>
+                <div class="col-md-2 col-lg-2">
+                    <asp:TextBox ID="dp_filtro_fecha_hasta" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
+                </div>
+
+                <div class="col justify-content-center ">
+                    <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click" />
+                </div>
+            </div>
+
+            <!-- Grilla  -->
+            <div class=" row centered mt justify-content-center p-2" runat="server">
+                
                 <asp:ListView ID="lv_torneos_abiertos" GroupPlaceholderID="groupPlaceHolder1" ItemPlaceholderID="itemPlaceHolder1" GroupItemCount="3" runat="server" OnItemCommand="lv_torneos_abiertos_ItemCommand">
 
                     <LayoutTemplate>
@@ -251,4 +248,5 @@
         </div>
 
     </form>
+
 </asp:Content>

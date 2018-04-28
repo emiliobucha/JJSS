@@ -23,7 +23,6 @@ namespace JJSS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             gestorInscripciones = new GestorInscripciones();
             gestorDeTorneos = new GestorTorneos();
             gestorAlumnos = new GestorAlumnos();
@@ -31,7 +30,8 @@ namespace JJSS
 
             if (!IsPostBack)
             {
-
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Torneos/MenuTorneo.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
 
 
                 //try
@@ -478,8 +478,9 @@ namespace JJSS
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
         {
-            limpiar(true);
-            Response.Redirect("MenuTorneo.aspx");
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
         }
     }
 }
