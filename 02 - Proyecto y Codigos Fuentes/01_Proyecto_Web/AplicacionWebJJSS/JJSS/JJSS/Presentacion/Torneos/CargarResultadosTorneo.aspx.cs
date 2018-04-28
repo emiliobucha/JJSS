@@ -192,7 +192,7 @@ namespace JJSS.Presentacion
             GestorInscripciones gi = new GestorInscripciones();
 
 
-            int idTipo;
+            int idTipo = 1;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
             string res = gi.InscribirATorneo(torneoSeleccionado.id_torneo, nombre, apellido, idTipo, dni, idCategoria, sexo);
