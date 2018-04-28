@@ -138,6 +138,7 @@
         <AssociationConnector Association="JJSSModel.FK__seguridad__id_us__54B68676" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__torneo__id_tipo___5792F321" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__torneo_im__id_to__5887175A" ManuallyRouted="false" />
+        <AssociationConnector Association="JJSSModel.FK_inscripcion_id_absoluto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

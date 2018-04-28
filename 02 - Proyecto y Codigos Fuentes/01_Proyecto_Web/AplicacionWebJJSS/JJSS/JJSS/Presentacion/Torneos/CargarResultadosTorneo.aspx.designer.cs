@@ -238,6 +238,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_nacionalidad;
         
         /// <summary>
+        /// Control rbSexo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
+        
+        /// <summary>
         /// Control btn_aceptar_participante.
         /// </summary>
         /// <remarks>
