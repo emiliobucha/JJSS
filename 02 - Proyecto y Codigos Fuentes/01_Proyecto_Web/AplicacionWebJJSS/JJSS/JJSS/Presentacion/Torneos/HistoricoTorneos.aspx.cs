@@ -9,7 +9,7 @@ using JJSS_Negocio;
 
 namespace JJSS.Presentacion
 {
-    public partial class HistoricoTorneos : System.Web.UI.Page
+    public partial class HistoricoTorneos : Page
     {
         private static GestorTorneos gestorDeTorneos;
         protected void Page_Load(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace JJSS.Presentacion
             String filtroNombre = txt_filtro_nombre.Text;
 
             DateTime filtroFecha = new DateTime();
-            if (dp_filtro_fecha_desde.Text.CompareTo("") != 0)
+            if (!string.IsNullOrEmpty(dp_filtro_fecha_desde.Text))
             {
                 /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
@@ -56,7 +56,7 @@ namespace JJSS.Presentacion
                 filtroFecha = DateTime.Parse(dp_filtro_fecha_desde.Text);
             }
             DateTime filtroFechaHasta = new DateTime();
-            if (dp_filtro_fecha_hasta.Text.CompareTo("") != 0)
+            if (!string.IsNullOrEmpty(dp_filtro_fecha_hasta.Text))
             {
                 filtroFechaHasta = DateTime.Parse(dp_filtro_fecha_hasta.Text);
             }
@@ -97,7 +97,7 @@ namespace JJSS.Presentacion
             String filtroNombre = txt_filtro_nombre.Text;
 
             DateTime filtroFecha = new DateTime();
-            if (dp_filtro_fecha_desde.Text.CompareTo("") != 0)
+            if (!string.IsNullOrEmpty(dp_filtro_fecha_desde.Text))
             {
                 /*FECHA SOMEE
                 string[] formats = { "MM/dd/yyyy" };
@@ -107,7 +107,7 @@ namespace JJSS.Presentacion
                 filtroFecha = DateTime.Parse(dp_filtro_fecha_desde.Text);
             }
             DateTime filtroFechaHasta = new DateTime();
-            if (dp_filtro_fecha_hasta.Text.CompareTo("") != 0)
+            if (!string.IsNullOrEmpty(dp_filtro_fecha_hasta.Text))
             {
                 filtroFechaHasta = DateTime.Parse(dp_filtro_fecha_hasta.Text);
             }

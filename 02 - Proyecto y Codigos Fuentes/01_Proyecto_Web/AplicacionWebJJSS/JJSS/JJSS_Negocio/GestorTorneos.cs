@@ -186,6 +186,7 @@ namespace JJSS_Negocio
                                   imagenB = i.imagen,
                                   estado = est.nombre,
                                   hora = tor.hora,
+                                  imagen = i.imagen_url
                               };
                 List<TorneoResultado> tr = torneos.ToList();
                 foreach (TorneoResultado t in tr)
@@ -388,6 +389,7 @@ namespace JJSS_Negocio
                                       dtFecha = tor.fecha,
                                       imagenB = i.imagen,
                                       estado = est.nombre,
+                                      imagen = i.imagen_url
                                   };
                     tr = torneos.ToList();
                 }
@@ -409,6 +411,7 @@ namespace JJSS_Negocio
                                       dtFecha = tor.fecha,
                                       imagenB = i.imagen,
                                       estado = est.nombre,
+                                      imagen = i.imagen_url
                                   };
                     tr = torneos.ToList();
                 }
@@ -500,9 +503,54 @@ namespace JJSS_Negocio
             }
         }
 
-        public String modificarTorneo(torneo pTorneo, byte[] pImagen)
+
+        public TorneoResultado ObtenerTorneoResultado(int id)
         {
-            String sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                   var torneo =  db.torneo.Find(id);
+                    if (torneo != null)
+                    {
+
+                        var estado = db.estado.Find(torneo.id_estado);
+                        var imagen = db.torneo_imagen.FirstOrDefault(x => x.id_torneo == torneo.id_torneo);
+                        return new TorneoResultado()
+                        {
+                            nombre = torneo.nombre,
+                            id_torneo = torneo.id_torneo,
+                            dtFecha = torneo.fecha,
+                            estado = estado.nombre,
+                            hora = torneo.hora,
+                            fecha = torneo.fecha.ToString(),
+                            imagenB = imagen.imagen,
+                            imagen = imagen.imagen_url,
+                            hora_cierre = torneo.hora_cierre,
+                            dtFechaCierre = torneo.fecha_cierre,
+                            precio_absoluto = torneo.precio_absoluto,
+                            precio_categoria = torneo.precio_categoria,
+                            idSede = torneo.id_sede
+
+                        };
+
+                    }else
+                        return new TorneoResultado();
+                   
+
+                }
+                catch (Exception e)
+                {
+                    return new TorneoResultado();
+                }
+            }
+        }
+
+
+
+        public string modificarTorneo(torneo pTorneo, byte[] pImagen)
+        {
+            string sReturn = "";
             using (var db = new JJSSEntities())
             {
                 estado estadoTorneo = db.estado.Find(ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
@@ -535,7 +583,17 @@ namespace JJSS_Negocio
                     }
                     else
                     {
-                        imagenAnterior.imagen = pImagen;
+
+                        byte[] arrayImagen = pImagen;
+                        if (arrayImagen.Length > 7000)
+                        {
+                            arrayImagen = new byte[0];
+                        }
+                        imagenAnterior = db.torneo_imagen.FirstOrDefault(x => x.id_torneo == pTorneo.id_torneo);
+                        string imagenUrl = modUtilidades.SaveImage(pImagen, pTorneo.nombre, "torneos");
+
+                        imagenAnterior.imagen = arrayImagen;
+                        imagenAnterior.imagen_url = imagenUrl;
                         db.SaveChanges();
                     }
 
@@ -596,9 +654,9 @@ namespace JJSS_Negocio
                 List<ResultadoDeTorneo> resu = resultados.ToList();
                 foreach(ResultadoDeTorneo r in resu)
                 {
-                    string sexo = r.sexo.Equals(ContantesSexo.FEMENINO) ? " F " : " M ";
+                    string sexo = r.sexo == ContantesSexo.FEMENINO ? " F " : " M ";
                     r.categoria = r.categoria + " " + sexo;
-                    r.faja = r.faja.Split(new char[] { '-' })[0]; ;
+                    r.faja = r.faja.Split('-')[0]; 
                 }
                 return resu;
             }

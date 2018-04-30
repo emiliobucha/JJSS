@@ -23,6 +23,12 @@ namespace JJSS_Negocio.Resultados
         public Image imagenI { get; set; }
         public string imagen { get; set; }
 
+        public decimal? precio_absoluto { get; set; }
+        public decimal? precio_categoria { get; set; }
+        public string hora_cierre { get; set; }
+        public DateTime? dtFechaCierre { get; set; }
+        public int? idSede { get; set; }
+
         public byte[] imagenB
         {
             get => _imagenB;

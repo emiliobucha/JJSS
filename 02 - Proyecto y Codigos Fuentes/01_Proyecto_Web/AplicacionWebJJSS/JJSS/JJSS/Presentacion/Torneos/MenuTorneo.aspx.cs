@@ -16,6 +16,37 @@ namespace JJSS.Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            try
+            {
+
+
+
+                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+                {
+                    ocultarInvitado();
+
+                }
+                else
+                {
+
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado != "INGRESO ACEPTADO")
+                    {
+
+                        Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+                    }
+                    ocultarPermiso();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+            }
+
             gestorDeTorneos = new GestorTorneos();
             if (!IsPostBack)
             {
@@ -28,6 +59,74 @@ namespace JJSS.Presentacion
                     Session["mensaje"] = null;
                 }
             }
+
+        }
+
+        protected void ocultarPermiso()
+        {
+            try
+            {
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                if (sesionActiva.estado == "INGRESO ACEPTADO")
+                {
+
+
+
+
+                    //Administración de torneos
+
+                    int permiso = 0;
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        crear_torneo.Style["display"] = "none";
+                    }
+
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        //item_mis_Torneos.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_HISTORIAL'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        historial_torneo.Style["display"] = "none";
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+
+            }
+        }
+
+
+        private void ocultarInvitado()
+        {
+            
+
+            crear_torneo.Style["display"] = "none";
+            
 
         }
 

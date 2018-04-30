@@ -69,32 +69,144 @@ namespace JJSS.Presentacion
         private void verBotones()
         {
             //TODO debe verificar primero si es admin o no
-            int idEstado = estadoTorneo.id_estado;
-            Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-            //si es ADMIN
-            btn_imprimir_listado.Visible = true;
-            if (idEstado == ConstantesEstado.TORNEO_FINALIZADO || idEstado == ConstantesEstado.TORNEO_EN_CURSO)
+
+            try
             {
-                btn_cargar_resultados.Visible = true;
-            }
-            if (idEstado != ConstantesEstado.TORNEO_FINALIZADO && idEstado != ConstantesEstado.TORNEO_CANCELADO)
-            {
-                btn_cancelar.Visible = true;
-                btn_editar.Visible = true;
-                if (idEstado != ConstantesEstado.TORNEO_SUSPENDIDO)
+
+
+
+                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                 {
-                    btn_suspender.Visible = true;
+                    btn_inscribir.Visible = true;
                 }
                 else
                 {
-                    btn_habilitar.Visible = true;
+
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado != "INGRESO ACEPTADO")
+                    {
+
+                        Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+
+                    }
+
+                    int idEstado = estadoTorneo.id_estado;
+
+
+                    int permiso = 0;
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION_LISTA'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso == 1)
+                    {
+                        btn_imprimir_listado.Visible = true;
+                    }
+
+                    if (idEstado == ConstantesEstado.TORNEO_FINALIZADO || idEstado == ConstantesEstado.TORNEO_EN_CURSO)
+                    {
+
+                         permiso = 0;
+                        drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_RESULTADOS'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                        }
+                        if (permiso == 1)
+                        {
+                            btn_cargar_resultados.Visible = true;
+                        }
+
+                       
+                    }
+                    if (idEstado != ConstantesEstado.TORNEO_FINALIZADO && idEstado != ConstantesEstado.TORNEO_CANCELADO)
+                    {
+                        permiso = 0;
+                        drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CANCELAR'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                        }
+                        if (permiso == 1)
+                        {
+                            btn_cancelar.Visible = true;
+                        }
+
+                        permiso = 0;
+                        drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_EDITAR'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                        }
+                        if (permiso == 1)
+                        {
+                            btn_editar.Visible = true;
+                        }
+
+
+                        if (idEstado != ConstantesEstado.TORNEO_SUSPENDIDO)
+                        {
+
+                            permiso = 0;
+                            drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_SUSPENDER'");
+                            if (drsAux.Length > 0)
+                            {
+                                int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                            }
+                            if (permiso == 1)
+                            {
+                                btn_suspender.Visible = true;
+                            }
+                            
+                        }
+                        else
+                        {
+
+                            permiso = 0;
+                            drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_HABILITAR'");
+                            if (drsAux.Length > 0)
+                            {
+                                int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                            }
+                            if (permiso == 1)
+                            {
+                                btn_habilitar.Visible = true;
+                            }
+                            
+                        }
+                    }
+
+
+                    if (idEstado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA)
+                    {
+                        permiso = 0;
+                        drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                        }
+                        if (permiso == 1)
+                        {
+                            btn_inscribir.Visible = true;
+                        }
+
+                       
+                    }
+
+
+
                 }
             }
-            //si no es ADMIN
-            if (idEstado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA)
+            catch (Exception ex)
             {
-                btn_inscribir.Visible = true;
+
+                Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+
             }
+
+
+
         }
 
         protected void btn_cargar_resultados_Click(object sender, EventArgs e)
