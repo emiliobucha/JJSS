@@ -66,13 +66,13 @@
         <!---------------------------------**************Menu**********---------------------------------------->
 
 
-        <div class="container ">
+        <div runat="server" class="container ">
 
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
 
-            <div class="row  centered justify-content-center p-2">
+            <div  runat="server" class="row  centered justify-content-center p-2">
 
                 <div class="row centered">
                     <p>&nbsp;</p>
@@ -91,7 +91,7 @@
                 </div>--%>
 
                 <!--Crear-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div runat="server" class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " id="crear_torneo">
                     <a class="text-dark" href="CrearTorneo.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
@@ -103,8 +103,8 @@
                 </div>
 
                 <!--Histórico-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="HistoricoTorneos.aspx">
+                <div runat="server"  class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " id="historial_torneo">
+                    <a class="text-dark" href="HistoricoTorneos.aspx" id="historico_torneos">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
                             <div class="">

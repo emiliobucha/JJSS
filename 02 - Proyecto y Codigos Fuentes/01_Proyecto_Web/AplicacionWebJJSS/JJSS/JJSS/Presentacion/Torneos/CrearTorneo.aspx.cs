@@ -58,18 +58,21 @@ namespace JJSS.Presentacion
                 {
                     int idTorneo = int.Parse(Session["idTorneo_editar"].ToString());
                     torneoAEditar = gestorTorneos.BuscarTorneoPorID(idTorneo);
+                    var torneoResultado = gestorTorneos.ObtenerTorneoResultado(idTorneo);
 
-                    txt_nombre.Text = torneoAEditar.nombre;
-                    txt_precio_abs.Text = torneoAEditar.precio_absoluto.ToString().Replace(",", ".");
-                    txt_precio_cat.Text = torneoAEditar.precio_categoria.ToString().Replace(",", ".");
-                    txt_hora.Text = torneoAEditar.hora;
-                    txt_hora_cierre.Text = torneoAEditar.hora_cierre;
-                    DateTime dt = (DateTime)torneoAEditar.fecha;
+                    txt_nombre.Text = torneoResultado.nombre;
+                    txt_precio_abs.Text = torneoResultado.precio_absoluto.ToString().Replace(",", ".");
+                    txt_precio_cat.Text = torneoResultado.precio_categoria.ToString().Replace(",", ".");
+                    txt_hora.Text = torneoResultado.hora;
+                    txt_hora_cierre.Text = torneoResultado.hora_cierre;
+                    DateTime dt = torneoResultado.dtFecha ?? new DateTime() ;
                     dp_fecha.Text = dt.ToString("dd/MM/yyyy");
-                    dt = (DateTime)torneoAEditar.fecha_cierre;
+                    dt = torneoResultado.dtFechaCierre ?? new DateTime();
                     dp_fecha_cierre.Text = dt.ToString("dd/MM/yyyy");
+                    Avatar.ImageUrl = torneoResultado.imagen;
+                    
 
-                    ddl_sedes.SelectedItem.Value = torneoAEditar.id_sede.ToString();
+                    ddl_sedes.SelectedItem.Value = torneoResultado.idSede.ToString();
                     Session["idTorneo_editar"] = null;
                 }
                 else
