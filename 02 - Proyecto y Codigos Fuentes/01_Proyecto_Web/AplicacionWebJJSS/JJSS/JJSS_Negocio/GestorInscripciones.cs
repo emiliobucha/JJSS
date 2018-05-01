@@ -50,7 +50,7 @@ namespace JJSS_Negocio
                     torneo torneoInscripto = db.torneo.Find(pTorneo);
 
                     faja fajaElegida = db.faja.Find(pFaja);
-                    int edad = DateTime.Today.AddTicks(-pFechaNacimiento.Ticks).Year - 1;
+                    int edad = DateTime.Now.Year - pFechaNacimiento.Year;
 
                     var cat =
                         from categoria in db.categoria
@@ -93,7 +93,6 @@ namespace JJSS_Negocio
                     categoria_torneo categoriaTorneoAbs = null;
                     if (pTipoInscripcion == Constantes.ConstantesTipoInscripcion.ABSOLUTO)
                     {
-                        edad = DateTime.Now.Year - pFechaNacimiento.Year;
                         var abs =
                         from categoria in db.categoria
                         where (categoria.edad_desde <= edad)

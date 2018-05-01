@@ -20,7 +20,7 @@
         <div class=" col-md-4"></div>
         <div class="col-md-4">
             <p>&nbsp;</p>
-            <h1>HISTÓRICO DE TORNEOS</h1>
+            <h1>Histórico de torneos</h1>
         </div>
     </div>
     <form id="form" runat="server" class="container">
