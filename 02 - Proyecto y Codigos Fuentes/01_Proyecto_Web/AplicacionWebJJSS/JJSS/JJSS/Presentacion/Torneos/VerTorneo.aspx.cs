@@ -118,7 +118,7 @@ namespace JJSS.Presentacion
                             btn_cargar_resultados.Visible = true;
                         }
 
-                       
+
                     }
                     if (idEstado != ConstantesEstado.TORNEO_FINALIZADO && idEstado != ConstantesEstado.TORNEO_CANCELADO)
                     {
@@ -158,7 +158,7 @@ namespace JJSS.Presentacion
                             {
                                 btn_suspender.Visible = true;
                             }
-                            
+
                         }
                         else
                         {
@@ -173,7 +173,7 @@ namespace JJSS.Presentacion
                             {
                                 btn_habilitar.Visible = true;
                             }
-                            
+
                         }
                     }
 
@@ -191,7 +191,7 @@ namespace JJSS.Presentacion
                             btn_inscribir.Visible = true;
                         }
 
-                       
+
                     }
 
 
@@ -230,15 +230,33 @@ namespace JJSS.Presentacion
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_CANCELADO);
-            volverPaginaAnterior();
+            string res = gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_CANCELADO);
+            if (res.CompareTo("") == 0)
+            {
+                Session["mensaje"] = "Se ha cancelado el torneo exitosamente";
+                Session["exito"] = true;
+                Response.Redirect("/Presentacion/Torneos/MenuTorneo.aspx");
+            }
+            else
+            {
+                mensaje(res, false);
+            }
+
         }
 
         protected void btn_suspender_Click(object sender, EventArgs e)
         {
-            limpiarMensaje();
-            gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_SUSPENDIDO);
-            volverPaginaAnterior();
+           limpiarMensaje();
+                      string res = gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_SUSPENDIDO);
+                      if (res.CompareTo("") == 0)
+                      {
+                          verBotones();
+                          mensaje("El torneo se suspendió", true);
+                      }
+                      else
+                      {
+                          mensaje(res, false);
+                      }
         }
 
         protected void btn_editar_Click(object sender, EventArgs e)

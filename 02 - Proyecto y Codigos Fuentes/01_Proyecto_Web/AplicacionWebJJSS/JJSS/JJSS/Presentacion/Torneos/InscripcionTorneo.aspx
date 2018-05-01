@@ -240,7 +240,9 @@
                             <asp:Label ID="Label8" runat="server" Text="Identificación" CssClass=" h3 " Font-Size="Large"></asp:Label>
                         </div>
 
-                        <div class="row centered">
+                        <div class="col centered">
+                            <p>&nbsp;</p>
+                            <a class="text-danger">* Campo requerido</a>
                             <p>&nbsp;</p>
                         </div>
 
@@ -311,7 +313,7 @@
                         <div class="row centered">
                             <div class="col-md-2"></div>
                             <div class="col-md-2">
-                                <label class="pull-left">Nombre:<a class="text-danger">*</a></label>
+                                <label class="pull-left">Nombre: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
                                 <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="50" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
@@ -327,7 +329,7 @@
                         <div class="row centered">
                             <div class="col-md-2"></div>
                             <div class="col-md-2">
-                                <label class="pull-left">Apellido:<a class="text-danger">*</a></label>
+                                <label class="pull-left">Apellido: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
                                 <asp:TextBox ID="txt_apellido" required="true" MaxLength="50" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
@@ -343,7 +345,7 @@
                         <div class="row centered">
                             <div class="col-md-2"></div>
                             <div class="col-md-2">
-                                <label class="pull-left">Sexo:</label>
+                                <label class="pull-left">Sexo: </label>
                             </div>
                             <div class="col-md-2">
                                 <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
@@ -363,7 +365,7 @@
                         <div class="row centered">
                             <div class="col-md-2"></div>
                             <div class="col-md-2">
-                                <label class="pull-left">Peso:<a class="text-danger">*</a></label>
+                                <label class="pull-left">Peso: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
                                 <asp:TextBox class="caja2" ID="txt_peso" runat="server" required="true" type="number" min="1" max="200" step="0.01" placeholder="Ingrese peso"></asp:TextBox>
@@ -378,7 +380,7 @@
                             <div class="col-md-2"></div>
                             <!--Ingresar Nacionalidad-->
                             <div class="col-md-2">
-                                <label class="pull-left">País:<a class="text-danger">*</a></label>
+                                <label class="pull-left">País: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-4 col-xl-4">
                                 <asp:DropDownList ID="ddl_nacionalidad" class="caja2" runat="server" placeholder="Ingrese Nacionalidad"></asp:DropDownList>
@@ -393,7 +395,7 @@
                         <div class="row centered">
                             <div class="col-md-2"></div>
                             <div class="col-md-2">
-                                <label class="pull-left text-left">Fecha de Nacimiento:<a class="text-danger">*</a></label>
+                                <label class="pull-left text-left">Fecha de Nacimiento: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
                                 <!--SOMEE-->
@@ -418,7 +420,7 @@
                         <div class="row centered">
                             <div class="col-md-2"></div>
                             <div class="col-md-2">
-                                <label class="pull-left">Faja:<a class="text-danger">*</a></label>
+                                <label class="pull-left">Faja: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-2">
                                 <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
