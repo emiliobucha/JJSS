@@ -150,7 +150,10 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\MisEstilos.css" />
     <Content Include="css\shop-homepage.css" />
+    <Content Include="images\torneos\BBJ20196.jpeg" />
+    <Content Include="images\torneos\parana.jpeg" />
     <Content Include="img\16700476_10212706802211337_1006928008308717976_o.jpg" />
+    <Content Include="img\4.png" />
     <Content Include="img\Administracion.png" />
     <Content Include="img\Asistencia.png" />
     <Content Include="img\BI.png" />
