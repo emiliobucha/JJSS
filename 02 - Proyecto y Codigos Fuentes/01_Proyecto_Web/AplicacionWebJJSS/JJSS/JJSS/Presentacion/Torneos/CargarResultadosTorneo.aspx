@@ -37,7 +37,7 @@
                 <div class=" col-md-4"></div>
                 <div class="col-md-4">
                     <p>&nbsp;</p>
-                    <h1>CARGA DE RESULTADOS</h1>
+                    <h1>Carga de resultados</h1>
 
                 </div>
             </div>
@@ -183,17 +183,14 @@
 
 
                                 <div class="row centered center-block">
-                                    <div class="col-md-2 col-xl-auto">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3 ">
                                         <label class="pull-left">Tipo:</label>
                                     </div>
-                                    <div class="col-md-3 col-xl-auto">
-                                        <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
-                                        <a class="text-danger">*</a>
+                                    <div class="col-md-6 ">
+                                        <asp:DropDownList ID="ddl_tipo" runat="server" class="caja2 pull-right"></asp:DropDownList>
                                     </div>
-                                    <div class="col-md-6">
-                                        <asp:DropDownList ID="ddl_tipo_dni" runat="server" class="caja2 pull-right"></asp:DropDownList>
-                                        <a class="text-danger">*</a>
-                                    </div>
+                                    <div class="col-md-1"><a class="text-danger">*</a></div>
                                 </div>
 
                                 <div class="row centered">
@@ -215,27 +212,12 @@
                                     <p>&nbsp;</p>
                                 </div>
 
-                                <div class="row centered center-block">
+                                <div class="row centered">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-3">
-                                        <label class="pull-left">Nacionalidad:</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <asp:DropDownList ID="ddl_nacionalidad" runat="server" class="caja2 pull-right"></asp:DropDownList>
-                                    </div>
-                                    <div class="col-md-1"><a class="text-danger">*</a></div>
-                                </div>
-
-                                <div class="row centered">
-                                    <p>&nbsp;</p>
-                                </div>
-
-                                <div class="row centered">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-2">
                                         <label class="pull-left">Sexo:</label>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-6">
                                         <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
                                             <asp:ListItem>Femenino</asp:ListItem>
                                             <asp:ListItem>Masculino</asp:ListItem>

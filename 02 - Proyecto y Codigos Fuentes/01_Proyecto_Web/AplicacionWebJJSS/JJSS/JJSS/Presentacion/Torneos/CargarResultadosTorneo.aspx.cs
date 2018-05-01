@@ -17,8 +17,9 @@ namespace JJSS.Presentacion
         private static List<CategoriasTorneoResultado> categoriasConInscriptos;
         private static List<categoria> categorias;
         private static List<faja> fajas;
-        private List<DatosParticipanteTorneo> participantes;
+        private static List<DatosParticipanteTorneo> participantes;
         private static torneo torneoSeleccionado;
+        private static GestorInscripciones gestorInscripciones;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +27,7 @@ namespace JJSS.Presentacion
             {
                 gestorResultados = new GestorResultados();
                 gestorTorneos = new GestorTorneos();
+                gestorInscripciones = new GestorInscripciones();
                 if (Session["idTorneo"] != null)
                 {
                     int idTorneo = int.Parse(Session["idTorneo"].ToString());
@@ -35,6 +37,7 @@ namespace JJSS.Presentacion
                     categorias = gestorResultados.mostrarCategorias();
                     fajas = gestorResultados.mostrarFajas();
                     cargarCombosCategorias();
+                    cargarComboTipoDNI();
                 }
                 else
                 {
@@ -61,8 +64,22 @@ namespace JJSS.Presentacion
             ddl_fejas.DataBind();
         }
 
+        private void cargarComboTipoDNI()
+        {
+            List<tipo_documento> tiposdoc = gestorInscripciones.ObtenerTiposDocumentos();
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+        }
+
         private void cargarComboParticipantes()
         {
+            DatosParticipanteTorneo dpt = new DatosParticipanteTorneo();
+            dpt.participante = "Seleccione un participante";
+            dpt.idParticipante = 0;
+            participantes.Insert(0, dpt);
+
             ddl_1.DataSource = participantes;
             ddl_1.DataTextField = "participante";
             ddl_1.DataValueField = "idParticipante";
@@ -104,6 +121,7 @@ namespace JJSS.Presentacion
                 pnl_mensaje_error.Visible = false;
                 pnl_mensaje_exito.Visible = false;
                 pnl_participantes.Visible = true;
+                validarParticipantes();
             }
             catch (NullReferenceException ex)
             {
@@ -124,8 +142,10 @@ namespace JJSS.Presentacion
                 int idCategoria = int.Parse(ddl_categoriasConInscriptos.SelectedItem.Value);
                 int idPrimerPuesto = int.Parse(ddl_1.SelectedItem.Value);
                 int idSegundoPuesto = int.Parse(ddl_2.SelectedItem.Value);
-                int idTercerPuesto1 = int.Parse(ddl_3_1.SelectedItem.Value);
-                int idTercerPuesto2 = int.Parse(ddl_3_2.SelectedItem.Value);
+                int? idTercerPuesto1 = int.Parse(ddl_3_1.SelectedItem.Value);
+                int? idTercerPuesto2 = int.Parse(ddl_3_2.SelectedItem.Value);
+                if (idTercerPuesto1 == 0) idTercerPuesto1 = null;
+                if (idTercerPuesto2 == 0) idTercerPuesto2 = null;
 
                 if (validarPuestos())
                 {
@@ -153,12 +173,95 @@ namespace JJSS.Presentacion
             int idSegundoPuesto = int.Parse(ddl_2.SelectedItem.Value);
             int idTercerPuesto1 = int.Parse(ddl_3_1.SelectedItem.Value);
             int idTercerPuesto2 = int.Parse(ddl_3_2.SelectedItem.Value);
-            if (idPrimerPuesto == idSegundoPuesto && idPrimerPuesto == idTercerPuesto1 && idPrimerPuesto == idTercerPuesto2)
+            if (participantes.Count - 1 == 2)
             {
-                return false;
+                if (idPrimerPuesto == idSegundoPuesto)
+                {
+                    mensaje("Los participantes no se pueden repetir en distintos puestos", false);
+                    return false;
+                }
+                else if (idPrimerPuesto == 0 || idSegundoPuesto == 0)
+                {
+                    mensaje("Debe seleccionar un participante para cada puesto", false);
+                    return false;
+                }
             }
+            else if (participantes.Count -1 == 3)
+            {
+                if (idPrimerPuesto == idSegundoPuesto || idPrimerPuesto == idTercerPuesto1 
+                    || idSegundoPuesto == idTercerPuesto1)
+                {
+                    mensaje("Los participantes no se pueden repetir en distintos puestos", false);
+                    return false;
+                }
+                else if (idPrimerPuesto == 0 || idSegundoPuesto == 0 || idTercerPuesto1 == 0)
+                {
+                    mensaje("Debe seleccionar un participante para cada puesto", false);
+                    return false;
+                }
+            }
+            else if (participantes.Count - 1 >= 4)
+            {
+                if (idPrimerPuesto == idSegundoPuesto || idPrimerPuesto == idTercerPuesto1 || idPrimerPuesto == idTercerPuesto2
+                    || idSegundoPuesto == idTercerPuesto1 || idSegundoPuesto == idTercerPuesto2
+                    || idTercerPuesto2 == idTercerPuesto1)
+                {
+                    mensaje("Los participantes no se pueden repetir en distintos puestos", false);
+                    return false;
+                }
+                else if (idPrimerPuesto == 0 || idSegundoPuesto == 0 || idTercerPuesto1 == 0 || idTercerPuesto2 == 0)
+                {
+                    mensaje("Debe seleccionar un participante para cada puesto", false);
+                    return false;
+                }
+            }
+
             //TODO terminar la validacion
             return true;
+        }
+        
+        private void validarParticipantes()
+        {
+            if (participantes.Count - 1 == 0)
+            {
+                ddl_1.Enabled = false;
+                ddl_2.Enabled = false;
+                ddl_3_1.Enabled = false;
+                ddl_3_2.Enabled = false;
+                btn_agregarResultado.Enabled = false;
+            }
+            else if (participantes.Count - 1 == 1)
+            {
+                ddl_1.Enabled = false;
+                ddl_2.Enabled = false;
+                ddl_3_1.Enabled = false;
+                ddl_3_2.Enabled = false;
+                btn_agregarResultado.Enabled = false;
+            }
+            else if (participantes.Count - 1 == 2)
+            {
+                ddl_1.Enabled = true;
+                ddl_2.Enabled = true;
+                ddl_3_1.Enabled = false;
+                ddl_3_2.Enabled = false;
+                btn_agregarResultado.Enabled = true;
+            }
+            else if (participantes.Count - 1 == 3)
+            {
+                ddl_1.Enabled = true;
+                ddl_2.Enabled = true;
+                ddl_3_1.Enabled = true;
+                ddl_3_2.Enabled = false;
+                btn_agregarResultado.Enabled = true;
+            }
+            else
+            {
+                ddl_1.Enabled = true;
+                ddl_2.Enabled = true;
+                ddl_3_1.Enabled = true;
+                ddl_3_2.Enabled = true;
+                btn_agregarResultado.Enabled = true;
+            }
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -192,7 +295,7 @@ namespace JJSS.Presentacion
             GestorInscripciones gi = new GestorInscripciones();
 
 
-            int idTipo = 1;
+            int idTipo = 0;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
             string res = gi.InscribirATorneo(torneoSeleccionado.id_torneo, nombre, apellido, idTipo, dni, idCategoria, sexo);
@@ -200,6 +303,8 @@ namespace JJSS.Presentacion
             {
                 participantes = gestorResultados.mostrarParticipantesDeCategoria(idCategoria, torneoSeleccionado.id_torneo);
                 cargarComboParticipantes();
+                validarParticipantes();
+                limpiarModal();
             }
             else
             {
@@ -212,8 +317,7 @@ namespace JJSS.Presentacion
             txt_apellido.Text = "";
             txt_dni.Text = "";
             txt_nombre.Text = "";
-            ddl_nacionalidad.SelectedIndex = -1;
-            ddl_tipo_dni.SelectedIndex = -1;
+            ddl_tipo.SelectedIndex = -1;
         }
     }
 }

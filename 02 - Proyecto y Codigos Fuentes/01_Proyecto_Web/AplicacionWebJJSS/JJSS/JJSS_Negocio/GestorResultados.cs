@@ -118,7 +118,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public String cargarResultado(int idTorneo, int idCategoria, int idPrimerPuesto, int idSegundoPuesto, int idTercerPuesto1, int idTercerPuesto2)
+        public String cargarResultado(int idTorneo, int idCategoria, int idPrimerPuesto, int idSegundoPuesto, int? idTercerPuesto1, int? idTercerPuesto2)
         {
             using (var db = new JJSSEntities())
             {
