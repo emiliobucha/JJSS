@@ -169,8 +169,8 @@ namespace JJSS_Negocio
                         peso = pPeso,
                         id_faja = pFaja,
                         faja=fajaElegida,
-                        id_categoria = categoriaTorneoCat.id_categoria_torneo,
-                        id_absoluto = categoriaTorneoAbs.id_categoria_torneo,
+                        categoria_torneo = categoriaTorneoCat,
+                        categoria_torneo1 = categoriaTorneoAbs,
                         tipo_inscripcion = pTipoInscripcion,
                     };
                     
