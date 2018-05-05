@@ -121,9 +121,8 @@
                 <p>&nbsp;</p>
                 <asp:Button ID="btn_agregarResultado" class="btn btn-outline-dark pull-right" runat="server" Text="Aceptar" formnovalidate="true" CausesValidation="false" OnClick="btn_agregarResultado_Click" />
                 <p>&nbsp;</p>
-                
             </asp:Panel>
-            <asp:Button ID="btn_volver" class="btn btn-link" OnClick="btn_volver_Click" runat="server" Text="Volver" />
+            <asp:LinkButton runat="server" ID="a" class="btn btn-link" Text="Volver" href="VerTorneo.aspx"></asp:LinkButton>
             <p>&nbsp;</p>
 
             
@@ -205,7 +204,7 @@
                                         <label class="pull-left">DNI:</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <asp:TextBox ID="txt_dni" required="true" class="form-control" MaxLength="20" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
+                                        <asp:TextBox ID="txt_dni" required="true" class="form-control" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1"><a class="text-danger">*</a></div>
                                 </div>

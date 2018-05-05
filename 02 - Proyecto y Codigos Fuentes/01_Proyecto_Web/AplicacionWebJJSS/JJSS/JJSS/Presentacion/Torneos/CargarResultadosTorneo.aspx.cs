@@ -313,6 +313,12 @@ namespace JJSS.Presentacion
             int idTipo = 0;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
+            if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
+            {
+                mensaje("El documento debe tener sólo números", false);
+                return;
+            }
+
             string res = gi.InscribirATorneo(torneoSeleccionado.id_torneo, nombre, apellido, idTipo, dni, idCategoria, sexo);
             if (res.CompareTo("") == 0)
             {
