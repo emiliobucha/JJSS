@@ -165,6 +165,12 @@ namespace JJSS
             int idTipo;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
+            if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
+            {
+                Mensaje("El documento debe tener sólo números", false);
+                return;
+            }
+
             int idPais;
             int.TryParse(ddl_nacionalidad.SelectedValue, out idPais);
 
@@ -196,8 +202,8 @@ namespace JJSS
                 //pnl_pago.Visible = true;
                 Session["TorneoPagar"] = idTorneo;
                 Session["ParticipanteDNI"] = dni;
-
-
+                limpiar(true);
+                
 
 
                 try
@@ -445,9 +451,12 @@ namespace JJSS
         {
             if (pEstado)
             {
-                pnl_mensaje_exito.Visible = true;
-                pnl_mensaje_error.Visible = false;
-                lbl_exito.Text = pMensaje;
+                Session["mensaje"] = pMensaje;
+                Session["exito"] = pEstado;
+                Response.Redirect("MenuTorneo.aspx");
+                //pnl_mensaje_exito.Visible = true;
+                //pnl_mensaje_error.Visible = false;
+                //lbl_exito.Text = pMensaje;
             }
             else
             {

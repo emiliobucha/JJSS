@@ -172,7 +172,7 @@ namespace JJSS_Negocio
                 categorias.OrderBy(x => x.nombre);
                 foreach (categoria c in categorias)
                 {
-                    string sexo = c.sexo.Equals(ContantesSexo.FEMENINO) ? " F " : " M ";
+                    string sexo = c.sexo == ContantesSexo.FEMENINO ? " F " : " M ";
                     c.nombre = c.nombre + sexo;
                 }
                 return categorias;

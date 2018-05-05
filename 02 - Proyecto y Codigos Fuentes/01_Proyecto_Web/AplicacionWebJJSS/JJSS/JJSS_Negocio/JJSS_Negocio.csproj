@@ -49,6 +49,7 @@
     <Compile Include="Constantes\ConstantesTipoInscripcion.cs" />
     <Compile Include="Constantes\ConstatesBajaLogica.cs" />
     <Compile Include="Constantes\Sexo.cs" />
+    <Compile Include="Constantes\TipoDocumento.cs" />
     <Compile Include="GestorAsistencia.cs" />
     <Compile Include="GestorCiudades.cs" />
     <Compile Include="GestorClases.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="modReportes.cs" />
     <Compile Include="modUtilidades.cs" />
     <Compile Include="modUtilidadesTablas.cs" />
+    <Compile Include="modValidaciones.cs" />
     <Compile Include="Resultados\AlumnoConEstado.cs" />
     <Compile Include="Resultados\AlumnoFaja.cs" />
     <Compile Include="Resultados\CategoriasTorneoResultado.cs" />
