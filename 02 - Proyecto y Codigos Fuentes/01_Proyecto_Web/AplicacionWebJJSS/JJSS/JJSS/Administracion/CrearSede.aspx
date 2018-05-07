@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="CrearSede.aspx.cs" Inherits="JJSS.Presentacion.Administracion.CrearSede" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CrearSede.aspx.cs" Inherits="JJSS.Presentacion.Administracion.CrearSede" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
@@ -36,150 +36,199 @@
         </div>
     </asp:Panel>
 
+    
     <form id="form1" runat="server">
         
         <asp:Panel ID="pnlFormulario" runat="server">
-            <div id="agregarProductoswrap">
-                <div class="container">
-                    <div class="row mt centered">
-                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                            <asp:Label ID="lbl_crear_sede" runat="server" Text="CREAR SEDE" Font-Size="XX-Large"></asp:Label>
+
+            <div>
+                <p>&nbsp;</p>
+            </div>
+
+            <div class="row centered justify-content-center">
+                <h1 class=" centered ">Crear Sede</h1>
+            </div>
+
+            <div>
+                <p>&nbsp;</p>
+            </div>
+
+
+            <div class="container">
+
+                <div class="form-group  border rounded p-1">
+
+                    <div>
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-auto">
+                            <label class="pull-left">Que deseas crear?</label>
                         </div>
-
-                        <div class="form-group ">
-
-                            <div class="row centered col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                <p>&nbsp;</p>
-                            </div>
-
-                            <div class="row centered">
-                                <div class="col-xs-2">
-                                    <label class="pull-left">Que deseas crear?</label>
-                                </div>
-                                <div class="col-xs-2">
-                                    <asp:RadioButtonList ID="rbCrear" runat="server" AutoPostBack="False">
-                                        <asp:ListItem Selected="True" Value="sede">Sede</asp:ListItem>
-                                        <asp:ListItem Value="academia">Academia</asp:ListItem>
-                                    </asp:RadioButtonList>
-                                </div>
-                            </div>
-                            <div class="row centered">
-                                <p>&nbsp;</p>
-                            </div>
-
-                            <!--Ingresar nombre-->
-
-                            <div class="row centered">
-                                <div class="col-md-2 col-lg-2 col-sm-10 col-xs-10">
-                                    <label class="pull-left">Nombre</label>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-sm-10 col-xs-10">
-                                    <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="50" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
-                                </div>
-                            </div>
-
-                            <div class="row centered">
-                                <p>&nbsp;</p>
-                            </div>
-
-
-                            <div class="row centered">
-                                <div class="col-md-2 col-lg-2 col-sm-10 col-xs-10">
-                                    <label class="pull-left">Telefono</label>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-sm-10 col-xs-10">
-                                    <asp:TextBox ID="txt_telefono" class="caja2" required="true" type="number" min="0" max="9999999999999" runat="server" placeholder="Ingrese teléfono"></asp:TextBox>
-                                </div>
-                            </div>
-                            
-
-                            <div class="row centered">
-                                <p>&nbsp;</p>
-                            </div>
-
-                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                <asp:Label ID="lbl_direccion" runat="server" Text="Direccion" Font-Size="Large"></asp:Label>
-                            </div>
-                            <!--Ingresar calle y numero-->
-
-                            <div class="row centered">
-                                <p>&nbsp;</p>
-                            </div>
-
-                            <!-- Calle y numero -->
-                            <div class="row centered">
-                                <div class="col-xs-2">
-                                    <label class="pull-left">Calle</label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <asp:TextBox ID="txt_calle" class="caja2" type="text" MaxLength="50" runat="server" placeholder="Ingrese calle"></asp:TextBox>
-                                </div>
-                                <div class="col-xs-1">
-                                    <label class="pull-right">Numero</label>
-                                </div>
-                                <div class="col-xs-1">
-                                    <asp:TextBox ID="txt_numero" type="number" min="0" max="100000" class="caja2" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="col-xs-1">
-                                    <label class="pull-right">Piso</label>
-                                </div>
-                                <div class="col-xs-1">
-                                    <asp:TextBox ID="txt_piso" class="caja2" type="number" min="0" max="100000" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="col-xs-1">
-                                    <label class=" pull-right">Dpto</label>
-                                </div>
-                                <div class="col-xs-1">
-                                    <asp:TextBox ID="txt_nro_dpto" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="col-xs-1">
-                                    <label class=" pull-right">Torre</label>
-                                </div>
-                                <div class="col-xs-1">
-                                    <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
-                                </div>
-                            </div>
-
-                            <!-- Provincia -->
-                            <div class="row centered">
-                                <div class="col-xs-2">
-                                    <label class="pull-left">Provincia</label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <asp:DropDownList class="caja2" ID="ddl_provincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_provincia_SelectedIndexChanged">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="row centered">
-                                <p>&nbsp;</p>
-                            </div>
-
-                            <!-- Localidad -->
-                            <div class="row centered">
-                                <div class="col-xs-2">
-                                    <label class="pull-left">Localidad</label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <asp:DropDownList class="caja2" ID="ddl_localidad" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-
-                            <!--Boton Aceptar-->
-                            <div class="row centered">
-                                <asp:Button ID="btn_aceptar" type="submit" class="btn btn-default" runat="server" Text="Aceptar" ValidationGroup="vgDatos" OnClick="btn_aceptar_Click" />
-
-
-
-                            </div>
-                            <asp:Button ID="btn_cancelar" runat="server" Text="Volver" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click1"/>
-
-
+                        <div class="col col-auto">
+                            <asp:RadioButtonList ID="rbCrear" runat="server" AutoPostBack="False">
+                                <asp:ListItem Selected="True" Value="sede">Sede</asp:ListItem>
+                                <asp:ListItem Value="academia">Academia</asp:ListItem>
+                            </asp:RadioButtonList>
                         </div>
+                    </div>
 
+                    <div>
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <!--Ingresar nombre-->
+
+                    <div class="row centered">
+                        <div class="col-lg-1 col-md-1 col-sm-12">
+                            <label class="pull-left">Nombre</label>
+                        </div>
+                        <div class="col col-lg-3 col-md-3 col-sm-10">
+                            <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="50" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
+                        </div>
+                        <div class="col col-1"><a class="text-danger">*</a></div>
+                    </div>
+
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
+
+
+                    <div class="row centered">
+                        <div class="col-lg-1 col-md-1 col-sm-12">
+                            <label class="pull-left">Teléfono</label>
+                        </div>
+                        <div class="col col-lg-3 col-md-3 col-sm-10">
+                            <asp:TextBox ID="txt_telefono" class="caja2" required="true" type="number" min="0" max="9999999999999" runat="server" placeholder="Ingrese teléfono"></asp:TextBox>
+                        </div>
+                    </div>
+
+
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <div class="col col-auto">
+                        <asp:Label ID="lbl_direccion" runat="server" Text="Dirección" Font-Size="Large"></asp:Label>
+                    </div>
+                    <!--Ingresar calle y numero-->
+
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <!-- Calle y numero -->
+                    <div class="row p-1">
+                        <div class="col-lg-1 col-md-1 col-sm-2">
+                            <label>Calle</label>
+                        </div>
+                        <div class="col col-md-4 col-lg-4 col-sm-10">
+                            <asp:TextBox ID="txt_calle" class="caja2" type="text" MaxLength="50" runat="server" placeholder="Ingrese calle"></asp:TextBox>
+                        </div>
+                        <div class="col col-1"><a class="text-danger">*</a></div>
+
+                        <div class="col-lg-1 col-md-1 col-sm-2">
+                            <label>Numero</label>
+                        </div>
+                        <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
+                            <asp:TextBox ID="txt_numero" type="number" min="0" max="100000" class="caja2" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="col col-1"><a class="text-danger">*</a></div>
+                    </div>
+
+                    <div class="row p-1">
+                        <div class="col-lg-1 col-md-1 col-sm-12">
+                            <label>Piso</label>
+                        </div>
+                        <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
+                            <asp:TextBox ID="txt_piso" class="caja2" type="number" min="0" max="100000" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="col col-1"><a class="text-danger">*</a></div>
+
+                        <div class="col-lg-1 col-md-1 col-sm-2">
+                            <label>Dpto</label>
+                        </div>
+                        <div class="col col col-md-2 col-lg-2 col-sm-10 col-xs-10">
+                            <asp:TextBox ID="txt_nro_dpto" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="col col-1"><a class="text-danger">*</a></div>
+
+                        <div class="col-lg-1 col-md-1 col-sm-2">
+                            <label>Torre</label>
+                        </div>
+                        <div class="col col-md-2 col-lg-2 col-sm-10 col-xs-10">
+                            <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="col col-1"><a class="text-danger">*</a></div>
+                    </div>
+
+                    <!-- Provincia -->
+                    <div class="row p-1">
+                        <div class="col-lg-1 col-md-1 col-sm-2">
+                            <label>Provincia</label>
+                        </div>
+                        <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
+                            <asp:DropDownList class="caja2" ID="ddl_provincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_provincia_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col col-1"><a class="text-danger">*</a></div>
+                    </div>
+
+                    <!-- Localidad -->
+                    <div class="row p-1">
+                        <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+                            <label>Localidad</label>
+                        </div>
+                        <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
+                            <asp:DropDownList class="caja2" ID="ddl_localidad" runat="server">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col col-1"><a class="text-danger">*</a></div>
+                    </div>
+
+                    <div>
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <!--Boton Aceptar-->
+                    <div class="row centered">
+                        <div class="col">
+                            <asp:Button ID="btn_aceptar" type="submit" class="btn btn-outline-dark" runat="server" Text="Aceptar" ValidationGroup="vgDatos" OnClick="btn_aceptar_Click" />
+                        </div>
+                    </div>
+
+                    <div class="row centered">
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <div class=" p-2 ">
+                        <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
+                    </div>
+
+                    <div>
+                        <p>&nbsp;</p>
+                    </div>
+
+                </div>
+
+                 
+
+                <div class="row pull-left">
+                    <div class="col">
+                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click"></asp:LinkButton>
                     </div>
                 </div>
             </div>
+
+           
+
+
+
+            <div>
+                <p>&nbsp;</p>
+            </div>
+
         </asp:Panel>
 
     </form>

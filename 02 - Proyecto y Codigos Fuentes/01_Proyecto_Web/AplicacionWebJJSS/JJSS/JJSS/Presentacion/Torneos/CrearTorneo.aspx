@@ -233,6 +233,7 @@
                             <div class=" p-2 ">
                                 <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
                             </div>
+
                         </asp:Panel>
 
 

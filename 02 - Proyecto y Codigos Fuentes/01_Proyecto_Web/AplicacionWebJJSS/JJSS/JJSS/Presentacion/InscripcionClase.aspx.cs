@@ -57,7 +57,7 @@ namespace JJSS.Presentacion
 
                 if (Session["id_clase"] == null)
                 {
-                    Response.Redirect("../Presentacion/Inicio.aspx");
+                    Response.Redirect("../Presentacion/Menu_Clase.aspx");
                 }
                 else
                 {
@@ -359,7 +359,7 @@ namespace JJSS.Presentacion
         {
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
-            Response.Redirect("../Presentacion/Inicio.aspx#section_clases");
+            Response.Redirect("../Presentacion/Menu_Clase.aspx");
         }
     }
 }

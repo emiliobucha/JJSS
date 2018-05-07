@@ -67,15 +67,6 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
-        /// Control lbl_crear_sede.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_crear_sede;
-        
-        /// <summary>
         /// Control rbCrear.
         /// </summary>
         /// <remarks>
@@ -184,12 +175,12 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
         
         /// <summary>
-        /// Control btn_cancelar.
+        /// Control lnk_cancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar;
+        protected global::System.Web.UI.WebControls.LinkButton lnk_cancelar;
     }
 }
