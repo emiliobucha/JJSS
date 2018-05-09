@@ -63,14 +63,13 @@
 
                     <!--Ingresar nombre-->
 
-                    <div class="row ">
-                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                            <label>Nombre</label>
+                    <div class="row  pl-lg-5 pl-md-5">
+                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 ">
+                            <label>Nombre <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-3 col-md-3 col-sm-10">
                             <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="60" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                     </div>
 
                     <div class="row centered">
@@ -78,9 +77,9 @@
                     </div>
 
                     <!-- Sexo -->
-                    <div class="row">
-                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                            <label>Sexo</label>
+                    <div class="row  pl-lg-5 pl-md-5">
+                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 ">
+                            <label>Sexo <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
@@ -95,22 +94,20 @@
                     </div>
 
                     <!-- Peso -->
-                    <div class="row ">
+                    <div class="row  pl-lg-5 pl-md-5">
                         <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                            <label>Peso mínimo</label>
+                            <label>Peso mínimo <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:TextBox ID="txtPesoMinimo" class="caja2" type="Number" min="0" max="200" step="0.01" runat="server" required="true"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                          <!----------------->
-                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                            <label>Peso máximo</label>
+                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 pl-lg-5 pl-md-5">
+                            <label>Peso máximo <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:TextBox ID="txtPesoMaximo" class="caja2" type="Number" min="0" max="200" step="0.01" runat="server" required="true"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                     </div>
 
                     <div class="row centered">
@@ -119,22 +116,20 @@
 
 
                     <!-- Edad -->
-                    <div class="row ">
+                    <div class="row  pl-lg-5 pl-md-5">
                         <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                            <label>Edad mínima</label>
+                            <label>Edad mínima <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:TextBox ID="txtEdadMinima" class="caja2" type="Number" min="0" max="100" runat="server" required="true"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                         <!----------------->
-                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                            <label>Edad máxima</label>
+                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 pl-lg-5 pl-md-5">
+                            <label>Edad máxima <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:TextBox ID="txtEdadMaxima" class="caja2" type="Number" min="0" max="100" runat="server" required="true"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                     </div>
 
                     <div class="row centered">
@@ -142,9 +137,9 @@
                     </div>
 
                     <!-- tipo clase -->
-                    <div class="row">
+                    <div class="row  pl-lg-5 pl-md-5">
                         <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                            <label>Disciplina</label>
+                            <label>Disciplina <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-3 col-md-3 col-sm-10">
                             <asp:DropDownList class="caja2" ID="ddlDisciplina" runat="server" AutoPostBack="false">

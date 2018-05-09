@@ -64,23 +64,23 @@
                             </div>
 
                             <!--Nombre-->
-                            <div class="row ">
+                            <div class="row pl-lg-5 pl-md-5 ">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class=" text-left">Nombre</label>
+                                    <label class=" text-left">Nombre <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-4 col-lg-4 col-sm-11 col-xs-11">
                                     <asp:TextBox ID="txt_nombre" runat="server" required="true" MaxLength="50" onblur="ValidatorOnChange(event)" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
                                 </div>
-                                <div class="col col-auto"><a class="text-danger">*</a></div>
+<%--                                <div class="col col-auto"><a class="text-danger">*</a></div>--%>
                             </div>
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
 
                             <!--Sedes-->
-                            <div class="row ">
+                            <div class="row pl-lg-5 pl-md-5 ">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="text-left">Sede</label>
+                                    <label class="text-left">Sede <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-4 col-lg-4 col-sm-9 col-xs-9">
                                     <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2"></asp:DropDownList>
@@ -88,16 +88,16 @@
                                 <div class="col col-1">
                                     <a class="btn btn-outline-dark" runat="server"  formnovalidate="true" href="~/Administracion/CrearSede.aspx" >+ </a>
                                 </div>
-                                 <div class="col col-1"><a class="text-danger">*</a></div>
+<%--                                 <div class="col col-1"><a class="text-danger">*</a></div>--%>
                             </div>
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
 
                             <!--Fecha de torneo-->
-                            <div class="row ">
+                            <div class="row pl-lg-5 pl-md-5 ">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="text-left">Fecha a realizarse</label>
+                                    <label class="text-left">Fecha a realizarse <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
                                     <!--SOMEE-->
@@ -105,16 +105,16 @@
                                     <!--LOCAL-->
                                     <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
-                                <div class="col col-1"><a class="text-danger">*</a></div>
+<%--                                <div class="col col-1"><a class="text-danger">*</a></div>--%>
 
 
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="text-left">Hora a realizarse</label>
+                                    <label class="text-left">Hora a realizarse <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-2 col-lg-2 col-sm-6  col-xs-6 ">
                                     <asp:TextBox ID="txt_hora" required="true" type="time" runat="server" CssClass="caja2" placeholder="Seleccione hora del torneo"></asp:TextBox>
                                 </div>                                
-                                <div class="col col-1"><a class="text-danger">*</a></div>
+<%--                                <div class="col col-1"><a class="text-danger">*</a></div>--%>
                                 <%--                                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                                     <asp:RequiredFieldValidator ID="rfv_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Debe ingresar fecha del torneo" ValidationGroup="vgTorneo"> </asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="rev_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido de fecha de torneo" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
@@ -126,9 +126,9 @@
                             </div>
 
                             <!--Fecha de cierre de inscripcion-->
-                            <div class="row ">
+                            <div class="row pl-lg-5 pl-md-5 ">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="text-left">Cierre de inscripción</label>
+                                    <label class="text-left">Cierre de inscripción <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
                                     <!--SOMEE-->
@@ -136,16 +136,16 @@
                                     <!--LOCAL-->
                                     <asp:TextBox ID="dp_fecha_cierre" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
-                               <div class="col col-1"><a class="text-danger">*</a></div>
+<%--                               <div class="col col-1"><a class="text-danger">*</a></div>--%>
 
 
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="text-left">Hora de cierre</label>
+                                    <label class="text-left">Hora de cierre <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-2 col-lg-2 col-sm-6 col-xs-6 ">
                                     <asp:TextBox ID="txt_hora_cierre" required="true" type="time" runat="server" CssClass="caja2" placeholder="Seleccione hora de cierre de inscripción"></asp:TextBox>
                                 </div>
-                                <div class="col col-1"><a class="text-danger">*</a></div>
+<%--                                <div class="col col-1"><a class="text-danger">*</a></div>--%>
 
 
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
@@ -159,28 +159,28 @@
                             </div>
 
                             <!--Precio por categoria-->
-                            <div class="row">
+                            <div class="row pl-lg-5 pl-md-5 ">
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                                    <label class="pull-left left">Precio de inscripción categoria $</label>
+                                    <label class="pull-left left">Precio de inscripción categoria $ <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-4 col-lg-4 col-sm-10 col-xs-10">
                                     <asp:TextBox ID="txt_precio_cat" required="true" type="number" min="0" max="100000" step="0.01" CssClass=" caja2 form-control" placeholder="Ingrese precio de inscripción categoria" runat="server"></asp:TextBox>
                                 </div>
-                                <div class="col col-1"><a class="text-danger">*</a></div>
+<%--                                <div class="col col-1"><a class="text-danger">*</a></div>--%>
                             </div>
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
 
                             <!--Precio absoluto-->
-                            <div class="row">
+                            <div class="row pl-lg-5 pl-md-5 ">
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                                    <label class="pull-left">Precio de inscripción absoluta $</label>
+                                    <label class="pull-left">Precio de inscripción absoluta $ <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-4 col-lg-4 col-sm-10 col-xs-10">
                                     <asp:TextBox ID="txt_precio_abs" required="true" type="number" min="0" max="100000" step="0.01" CssClass="caja2 form-control" placeholder="Ingrese precio de inscripción absoluta" runat="server"></asp:TextBox>
                                 </div>
-                                <div class="col col-1"><a class="text-danger">*</a></div>
+<%--                                <div class="col col-1"><a class="text-danger">*</a></div>--%>
                             </div>
                             <div class="row centered">
                                 <p>&nbsp;</p>
@@ -188,7 +188,7 @@
 
                             <!--Foto-->
 
-                            <div class="row centered center-block">
+                            <div class="row centered center-block pl-lg-5 pl-md-5">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                                     <label class="pull-left">Imagen</label>
                                 </div>
@@ -210,7 +210,7 @@
                             </div>
 
                             <!--Comentarios-->
-                            <div class="row centered center-block">
+                            <div class="row centered center-block pl-lg-5 pl-md-5">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                                     <label class="pull-left">Comentarios </label>
                                 </div>
@@ -230,8 +230,8 @@
                                 <p>&nbsp;</p>
                             </div>
 
-                            <div class=" p-2 ">
-                                <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
+                            <div class=" p-4 ">
+                                <p class="text-danger pull-right  " style="font-size: small">* Campo requerido</p>
                             </div>
 
                         </asp:Panel>

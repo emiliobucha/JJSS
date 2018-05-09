@@ -49,8 +49,7 @@
             <p>&nbsp;</p>
         </div>
     </asp:Panel>
-
-
+    
 
     <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
         <div class="col-md-2 hidden-xs"></div>
@@ -66,8 +65,6 @@
             <p>&nbsp;</p>
         </div>
     </asp:Panel>
-
-
 
 
     <asp:Panel ID="pnlFormulario" runat="server" CssClass="justify-content-center">
@@ -88,9 +85,7 @@
 
 
                     <!--Elegir torneo-->
-                    <div class="row centered">
-                        <p>&nbsp;</p>
-                    </div>
+                   
 
                     <asp:Panel ID="pnl_elegirTorneo" CssClass="panel panel-default border rounded p-2" runat="server">
 
@@ -240,16 +235,15 @@
                             <asp:Label ID="Label8" runat="server" Text="Identificación" CssClass=" h3 " Font-Size="Large"></asp:Label>
                         </div>
 
-                        <div class="col centered">
-                            <p>&nbsp;</p>
-                            <a class="text-danger">* Campo requerido</a>
+                        <div>
                             <p>&nbsp;</p>
                         </div>
+
+                      
 
                         <!--Ingresar DNI-->
 
                         <div class="row centered justify-content-center">
-
 
 
                             <!--Ingresar Tipo-->
@@ -278,11 +272,15 @@
                                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
                             </div>
 
+
                         </div>
                         <div class="row centered">
                             <p>&nbsp;</p>
                         </div>
 
+                        <div class=" p-4 ">
+                            <p class="text-danger pull-right  " style="font-size: small">* Campo requerido</p>
+                        </div>
                     </asp:Panel>
 
 
@@ -480,6 +478,7 @@
             </div>
         </div>
     </asp:Panel>
+
 
     <asp:Panel ID="inscripcionCorrecta" hidden="true" runat="server">
         <div class="container">

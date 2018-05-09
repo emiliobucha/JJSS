@@ -62,9 +62,9 @@
                         <p>&nbsp;</p>
                     </div>
 
-                    <div class="row">
-                        <div class="col col-auto">
-                            <label class="pull-left">Que deseas crear?</label>
+                    <div class="row pl-lg-5 pl-md-5 ">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
+                            <label class="pull-left">¿Qué deseas crear?</label>
                         </div>
                         <div class="col col-auto">
                             <asp:RadioButtonList ID="rbCrear" runat="server" AutoPostBack="False">
@@ -80,14 +80,13 @@
 
                     <!--Ingresar nombre-->
 
-                    <div class="row centered">
-                        <div class="col-lg-1 col-md-1 col-sm-12">
-                            <label class="pull-left">Nombre</label>
+                    <div class="row centered pl-lg-5 pl-md-5">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
+                            <label class="pull-left">Nombre <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-3 col-md-3 col-sm-10">
                             <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="50" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                     </div>
 
                     <div class="row centered">
@@ -95,8 +94,8 @@
                     </div>
 
 
-                    <div class="row centered">
-                        <div class="col-lg-1 col-md-1 col-sm-12">
+                    <div class="row centered  pl-lg-5 pl-md-5">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
                             <label class="pull-left">Teléfono</label>
                         </div>
                         <div class="col col-lg-3 col-md-3 col-sm-10">
@@ -119,72 +118,65 @@
                     </div>
 
                     <!-- Calle y numero -->
-                    <div class="row p-1">
-                        <div class="col-lg-1 col-md-1 col-sm-2">
-                            <label>Calle</label>
+                    <div class="row p-1  pl-lg-5 pl-md-5">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
+                            <label>Calle <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-md-4 col-lg-4 col-sm-10">
                             <asp:TextBox ID="txt_calle" class="caja2" type="text" MaxLength="50" runat="server" placeholder="Ingrese calle"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
 
-                        <div class="col-lg-1 col-md-1 col-sm-2">
-                            <label>Numero</label>
+                        <div class="col-lg-2 col-md-2 col-sm-12 pl-lg-5 pl-md-5">
+                            <label>Número <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
                             <asp:TextBox ID="txt_numero" type="number" min="0" max="100000" class="caja2" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                     </div>
 
-                    <div class="row p-1">
-                        <div class="col-lg-1 col-md-1 col-sm-12">
-                            <label>Piso</label>
+                    <div class="row p-1  pl-lg-5 pl-md-5">
+                        <div class="col-lg-2 col-md-2 col-sm-12 ">
+                            <label>Piso <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
                             <asp:TextBox ID="txt_piso" class="caja2" type="number" min="0" max="100000" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
 
                         <div class="col-lg-1 col-md-1 col-sm-2">
-                            <label>Dpto</label>
+                            <label>Dpto <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col col-md-2 col-lg-2 col-sm-10 col-xs-10">
                             <asp:TextBox ID="txt_nro_dpto" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
 
                         <div class="col-lg-1 col-md-1 col-sm-2">
-                            <label>Torre</label>
+                            <label>Torre <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-md-2 col-lg-2 col-sm-10 col-xs-10">
                             <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                     </div>
 
                     <!-- Provincia -->
-                    <div class="row p-1">
-                        <div class="col-lg-1 col-md-1 col-sm-2">
-                            <label>Provincia</label>
+                    <div class="row p-1  pl-lg-5 pl-md-5">
+                        <div class="col-lg-2 col-md-2 col-sm-12 ">
+                            <label>Provincia <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
                             <asp:DropDownList class="caja2" ID="ddl_provincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_provincia_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                     </div>
 
                     <!-- Localidad -->
-                    <div class="row p-1">
-                        <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
-                            <label>Localidad</label>
+                    <div class="row p-1  pl-lg-5 pl-md-5">
+                        <div class="col-lg-2 col-md-2 col-sm-12 ">
+                            <label>Localidad <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
                             <asp:DropDownList class="caja2" ID="ddl_localidad" runat="server">
                             </asp:DropDownList>
                         </div>
-                        <div class="col col-1"><a class="text-danger">*</a></div>
                     </div>
 
                     <div>
