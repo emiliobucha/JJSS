@@ -5,34 +5,36 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContenido" runat="server">
-    <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <a class="ui-icon ui-icon-check"></a>
-                <strong>
-                    <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+
+    <div class="container">
+        <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <a class="ui-icon ui-icon-check"></a>
+                    <strong>
+                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                </div>
             </div>
-        </div>
 
-    </asp:Panel>
-
+        </asp:Panel>
 
 
-    <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <a class="ui-icon ui-icon-alert"></a>
-                <strong>Error! </strong>
-                <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+
+        <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <a class="ui-icon ui-icon-alert"></a>
+                    <strong>Error! </strong>
+                    <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+                </div>
             </div>
-        </div>
 
-    </asp:Panel>
-
+        </asp:Panel>
+    </div>
 
     <div class="row centered">
         <p>&nbsp;</p>

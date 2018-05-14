@@ -209,6 +209,7 @@
     <Content Include="Administracion\CrearSede.aspx" />
     <Content Include="Presentacion\AgregarProducto.aspx" />
     <Content Include="Presentacion\AlumnoPagoClase.aspx" />
+    <Content Include="Presentacion\Menu_Administracion.aspx" />
     <Content Include="Presentacion\Menu_Clase.aspx" />
     <Content Include="Presentacion\Torneos\CargarResultadosTorneo.aspx" />
     <Content Include="Presentacion\ComprarProducto.aspx" />
@@ -394,6 +395,13 @@
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoClase.aspx.designer.cs">
       <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Menu_Administracion.aspx.cs">
+      <DependentUpon>Menu_Administracion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Menu_Administracion.aspx.designer.cs">
+      <DependentUpon>Menu_Administracion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Menu_Clase.aspx.cs">
       <DependentUpon>Menu_Clase.aspx</DependentUpon>
