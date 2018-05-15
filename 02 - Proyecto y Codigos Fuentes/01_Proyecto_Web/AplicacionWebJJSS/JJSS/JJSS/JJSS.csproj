@@ -137,7 +137,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Administracion\CrearCategoria.aspx" />
+    <Content Include="Presentacion\Administracion\CrearCategoria.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -206,9 +206,10 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.structure.min.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
-    <Content Include="Administracion\CrearSede.aspx" />
+    <Content Include="Presentacion\Administracion\CrearSede.aspx" />
     <Content Include="Presentacion\AgregarProducto.aspx" />
     <Content Include="Presentacion\AlumnoPagoClase.aspx" />
+    <Content Include="Presentacion\Menu_Administracion.aspx" />
     <Content Include="Presentacion\Menu_Clase.aspx" />
     <Content Include="Presentacion\Torneos\CargarResultadosTorneo.aspx" />
     <Content Include="Presentacion\ComprarProducto.aspx" />
@@ -231,7 +232,6 @@
     <Content Include="Presentacion\GraduarAlumno.aspx" />
     <Content Include="Presentacion\InscripcionClase.aspx" />
     <Content Include="Presentacion\Torneos\InscripcionTorneo.aspx" />
-    <Content Include="Presentacion\Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\bootstrap.css" />
@@ -366,20 +366,20 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administracion\CrearCategoria.aspx.cs">
+    <Compile Include="Presentacion\Administracion\CrearCategoria.aspx.cs">
       <DependentUpon>CrearCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administracion\CrearCategoria.aspx.designer.cs">
+    <Compile Include="Presentacion\Administracion\CrearCategoria.aspx.designer.cs">
       <DependentUpon>CrearCategoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Administracion\CrearSede.aspx.cs">
+    <Compile Include="Presentacion\Administracion\CrearSede.aspx.cs">
       <DependentUpon>CrearSede.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administracion\CrearSede.aspx.designer.cs">
+    <Compile Include="Presentacion\Administracion\CrearSede.aspx.designer.cs">
       <DependentUpon>CrearSede.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\AgregarProducto.aspx.cs">
@@ -395,6 +395,13 @@
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoClase.aspx.designer.cs">
       <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Menu_Administracion.aspx.cs">
+      <DependentUpon>Menu_Administracion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Menu_Administracion.aspx.designer.cs">
+      <DependentUpon>Menu_Administracion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Menu_Clase.aspx.cs">
       <DependentUpon>Menu_Clase.aspx</DependentUpon>
@@ -552,13 +559,6 @@
     </Compile>
     <Compile Include="Presentacion\Torneos\InscripcionTorneo.aspx.designer.cs">
       <DependentUpon>InscripcionTorneo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

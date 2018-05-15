@@ -5,44 +5,44 @@
 </asp:Content>
 <asp:Content ID="crearClaseContenido" ContentPlaceHolderID="cphContenido" runat="server">
 
-   
+
     <form id="form1" runat="server">
 
-
-        <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-            <div class="container">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <a class="ui-icon ui-icon-check"></a>
-                        <strong>
-                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+        <div class="container">
+            <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
+                <div class="container">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <a class="ui-icon ui-icon-check"></a>
+                            <strong>
+                                <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
+                        </div>
+                    </div>
+                    <div class="row centered">
+                        <p>&nbsp;</p>
                     </div>
                 </div>
-                <div class="row centered">
-                    <p>&nbsp;</p>
-                </div>
-            </div>
-        </asp:Panel>
+            </asp:Panel>
 
-        <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
-            <div class="container">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <a class="ui-icon ui-icon-alert"></a>
-                        <strong>Error! </strong>
-                        <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+            <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+                <div class="container">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <a class="ui-icon ui-icon-alert"></a>
+                            <strong>Error! </strong>
+                            <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
+                        </div>
+                    </div>
+                    <div class="row centered">
+                        <p>&nbsp;</p>
                     </div>
                 </div>
-                <div class="row centered">
-                    <p>&nbsp;</p>
-                </div>
-            </div>
-        </asp:Panel>
-
+            </asp:Panel>
+        </div>
 
         <div class="row mt centered justify-content-center ">
             <h1 class="centered">Alta de Clase</h1>
@@ -64,70 +64,65 @@
                 </div>
 
                 <!--Nombre-->
-                <div class="row">
+                <div class="row  pl-lg-5 pl-md-5">
                     <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                        <label class=" text-left">Nombre</label>
+                        <label class=" text-left">Nombre <a class="text-danger">*</a></label>
                     </div>
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:TextBox ID="txt_nombre" required="true" runat="server" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
                     </div>
-                    <div class="col col-auto"><a class="text-danger">*</a></div>
                 </div>
                 <div>
                     &nbsp;
                 </div>
 
                 <!-- precio-->
-                <div class="row">
+                <div class="row  pl-lg-5 pl-md-5">
                     <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                        <label class="text-left">Precio</label>
+                        <label class="text-left">Precio <a class="text-danger">*</a></label>
                     </div>
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:TextBox ID="txt_precio" required="true" min="0" max="999999" type="number" step="0.01" runat="server" placeholder="Ingrese precio" CssClass=" caja2 form-control"></asp:TextBox>
                     </div>
-                    <div class="col col-auto"><a class="text-danger">*</a></div>
                 </div>
                 <div>
                     &nbsp;
                 </div>
 
                 <!-- tipoclase-->
-                <div class="row">
+                <div class="row  pl-lg-5 pl-md-5">
                     <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                        <label class="text-left">Tipo de Clase</label>
+                        <label class="text-left">Tipo de Clase <a class="text-danger">*</a></label>
                     </div>
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:DropDownList ID="ddl_tipo_clase" runat="server" CssClass="caja2"></asp:DropDownList>
                     </div>
-                    <div class="col col-auto"><a class="text-danger">*</a></div>
                 </div>
                 <div>
                     &nbsp;
                 </div>
 
                 <!-- ubicacion-->
-                <div class="row">
+                <div class="row  pl-lg-5 pl-md-5">
                     <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                        <label class="pull-left">Ubicación</label>
+                        <label class="pull-left">Ubicación <a class="text-danger">*</a></label>
                     </div>
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:DropDownList ID="ddl_ubicacion" runat="server" CssClass="caja2"></asp:DropDownList>
                     </div>
-                    <div class="col col-auto"><a class="text-danger">*</a></div>
                 </div>
                 <div>
                     &nbsp;
                 </div>
 
                 <!-- profesor-->
-                <div class="row">
+                <div class="row  pl-lg-5 pl-md-5" >
                     <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                        <label class="pull-left">Profesor</label>
+                        <label class="pull-left">Profesor <a class="text-danger">*</a></label>
                     </div>
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:DropDownList ID="ddl_profesor" runat="server" CssClass="caja2"></asp:DropDownList>
                     </div>
-                    <div class="col col-auto"><a class="text-danger">*</a></div>
                 </div>
                 <div>
                     &nbsp;

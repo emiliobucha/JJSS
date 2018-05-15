@@ -58,15 +58,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_pass;
         
         /// <summary>
-        /// Control chk_recordar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chk_recordar;
-        
-        /// <summary>
         /// Control lnk_olvido.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnk_olvido;
+        
+        /// <summary>
+        /// Control chk_recordar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_recordar;
         
         /// <summary>
         /// Control btn_iniciar_sesion.

@@ -47,7 +47,7 @@
 
                 <!--Clase-->
                 <div class="col-sm-12 col-md-6 col-lg-3  ">
-                    <a class="text-dark" href="">
+                    <a class="text-dark" href="Menu_Clase.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Clase.png" alt="Card image cap">
                             <div class="">
@@ -109,7 +109,7 @@
 
                 <!--Administracion-->
                 <div class="col-sm-12 col-md-6 col-lg-3 ">
-                    <a class="text-dark" href="">
+                    <a class="text-dark" href="Menu_Administracion.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Administracion.png" alt="Card image cap">
                             <div class="">
