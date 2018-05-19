@@ -181,10 +181,10 @@ namespace JJSS.Presentacion
 
         protected void cargarClasesView()
         {
-            lv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClasesDisponibles();
+            lv_clasesDisponibles.DataSource = gestorDeClases.ObtenerClasesDisponibles("",0,0);
             lv_clasesDisponibles.DataBind();
 
-            lv_clasesDisponibles_invitado.DataSource = gestorDeClases.ObtenerClasesDisponibles();
+            lv_clasesDisponibles_invitado.DataSource = gestorDeClases.ObtenerClasesDisponibles("",0,0);
             lv_clasesDisponibles_invitado.DataBind();
         }
 
