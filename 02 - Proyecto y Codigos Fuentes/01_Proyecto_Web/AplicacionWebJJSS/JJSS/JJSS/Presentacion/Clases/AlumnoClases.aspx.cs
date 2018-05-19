@@ -11,27 +11,20 @@ using System.Collections;
 
 namespace JJSS.Presentacion
 {
-    public partial class AlumnoPagoClase : System.Web.UI.Page
+    public partial class AlumnoClases : System.Web.UI.Page
     {
         private GestorClases gestorClase;
-        private GestorFormaPago gestorFPago;
-        private GestorPagoClase gestorPago;
         private GestorAlumnos gestorAlumnos;
-        private GestorMercadoPago gestorMP;
-        private alumno alumnoElegido;
-        private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
+        private GestorSesiones gestorSesiones = new GestorSesiones();
 
+        private alumno alumnoElegido;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorClase = new GestorClases();
-            gestorFPago = new GestorFormaPago();
             gestorAlumnos = new GestorAlumnos();
-            gestorPago = new GestorPagoClase();
-
             if (!IsPostBack)
             {
-
                 try
                 {
                     Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
@@ -49,7 +42,6 @@ namespace JJSS.Presentacion
                             Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                         }
-
                     }
                 }
                 catch (Exception ex)
@@ -58,59 +50,37 @@ namespace JJSS.Presentacion
 
                 }
 
+                alumnoElegido = gestorAlumnos.ObtenerAlumnoPorIdUsuario(gestorSesiones.getActual().usuario.id_usuario);
 
-                if (Session["Clase"] == null) Response.Redirect("AlumnoClase.aspx");
-
-                lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
-
-                int id = int.Parse(Session["Clase"].ToString());
-                var dni = Session["AlumnoDNI"].ToString();
-                alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
-                lbl_alumno.Text = alumnoElegido.apellido + ", " + alumnoElegido.nombre;
-
-                clase oClase = gestorClase.ObtenerClasePorId(id);
-                lbl_clase.Text = oClase.nombre;
-                double recargo = gestorClase.calcularRecargo(id, alumnoElegido.id_alumno);
-
-
-                double monto = recargo + (double)oClase.precio;
-                lbl_monto.Text = "$" + monto;
-
-                if (recargo > 0)
+                if (alumnoElegido != null)
                 {
-                    pagoRecargo = 1;
-                    lbl_recargo.Visible = true;
-                    lbl_recargoMonto.Visible = true;
-                    lbl_recargoMonto.Text = "$" + recargo;
+                    string dni = alumnoElegido.dni;
+                    Session["AlumnoDNI"] = dni;
+                    cargarClases();
+                }else
+                {
+                    Response.Write("<script>window.alert('" + "No es un alumno correctamente registrado".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
 
                 }
-                else
-                {
-                    lbl_recargo.Visible = false;
-                    lbl_recargoMonto.Visible = false;
 
-                }
-                String sInit_Point = "";
-                gestorMP = new GestorMercadoPago();
-                sInit_Point = gestorMP.NuevoPago(monto,"Pago de Clase");
-                mp_checkout.Attributes.Add("href", sInit_Point);
             }
+        }
+
+
+        protected void cargarClases()
+        {
+            gvClases.DataSource = gestorClase.ObtenerClaseSegunAlumnoGrilla(alumnoElegido.id_alumno);
+            gvClases.DataBind();
         }
 
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
-            limpiar();
-            Response.Redirect("AlumnoClases.aspx");
+
+            Response.Redirect("../Presentacion/Inicio.aspx#section_clases");
         }
 
-        protected void limpiar()
-        {
 
-            lbl_alumno.Text = "No hay alumno seleccionado";
-            Session["PagoClase"] = "";
-            pagoRecargo = 0;
-        }
 
         private void mensaje(string pMensaje, Boolean pEstado)
         {
@@ -129,5 +99,22 @@ namespace JJSS.Presentacion
             }
         }
 
+
+        protected void gvClases_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.CompareTo("pago") == 0)
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int idClase = Convert.ToInt32(gvClases.DataKeys[index].Value);
+                Session["Clase"] = idClase.ToString();
+                Response.Redirect("AlumnoPagoClase");
+            }
+        }
+
+        protected void gvClases_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvClases.PageIndex = e.NewPageIndex;
+            cargarClases();
+        }
     }
 }

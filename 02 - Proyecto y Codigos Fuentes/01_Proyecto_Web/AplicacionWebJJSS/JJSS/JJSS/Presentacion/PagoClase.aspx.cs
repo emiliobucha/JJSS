@@ -69,7 +69,7 @@ namespace JJSS.Presentacion
         {
             limpiar();
             Session["alumnos"] = "Administrar";
-            Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
+            Response.Redirect("RegistrarAlumno.aspx");
         }
 
 
@@ -172,7 +172,7 @@ namespace JJSS.Presentacion
 
             limpiar();
             Session["alumnos"] = "Administrar";
-            Response.Redirect("../Presentacion/RegistrarAlumno.aspx");
+            Response.Redirect("RegistrarAlumno.aspx");
         }
 
 

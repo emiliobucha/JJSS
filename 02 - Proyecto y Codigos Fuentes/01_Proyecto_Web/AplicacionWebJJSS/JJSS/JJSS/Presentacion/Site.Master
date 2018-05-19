@@ -100,10 +100,10 @@
                           <a  runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarClase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Clase &nbsp; 
                           </a>
                           <div  runat="server" class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a  runat="server" id="nav_crear_clase" class="dropdown-item text-white" href="/Presentacion/CrearClase.aspx">Crear </a>
+                              <a  runat="server" id="nav_crear_clase" class="dropdown-item text-white" href="/Presentacion/Clases/CrearClase.aspx">Crear </a>
                               <a  runat="server" id="nav_menu_clase" class="dropdown-item text-white" href="#">Ver </a>
-                              <a runat="server" id="nav_inscripcion_clase" class="dropdown-item text-white" href="/Presentacion/InscripcionClase.aspx">Inscribir </a>                              
-                              <a runat="server" id="nav_registrar_asistencia" class="dropdown-item text-white" href="/Presentacion/RegistrarAsistencia.aspx">Asistencia </a>                                                    
+                              <a runat="server" id="nav_inscripcion_clase" class="dropdown-item text-white" href="/Presentacion/Clases/InscripcionClase.aspx">Inscribir </a>                              
+                              <a runat="server" id="nav_registrar_asistencia" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistencia.aspx">Asistencia </a>                                                    
                               <a runat="server" id="nav_registrar_pago" class="dropdown-item text-white" >Registrar Pago </a>
                           </div>
                       </li>

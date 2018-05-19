@@ -14,6 +14,8 @@ namespace JJSS_Negocio.Resultados
         public string tipo_clase { get; set; }
         public string ubicacion { get; set; }
         public string profesor { get; set; }
+        public int id_profesor { get; set; }
+        public int id_academia { get; set; }
 
     }
 }

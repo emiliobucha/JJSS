@@ -191,6 +191,7 @@ namespace JJSS_Negocio
                 var inscripcion = from ins in db.inscripcion_clase
                                                 join alu in db.alumno on ins.id_alumno equals alu.id_alumno
                                                 where alu.id_alumno == pIdAlumno 
+                                                && ins.clase.id_tipo_clase == pIdTipoClase
                                                 select ins;
                 if (inscripcion == null) return false;
                 fechaInscripcion = (DateTime)inscripcion.FirstOrDefault().fecha;

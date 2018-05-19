@@ -93,7 +93,7 @@ namespace JJSS_Negocio
                 return ex.Message;
             }
         }
-        
+
 
         /*
          * Método que devuelve los horarios disponibles de una clase, si esta no existe devuelve una tabla vacia que nos permite ver el formato de dicha tabla
@@ -127,19 +127,19 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var horarios = from hor in db.horario
-                               where hor.dia == (int)pFecha.DayOfWeek 
-                    select new HorariosResultado
-                    {
-                        id = hor.id_horario,
-                        nombre_horario =hor.clase.nombre + " / " + hor.nombre_dia + " - " + hor.hora_desde + " - " + hor.hora_hasta,
-                        id_clase = hor.id_clase
-                    };
+                               where hor.dia == (int)pFecha.DayOfWeek
+                               select new HorariosResultado
+                               {
+                                   id = hor.id_horario,
+                                   nombre_horario = hor.clase.nombre + " / " + hor.nombre_dia + " - " + hor.hora_desde + " - " + hor.hora_hasta,
+                                   id_clase = hor.id_clase
+                               };
 
                 return horarios.ToList();
             }
         }
 
-  
+
 
 
 
@@ -148,15 +148,16 @@ namespace JJSS_Negocio
          * Retorno: List<clase> 
          *          Listado de todas las clases
          */
-        public List<ClasesDisponibles> ObtenerClasesDisponibles()
+        public List<ClasesDisponibles> ObtenerClasesDisponibles(string filtroNombre, int filtroProfesor, int filtroAcademia)
         {
+            List<ClasesDisponibles> claseLista = null;
             using (var db = new JJSSEntities())
             {
                 var clasesDisponibles = from clases in db.clase
                                         join ubic in db.academia on clases.id_ubicacion equals ubic.id_academia
                                         join tipo in db.tipo_clase on clases.id_tipo_clase equals tipo.id_tipo_clase
                                         join profe in db.profesor on clases.id_profe equals profe.id_profesor
-                                        where clases.baja_logica == 1
+                                        where clases.baja_logica == 1 && clases.nombre.StartsWith(filtroNombre)
                                         select new ClasesDisponibles()
                                         {
                                             id_clase = clases.id_clase,
@@ -165,12 +166,36 @@ namespace JJSS_Negocio
                                             tipo_clase = tipo.nombre,
                                             ubicacion = ubic.nombre,
                                             profesor = profe.nombre + " " + profe.apellido,
-
+                                            id_academia = ubic.id_academia,
+                                            id_profesor = profe.id_profesor,
                                         };
-                List<ClasesDisponibles> claseLista = clasesDisponibles.ToList();
-
-                return claseLista;
+                claseLista = clasesDisponibles.ToList();
             }
+            List<ClasesDisponibles> clasesParaMostrar = new List<ClasesDisponibles>();
+            if (claseLista != null)
+            {
+                foreach (ClasesDisponibles clase in claseLista)
+                {
+                    if (filtroAcademia == 0 && filtroProfesor == 0)
+                    {
+                        clasesParaMostrar.Add(clase);
+                    }
+                    else if (filtroProfesor == 0 && clase.id_academia == filtroAcademia)
+                    {
+                        clasesParaMostrar.Add(clase);
+                    }
+                    else if (filtroAcademia == 0 && clase.id_profesor == filtroProfesor)
+                    {
+                        clasesParaMostrar.Add(clase);
+                    }
+                    else if (clase.id_profesor == filtroProfesor && clase.id_academia == filtroAcademia)
+                    {
+                        clasesParaMostrar.Add(clase);
+                    }
+                }
+            }
+
+            return clasesParaMostrar;
         }
 
 
@@ -455,7 +480,7 @@ namespace JJSS_Negocio
                 recargo = (double)recargoParametro.valor;
                 clase clase = db.clase.Find(pIdClase);
                 GestorPagoClase gestorPago = new GestorPagoClase();
-                bool pago=gestorPago.validarPagoParaAsistencia(pIdAlumno, (int)clase.id_tipo_clase);
+                bool pago = gestorPago.validarPagoParaAsistencia(pIdAlumno, (int)clase.id_tipo_clase);
                 if (pago) return 0;
                 else return recargo;
 
@@ -476,9 +501,9 @@ namespace JJSS_Negocio
             CultureInfo ci = new CultureInfo("Es-Es");
 
 
-           
+
             TimeSpan horaActual = DateTime.Now.TimeOfDay;
-            
+
             string nombreDia = ci.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
 
             DataTable dtClases;
@@ -493,18 +518,18 @@ namespace JJSS_Negocio
                                       && horario.nombre_dia == nombreDia
                                       select new ClasesHorariosAsistencia()
                                       {
-                                          idHorario= horario.id_horario,
+                                          idHorario = horario.id_horario,
                                           idClase = clase.id_clase,
                                           dia = horario.nombre_dia,
                                           desde = horario.hora_desde,
                                           hasta = horario.hora_hasta,
                                           tipoClase = tipo.id_tipo_clase,
-                                          
+
                                       };
                 //dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());
                 listaClases = claseEncontrada.ToList();
             }
-         
+
             ClasesHorariosAsistencia claseActual = null;
 
             foreach (var clase in listaClases)
@@ -574,7 +599,7 @@ namespace JJSS_Negocio
                                         join ins in db.inscripcion_clase on clases.id_clase equals ins.id_clase
                                         where clases.baja_logica == 1
                                           && ins.id_alumno == pIdAlumno
-                                          orderby clases.nombre
+                                        orderby clases.nombre
                                         select new ClasesDisponibles
                                         {
                                             id_clase = clases.id_clase,
