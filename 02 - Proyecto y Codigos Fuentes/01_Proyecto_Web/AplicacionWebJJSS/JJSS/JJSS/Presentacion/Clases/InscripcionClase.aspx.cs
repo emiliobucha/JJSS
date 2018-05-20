@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
+using JJSS_Negocio.Resultados;
 using System.IO;
 using System.Globalization;
 using System.Data;
@@ -19,6 +20,7 @@ namespace JJSS.Presentacion
         private GestorInscripcionesClase gestorInscripcionClase;
         private DataTable dtHorarios;
         private static int id_Clase;
+        private static List<AlumnoConEstado> alumnos;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -69,7 +71,7 @@ namespace JJSS.Presentacion
                 ViewState["gvDatosOrden"] = "dni";
                 gvAlumnos.AllowPaging = true;
                 gvAlumnos.AutoGenerateColumns = false;
-                gvAlumnos.PageSize = 20;
+                gvAlumnos.PageSize = 15;
                 CargarGrilla();
                 CargarDatosDeClase();
                 CargarComboFajas();
@@ -135,45 +137,56 @@ namespace JJSS.Presentacion
         protected void CargarGrilla()
         {
             var dni = txt_filtro_dni.Text;
-            List<alumno> listaCompleta = mostrarAlumnosNoInscriptos();
-            List<alumno> listaConFiltro = new List<alumno>();
+            List<AlumnoConEstado> listaCompleta = mostrarAlumnosNoInscriptos();
+            alumnos = listaCompleta;
+            List<AlumnoConEstado> listaConFiltro = new List<AlumnoConEstado>();
             string filtroApellido = txt_filtro_apellido.Text.ToUpper();
 
-            foreach (alumno i in listaCompleta)
+            foreach (AlumnoConEstado i in listaCompleta)
             {
-                string apellido = i.apellido.ToUpper();
+                string apellido = i.alu_apellido.ToUpper();
                 if (string.IsNullOrEmpty(dni)) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
 
-                if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
+                if (apellido.StartsWith(filtroApellido) && i.alu_dni == dni) listaConFiltro.Add(i);
             }
 
             gvAlumnos.DataSource = listaConFiltro;
             gvAlumnos.DataBind();
         }
 
-        private List<alumno> mostrarAlumnosNoInscriptos()
+        private List<AlumnoConEstado> mostrarAlumnosNoInscriptos()
         {
             List<alumno> alumnosInscriptos = gestorInscripcionClase.ObtenerAlumnosDeUnaClase(id_Clase);
             List<alumno> alumnos = gestorAlumnos.BuscarAlumno();
-            List<alumno> alumnosNoInscriptos=new List<alumno>();
+            List<AlumnoConEstado> alumnoParaMostrar=new List<AlumnoConEstado>();
             Boolean encontro = false;
 
             foreach (alumno a in alumnos)
             {
-
-                foreach (alumno ai in alumnosInscriptos)
+                foreach (alumno alumnoInscripto in alumnosInscriptos)
                 {
-                    if (a.dni == ai.dni)
+                    if (a.dni == alumnoInscripto.dni)
                     {
                         encontro = true;
                         break;
                     }
                     else encontro = false;
                 }
-                if (encontro == false) alumnosNoInscriptos.Add(a);
+
+                AlumnoConEstado ae = new AlumnoConEstado()
+                {
+                    alu_apellido = a.apellido,
+                    alu_dni = a.dni,
+                    alu_nombre = a.nombre,
+                    alu_id= a.id_alumno,
+                };
+                if (encontro) ae.inscripto = "SI";
+                else ae.inscripto = "NO";
+                
+                alumnoParaMostrar.Add(ae);
             }
             
-            return alumnosNoInscriptos;
+            return alumnoParaMostrar;
         }
 
         //____________     Mensajes de error    __________
@@ -238,14 +251,37 @@ namespace JJSS.Presentacion
                 }
 
                 //captura de datos de la grilla
-                int index = Convert.ToInt32(e.CommandArgument);
-                int dniAlumno = Convert.ToInt32(gvAlumnos.DataKeys[index].Value);
-
-                string nombre_Alumno = gvAlumnos.Rows[index].Cells[0].Text;
-                string apellido_Alumno = gvAlumnos.Rows[index].Cells[1].Text;
+                int id = Convert.ToInt32(e.CommandArgument);
+                AlumnoConEstado alumnoSeleccionado = new AlumnoConEstado();
+                foreach(AlumnoConEstado a in alumnos)
+                {
+                    if (a.alu_id == id)
+                    {
+                        alumnoSeleccionado = a;
+                        break;
+                    }
+                }
+                
+                string nombre_Alumno = alumnoSeleccionado.alu_nombre;
+                string apellido_Alumno = alumnoSeleccionado.alu_apellido;
+                string dniAlumno = alumnoSeleccionado.alu_dni;
                 cargaDatosAlumno(dniAlumno, nombre_Alumno, apellido_Alumno);
 
 
+            }else if (e.CommandName.CompareTo("desinscribir") == 0)
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+
+                string res = gestorInscripcionClase.DarDeBajaInscripcion(id, id_Clase);
+                if (res.CompareTo("") == 0)
+                {
+                    mensaje("Se dio de baja a la inscripción correctamente", true);
+                    CargarGrilla();
+                }
+                else
+                {
+                    mensaje(res, false);
+                }
             }
 
         }
@@ -274,7 +310,7 @@ namespace JJSS.Presentacion
         /*
          * Carga de los datos del alumno seleccionado para inscribir.
          */
-        protected void cargaDatosAlumno(int dni, string nombre, string apellido)
+        protected void cargaDatosAlumno(string dni, string nombre, string apellido)
         {
             definirVisualizacionDePaneles(true);
             lbl_alumno_apellido.Text = apellido;
@@ -360,6 +396,26 @@ namespace JJSS.Presentacion
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
             Response.Redirect("Menu_Clase.aspx");
+        }
+
+        protected void gvAlumnos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnInscribir = ((Button)e.Row.FindControl("btn_inscribir"));
+                Button btnDesInscribir = ((Button)e.Row.FindControl("btn_desinscribir"));
+                string inscripto =DataBinder.Eval(e.Row.DataItem, "inscripto").ToString();
+                if (inscripto == "NO")//no esta inscripto
+                {
+                    btnInscribir.Text = "Inscribir";
+                    btnDesInscribir.Text = "";
+                }
+                else
+                {
+                    btnInscribir.Text = "";
+                    btnDesInscribir.Text = "Dar de baja";
+                }
+            }
         }
     }
 }

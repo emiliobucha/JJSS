@@ -254,6 +254,7 @@
           <Property Name="hora" Type="varchar" MaxLength="20" />
           <Property Name="id_clase" Type="int" />
           <Property Name="id_alumno" Type="int" />
+          <Property Name="actual" Type="smallint" />
         </EntityType>
         <EntityType Name="inscripcion_evento">
           <Key>
@@ -2283,6 +2284,7 @@
           <Property Name="id_alumno" Type="Int32" />
           <NavigationProperty Name="alumno" Relationship="Self.FK__inscripci__id_al__335592AB" FromRole="inscripcion_clase" ToRole="alumno" />
           <NavigationProperty Name="clase" Relationship="Self.FK__inscripci__id_cl__3449B6E4" FromRole="inscripcion_clase" ToRole="clase" />
+          <Property Name="actual" Type="Int16" />
         </EntityType>
         <EntityType Name="inscripcion_evento">
           <Key>
@@ -4342,6 +4344,7 @@
           <EntitySetMapping Name="inscripcion_clase">
             <EntityTypeMapping TypeName="JJSSModel.inscripcion_clase">
               <MappingFragment StoreEntitySet="inscripcion_clase">
+                <ScalarProperty Name="actual" ColumnName="actual" />
                 <ScalarProperty Name="id_inscripcion" ColumnName="id_inscripcion" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="hora" ColumnName="hora" />

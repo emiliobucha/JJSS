@@ -157,12 +157,22 @@
                             <div class="row centered">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
 
-                                    <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
+                                    <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20" OnRowDataBound="gvAlumnos_RowDataBound">
                                         <Columns>
-                                            <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
-                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                            <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
-                                            <asp:ButtonField CommandName="inscribir" Text="Inscribir" HeaderText="Inscribir" />
+                                            <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
+                                            <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
+                                            <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
+                                            <asp:TemplateField HeaderText="Acciones" HeaderStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btn_inscribir" runat="server" class="btn btn-link" CommandName="inscribir" CommandArgument=<%# Eval("alu_id") %>/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Acciones" HeaderStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btn_desinscribir" runat="server" class="btn btn-link" CommandName="desinscribir" CommandArgument=<%# Eval("alu_id") %>/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="inscripto" HeaderText="" Visible="false"/>
                                         </Columns>
                                         <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                         <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
@@ -189,67 +199,67 @@
                             <h3>DATOS DEL ALUMNO</h3>
                             <p>&nbsp;</p>
                         </div>
-                            <!--Nombre-->
-                            <div class="row justify-content-center pt-1">
-                                <div class="col col-sm-1 col-md-2 col-lg-2">
-                                    <label>Nombre: </label>
-                                </div>
-                                <div class="col col-sm-6 col-md-4 col-lg-4">
-                                    <asp:Label ID="lbl_alumno_nombre" class="" runat="server" Text=""></asp:Label>
-                                </div>
+                        <!--Nombre-->
+                        <div class="row justify-content-center pt-1">
+                            <div class="col col-sm-1 col-md-2 col-lg-2">
+                                <label>Nombre: </label>
                             </div>
+                            <div class="col col-sm-6 col-md-4 col-lg-4">
+                                <asp:Label ID="lbl_alumno_nombre" class="" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
 
-                            <!--Apellido-->
-                            <div class="row justify-content-center   pt-1">
-                                <div class="col col-sm-1 col-md-2 col-lg-2">
-                                    <label>Apellido: </label>
-                                </div>
-                                <div class="col col-sm-6 col-md-4 col-lg-4">
-                                    <asp:Label ID="lbl_alumno_apellido" class="" runat="server" Text=""></asp:Label>
-                                </div>
+                        <!--Apellido-->
+                        <div class="row justify-content-center   pt-1">
+                            <div class="col col-sm-1 col-md-2 col-lg-2">
+                                <label>Apellido: </label>
                             </div>
+                            <div class="col col-sm-6 col-md-4 col-lg-4">
+                                <asp:Label ID="lbl_alumno_apellido" class="" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
 
-                            <!-- DNI-->
-                            <div class="row justify-content-center   pt-1">
-                                <div class="col col-sm-1 col-md-2 col-lg-2">
-                                    <label>DNI: </label>
-                                </div>
-                                <div class="col col-sm-6 col-md-4 col-lg-4">
-                                    <asp:Label ID="lbl_alumno_dni" class="" runat="server" Text=""></asp:Label>
-                                </div>
+                        <!-- DNI-->
+                        <div class="row justify-content-center   pt-1">
+                            <div class="col col-sm-1 col-md-2 col-lg-2">
+                                <label>DNI: </label>
                             </div>
-                            <!-- Datos para seleccionar -->
+                            <div class="col col-sm-6 col-md-4 col-lg-4">
+                                <asp:Label ID="lbl_alumno_dni" class="" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                        <!-- Datos para seleccionar -->
 
-                            <!--Faja-->
-                            <div class="row justify-content-center   pt-1">
-                                <div class="col col-sm-1 col-md-2 col-lg-2">
-                                    <label>Faja:</label>
-                                </div>
-                                <div class="col col-sm-6 col-md-4 col-lg-4">
-                                    <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
-                                    </asp:DropDownList>
-                                </div>
+                        <!--Faja-->
+                        <div class="row justify-content-center   pt-1">
+                            <div class="col col-sm-1 col-md-2 col-lg-2">
+                                <label>Faja:</label>
                             </div>
-                            <div class="row centered">
-                                <p>&nbsp;</p>
+                            <div class="col col-sm-6 col-md-4 col-lg-4">
+                                <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
+                                </asp:DropDownList>
                             </div>
+                        </div>
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
 
-                            <!--Boton para aceptar inscripcion-->
-                            <div class="row centered">
-                                <div class=" col-12">
-                                    <asp:Button CssClass="btn btn-default" ID="btn_aceptar_inscripcion" runat="server" formnovalidate="true" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
-                                </div>
+                        <!--Boton para aceptar inscripcion-->
+                        <div class="row centered">
+                            <div class=" col-12">
+                                <asp:Button CssClass="btn btn-default" ID="btn_aceptar_inscripcion" runat="server" formnovalidate="true" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
                             </div>
-                            <div class="row centered">
-                                <p>&nbsp;</p>
-                            </div>
+                        </div>
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
 
-                            <div class="row text-left">
-                                <div class=" col-3">
-                                    <asp:Button CssClass="btn btn-link" ID="btn_alumnos" runat="server" Text="Volver a Alumnos" formnovalidate="true" OnClick="btn_alumnos_Click" />
-                                </div>
+                        <div class="row text-left">
+                            <div class=" col-3">
+                                <asp:Button CssClass="btn btn-link" ID="btn_alumnos" runat="server" Text="Volver a Alumnos" formnovalidate="true" OnClick="btn_alumnos_Click" />
                             </div>
-                       
+                        </div>
+
                     </asp:Panel>
 
 

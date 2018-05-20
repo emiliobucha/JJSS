@@ -74,7 +74,8 @@ namespace JJSS_Negocio
                             id_alumno = pAlumno.id_alumno,
                             id_clase = pClase,
                             fecha = pFecha,
-                            hora = pHora
+                            hora = pHora,
+                            actual = Constantes.ConstatesBajaLogica.ACTUAL,
                         };
                         db.inscripcion_clase.Add(nuevaInscripcion);
                         db.SaveChanges();
@@ -85,7 +86,7 @@ namespace JJSS_Negocio
                                 id_alumno = pAlumno.id_alumno,
                                 id_faja = pIdFaja,
                                 fecha = pFecha,
-                                actual = 1,
+                                actual = Constantes.ConstatesBajaLogica.ACTUAL,
                             };
                             db.alumnoxfaja.Add(nuevaFaja);
                             db.SaveChanges();
@@ -128,7 +129,8 @@ namespace JJSS_Negocio
             {
                 var inscripcion = from ic in db.inscripcion_clase
                                   where ic.id_clase == pIDClase &&
-                                         ic.id_alumno == pIDAlumno
+                                         ic.id_alumno == pIDAlumno 
+                                         && ic.actual == Constantes.ConstatesBajaLogica.ACTUAL
                                   select ic;
                 return inscripcion.FirstOrDefault();
             }
@@ -190,9 +192,32 @@ namespace JJSS_Negocio
                 var alumnos = from alu in db.alumno
                               join ins in db.inscripcion_clase on alu.id_alumno equals ins.id_alumno
                               where ins.id_clase == pIDClase && alu.baja_logica==1
+                              && ins.actual == Constantes.ConstatesBajaLogica.ACTUAL
                               orderby alu.apellido
                               select alu;
                 return alumnos.ToList();
+            }
+        }
+
+        public string DarDeBajaInscripcion(int idAlumno, int idClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    var ins = from i in db.inscripcion_clase
+                              where i.id_alumno == idAlumno && i.id_clase == idClase
+                              && i.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                              select i;
+                    inscripcion_clase inscripcionSeleccionada = ins.FirstOrDefault();
+                    inscripcionSeleccionada.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
+                    db.SaveChanges();
+                    return "";
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
             }
         }
     }
