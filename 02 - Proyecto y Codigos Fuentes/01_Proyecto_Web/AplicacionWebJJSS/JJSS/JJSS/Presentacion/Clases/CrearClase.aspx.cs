@@ -14,6 +14,7 @@ namespace JJSS.Presentacion
     {
         private DataTable dtHorarios;
         private GestorClases gestorClases;
+        private int idClase;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -73,9 +74,19 @@ namespace JJSS.Presentacion
                 txt_nombre.Enabled = false;
                 ddl_tipo_clase.Enabled = false;
                 ddl_ubicacion.Enabled = false;
+                idClase = Convert.ToInt32(Session["clase"]);
+                Session["clase"] = null;
             }
-            else limpiar();
+            else {
+                limpiar();
+                idClase = 0;
+            }
             dtHorarios = gestorClases.ObtenerTablaHorarios(idClase);
+            dtHorarios.Columns.Add("id");
+            for (int i = 0; i < dtHorarios.Rows.Count; i++)
+            {
+                dtHorarios.Rows[i]["id"] = i;
+            }
             dtHorarios.AcceptChanges();
 
             DataView dv_horarios = dtHorarios.DefaultView;
@@ -114,6 +125,7 @@ namespace JJSS.Presentacion
             drNuevoHorario["dia"] = ddl_dia.SelectedIndex;
             drNuevoHorario["hora_desde"] = txt_horadesde.Text;
             drNuevoHorario["hora_hasta"] = txt_horahasta.Text;
+            drNuevoHorario["id"] = dtHorarios.Rows.Count;
             dtHorarios.Rows.Add(drNuevoHorario);
 
             dtHorarios.AcceptChanges();
@@ -128,6 +140,12 @@ namespace JJSS.Presentacion
         private void CargarComboTipos()
         {
             List<tipo_clase> tipo = gestorClases.ObtenerTipoClases();
+            tipo_clase primerElemento = new tipo_clase()
+            {
+                nombre = "Seleccione un tipo de clase",
+                id_tipo_clase = 0
+            };
+            tipo.Insert(0, primerElemento);
             ddl_tipo_clase.DataSource = tipo;
             ddl_tipo_clase.DataTextField = "nombre";
             ddl_tipo_clase.DataValueField = "id_tipo_clase";
@@ -137,6 +155,12 @@ namespace JJSS.Presentacion
         private void CargarComboUbicacion()
         {
             List<academia> academias = gestorClases.ObtenerAcademias();
+            academia primerElemento = new academia()
+            {
+                nombre = "Seleccione una academia",
+                id_academia = 0,
+            };
+            academias.Insert(0, primerElemento);
             ddl_ubicacion.DataSource = academias;
             ddl_ubicacion.DataTextField = "nombre";
             ddl_ubicacion.DataValueField = "id_academia";
@@ -146,41 +170,54 @@ namespace JJSS.Presentacion
         private void CargarComboProfes()
         {
             List<profesor> profesor = gestorClases.ObtenerProfesores();
+            foreach(profesor p in profesor)
+            {
+                p.nombre = p.nombre + " " + p.apellido;
+            }
+            profesor primerElemento = new profesor()
+            {
+                nombre = "Seleccione un profesor",
+                id_profesor=0,
+            };
+            profesor.Insert(0, primerElemento);
             ddl_profesor.DataSource = profesor;
-            ddl_profesor.DataTextField = "apellido";
+            ddl_profesor.DataTextField = "nombre";
             ddl_profesor.DataValueField = "id_profesor";
             ddl_profesor.DataBind();
         }
 
         protected void dg_horarios_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            int dia = Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "dia"));
-            switch (dia)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                case 0:
-                    e.Row.BackColor = System.Drawing.Color.Lavender;
-                    break;
-                case 1:
-                    e.Row.BackColor = System.Drawing.Color.PaleTurquoise;
-                    break;
-                case 2:
-                    e.Row.BackColor = System.Drawing.Color.PowderBlue;
-                    break;
-                case 3:
-                    e.Row.BackColor = System.Drawing.Color.LightBlue;
-                    break;
-                case 4:
-                    e.Row.BackColor = System.Drawing.Color.LightSkyBlue;
-                    break;
-                case 5:
-                    e.Row.BackColor = System.Drawing.Color.Turquoise;
-                    break;
-                case 6:
-                    e.Row.BackColor = System.Drawing.Color.MediumTurquoise;
-                    break;
-                default:
-                    e.Row.BackColor = System.Drawing.Color.Black;
-                    break;
+                int dia = Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "dia"));
+                switch (dia)
+                {
+                    case 0:
+                        e.Row.BackColor = System.Drawing.Color.Lavender;
+                        break;
+                    case 1:
+                        e.Row.BackColor = System.Drawing.Color.PaleTurquoise;
+                        break;
+                    case 2:
+                        e.Row.BackColor = System.Drawing.Color.PowderBlue;
+                        break;
+                    case 3:
+                        e.Row.BackColor = System.Drawing.Color.LightBlue;
+                        break;
+                    case 4:
+                        e.Row.BackColor = System.Drawing.Color.LightSkyBlue;
+                        break;
+                    case 5:
+                        e.Row.BackColor = System.Drawing.Color.Turquoise;
+                        break;
+                    case 6:
+                        e.Row.BackColor = System.Drawing.Color.MediumTurquoise;
+                        break;
+                    default:
+                        e.Row.BackColor = System.Drawing.Color.Black;
+                        break;
+                }
             }
 
 
@@ -193,13 +230,7 @@ namespace JJSS.Presentacion
             gestorClases = new GestorClases();
             string sReturn = "";
             Boolean estado = false;
-            int idClase=0;
-            if (Session["clase"] != null)
-            {
-                idClase = int.Parse(Session["clase"].ToString());
-            }
             
-
             //validacion con los horarios de otras clases
             DataTable dt = (DataTable)Session["dtHorarios"];
             Boolean bReturn = gestorClases.validarDisponibilidadHorario(dt, int.Parse(ddl_ubicacion.SelectedValue.ToString()),idClase);
@@ -242,10 +273,14 @@ namespace JJSS.Presentacion
             {
                 pnl_mensaje_error.Visible = false;
                 pnl_mensaje_exito.Visible = false;
-                int horario = Convert.ToInt32(e.CommandArgument);
+
+                int index= Convert.ToInt32(e.CommandArgument);                
+                int id = Convert.ToInt32(dg_horarios.DataKeys[index].Value);
 
                 dtHorarios = (DataTable)Session["dtHorarios"];
-                dtHorarios.Rows.RemoveAt(horario);
+                DataRow ItemAEliminar = dtHorarios.Select("id = " + id)[0];
+                dtHorarios.Rows.Remove(ItemAEliminar);
+                
                 dg_horarios.DataSource = dtHorarios;
                 dg_horarios.DataBind();
 
@@ -268,6 +303,9 @@ namespace JJSS.Presentacion
             txt_nombre.Enabled = true;
             ddl_ubicacion.Enabled = true;
             ddl_tipo_clase.Enabled = true;
+            ddl_profesor.SelectedIndex = 0;
+            ddl_tipo_clase.SelectedIndex = 0;
+            ddl_ubicacion.SelectedIndex = 0;
             Session["clase"] = null;
             dtHorarios = (DataTable)Session["dtHorarios"];
             if (dtHorarios!=null)dtHorarios.Clear();

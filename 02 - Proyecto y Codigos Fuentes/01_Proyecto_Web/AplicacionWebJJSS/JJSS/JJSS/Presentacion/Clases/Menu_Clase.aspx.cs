@@ -110,7 +110,7 @@ namespace JJSS.Presentacion
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
                 gestorDeClases.eliminarClase(id);
-                Response.Write("<script>window.alert('" + "Se eliminó la clase correctamente".Trim() + "');</script>");
+                mensaje("Se eliminó la clase correctamente", true);
                 cargarClasesView();
             }
             if (e.CommandName.CompareTo("seleccionar") == 0)
