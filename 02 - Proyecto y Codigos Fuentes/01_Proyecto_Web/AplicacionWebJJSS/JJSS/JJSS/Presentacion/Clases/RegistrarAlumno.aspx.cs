@@ -108,6 +108,13 @@ namespace JJSS.Presentacion
                 pnlFormulario.Visible = false;
                 Session["alumnos"] = "alu";
             }
+            else
+            {
+                MultiView1.SetActiveView(view_formulario);
+                pnl_mostrar_alumnos.Visible = false;
+                pnlFormulario.Visible = true;
+                Session["alumnos"] = "alu";
+            }
         }
 
         public override void VerifyRenderingInServerForm(Control control)

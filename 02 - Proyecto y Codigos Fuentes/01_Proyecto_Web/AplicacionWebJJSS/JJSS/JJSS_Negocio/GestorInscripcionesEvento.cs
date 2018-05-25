@@ -241,6 +241,22 @@ namespace JJSS_Negocio
 
         }
 
+        public List<tipo_documento> ObtenerTiposDocumentos()
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+
+                    var list = db.tipo_documento.ToList();
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<tipo_documento>();
+            }
+        }
 
         /*
          * Aun no aplica
