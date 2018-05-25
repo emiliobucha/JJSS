@@ -193,13 +193,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.GridView dg_horarios;
         
         /// <summary>
-        /// Control btn_cancelar.
+        /// Control lnk_volver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar;
+        protected global::System.Web.UI.WebControls.HyperLink lnk_volver;
         
         /// <summary>
         /// Control btn_aceptar.

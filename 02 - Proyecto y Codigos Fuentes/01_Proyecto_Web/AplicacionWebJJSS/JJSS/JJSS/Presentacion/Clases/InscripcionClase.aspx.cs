@@ -63,7 +63,8 @@ namespace JJSS.Presentacion
                 }
                 else
                 {
-                    id_Clase = int.Parse(Session["id_clase"].ToString());
+                    id_Clase = Convert.ToInt32(Session["id_clase"]);
+                    Session["id_clase"] = null;
                 }
 
 

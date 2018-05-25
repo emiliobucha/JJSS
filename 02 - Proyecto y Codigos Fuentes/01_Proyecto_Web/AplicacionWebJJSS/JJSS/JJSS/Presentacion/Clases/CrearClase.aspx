@@ -202,7 +202,7 @@
                 <div class="row centered">
 
                     <!--OnRowDataBound="dg_horarios_RowDataBound"-->
-                    <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id_horario" EmptyDataText="No hay horarios actualmente" CssClass="table" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_horarios_RowCommand" OnRowDataBound="dg_horarios_RowDataBound" BorderColor="Black" BorderStyle="Double">
+                    <asp:GridView ID="dg_horarios" runat="server" DataKeyNames="id" EmptyDataText="No hay horarios actualmente" CssClass="table" OnItemDataBound="dg_horarios_ItemDataBound" OnRowCommand="dg_horarios_RowCommand" OnRowDataBound="dg_horarios_RowDataBound" BorderColor="Black" BorderStyle="Double">
 
                         <Columns>
                             <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Día" DataField="nombre_dia">
@@ -230,7 +230,7 @@
         <div class="container p-1">
             <div class="row centered">
                 <div class="col col-auto">
-                    <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" CssClass=" btn btn-link pull-left" CausesValidation="false" OnClick="btn_cancelar_Click" formnovalidate="true"></asp:Button>
+                    <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Clase.aspx"></asp:HyperLink>
                 </div>
                 <div class="col col-auto">
                     <asp:Button ID="btn_aceptar" runat="server" OnClick="btn_aceptar_Click" Text="Aceptar" CssClass="btn btn-outline-dark" ValidationGroup="vg_aceptar"></asp:Button>
