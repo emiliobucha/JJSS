@@ -52,9 +52,7 @@
                 ReadOnly="true" AllowDelete="false" AllowEdit="false" AllowInsert="false" ShowFullTime="true" ShowAllDayRow="true"
                 DataKeyField="ID" DataSubjectField="Subject" DataStartField="Start" DataEndField="End" DataRecurrenceField="RecurrenceRule"
                 DataRecurrenceParentKeyField="RecurrenceParentId" OnAppointmentDataBound="RadScheduler1_AppointmentDataBound" 
-                OnAppointmentClick="RadScheduler1_AppointmentClick" HoursPanelTimeFormat="hh:mm tt" Skin="Material">
-                <%--DataRecurrenceField="RecurrenceRule" DataRecurrenceParentKeyField="RecurrenceParentId">--%>
-                <%--DataReminderField="Reminder">--%>
+                OnAppointmentClick="RadScheduler1_AppointmentClick" HoursPanelTimeFormat="hh:mm tt">
                 <AdvancedForm Modal="true" ></AdvancedForm>
                 <TimelineView UserSelectable="false"></TimelineView>
                 <TimeSlotContextMenuSettings EnableDefault="true"></TimeSlotContextMenuSettings>

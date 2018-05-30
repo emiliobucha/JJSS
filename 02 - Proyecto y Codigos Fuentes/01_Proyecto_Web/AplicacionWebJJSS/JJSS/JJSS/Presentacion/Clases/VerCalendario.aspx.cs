@@ -128,8 +128,6 @@ namespace JJSS.Presentacion.Clases
 
                     newAppointment.RecurrenceRule = newWeekly.ToString();
                     app.Add(newAppointment);
-                    //RadScheduler1.InsertAppointment(newAppointment);
-                    //RadScheduler1.Rebind();
                 }
             }
 
@@ -168,11 +166,6 @@ namespace JJSS.Presentacion.Clases
             int numberTodayDayOfWeek = (int)todayDayOfWeek;
 
             return matriz[numberTodayDayOfWeek][classDay];
-        }
-
-        protected void RadScheduler1_AppointmentClick(object sender, SchedulerEventArgs e)
-        {
-            //e.Appointment.BackColor= System.Drawing.Color.
         }
 
         protected void RadScheduler1_AppointmentDataBound(object sender, SchedulerEventArgs e)
