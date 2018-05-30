@@ -266,9 +266,7 @@
                             <div class="row ">
                                 <asp:Button ID="btn_ver_profes" runat="server" CssClass=" btn btn-link pull-left" Text="Ver profesores" formnovalidate="true" CausesValidation="False" OnClick="btn_ver_profes_Click" />
                             </div>
-                            <div class=" p-2 ">
-                                <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
-                            </div>
+
                         </div>
                     </div>
 
@@ -283,7 +281,7 @@
 
                 <div id="mostrarprofewrap">
 
-                    <div>
+                    <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
 
@@ -291,7 +289,7 @@
                         <h1>Listado de Profesores</h1>
                     </div>
 
-                    <div>
+                    <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
 
@@ -326,8 +324,9 @@
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
-                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" ItemStyle-ForeColor="#007bff"/>
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" ItemStyle-ForeColor="#007bff" />
+
+                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
                                     </Columns>
                                 </asp:GridView>
                             </div>

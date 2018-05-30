@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CrearEvento.aspx.cs" Inherits="JJSS.Presentacion.CrearEvento" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="CrearEvento.aspx.cs" Inherits="JJSS.Presentacion.CrearEvento" %>
 
 
 <asp:Content ID="crearTorneoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
@@ -9,7 +9,6 @@
     <section id="crearTorneo" title="crearTorneo"></section>
     <asp:Panel ID="pnlFormulario" runat="server">
         <div id="crearTorneowrap">
-
             <div class="container">
                 <form id="form1" runat="server">
 
@@ -43,32 +42,30 @@
                         </div>
                     </asp:Panel>
 
-                  
-                    <div>
-                        <p>&nbsp;</p>
-                    </div>
-                    <div class="row mt centered justify-content-center ">
-                        <h1 class="centered">Alta de Evento Especial</h1>
-                    </div>
 
-                    <div>
+                    <div class="row mt centered">
+
+                        <h1>ALTA DE EVENTO ESPECIAL</h1>
                         <p>&nbsp;</p>
                     </div>
 
 
-                    <div class="form-group border rounded p-4">
-
+                    <div class="form-group ">
                         <asp:Panel runat="server" CssClass="panel panel-default">
 
+                             <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
                             <!--Nombre-->
-                            <div class="row  pl-lg-5 pl-md-5">
+                            <div class="row centered center-block">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class=" text-left">Nombre <a class="text-danger">*</a></label>
+                                    <label class="pull-left 4">Nombre</label>
                                 </div>
-                                <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
+                                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
                                     <asp:TextBox ID="txt_nombre" required="true" runat="server" MaxLength="50" onblur="ValidatorOnChange(event)" placeholder="Ingrese nombre" CssClass="caja2"></asp:TextBox>
                                 </div>
-                                <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
+                                <div class="col-md-3 col-lg-3  col-sm-12 col-xs-12 ">
                                     <asp:RegularExpressionValidator ID="caracteres_nombre" runat="server" ControlToValidate="txt_nombre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Nombre demasiado largo" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgTorneo"> </asp:RegularExpressionValidator>
                                 </div>
                             </div>
@@ -78,15 +75,15 @@
                             </div>
 
                             <!--tipo evento-->
-                            <div class="row  pl-lg-5 pl-md-5">
-                                <div class="col-md-2 col-lg-2 col-sm-12">
-                                    <label class="pull-left 4">Tipo de Evento <a class="text-danger">*</a></label>
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left 4">Tipo de Evento</label>
                                 </div>
-                                <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
+                                <div class="col-md-4 col-lg-4 col-sm-10 col-xs-10">
                                     <asp:DropDownList ID="dll_tipo_evento" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                                 </div>
-                                <div class="col col-md-1 col-lg-1 col-sm-2  col-xs-2">
-                                    <asp:Button ID="btn_tipo_evento" class="btn btn-outline-dark" runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
+                                <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
+                                    <asp:Button ID="btn_tipo_evento" class="btn btn-default" runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
                                 </div>
                             </div>
 
@@ -95,15 +92,15 @@
                             </div>
 
                             <!--Sedes-->
-                            <div class="row  pl-lg-5 pl-md-5">
-                                <div class="col-md-2 col-lg-2 col-sm-12">
-                                    <label class="pull-left 4">Sede <a class="text-danger">*</a></label>
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left 4">Sede</label>
                                 </div>
-                                <div class="col col-md-4 col-lg-4 col-sm-10 col-xs-10">
+                                <div class="col-md-4 col-lg-4 col-sm-10 col-xs-10">
                                     <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                                 </div>
-                                <div class="col col-md-1 col-lg-1 col-sm-2 col-xs-2">
-                                    <asp:Button ID="btn_mas"  class="btn btn-outline-dark"  runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
+                                <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
+                                    <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
                                 </div>
                             </div>
 
@@ -112,19 +109,19 @@
                             </div>
 
                             <!--Fecha de evento-->
-                            <div class="row  pl-lg-5 pl-md-5">
-                                <div class="col-md-2 col-lg-2 col-sm-12">
-                                    <label class="pull-left">Fecha a producirse <a class="text-danger">*</a></label>
+                            <div class="row centered center-block">
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                    <label class="pull-left">Fecha a producirse</label>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                                     <!--SOMEE-->
-                                    <%--<asp:TextBox ID="dp_fecha" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
-                                    <!--LOCAL-->
-                                    <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
+                                            <%--<asp:TextBox ID="dp_fecha" runat="server" class="caja2" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>--%>
+                                            <!--LOCAL-->
+                                            <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
 
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="pull-left">Hora de inicio <a class="text-danger">*</a></label>
+                                    <label class="pull-left">Hora de inicio</label>
                                 </div>
 
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
@@ -140,9 +137,9 @@
                             </div>
 
                             <!--Fecha de cierre de inscripcion-->
-                            <div class="row  pl-lg-5 pl-md-5">
+                            <div class="row centered center-block">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="pull-left ">Cierre de inscripcion <a class="text-danger">*</a></label>
+                                    <label class="pull-left ">Cierre de inscripcion</label>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                                     <!--SOMEE-->
@@ -151,7 +148,7 @@
                                             <asp:TextBox ID="dp_fecha_cierre" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="pull-left">Hora de cierre <a class="text-danger">*</a></label>
+                                    <label class="pull-left">Hora de cierre</label>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                                     <asp:TextBox ID="txt_hora_cierre" required="true" runat="server" CssClass="caja2" type="time" placeholder="Ingrese la hora de cierre de inscripciones"></asp:TextBox>
@@ -168,9 +165,9 @@
                             </div>
 
                             <!--Precio-->
-                            <div class="row  pl-lg-5 pl-md-5">
+                            <div class="row centered center-block">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="pull-left left">Precio inscripción $ <a class="text-danger">*</a></label>
+                                    <label class="pull-left left">Precio inscripción $</label>
                                 </div>
                                 <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
                                     <asp:TextBox ID="txt_precio" required="true" min="0" max="1000000" type="number" placeholder="Ingrese el precio de la inscripción" step="0.1" CssClass="form-control" runat="server"></asp:TextBox>
@@ -182,46 +179,43 @@
                             </div>
 
                             <!--Foto-->
-                          <div class="row centered pl-lg-5 pl-md-5">
-                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="pull-left">Imagen</label>
-                                </div>
-                                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-                                    <input id="avatarUpload" type="file" name="file" onchange="previewFile()" runat="server" />
-                                </div>
-                            </div>
                             <div class="row centered center-block">
-                                <div class="col-md-2 col-lg-2 hidden-sm hidden-xs">
-                                    <p>&nbsp;</p>
-                                </div>
+                                <asp:Panel ID="Panel1" runat="server">
 
-                                <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
-                                    <asp:Image ID="Avatar" runat="server" Height="225px" CssClass="pull-left left" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
-                                </div>
+                                    <div class="row centered center-block">
+                                        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                                            <label class="pull-left left">Imagen</label>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                                            <input id="avatarUpload" type="file" name="file" onchange="previewFile()" runat="server" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row centered center-block">
+                                        <div class="col-md-2 col-lg-2 hidden-sm hidden-xs">
+                                            <p>&nbsp;</p>
+                                        </div>
+
+                                        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                                            <asp:Image ID="Avatar" runat="server" CssClass="pull-left left" Height="225px" ImageUrl="~/Images/NoUser.jpg" Width="225px" />
+                                        </div>
+                                    </div>
+
+                                </asp:Panel>
                             </div>
+
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
                         </asp:Panel>
 
                         <!--Boton-->
-                        <div class="row centered justify-content-center ">
-                            <asp:Button ID="btn_aceptar" class="btn btn-outline-dark" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" OnClientClick="btn_aceptar_Click1" ValidationGroup="vgTorneo" />
+                        <div class="row centered center-block   ">
+                            <asp:Button ID="btn_aceptar" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" OnClientClick="btn_aceptar_Click1" ValidationGroup="vgTorneo" />
+                            <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
                         </div>
+                    </div>
 
-                        <div>
-                            &nbsp;
-                        </div>
-                        <div class=" p-2 ">
-                            <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
-                        </div>
-                    </div>
-                    <div>
-                        <p>&nbsp;</p>
-                    </div>
-                    <div class="row centered">
-                        <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
-                    </div>
                 </form>
 
             </div>
