@@ -8,7 +8,8 @@
 
     <form id="form1" runat="server">
 
-        <div class="container">
+          <div class="container centered justify-content-center">
+
             <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
                 <div class="container">
                     <div class="col-md-2"></div>
