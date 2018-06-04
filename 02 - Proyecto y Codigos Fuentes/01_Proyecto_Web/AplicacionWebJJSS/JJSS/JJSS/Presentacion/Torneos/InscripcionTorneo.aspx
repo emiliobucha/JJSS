@@ -67,7 +67,7 @@
     </asp:Panel>
 
 
-    <asp:Panel ID="pnlFormulario" runat="server" CssClass="justify-content-center">
+    <asp:Panel ID="pnlFormulario" runat="server" CssClass="justify-content-center" ValidateRequestMode="Disabled">
         <div class=" container">
             <div class="row centered">
                 <p>&nbsp;</p>
@@ -269,7 +269,7 @@
 
                             <!--Boton-->
                             <div class="col-md-1 col-xl-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
+                                <asp:Button ID="btnBuscar" runat="server"  UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
                             </div>
                             
                         </div>
@@ -451,7 +451,7 @@
                         <!--Boton Aceptar-->
                         <div class="row centered justify-content-center">
 
-                            <asp:Button ID="btn_aceptar" type="submit" class="btn btn-outline-dark " runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
+                            <asp:Button ID="btn_aceptar"  UseSubmitBehaviour="false" class="btn btn-outline-dark " runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
 
                         </div>
 
@@ -521,4 +521,7 @@
             location.href = "InscripcionTorneo.aspx";
         }
     </script>
+    
+    
+
 </asp:Content>
