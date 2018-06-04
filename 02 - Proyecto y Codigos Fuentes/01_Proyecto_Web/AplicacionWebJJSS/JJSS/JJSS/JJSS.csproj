@@ -137,6 +137,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\Categoria.png" />
+    <Content Include="img\Graduar.png" />
+    <Content Include="img\Perfil.png" />
+    <Content Include="img\Sede.png" />
     <Content Include="Presentacion\Administracion\CrearCategoria.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -207,6 +211,7 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
     <Content Include="Presentacion\Administracion\CrearSede.aspx" />
+    <Content Include="Presentacion\Menu_Evento.aspx" />
     <Content Include="Presentacion\Productos\AgregarProducto.aspx" />
     <Content Include="Presentacion\Clases\AlumnoPagoClase.aspx" />
     <Content Include="Presentacion\Administracion\Menu_Administracion.aspx" />
@@ -381,6 +386,13 @@
     </Compile>
     <Compile Include="Presentacion\Administracion\CrearSede.aspx.designer.cs">
       <DependentUpon>CrearSede.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Menu_Evento.aspx.cs">
+      <DependentUpon>Menu_Evento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Menu_Evento.aspx.designer.cs">
+      <DependentUpon>Menu_Evento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Productos\AgregarProducto.aspx.cs">
       <DependentUpon>AgregarProducto.aspx</DependentUpon>

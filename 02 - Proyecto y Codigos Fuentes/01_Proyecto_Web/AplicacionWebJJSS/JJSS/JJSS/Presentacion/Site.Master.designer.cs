@@ -85,15 +85,6 @@ namespace JJSS {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_crear_clase;
         
         /// <summary>
-        /// Control nav_menu_clase.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_menu_clase;
-        
-        /// <summary>
         /// Control nav_inscripcion_clase.
         /// </summary>
         /// <remarks>
@@ -112,13 +103,49 @@ namespace JJSS {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_registrar_asistencia;
         
         /// <summary>
-        /// Control nav_registrar_pago.
+        /// Control nav_graduar_alumno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_registrar_pago;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_graduar_alumno;
+        
+        /// <summary>
+        /// Control nav_usuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nav_usuario;
+        
+        /// <summary>
+        /// Control lbl_sesion_nombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_sesion_nombre;
+        
+        /// <summary>
+        /// Control nav_cerrar_sesion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_cerrar_sesion;
+        
+        /// <summary>
+        /// Control nav_iniciar_sesion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nav_iniciar_sesion;
         
         /// <summary>
         /// Control cphEncabezado.

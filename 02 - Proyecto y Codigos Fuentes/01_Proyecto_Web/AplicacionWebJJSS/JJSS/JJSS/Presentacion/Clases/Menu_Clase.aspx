@@ -94,6 +94,30 @@
                     </a>
                 </div>
 
+                 <!--Graduar-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="/Presentacion/Clases/GraduarAlumno.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Graduar.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Graduar Alumnos</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                 <!--Asistencia-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="/Presentacion/Clases/RegistrarAsistencia.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Inscribir.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Registrar Asistencia</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
                 <!--Histórico-->
                 <%-- <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
                     <a class="text-dark" href="HistoricoTorneos.aspx">

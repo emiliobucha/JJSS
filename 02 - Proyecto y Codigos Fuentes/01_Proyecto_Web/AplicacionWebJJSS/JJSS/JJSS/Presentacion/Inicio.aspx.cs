@@ -112,6 +112,7 @@ namespace JJSS.Presentacion
 
 
         }
+
         protected void btnGenerarListadoAsistencia()
         {
             int idHorario = 0;
