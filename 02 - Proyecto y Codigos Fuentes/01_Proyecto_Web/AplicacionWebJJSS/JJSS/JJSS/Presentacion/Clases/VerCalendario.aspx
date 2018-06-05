@@ -1,9 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="VerCalendario.aspx.cs" Inherits="JJSS.Presentacion.Clases.VerCalendario" %>
 
-<%@ Register Assembly="DevExpress.Web.ASPxScheduler.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler" TagPrefix="dxwschs" %>
-
-<%@ Register Assembly="DevExpress.Web.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
-
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
@@ -52,7 +48,7 @@
                 ReadOnly="true" AllowDelete="false" AllowEdit="false" AllowInsert="false" ShowFullTime="true" ShowAllDayRow="true"
                 DataKeyField="ID" DataSubjectField="Subject" DataStartField="Start" DataEndField="End" DataRecurrenceField="RecurrenceRule"
                 DataRecurrenceParentKeyField="RecurrenceParentId" OnAppointmentDataBound="RadScheduler1_AppointmentDataBound" 
-                OnAppointmentClick="RadScheduler1_AppointmentClick" HoursPanelTimeFormat="hh:mm tt">
+                HoursPanelTimeFormat="hh:mm tt">
                 <AdvancedForm Modal="true" ></AdvancedForm>
                 <TimelineView UserSelectable="false"></TimelineView>
                 <TimeSlotContextMenuSettings EnableDefault="true"></TimeSlotContextMenuSettings>
