@@ -66,62 +66,103 @@
       </div>
 
 
+      <style>
+
+          .navbar-brand:hover, .dropdown-item:hover {
+              background-color:#525a60;
+          }
+      </style>
 
       <!-- Menu -->
 
           <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark" style="background-color: #2f2f2f;"  >
               <div class="navbar-nav nav-item">
-                  <a class="navbar-brand" href="/Presentacion/MenuInicial.aspx">Home</a>
+                  <a class="navbar-brand" href="/Presentacion/MenuInicial.aspx">Inicio</a>
               </div>
-              
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <!-- Inicio -->
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
               </button>
 
-              <div class="collapse navbar-collapse navbar-dark text-white" id="navbarNavDropdown" runat="server">
-                  <ul class="navbar-nav mr-auto"  runat="server">
-                      <%--<li class="nav-item active">
-                          <a class=" nav-item  text-white" href="MenuInicial.aspx">&nbsp; Home &nbsp; </a>
-                      </li>--%>
-                      <li class="nav-item"  runat="server">
-                          <a  runat="server" class=" nav-item  text-white" href="/Presentacion/SobreNosotros.aspx">&nbsp; Sobre Nosotros &nbsp; </a>
-                      </li>
-                      <li class="nav-item dropdown"  runat="server">
-                          <a  runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarTorneo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Torneo &nbsp; 
+              <div class="collapse navbar-collapse text-white" id="navbarNavDropdown" runat="server">
+                  <ul class="navbar-nav mr-auto" runat="server">      
+                      <!-- Torneo -->
+                      <li class="nav-item dropdown" runat="server">
+                          <a runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarTorneo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Torneo &nbsp; 
                           </a>
-                          <div   runat="server" class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a  runat="server" id="nav_menu_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/MenuTorneo.aspx">Ver</a>
-                              <a  runat="server" id="nav_historico_torneos" class="dropdown-item text-white" href="/Presentacion/Torneos/HistoricoTorneos.aspx">Histórico</a>
-                              <a  runat="server"  id="nav_crear_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/CrearTorneo.aspx">Crear</a>
-                              <a  runat="server" id="nav_inscripcion_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/InscripcionTorneo.aspx">Inscribir</a>                                                    
+                          <div runat="server" class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a runat="server" id="nav_menu_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/MenuTorneo.aspx">SubMenu</a>
+                              <a runat="server" id="nav_historico_torneos" class="dropdown-item text-white" href="/Presentacion/Torneos/HistoricoTorneos.aspx">Histórico</a>
+                              <a runat="server" id="nav_crear_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/CrearTorneo.aspx">Crear</a>
+                              <a runat="server" id="nav_inscripcion_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/InscripcionTorneo.aspx">Inscribir</a>
                           </div>
                       </li>
-                      <li  runat="server" class="nav-item dropdown">
-                          <a  runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarClase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Clase &nbsp; 
+                      <!-- Clase -->
+                      <li runat="server" class="nav-item dropdown">
+                          <a runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarClase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Clase &nbsp; 
                           </a>
-                          <div  runat="server" class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a  runat="server" id="nav_crear_clase" class="dropdown-item text-white" href="/Presentacion/Clases/CrearClase.aspx">Crear </a>
-                              <a  runat="server" id="nav_menu_clase" class="dropdown-item text-white" href="#">Ver </a>
-                              <a runat="server" id="nav_inscripcion_clase" class="dropdown-item text-white" href="/Presentacion/Clases/InscripcionClase.aspx">Inscribir </a>                              
-                              <a runat="server" id="nav_registrar_asistencia" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistencia.aspx">Asistencia </a>                                                    
-                              <a runat="server" id="nav_registrar_pago" class="dropdown-item text-white" >Registrar Pago </a>
+                          <div runat="server" class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a runat="server" id="nav_crear_clase" class="dropdown-item text-white" href="/Presentacion/Clases/CrearClase.aspx">Crear </a>
+                              <a runat="server" id="nav_inscripcion_clase" class="dropdown-item text-white" href="/Presentacion/Clases/InscripcionClase.aspx">Inscribir </a>
+                              <a runat="server" id="nav_registrar_asistencia" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistencia.aspx">Asistencia </a>
+                              <a runat="server" id="nav_graduar_alumno" class="dropdown-item text-white" href="/Presentacion/Clases/GraduarAlumno.aspx">Graduar Alumnos </a>
                           </div>
                       </li>
-                          <li class="nav-item dropdown">
+                      <!-- Evento -->
+                      <li class="nav-item dropdown">
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarEvento" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Evento &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item text-white"  href="/Presentacion/CrearEvento.aspx">Crear </a>
-                              <a class="dropdown-item text-white" href="#">Ver </a>
-                              <a class="dropdown-item text-white" href="/Presentacion/InscripcionEvento.aspx">Inscribir </a>                                                    
-                              <a class="dropdown-item text-white" >Registrar Pago </a>
+                              <a class="dropdown-item text-white" id="nav_crear_evento" href="/Presentacion/CrearEvento.aspx">Crear </a>
+                              <a class="dropdown-item text-white" id="nav_inscribir_evento" href="/Presentacion/InscripcionEvento.aspx">Inscribir </a>
                           </div>
+                      </li>
+                      <!-- Administración -->
+                      <li class="nav-item dropdown">
+                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarAdministracion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Administración &nbsp; 
+                          </a>
+                          <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item text-white" id="nav_registrar_alumno" href="/Presentacion/Clases/RegistrarAlumno.aspx">Registrar Alumno </a>
+                              <a class="dropdown-item text-white" id="nav_registrar_profe" href="/Presentacion/Clases/RegistrarProfe.aspx">Registrar Profesor </a>
+                              <a class="dropdown-item text-white" id="nav_crear_categoria" href="/Presentacion/Administracion/CrearCategoria.aspx">Crear Categoria </a>
+                              <a class="dropdown-item text-white " id="nav_crear_sede" href="/Presentacion/Administracion/CrearSede.aspx">Crear Sede </a>
+                          </div>
+                      </li>
+                       <!-- Pagos -->
+                      <li class="nav-item dropdown">
+                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarPagos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Pagos &nbsp; 
+                          </a>
+                          <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item text-white" id="nav_pago" href="/Presentacion/Clases/AlumnoClases.aspx">Pago de Clase </a>
+                          </div>
+                      </li>
+                       <!-- Sobre Nosotros -->
+                      <li class="nav-item" runat="server">
+                          <a runat="server" class=" nav-item  text-white" href="/Presentacion/SobreNosotros.aspx">&nbsp; Sobre Nosotros &nbsp; </a>
+                      </li>
+                  </ul>
+
+                   <!-- Usuario - Inicio de Sesion -->
+                  <ul class="nav navbar-nav pull-right pr-4" runat="server">
+                       <!-- Usuario -->
+                      <li class=" nav-item dropdown" id="nav_usuario" runat="server">
+                          <asp:Label runat="server" class=" btn btn-link nav-item text-white " href="#" ID="lbl_sesion_nombre" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Text=""></asp:Label>
+                          <a class=" fa fa-user pt-1"></a>
+                          <div class="dropdown-menu text-white" id="nav_conf_usuario" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item text-white" id="nav_editar_perfil" href="/Presentacion/Perfil.aspx">Editar Perfil </a>
+                              <a class="btn btn-link dropdown-item text-white" id="nav_cerrar_sesion" onclick="cerrar_sesion_Click()" href="/Presentacion/Login.aspx"  runat="server">Cerrar Sesión </a>
+                          </div>
+                      </li>
+                       <!-- Inicio de Sesion -->
+                      <li class="nav nav-item pull-right pr-4 " id="nav_iniciar_sesion"  runat="server">
+                          <a class="btn btn-link text-white" href="/Presentacion/Login.aspx">Iniciar Sesión &nbsp;</a>
+                          <a class="fa fa-user pt-1"></a>                          
                       </li>
                   </ul>
               </div>
 
           </nav>
-
+ 
 
 
 
