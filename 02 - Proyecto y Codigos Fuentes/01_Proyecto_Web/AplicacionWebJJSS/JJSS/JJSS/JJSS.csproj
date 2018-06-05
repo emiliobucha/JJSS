@@ -94,6 +94,9 @@
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\Librerias\Telerik.Web.UI.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -388,30 +391,35 @@
     </Compile>
     <Compile Include="Presentacion\Clases\AlumnoPagoClase.aspx.cs">
       <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\Clases\AlumnoPagoClase.aspx.designer.cs">
       <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx.cs">
       <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx.designer.cs">
       <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Clases\VerCalendario.aspx.cs">
       <DependentUpon>VerCalendario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\Clases\VerCalendario.aspx.designer.cs">
       <DependentUpon>VerCalendario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Clases\VerListadoAsistencia.aspx.cs">
       <DependentUpon>VerListadoAsistencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\Clases\VerListadoAsistencia.aspx.designer.cs">
       <DependentUpon>VerListadoAsistencia.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Menu_Evento.aspx.cs">
       <DependentUpon>Menu_Evento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\Menu_Evento.aspx.designer.cs">
       <DependentUpon>Menu_Evento.aspx</DependentUpon>
