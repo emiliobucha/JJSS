@@ -120,7 +120,7 @@ namespace JJSS.Presentacion
 
         protected void btn_Cancelar_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("../Presentacion/Inicio.aspx#section_permisos");
+            Response.Redirect("../Presentacion/MenuInicial.aspx");
         }
     }
 }

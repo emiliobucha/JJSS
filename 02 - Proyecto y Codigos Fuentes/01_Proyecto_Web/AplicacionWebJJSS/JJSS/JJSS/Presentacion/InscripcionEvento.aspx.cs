@@ -66,7 +66,6 @@ namespace JJSS.Presentacion
                     pnl_dni.Visible = false;
                     CargarComboEventos();
                 }
-                CargarComboTipoDocumentos();
 
 
             }
@@ -304,7 +303,7 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void rbSexo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -328,21 +327,10 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiar(true);
             Response.Redirect("../Presentacion/Inicio.aspx#section_eventos");
-        }
-
-        protected void CargarComboTipoDocumentos()
-        {
-
-            List<tipo_documento> tiposdoc = gestorInscripciones.ObtenerTiposDocumentos();
-            ddl_tipo.DataSource = tiposdoc;
-            ddl_tipo.DataTextField = "codigo";
-            ddl_tipo.DataValueField = "id_tipo_documento";
-            ddl_tipo.DataBind();
-
         }
     }
 }

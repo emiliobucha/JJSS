@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="EventoPagoFinalizado.aspx.cs" Inherits="JJSS.Presentacion.EventoPagoFinalizado" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="EventoPagoFinalizado.aspx.cs" Inherits="JJSS.Presentacion.EventoPagoFinalizado" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
@@ -6,8 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
     <section id="pagoEvento" title="pagoEvento"></section>
+
     <form id="formPagoEvento" runat="server">
-        <div id="registrowrap">
+        <div class=" container centered justify-content-center  ">
 
             <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
                 <div class="col-md-2"></div>
@@ -38,27 +39,35 @@
                     <p>&nbsp;</p>
                 </div>
             </asp:Panel>
+        </div>
 
-            <asp:Panel ID="pnlPago" runat="server">
-                <div class="container">
-                    <div class="row mt centered">
-                       
-                        <h1>PAGO DE EVENTO</h1>
-                        <p>&nbsp;</p>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="row centered">
+        <div class="row mt centered justify-content-center ">
+            <h1 class="centered">Pago de Evento</h1>
+        </div>
+
+        <div>
+            &nbsp;
+        </div>
+
+
+        <div class="container">
+
+            <asp:Panel ID="pnlPago" CssClass="panel panel-default p-1 " runat="server">
+
+                <div class="centered justify-content-center border rounded p-4">
+
+                    <div class="row justify-content-center p-1">
                             <h2>
-                                <asp:Label ID="lbl1" runat="server" Text="Participante: "></asp:Label>
+                                <asp:Label ID="lbl1" runat="server" Text="Participante&nbsp;"></asp:Label>
                                 <asp:Label ID="lbl_participante" runat="server" Text="No hay participante seleccionado"></asp:Label></h2>
                             <p>&nbsp;</p>
                         </div>
 
                         <!-- Evento-->
-                        <div class="row centered">
+                        <div class="row justify-content-center p-1">
                             <div class="col-xs-2">
-                                <label class="pull-left">Evento</label>
+                                <label >Evento:&nbsp;</label>
                             </div>
                             <div class="col-xs-3">
                                 <asp:Label ID="lbl_evento" runat="server" Text="Evento"></asp:Label>
@@ -73,9 +82,9 @@
                         </div>
                         
                          <!-- FECHA DE PAGO-->
-                        <div class="row centered">
+                       <div class="row justify-content-center p-1">
                             <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fecha1" runat="server" Text="Fecha de Pago"></asp:Label>
+                                <asp:Label ID="lbl_fecha1" runat="server" Text="Fecha de Pago:&nbsp;"></asp:Label>
 
                             </div>
                             <div class="col-xs-3">
@@ -84,16 +93,12 @@
                             <div class="col-xs-3">
                                 
                             </div>
-                        </div>
-
-                         <div class="row centered">
-                            &nbsp;
-                        </div>
+                        </div> 
 
                         <!-- FECHA DEL EVENTO-->
-                        <div class="row centered">
+                        <div class="row justify-content-center p-1">
                             <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fechaevento1" runat="server" Text="Fecha del Evento"></asp:Label>
+                                <asp:Label  ID="lbl_fechaevento1" runat="server" Text="Fecha del Evento:&nbsp;"></asp:Label>
 
                             </div>
                             <div class="col-xs-3">
@@ -103,17 +108,12 @@
                                 
                             </div>
                         </div>
-
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
-
-
+                     
                         <!-- MONTO-->
-                        <div class="row centered">
+                        <div class="row justify-content-center p-1">
                             <div class="col-xs-2">
                                 
-                                <asp:Label cssClass="pull-left" ID="lbl_monto1" runat="server" Text="Monto"></asp:Label>
+                                <asp:Label  ID="lbl_monto1" runat="server" Text="Monto:&nbsp;"></asp:Label>
 
                             </div>
                             <div class="col-xs-3">
@@ -124,27 +124,22 @@
 
                          <div class="row centered">
                             &nbsp;
-                        </div>
-
-
-                        <!-- BOTONES-->
-                        <div class="row centered">
-
-                          
-                            <asp:Button ID="btn_volver" CssClass="ui-button" runat="server" Text="Volver" CausesValidation="false" OnClick="btn_volver_Click" />
-
-                        </div>
+                        </div>                                         
 
                     </div>
-                </div>
 
             </asp:Panel>
+            <!-- BOTONES-->
+            <div class="row centered justify-content-center p-1">
+                <div class="col col-auto">
+                    <asp:Button ID="btn_volver" CssClass="ui-button" runat="server" Text="Volver" CausesValidation="false" OnClick="btn_volver_Click" />
+                </div>
+            </div>
         </div>
 
-
-
-
     </form>
+
+
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
     <script type="text/javascript">
         (function () { function $MPC_load() { window.$MPC_loaded !== true && (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js"; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); window.$MPC_loaded = true; })(); } window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null; })();

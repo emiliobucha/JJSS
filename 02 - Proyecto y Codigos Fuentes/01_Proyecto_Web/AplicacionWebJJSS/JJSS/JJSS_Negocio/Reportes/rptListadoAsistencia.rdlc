@@ -489,7 +489,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Datos del Clase</Value>
+                <Value>Datos de la Clase</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <TextDecoration>Underline</TextDecoration>
