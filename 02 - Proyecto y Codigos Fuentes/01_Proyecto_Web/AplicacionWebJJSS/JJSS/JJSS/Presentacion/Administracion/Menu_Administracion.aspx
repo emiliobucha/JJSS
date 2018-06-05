@@ -76,7 +76,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
                     <a class="text-dark" href="../Administracion/CrearSede.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Sede.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Crear Sede</h4>
                             </div>
@@ -88,14 +88,49 @@
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
                     <a class="text-dark" href="../Administracion/CrearCategoria.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Categoria.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Crear Categoria</h4>
                             </div>
                         </div>
                     </a>
                 </div>
-                
+
+                <!--Registrar Alumno-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="/Presentacion/Clases/RegistrarAlumno.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Registrar Alumno</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                 <!--Registrar Profe-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="/Presentacion/Clases/RegistrarProfe.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Registrar Profesor</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                 <!--Editar Permisos-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="/Presentacion/Usuarios.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Permisos.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Editar Permisos</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
 
                 <!--Histórico-->

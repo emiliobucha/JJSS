@@ -28,8 +28,8 @@ namespace JJSS
 
                 if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                 {
-                    //pnl_iniciar_sesion.Visible = true;
-                   // pnl_sesion_activa.Visible = false;
+                    nav_usuario.Visible = false;
+                    nav_iniciar_sesion.Visible = true;
                     ocultarInvitado();
 
                 }
@@ -38,15 +38,15 @@ namespace JJSS
                     Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                     if (sesionActiva == null)
                     {
-                        //pnl_iniciar_sesion.Visible = true;
-                        //pnl_sesion_activa.Visible = false;
+                        nav_usuario.Visible = false;
+                        nav_iniciar_sesion.Visible = true;
                     }
                     else
                     {
 
-                        //    pnl_iniciar_sesion.Visible = false;
-                        //    pnl_sesion_activa.Visible = true;
-                        //    lbl_sesion_nombre.Text = sesionActiva.usuario.nombre.ToString();
+                        nav_usuario.Visible = true;
+                        nav_iniciar_sesion.Visible = false;
+                        lbl_sesion_nombre.Text = sesionActiva.usuario.nombre.ToString() + "&nbsp;" ;
                         //    lbl_roles.Text =
                         //        gestorUsuarios.obtenerTablaUsuarios().Select("login = '" + sesionActiva.usuario.login + "'")[0][
                         //            "grupo_nombre"].ToString();
@@ -71,6 +71,7 @@ namespace JJSS
         {
             gestorSesion = new GestorSesiones();
             gestorSesion.CerrarSesion();
+            Response.Redirect("../Presentacion/Login.aspx");
         }
 
         private void ocultarInvitado()
@@ -136,6 +137,7 @@ namespace JJSS
                 Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
             }
+
         }
     }
 }

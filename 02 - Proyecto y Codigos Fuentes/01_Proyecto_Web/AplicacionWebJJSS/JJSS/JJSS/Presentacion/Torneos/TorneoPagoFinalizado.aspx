@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="TorneoPagoFinalizado.aspx.cs" Inherits="JJSS.Presentacion.TorneoPagoFinalizado" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="TorneoPagoFinalizado.aspx.cs" Inherits="JJSS.Presentacion.TorneoPagoFinalizado" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
@@ -7,7 +7,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
     <section id="pagoTorneo" title="pagoTorneo"></section>
     <form id="formPagoTorneo" runat="server">
-        <div id="registrowrap">
+     
             <div class="container">
                 <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
                     <div class="col-md-2"></div>
@@ -40,108 +40,96 @@
                 </asp:Panel>
             </div>
 
-            <asp:Panel ID="pnlPago" runat="server">
-                <div class="container">
-                    <div class="row mt centered">
-                       
-                        <h1>PAGO DE TORNEO</h1>
+        <div class="row mt centered justify-content-center ">
+            <h1 class="centered">Pago de Torneo</h1>
+        </div>
+
+        <div>
+            &nbsp;
+        </div>
+
+        <div class="container">
+
+            <asp:Panel ID="pnlPago" CssClass="panel panel-default p-1 " runat="server">
+
+                <div class="centered justify-content-center border rounded p-4">
+
+                    <div class="row justify-content-center p-1">
+                        <h2>
+                            <asp:Label ID="lbl1" runat="server" Text="Participante: "></asp:Label>
+                            <asp:Label ID="lbl_participante" runat="server" Text="No hay participante seleccionado"></asp:Label></h2>
                         <p>&nbsp;</p>
                     </div>
 
-                    <div class="form-group">
-                        <div class="row centered">
-                            <h2>
-                                <asp:Label ID="lbl1" runat="server" Text="Participante: "></asp:Label>
-                                <asp:Label ID="lbl_participante" runat="server" Text="No hay participante seleccionado"></asp:Label></h2>
-                            <p>&nbsp;</p>
+                    <!-- Torneo-->
+                    <div class="row justify-content-center p-1">
+                        <div class="col-xs-2">
+                            <label class="pull-left">Torneo</label>
                         </div>
-
-                        <!-- Torneo-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <label class="pull-left">Torneo</label>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:Label ID="lbl_torneo" runat="server" Text="Torneo"></asp:Label>
-                            </div>
-                            <div class="col-xs-3">
-                                
-                            </div>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_torneo" runat="server" Text="Torneo"></asp:Label>
                         </div>
-
-                         <div class="row centered">
-                            &nbsp;
+                        <div class="col-xs-3">
                         </div>
-                        
-                         <!-- FECHA DE PAGO-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fecha1" runat="server" Text="Fecha de Pago"></asp:Label>
+                    </div>
 
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:Label ID="lbl_fecha" runat="server" Text="12/12/2012"></asp:Label>
-                            </div>
-                            <div class="col-xs-3">
-                                
-                            </div>
-                        </div>
+                    <div class="row centered">
+                        &nbsp;
+                    </div>
 
-                         <div class="row centered">
-                            &nbsp;
-                        </div>
-
-                        <!-- FECHA DEL TORNEO-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fechatorneo1" runat="server" Text="Fecha del Torneo"></asp:Label>
-
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:Label ID="lbl_fechatorneo" runat="server" Text="12/12/2012"></asp:Label>
-                            </div>
-                            <div class="col-xs-3">
-                                
-                            </div>
-                        </div>
-
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
-
-
-                        <!-- MONTO-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                
-                                <asp:Label cssClass="pull-left" ID="lbl_monto1" runat="server" Text="Monto"></asp:Label>
-
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:Label ID="lbl_monto" runat="server" Text="$"></asp:Label>
-                            </div>
+                    <!-- FECHA DE PAGO-->
+                    <div class="row justify-content-center p-1">
+                        <div class="col-xs-2">
+                            <asp:Label  ID="lbl_fecha1" runat="server" Text="Fecha de Pago:&nbsp;"></asp:Label>
 
                         </div>
-
-                         <div class="row centered">
-                            &nbsp;
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_fecha" runat="server" Text="12/12/2012"></asp:Label>
                         </div>
+                        <div class="col-xs-3">
+                        </div>
+                    </div>
+                     
 
-
-                        <!-- BOTONES-->
-                        <div class="row centered">
-
-                          
-                            <asp:Button ID="btn_volver" CssClass="ui-button" runat="server" Text="Volver" CausesValidation="false" OnClick="btn_volver_Click" />
+                    <!-- FECHA DEL TORNEO-->
+                    <div class="row justify-content-center p-1">
+                        <div class="col-xs-2">
+                            <asp:Label ID="lbl_fechatorneo1" runat="server" Text="Fecha del Torneo:&nbsp;"></asp:Label>
 
                         </div>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_fechatorneo" runat="server" Text="12/12/2012"></asp:Label>
+                        </div>
+                        <div class="col-xs-3">
+                        </div>
+                    </div>  
 
+                    <!-- MONTO-->
+                    <div class="row justify-content-center p-1">
+                        <div class="col-xs-2">
+                            <asp:Label  ID="lbl_monto1" runat="server" Text="Monto:&nbsp;"></asp:Label>
+                        </div>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_monto" runat="server" Text="$"></asp:Label>
+                        </div>
+                    </div>
+
+
+                     <div>
+                        &nbsp;
                     </div>
                 </div>
 
             </asp:Panel>
-        </div>
 
+            <!-- BOTONES-->
+            <div class="row centered justify-content-center p-1">
+                <div class="col col-auto">
+                    <asp:Button ID="btn_volver" CssClass="btn btn-outline-dark" runat="server" Text="Volver" CausesValidation="false" OnClick="btn_volver_Click" />
+                </div>
+            </div>
+
+        </div>
 
 
 

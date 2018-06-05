@@ -67,7 +67,7 @@
     </asp:Panel>
 
 
-    <asp:Panel ID="pnlFormulario" runat="server" CssClass="justify-content-center">
+    <asp:Panel ID="pnlFormulario" runat="server" CssClass="justify-content-center" ValidateRequestMode="Disabled">
         <div class=" container">
             <div class="row centered">
                 <p>&nbsp;</p>
@@ -80,9 +80,6 @@
                     <%--<asp:Label ID="lbl_Inscripcion" runat="server" Text="INSCRIPCIÓN DE TORNEO" CssClass=" h2 font-weight-light"></asp:Label>--%>
                 </div>
 
-                <div>
-                    <p>&nbsp;</p>
-                </div>
 
                 <form id="form1" runat="server">
 
@@ -107,17 +104,18 @@
                                     <asp:DropDownList ID="ddl_torneos" class="caja2" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="col-lg-1 col-md-1 col-sm-8 col-xl-auto">
-                                    <asp:Button ID="btnAceptarTorneo" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" OnClick="btnAceptarTorneo_Click" />
+                                    <asp:Button ID="btnAceptarTorneo" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnAceptarTorneo_Click" />
                                 </div>
                             </div>
                         </div>
                     </asp:Panel>
 
-                     <div class="row centered">
+
+                    <!--PANEL DE INFORMACION DEL TORNEO-->
+                    <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
 
-                    <!--PANEL DE INFORMACION DEL TORNEO-->
                     <asp:Panel ID="pnl_InfoTorneo" CssClass="panel centered justify-content-center border rounded p-2" runat="server">
 
                         <!--Nombre-->
@@ -147,8 +145,8 @@
                                     </div>
                                 </div>
                                 -->
-
                         <!--Fecha-->
+
                         <div class="row centered justify-content-center">
                             <div class="col-md-2 hidden-sm hidden-xs"></div>
                             <div class="col-md-6 col-sm-10 ">
@@ -174,6 +172,7 @@
                         </div>
 
                         <!--direccion de la sede-->
+
                         <div class="row centered justify-content-center">
                             <div class="col-md-2 hidden-sm hidden-xs"></div>
                             <div class="col-md-6 col-sm-10 ">
@@ -191,6 +190,7 @@
 
 
                         <!--Precio-->
+
                         <div class="row centered justify-content-center">
                             <div class="col-md-2 hidden-sm hidden-xs"></div>
                             <div class="col-md-6 col-sm-10">
@@ -269,20 +269,28 @@
 
                             <!--Boton-->
                             <div class="col-md-1 col-xl-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
+
+                                <asp:Button ID="btnBuscar" runat="server"  UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
+
                             </div>
-                            
+
+
+                        </div>
+                        <div class="row centered">
+                            <p>&nbsp;</p>
                         </div>
 
                         <div class=" p-4 ">
                             <p class="text-danger pull-right  " style="font-size: small">* Campo requerido</p>
                         </div>
                     </asp:Panel>
+
+
+                    <!--PANEL DE INSCRIPCION-->
                     <div class="row centered">
                         <p>&nbsp;</p>
                     </div>
 
-                    <!--PANEL DE INSCRIPCION-->
                     <asp:Panel ID="pnl_Inscripcion" CssClass="panel panel-default border rounded p-2" runat="server" Visible="false">
 
                         <div class="row centered">
@@ -451,7 +459,8 @@
                         <!--Boton Aceptar-->
                         <div class="row centered justify-content-center">
 
-                            <asp:Button ID="btn_aceptar" type="submit" class="btn btn-outline-dark " runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
+                            <asp:Button ID="btn_aceptar"  UseSubmitBehaviour="false" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
+
 
                         </div>
 
@@ -521,4 +530,7 @@
             location.href = "InscripcionTorneo.aspx";
         }
     </script>
+    
+    
+
 </asp:Content>

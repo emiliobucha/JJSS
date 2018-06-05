@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="EventoPago.aspx.cs" Inherits="JJSS.Presentacion.EventoPago" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="EventoPago.aspx.cs" Inherits="JJSS.Presentacion.EventoPago" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
@@ -8,8 +8,8 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
     <section id="pagoEvento" title="pagoEvento"></section>
     <form id="formPagoEvento" runat="server">
-        <div id="registrowrap">
 
+        <div class="container centered justify-content-center">
             <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -39,118 +39,103 @@
                     <p>&nbsp;</p>
                 </div>
             </asp:Panel>
+        </div>
 
-            <asp:Panel ID="pnlPago" runat="server">
-                <div class="container">
-                    <div class="row mt centered">
-                       
-                        <h1>PAGO DE EVENTO</h1>
+        <div class="row mt centered justify-content-center ">
+            <h1 class="centered">Pago de Evento</h1>
+        </div>
+
+        <div>
+            &nbsp;
+        </div>
+
+        <div class="container ">
+
+            <asp:Panel ID="pnlPago" CssClass="panel panel-default p-1 " runat="server">
+
+                <div class="centered justify-content-center border rounded p-4">
+
+                    <div class="row justify-content-center p-1">
+                        <h2>
+                            <asp:Label ID="lbl1" runat="server" Text="Participante: "></asp:Label>
+                            <asp:Label ID="lbl_participante" runat="server" Text="No hay participante seleccionado"></asp:Label></h2>
                         <p>&nbsp;</p>
                     </div>
 
-                    <div class="form-group">
-
-                        <div class="row centered">
-                            &nbsp;
+                    <!-- Evento-->
+                    <div class="row justify-content-center p-1">
+                        <div class="col-xs-2">
+                            <label >Evento:&nbsp;</label>
                         </div>
-
-                        <div class="row centered">
-                            <h2>
-                                <asp:Label ID="lbl1" runat="server" Text="Participante: "></asp:Label>
-                                <asp:Label ID="lbl_participante" runat="server" Text="No hay participante seleccionado"></asp:Label></h2>
-                            <p>&nbsp;</p>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_evento" runat="server" Text="Evento"></asp:Label>
                         </div>
-
-                        <!-- Evento-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <label class="pull-left">Evento</label>
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:Label ID="lbl_evento" runat="server" Text="Evento"></asp:Label>
-                            </div>
-                            <div class="col-xs-3">                                
-                            </div>
+                        <div class="col-xs-3">
                         </div>
+                    </div>
 
-                         <div class="row centered">
-                            &nbsp;
-                        </div>
-                        
-                         <!-- FECHA DE PAGO-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fecha" runat="server" Text="Fecha de Pago"></asp:Label>
-
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:Label ID="lbl_fecha1" runat="server" Text="12/12/2012"></asp:Label>
-                            </div>
-                            <div class="col-xs-3">
-                                
-                            </div>
-                        </div>
-
-                         <div class="row centered">
-                            &nbsp;
-                        </div>
-
-                        <!-- FECHA DEL EVENTO-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                <asp:Label cssClass="pull-left" ID="lbl_fechaevento1" runat="server" Text="Fecha del Evento"></asp:Label>
-
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:Label ID="lbl_fechaevento" runat="server" Text="12/12/2012"></asp:Label>
-                            </div>
-                            <div class="col-xs-3">
-                                
-                            </div>
-                        </div>
-
-                        <div class="row centered">
-                            &nbsp;
-                        </div>
-
-
-                        <!-- MONTO-->
-                        <div class="row centered">
-                            <div class="col-xs-2">
-                                
-                                <asp:Label cssClass="pull-left" ID="lbl_monto1" runat="server" Text="Monto"></asp:Label>
-
-                            </div>
-                            <div class="col-xs-3">
-                                <asp:Label ID="lbl_monto" runat="server" Text="$"></asp:Label>
-                            </div>
+                   
+                    <!-- FECHA DE PAGO-->
+                    <div class="row justify-content-center p-1">
+                        <div class="col-xs-2">
+                            <asp:Label  ID="lbl_fecha" runat="server" Text="Fecha de Pago:&nbsp;"></asp:Label>
 
                         </div>
-
-                         <div class="row centered">
-                            &nbsp;
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_fecha1" runat="server" Text="12/12/2012"></asp:Label>
                         </div>
-                            
-                     
+                        <div class="col-xs-3">
+                        </div>
+                    </div>
+ 
 
-                        <!-- BOTONES-->
-                        <div class="row centered">
+                    <!-- FECHA DEL EVENTO-->
+                   <div class="row justify-content-center p-1">
+                        <div class="col-xs-2">
+                            <asp:Label  ID="lbl_fechaevento1" runat="server" Text="Fecha del Evento:&nbsp;"></asp:Label>
 
-                             <a class="ui-button" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="modal" onreturn="execute_my_onreturn">Pagar</a>     
-                            <asp:Button ID="btn_cancelar" CssClass="ui-button" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
+                        </div>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_fechaevento" runat="server" Text="12/12/2012"></asp:Label>
+                        </div>
+                        <div class="col-xs-3">
+                        </div>
+                    </div>
+   
+                    <!-- MONTO-->
+                    <div class="row justify-content-center p-1">
+                        <div class="col-xs-2">
+                            <asp:Label  ID="lbl_monto1" runat="server" Text="Monto:&nbsp;"></asp:Label>
 
+                        </div>
+                        <div class="col-xs-3">
+                            <asp:Label ID="lbl_monto" runat="server" Text="$"></asp:Label>
                         </div>
 
                     </div>
+
+                    <div class="row centered">
+                        &nbsp;
+                    </div>
+
+
                 </div>
 
             </asp:Panel>
+            <!-- BOTONES-->
+            <div class="row centered justify-content-center p-1">
+                <div class="col col-auto">
+                    <a class="btn btn-outline-dark" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="modal" onreturn="execute_my_onreturn">Pagar</a>
+                </div>
+                <div class="col col-auto">
+                    <asp:Button ID="btn_cancelar" CssClass="btn btn-outline-dark" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
+
+                </div>
+            </div>
         </div>
-
-
-
-
     </form>
+
+
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
      <script type="text/javascript">
      (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();

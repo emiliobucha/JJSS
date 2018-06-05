@@ -583,18 +583,21 @@ namespace JJSS_Negocio
                     }
                     else
                     {
-
-                        byte[] arrayImagen = pImagen;
-                        if (arrayImagen.Length > 7000)
+                        if (pImagen != null && pImagen.Length>0)
                         {
-                            arrayImagen = new byte[0];
-                        }
-                        imagenAnterior = db.torneo_imagen.FirstOrDefault(x => x.id_torneo == pTorneo.id_torneo);
-                        string imagenUrl = modUtilidades.SaveImage(pImagen, pTorneo.nombre, "torneos");
+                            byte[] arrayImagen = pImagen;
+                            if (arrayImagen.Length > 7000)
+                            {
+                                arrayImagen = new byte[0];
+                            }
+                            imagenAnterior = db.torneo_imagen.FirstOrDefault(x => x.id_torneo == pTorneo.id_torneo);
+                            string imagenUrl = modUtilidades.SaveImage(pImagen, pTorneo.nombre, "torneos");
 
-                        imagenAnterior.imagen = arrayImagen;
-                        imagenAnterior.imagen_url = imagenUrl;
-                        db.SaveChanges();
+                            imagenAnterior.imagen = arrayImagen;
+                            imagenAnterior.imagen_url = imagenUrl;
+                            db.SaveChanges();
+                        }
+                        
                     }
 
                     transaction.Commit();

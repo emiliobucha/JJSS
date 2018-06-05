@@ -114,6 +114,44 @@ namespace JJSS_Negocio
             }
         }
 
+        public List<ClaseHorario> ObtenerTodosLosHorarios(string filtroNombre, string filtroTipoClase, int filtroIDProfesor, 
+            string filtroAcademia)
+        {
+
+            GestorProfesores gp = new GestorProfesores();
+
+            string apellidoProfesor = "";
+            string nombreProfesor = "";
+
+            if (filtroIDProfesor != 0)
+            {
+                profesor p = gp.ObtenerProfesorPorID(filtroIDProfesor);
+                apellidoProfesor = p.apellido;
+                nombreProfesor = p.nombre;
+            }
+
+            using (var db = new JJSSEntities())
+            {
+                var horarios = from h in db.horario
+                               where h.clase.baja_logica == Constantes.ConstatesBajaLogica.BAJA_LOGICA
+                               && h.clase.nombre.StartsWith(filtroNombre) && h.clase.academia.nombre.StartsWith(filtroAcademia)
+                               && h.clase.profesor.nombre.StartsWith(nombreProfesor) && h.clase.profesor.apellido.StartsWith(apellidoProfesor)
+                               && h.clase.tipo_clase.nombre.StartsWith(filtroTipoClase)
+                               select new ClaseHorario()
+                               {
+                                   desde = h.hora_desde,
+                                   hasta = h.hora_hasta,
+                                   id = h.id_horario,
+                                   idClase = h.clase.id_clase,
+                                   nombreClase = h.clase.nombre,
+                                   academia = h.clase.academia.nombre,
+                                   dia = h.dia,
+                                   tipoClase = h.clase.tipo_clase.nombre,
+                               };
+                return horarios.ToList();
+            }
+        }
+
 
         /*
          * Método que devuelve los horarios disponibles de una clase, si esta no existe devuelve una lista vacia que nos permite ver el formato de dicha tabla

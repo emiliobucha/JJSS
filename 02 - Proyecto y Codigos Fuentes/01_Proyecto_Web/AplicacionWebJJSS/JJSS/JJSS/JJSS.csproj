@@ -391,7 +391,6 @@
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoClase.aspx.cs">
       <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoClase.aspx.designer.cs">
       <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
@@ -506,7 +505,6 @@
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoFinalizado.aspx.cs">
       <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\AlumnoPagoFinalizado.aspx.designer.cs">
       <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
