@@ -207,8 +207,12 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
     <Content Include="Presentacion\Administracion\CrearSede.aspx" />
+    <Content Include="Presentacion\Clases\AlumnoPagoClase.aspx" />
+    <Content Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx" />
+    <Content Include="Presentacion\Clases\VerCalendario.aspx" />
+    <Content Include="Presentacion\Clases\VerListadoAsistencia.aspx" />
+    <Content Include="Presentacion\Menu_Evento.aspx" />
     <Content Include="Presentacion\Productos\AgregarProducto.aspx" />
-    <Content Include="Presentacion\AlumnoPagoClase.aspx" />
     <Content Include="Presentacion\Administracion\Menu_Administracion.aspx" />
     <Content Include="Presentacion\Clases\Menu_Clase.aspx" />
     <Content Include="Presentacion\Torneos\CargarResultadosTorneo.aspx" />
@@ -224,7 +228,6 @@
     <Content Include="Presentacion\Usuarios.aspx" />
     <Content Include="Presentacion\Clases\AlumnoClases.aspx" />
     <Content Include="Presentacion\Torneos\TorneoPago.aspx" />
-    <Content Include="Presentacion\AlumnoPagoFinalizado.aspx" />
     <Content Include="Presentacion\CrearEvento.aspx" />
     <Content Include="Presentacion\InscripcionEvento.aspx" />
     <Content Include="Presentacion\ModificarPerfil.aspx" />
@@ -366,6 +369,7 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Presentacion\Administracion\CrearCategoria.aspx.cs">
       <DependentUpon>CrearCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -382,18 +386,42 @@
     <Compile Include="Presentacion\Administracion\CrearSede.aspx.designer.cs">
       <DependentUpon>CrearSede.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Clases\AlumnoPagoClase.aspx.cs">
+      <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Clases\AlumnoPagoClase.aspx.designer.cs">
+      <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx.cs">
+      <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx.designer.cs">
+      <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Clases\VerCalendario.aspx.cs">
+      <DependentUpon>VerCalendario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Clases\VerCalendario.aspx.designer.cs">
+      <DependentUpon>VerCalendario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Clases\VerListadoAsistencia.aspx.cs">
+      <DependentUpon>VerListadoAsistencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Clases\VerListadoAsistencia.aspx.designer.cs">
+      <DependentUpon>VerListadoAsistencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Menu_Evento.aspx.cs">
+      <DependentUpon>Menu_Evento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Menu_Evento.aspx.designer.cs">
+      <DependentUpon>Menu_Evento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Productos\AgregarProducto.aspx.cs">
       <DependentUpon>AgregarProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\Productos\AgregarProducto.aspx.designer.cs">
       <DependentUpon>AgregarProducto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\AlumnoPagoClase.aspx.cs">
-      <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\AlumnoPagoClase.aspx.designer.cs">
-      <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Administracion\Menu_Administracion.aspx.cs">
       <DependentUpon>Menu_Administracion.aspx</DependentUpon>
@@ -502,12 +530,6 @@
     </Compile>
     <Compile Include="Presentacion\Torneos\TorneoPago.aspx.designer.cs">
       <DependentUpon>TorneoPago.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\AlumnoPagoFinalizado.aspx.cs">
-      <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\AlumnoPagoFinalizado.aspx.designer.cs">
-      <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\CrearEvento.aspx.cs">
       <DependentUpon>CrearEvento.aspx</DependentUpon>
