@@ -92,19 +92,19 @@ namespace JJSS_Negocio
         }
 
 
-        public List<ListadoAsistencia> ListadoAsistentes(int pIdHorario, DateTime? pFecha)
+        public List<ListadoAsistencia> ListadoAsistentes(int pIDClase, DateTime? pFecha)
         {
             using (var db = new JJSSEntities())
             {
-                var horario = db.horario.FirstOrDefault(x => x.id_horario == pIdHorario);
+                //var horario = db.horario.FirstOrDefault(x => x.id_horario == pIdHorario);
 
 
                 var participantes = from asis in db.asistencia_clase
-                                    where asis.id_clase == horario.id_clase && DbFunctions.TruncateTime(asis.fecha_hora) == DbFunctions.TruncateTime(pFecha)
-                                    && asis.id_horario == horario.id_horario
+                                    where asis.id_clase == pIDClase && DbFunctions.TruncateTime(asis.fecha_hora) == DbFunctions.TruncateTime(pFecha)
+                                    //&& asis.id_horario == horario.id_horario
                                     select new ListadoAsistencia()
                                     {
-                                        horario_nombre = horario.nombre_dia +  " / " + horario.hora_desde + " - " + horario.hora_hasta,
+                                        horario_nombre = asis.horario.nombre_dia +  " / " + asis.horario.hora_desde + " - " + asis.horario.hora_hasta +" hs",
                                         cla_fechaD = DbFunctions.TruncateTime(asis.fecha_hora),
                                         cla_nombre = asis.clase.nombre,
                                         cla_profesor = asis.clase.profesor.apellido + " " + asis.clase.profesor.nombre,
@@ -159,6 +159,19 @@ namespace JJSS_Negocio
                 throw new Exception("No asistió ningún alumno a la clase");
 
             return gestorReportes.GenerarReporteListadoAsistentes(listado);
+
+
+        }
+
+        public string GenerarListado(List<ListadoAsistencia> asistentes)
+        {
+
+            GestorReportes gestorReportes = new GestorReportes();
+
+            if (asistentes.Count == 0)
+                throw new Exception("No asistió ningún alumno a la clase");
+
+            return gestorReportes.GenerarReporteListadoAsistentes(asistentes);
 
 
         }

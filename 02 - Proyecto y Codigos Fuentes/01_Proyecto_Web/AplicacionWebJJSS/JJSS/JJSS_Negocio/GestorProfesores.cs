@@ -67,8 +67,7 @@ namespace JJSS_Negocio
                 {
                     GestorUsuarios nuevoUsuario = new GestorUsuarios();
                     string nombreUsuario = pNombre + " " + pApellido;
-                    string login = pNombre.Substring(0, 1).ToLower();
-                    login += pApellido.ToLower();
+                    string login = nuevoUsuario.GenerarLogin(pNombre, pApellido);
                     string iduser = nuevoUsuario.GenerarNuevoUsuario(login, pDni, 2, pMail, nombreUsuario);
                     int idUsuario;
                     if (int.TryParse(iduser, out idUsuario) == false)
