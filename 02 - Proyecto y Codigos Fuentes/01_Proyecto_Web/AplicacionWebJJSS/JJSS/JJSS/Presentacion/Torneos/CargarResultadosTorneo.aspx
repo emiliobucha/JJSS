@@ -1,4 +1,4 @@
-﻿g<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CargarResultadosTorneo.aspx.cs" Inherits="JJSS.Presentacion.CargarResultadosTorneo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CargarResultadosTorneo.aspx.cs" Inherits="JJSS.Presentacion.CargarResultadosTorneo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>

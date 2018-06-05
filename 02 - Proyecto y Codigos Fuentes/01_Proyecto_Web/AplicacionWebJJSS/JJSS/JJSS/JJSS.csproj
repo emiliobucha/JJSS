@@ -212,6 +212,7 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
     <Content Include="Presentacion\Administracion\CrearSede.aspx" />
+    <Content Include="Presentacion\Clases\VerListadoAsistencia.aspx" />
     <Content Include="Presentacion\Clases\VerCalendario.aspx" />
     <Content Include="Presentacion\Productos\AgregarProducto.aspx" />
     <Content Include="Presentacion\AlumnoPagoClase.aspx" />
@@ -387,6 +388,14 @@
     </Compile>
     <Compile Include="Presentacion\Administracion\CrearSede.aspx.designer.cs">
       <DependentUpon>CrearSede.aspx</DependentUpon>
+    </Compile>
+
+    <Compile Include="Presentacion\Clases\VerListadoAsistencia.aspx.cs">
+      <DependentUpon>VerListadoAsistencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Clases\VerListadoAsistencia.aspx.designer.cs">
+      <DependentUpon>VerListadoAsistencia.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Clases\VerCalendario.aspx.cs">
       <DependentUpon>VerCalendario.aspx</DependentUpon>

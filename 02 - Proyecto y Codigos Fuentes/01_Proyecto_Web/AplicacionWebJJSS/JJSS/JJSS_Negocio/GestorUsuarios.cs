@@ -130,6 +130,28 @@ namespace JJSS_Negocio
             return sReturn;
         }
 
+        public string GenerarLogin(string pNombre, string pApellido)
+        {
+            string login = pNombre.Substring(0, 1).ToLower();
+            login += pApellido.ToLower();
+            login = login.Replace(" ", "");
+            using (var db = new JJSSEntities())
+            {
+                var usuario = from usu in db.seguridad_usuario
+                              where usu.login.StartsWith(login)
+                              select usu;
+                if (usuario.Count() != 0)
+                {
+                    int num = usuario.Count() + 1;
+                    return GenerarLogin(pNombre, pApellido + num);
+                }
+                else
+                {
+                    return login;
+                }
+            }
+        }
+
         public List<seguridad_usuario> obtenerListaUsuarios()
         {
             using (var db = new JJSSEntities())
