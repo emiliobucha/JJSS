@@ -113,45 +113,10 @@ namespace JJSS.Presentacion
                             txt_torre.Text = row["torre"].ToString();
                         }
 
-                        var imgBytes = gestorProfe.ObtenerImagenPerfil(profeEncontrado.id_profesor);
-                        if (imgBytes != null)
+                        var img = gestorProfe.ObtenerImagenPerfil(profeEncontrado.id_profesor);
+                        if (img != null)
                         {
-                            using (MemoryStream ms = new MemoryStream(imgBytes))
-                            {
-                                try
-                                {
-
-                                    string sDir = System.Web.HttpContext.Current.Server.MapPath("//temp");
-
-                                    if (!System.IO.Directory.Exists(sDir))
-                                    {
-                                        System.IO.Directory.CreateDirectory(sDir);
-                                    }
-
-
-                                    var archivo =
-                                        (profeEncontrado.nombre + profeEncontrado.apellido + profeEncontrado.dni)
-                                        .Replace(" ", "") + ".jpeg";
-                                    var imagenI = Image.FromStream(ms);
-
-                                    char[] sTrim = "\\".ToCharArray();
-                                    var archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
-
-                                    //if (!File.Exists(archivo))
-                                    //{
-                                    imagenI.Save(archivoGuardar, ImageFormat.Jpeg);
-                                    //}
-
-
-                                    var link = "\\temp\\" + archivo;
-                                    Avatar.ImageUrl = link;
-
-                                }
-                                catch (Exception ex)
-                                {
-                                }
-
-                            }
+                            Avatar.ImageUrl = img.imagen_url;   
                         }
                     }
 
@@ -185,44 +150,10 @@ namespace JJSS.Presentacion
 
                     }
 
-                    var imgBytes = gestorAlumnos.ObtenerImagenPerfil(alumnoEncontrado.id_alumno);
-
-                    if (imgBytes != null)
+                    var img = gestorAlumnos.ObtenerImagenPerfil(alumnoEncontrado.id_alumno);
+                    if (img != null)
                     {
-                        using (MemoryStream ms = new MemoryStream(imgBytes))
-                        {
-                            try
-                            {
-
-                                string sDir = System.Web.HttpContext.Current.Server.MapPath("//temp");
-
-                                if (!System.IO.Directory.Exists(sDir))
-                                {
-                                    System.IO.Directory.CreateDirectory(sDir);
-                                }
-
-
-                                var archivo = (alumnoEncontrado.nombre + alumnoEncontrado.apellido + alumnoEncontrado.dni).Replace(" ", "") + ".jpeg";
-                                var imagenI = Image.FromStream(ms);
-
-                                char[] sTrim = "\\".ToCharArray();
-                                var archivoGuardar = sDir.Trim(sTrim) + "\\" + archivo;
-
-                                //if (!File.Exists(archivo))
-                                //{
-                                imagenI.Save(archivoGuardar, ImageFormat.Jpeg);
-                                //}
-
-
-                                var link = "\\temp\\" + archivo;
-                                Avatar.ImageUrl = link;
-
-                            }
-                            catch (Exception ex)
-                            {
-                            }
-
-                        }
+                        Avatar.ImageUrl = img.imagen_url;
                     }
 
                 }
@@ -371,7 +302,7 @@ namespace JJSS.Presentacion
             }
             catch (Exception ex)
             {
-                if (ex.Message.CompareTo("El usuario no existe") == 0)
+                if (string.Compare(ex.Message, "El usuario no existe", StringComparison.Ordinal) == 0)
 
                 {
                     try

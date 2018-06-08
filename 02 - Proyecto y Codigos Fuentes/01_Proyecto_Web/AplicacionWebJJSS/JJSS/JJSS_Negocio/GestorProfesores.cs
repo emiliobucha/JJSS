@@ -398,16 +398,64 @@ namespace JJSS_Negocio
         public string CambiarFotoPerfil(string pDni, byte[] pImagen)
         {
 
+
+
+
+
+
             using (var db = new JJSSEntities())
             {
                 try
+
                 {
                     var profesor = ObtenerProfesorPorDNI(pDni);
+                    var arrayImagen = pImagen;
+
                     var profesorImagen = db.profesor_imagen.FirstOrDefault(imag => imag.id_profesor == profesor.id_profesor);
 
-                    if (profesorImagen != null)
+                    if (profesorImagen == null)
                     {
-                        profesorImagen.imagen = pImagen;
+                        profesorImagen = new profesor_imagen()
+                        {
+                            id_profesor = profesor.id_profesor,
+                            imagen = pImagen
+                        };
+                        if (arrayImagen.Length > 7000)
+                        {
+                            arrayImagen = new byte[0];
+                        }
+
+                        var imagenUrl = modUtilidades.SaveImage(pImagen, profesor.dni + profesor.nombre, "profesores");
+
+                        profesorImagen.imagen = arrayImagen;
+                        profesorImagen.imagen_url = imagenUrl;
+                        db.SaveChanges();
+
+                    }
+                    else
+                    {
+                        if (pImagen != null && pImagen.Length > 0)
+                        {
+                            arrayImagen = pImagen;
+                            if (arrayImagen.Length > 7000)
+                            {
+                                arrayImagen = new byte[0];
+                            }
+
+                            var imagenUrl = modUtilidades.SaveImage(pImagen, profesor.dni + profesor.nombre, "profesores");
+
+                            profesorImagen.imagen = arrayImagen;
+                            profesorImagen.imagen_url = imagenUrl;
+                            db.SaveChanges();
+                        }
+
+                    }
+
+
+
+
+                    if (profesor != null)
+                    {
                         db.SaveChanges();
                         return "";
                     }
@@ -419,7 +467,7 @@ namespace JJSS_Negocio
 
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw new Exception("El usuario no existe");
                 }
@@ -427,16 +475,16 @@ namespace JJSS_Negocio
         }
 
 
-        public byte[] ObtenerImagenPerfil(int pID)
+        public profesor_imagen ObtenerImagenPerfil(int pID)
         {
             using (var db = new JJSSEntities())
             {
                 try
                 {
-                   
+
                     var profesorImagen = db.profesor_imagen.FirstOrDefault(imag => imag.id_profesor == pID);
 
-                    return profesorImagen?.imagen;
+                    return profesorImagen;
                 }
                 catch (Exception ex)
                 {
