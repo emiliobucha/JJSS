@@ -622,9 +622,6 @@ namespace JJSS_Negocio
 
                     }
 
-                    
-                  
-
                     if (alumno != null)
                     {
                         db.SaveChanges();
@@ -634,9 +631,6 @@ namespace JJSS_Negocio
                     {
                         throw new Exception("El usuario no existe");
                     }
-
-
-
                 }
                 catch (Exception)
                 {
