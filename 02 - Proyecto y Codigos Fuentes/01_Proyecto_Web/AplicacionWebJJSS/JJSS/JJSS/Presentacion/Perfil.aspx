@@ -41,7 +41,7 @@
             </div>
         </div>
 
-         <div class="row mt centered justify-content-center ">
+        <div class="row mt centered justify-content-center ">
             <h1 class="centered">Mi Perfil</h1>
         </div>
 
@@ -84,7 +84,7 @@
                                 </div>
 
                                 <!--Apellido-->
-                                <div class="col-lg-2 col-md-2 col-sm-12 text-left pl-lg-5 pl-md-5"">
+                                <div class="col-lg-2 col-md-2 col-sm-12 text-left pl-lg-5 pl-md-5">
                                     <label class="text-left">Apellido </label>
                                 </div>
                                 <div class="col col-lg-3 col-md-3 col-sm-12">
@@ -187,7 +187,7 @@
 
                             <!-- Calle y numero -->
                             <div class="row p-1  pl-lg-5 pl-md-5">
-                                 <!-- Calle -->
+                                <!-- Calle -->
                                 <div class="col-lg-2 col-md-2 col-sm-12 text-left">
                                     <label>Calle </label>
                                 </div>
@@ -195,7 +195,7 @@
                                     <asp:TextBox ID="txt_calle" class="caja2" runat="server" placeholder="Ingrese calle"></asp:TextBox>
                                     <asp:RegularExpressionValidator ID="caracteres_calle" runat="server" ControlToValidate="txt_calle" CssClass="text-danger" Display="Dynamic" ErrorMessage="Calle demasiado larga" ValidationExpression="^[\s\S]{0,50}$" ValidationGroup="vgContacto"></asp:RegularExpressionValidator>
                                 </div>
-                                 <!-- Número -->
+                                <!-- Número -->
                                 <div class="col-lg-2 col-md-2 col-sm-12 pl-lg-5 pl-md-5 text-left">
                                     <label>Número </label>
                                 </div>
@@ -206,7 +206,7 @@
                             </div>
 
                             <div class="row p-1  pl-lg-5 pl-md-5">
-                                 <!-- Piso -->
+                                <!-- Piso -->
                                 <div class="col-lg-2 col-md-2 col-sm-12 text-left">
                                     <label>Piso </label>
                                 </div>
@@ -214,7 +214,7 @@
                                     <asp:TextBox ID="txt_piso" class="caja2" runat="server"></asp:TextBox>
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Formato inválido" ControlToValidate="txt_piso" CssClass="text-danger" Display="Dynamic" ValidationGroup="vgContacto" ValidationExpression="^[0-9]{0,9}$"></asp:RegularExpressionValidator>
                                 </div>
-                                 <!-- Dpto -->
+                                <!-- Dpto -->
                                 <div class="col-lg-1 col-md-1 col-sm-2 text-left">
                                     <label>Dpto </label>
                                 </div>
@@ -222,7 +222,7 @@
                                     <asp:TextBox ID="txt_nro_dpto" class="caja2" runat="server"></asp:TextBox>
                                     <asp:RegularExpressionValidator ID="caracteres_departamento" runat="server" ControlToValidate="txt_nro_dpto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgContacto"></asp:RegularExpressionValidator>
                                 </div>
-                                 <!-- Torre -->
+                                <!-- Torre -->
                                 <div class="col-lg-1 col-md-1 col-sm-2 text-left">
                                     <label>Torre</label>
                                 </div>
@@ -279,60 +279,60 @@
                         <asp:Panel ID="pnl_cambiar_pass" runat="server" CssClass="panel-footer">
 
 
-                                <div class="row centered">
-                                    <h2>Cambiar contraseña</h2>
-                                </div>
-                                <div>
-                                    <p>&nbsp;</p>
-                                </div>
+                            <div class="row centered">
+                                <h2>Cambiar contraseña</h2>
+                            </div>
+                            <div>
+                                <p>&nbsp;</p>
+                            </div>
 
 
-                                <!--pass anterior-->
-                                <div class="row centered p-1">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-3 text-left">
-                                        <label>Contraseña anterior</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:TextBox ID="txt_pass_anterior" runat="server" CssClass="caja2" TextMode="Password"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoPassAnterios" runat="server" ErrorMessage="Debe ingresar una contraseña anterior" ControlToValidate="txt_pass_anterior" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
-                                    </div>
+                            <!--pass anterior-->
+                            <div class="row centered p-1">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3 text-left">
+                                    <label>Contraseña anterior</label>
                                 </div>
+                                <div class="col-md-4">
+                                    <asp:TextBox ID="txt_pass_anterior" runat="server" CssClass="caja2" TextMode="Password"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:RequiredFieldValidator ID="requeridoPassAnterios" runat="server" ErrorMessage="Debe ingresar una contraseña anterior" ControlToValidate="txt_pass_anterior" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
 
 
-                                <!--pass nueva-->
-                                <div class="row centered  p-1">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-3 text-left">
-                                        <label>Contraseña nueva</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:TextBox ID="txt_pass_nueva" TextMode="Password" runat="server" CssClass="caja2"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoPassNueva" runat="server" ErrorMessage="Debe ingresar una contraseña nueva" ControlToValidate="txt_pass_nueva" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="compararNueva" runat="server" CssClass="text-danger" ErrorMessage="La contraseña nueva debe ser distinta a la anterior" Display="Dynamic" ControlToValidate="txt_pass_nueva" ControlToCompare="txt_pass_anterior" ValidationGroup="val_cambiar_pass" Operator="NotEqual"></asp:CompareValidator>
-                                    </div>
+                            <!--pass nueva-->
+                            <div class="row centered  p-1">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3 text-left">
+                                    <label>Contraseña nueva</label>
                                 </div>
-                                <!--pass anterior-->
-                                <div class="row centered  p-1">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-3 text-left">
-                                        <label>Repetir contraseña nueva</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:TextBox ID="txt_pass_repetida" runat="server" CssClass="caja2" TextMode="Password"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <asp:RequiredFieldValidator ID="requeridoPassRepetida" runat="server" ErrorMessage="Debe repetir la contraseña nueva" ControlToValidate="txt_pass_repetida" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="compararPass" runat="server" CssClass="text-danger" ErrorMessage="Las contraseñas nuevas deben ser iguales" Display="Dynamic" ControlToValidate="txt_pass_repetida" ControlToCompare="txt_pass_nueva" ValidationGroup="val_cambiar_pass"></asp:CompareValidator>
-                                    </div>
+                                <div class="col-md-4">
+                                    <asp:TextBox ID="txt_pass_nueva" TextMode="Password" runat="server" CssClass="caja2"></asp:TextBox>
                                 </div>
-                                <div class="row centered">
-                                    <p>&nbsp;</p>
+                                <div class="col-md-3">
+                                    <asp:RequiredFieldValidator ID="requeridoPassNueva" runat="server" ErrorMessage="Debe ingresar una contraseña nueva" ControlToValidate="txt_pass_nueva" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="compararNueva" runat="server" CssClass="text-danger" ErrorMessage="La contraseña nueva debe ser distinta a la anterior" Display="Dynamic" ControlToValidate="txt_pass_nueva" ControlToCompare="txt_pass_anterior" ValidationGroup="val_cambiar_pass" Operator="NotEqual"></asp:CompareValidator>
                                 </div>
+                            </div>
+                            <!--pass anterior-->
+                            <div class="row centered  p-1">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3 text-left">
+                                    <label>Repetir contraseña nueva</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <asp:TextBox ID="txt_pass_repetida" runat="server" CssClass="caja2" TextMode="Password"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:RequiredFieldValidator ID="requeridoPassRepetida" runat="server" ErrorMessage="Debe repetir la contraseña nueva" ControlToValidate="txt_pass_repetida" CssClass="text-danger" ValidationGroup="val_cambiar_pass" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="compararPass" runat="server" CssClass="text-danger" ErrorMessage="Las contraseñas nuevas deben ser iguales" Display="Dynamic" ControlToValidate="txt_pass_repetida" ControlToCompare="txt_pass_nueva" ValidationGroup="val_cambiar_pass"></asp:CompareValidator>
+                                </div>
+                            </div>
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
 
                         </asp:Panel>
                         <div class="row centered justify-content-center">
@@ -394,6 +394,24 @@
             </div>
         </div>
     </form>
+
+    <script type="text/javascript">
+        function previewFile() {
+            var preview = document.querySelector('#<%=Avatar.ClientID %>');
+        var file = document.querySelector('#<%=avatarUpload.ClientID %>').files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+        }
+    </script>
 
 
 </asp:Content>

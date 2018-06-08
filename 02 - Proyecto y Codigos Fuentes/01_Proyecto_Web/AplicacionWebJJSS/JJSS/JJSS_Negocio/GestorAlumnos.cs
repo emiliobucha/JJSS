@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using System.Runtime.InteropServices.ComTypes;
 using JJSS_Negocio.Resultados;
 using JJSS_Negocio.Constantes;
 
@@ -576,20 +577,58 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 try
+
                 {
                     var alumno = ObtenerAlumnoPorDNI(pDni);
+                    var arrayImagen = pImagen;
+
                     var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == alumno.id_alumno);
+
+                    if (alumnoImagen == null)
+                    {
+                        alumnoImagen = new alumno_imagen()
+                        {
+                            id_alumno = alumno.id_alumno,
+                            imagen = pImagen
+                        };
+                        if (arrayImagen.Length > 7000)
+                        {
+                            arrayImagen = new byte[0];
+                        }
+                      
+                        var imagenUrl = modUtilidades.SaveImage(pImagen, alumno.dni + alumno.nombre, "alumnos");
+
+                        alumnoImagen.imagen = arrayImagen;
+                        alumnoImagen.imagen_url = imagenUrl;
+                        db.SaveChanges();
+
+                    }
+                    else
+                    {
+                        if (pImagen != null && pImagen.Length > 0)
+                        {
+                            arrayImagen = pImagen;
+                            if (arrayImagen.Length > 7000)
+                            {
+                                arrayImagen = new byte[0];
+                            }
+
+                            var imagenUrl = modUtilidades.SaveImage(pImagen, alumno.dni + alumno.nombre, "alumnos");
+
+                            alumnoImagen.imagen = arrayImagen;
+                            alumnoImagen.imagen_url = imagenUrl;
+                            db.SaveChanges();
+                        }
+
+                    }
+
+                    
+                  
 
                     if (alumno != null)
                     {
-                        if (alumnoImagen != null)
-                        {
-                            alumnoImagen.imagen = pImagen;
-                            db.SaveChanges();
-                            return "";
-                        }
-                        else
-                            return "Hubo un problema";
+                        db.SaveChanges();
+                        return "";
                     }
                     else
                     {
@@ -599,7 +638,7 @@ namespace JJSS_Negocio
 
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw new Exception("El usuario no existe");
                 }
@@ -607,7 +646,7 @@ namespace JJSS_Negocio
         }
 
 
-        public byte[] ObtenerImagenPerfil(int pId)
+        public alumno_imagen ObtenerImagenPerfil(int pId)
         {
             using (var db = new JJSSEntities())
             {
@@ -616,7 +655,7 @@ namespace JJSS_Negocio
 
                     var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == pId);
 
-                    return alumnoImagen?.imagen;
+                    return alumnoImagen;
                 }
                 catch (Exception ex)
                 {
