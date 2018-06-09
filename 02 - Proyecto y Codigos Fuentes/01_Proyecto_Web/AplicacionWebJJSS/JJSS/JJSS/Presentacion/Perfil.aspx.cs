@@ -209,7 +209,7 @@ namespace JJSS.Presentacion
         }
 
 
-        protected void btn_guardar_contaco_Click(object sender, EventArgs e)
+        protected void btn_guardar_contacto_Click(object sender, EventArgs e)
         {
             int tel = 0;
             if (txt_telefono.Text != "")
@@ -327,6 +327,7 @@ namespace JJSS.Presentacion
         {
             string apellido = txt_apellido.Text;
             string nombre = txt_nombre.Text;
+            string usuario = txt_usuario.Text;
             var dni = txt_dni.Text;
 
             //+ NO ESTA CONTEMPLADO SI ES ADMIN...
@@ -334,7 +335,8 @@ namespace JJSS.Presentacion
             //modifica los datos
             try
             {
-                gestorAlumnos.ModificarAlumno(dni, nombre, apellido, null, null);
+
+                gestorAlumnos.ModificarAlumno(dni, nombre, apellido, null, null, usuario);
                 mensaje("Se modificaron los datos correctamente", true);
             }
             catch (Exception ex)
@@ -344,7 +346,7 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesor(dni, nombre, apellido);
+                        gestorProfe.ModificarProfesor(dni, nombre, apellido, usuario);
                         mensaje("Se modificaron los datos correctamente", true);
                     }
                     catch (Exception exx)

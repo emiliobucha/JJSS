@@ -78,7 +78,7 @@ namespace JJSS.Presentacion
                 if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                 {
                     int idEstado = estadoTorneo.id_estado;
-                    if (idEstado != ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA)
+                    if (idEstado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA)
                     {
                         btn_inscribir.Visible = true;
                     }

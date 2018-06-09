@@ -265,7 +265,7 @@
 
                         <div class="row centered justify-content-center">
                             <div class="col col-auto">
-                                <asp:Button ID="btn_guardar_contacto" CssClass="btn btn-outline-dark" ValidationGroup="vgContacto" runat="server" Text="Aceptar" OnClick="btn_guardar_contaco_Click" />
+                                <asp:Button ID="btn_guardar_contacto" CssClass="btn btn-outline-dark" ValidationGroup="vgContacto" runat="server" Text="Aceptar" OnClick="btn_guardar_contacto_Click" />
                             </div>
                         </div>
                     </div>
