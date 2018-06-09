@@ -179,7 +179,7 @@ namespace JJSS.Presentacion
                 //actualiza datos
                 try
                 {
-                    gestorProfes.ModificarProfesor(dni, nombre, apellido);
+                    gestorProfes.ModificarProfesor(dni, nombre, apellido,null);
                     gestorProfes.ModificarProfesor(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad, torre);
                     mensaje("Se modificaron los datos correctamente", true);
                     limpiar();
