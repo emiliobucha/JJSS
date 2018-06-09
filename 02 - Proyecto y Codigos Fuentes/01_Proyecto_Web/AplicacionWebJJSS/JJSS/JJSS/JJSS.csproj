@@ -153,6 +153,8 @@
     <Content Include="img\Graduar.png" />
     <Content Include="img\Perfil.png" />
     <Content Include="img\Sede.png" />
+    <Content Include="Presentacion\Administracion\AdministrarAlumnos.aspx" />
+    <Content Include="Presentacion\Administracion\AdministrarProfesores.aspx" />
     <Content Include="Presentacion\Administracion\CrearCategoria.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -319,9 +321,9 @@
     <Content Include="Presentacion\Login.aspx" />
     <Content Include="Presentacion\PagoClase.aspx" />
     <Content Include="Presentacion\Perfil.aspx" />
-    <Content Include="Presentacion\Clases\RegistrarAlumno.aspx" />
+    <Content Include="Presentacion\Administracion\RegistrarAlumno.aspx" />
     <Content Include="Presentacion\Clases\RegistrarAsistencia.aspx" />
-    <Content Include="Presentacion\Clases\RegistrarProfe.aspx" />
+    <Content Include="Presentacion\Administracion\RegistrarProfe.aspx" />
     <Content Include="Presentacion\Productos\Tienda.aspx" />
     <Content Include="Presentacion\Torneos\VerTorneo.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -386,6 +388,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Presentacion\Administracion\AdministrarAlumnos.aspx.cs">
+      <DependentUpon>AdministrarAlumnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Administracion\AdministrarAlumnos.aspx.designer.cs">
+      <DependentUpon>AdministrarAlumnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Administracion\AdministrarProfesores.aspx.cs">
+      <DependentUpon>AdministrarProfesores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Administracion\AdministrarProfesores.aspx.designer.cs">
+      <DependentUpon>AdministrarProfesores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Administracion\CrearCategoria.aspx.cs">
       <DependentUpon>CrearCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -639,11 +655,11 @@
     <Compile Include="Presentacion\Perfil.aspx.designer.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Clases\RegistrarAlumno.aspx.cs">
+    <Compile Include="Presentacion\Administracion\RegistrarAlumno.aspx.cs">
       <DependentUpon>RegistrarAlumno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Presentacion\Clases\RegistrarAlumno.aspx.designer.cs">
+    <Compile Include="Presentacion\Administracion\RegistrarAlumno.aspx.designer.cs">
       <DependentUpon>RegistrarAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Clases\RegistrarAsistencia.aspx.cs">
@@ -653,11 +669,11 @@
     <Compile Include="Presentacion\Clases\RegistrarAsistencia.aspx.designer.cs">
       <DependentUpon>RegistrarAsistencia.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Clases\RegistrarProfe.aspx.cs">
+    <Compile Include="Presentacion\Administracion\RegistrarProfe.aspx.cs">
       <DependentUpon>RegistrarProfe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Presentacion\Clases\RegistrarProfe.aspx.designer.cs">
+    <Compile Include="Presentacion\Administracion\RegistrarProfe.aspx.designer.cs">
       <DependentUpon>RegistrarProfe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Site2.Master.cs">
