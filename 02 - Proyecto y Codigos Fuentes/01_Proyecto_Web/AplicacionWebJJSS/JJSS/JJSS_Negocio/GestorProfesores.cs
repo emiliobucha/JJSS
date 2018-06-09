@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -56,8 +57,8 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarProfesor(string pNombre, string pApellido, DateTime? pFechaNacimiento, 
-            short? pSexo, string pDni, int pTelefono, string pMail, int pTelEmergencia, byte[] pImagen,
-            string pCalle, int? pNumero, string pDpto, int? pPiso, int pIdCiudad, string pTorre)
+            short? pSexo, string pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
+            string pCalle, int? pNumero, string pDpto, int? pPiso, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -283,7 +284,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el profesor
          * 
          */
-        public string ModificarProfesor(string pCalle, string pDepto, int? pNumero, int? pPiso, int pTelefono, int pTelUrgencia, string pMail, string pDni, int pIdCiudad, string pTorre)
+        public string ModificarProfesor(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, string pDni, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -380,7 +381,7 @@ namespace JJSS_Negocio
                                           join pro in db.profesor on dir.id_direccion equals pro.id_direccion
                                           join ciu in db.ciudad on dir.id_ciudad equals ciu.id_ciudad
                                           where pro.id_profesor == pIdProfe
-                                          select new
+                                          select new DireccionAlumno
                                           {
                                               calle = dir.calle,
                                               numero = dir.numero,
@@ -394,6 +395,27 @@ namespace JJSS_Negocio
             }
         }
 
+        public DireccionAlumno ObtenerDireccionProfesor2(int pIdProfe)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var direccionEncontrada = from dir in db.direccion
+                                          join pro in db.profesor on dir.id_direccion equals pro.id_direccion
+                                          join ciu in db.ciudad on dir.id_ciudad equals ciu.id_ciudad
+                                          where pro.id_profesor == pIdProfe
+                                          select new DireccionAlumno
+                                          {
+                                              calle = dir.calle,
+                                              numero = dir.numero,
+                                              depto = dir.departamento,
+                                              piso = dir.piso,
+                                              idCiudad = dir.id_ciudad,
+                                              idProvincia = ciu.id_provincia,
+                                              torre = dir.torre,
+                                          };
+                return direccionEncontrada.FirstOrDefault();
+            }
+        }
 
         public string CambiarFotoPerfil(string pDni, byte[] pImagen)
         {

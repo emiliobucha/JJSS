@@ -118,6 +118,30 @@
                     </a>
                 </div>
 
+                <!--Ver clases-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="/Presentacion/Clases/VerCalendario.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Evento.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Ver Clases</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!--Ver listado asistencia-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="/Presentacion/Clases/VerListadoAsistencia.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Ver Listado de Asistencia</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
                 <!--Histórico-->
                 <%-- <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
                     <a class="text-dark" href="HistoricoTorneos.aspx">

@@ -182,7 +182,7 @@
                                 <!-- E-mail -->
                                 <div class="row p-1  pl-lg-5 pl-md-5">
                                     <div class="col-lg-2 col-md-2 col-sm-12">
-                                        <label class="text-left">E-mail</label>
+                                        <label class="text-left">E-mail<a class="text-danger">*</a></label>
                                     </div>
                                     <div class="col col-md-4 col-lg-4 col-sm-12">
                                         <asp:TextBox ID="txt_email" class="caja2" required="true" MaxLength="80" runat="server" placeholder="Ingrese e-mail"></asp:TextBox>
@@ -197,14 +197,14 @@
                                 <!-- Calle y numero -->
                                 <div class="row p-1  pl-lg-5 pl-md-5">
                                     <div class="col-lg-2 col-md-2 col-sm-12">
-                                        <label>Calle <a class="text-danger">*</a></label>
+                                        <label>Calle </label>
                                     </div>
                                     <div class="col col-md-4 col-lg-4 col-sm-10">
                                         <asp:TextBox ID="txt_calle" class="caja2" type="text" MaxLength="50" runat="server" placeholder="Ingrese calle"></asp:TextBox>
                                     </div>
 
                                     <div class="col-lg-2 col-md-2 col-sm-12 pl-lg-5 pl-md-5">
-                                        <label>Número <a class="text-danger">*</a></label>
+                                        <label>Número</label>
                                     </div>
                                     <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
                                         <asp:TextBox ID="txt_numero" type="number" min="0" max="100000" class="caja2" runat="server"></asp:TextBox>
@@ -213,21 +213,21 @@
 
                                 <div class="row p-1  pl-lg-5 pl-md-5">
                                     <div class="col-lg-2 col-md-2 col-sm-12 ">
-                                        <label>Piso <a class="text-danger">*</a></label>
+                                        <label>Piso</label>
                                     </div>
                                     <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
                                         <asp:TextBox ID="txt_piso" class="caja2" type="number" min="0" max="100000" runat="server"></asp:TextBox>
                                     </div>
 
                                     <div class="col-lg-1 col-md-1 col-sm-2">
-                                        <label>Dpto <a class="text-danger">*</a></label>
+                                        <label>Dpto</label>
                                     </div>
                                     <div class="col col col-md-2 col-lg-2 col-sm-10 col-xs-10">
                                         <asp:TextBox ID="txt_nro_dpto" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
                                     </div>
 
                                     <div class="col-lg-1 col-md-1 col-sm-2">
-                                        <label>Torre <a class="text-danger">*</a></label>
+                                        <label>Torre</label>
                                     </div>
                                     <div class="col col-md-2 col-lg-2 col-sm-10 col-xs-10">
                                         <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
@@ -237,7 +237,7 @@
                                 <!-- Provincia -->
                                 <div class="row p-1  pl-lg-5 pl-md-5">
                                     <div class="col-lg-2 col-md-2 col-sm-12 ">
-                                        <label>Provincia <a class="text-danger">*</a></label>
+                                        <label>Provincia</label>
                                     </div>
                                     <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
                                         <asp:DropDownList class="caja2" ID="ddl_provincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_provincia_SelectedIndexChanged">
@@ -248,7 +248,7 @@
                                 <!-- Localidad -->
                                 <div class="row p-1  pl-lg-5 pl-md-5">
                                     <div class="col-lg-2 col-md-2 col-sm-12 ">
-                                        <label>Localidad <a class="text-danger">*</a></label>
+                                        <label>Localidad</label>
                                     </div>
                                     <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
                                         <asp:DropDownList class="caja2" ID="ddl_localidad" runat="server">
@@ -264,7 +264,7 @@
                              </div>
 
                             <div class="row ">
-                                <asp:Button ID="btn_ver_profes" runat="server" CssClass=" btn btn-link pull-left" Text="Ver profesores" formnovalidate="true" CausesValidation="False" OnClick="btn_ver_profes_Click" />
+                                <asp:HyperLink runat="server" Text="Ver Profesores" CssClass="btn btn-link" href="AdministrarProfesores.aspx"></asp:HyperLink>
                             </div>
 
                         </div>
@@ -275,81 +275,13 @@
             </asp:Panel>
         </div>
 
-        <div id="grillawrap">
-
-            <asp:Panel ID="pnl_mostrar_profes" runat="server">
-
-                <div id="mostrarprofewrap">
-
-                    <div class="row centered">
-                        <p>&nbsp;</p>
-                    </div>
-
-                    <div class="row centered justify-content-center">
-                        <h1>Listado de Profesores</h1>
-                    </div>
-
-                    <div class="row centered">
-                        <p>&nbsp;</p>
-                    </div>
-
-                    <div class="container">
-
-
-                        <div class="form-group border rounded p-4 ">
-
-                            <!--Boton-->
-                            <div class="row justify-content-center">
-
-                                <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <strong>DNI</strong>
-                                </div>
-                                <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:TextBox ID="txt_filtro_dni" type="number" CssClass="caja2" min="0" runat="server"></asp:TextBox>
-                                </div>
-                                <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <strong>Apellido</strong>
-                                </div>
-                                <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:TextBox ID="txt_filtro_apellido" CssClass="caja2" runat="server"></asp:TextBox>
-                                </div>
-                                <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <asp:Button ID="btn_buscar_profe" runat="server" Text="Buscar" OnClick="btn_buscar_profe_Click" ValidationGroup="vgFiltro" CssClass="btn btn-outline-dark" />
-                                </div>
-
-                            </div>
-                            <div class="row centered justify-content-center">
-                                <asp:GridView ID="gvprofes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvprofes_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay profes para mostrar" OnRowCommand="gvprofes_RowCommand">
-                                    <Columns>
-                                        <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
-                                        <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                        <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
-
-                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
-                                    </Columns>
-                                </asp:GridView>
-                            </div>
-                            <div class="row">
-                                <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <asp:Button ID="btn_registro" runat="server" CausesValidation="false" CssClass=" btn btn-link pull-left" formnovalidate="true" OnClick="btn_registro_Click" Text="Volver a registrar" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </asp:Panel>
-
-
-        </div>
-
         <div class="row centered">
             <p>&nbsp;</p>
         </div>
 
         <div class=" container">
             <div class="row centered">
-                <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass=" btn btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
+                <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="Menu_Administracion.aspx"></asp:HyperLink>
             </div>
         </div>
 
