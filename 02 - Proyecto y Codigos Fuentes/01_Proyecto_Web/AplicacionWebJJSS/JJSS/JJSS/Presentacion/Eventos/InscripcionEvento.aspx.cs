@@ -19,6 +19,7 @@ namespace JJSS.Presentacion
         private evento_especial eventoSeleccionado;
         private GestorAlumnos gestorAlumnos;
         private int? idAlumno = null;
+        private static Object eventoSession;
         private seguridad_usuario usuario;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,6 +30,8 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
+                eventoSession = Session["eventoSeleccionado"];
+                Session["eventoSeleccionado"] = null;
                 try
                 {
                     Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
@@ -49,9 +52,9 @@ namespace JJSS.Presentacion
                     limpiar(true);
                 }
 
-                if (Session["eventoSeleccionado"] != null)
+                if (eventoSession != null)
                 {
-                    int id = (int)Session["eventoSeleccionado"];
+                    int id = (int)eventoSession;
                     cargarInfoEvento(id);
                     pnl_elegirEvento.Visible = false;
                     pnl_InfoTorneo.Visible = true;
@@ -144,9 +147,9 @@ namespace JJSS.Presentacion
             limpiar(false);
             pnl_Inscripcion.Visible = true;
             int idEvento;
-            if (Session["eventoSeleccionado"] != null)
+            if (eventoSession != null)
             {
-                idEvento = (int)Session["eventoSeleccionado"];
+                idEvento = (int)eventoSession;
 
             }
             else
@@ -217,9 +220,9 @@ namespace JJSS.Presentacion
             pnl_mensaje_exito.Visible = false;
 
             int idEvento;
-            if (Session["eventoSeleccionado"] != null)
+            if (eventoSession != null)
             {
-                idEvento = (int)Session["eventoSeleccionado"];
+                idEvento = (int)eventoSession;
 
             }
             else
@@ -296,6 +299,7 @@ namespace JJSS.Presentacion
             {
 
                 List<evento_especial> eventos = gestorInscripciones.ObtenerEventos();
+                if (eventos.Count == 0) mensaje("No hay eventos disponibles", false);
                 ddl_evento.DataSource = eventos;
                 ddl_evento.DataTextField = "nombre";
                 ddl_evento.DataValueField = "id_evento";

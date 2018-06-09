@@ -198,11 +198,12 @@ namespace JJSS
 
             if (sReturn.CompareTo("") == 0)
             {
+                limpiar(true);
                 Mensaje("La inscripción se ha realizado exitosamente", true);
                 //pnl_pago.Visible = true;
-                Session["TorneoPagar"] = idTorneo;
-                Session["ParticipanteDNI"] = dni;
-                limpiar(true);
+                ////Session["TorneoPagar"] = idTorneo;
+                ////Session["ParticipanteDNI"] = dni;
+                
 
 
 
@@ -252,6 +253,7 @@ namespace JJSS
             {
 
                 List<torneo> torneos = gestorInscripciones.ObtenerTorneos();
+                if (torneos.Count == 0) Mensaje("No hay torneos disponibles", false);
                 ddl_torneos.DataSource = torneos;
                 ddl_torneos.DataTextField = "nombre";
                 ddl_torneos.DataValueField = "id_torneo";
@@ -451,12 +453,12 @@ namespace JJSS
         {
             if (pEstado)
             {
-                Session["mensaje"] = pMensaje;
-                Session["exito"] = pEstado;
-                Response.Redirect("MenuTorneo.aspx");
-                //pnl_mensaje_exito.Visible = true;
-                //pnl_mensaje_error.Visible = false;
-                //lbl_exito.Text = pMensaje;
+                //Session["mensaje"] = pMensaje;
+                //Session["exito"] = pEstado;
+                //Response.Redirect("MenuTorneo.aspx");
+                pnl_mensaje_exito.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = pMensaje;
             }
             else
             {

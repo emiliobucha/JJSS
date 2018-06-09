@@ -14,6 +14,7 @@ namespace JJSS.Presentacion
     public partial class CrearEvento : System.Web.UI.Page
     {
         private static GestorEventos gestorEvento;
+        private static evento_especial eventoAEditar;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,6 +50,29 @@ namespace JJSS.Presentacion
                 }
                 CargarComboSedes();
                 CargarComboTipos();
+
+                eventoAEditar = null;
+                if (Session["eventoSeleccionado"] != null)
+                {
+                    int idEvento = int.Parse(Session["eventoSeleccionado"].ToString());
+                    eventoAEditar= gestorEvento.BuscarEventoPorID(idEvento);
+                    var eventoResultado = gestorEvento.ObtenerEventoResultado(idEvento);
+
+                    txt_nombre.Text = eventoResultado.nombre;
+                    txt_precio.Text = eventoResultado.precio.ToString().Replace(",", ".");
+                    txt_hora.Text = eventoResultado.hora;
+                    txt_hora_cierre.Text = eventoResultado.hora_cierre;
+                    dp_fecha.Text = ((DateTime)eventoResultado.fecha).ToString("dd/MM/yyyy");
+                    dp_fecha_cierre.Text = ((DateTime)eventoResultado.dtFechaCierre).ToString("dd/MM/yyyy");
+                    Avatar.ImageUrl = eventoResultado.imagen;
+                    
+                    ddl_sedes.SelectedItem.Value = eventoResultado.idSede.ToString();
+                    Session["eventoSeleccionado"] = null;
+                }
+                else
+                {
+                    limpiar();
+                }
             }
         }
 
@@ -67,19 +91,6 @@ namespace JJSS.Presentacion
                 string nombre = txt_nombre.Text;
                 DateTime fecha = new DateTime(99, 01, 01);
                 DateTime fecha_cierre = fecha;
-
-                /*FECHA SOMEE
-                string[] formats = { "MM/dd/yyyy" };
-                if (dp_fecha.Text != "")
-                {
-                    fecha = DateTime.ParseExact(dp_fecha.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
-                }
-                if (dp_fecha_cierre.Text != "")
-                {
-                    fecha_cierre = DateTime.ParseExact(dp_fecha_cierre.Text, formats, new CultureInfo("en-US"), System.Globalization.DateTimeStyles.None);
-                }
-                */
-                //LOCAL
                 fecha = DateTime.Parse(dp_fecha.Text);
                 fecha_cierre = DateTime.Parse(dp_fecha_cierre.Text);
 
@@ -97,16 +108,42 @@ namespace JJSS.Presentacion
                     imagen.CopyTo(ms);
                     imagenByte = ms.ToArray();
                 }
-                string sReturn = gestorEvento.GenerarNuevoEvento(fecha, nombre, precio, hora, sede, fecha_cierre, hora_cierre, imagenByte,tipo);
 
-                if (sReturn.CompareTo("") == 0)
+                if (eventoAEditar == null)
                 {
-                    sReturn = "El evento se ha creado exitosamente";
-                    limpiar();
-                    mensaje(sReturn, true);
-                    
+                    string sReturn = gestorEvento.GenerarNuevoEvento(fecha, nombre, precio, hora, sede, fecha_cierre, hora_cierre, imagenByte, tipo);
+
+                    if (sReturn.CompareTo("") == 0)
+                    {
+                        sReturn = "El evento se ha creado exitosamente";
+                        limpiar();
+                        mensaje(sReturn, true);
+
+                    }
+                    else mensaje(sReturn, false);
                 }
-                else mensaje(sReturn, false);
+                else
+                {
+                    string sReturn = "";
+                    eventoAEditar.nombre = nombre;
+                    eventoAEditar.precio= precio;
+                    eventoAEditar.hora_cierre = hora_cierre;
+                    eventoAEditar.hora = hora;
+                    eventoAEditar.id_sede = sede;
+                    eventoAEditar.fecha = fecha;
+                    eventoAEditar.fecha_cierre = fecha_cierre;
+                    sReturn = gestorEvento.modificarEvento(eventoAEditar, imagenByte);
+
+                    if (sReturn.CompareTo("") == 0)
+                    {
+                        sReturn = "El evento se ha modificado exitosamente";
+                        limpiar();
+                        Session["mensaje"] = sReturn;
+                        Session["exito"] = true;
+                        Response.Redirect("Menu_Evento.aspx");
+                    }
+                    else mensaje(sReturn, false);
+                }
             }
         }
 

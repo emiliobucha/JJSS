@@ -79,15 +79,13 @@ namespace JJSS.Presentacion.Eventos
         {
             int index = Convert.ToInt32(e.CommandArgument);
             int id = Convert.ToInt32(gv_eventos.DataKeys[index].Value);
-            Session["idEvento"] = id;
+            Session["eventoSeleccionado"] = id;
             Response.Redirect("VerEvento.aspx");
         }
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
         {
-            object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
+            Response.Redirect("Menu_Evento.aspx");
         }
     }
 }
