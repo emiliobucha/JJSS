@@ -149,6 +149,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\Categoria.png" />
+    <Content Include="img\Graduar.png" />
+    <Content Include="img\Perfil.png" />
+    <Content Include="img\Sede.png" />
     <Content Include="Presentacion\Administracion\AdministrarAlumnos.aspx" />
     <Content Include="Presentacion\Administracion\AdministrarProfesores.aspx" />
     <Content Include="Presentacion\Administracion\CrearCategoria.aspx" />

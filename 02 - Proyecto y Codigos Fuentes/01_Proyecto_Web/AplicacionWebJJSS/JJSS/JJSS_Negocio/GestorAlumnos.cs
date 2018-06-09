@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data;
+using System.Runtime.InteropServices.ComTypes;
 using JJSS_Negocio.Resultados;
 using JJSS_Negocio.Constantes;
 
@@ -339,7 +340,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(string pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo)
+        public string ModificarAlumno(string pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo, string pUsuario)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -347,16 +348,27 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    var alumnoEncontrado = from alu in db.alumno
-                                           where alu.dni == pDni
-                                           select alu;
-                    alumno alumnoModificar = alumnoEncontrado.FirstOrDefault();
-
+                    var alumnoModificar = db.alumno.FirstOrDefault(x => x.dni == pDni);
+                    
                     if (alumnoModificar == null) throw new Exception("El usuario no existe");
                     alumnoModificar.apellido = pApellido;
                     alumnoModificar.nombre = pNombre;
                     if (pFecha != null) alumnoModificar.fecha_nacimiento = pFecha;
                     if (pSexo != null) alumnoModificar.sexo = pSexo;
+
+                    db.SaveChanges();
+
+                    var usuarioEncontrado =
+                        db.seguridad_usuario.FirstOrDefault(x => x.id_usuario == alumnoModificar.id_usuario);
+                    if (usuarioEncontrado != null)
+                    {
+                        usuarioEncontrado.nombre = alumnoModificar.nombre + " " + alumnoModificar.apellido;
+                        if (string.IsNullOrEmpty(pUsuario))
+                        {
+                            usuarioEncontrado.login = pUsuario;
+                        }
+             
+                    }
 
 
                     db.SaveChanges();
@@ -414,6 +426,16 @@ namespace JJSS_Negocio
                                           select dir;
 
                     direccion direccionModificar = direccionAlumno.FirstOrDefault();
+
+                    var usuarioEncontrado =
+                        db.seguridad_usuario.FirstOrDefault(x => x.id_usuario == alumnoModificar.id_usuario);
+                    if (usuarioEncontrado != null)
+                    {
+                        usuarioEncontrado.nombre = alumnoModificar.nombre + " " + alumnoModificar.apellido;
+
+                    }
+
+
 
                     if (direccionModificar == null)//no tenia direccion direccion
                     {
@@ -576,30 +598,62 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 try
+
                 {
                     var alumno = ObtenerAlumnoPorDNI(pDni);
+                    var arrayImagen = pImagen;
+
                     var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == alumno.id_alumno);
+
+                    if (alumnoImagen == null)
+                    {
+                        alumnoImagen = new alumno_imagen()
+                        {
+                            id_alumno = alumno.id_alumno,
+                            imagen = pImagen
+                        };
+                        if (arrayImagen.Length > 7000)
+                        {
+                            arrayImagen = new byte[0];
+                        }
+                      
+                        var imagenUrl = modUtilidades.SaveImage(pImagen, alumno.dni + alumno.nombre, "alumnos");
+
+                        alumnoImagen.imagen = arrayImagen;
+                        alumnoImagen.imagen_url = imagenUrl;
+                        db.SaveChanges();
+
+                    }
+                    else
+                    {
+                        if (pImagen != null && pImagen.Length > 0)
+                        {
+                            arrayImagen = pImagen;
+                            if (arrayImagen.Length > 7000)
+                            {
+                                arrayImagen = new byte[0];
+                            }
+
+                            var imagenUrl = modUtilidades.SaveImage(pImagen, alumno.dni + alumno.nombre, "alumnos");
+
+                            alumnoImagen.imagen = arrayImagen;
+                            alumnoImagen.imagen_url = imagenUrl;
+                            db.SaveChanges();
+                        }
+
+                    }
 
                     if (alumno != null)
                     {
-                        if (alumnoImagen != null)
-                        {
-                            alumnoImagen.imagen = pImagen;
-                            db.SaveChanges();
-                            return "";
-                        }
-                        else
-                            return "Hubo un problema";
+                        db.SaveChanges();
+                        return "";
                     }
                     else
                     {
                         throw new Exception("El usuario no existe");
                     }
-
-
-
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw new Exception("El usuario no existe");
                 }
@@ -607,7 +661,7 @@ namespace JJSS_Negocio
         }
 
 
-        public byte[] ObtenerImagenPerfil(int pId)
+        public alumno_imagen ObtenerImagenPerfil(int pId)
         {
             using (var db = new JJSSEntities())
             {
@@ -616,7 +670,7 @@ namespace JJSS_Negocio
 
                     var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == pId);
 
-                    return alumnoImagen?.imagen;
+                    return alumnoImagen;
                 }
                 catch (Exception ex)
                 {

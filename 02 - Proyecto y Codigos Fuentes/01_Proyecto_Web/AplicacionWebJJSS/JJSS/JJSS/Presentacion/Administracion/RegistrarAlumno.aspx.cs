@@ -199,7 +199,7 @@ namespace JJSS.Presentacion
                 //actualiza datos
                 try
                 {
-                    gestorAlumnos.ModificarAlumno(dni, nombre, apellido, fechaNac, sexo);
+                    gestorAlumnos.ModificarAlumno(dni, nombre, apellido, fechaNac, sexo, null);
                     gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad, torre);
                     mensaje("Se modificaron los datos correctamente", true);
                     limpiar();

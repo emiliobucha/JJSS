@@ -154,7 +154,7 @@
             <p>&nbsp;</p>
         </div>
 
-        <h2 class=" centered">Últimos Torneos</h2>
+        <h2 class=" centered">Próximos Torneos</h2>
 
         <div class="row centered">
             <p>&nbsp;</p>
