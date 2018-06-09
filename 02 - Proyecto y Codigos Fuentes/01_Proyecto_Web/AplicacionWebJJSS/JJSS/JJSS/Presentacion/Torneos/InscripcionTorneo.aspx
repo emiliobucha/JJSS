@@ -270,7 +270,7 @@
                             <!--Boton-->
                             <div class="col-md-1 col-xl-auto">
 
-                                <asp:Button ID="btnBuscar" runat="server"  UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
+                                <asp:Button ID="btnBuscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
 
                             </div>
 

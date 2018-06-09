@@ -131,7 +131,7 @@ namespace JJSS
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
-
+            Page.Validate("vgDatos");
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
 
@@ -179,8 +179,8 @@ namespace JJSS
             int.TryParse(ddl_fajas.SelectedValue, out idFaja);
 
             short sexo = 0;
-            if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO; 
-            if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO; 
+            if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO;
+            if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
 
             //para alumnos
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
@@ -192,7 +192,7 @@ namespace JJSS
             if (rb_tipo.SelectedIndex == 0) tipoInsc = 0;//categoria
             if (rb_tipo.SelectedIndex == 1) tipoInsc = 1;//absoluto
             string sReturn = gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, fechaNac.Date,
-                idFaja, sexo, idTipo, dni, idAlumno, tipoInsc,idPais);
+                idFaja, sexo, idTipo, dni, idAlumno, tipoInsc, idPais);
 
 
 
@@ -203,7 +203,7 @@ namespace JJSS
                 Session["TorneoPagar"] = idTorneo;
                 Session["ParticipanteDNI"] = dni;
                 limpiar(true);
-                
+
 
 
                 try
@@ -276,7 +276,7 @@ namespace JJSS
 
         protected void CargarComboTipoDocumentos()
         {
-            
+
             List<tipo_documento> tiposdoc = gestorInscripciones.ObtenerTiposDocumentos();
             ddl_tipo.DataSource = tiposdoc;
             ddl_tipo.DataTextField = "codigo";
@@ -358,85 +358,85 @@ namespace JJSS
 
         protected void btnBuscarDni_Click(object sender, EventArgs e)
         {
-            //Page.Validate();
-            //if (Page.IsValid)
-            //{
-            limpiar(false);
+           
 
-            int idTorneo;
-            if (Session["idTorneo_inscribirTorneo"] != null)
-            {
-                idTorneo = (int)Session["idTorneo_inscribirTorneo"];
+                limpiar(false);
 
-            }
-            else
-            {
-                idTorneo = int.Parse(ddl_torneos.SelectedValue);
-
-            }
-            int idTipo;
-            int.TryParse(ddl_tipo.SelectedValue,out idTipo);
-
-            participante participanteEncontrado =
-                gestorInscripciones.obtenerParticipanteDeTorneo(idTipo,txtDni.Text, idTorneo);
-
-            //Partipante ya estaba inscripto con ese dni
-            if (participanteEncontrado != null)
-            {
-                Mensaje("Este participante ya está inscripto a este torneo", false);
-                return;
-            }
-
-            pnl_Inscripcion.Visible = true;
-
-            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
-            if (alumnoEncontrado != null)
-            {
-                //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
-
-
-                txt_apellido.ReadOnly = true;
-                txt_nombre.ReadOnly = true;
-
-                dp_fecha.Enabled = false;
-
-
-                ddl_nacionalidad.Enabled = false;
-
-                rbSexo.Enabled = false;
-
-                txt_apellido.Text = alumnoEncontrado.apellido;
-                txt_nombre.Text = alumnoEncontrado.nombre;
-
-                ddl_nacionalidad.SelectedValue = alumnoEncontrado.id_tipo_documento != null
-                    ? alumnoEncontrado.id_tipo_documento.ToString()
-                    : "";
-
-                DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
-                /*FECHA SOMEE
-                string format = "MM/dd/yyyy";
-                dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
-                */
-                //LOCAL
-                dp_fecha.Text = fecha.ToShortDateString();
-
-                // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
-
-
-                int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
-                faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
-                if (fajaAlumno != null)
+                int idTorneo;
+                if (Session["idTorneo_inscribirTorneo"] != null)
                 {
-                    ddl_fajas.Enabled = false;
-                    ddl_fajas.SelectedValue = fajaAlumno.id_faja.ToString();
+                    idTorneo = (int)Session["idTorneo_inscribirTorneo"];
+
                 }
-                
+                else
+                {
+                    idTorneo = int.Parse(ddl_torneos.SelectedValue);
 
-                if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
-                if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
+                }
+                int idTipo;
+                int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
-                idAlumno = alumnoEncontrado.id_alumno;
-            }
+                participante participanteEncontrado =
+                    gestorInscripciones.obtenerParticipanteDeTorneo(idTipo, txtDni.Text, idTorneo);
+
+                //Partipante ya estaba inscripto con ese dni
+                if (participanteEncontrado != null)
+                {
+                    Mensaje("Este participante ya está inscripto a este torneo", false);
+                    return;
+                }
+
+                pnl_Inscripcion.Visible = true;
+
+                alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
+                if (alumnoEncontrado != null)
+                {
+                    //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
+
+
+                    txt_apellido.ReadOnly = true;
+                    txt_nombre.ReadOnly = true;
+
+                    dp_fecha.Enabled = false;
+
+
+                    ddl_nacionalidad.Enabled = false;
+
+                    rbSexo.Enabled = false;
+
+                    txt_apellido.Text = alumnoEncontrado.apellido;
+                    txt_nombre.Text = alumnoEncontrado.nombre;
+
+                    ddl_nacionalidad.SelectedValue = alumnoEncontrado.id_tipo_documento != null
+                        ? alumnoEncontrado.id_tipo_documento.ToString()
+                        : "";
+
+                    DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
+                    /*FECHA SOMEE
+                    string format = "MM/dd/yyyy";
+                    dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
+                    */
+                    //LOCAL
+                    dp_fecha.Text = fecha.ToShortDateString();
+
+                    // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
+
+
+                    int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
+                    faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
+                    if (fajaAlumno != null)
+                    {
+                        ddl_fajas.Enabled = false;
+                        ddl_fajas.SelectedValue = fajaAlumno.id_faja.ToString();
+                    }
+
+
+                    if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
+                    if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
+
+                    idAlumno = alumnoEncontrado.id_alumno;
+                }
+            
         }
         //}
 
