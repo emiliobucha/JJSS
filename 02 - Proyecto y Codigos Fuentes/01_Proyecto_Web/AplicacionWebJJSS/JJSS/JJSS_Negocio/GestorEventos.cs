@@ -192,6 +192,40 @@ namespace JJSS_Negocio
             }
         }
 
+        public List<TorneoResultado> ObtenerEventosConImagenYFiltro(String filtroNombre, DateTime filtroFecha, DateTime filtroFechaHasta)
+        {
+            cambiarEstadoEventos();
+            using (var db = new JJSSEntities())
+            {
+
+                var torneos = from eve in db.evento_especial
+                              join est in db.estado on eve.id_estado equals est.id_estado
+                              join i in db.evento_especial_imagen on eve.id_estado equals i.id_evento
+                              into ps
+                              from i in ps.DefaultIfEmpty()
+                              where eve.nombre.StartsWith(filtroNombre) &&
+                              eve.fecha >= filtroFecha && eve.fecha <= filtroFechaHasta &&
+                              (est.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA || est.id_estado == ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA)
+                              orderby eve.fecha ascending
+                              select new TorneoResultado()
+                              {
+                                  id_torneo = eve.id_evento,
+                                  nombre = eve.nombre,
+                                  dtFecha = eve.fecha,
+                                  imagenB = i.imagen,
+                                  estado = est.nombre,
+                                  hora = eve.hora,
+                                  imagen = i.imagen_url
+                              };
+                List<TorneoResultado> tr = torneos.ToList();
+                foreach (TorneoResultado t in tr)
+                {
+                    t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
+                }
+                return tr;
+            }
+        }
+
 
         /*
          * Actualiza el estado de los eventos segun la fecha actual
@@ -332,6 +366,80 @@ namespace JJSS_Negocio
                     where evento.id_estado == 1 || evento.id_estado == 2
                     select evento;
                 return eventosAbiertos.ToList();
+            }
+        }
+
+        public List<estado> buscarEstadosEvento()
+        {
+            using (var db = new JJSSEntities())
+            {
+                var estados = from est in db.estado
+                              where est.ambito == "TORNEOS" && est.id_estado != ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
+                              && est.id_estado != ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA
+                              select est;
+                return estados.ToList();
+            }
+        }
+
+        /*
+         * busca los torneos con su imagen que comiencen con filtroNombre y la fecha sea mayor a filtroFecha
+         */
+        public List<TorneoResultado> BuscarEventosConFiltrosEImagen(String filtroNombre, DateTime filtroFecha, DateTime filtroFechaHasta, int filtroEstado)
+        {
+            cambiarEstadoEventos();
+            using (var db = new JJSSEntities())
+            {
+                List<TorneoResultado> tr = new List<TorneoResultado>();
+                if (filtroEstado == 0)
+                {
+                    var torneos = from eve in db.evento_especial
+                                  join est in db.estado on eve.id_estado equals est.id_estado
+                                  join i in db.evento_especial_imagen on eve.id_estado equals i.id_evento
+                                  into ps
+                                  from i in ps.DefaultIfEmpty()
+                                  where eve.nombre.StartsWith(filtroNombre) &&
+                                  eve.fecha >= filtroFecha && eve.fecha <= filtroFechaHasta &&
+                                  (est.id_estado == ConstantesEstado.TORNEO_FINALIZADO || est.id_estado == ConstantesEstado.TORNEO_EN_CURSO)
+                                  orderby eve.fecha descending
+                                  select new TorneoResultado()
+                                  {
+                                      id_torneo = eve.id_evento,
+                                      nombre = eve.nombre,
+                                      dtFecha = eve.fecha,
+                                      imagenB = i.imagen,
+                                      estado = est.nombre,
+                                      imagen = i.imagen_url
+                                  };
+                    tr = torneos.ToList();
+                }
+                else
+                {
+                    var torneos = from eve in db.evento_especial
+                                  join est in db.estado on eve.id_estado equals est.id_estado
+                                  join i in db.evento_especial_imagen on eve.id_evento equals i.id_evento
+                                  into ps
+                                  from i in ps.DefaultIfEmpty()
+                                  where eve.nombre.StartsWith(filtroNombre) &&
+                                  eve.fecha >= filtroFecha && eve.fecha <= filtroFechaHasta &&
+                                  (est.id_estado == filtroEstado)
+                                  orderby eve.fecha descending
+                                  select new TorneoResultado()
+                                  {
+                                      id_torneo = eve.id_evento,
+                                      nombre = eve.nombre,
+                                      dtFecha = eve.fecha,
+                                      imagenB = i.imagen,
+                                      estado = est.nombre,
+                                      imagen = i.imagen_url
+                                  };
+                    tr = torneos.ToList();
+                }
+
+                foreach (TorneoResultado t in tr)
+                {
+                    t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
+                }
+                return tr;
             }
         }
     }

@@ -94,15 +94,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList dll_tipo_evento;
         
         /// <summary>
-        /// Control btn_tipo_evento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_tipo_evento;
-        
-        /// <summary>
         /// Control ddl_sedes.
         /// </summary>
         /// <remarks>
@@ -110,15 +101,6 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_sedes;
-        
-        /// <summary>
-        /// Control btn_mas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_mas;
         
         /// <summary>
         /// Control dp_fecha.
@@ -220,12 +202,12 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_aceptar;
         
         /// <summary>
-        /// Control btn_Cancelar.
+        /// Control btn_volver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
+        protected global::System.Web.UI.WebControls.Button btn_volver;
     }
 }

@@ -59,7 +59,7 @@
 
                 <!--Eventos-->
                 <div class="col-sm-12 col-md-6 col-lg-3  ">
-                    <a class="text-dark" href="/Presentacion/Menu_Evento.aspx">
+                    <a class="text-dark" href="Eventos/Menu_Evento.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Evento.png" alt="Card image cap">
                             <div class="">

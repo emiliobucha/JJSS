@@ -363,7 +363,7 @@
                                         <p>&nbsp;</p>
                                     </div>
                                 </asp:Panel>
-                                <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
+                                <asp:HyperLink runat="server" CssClass="btn btn-link" href="Menu_Evento.aspx">Volver</asp:HyperLink>
                             </div>
                         </form>
                     </div>

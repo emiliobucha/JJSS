@@ -20,6 +20,8 @@ namespace JJSS.Presentacion
             gestorEvento = new GestorEventos();
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Eventos/Menu_Evento.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 try
                 {
                     Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
@@ -214,15 +216,11 @@ namespace JJSS.Presentacion
                 args.IsValid = false;
             }
         }
-        protected void btn_mas_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        protected void btn_cancelar_Click(object sender, EventArgs e)
+        protected void btn_volver_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx#section_eventos");
+            Response.Redirect(ViewState["RefUrl"].ToString());
         }
     }
 }

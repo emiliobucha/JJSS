@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site2.Master" AutoEventWireup="true" CodeBehind="CrearEvento.aspx.cs" Inherits="JJSS.Presentacion.CrearEvento" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CrearEvento.aspx.cs" Inherits="JJSS.Presentacion.CrearEvento" %>
 
 
 <asp:Content ID="crearTorneoEncabezado" ContentPlaceHolderID="cphEncabezado" runat="server">
@@ -83,7 +83,7 @@
                                     <asp:DropDownList ID="dll_tipo_evento" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
-                                    <asp:Button ID="btn_tipo_evento" class="btn btn-default" runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
+                                    <asp:HyperLink CssClass="btn btn-outline-dark" runat="server" href="">+</asp:HyperLink>
                                 </div>
                             </div>
 
@@ -100,7 +100,7 @@
                                     <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-1 col-lg-1 col-sm-2 col-xs-2">
-                                    <asp:Button ID="btn_mas" class="btn btn-default" runat="server" Text="+" formnovalidate="true" OnClientClick="javascript:alert('Próximamente');" CausesValidation="false" OnClick="btn_mas_Click" />
+                                    <asp:HyperLink CssClass="btn btn-outline-dark" runat="server" href="../Administracion/CrearSede.aspx">+</asp:HyperLink>
                                 </div>
                             </div>
 
@@ -211,8 +211,8 @@
 
                         <!--Boton-->
                         <div class="row centered center-block   ">
-                            <asp:Button ID="btn_aceptar" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" OnClientClick="btn_aceptar_Click1" ValidationGroup="vgTorneo" />
-                            <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
+                            <asp:Button ID="btn_aceptar" class="btn btn-outline-dark" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" OnClientClick="btn_aceptar_Click1" ValidationGroup="vgTorneo" />
+                            <asp:Button ID="btn_volver" formnovalidate="true" class="btn btn-link" runat="server" Text="Volver" OnClick="btn_volver_Click" />
                         </div>
                     </div>
 

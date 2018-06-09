@@ -63,21 +63,21 @@ namespace JJSS.Presentacion
 
         private void CargarListViewEventos()
         {
-            //String filtroNombre = txt_filtro_nombre.Text;
+            String filtroNombre = txt_filtro_nombre.Text;
 
-            //DateTime filtroFecha = new DateTime();
-            //if (dp_filtro_fecha_desde.Text.CompareTo("") != 0)
-            //{
-            //    filtroFecha = DateTime.Parse(dp_filtro_fecha_desde.Text);
-            //}
-            //DateTime filtroFechaHasta = new DateTime();
-            //if (dp_filtro_fecha_hasta.Text.CompareTo("") != 0)
-            //{
-            //    filtroFechaHasta = DateTime.Parse(dp_filtro_fecha_hasta.Text);
-            //}
+            DateTime filtroFecha = new DateTime();
+            if (dp_filtro_fecha_desde.Text.CompareTo("") != 0)
+            {
+                filtroFecha = DateTime.Parse(dp_filtro_fecha_desde.Text);
+            }
+            DateTime filtroFechaHasta = new DateTime();
+            if (dp_filtro_fecha_hasta.Text.CompareTo("") != 0)
+            {
+                filtroFechaHasta = DateTime.Parse(dp_filtro_fecha_hasta.Text);
+            }
 
             gestorEventos = new GestorEventos();
-            lv_eventos.DataSource = gestorEventos.ObtenerEventosConImagen();
+            lv_eventos.DataSource = gestorEventos.ObtenerEventosConImagenYFiltro(filtroNombre, filtroFecha, filtroFechaHasta);
             lv_eventos.DataBind();
         }
 
@@ -158,8 +158,16 @@ namespace JJSS.Presentacion
         protected void lv_eventos_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
-            Session["eventoSeleccionado"] = id;
-            Response.Redirect("~/Presentacion/InscripcionEvento.aspx");
+            if (e.CommandName.CompareTo("inscribir") == 0)
+            {
+                Session["eventoSeleccionado"] = id;
+                Response.Redirect("InscripcionEvento.aspx");
+            } else if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                Session["eventoSeleccionado"] = id;
+                Response.Redirect("VerEvento.aspx");
+            }
+            
         }
 
     }

@@ -110,7 +110,7 @@
 
                 <!--Histórico-->
                 <div runat="server"  class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " id="historial_evento">
-                    <a class="text-dark" href="#" id="historico_torneos">
+                    <a class="text-dark" href="HistoricoEventos.aspx" id="historico_torneos">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
                             <div class="">
@@ -157,7 +157,7 @@
             <p>&nbsp;</p>
         </div>
 
-        <h2 class=" centered">Últimos Eventos</h2>
+        <h2 class=" centered">Próximos Eventos</h2>
 
         <div class="row centered">
             <p>&nbsp;</p>
@@ -227,7 +227,8 @@
                                         <asp:Label ID="lv_lbl_hora" runat="server" Text='<%# Eval("hora") %>' />
                                 </div>
                                 <div>
-                                    <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_evento") %>' CssClass=" btn-link" Text="Inscribir" />
+                                    <asp:Button ID="lv_btn_inscribir" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass="btn btn-outline-dark" Text="Inscribir" CommandName="inscribir" />
+                                    <asp:Button ID="lv_btn_seleccionar" runat="server" CommandArgument='<%# Eval("id_torneo") %>' CssClass=" btn btn-outline-dark" Text="Seleccionar" CommandName="seleccionar" />
                                 </div>
                             </div>
 
