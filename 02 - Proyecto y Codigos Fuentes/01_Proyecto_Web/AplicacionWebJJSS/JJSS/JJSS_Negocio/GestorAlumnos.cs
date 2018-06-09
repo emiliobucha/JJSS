@@ -340,7 +340,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(string pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo)
+        public string ModificarAlumno(string pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo, string pUsuario)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -348,16 +348,27 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    var alumnoEncontrado = from alu in db.alumno
-                                           where alu.dni == pDni
-                                           select alu;
-                    alumno alumnoModificar = alumnoEncontrado.FirstOrDefault();
-
+                    var alumnoModificar = db.alumno.FirstOrDefault(x => x.dni == pDni);
+                    
                     if (alumnoModificar == null) throw new Exception("El usuario no existe");
                     alumnoModificar.apellido = pApellido;
                     alumnoModificar.nombre = pNombre;
                     if (pFecha != null) alumnoModificar.fecha_nacimiento = pFecha;
                     if (pSexo != null) alumnoModificar.sexo = pSexo;
+
+                    db.SaveChanges();
+
+                    var usuarioEncontrado =
+                        db.seguridad_usuario.FirstOrDefault(x => x.id_usuario == alumnoModificar.id_usuario);
+                    if (usuarioEncontrado != null)
+                    {
+                        usuarioEncontrado.nombre = alumnoModificar.nombre + " " + alumnoModificar.apellido;
+                        if (string.IsNullOrEmpty(pUsuario))
+                        {
+                            usuarioEncontrado.login = pUsuario;
+                        }
+             
+                    }
 
 
                     db.SaveChanges();
@@ -415,6 +426,16 @@ namespace JJSS_Negocio
                                           select dir;
 
                     direccion direccionModificar = direccionAlumno.FirstOrDefault();
+
+                    var usuarioEncontrado =
+                        db.seguridad_usuario.FirstOrDefault(x => x.id_usuario == alumnoModificar.id_usuario);
+                    if (usuarioEncontrado != null)
+                    {
+                        usuarioEncontrado.nombre = alumnoModificar.nombre + " " + alumnoModificar.apellido;
+
+                    }
+
+
 
                     if (direccionModificar == null)//no tenia direccion direccion
                     {

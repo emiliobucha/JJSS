@@ -239,7 +239,7 @@ namespace JJSS_Negocio
          *              ex.Message : Mensaje de error provocado por una excepción
          * 
          */
-        public string ModificarProfesor(string pDni, string pNombre, string pApellido)
+        public string ModificarProfesor(string pDni, string pNombre, string pApellido, string pUsuario)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -254,6 +254,20 @@ namespace JJSS_Negocio
                     profesorModificar.apellido = pApellido;
                     profesorModificar.nombre = pNombre;
                     db.SaveChanges();
+
+                    var usuarioEncontrado =
+                        db.seguridad_usuario.FirstOrDefault(x => x.id_usuario == profesorModificar.id_usuario);
+                    if (usuarioEncontrado != null)
+                    {
+                        usuarioEncontrado.nombre = profesorModificar.nombre + " " + profesorModificar.apellido;
+                        if (string.IsNullOrEmpty(pUsuario))
+                        {
+                            usuarioEncontrado.login = pUsuario;
+                        }
+
+                    }
+                    db.SaveChanges();
+
                     transaction.Commit();
                     return sReturn;
                 }
@@ -304,6 +318,18 @@ namespace JJSS_Negocio
                                           select dir;
 
                     direccion direccionModificar = direccionProfesor.FirstOrDefault();
+
+                    var usuarioEncontrado =
+                        db.seguridad_usuario.FirstOrDefault(x => x.id_usuario == profesorModificar.id_usuario);
+                    if (usuarioEncontrado != null)
+                    {
+                        usuarioEncontrado.nombre = profesorModificar.nombre + " " + profesorModificar.apellido;
+ 
+
+                    }
+
+
+
 
                     if (direccionModificar == null)//no tenia direccion direccion
                     {
