@@ -6,35 +6,33 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
-using JJSS_Negocio.Constantes;
 using JJSS_Negocio.Administracion;
 using JJSS_Negocio.Resultados;
+using JJSS_Negocio.Constantes;
 
-namespace JJSS.Presentacion
+namespace JJSS.Presentacion.Eventos
 {
-    public partial class VerTorneo : System.Web.UI.Page
+    public partial class VerEvento : System.Web.UI.Page
     {
-        private static GestorTorneos gestorTorneos;
+        private static GestorEventos gestorEventos;
 
-        private static torneo torneoSeleccionado;
-        private static estado estadoTorneo;
-        private static List<ResultadoDeTorneo> resultadosTorneo;
+        private static evento_especial eventoSeleccionado;
+        private static estado estadoEvento;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gestorTorneos = new GestorTorneos();
+            gestorEventos = new GestorEventos();
             if (!IsPostBack)
             {
-                int idTorneo = 0;
-                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Torneos/MenuTorneo.aspx";
+                int idEvento = 0;
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Menu_Evento.aspx";
                 else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
-                if (Session["idTorneo"] != null)
+                if (Session["eventoSeleccionado"] != null)
                 {
-                    idTorneo = (int)Session["idTorneo"];
-                    torneoSeleccionado = gestorTorneos.BuscarTorneoPorID(idTorneo);
-                    estadoTorneo = gestorTorneos.buscarEstadoTorneo(idTorneo);
-                    resultadosTorneo = gestorTorneos.buscarResultados(idTorneo);
-                    cargarTabla();
+                    idEvento = (int)Session["eventoSeleccionado"];
+                    Session["eventoSeleccionado"] = null;
+                    eventoSeleccionado = gestorEventos.BuscarEventoPorID(idEvento);
+                    estadoEvento = gestorEventos.buscarEstadoEvento(idEvento);
                     cargarInformacion();
                     verBotones();
                 }
@@ -42,26 +40,25 @@ namespace JJSS.Presentacion
             }
         }
 
-        private void cargarTabla()
-        {
-            gvResultados.DataSource = resultadosTorneo;
-            gvResultados.DataBind();
-        }
-
         private void cargarInformacion()
         {
             GestorSedes gestorSede = new GestorSedes();
-            SedeDireccion sede = gestorSede.ObtenerDireccionSede((int)torneoSeleccionado.id_sede);
+            SedeDireccion sede = gestorSede.ObtenerDireccionSede((int)eventoSeleccionado.id_sede);
 
-            lbl_nombre_torneo.Text = torneoSeleccionado.nombre;
-            lbl_FechaCierreInscripcion.Text = torneoSeleccionado.fecha_cierre.Value.ToLongDateString();
-            lbl_FechaDeTorneo.Text = torneoSeleccionado.fecha.Value.ToLongDateString();
-            lbl_HoraTorneo.Text = torneoSeleccionado.hora.ToString();
-            lbl_CostoInscripcion.Text = torneoSeleccionado.precio_categoria.ToString();
-            lbl_CostoInscripcionAbsoluto.Text = torneoSeleccionado.precio_absoluto.ToString();
-            lbl_HoraCierreTorneo.Text = torneoSeleccionado.hora_cierre.ToString();
+            lbl_nombre_torneo.Text = eventoSeleccionado.nombre;
+            lbl_FechaCierreInscripcion.Text = eventoSeleccionado.fecha_cierre.Value.ToLongDateString();
+            lbl_FechaDeTorneo.Text = eventoSeleccionado.fecha.Value.ToLongDateString();
+            lbl_HoraTorneo.Text = eventoSeleccionado.hora.ToString();
+            lbl_CostoInscripcion.Text = eventoSeleccionado.precio.ToString();
+            lbl_HoraCierreTorneo.Text = eventoSeleccionado.hora_cierre.ToString();
             lbl_sede.Text = sede.sede;
             lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
+            int idTipo = 0;
+            if (eventoSeleccionado.id_tipo_evento != null)
+            {
+                idTipo = (int)eventoSeleccionado.id_tipo_evento;
+            }
+            lbl_tipo_evento.Text = gestorEventos.buscarTipoEvento(idTipo).nombre;
 
         }
 
@@ -76,7 +73,7 @@ namespace JJSS.Presentacion
 
                 if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                 {
-                    int idEstado = estadoTorneo.id_estado;
+                    int idEstado = estadoEvento.id_estado;
                     if (idEstado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA)
                     {
                         btn_inscribir.Visible = true;
@@ -96,7 +93,7 @@ namespace JJSS.Presentacion
 
                     }
 
-                    int idEstado = estadoTorneo.id_estado;
+                    int idEstado = estadoEvento.id_estado;
 
 
                     int permiso = 0;
@@ -118,10 +115,6 @@ namespace JJSS.Presentacion
                         if (drsAux.Length > 0)
                         {
                             int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
-                        }
-                        if (permiso == 1)
-                        {
-                            btn_cargar_resultados.Visible = true;
                         }
 
 
@@ -215,51 +208,39 @@ namespace JJSS.Presentacion
 
         }
 
-        protected void btn_cargar_resultados_Click(object sender, EventArgs e)
-        {
-            limpiarMensaje();
-            Response.Redirect("CargarResultadosTorneo.aspx");
-        }
-
-        protected void btn_editar_resultados_Click(object sender, EventArgs e)
-        {
-            limpiarMensaje();
-        }
-
         protected void btn_inscribir_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            Session["idTorneo_inscribirTorneo"] = torneoSeleccionado.id_torneo;
-            Response.Redirect("InscripcionTorneo.aspx");
+            Session["eventoSeleccionado"] = eventoSeleccionado.id_evento;
+            Response.Redirect("InscripcionEvento.aspx");
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            string res = gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_CANCELADO);
+            string res = gestorEventos.cancelarEvento(eventoSeleccionado.id_evento, ConstantesEstado.TORNEO_CANCELADO);
             verBotones();
             if (res.CompareTo("") == 0)
             {
-                Session["mensaje"] = "Se ha cancelado el torneo exitosamente";
+                Session["mensaje"] = "Se ha cancelado el evento exitosamente";
                 Session["exito"] = true;
-                Response.Redirect("/Presentacion/Torneos/MenuTorneo.aspx");
+                Response.Redirect("Menu_Evento.aspx");
             }
             else
             {
                 mensaje(res, false);
             }
-
         }
 
         protected void btn_suspender_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            string res = gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_SUSPENDIDO);
+            string res = gestorEventos.cancelarEvento(eventoSeleccionado.id_evento, ConstantesEstado.TORNEO_SUSPENDIDO);
             verBotones();
             if (res.CompareTo("") == 0)
             {
                 verBotones();
-                mensaje("El torneo se suspendió", true);
+                mensaje("El evento se suspendió", true);
             }
             else
             {
@@ -270,8 +251,8 @@ namespace JJSS.Presentacion
         protected void btn_editar_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            Session["idTorneo_editar"] = torneoSeleccionado.id_torneo;
-            Response.Redirect("CrearTorneo.aspx");
+            Session["eventoSeleccionado"] = eventoSeleccionado.id_evento;
+            Response.Redirect("CrearEvento.aspx");
         }
 
         private void volverPaginaAnterior()
@@ -284,29 +265,17 @@ namespace JJSS.Presentacion
         protected void btn_habilitar_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
-            gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
-            gestorTorneos.cambiarEstadoTorneos();
+            gestorEventos.cancelarEvento(eventoSeleccionado.id_evento, ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA);
+            gestorEventos.cambiarEstadoEventos();
             verBotones();
             volverPaginaAnterior();
-        }
-
-        protected void btn_volver_Click(object sender, EventArgs e)
-        {
-            limpiarMensaje();
-            Response.Redirect("/Presentacion/Torneos/MenuTorneo.aspx");
-        }
-
-        protected void gvResultados_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvResultados.PageIndex = e.NewPageIndex;
-            cargarTabla();
         }
 
         protected void btn_imprimir_listado_Click(object sender, EventArgs e)
         {
             try
             {
-                String sFile = gestorTorneos.GenerarListado(torneoSeleccionado.id_torneo);
+                String sFile = gestorEventos.GenerarListado(eventoSeleccionado.id_evento);
 
                 Response.Clear();
                 Response.AddHeader("Content-Type", "Application/octet-stream");
@@ -315,8 +284,14 @@ namespace JJSS.Presentacion
             }
             catch (Exception ex)
             {
-                mensaje("No se encuentran alumnos inscriptos a ese torneo", false);
+                mensaje("No se encuentran alumnos inscriptos a ese evento", false);
             }
+        }
+
+        protected void btn_volver_Click(object sender, EventArgs e)
+        {
+            limpiarMensaje();
+            volverPaginaAnterior();
         }
 
         private void limpiarMensaje()
@@ -342,12 +317,6 @@ namespace JJSS.Presentacion
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
             }
-        }
-
-        protected void btn_volver_Click1(object sender, EventArgs e)
-        {
-            limpiarMensaje();
-            volverPaginaAnterior();
         }
     }
 }

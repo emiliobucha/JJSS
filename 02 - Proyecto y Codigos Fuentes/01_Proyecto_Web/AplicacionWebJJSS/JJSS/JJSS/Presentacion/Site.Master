@@ -113,8 +113,8 @@
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarEvento" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Evento &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item text-white" id="nav_crear_evento" href="/Presentacion/CrearEvento.aspx">Crear </a>
-                              <a class="dropdown-item text-white" id="nav_inscribir_evento" href="/Presentacion/InscripcionEvento.aspx">Inscribir </a>
+                              <a class="dropdown-item text-white" id="nav_crear_evento" href="/Presentacion/Eventos/CrearEvento.aspx">Crear </a>
+                              <a class="dropdown-item text-white" id="nav_inscribir_evento" href="/Presentacion/Eventos/InscripcionEvento.aspx">Inscribir </a>
                           </div>
                       </li>
                       <!-- Administración -->

@@ -17,7 +17,12 @@ namespace JJSS_Negocio.Resultados
         public string nombre { get; set; }
         public DateTime? fecha { get; set; }
         public string hora { get; set; }
-        
+        public decimal? precio { get; set; }
+        public string hora_cierre { get; set; }
+        public DateTime? dtFechaCierre { get; set; }
+        public int? idSede { get; set; }
+        public int? idTipoEvento { get; set; }
+
         public Image imagenI { get; set; }
         public string imagen { get; set; }
 
