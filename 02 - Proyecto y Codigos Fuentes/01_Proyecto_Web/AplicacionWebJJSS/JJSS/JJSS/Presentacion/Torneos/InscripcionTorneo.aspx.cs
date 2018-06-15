@@ -234,15 +234,8 @@ namespace JJSS
                     //Response.Write("<script>window.alert('" + "Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario".Trim() + "');</script>");
                     Mensaje("Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario", true);
                 }
-
-
-
-
-
             }
             else Mensaje(sReturn, false);
-
-
 
         }
 

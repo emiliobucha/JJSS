@@ -27,9 +27,9 @@ namespace JJSS_Entidad
         public Nullable<int> id_absoluto { get; set; }
     
         public virtual categoria_torneo categoria_torneo { get; set; }
+        public virtual categoria_torneo categoria_torneo1 { get; set; }
         public virtual faja faja { get; set; }
         public virtual participante participante { get; set; }
         public virtual torneo torneo { get; set; }
-        public virtual categoria_torneo categoria_torneo1 { get; set; }
     }
 }

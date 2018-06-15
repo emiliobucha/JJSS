@@ -69,7 +69,8 @@ namespace JJSS.Presentacion
                     pnl_dni.Visible = false;
                     CargarComboEventos();
                 }
-
+                CargarComboNacionalidades();
+                CargarComboTipoDocumentos();
 
             }
         }
@@ -85,7 +86,7 @@ namespace JJSS.Presentacion
             txt_apellido.Text = "";
             dp_fecha.Text = "";
             txt_nombre.Text = "";
-           
+
             txt_apellido.ReadOnly = false;
             txt_nombre.ReadOnly = false;
             dp_fecha.ReadOnly = false;
@@ -107,7 +108,7 @@ namespace JJSS.Presentacion
         {
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
-          
+
 
             int idEvento = 0;
             int.TryParse(ddl_evento.SelectedValue, out idEvento);
@@ -145,43 +146,55 @@ namespace JJSS.Presentacion
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             limpiar(false);
-            pnl_Inscripcion.Visible = true;
-            int idEvento;
-            if (eventoSession != null)
+
+            int idTorneo;
+            if (Session["idTorneo_inscribirTorneo"] != null)
             {
-                idEvento = (int)eventoSession;
+                idTorneo = (int)Session["idTorneo_inscribirTorneo"];
 
             }
             else
             {
-                idEvento = int.Parse(ddl_evento.SelectedValue);
+                idTorneo = int.Parse(ddl_evento.SelectedValue);
 
             }
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
-
-
-            participante_evento participanteEncontrado = gestorInscripciones.obtenerParticipanteEvento(int.Parse(txtDni.Text), idEvento);
+            participante_evento participanteEncontrado =
+                gestorInscripciones.obtenerParticipanteEvento(idTipo, txtDni.Text, idTorneo);
 
             //Partipante ya estaba inscripto con ese dni
             if (participanteEncontrado != null)
             {
-                mensaje("Este participante ya está inscripto a este evento", false);
+                Mensaje("Este participante ya está inscripto a este torneo", false);
                 return;
             }
+
+            pnl_Inscripcion.Visible = true;
 
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
             if (alumnoEncontrado != null)
             {
                 //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
+
+
                 txt_apellido.ReadOnly = true;
                 txt_nombre.ReadOnly = true;
-                dp_fecha.ReadOnly = true;
+
                 dp_fecha.Enabled = false;
+
+
+                ddl_nacionalidad.Enabled = false;
 
                 rbSexo.Enabled = false;
 
                 txt_apellido.Text = alumnoEncontrado.apellido;
                 txt_nombre.Text = alumnoEncontrado.nombre;
+
+                ddl_nacionalidad.SelectedValue = alumnoEncontrado.id_tipo_documento != null
+                    ? alumnoEncontrado.id_tipo_documento.ToString()
+                    : "";
 
                 DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
                 /*FECHA SOMEE
@@ -190,12 +203,16 @@ namespace JJSS.Presentacion
                 */
                 //LOCAL
                 dp_fecha.Text = fecha.ToShortDateString();
-                
+
+                // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
+
+
                 if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
                 if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
 
                 idAlumno = alumnoEncontrado.id_alumno;
             }
+
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -213,6 +230,82 @@ namespace JJSS.Presentacion
                 lbl_error.Text = pMensaje;
             }
         }
+
+        protected void btnBuscarDni_Click(object sender, EventArgs e)
+        {
+
+
+            limpiar(false);
+
+            int idEvento;
+            if (eventoSession != null)
+            {
+                idEvento = (int)eventoSession;
+
+            }
+            else
+            {
+                idEvento = int.Parse(ddl_evento.SelectedValue);
+
+            }
+
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+            participante_evento participanteEncontrado =
+                gestorInscripciones.obtenerParticipanteEvento(idTipo, txtDni.Text, idEvento);
+
+            //Partipante ya estaba inscripto con ese dni
+            if (participanteEncontrado != null)
+            {
+                Mensaje("Este participante ya está inscripto a este torneo", false);
+                return;
+            }
+
+            pnl_Inscripcion.Visible = true;
+
+            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
+            if (alumnoEncontrado != null)
+            {
+                //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
+
+
+                txt_apellido.ReadOnly = true;
+                txt_nombre.ReadOnly = true;
+
+                dp_fecha.Enabled = false;
+
+
+                ddl_nacionalidad.Enabled = false;
+
+                rbSexo.Enabled = false;
+
+                txt_apellido.Text = alumnoEncontrado.apellido;
+                txt_nombre.Text = alumnoEncontrado.nombre;
+
+                ddl_nacionalidad.SelectedValue = alumnoEncontrado.id_tipo_documento != null
+                    ? alumnoEncontrado.id_tipo_documento.ToString()
+                    : "";
+
+                DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
+                /*FECHA SOMEE
+                string format = "MM/dd/yyyy";
+                dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
+                */
+                //LOCAL
+                dp_fecha.Text = fecha.ToShortDateString();
+
+                // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
+                
+
+                if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
+                if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
+
+                idAlumno = alumnoEncontrado.id_alumno;
+            }
+
+        }
+
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
@@ -244,8 +337,22 @@ namespace JJSS.Presentacion
             //LOCAL
             DateTime fechaNac = DateTime.Parse(dp_fecha.Text);
 
-            int dni = int.Parse(txtDni.Text);
-            
+            var dni = txtDni.Text;
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+            if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
+            {
+                Mensaje("El documento debe tener sólo números", false);
+                return;
+            }
+
+            int idPais;
+            int.TryParse(ddl_nacionalidad.SelectedValue, out idPais);
+
+
+
+
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO;
             if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
@@ -254,11 +361,11 @@ namespace JJSS.Presentacion
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
             if (alumnoEncontrado != null) idAlumno = alumnoEncontrado.id_alumno;
 
-          
+
 
 
             //para todos
-            string sReturn = gestorInscripciones.InscribirAEvento(idEvento, nombre, apellido, fechaNac.Date, sexo, dni, idAlumno);
+            string sReturn = gestorInscripciones.InscribirAEvento(idEvento, nombre, apellido, fechaNac.Date, sexo, idTipo, dni, idAlumno);
 
 
             if (sReturn.CompareTo("") == 0)
@@ -272,11 +379,11 @@ namespace JJSS.Presentacion
                 //para usuarios
                 Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
 
-                
+
                 try
                 {
                     string mail = sesionActiva.usuario.mail;
-                    string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(dni, idEvento).id_inscripcion, mail);
+                    string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(idTipo,dni, idEvento).id_inscripcion, mail);
 
                     pnl_comprobante.Visible = true;
                     btn_descargar.Attributes.Add("href", "Downloader.ashx?" + "sFile=" + sFile);
@@ -284,7 +391,7 @@ namespace JJSS.Presentacion
                 catch (Exception ex)
                 {
                     mensaje("Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante.Puede fijarse en sus incripciones si es necesario", true);
-                    
+
                 }
 
 
@@ -335,6 +442,62 @@ namespace JJSS.Presentacion
         {
             limpiar(true);
             Response.Redirect("../Presentacion/Inicio.aspx#section_eventos");
+        }
+
+        protected void CargarComboNacionalidades()
+        {
+
+            List<pais> paises = gestorInscripciones.ObtenerNacionalidades();
+            ddl_nacionalidad.DataSource = paises;
+            ddl_nacionalidad.DataTextField = "nombre";
+            ddl_nacionalidad.DataValueField = "id_pais";
+            ddl_nacionalidad.DataBind();
+
+        }
+        protected void CargarComboTipoDocumentos()
+        {
+
+            List<tipo_documento> tiposdoc = gestorInscripciones.ObtenerTiposDocumentos();
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+
+        }
+
+
+        /*Resumen:
+           * Muestra un cuadro de texto en la pantalla
+           * 
+           * Paramétros: 
+           *              pMensaje: el mensaje que se va a mostrar
+           *              pEstado: true si es exito - false si es error
+           **/
+        private void Mensaje(string pMensaje, bool pEstado)
+        {
+            if (pEstado)
+            {
+                //Session["mensaje"] = pMensaje;
+                //Session["exito"] = pEstado;
+                //Response.Redirect("MenuTorneo.aspx");
+                pnl_mensaje_exito.Visible = true;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = pMensaje;
+            }
+            else
+            {
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = true;
+                lbl_error.Text = pMensaje;
+            }
+        }
+
+
+        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
         }
     }
 }
