@@ -44,7 +44,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirAEvento(int pEvento, string pNombre, string pApellido, DateTime pFechaNacimiento, short pSexo, int pDni, int? pIDAlumno)
+        public string InscribirAEvento(int pEvento, string pNombre, string pApellido, DateTime pFechaNacimiento, short pSexo, int pTipo, string pDni, int? pIDAlumno)
         {
 
             String sReturn = "";
@@ -53,69 +53,47 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    //Foraneos
-                    evento_especial eventoInscripto = db.evento_especial.Find(pEvento);
 
-                    int edad = DateTime.Today.AddTicks(-pFechaNacimiento.Ticks).Year - 1;
-
-                    //Nuevos
-
-
-                    if (obtenerParticipanteEvento(pDni, pEvento) != null)
+                    if (obtenerParticipanteEvento(pTipo, pDni, pEvento) != null)
                     {
                         return "Participante exitente";
                     }
 
                     //alumnoExistente = ObtenerAlumnoPorDNI(pDni);
 
-                    participante_evento nuevoParticipante;
-
-                    nuevoParticipante = new participante_evento()
+                    var nuevoParticipante = new participante_evento()
                     {
                         nombre = pNombre,
                         apellido = pApellido,
-                        //peso = pPeso,
-
                         sexo = pSexo,
                         fecha_nacimiento = pFechaNacimiento,
                         dni = pDni,
-                        id_alumno = pIDAlumno
+                        id_alumno = pIDAlumno,
+                        id_tipo_documento = pTipo
 
                     };
                     db.participante_evento.Add(nuevoParticipante);
                     db.SaveChanges();
 
-                    string hora = hora = DateTime.Now.ToString("hh:mm tt");
+                    string hora = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;
+
                     inscripcion_evento nuevaInscripcion = new inscripcion_evento()
                     {
 
                         hora = hora,
                         fecha = fecha,
-
                         id_participante = nuevoParticipante.id_participante,
-                        id_evento = eventoInscripto.id_evento
+                        id_evento = pEvento
 
 
 
                     };
 
-
-
                     db.inscripcion_evento.Add(nuevaInscripcion);
                     db.SaveChanges();
 
-
-                    
                     transaction.Commit();
-
-                    
-                   
-
-                
-
-
-
                     return sReturn;
                 }
                 catch (Exception ex)
@@ -135,13 +113,13 @@ namespace JJSS_Negocio
             return gestorEventos.ObtenerEventos();
         }
 
-        public participante_evento obtenerParticipanteEvento(int pDni, int pIDEvento)
+        public participante_evento obtenerParticipanteEvento(int pTipo, string pDni, int pIDEvento)
         {
             using (var db = new JJSSEntities())
             {
                 participante_evento participante = (from part in db.participante_evento
                                                     join ins in db.inscripcion_evento on part.id_participante equals ins.id_participante
-                                                    where part.dni == pDni && ins.id_evento == pIDEvento
+                                                    where part.dni == pDni && ins.id_evento == pIDEvento && part.id_tipo_documento == pTipo
                                                     select part).FirstOrDefault();
                 return participante;
             }
@@ -159,14 +137,14 @@ namespace JJSS_Negocio
             }
         }
 
-        public inscripcion_evento obtenerInscripcionAEventoPorIdParticipantePorDni(int pDni, int pIdEvento)
+        public inscripcion_evento obtenerInscripcionAEventoPorIdParticipantePorDni(int pTipo, string pDni, int pIdEvento)
         {
             using (var db = new JJSSEntities())
             {
                 inscripcion_evento inscripcion = (from ins in db.inscripcion_evento
-                    join part in db.participante_evento on ins.id_participante equals part.id_participante
-                    where part.dni == pDni && ins.id_evento == pIdEvento
-                    select ins).FirstOrDefault();
+                                                  join part in db.participante_evento on ins.id_participante equals part.id_participante
+                                                  where part.dni == pDni && ins.id_evento == pIdEvento && part.id_tipo_documento == pTipo
+                                                  select ins).FirstOrDefault();
                 return inscripcion;
             }
         }
@@ -220,11 +198,11 @@ namespace JJSS_Negocio
                 }
 
                 string sFile = gestorReportes.GenerarReporteComprInscripcionEvento(participantesList);
-                if (pMail !=null)
+                if (pMail != null)
                 {
                     EnviarMail(sFile, pMail);
                 }
-                
+
                 return sFile;
 
             }
@@ -250,6 +228,38 @@ namespace JJSS_Negocio
          * Aun no aplica
          */
 
+        public List<pais> ObtenerNacionalidades()
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    var list = db.pais.ToList();
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<pais>();
+            }
+        }
+
+        public List<tipo_documento> ObtenerTiposDocumentos()
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+
+                    var list = db.tipo_documento.ToList();
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<tipo_documento>();
+            }
+        }
 
 
 

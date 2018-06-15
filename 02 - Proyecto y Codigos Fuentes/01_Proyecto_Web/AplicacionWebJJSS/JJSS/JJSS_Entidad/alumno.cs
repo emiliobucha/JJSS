@@ -53,13 +53,13 @@ namespace JJSS_Entidad
         public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_clase> pago_clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<participante_evento> participante_evento { get; set; }
         public virtual direccion direccion { get; set; }
         public virtual estado estado { get; set; }
         public virtual pais pais { get; set; }
         public virtual tipo_documento tipo_documento { get; set; }
         public virtual seguridad_usuario seguridad_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<participante_evento> participante_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }
     }

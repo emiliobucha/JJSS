@@ -16,12 +16,12 @@ namespace JJSS_Negocio
          * Retornos: participante
          *          Retorna el participante buscado por DNI
          */
-        public participante_evento ObtenerParticipantePorDNI(int pDni)
+        public participante_evento ObtenerParticipantePorDNI(int pTipo, string pDni)
         {
             using (var db = new JJSSEntities())
             {
                 var participanteEncontrado = from part in db.participante_evento
-                                             where part.dni == pDni
+                                             where part.dni == pDni && part.id_tipo_documento == pTipo
                                        select part;
                 return participanteEncontrado.FirstOrDefault();            
             }
