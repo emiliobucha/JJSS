@@ -7,6 +7,7 @@ using JJSS_Entidad;
 using JJSS_Negocio;
 using System.Data.Entity;
 using JJSS_Negocio.Resultados;
+using System.Globalization;
 
 namespace JJSS_Negocio
 {
@@ -97,7 +98,24 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 //var horario = db.horario.FirstOrDefault(x => x.id_horario == pIdHorario);
-
+                CultureInfo ci = new CultureInfo("Es-Es");
+                string diaSemanaFecha = ci.DateTimeFormat.GetDayName(((DateTime)pFecha).DayOfWeek).ToUpper();
+                List<horario> listaHorarios = (from hor in db.horario
+                                               where hor.id_clase == pIDClase
+                                               select hor).ToList();
+                bool esDiaDeClase = false;
+                foreach (horario h in listaHorarios)
+                {
+                    if (h.nombre_dia.ToUpper().CompareTo(diaSemanaFecha) == 0)
+                    {
+                        esDiaDeClase = true;
+                        break;
+                    }
+                }
+                if (!esDiaDeClase)
+                {
+                    throw new Exception("En el día seleccionado no se da la clase");
+                }
 
                 var participantes = from asis in db.asistencia_clase
                                     where asis.id_clase == pIDClase && DbFunctions.TruncateTime(asis.fecha_hora) == DbFunctions.TruncateTime(pFecha)
@@ -120,6 +138,10 @@ namespace JJSS_Negocio
                                     };
                 List<ListadoAsistencia> asistenciaList = participantes.ToList();
 
+                if (asistenciaList == null || asistenciaList.Count == 0)
+                {
+                    throw new Exception("No hubo asistencias en esta clase");
+                }
 
                 foreach (ListadoAsistencia asistencia in asistenciaList)
                 {

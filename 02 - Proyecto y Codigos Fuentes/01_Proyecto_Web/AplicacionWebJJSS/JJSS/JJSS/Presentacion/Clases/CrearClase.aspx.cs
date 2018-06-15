@@ -53,6 +53,8 @@ namespace JJSS.Presentacion
                 CargarComboUbicacion();
                 cargarDatosClase();
                 CargarComboProfes();
+                txt_horadesde.Text = "00:00";
+                txt_horahasta.Text = "01:00";
             }
         }
 
