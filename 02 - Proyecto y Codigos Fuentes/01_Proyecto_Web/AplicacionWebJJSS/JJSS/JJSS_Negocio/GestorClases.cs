@@ -306,10 +306,6 @@ namespace JJSS_Negocio
 
                         //busca la clase y actualiza el precio y profe
                         clase claseEncontrada = db.clase.Find(pId);
-                        if (validarClaseExistente(claseEncontrada.nombre, (int)claseEncontrada.id_ubicacion))
-                        {
-                            return "Existe una clase con ese mismo nombre en esa academia";
-                        }
                         claseEncontrada.precio = pPrecio;
                         claseEncontrada.id_profe = pProfe;
                         db.SaveChanges();
