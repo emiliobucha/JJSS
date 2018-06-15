@@ -275,5 +275,12 @@ namespace JJSS.Presentacion
             txtDni.Enabled = true;
 
         }
+
+        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
+        }
     }
 }
