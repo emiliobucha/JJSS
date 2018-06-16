@@ -87,8 +87,8 @@
                                     <asp:GridView ID="gvUsuarios" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_usuario" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay usuarios para mostrar" OnRowCommand="gvClases_RowCommand" AllowPaging="True" OnPageIndexChanging="gvClases_PageIndexChanging" PageSize="20">
                                         <Columns>
                                             <%--  <asp:BoundField DataField="id_clase" HeaderText="ID de clase" />--%>
-                                            <asp:BoundField DataField="login" HeaderText="Login" />
-                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                            <asp:BoundField DataField="login" HeaderText="Usuario" />
+                                            <asp:BoundField DataField="nombre" HeaderText="Nombre y Apellido" />
                                             <asp:BoundField DataField="grupo_nombre" HeaderText="Grupo" />
                                             <asp:BoundField DataField="mail" HeaderText="Mail" />
                                             <asp:ButtonField CommandName="permisos" Text="Editar Permisos" HeaderText="Editar Permisos" ItemStyle-ForeColor="#007bff" />
