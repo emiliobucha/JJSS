@@ -125,5 +125,15 @@ namespace JJSS.Presentacion
         {
             cargarClasesView();
         }
+
+        protected void lv_clasesDisponibles_invitado_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName.CompareTo("ver") == 0)
+            {
+                Session["clase"] = id;
+                Response.Redirect("VerClase.aspx");
+            }
+        }
     }
 }

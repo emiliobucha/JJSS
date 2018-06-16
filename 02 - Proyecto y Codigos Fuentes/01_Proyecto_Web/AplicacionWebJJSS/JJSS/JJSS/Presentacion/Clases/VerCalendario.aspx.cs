@@ -170,10 +170,18 @@ namespace JJSS.Presentacion.Clases
 
         protected void RadScheduler1_AppointmentDataBound(object sender, SchedulerEventArgs e)
         {
-            string valorHexa = "#" + string.Format("{0:X}", Convert.ToInt32(e.Appointment.ID) * 1000);
+            try
+            {
+                string valorHexa = "#" + string.Format("{0:X}", Convert.ToInt32(e.Appointment.ID) * 1000);
+                Color color = ColorTranslator.FromHtml(valorHexa);
+                e.Appointment.BackColor = Color.FromArgb(color.ToArgb());
+            }
+            catch (Exception ex)
+            {
 
-            Color color = ColorTranslator.FromHtml(valorHexa);
-            e.Appointment.BackColor = Color.FromArgb(color.ToArgb());
+            }
+
+
         }
 
         protected void btn_buscar_Click(object sender, EventArgs e)

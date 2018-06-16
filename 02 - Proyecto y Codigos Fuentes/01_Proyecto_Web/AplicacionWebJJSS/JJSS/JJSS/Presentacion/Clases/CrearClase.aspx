@@ -173,7 +173,7 @@
                         <label class=" text-right centered">Hora Desde:</label>
                     </div>
                     <div class="col col-auto  p-1">
-                        <asp:TextBox ID="txt_horadesde" runat="server" required="true" type="time" CssClass="caja2"></asp:TextBox>
+                        <asp:TextBox ID="txt_horadesde" runat="server" required="true" type="time" CssClass="caja2" Text="00:00"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="regex_horadesde" runat="server" ControlToValidate="txt_horadesde" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"> </asp:RegularExpressionValidator>
                     </div>
 
@@ -184,7 +184,7 @@
                         <label class=" text-right centered">Hora Hasta:</label>
                     </div>
                     <div class=" col col-auto  p-1">
-                        <asp:TextBox ID="txt_horahasta" type="time" required="true" runat="server" CssClass="caja2"></asp:TextBox>
+                        <asp:TextBox ID="txt_horahasta" type="time" required="true" runat="server" CssClass="caja2" Text="01:00"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="regex_horahasta" runat="server" ControlToValidate="txt_horahasta" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"> </asp:RegularExpressionValidator>
                         <asp:CompareValidator ID="cmp_hora" ControlToValidate="txt_horadesde" ControlToCompare="txt_horahasta" CssClass="text-danger" Display="Dynamic" runat="server" ErrorMessage="La hora desde debe ser menor que la hora hasta" SetFocusOnError="true" Operator="LessThan"></asp:CompareValidator>
                     </div>

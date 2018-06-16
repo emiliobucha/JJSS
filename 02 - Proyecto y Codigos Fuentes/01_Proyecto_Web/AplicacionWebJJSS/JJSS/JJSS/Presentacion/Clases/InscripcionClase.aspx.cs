@@ -349,7 +349,6 @@ namespace JJSS.Presentacion
             string phora = pfecha.ToShortTimeString();
             int idFaja = 0;
             int.TryParse(ddl_fajas.SelectedValue.ToString(), out idFaja);
-            id_Clase = int.Parse(Session["id_clase"].ToString());
             try
             {
                 string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, id_Clase, phora, pfecha, idFaja);

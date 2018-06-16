@@ -10,106 +10,79 @@
 namespace JJSS.Presentacion.Clases {
     
     
-    public partial class VerListadoAsistencia {
+    public partial class VerClase {
         
         /// <summary>
-        /// Control pnl_mensaje_exito.
+        /// Control formRegAlumno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_mensaje_exito;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formRegAlumno;
         
         /// <summary>
-        /// Control lbl_exito.
+        /// Control pnl_datos_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_exito;
+        protected global::System.Web.UI.WebControls.Panel pnl_datos_clase;
         
         /// <summary>
-        /// Control pnl_mensaje_error.
+        /// Control lbl_nombre_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_mensaje_error;
+        protected global::System.Web.UI.WebControls.Label lbl_nombre_clase;
         
         /// <summary>
-        /// Control lbl_error.
+        /// Control lbl_tipo_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_error;
+        protected global::System.Web.UI.WebControls.Label lbl_tipo_clase;
         
         /// <summary>
-        /// Control ddl_clases.
+        /// Control lbl_ubicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_clases;
+        protected global::System.Web.UI.WebControls.Label lbl_ubicacion;
         
         /// <summary>
-        /// Control dp_fecha.
+        /// Control lbl_profesor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dp_fecha;
+        protected global::System.Web.UI.WebControls.Label lbl_profesor;
         
         /// <summary>
-        /// Control btn_buscar.
+        /// Control lbl_precio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_buscar;
+        protected global::System.Web.UI.WebControls.Label lbl_precio;
         
         /// <summary>
-        /// Control lbl_datos_clase.
+        /// Control dg_horarios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_datos_clase;
-        
-        /// <summary>
-        /// Control lbl_hora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_hora;
-        
-        /// <summary>
-        /// Control gv_asistencia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_asistencia;
-        
-        /// <summary>
-        /// Control btn_imprimir.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_imprimir;
+        protected global::System.Web.UI.WebControls.GridView dg_horarios;
         
         /// <summary>
         /// Control lnk_volver.

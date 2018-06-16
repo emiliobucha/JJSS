@@ -38,6 +38,10 @@ namespace JJSS_Negocio
         public String GenerarNuevaClase(int pTipo, double pPrecio, DataTable pHorarios, string pNombre, int pUbicacion, int pProfe)
         {
             String sReturn = "";
+            if (validarClaseExistente(pNombre, pUbicacion))
+            {
+                return "Existe una clase con ese mismo nombre en esa academia";
+            }
             try
             {
                 using (var db = new JJSSEntities())
@@ -92,6 +96,19 @@ namespace JJSS_Negocio
             {
                 return ex.Message;
             }
+        }
+
+        private Boolean validarClaseExistente(string nombreClase, int idAcademia)
+        {
+            clase claseExistente = null;
+            using (var db = new JJSSEntities())
+            {
+                claseExistente = (from cl in db.clase
+                                       where cl.nombre.Equals(nombreClase, StringComparison.OrdinalIgnoreCase)
+                                       && cl.id_ubicacion == idAcademia && cl.baja_logica == Constantes.ConstatesBajaLogica.BAJA_LOGICA
+                                       select cl).FirstOrDefault();
+            }
+            return claseExistente!=null;
         }
 
 
