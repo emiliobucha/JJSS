@@ -183,7 +183,7 @@ namespace JJSS
             if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
 
             //para alumnos
-            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
+            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(idTipo, txtDni.Text);
             if (alumnoEncontrado != null) idAlumno = alumnoEncontrado.id_alumno;
 
             //para todos
@@ -383,7 +383,7 @@ namespace JJSS
 
                 pnl_Inscripcion.Visible = true;
 
-                alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
+                alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(idTipo, txtDni.Text);
                 if (alumnoEncontrado != null)
                 {
                     //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
