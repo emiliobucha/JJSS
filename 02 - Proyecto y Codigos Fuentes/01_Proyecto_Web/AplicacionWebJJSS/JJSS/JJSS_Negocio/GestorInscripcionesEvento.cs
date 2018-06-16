@@ -17,11 +17,11 @@ namespace JJSS_Negocio
          * Parámetros:
          *              pDni: entero que representa el dni a buscar
          */
-        public alumno ObtenerAlumnoPorDNI(string pDni)
+        public alumno ObtenerAlumnoPorDNI(int pTipo, string pDni)
         {
             GestorAlumnos gestorAlumnos = new GestorAlumnos();
 
-            return gestorAlumnos.ObtenerAlumnoPorDNI(pDni);
+            return gestorAlumnos.ObtenerAlumnoPorDNI(pTipo,pDni);
         }
 
         /*Método que permite crear un objeto de Entidad de la clase Inscripción
