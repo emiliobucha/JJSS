@@ -25,13 +25,31 @@ namespace JJSS_Negocio
          * Retornos:
          *              Alumno encontrado, o si no estaba devuelve null
          */
+        public alumno ObtenerAlumnoPorDNI(int pTipo, string pDni)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var alumnoEncontrado = from alu in db.alumno
+                                       where alu.dni == pDni && alu.baja_logica == 1 && alu.id_tipo_documento == pTipo
+                                       select alu;
+                return alumnoEncontrado.FirstOrDefault();
+            }
+        }
+
+        /*
+   * Método que nos permite obtener a un alumno buscandolo por DNI
+   * Parámetros:
+   *              pDni:entero que indica el dni del alumno a buscar
+   * Retornos:
+   *              Alumno encontrado, o si no estaba devuelve null
+   */
         public alumno ObtenerAlumnoPorDNI(string pDni)
         {
             using (var db = new JJSSEntities())
             {
                 var alumnoEncontrado = from alu in db.alumno
-                                       where alu.dni == pDni && alu.baja_logica == 1
-                                       select alu;
+                    where alu.dni == pDni && alu.baja_logica == 1
+                    select alu;
                 return alumnoEncontrado.FirstOrDefault();
             }
         }
