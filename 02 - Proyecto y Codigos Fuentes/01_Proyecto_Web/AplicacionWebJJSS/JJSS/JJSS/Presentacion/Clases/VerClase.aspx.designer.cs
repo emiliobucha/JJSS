@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace JJSS.Presentacion.Administracion {
+namespace JJSS.Presentacion.Clases {
     
     
-    public partial class AdministrarAlumnos {
+    public partial class VerClase {
         
         /// <summary>
         /// Control formRegAlumno.
@@ -22,93 +22,75 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.HtmlControls.HtmlForm formRegAlumno;
         
         /// <summary>
-        /// Control pnl_mensaje_exito.
+        /// Control pnl_datos_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_mensaje_exito;
+        protected global::System.Web.UI.WebControls.Panel pnl_datos_clase;
         
         /// <summary>
-        /// Control lbl_exito.
+        /// Control lbl_nombre_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_exito;
+        protected global::System.Web.UI.WebControls.Label lbl_nombre_clase;
         
         /// <summary>
-        /// Control pnl_mensaje_error.
+        /// Control lbl_tipo_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_mensaje_error;
+        protected global::System.Web.UI.WebControls.Label lbl_tipo_clase;
         
         /// <summary>
-        /// Control lbl_error.
+        /// Control lbl_ubicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_error;
+        protected global::System.Web.UI.WebControls.Label lbl_ubicacion;
         
         /// <summary>
-        /// Control pnl_mostrar_alumnos.
+        /// Control lbl_profesor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_mostrar_alumnos;
+        protected global::System.Web.UI.WebControls.Label lbl_profesor;
         
         /// <summary>
-        /// Control txt_filtro_dni.
+        /// Control lbl_precio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_filtro_dni;
+        protected global::System.Web.UI.WebControls.Label lbl_precio;
         
         /// <summary>
-        /// Control txt_filtro_apellido.
+        /// Control dg_horarios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
+        protected global::System.Web.UI.WebControls.GridView dg_horarios;
         
         /// <summary>
-        /// Control ddl_filtro_estado.
+        /// Control lnk_volver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_filtro_estado;
-        
-        /// <summary>
-        /// Control btn_buscar_alumno.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_buscar_alumno;
-        
-        /// <summary>
-        /// Control gvAlumnos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAlumnos;
+        protected global::System.Web.UI.WebControls.HyperLink lnk_volver;
     }
 }

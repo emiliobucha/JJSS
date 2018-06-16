@@ -262,6 +262,9 @@ namespace JJSS.Presentacion
                         estado = true;
                         sReturn = "La clase se ha creado exitosamente";
                         limpiar();
+                        Session["mensaje"] = sReturn;
+                        Session["exito"] = true;
+                        Response.Redirect("Menu_Clase.aspx");
                     }
                 }
             }

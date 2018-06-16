@@ -23,6 +23,7 @@ namespace JJSS.Presentacion.Administracion
 
             if (!IsPostBack)
             {
+                CargarCheckboxEstados();
                 CargarGrilla();
             }
         }
@@ -84,37 +85,20 @@ namespace JJSS.Presentacion.Administracion
         protected void CargarCheckboxEstados()
         {
             List<estado> estados = gestorEstados.obtenerEstados("ALUMNOS");
-            chFiltroEstado.DataSource = estados;
-            chFiltroEstado.DataTextField = "nombre";
-            chFiltroEstado.DataValueField = "id_estado";
-            chFiltroEstado.DataBind();
+            ddl_filtro_estado.DataSource = estados;
+            ddl_filtro_estado.DataTextField = "nombre";
+            ddl_filtro_estado.DataValueField = "id_estado";
+            ddl_filtro_estado.DataBind();
         }
 
         protected void CargarGrilla()
         {
             var filtroDni = "";
             if (!string.IsNullOrEmpty(txt_filtro_dni.Text)) filtroDni = txt_filtro_dni.Text;
-            int[] filtroEstados = new int[5];
+            //int[] filtroEstados = new int[5];
 
-            for (int i = 0; i < chFiltroEstado.Items.Count; i++)
-            {
-                if (chFiltroEstado.Items[i].Selected)
-                {
-                    filtroEstados[i] = int.Parse(chFiltroEstado.Items[i].Value);
-                }
-                else filtroEstados[i] = 0;
-            }
-
-            Boolean sinFiltro = true;
-            foreach (int i in filtroEstados)
-            {
-                if (i != 0)
-                {
-                    sinFiltro = false;
-                    break;
-                }
-            }
-            if (sinFiltro) filtroEstados[0] = 8;
+            int filtroEstados = 8;
+            int.TryParse(ddl_filtro_estado.SelectedValue, out filtroEstados);
 
             List<AlumnoConEstado> listaCompleta = gestorAlumnos.BuscarAlumnoConEstado(filtroEstados, txt_filtro_apellido.Text, filtroDni);
 
