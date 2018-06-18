@@ -436,6 +436,7 @@ namespace JJSS.Presentacion
                 Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                 sesionActiva.usuario.nombre = nombre + " " + apellido;
                 HttpContext.Current.Session["SEGURIDAD_SESION"] = sesionActiva;
+                Response.Redirect(Request.RawUrl);
             }
             catch (Exception ex)
             {
@@ -448,6 +449,7 @@ namespace JJSS.Presentacion
                         Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                         sesionActiva.usuario.nombre = nombre + " " + apellido;
                         HttpContext.Current.Session["SEGURIDAD_SESION"] = sesionActiva;
+                        Response.Redirect(Request.RawUrl);
                     }
                     catch (Exception exx)
                     {
