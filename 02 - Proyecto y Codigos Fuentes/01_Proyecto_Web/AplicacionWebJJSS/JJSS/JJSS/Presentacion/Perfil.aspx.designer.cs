@@ -571,12 +571,12 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Button btn_cambiar_foto;
         
         /// <summary>
-        /// Control btn_Cancelar.
+        /// Control a.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
+        protected global::System.Web.UI.WebControls.LinkButton a;
     }
 }

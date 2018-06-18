@@ -92,7 +92,7 @@ namespace JJSS_Negocio
                             db.SaveChanges();
                         }
                         alumno alumnoInscribir = db.alumno.Find(pAlumno.id_alumno);
-                        alumnoInscribir.id_estado = Constantes.ConstantesEstado.ALUMNOS_ACTIVO;
+                        gestorAlumnos.cambiarEstadoAActivo(alumnoInscribir.id_alumno);
                         
                         db.SaveChanges();
 
