@@ -116,8 +116,12 @@
             <div class="row centered">
                 <p>&nbsp;</p>
             </div>
-            <div class="row centered">
-                <asp:Button ID="btn_cancelar" runat="server" Text="Volver" CssClass="btn btn-link" formnovalidate="true" OnClick="btn_cancelar_Click" CausesValidation="false" />
+            <div class="container p-1">
+                <div class="row centered">
+                    <div class="col col-auto">
+                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Clase.aspx"></asp:HyperLink>
+                    </div>
+                </div>
             </div>
         </div>
 

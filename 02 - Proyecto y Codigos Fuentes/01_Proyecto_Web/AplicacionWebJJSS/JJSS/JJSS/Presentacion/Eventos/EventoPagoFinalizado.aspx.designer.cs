@@ -148,12 +148,12 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_monto;
         
         /// <summary>
-        /// Control btn_volver.
+        /// Control lnk_volver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_volver;
+        protected global::System.Web.UI.WebControls.HyperLink lnk_volver;
     }
 }

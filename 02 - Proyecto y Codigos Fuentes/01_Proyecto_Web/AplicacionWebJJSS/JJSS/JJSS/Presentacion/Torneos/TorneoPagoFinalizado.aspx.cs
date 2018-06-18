@@ -58,7 +58,7 @@ namespace JJSS.Presentacion
                 //    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 //}
-                if (Session["TorneoPagar"] == null || Session["TorneoPagar"].ToString() == "") Response.Redirect("Inicio.aspx");
+                if (Session["TorneoPagar"] == null || Session["TorneoPagar"].ToString() == "") Response.Redirect("InscripcionTorneo.aspx");
 
 
 

@@ -58,5 +58,13 @@
 
             </telerik:RadScheduler>
         </div>
+
+        <div class="container p-1">
+                <div class="row centered">
+                    <div class="col col-auto">
+                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Clase.aspx"></asp:HyperLink>
+                    </div>
+                </div>
+            </div>
     </form>
 </asp:Content>

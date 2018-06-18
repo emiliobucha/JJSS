@@ -123,9 +123,11 @@
             </asp:Panel>
 
             <!-- BOTONES-->
-            <div class="row centered justify-content-center p-1">
-                <div class="col col-auto">
-                    <asp:Button ID="btn_volver" CssClass="btn btn-outline-dark" runat="server" Text="Volver" CausesValidation="false" OnClick="btn_volver_Click" />
+            <div class="container p-1">
+                <div class="row centered">
+                    <div class="col col-auto">
+                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="MenuTorneo.aspx"></asp:HyperLink>
+                    </div>
                 </div>
             </div>
 
