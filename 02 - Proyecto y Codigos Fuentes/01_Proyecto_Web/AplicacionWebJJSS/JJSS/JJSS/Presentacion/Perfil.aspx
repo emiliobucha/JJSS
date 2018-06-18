@@ -101,8 +101,19 @@
 
                             <!-- DNI-->
                             <div class="row p-1  pl-lg-5 pl-md-5">
+                                
+                                <div class="col-md-2 col-xl-auto">
+                                    <label class="pull-left">Tipo: <a class="text-danger">*</a></label>
+                                </div>
+                                <div class="col-md-3 col-xl-auto">
+                                    <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Tipo Documento" ValidationGroup="grupoDni"></asp:DropDownList>
+
+                                </div>
+                                        
+
+
                                 <div class="col-lg-2 col-md-2 col-sm-12  text-left">
-                                    <label class="text-left">DNI </label>
+                                    <label class="text-left">Número </label>
                                 </div>
                                 <div class="col col-lg-3 col-md-3 col-sm-12">
                                     <asp:TextBox ID="txt_dni" runat="server" CssClass="caja2" Enabled="false"></asp:TextBox>

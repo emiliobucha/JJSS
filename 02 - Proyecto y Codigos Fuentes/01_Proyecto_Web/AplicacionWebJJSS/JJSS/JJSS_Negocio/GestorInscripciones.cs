@@ -338,6 +338,20 @@ namespace JJSS_Negocio
             return gestorAlumnos.ObtenerAlumnoPorDNI(pDni);
         }
 
+
+        /*
+         * Método que busca un alumno por DNI, permite bajar el acoplamiente delegando la tarea a su gestor correspondiente
+         * Parámetros:
+         *              pDni: entero que representa el dni a buscar
+         */
+        public alumno ObtenerAlumnoPorDNITipo(int pTipo, string pDni)
+        {
+            GestorAlumnos gestorAlumnos = new GestorAlumnos();
+
+            return gestorAlumnos.ObtenerAlumnoPorDNITipo(pTipo,pDni);
+        }
+
+
         /*
          * Método que busca un participante por DNI, permite bajar el acoplamiente delegando la tarea a su gestor correspondiente
          * Parámetros:

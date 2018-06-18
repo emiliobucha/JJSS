@@ -94,6 +94,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_apellido;
         
         /// <summary>
+        /// Control ddl_tipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo;
+        
+        /// <summary>
         /// Control txtDni.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dp_fecha;
+        
+        /// <summary>
+        /// Control ddl_nacionalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_nacionalidad;
         
         /// <summary>
         /// Control rbSexo.

@@ -383,7 +383,7 @@ namespace JJSS
 
                 pnl_Inscripcion.Visible = true;
 
-                alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
+                alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNITipo(idTipo, txtDni.Text);
                 if (alumnoEncontrado != null)
                 {
                     //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes

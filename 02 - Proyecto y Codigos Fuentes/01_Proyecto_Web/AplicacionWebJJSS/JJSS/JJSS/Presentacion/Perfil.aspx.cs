@@ -22,6 +22,8 @@ namespace JJSS.Presentacion
         private GestorProfesores gestorProfe;
         private GestorProvincias gestorProvincias;
         private GestorCiudades gestorCiudades;
+        private GestorTipoDocumento gestorTipoDocumento;
+        private GestorAdministradores gestorAdmin;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,6 +32,8 @@ namespace JJSS.Presentacion
             gestorProfe = new GestorProfesores();
             gestorProvincias = new GestorProvincias();
             gestorCiudades = new GestorCiudades();
+            gestorTipoDocumento = new GestorTipoDocumento();
+            gestorAdmin = new GestorAdministradores();
 
             if (!IsPostBack)
             {
@@ -41,6 +45,7 @@ namespace JJSS.Presentacion
 
                     MultiView1.SetActiveView(view_datos_personales);
                     CargarComboProvincias();
+                    CargarComboTipoDocumento();
                     CargarDatos();
                     //CargarComboCiudades(1);
 
@@ -74,27 +79,64 @@ namespace JJSS.Presentacion
         protected void CargarDatos()
         {
             GestorSesiones gestorSesion = new GestorSesiones();
-            seguridad_usuario alumnoActual = gestorSesion.getActual().usuario;
-            if (alumnoActual == null) mensaje("No está logueado", false);
+            seguridad_usuario usuarioActual = gestorSesion.getActual().usuario;
+            if (usuarioActual == null) mensaje("No está logueado", false);
             else
             {
 
 
-                int id_usuario = alumnoActual.id_usuario;
-
-
-                alumno alumnoEncontrado = gestorAlumnos.ObtenerAlumnoPorIdUsuario(id_usuario);
+                alumno alumnoEncontrado = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuarioActual.id_usuario);
                 if (alumnoEncontrado == null) //es un profe
                 {
-                    profesor profeEncontrado = gestorProfe.ObtenerProfesorPorIdUsuario(id_usuario);
+                    profesor profeEncontrado = gestorProfe.ObtenerProfesorPorIdUsuario(usuarioActual.id_usuario);
                     if (profeEncontrado == null)
-                        mensaje("No se encontró el usuario o es admin", false); //no existe o es admin
+                    {
+                        administrador administrador = gestorAdmin.ObtenerAdminPorIdUsuario(usuarioActual.id_usuario);
+                        if (administrador == null)
+                        {
+                            mensaje("No se encontró el usuario", false); //no existe o es bloqueado
+                        }
+                        else
+                        {
+                            txt_dni.Text = administrador.dni;
+                            ddl_tipo.SelectedValue = administrador.id_tipo_documento.ToString();
+                            txt_nombre.Text = administrador.nombre;
+                            txt_apellido.Text = administrador.apellido;
+                            txt_email.Text = administrador.mail;
+                            txt_telefono.Text = administrador.telefono.ToString();
+                            txt_telefono_urgencia.Text = administrador.telefono_emergencia.ToString();
+
+                            DireccionAlumno direccionEncontrada = gestorAdmin.ObtenerDireccionAdmin(administrador.id_admin);
+                            if (direccionEncontrada != null)
+                            {
+                                txt_calle.Text = direccionEncontrada.calle;
+                                txt_nro_dpto.Text = direccionEncontrada.depto;
+                                txt_numero.Text = direccionEncontrada.numero.ToString();
+                                txt_piso.Text = direccionEncontrada.piso.ToString();
+                                ddl_provincia.SelectedValue = direccionEncontrada.idProvincia.ToString();
+                                CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
+                                ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
+                                txt_torre.Text = direccionEncontrada.torre;
+
+                            }
+                            var img = gestorAdmin.ObtenerImagenPerfil(administrador.id_admin);
+                            if (img != null)
+                            {
+                                Avatar.ImageUrl = img.imagen_url;
+                            }
+                        }
+
+                    }
+
+
+
                     else
                     {
                         DataTable direccionEncontrada =
                             gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
 
-                        txt_dni.Text = profeEncontrado.dni.ToString();
+                        txt_dni.Text = profeEncontrado.dni;
+                        ddl_tipo.SelectedValue = profeEncontrado.id_tipo_documento.ToString();
                         txt_nombre.Text = profeEncontrado.nombre;
                         txt_apellido.Text = profeEncontrado.apellido;
                         txt_email.Text = profeEncontrado.mail;
@@ -116,7 +158,7 @@ namespace JJSS.Presentacion
                         var img = gestorProfe.ObtenerImagenPerfil(profeEncontrado.id_profesor);
                         if (img != null)
                         {
-                            Avatar.ImageUrl = img.imagen_url;   
+                            Avatar.ImageUrl = img.imagen_url;
                         }
                     }
 
@@ -126,9 +168,10 @@ namespace JJSS.Presentacion
 
                 else
                 {
-                   
+
 
                     txt_dni.Text = alumnoEncontrado.dni.ToString();
+                    ddl_tipo.SelectedValue = alumnoEncontrado.id_tipo_documento.ToString();
                     txt_nombre.Text = alumnoEncontrado.nombre;
                     txt_apellido.Text = alumnoEncontrado.apellido;
                     txt_email.Text = alumnoEncontrado.mail;
@@ -158,7 +201,7 @@ namespace JJSS.Presentacion
 
                 }
 
-                txt_usuario.Text = alumnoActual.login;
+                txt_usuario.Text = usuarioActual.login;
             }
         }
 
@@ -241,10 +284,21 @@ namespace JJSS.Presentacion
             int idCiudad = int.Parse(ddl_localidad.SelectedValue);
 
 
+
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+            if (!modValidaciones.validarFormatoDocumento(txt_dni.Text, idTipo))
+            {
+                mensaje("El documento debe tener sólo números", false);
+                return;
+            }
+
+
             //modifica los datos
             try
             {
-                gestorAlumnos.ModificarAlumno(calle, departamento, numero, piso, tel, telUrg, mail, txt_dni.Text, idCiudad, torre);
+                gestorAlumnos.ModificarAlumnoContacto(calle, departamento, numero, piso, tel, telUrg, mail, idTipo, txt_dni.Text, idCiudad, torre);
                 mensaje("Se modificaron los datos correctamente", true);
             }
             catch (Exception ex)
@@ -254,11 +308,28 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesor(calle, departamento, numero, piso, tel, telUrg, mail, txt_dni.Text, idCiudad, torre);
+                        gestorProfe.ModificarProfesorContacto(calle, departamento, numero, piso, tel, telUrg, mail, idTipo, txt_dni.Text, idCiudad, torre);
                         mensaje("Se modificaron los datos correctamente", true);
                     }
                     catch (Exception exx)
                     {
+
+                        if (exx.Message.CompareTo("El usuario no existe") == 0)
+
+                        {
+                            try
+                            {
+                                gestorAdmin.ModificarAdminContacto(calle, departamento, numero, piso, tel, telUrg, mail, idTipo, txt_dni.Text, idCiudad, torre);
+                                mensaje("Se modificaron los datos correctamente", true);
+                            }
+                            catch (Exception exxx)
+                            {
+                                mensaje(exxx.Message, false);
+                            }
+                        }
+                        else mensaje(ex.Message, false);
+
+
                         mensaje(exx.Message, false);
                     }
                 }
@@ -292,7 +363,8 @@ namespace JJSS.Presentacion
                 imagen.CopyTo(ms);
                 imagenByte = ms.ToArray();
             }
-
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
             try
             {
@@ -313,7 +385,21 @@ namespace JJSS.Presentacion
                     }
                     catch (Exception exx)
                     {
-                        mensaje(exx.Message, false);
+                        if (string.Compare(exx.Message, "El usuario no existe", StringComparison.Ordinal) == 0)
+
+                        {
+                            try
+                            {
+                                gestorAdmin.CambiarFotoPerfil(idTipo, txt_dni.Text, imagenByte);
+                                mensaje("Se modificaron los datos correctamente", true);
+                                CargarDatos();
+                            }
+                            catch (Exception exxx)
+                            {
+                                mensaje(exxx.Message, false);
+                            }
+                        }
+                        else mensaje(exx.Message, false);
                     }
                 }
                 else mensaje(ex.Message, false);
@@ -330,28 +416,48 @@ namespace JJSS.Presentacion
             string usuario = txt_usuario.Text;
             var dni = txt_dni.Text;
 
-            //+ NO ESTA CONTEMPLADO SI ES ADMIN...
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+            if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
+            {
+                mensaje("El documento debe tener sólo números", false);
+                return;
+            }
+
 
             //modifica los datos
             try
             {
 
-                gestorAlumnos.ModificarAlumno(dni, nombre, apellido, null, null, usuario);
+                //Modificar
+                gestorAlumnos.ModificarAlumno(idTipo, dni, nombre, apellido, null, null, usuario, null);
                 mensaje("Se modificaron los datos correctamente", true);
             }
             catch (Exception ex)
             {
-                if (ex.Message.CompareTo("El usuario no existe") == 0)
-
+                if (string.Compare(ex.Message, "El usuario no existe", StringComparison.Ordinal) == 0)
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesor(dni, nombre, apellido, usuario);
+                        gestorProfe.ModificarProfesor(idTipo, dni, nombre, apellido, usuario, null);
                         mensaje("Se modificaron los datos correctamente", true);
                     }
                     catch (Exception exx)
                     {
-                        mensaje(exx.Message, false);
+                        if (string.Compare(ex.Message, "El usuario no existe", StringComparison.Ordinal) == 0)
+                        {
+                            try
+                            {
+                                gestorAdmin.ModificarAdmin(idTipo, dni, nombre, apellido, null, null, usuario, null);
+                                mensaje("Se modificaron los datos correctamente", true);
+                            }
+                            catch (Exception exxx)
+                            {
+                                mensaje(exxx.Message, false);
+                            }
+                        }
+                        else mensaje(exx.Message, false);
                     }
                 }
                 else mensaje(ex.Message, false);
@@ -391,6 +497,16 @@ namespace JJSS.Presentacion
         protected void ddl_provincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
+        }
+        protected void CargarComboTipoDocumento()
+        {
+
+            List<tipo_documento> tiposdoc = gestorTipoDocumento.ObtenerTiposDocumentos();
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+
         }
     }
 }

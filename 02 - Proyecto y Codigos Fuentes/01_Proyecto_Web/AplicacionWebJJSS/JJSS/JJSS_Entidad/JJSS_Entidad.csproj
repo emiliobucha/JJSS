@@ -92,6 +92,12 @@
     <Compile Include="academia.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="administrador.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="administrador_imagen.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="alumno.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>

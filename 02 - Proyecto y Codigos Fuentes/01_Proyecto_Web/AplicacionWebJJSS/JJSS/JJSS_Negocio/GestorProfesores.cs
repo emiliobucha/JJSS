@@ -34,6 +34,25 @@ namespace JJSS_Negocio
         }
 
 
+        /*
+         * Método que nos permite obtener a un profesor buscandolo por DNI
+         * Parámetros:
+         *              pDni:entero que indica el dni del profesor a buscar
+         * Retornos:
+         *              profesor encontrado, o si no estaba devuelve null
+         */
+        public profesor ObtenerProfesorPorDNITipo(int pTipo, string pDni)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var profeEncontrado = from profe in db.profesor
+                    where profe.dni == pDni && profe.id_tipo_documento == pTipo
+                    select profe;
+                return profeEncontrado.FirstOrDefault();
+            }
+        }
+
+
         /*Método que permite crear un nuevo profe
          * Valida si el profe ya fue creado comparando por DNI
          * 
@@ -57,7 +76,7 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarProfesor(string pNombre, string pApellido, DateTime? pFechaNacimiento, 
-            short? pSexo, string pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
+            short? pSexo,int pTipo, string pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
             string pCalle, int? pNumero, string pDpto, int? pPiso, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
@@ -78,7 +97,7 @@ namespace JJSS_Negocio
                     seguridad_usuario usuario = db.seguridad_usuario.Find(idUsuario);
 
                     
-                    if (ObtenerProfesorPorDNI(pDni) != null)
+                    if (ObtenerProfesorPorDNITipo(pTipo,pDni) != null)
                     {
                         return "Profesor existente";
                     }
@@ -115,7 +134,9 @@ namespace JJSS_Negocio
                             direccion = nuevaDireccion,
                             fecha_ingreso = DateTime.Today,
                             telefono_emergencia = pTelEmergencia,
-                            seguridad_usuario = usuario
+                            seguridad_usuario = usuario,
+                            id_tipo_documento = pTipo
+                           
                         };
                     }
                     else //no ingresa direccion
@@ -131,7 +152,8 @@ namespace JJSS_Negocio
                             mail = pMail,
                             fecha_ingreso = DateTime.Today,
                             telefono_emergencia = pTelEmergencia,
-                            seguridad_usuario = usuario
+                            seguridad_usuario = usuario,
+                            id_tipo_documento = pTipo
                         };
                     }
 
@@ -240,7 +262,7 @@ namespace JJSS_Negocio
          *              ex.Message : Mensaje de error provocado por una excepción
          * 
          */
-        public string ModificarProfesor(string pDni, string pNombre, string pApellido, string pUsuario)
+        public string ModificarProfesor(int pTipo, string pDni, string pNombre, string pApellido, string pUsuario, int? pPais)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -254,6 +276,8 @@ namespace JJSS_Negocio
                     if (profesorModificar == null) throw new Exception("El usuario no existe");
                     profesorModificar.apellido = pApellido;
                     profesorModificar.nombre = pNombre;
+                    if (pPais != null)
+                        profesorModificar.id_pais = pPais;
                     db.SaveChanges();
 
                     var usuarioEncontrado =
@@ -298,7 +322,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el profesor
          * 
          */
-        public string ModificarProfesor(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, string pDni, int? pIdCiudad, string pTorre)
+        public string ModificarProfesorContacto(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, int pTipo, string pDni, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -306,7 +330,7 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    profesor profesorModificar = ObtenerProfesorPorDNI(pDni);
+                    profesor profesorModificar = ObtenerProfesorPorDNITipo(pTipo, pDni);
                     if (profesorModificar == null) throw new Exception("El usuario no existe");
                     profesorModificar.telefono = pTelefono;
                     profesorModificar.telefono_emergencia = pTelUrgencia;
@@ -315,7 +339,7 @@ namespace JJSS_Negocio
                     //busco la direccion 
                     var direccionProfesor = from dir in db.direccion
                                           join alu in db.profesor on dir.id_direccion equals alu.id_direccion
-                                          where alu.dni == pDni
+                                          where alu.dni == pDni && alu.id_tipo_documento == pTipo
                                           select dir;
 
                     direccion direccionModificar = direccionProfesor.FirstOrDefault();
