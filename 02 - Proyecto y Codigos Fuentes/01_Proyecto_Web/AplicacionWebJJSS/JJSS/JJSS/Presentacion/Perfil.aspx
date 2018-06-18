@@ -400,7 +400,7 @@
 
             <div class="row p-1">
                 <div class="col col-auto">
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_cancelar_Click" />
+                    <asp:LinkButton runat="server" ID="a" class="btn btn-link" Text="Volver" href="MenuInicial.aspx"></asp:LinkButton>
                 </div>
             </div>
         </div>

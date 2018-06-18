@@ -738,5 +738,47 @@ namespace JJSS_Negocio
                 }
             }
         }
+
+
+        public void cambiarEstadoAActivo(int idAlumno)
+        {
+            GestorPagoClase gpc = new GestorPagoClase();
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    alumno alumnoSeleccionado = db.alumno.Find(idAlumno);
+
+                    List<inscripcion_clase> inscripciones = (from i in db.inscripcion_clase
+                                                             where i.id_alumno == idAlumno && i.actual == ConstatesBajaLogica.ACTUAL
+                                                             select i).ToList();
+
+                    Boolean esMoroso = false;
+                    int count = 0;
+                    foreach (inscripcion_clase ins in inscripciones)
+                    {
+                        int? idTipoClase = ins.clase.id_tipo_clase;
+                        esMoroso = !gpc.validarPagoParaAsistencia(idAlumno, idTipoClase == null ? 0 : Convert.ToInt32(idTipoClase));
+                        if (esMoroso)
+                        {
+                            count++;
+                        }
+                    }
+                    if (count == 1)
+                    {
+                        alumnoSeleccionado.id_estado = Constantes.ConstantesEstado.ALUMNOS_ACTIVO;
+                        db.SaveChanges();
+                    }
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+            }
+        }
     }
 }
