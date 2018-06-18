@@ -18,6 +18,8 @@ namespace JJSS.Presentacion
         private GestorEventos gestorEvento;
         private evento_especial eventoSeleccionado;
         private GestorAlumnos gestorAlumnos;
+        private GestorProfesores gestorProfesores;
+        private GestorAdministradores gestorAdministradores;
         private int? idAlumno = null;
         private static Object eventoSession;
         private seguridad_usuario usuario;
@@ -27,6 +29,8 @@ namespace JJSS.Presentacion
             gestorInscripciones = new GestorInscripcionesEvento();
             gestorAlumnos = new GestorAlumnos();
             gestorEvento = new GestorEventos();
+            gestorProfesores = new GestorProfesores();
+            gestorAdministradores = new GestorAdministradores();
 
             if (!IsPostBack)
             {
@@ -34,13 +38,58 @@ namespace JJSS.Presentacion
                 Session["eventoSeleccionado"] = null;
                 try
                 {
+                    CargarComboTipoDocumentos();
                     Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
                         usuario = sesionActiva.usuario;
-                        alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
-                        txtDni.Text = alumno.dni.ToString();
-                        limpiar(false);
+
+
+                        try
+                        {
+                            alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
+                            if (alumno != null)
+                            {
+                                txtDni.Text = alumno.dni;
+                                ddl_tipo.SelectedValue = alumno.id_tipo_documento.ToString();
+                                limpiar(false);
+                            }
+                            else
+                            {
+                                limpiar(true);
+                            }
+
+                            //Por si hace falta que se inscriba otro que no sea alumno ESTA CONTEMPLADO SOLO ALUMNO
+                           /* else
+                            {
+                                profesor profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
+                                if (profesor != null)
+                                {
+                                    txtDni.Text = profesor.dni;
+                                    ddl_tipo.SelectedValue = profesor.id_tipo_documento.ToString();
+                                    limpiar(false);
+                                }
+                                else
+                                {
+                                    administrador admin = gestorAdministradores.ObtenerAdminPorIdUsuario(usuario.id_usuario);
+                                  
+                                    if (admin != null)
+                                    {
+                                        txtDni.Text = admin.dni;
+                                        ddl_tipo.SelectedValue = admin.id_tipo_documento.ToString();
+                                        limpiar(false);
+                                    }
+                                }
+                            }*/
+
+
+                           
+                        }
+                        catch (Exception)
+                        {
+                            limpiar(true);
+                        }
+                        
                     }
                     else
                     {
@@ -70,7 +119,7 @@ namespace JJSS.Presentacion
                     CargarComboEventos();
                 }
                 CargarComboNacionalidades();
-                CargarComboTipoDocumentos();
+                
 
             }
         }
@@ -81,7 +130,7 @@ namespace JJSS.Presentacion
                server control at run time. */
         }
 
-        private void limpiar(Boolean limpiaTodo)
+        private void limpiar(bool limpiaTodo)
         {
             txt_apellido.Text = "";
             dp_fecha.Text = "";
@@ -96,12 +145,12 @@ namespace JJSS.Presentacion
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
 
-            if (limpiaTodo == true)
+            if (limpiaTodo)
             {
                 txtDni.Text = "";
-                // ddl_Eventos.SelectedIndex = 1;
+                ddl_nacionalidad.SelectedIndex = 0;
+                ddl_tipo.SelectedIndex = 0;
             }
-
         }
 
         protected void btnAceptarEvento_Click(object sender, EventArgs e)
