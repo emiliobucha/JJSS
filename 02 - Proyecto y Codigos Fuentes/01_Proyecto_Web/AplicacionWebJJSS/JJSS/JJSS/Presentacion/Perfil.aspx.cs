@@ -327,10 +327,9 @@ namespace JJSS.Presentacion
                                 mensaje(exxx.Message, false);
                             }
                         }
-                        else mensaje(ex.Message, false);
+                        else mensaje(exx.Message, false);
 
-
-                        mensaje(exx.Message, false);
+                        
                     }
                 }
                 else mensaje(ex.Message, false);

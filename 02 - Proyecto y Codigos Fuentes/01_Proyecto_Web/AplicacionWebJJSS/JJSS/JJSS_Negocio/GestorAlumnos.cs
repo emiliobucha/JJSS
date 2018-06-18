@@ -497,7 +497,7 @@ namespace JJSS_Negocio
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    return ex.Message;
+                    throw ex;
                 }
             }
         }
