@@ -18,6 +18,8 @@ namespace JJSS.Presentacion
         private GestorEventos gestorEvento;
         private evento_especial eventoSeleccionado;
         private GestorAlumnos gestorAlumnos;
+        private GestorProfesores gestorProfesores;
+        private GestorAdministradores gestorAdministradores;
         private int? idAlumno = null;
         private static Object eventoSession;
         private seguridad_usuario usuario;
@@ -27,6 +29,8 @@ namespace JJSS.Presentacion
             gestorInscripciones = new GestorInscripcionesEvento();
             gestorAlumnos = new GestorAlumnos();
             gestorEvento = new GestorEventos();
+            gestorProfesores = new GestorProfesores();
+            gestorAdministradores = new GestorAdministradores();
 
             if (!IsPostBack)
             {
@@ -38,9 +42,43 @@ namespace JJSS.Presentacion
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
                         usuario = sesionActiva.usuario;
-                        alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
-                        txtDni.Text = alumno.dni.ToString();
-                        limpiar(false);
+
+
+                        try
+                        {
+                            alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
+                            if (alumno != null)
+                            {
+                                txtDni.Text = alumno.dni;
+                                limpiar(false);
+                            }
+                            else
+                            {
+                                profesor profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
+                                if (profesor != null)
+                                {
+                                    txtDni.Text = profesor.dni;
+                                    limpiar(false);
+                                }
+                                else
+                                {
+                                    administrador admin = gestorAdministradores.ObtenerAdminPorIdUsuario(usuario.id_usuario);
+                                    if (admin != null)
+                                    {
+                                        txtDni.Text = admin.dni;
+                                        limpiar(false);
+                                    }
+                                }
+                            }
+
+
+                           
+                        }
+                        catch (Exception)
+                        {
+                            limpiar(true);
+                        }
+                        
                     }
                     else
                     {

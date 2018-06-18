@@ -18,6 +18,8 @@ namespace JJSS
         private GestorTorneos gestorDeTorneos;
         private torneo torneoSeleccionado;
         private GestorAlumnos gestorAlumnos;
+        private GestorAdministradores gestorAdministradores;
+        private GestorProfesores gestorProfesores;
         private int? idAlumno = null;
         private seguridad_usuario usuario;
 
@@ -34,26 +36,59 @@ namespace JJSS
                 else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
 
 
-                //try
-                //{
-                //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-                //    if (sesionActiva.estado == "INGRESO ACEPTADO")
-                //    {
-                //        usuario = sesionActiva.usuario;
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        usuario = sesionActiva.usuario;
 
-                //        alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
-                //        txtDni.Text = alumno.dni.ToString();
-                //        limpiar(false);
-                //    }
-                //    else
-                //    {
-                //        limpiar(true);
-                //    }
-                //}
-                //catch
-                //{
-                //    limpiar(true);
-                //}
+
+                        try
+                        {
+                            alumno alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
+                            if (alumno != null)
+                            {
+                                txtDni.Text = alumno.dni;
+                                limpiar(false);
+                            }
+                            else
+                            {
+                                profesor profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
+                                if (profesor != null)
+                                {
+                                    txtDni.Text = profesor.dni;
+                                    limpiar(false);
+                                }
+                                else
+                                {
+                                    administrador admin = gestorAdministradores.ObtenerAdminPorIdUsuario(usuario.id_usuario);
+                                    if (admin != null)
+                                    {
+                                        txtDni.Text = admin.dni;
+                                        limpiar(false);
+                                    }
+                                }
+                            }
+
+
+
+                        }
+                        catch (Exception)
+                        {
+                            limpiar(true);
+                        }
+
+                    }
+                    else
+                    {
+                        limpiar(true);
+                    }
+                }
+                catch
+                {
+                    limpiar(true);
+                }
 
 
 
