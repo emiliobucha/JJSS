@@ -53,6 +53,8 @@ namespace JJSS.Presentacion
                 CargarComboUbicacion();
                 cargarDatosClase();
                 CargarComboProfes();
+                txt_horadesde.Text = "00:00";
+                txt_horahasta.Text = "01:00";
             }
         }
 
@@ -260,6 +262,9 @@ namespace JJSS.Presentacion
                         estado = true;
                         sReturn = "La clase se ha creado exitosamente";
                         limpiar();
+                        Session["mensaje"] = sReturn;
+                        Session["exito"] = true;
+                        Response.Redirect("Menu_Clase.aspx");
                     }
                 }
             }

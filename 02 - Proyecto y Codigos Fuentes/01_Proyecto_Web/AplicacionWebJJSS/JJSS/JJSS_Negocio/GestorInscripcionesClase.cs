@@ -203,6 +203,7 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
+                var transaction = db.Database.BeginTransaction();
                 try
                 {
                     var ins = from i in db.inscripcion_clase
@@ -212,10 +213,24 @@ namespace JJSS_Negocio
                     inscripcion_clase inscripcionSeleccionada = ins.FirstOrDefault();
                     inscripcionSeleccionada.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
                     db.SaveChanges();
+
+                    ins = from i in db.inscripcion_clase
+                          where i.id_alumno == idAlumno
+                          && i.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                          select i;
+                    if (ins.Count() == 0)
+                    {
+                        alumno alumnoSeleccionado = db.alumno.Find(idAlumno);
+                        alumnoSeleccionado.id_estado = Constantes.ConstantesEstado.ALUMNOS_INACTIVO;
+                        db.SaveChanges();
+                    }
+                    
+                    transaction.Commit();
                     return "";
                 }
                 catch (Exception e)
                 {
+                    transaction.Rollback();
                     return e.Message;
                 }
             }

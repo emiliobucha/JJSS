@@ -20,6 +20,7 @@ namespace JJSS.Presentacion.Clases
             if (!IsPostBack)
             {
                 cargarComboClases();
+                dp_fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 asistentes = new List<ListadoAsistencia>();
             }
         }
@@ -62,11 +63,18 @@ namespace JJSS.Presentacion.Clases
                 return;
             }
             DateTime fecha = DateTime.Parse(dp_fecha.Text);
-
-            asistentes = gAsistencia.ListadoAsistentes(idClase, fecha);
-            cargarGrillaAsistencia();
-            lbl_datos_clase.Text = asistentes.First().cla_tipo + " - " + asistentes.First().cla_nombre;
-            lbl_hora.Text = asistentes.First().horario_nombre;
+            try
+            {
+                asistentes = gAsistencia.ListadoAsistentes(idClase, fecha);
+                cargarGrillaAsistencia();
+                lbl_datos_clase.Text = asistentes.First().cla_tipo + " - " + asistentes.First().cla_nombre;
+                lbl_hora.Text = asistentes.First().horario_nombre;
+                btn_imprimir.Visible = true;
+            } catch (Exception ex)
+            {
+                mensaje(ex.Message, false);
+            }
+            
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)

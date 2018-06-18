@@ -106,7 +106,7 @@
                                     <label class="pull-left">Tipo: <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col-md-3 col-xl-auto">
-                                    <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Tipo Documento" ValidationGroup="grupoDni"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Tipo Documento" ValidationGroup="grupoDni" Enabled="false"></asp:DropDownList>
 
                                 </div>
                                         

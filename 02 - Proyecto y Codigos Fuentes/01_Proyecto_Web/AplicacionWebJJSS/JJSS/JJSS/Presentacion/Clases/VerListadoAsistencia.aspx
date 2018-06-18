@@ -103,11 +103,17 @@
 
                     </asp:GridView>
                 </div>
+                <div class="col justify-content-center ">
+                    <asp:Button ID="btn_imprimir" runat="server" Text="Imprimir" CssClass="btn btn-outline-dark" OnClick="btn_imprimir_Click" Visible="false" />
+                </div>
             </div>
             <div class="row centered p-2">
-                <div class="col justify-content-center ">
-                    <asp:Button ID="btn_imprimir" runat="server" Text="Imprimir" CssClass="btn btn-outline-dark" OnClick="btn_imprimir_Click" />
+                <div class="row centered">
+                    <div class="col col-auto">
+                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Clase.aspx"></asp:HyperLink>
+                    </div>
                 </div>
+
             </div>
 
         </div>

@@ -117,7 +117,9 @@ namespace JJSS.Presentacion
                     {
                         sReturn = "El evento se ha creado exitosamente";
                         limpiar();
-                        mensaje(sReturn, true);
+                        Session["mensaje"] = sReturn;
+                        Session["exito"] = true;
+                        Response.Redirect("Menu_Evento.aspx");
 
                     }
                     else mensaje(sReturn, false);

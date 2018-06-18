@@ -143,7 +143,7 @@ namespace JJSS.Presentacion
             pnl_Inscripcion.Visible = false;
         }
 
-    
+
 
         private void mensaje(string pMensaje, Boolean pEstado)
         {
@@ -288,7 +288,7 @@ namespace JJSS.Presentacion
             if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
 
             //para alumnos
-            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNI(txtDni.Text);
+            alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNITipo(idTipo, txtDni.Text);
             if (alumnoEncontrado != null) idAlumno = alumnoEncontrado.id_alumno;
 
 

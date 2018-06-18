@@ -228,6 +228,7 @@
     <Content Include="Presentacion\Clases\AlumnoPagoClase.aspx" />
     <Content Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx" />
     <Content Include="Presentacion\Clases\VerCalendario.aspx" />
+    <Content Include="Presentacion\Clases\VerClase.aspx" />
     <Content Include="Presentacion\Clases\VerListadoAsistencia.aspx" />
     <Content Include="Presentacion\Eventos\HistoricoEventos.aspx" />
     <Content Include="Presentacion\Eventos\Menu_Evento.aspx" />
@@ -440,6 +441,13 @@
     </Compile>
     <Compile Include="Presentacion\Clases\VerCalendario.aspx.designer.cs">
       <DependentUpon>VerCalendario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Clases\VerClase.aspx.cs">
+      <DependentUpon>VerClase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Clases\VerClase.aspx.designer.cs">
+      <DependentUpon>VerClase.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Clases\VerListadoAsistencia.aspx.cs">
       <DependentUpon>VerListadoAsistencia.aspx</DependentUpon>

@@ -299,7 +299,7 @@ namespace JJSS_Negocio
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    return ex.Message;
+                    throw ex;
                 }
             }
         }
@@ -467,7 +467,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public string CambiarFotoPerfil(string pDni, byte[] pImagen)
+        public string CambiarFotoPerfil(int pTipo, string pDni, byte[] pImagen)
         {
 
 
@@ -480,7 +480,7 @@ namespace JJSS_Negocio
                 try
 
                 {
-                    var profesor = ObtenerProfesorPorDNI(pDni);
+                    var profesor = ObtenerProfesorPorDNITipo(pTipo, pDni);
                     var arrayImagen = pImagen;
 
                     var profesorImagen = db.profesor_imagen.FirstOrDefault(imag => imag.id_profesor == profesor.id_profesor);

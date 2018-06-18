@@ -37,6 +37,8 @@ namespace JJSS_Negocio
         }
 
         /*
+
+        /*
         * Método que nos permite obtener a un alumno buscandolo por DNI
         * Parámetros:
         *              pDni:entero que indica el dni del alumno a buscar
@@ -238,25 +240,20 @@ namespace JJSS_Negocio
             }
         }
 
-        public List<AlumnoConEstado> BuscarAlumnoConEstado(int[] filtroEstados, string filtroApellido, string filtroDni)
+        public List<AlumnoConEstado> BuscarAlumnoConEstado(int filtroEstados, string filtroApellido, string filtroDni)
         {
+            cambiarEstadoAMoroso();
             string sReturn = "";
             using (var db = new JJSSEntities())
             {
                 try
                 {
-                    int filtroEstado0 = filtroEstados[0];
-                    int filtroEstado1 = filtroEstados[1];
-                    int filtroEstado2 = filtroEstados[2];
-                    int filtroEstado3 = filtroEstados[3];
-                    int filtroEstado4 = filtroEstados[4];
                     if (string.IsNullOrEmpty(filtroDni))
                     {
                         var alumnosPorApellido = from alumno in db.alumno
                                                  join est in db.estado on alumno.id_estado equals est.id_estado
                                                  where
-                                                 (alumno.id_estado == filtroEstado0 || alumno.id_estado == filtroEstado1 || alumno.id_estado == filtroEstado2 ||
-                                                 alumno.id_estado == filtroEstado3 || alumno.id_estado == filtroEstado4)
+                                                 alumno.id_estado == filtroEstados
                                                  && alumno.apellido.StartsWith(filtroApellido)
                                                  orderby alumno.apellido
                                                  select new AlumnoConEstado
@@ -274,8 +271,7 @@ namespace JJSS_Negocio
                         var alumnosPorApellido = from alumno in db.alumno
                                                  join est in db.estado on alumno.id_estado equals est.id_estado
                                                  where
-                                                 (alumno.id_estado == filtroEstado0 || alumno.id_estado == filtroEstado1 || alumno.id_estado == filtroEstado2 ||
-                                                 alumno.id_estado == filtroEstado3 || alumno.id_estado == filtroEstado4)
+                                                 alumno.id_estado == filtroEstados
                                                  && alumno.apellido.StartsWith(filtroApellido)
                                                  && alumno.dni == filtroDni
                                                  orderby alumno.apellido
@@ -402,7 +398,7 @@ namespace JJSS_Negocio
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    return ex.Message;
+                    throw ex;
                 }
             }
         }
@@ -616,7 +612,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public string CambiarFotoPerfil(string pDni, byte[] pImagen)
+        public string CambiarFotoPerfil(int pTipo, string pDni, byte[] pImagen)
         {
 
             using (var db = new JJSSEntities())
@@ -624,7 +620,7 @@ namespace JJSS_Negocio
                 try
 
                 {
-                    var alumno = ObtenerAlumnoPorDNI(pDni);
+                    var alumno = ObtenerAlumnoPorDNITipo(pTipo, pDni);
                     var arrayImagen = pImagen;
 
                     var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == alumno.id_alumno);
@@ -699,6 +695,46 @@ namespace JJSS_Negocio
                 catch (Exception ex)
                 {
                     return null;
+                }
+            }
+        }
+
+        public void cambiarEstadoAMoroso()
+        {
+            GestorPagoClase gpc = new GestorPagoClase();
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    List<alumno> alumnosActivos = (from a in db.alumno
+                                                   where a.id_estado == ConstantesEstado.ALUMNOS_ACTIVO
+                                                   select a).ToList();
+                    foreach (alumno a in alumnosActivos)
+                    {
+                        List<inscripcion_clase> inscripciones = (from i in db.inscripcion_clase
+                                                                 where i.id_alumno == a.id_alumno && i.actual == ConstatesBajaLogica.ACTUAL
+                                                                 select i).ToList();
+
+                        Boolean esMoroso = false;
+
+                        foreach (inscripcion_clase ins in inscripciones)
+                        {
+                            int? idTipoClase = ins.clase.id_tipo_clase;
+                            esMoroso = !gpc.validarPagoParaAsistencia(a.id_alumno, idTipoClase == null ? 0 : Convert.ToInt32(idTipoClase));
+                            if (esMoroso)
+                            {
+                                a.id_estado = ConstantesEstado.ALUMNOS_MOROSO;
+                                db.SaveChanges();
+                                break;
+                            }
+                        }
+                    }
+                    transaction.Commit();
+                } catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    return;
                 }
             }
         }

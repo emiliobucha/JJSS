@@ -80,7 +80,7 @@
                                     <strong>Estado</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:CheckBoxList ID="chFiltroEstado" runat="server"></asp:CheckBoxList>
+                                    <asp:DropDownList ID ="ddl_filtro_estado" runat="server" CssClass="caja2"></asp:DropDownList>
                                 </div>
 
                                 <div class=" col-lg-1 col-md-1 col-sm-12">

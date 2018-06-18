@@ -368,7 +368,7 @@ namespace JJSS.Presentacion
 
             try
             {
-                gestorAlumnos.CambiarFotoPerfil(txt_dni.Text, imagenByte);
+                gestorAlumnos.CambiarFotoPerfil(idTipo,txt_dni.Text, imagenByte);
                 mensaje("Se modificaron los datos correctamente", true);
                 CargarDatos();
             }
@@ -379,7 +379,7 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.CambiarFotoPerfil(txt_dni.Text, imagenByte);
+                        gestorProfe.CambiarFotoPerfil(idTipo, txt_dni.Text, imagenByte);
                         mensaje("Se modificaron los datos correctamente", true);
                         CargarDatos();
                     }

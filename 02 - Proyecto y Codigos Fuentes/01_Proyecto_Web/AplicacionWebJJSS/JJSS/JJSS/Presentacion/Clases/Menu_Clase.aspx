@@ -282,7 +282,8 @@
             <!---------------------------------**************Muestra de Clases Invitado************---------------------------------------->
             
             <div class=" row centered mt justify-content-center p-2" id="muetra_clases_invitado" runat="server">
-                <asp:ListView ID="lv_clasesDisponibles_invitado" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase" GroupItemCount="3" runat="server">
+                <asp:ListView ID="lv_clasesDisponibles_invitado" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase" 
+                    GroupItemCount="3" runat="server" OnItemCommand="lv_clasesDisponibles_invitado_ItemCommand">
 
                     <LayoutTemplate>
                         <table>
@@ -323,6 +324,9 @@
                             <div>
                                 Precio: $<asp:Label ID="lv_lbl_precio" runat="server" Text='<%# Eval("precio") %>' />
 
+                            </div>
+                            <div class="p-1" runat="server">
+                                <asp:Button ID="lv_btn_ver" runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Ver" />
                             </div>
                              <div class="row centered">
                                 <p>&nbsp;</p>
