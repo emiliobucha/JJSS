@@ -38,6 +38,8 @@ namespace JJSS
 
                 try
                 {
+
+                    CargarComboTipoDocumentos();
                     Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
@@ -50,27 +52,35 @@ namespace JJSS
                             if (alumno != null)
                             {
                                 txtDni.Text = alumno.dni;
+                                ddl_tipo.SelectedValue = alumno.id_tipo_documento.ToString();
                                 limpiar(false);
                             }
                             else
+                            {
+                                limpiar(true);
+                            }
+                            //Por si hace falta que se inscriba otro que no sea alumno ESTA CONTEMPLADO SOLO ALUMNO
+                            /*else
                             {
                                 profesor profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
                                 if (profesor != null)
                                 {
                                     txtDni.Text = profesor.dni;
+                                    ddl_tipo.SelectedValue = profesor.id_tipo_documento.ToString();
                                     limpiar(false);
                                 }
                                 else
                                 {
                                     administrador admin = gestorAdministradores.ObtenerAdminPorIdUsuario(usuario.id_usuario);
+                                   
                                     if (admin != null)
                                     {
                                         txtDni.Text = admin.dni;
+                                        ddl_tipo.SelectedValue = admin.id_tipo_documento.ToString();
                                         limpiar(false);
                                     }
                                 }
-                            }
-
+                            }*/
 
 
                         }
@@ -112,7 +122,6 @@ namespace JJSS
                     pnl_dni.Visible = false;
                     CargarComboTorneos();
                 }
-                CargarComboTipoDocumentos();
                 CargarComboNacionalidades();
 
 
