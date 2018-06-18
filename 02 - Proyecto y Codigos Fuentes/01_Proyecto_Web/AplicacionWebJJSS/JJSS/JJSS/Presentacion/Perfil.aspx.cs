@@ -433,6 +433,10 @@ namespace JJSS.Presentacion
                 //Modificar
                 gestorAlumnos.ModificarAlumno(idTipo, dni, nombre, apellido, null, null, usuario, null);
                 mensaje("Se modificaron los datos correctamente", true);
+
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                sesionActiva.usuario.nombre = nombre + " " + apellido;
+                HttpContext.Current.Session["SEGURIDAD_SESION"] = sesionActiva;
             }
             catch (Exception ex)
             {
@@ -442,15 +446,22 @@ namespace JJSS.Presentacion
                     {
                         gestorProfe.ModificarProfesor(idTipo, dni, nombre, apellido, usuario, null);
                         mensaje("Se modificaron los datos correctamente", true);
+                        Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                        sesionActiva.usuario.nombre = nombre + " " + apellido;
+                        HttpContext.Current.Session["SEGURIDAD_SESION"] = sesionActiva;
                     }
                     catch (Exception exx)
                     {
-                        if (string.Compare(ex.Message, "El usuario no existe", StringComparison.Ordinal) == 0)
+                        if (string.Compare(exx.Message, "El usuario no existe", StringComparison.Ordinal) == 0)
                         {
                             try
                             {
                                 gestorAdmin.ModificarAdmin(idTipo, dni, nombre, apellido, null, null, usuario, null);
                                 mensaje("Se modificaron los datos correctamente", true);
+                                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                                sesionActiva.usuario.nombre = nombre + " " + apellido;
+                                HttpContext.Current.Session["SEGURIDAD_SESION"] = sesionActiva;
+                                Response.Redirect(Request.RawUrl);
                             }
                             catch (Exception exxx)
                             {
@@ -462,6 +473,8 @@ namespace JJSS.Presentacion
                 }
                 else mensaje(ex.Message, false);
             }
+
+            
 
         }
 
