@@ -33,6 +33,7 @@ namespace JJSS.Presentacion
                 if (Session["idTorneo"] != null)
                 {
                     int idTorneo = int.Parse(Session["idTorneo"].ToString());
+                    Session["idTorneo"] = null;
                     torneoSeleccionado = gestorTorneos.BuscarTorneoPorID(idTorneo);
 
                     categoriasConInscriptos = gestorResultados.mostrarCategoriasConInscriptos(idTorneo);

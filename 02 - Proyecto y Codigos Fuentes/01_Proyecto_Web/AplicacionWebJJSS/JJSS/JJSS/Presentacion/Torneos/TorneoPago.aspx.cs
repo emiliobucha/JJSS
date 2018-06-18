@@ -62,13 +62,13 @@ namespace JJSS.Presentacion
 
 
                 if (Session["TorneoPagar"] == null) Response.Redirect("InscripcionTorneo.aspx");
-                Session["TorneoPagar"] = null;
 
                 lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
 
                 int id = int.Parse(Session["TorneoPagar"].ToString());
                 var dni = Session["ParticipanteDNI"].ToString();
                 int tipo = int.Parse(Session["TorneoPagar"].ToString());
+                Session["TorneoPagar"] = null;
                 participanteElegido = gestorInscripciones.obtenerParticipanteDeTorneo(tipo,dni,id);
                 lbl_participante.Text = participanteElegido.apellido + ", " + participanteElegido.nombre;
 
