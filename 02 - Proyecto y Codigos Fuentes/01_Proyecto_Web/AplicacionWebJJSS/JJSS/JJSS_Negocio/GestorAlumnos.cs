@@ -25,30 +25,32 @@ namespace JJSS_Negocio
          * Retornos:
          *              Alumno encontrado, o si no estaba devuelve null
          */
-        public alumno ObtenerAlumnoPorDNI(int pTipo, string pDni)
+        public alumno ObtenerAlumnoPorDNI(string pDni)
         {
             using (var db = new JJSSEntities())
             {
                 var alumnoEncontrado = from alu in db.alumno
-                                       where alu.dni == pDni && alu.baja_logica == 1 && alu.id_tipo_documento == pTipo
+                                       where alu.dni == pDni && alu.baja_logica == 1
                                        select alu;
                 return alumnoEncontrado.FirstOrDefault();
             }
         }
 
         /*
-   * Método que nos permite obtener a un alumno buscandolo por DNI
-   * Parámetros:
-   *              pDni:entero que indica el dni del alumno a buscar
-   * Retornos:
-   *              Alumno encontrado, o si no estaba devuelve null
-   */
-        public alumno ObtenerAlumnoPorDNI(string pDni)
+
+        /*
+        * Método que nos permite obtener a un alumno buscandolo por DNI
+        * Parámetros:
+        *              pDni:entero que indica el dni del alumno a buscar
+        * Retornos:
+        *              Alumno encontrado, o si no estaba devuelve null
+        */
+        public alumno ObtenerAlumnoPorDNITipo(int pTipo, string pDni)
         {
             using (var db = new JJSSEntities())
             {
                 var alumnoEncontrado = from alu in db.alumno
-                    where alu.dni == pDni && alu.baja_logica == 1
+                    where alu.dni == pDni && alu.baja_logica == 1 && alu.id_tipo_documento == pTipo
                     select alu;
                 return alumnoEncontrado.FirstOrDefault();
             }
@@ -82,8 +84,8 @@ namespace JJSS_Negocio
          * 
          */
         public string RegistrarAlumno(string pNombre, string pApellido, DateTime? pFechaNacimiento,
-            short? pSexo, string pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
-            string pCalle, int? pNumero, string pDpto, int? pPiso, int? pIdCiudad, string pTorre)
+            short? pSexo, int pTipo, string pDni, long pTelefono, string pMail, long pTelEmergencia, byte[] pImagen,
+            string pCalle, int? pNumero, string pDpto, int? pPiso, int? pIdCiudad, string pTorre, int pNacionalidad)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -94,7 +96,7 @@ namespace JJSS_Negocio
                     GestorUsuarios nuevoUsuario = new GestorUsuarios();
                     string nombreUsuario = pNombre + " " + pApellido;
                     string login = nuevoUsuario.GenerarLogin(pNombre, pApellido);
-                    string iduser = nuevoUsuario.GenerarNuevoUsuario(login, pDni.ToString(), 3, pMail, nombreUsuario);
+                    string iduser = nuevoUsuario.GenerarNuevoUsuario(login, pDni, 3, pMail, nombreUsuario);
                     int idUsuario;
                     if (int.TryParse(iduser, out idUsuario) == false)
                     {
@@ -103,7 +105,7 @@ namespace JJSS_Negocio
                     seguridad_usuario usuario = db.seguridad_usuario.Find(idUsuario);
 
 
-                    if (ObtenerAlumnoPorDNI(pDni) != null)
+                    if (ObtenerAlumnoPorDNITipo(pTipo,pDni) != null)
                     {
                         throw new Exception("El alumno ya existe");
                     }
@@ -141,7 +143,9 @@ namespace JJSS_Negocio
                             telefono_emergencia = pTelEmergencia,
                             seguridad_usuario = usuario,
                             baja_logica = 1,
-                            id_estado = ConstantesEstado.ALUMNOS_CREADO
+                            id_estado = ConstantesEstado.ALUMNOS_CREADO,
+                            id_tipo_documento = pTipo,
+                            id_pais = pNacionalidad
                         };
                     }
                     else //no ingresa direccion
@@ -159,7 +163,9 @@ namespace JJSS_Negocio
                             telefono_emergencia = pTelEmergencia,
                             seguridad_usuario = usuario,
                             baja_logica = ConstatesBajaLogica.BAJA_LOGICA,
-                            id_estado = ConstantesEstado.ALUMNOS_CREADO
+                            id_estado = ConstantesEstado.ALUMNOS_CREADO,
+                            id_tipo_documento = pTipo,
+                            id_pais = pNacionalidad
                         };
                     }
 
@@ -247,7 +253,7 @@ namespace JJSS_Negocio
                         var alumnosPorApellido = from alumno in db.alumno
                                                  join est in db.estado on alumno.id_estado equals est.id_estado
                                                  where
-                                                 alumno.id_estado == filtroEstados 
+                                                 alumno.id_estado == filtroEstados
                                                  && alumno.apellido.StartsWith(filtroApellido)
                                                  orderby alumno.apellido
                                                  select new AlumnoConEstado
@@ -352,7 +358,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(string pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo, string pUsuario)
+        public string ModificarAlumno(int pTipo, string pDni, string pNombre, string pApellido, DateTime? pFecha, short? pSexo, string pUsuario, int? pPais)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -360,13 +366,15 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    var alumnoModificar = db.alumno.FirstOrDefault(x => x.dni == pDni);
+                    var alumnoModificar = db.alumno.FirstOrDefault(x => x.dni == pDni && x.id_tipo_documento == pTipo);
                     
                     if (alumnoModificar == null) throw new Exception("El usuario no existe");
                     alumnoModificar.apellido = pApellido;
                     alumnoModificar.nombre = pNombre;
                     if (pFecha != null) alumnoModificar.fecha_nacimiento = pFecha;
                     if (pSexo != null) alumnoModificar.sexo = pSexo;
+                    if (pPais != null)
+                        alumnoModificar.id_pais = pPais;
 
                     db.SaveChanges();
 
@@ -390,7 +398,7 @@ namespace JJSS_Negocio
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    return ex.Message;
+                    throw ex;
                 }
             }
         }
@@ -413,7 +421,7 @@ namespace JJSS_Negocio
          *              NO: no encontro el alumno
          * 
          */
-        public string ModificarAlumno(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, string pDni, int? pIdCiudad, string pTorre)
+        public string ModificarAlumnoContacto(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, int pTipo, string pDni, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -422,7 +430,7 @@ namespace JJSS_Negocio
                 try
                 {
                     var alumnoEncontrado = from alu in db.alumno
-                                           where alu.dni == pDni
+                                           where alu.dni == pDni && alu.id_tipo_documento == pTipo
                                            select alu;
                     alumno alumnoModificar = alumnoEncontrado.FirstOrDefault();
 
@@ -604,7 +612,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public string CambiarFotoPerfil(string pDni, byte[] pImagen)
+        public string CambiarFotoPerfil(int pTipo, string pDni, byte[] pImagen)
         {
 
             using (var db = new JJSSEntities())
@@ -612,7 +620,7 @@ namespace JJSS_Negocio
                 try
 
                 {
-                    var alumno = ObtenerAlumnoPorDNI(pDni);
+                    var alumno = ObtenerAlumnoPorDNITipo(pTipo, pDni);
                     var arrayImagen = pImagen;
 
                     var alumnoImagen = db.alumno_imagen.FirstOrDefault(imag => imag.id_alumno == alumno.id_alumno);
@@ -724,6 +732,48 @@ namespace JJSS_Negocio
                     }
                     transaction.Commit();
                 } catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+            }
+        }
+
+
+        public void cambiarEstadoAActivo(int idAlumno)
+        {
+            GestorPagoClase gpc = new GestorPagoClase();
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    alumno alumnoSeleccionado = db.alumno.Find(idAlumno);
+
+                    List<inscripcion_clase> inscripciones = (from i in db.inscripcion_clase
+                                                             where i.id_alumno == idAlumno && i.actual == ConstatesBajaLogica.ACTUAL
+                                                             select i).ToList();
+
+                    Boolean esMoroso = false;
+                    int count = 0;
+                    foreach (inscripcion_clase ins in inscripciones)
+                    {
+                        int? idTipoClase = ins.clase.id_tipo_clase;
+                        esMoroso = !gpc.validarPagoParaAsistencia(idAlumno, idTipoClase == null ? 0 : Convert.ToInt32(idTipoClase));
+                        if (esMoroso)
+                        {
+                            count++;
+                        }
+                    }
+                    if (count == 1)
+                    {
+                        alumnoSeleccionado.id_estado = Constantes.ConstantesEstado.ALUMNOS_ACTIVO;
+                        db.SaveChanges();
+                    }
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                     return;

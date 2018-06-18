@@ -14,7 +14,7 @@ namespace JJSS.Presentacion
     {
         private DataTable dtHorarios;
         private GestorClases gestorClases;
-        private int idClase;
+        private static int idClase;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -62,7 +62,7 @@ namespace JJSS.Presentacion
         protected void cargarDatosClase()
         {
             /*Si el id de la clase no esta seleccionada de modificacion*/
-            int idClase = 0;
+            idClase = 0;
 
             if (Session["clase"] != null)
             {

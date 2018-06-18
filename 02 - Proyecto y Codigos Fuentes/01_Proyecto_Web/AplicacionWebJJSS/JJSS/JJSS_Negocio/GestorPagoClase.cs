@@ -27,9 +27,10 @@ namespace JJSS_Negocio
          */
         public string registrarPago(int pAlumno, int pClase, decimal pMonto, string pMes, int pFormaPago, short pPagoRecargo)
         {
-            string sReturn="";
-            
+            string sReturn = "";
+
             DateTime pFecha = DateTime.Now;
+            GestorAlumnos ga = new GestorAlumnos();
             using (var db = new JJSSEntities())
             {
                 var transaction = db.Database.BeginTransaction();
@@ -53,7 +54,7 @@ namespace JJSS_Negocio
                     {
                         return "Ya se registró este pago";
                     }
-                    
+
                     //buscar pago
                     pago_clase pagoRegistrado = buscarPagoSegunAlumnoClase(pAlumno, pClase);
                     if (pagoRegistrado == null) //no existe pago
@@ -68,26 +69,29 @@ namespace JJSS_Negocio
                         db.pago_clase.Add(nuevoPago);
                         pagoRegistrado = nuevoPago;
                     }
-                    
+
                     //crear detalle
                     detalle_pago_clase nuevoDetalle;
                     nuevoDetalle = new detalle_pago_clase()
                     {
                         //pago_clase = pagoRegistrado,
-                        id_pago_clase= pagoRegistrado.id_pago_clase,
+                        id_pago_clase = pagoRegistrado.id_pago_clase,
                         monto = pMonto,
-                        fecha_hora=pFecha,
+                        fecha_hora = pFecha,
                         mes = pMes,
-                        forma_pago=formaSelect,
-                        recargo=pPagoRecargo
+                        forma_pago = formaSelect,
+                        recargo = pPagoRecargo
                     };
                     db.detalle_pago_clase.Add(nuevoDetalle);
-                    alumnoSelect.id_estado = Constantes.ConstantesEstado.ALUMNOS_ACTIVO;
-
+                    if (alumnoSelect.id_estado == Constantes.ConstantesEstado.ALUMNOS_MOROSO)
+                    {
+                       ga.cambiarEstadoAActivo(alumnoSelect.id_alumno);
+                    }
+                    
                     db.SaveChanges();
                     transaction.Commit();
                     return sReturn;
-                                       
+
                 }
                 catch (Exception ex)
                 {
@@ -123,7 +127,7 @@ namespace JJSS_Negocio
                                          fecha = detalle.fecha_hora
                                      };
 
-                 DataTable dt= modUtilidadesTablas.ToDataTable(pagoEncontrado);
+                DataTable dt = modUtilidadesTablas.ToDataTable(pagoEncontrado);
                 if (pagoEncontrado.Count() > 0)
                 {
                     DataRow row = dt.Rows[0];
@@ -180,7 +184,7 @@ namespace JJSS_Negocio
          *              false - no puede asistir
          * 
          */
-        public Boolean validarPagoParaAsistencia(int pIdAlumno,int pIdTipoClase)
+        public Boolean validarPagoParaAsistencia(int pIdAlumno, int pIdTipoClase)
         {
             DataTable dt;
             DateTime fechaInscripcion;
@@ -189,10 +193,10 @@ namespace JJSS_Negocio
             {
                 //buscar fecha inscripcion
                 var inscripcion = from ins in db.inscripcion_clase
-                                                join alu in db.alumno on ins.id_alumno equals alu.id_alumno
-                                                where alu.id_alumno == pIdAlumno 
-                                                && ins.clase.id_tipo_clase == pIdTipoClase
-                                                select ins;
+                                  join alu in db.alumno on ins.id_alumno equals alu.id_alumno
+                                  where alu.id_alumno == pIdAlumno
+                                  && ins.clase.id_tipo_clase == pIdTipoClase
+                                  select ins;
                 if (inscripcion == null) return false;
                 fechaInscripcion = (DateTime)inscripcion.FirstOrDefault().fecha;
 
@@ -209,17 +213,17 @@ namespace JJSS_Negocio
                                mes = detalle.mes,
                                fecha = detalle.fecha_hora
                            };
-                dt=modUtilidadesTablas.ToDataTable(pago.ToList());
+                dt = modUtilidadesTablas.ToDataTable(pago.ToList());
 
                 //buscar parametro de cantidad de dias para pagar la cuota
                 var parametro = from param in db.parametro
-                                  where param.id_parametro == 2
-                                  select param;
+                                where param.id_parametro == 2
+                                select param;
                 diasRecargo = (int)parametro.FirstOrDefault().valor;
 
             }
             int contPagos = dt.Rows.Count;
-            if (contPagos >0)
+            if (contPagos > 0)
             { //tiene un pago
                 DataRow dr = dt.Rows[0];
                 string mesPago = dr["mes"].ToString();
@@ -227,7 +231,7 @@ namespace JJSS_Negocio
 
                 CultureInfo ci = new CultureInfo("Es-Es");
                 string nombreMes = ci.DateTimeFormat.GetMonthName(DateTime.Now.Month);
-                if (mesPago.ToLower().CompareTo(nombreMes)==0 && fechaPago.Year == DateTime.Today.Year)
+                if (mesPago.ToLower().CompareTo(nombreMes) == 0 && fechaPago.Year == DateTime.Today.Year)
                 {
                     return true;
                 }
@@ -244,10 +248,10 @@ namespace JJSS_Negocio
                 using (var db = new JJSSEntities())
                 {
                     asistencia_clase asistencia = (from asi in db.asistencia_clase
-                                     join alu in db.alumno on asi.id_alumno equals alu.id_alumno
-                                     join cla in db.clase on asi.id_clase equals cla.id_clase
-                                     where alu.id_alumno == pIdAlumno && cla.id_tipo_clase == pIdTipoClase
-                                     select asi).FirstOrDefault();
+                                                   join alu in db.alumno on asi.id_alumno equals alu.id_alumno
+                                                   join cla in db.clase on asi.id_clase equals cla.id_clase
+                                                   where alu.id_alumno == pIdAlumno && cla.id_tipo_clase == pIdTipoClase
+                                                   select asi).FirstOrDefault();
                     if (asistencia == null) return true;
                     else return false;
                 }
