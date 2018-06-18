@@ -40,6 +40,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\GestorAdministradores.cs" />
     <Compile Include="Administracion\GestorCategoria.cs" />
     <Compile Include="Administracion\GestorDireccion.cs" />
     <Compile Include="Administracion\GestorAcademias.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="GestorResultados.cs" />
     <Compile Include="GestorSesiones.cs" />
     <Compile Include="GestorTipoClase.cs" />
+    <Compile Include="GestorTipoDocumento.cs" />
     <Compile Include="GestorTorneos.cs" />
     <Compile Include="GestorUsuarios.cs" />
     <Compile Include="modEmails.cs" />

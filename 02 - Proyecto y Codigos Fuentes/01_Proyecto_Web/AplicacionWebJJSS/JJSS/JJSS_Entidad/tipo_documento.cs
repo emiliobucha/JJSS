@@ -21,6 +21,7 @@ namespace JJSS_Entidad
             this.participante = new HashSet<participante>();
             this.participante_evento = new HashSet<participante_evento>();
             this.profesor = new HashSet<profesor>();
+            this.administrador = new HashSet<administrador>();
         }
     
         public int id_tipo_documento { get; set; }
@@ -35,5 +36,7 @@ namespace JJSS_Entidad
         public virtual ICollection<participante_evento> participante_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<profesor> profesor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<administrador> administrador { get; set; }
     }
 }

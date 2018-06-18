@@ -21,6 +21,7 @@ namespace JJSS_Entidad
             this.profesor = new HashSet<profesor>();
             this.reserva = new HashSet<reserva>();
             this.seguridad_usuarioxgrupo = new HashSet<seguridad_usuarioxgrupo>();
+            this.administrador = new HashSet<administrador>();
         }
     
         public int id_usuario { get; set; }
@@ -38,5 +39,7 @@ namespace JJSS_Entidad
         public virtual ICollection<reserva> reserva { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<administrador> administrador { get; set; }
     }
 }

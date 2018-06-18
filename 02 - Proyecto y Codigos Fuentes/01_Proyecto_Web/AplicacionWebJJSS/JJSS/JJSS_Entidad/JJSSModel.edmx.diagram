@@ -140,6 +140,13 @@
         <AssociationConnector Association="JJSSModel.FK__seguridad__id_us__54B68676" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__torneo__id_tipo___5792F321" ManuallyRouted="false" />
         <AssociationConnector Association="JJSSModel.FK__torneo_im__id_to__5887175A" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="JJSSModel.administrador" Width="1.5" PointX="20.75" PointY="50.75" />
+        <AssociationConnector Association="JJSSModel.FK_ADMIN_DIRECCION" />
+        <AssociationConnector Association="JJSSModel.FK_ADMIN_PAIS" />
+        <AssociationConnector Association="JJSSModel.FK_ADMIN_TIPODOC" />
+        <AssociationConnector Association="JJSSModel.FK_ADMIN_USUARIO" />
+        <EntityTypeShape EntityType="JJSSModel.administrador_imagen" Width="1.5" PointX="7.375" PointY="7.75" />
+        <AssociationConnector Association="JJSSModel.FK_ADMIN_IMAGEN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
