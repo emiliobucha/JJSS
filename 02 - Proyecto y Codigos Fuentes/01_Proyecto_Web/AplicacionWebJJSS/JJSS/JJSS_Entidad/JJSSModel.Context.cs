@@ -76,5 +76,7 @@ namespace JJSS_Entidad
         public virtual DbSet<tipo_evento_especial> tipo_evento_especial { get; set; }
         public virtual DbSet<torneo> torneo { get; set; }
         public virtual DbSet<torneo_imagen> torneo_imagen { get; set; }
+        public virtual DbSet<administrador> administrador { get; set; }
+        public virtual DbSet<administrador_imagen> administrador_imagen { get; set; }
     }
 }

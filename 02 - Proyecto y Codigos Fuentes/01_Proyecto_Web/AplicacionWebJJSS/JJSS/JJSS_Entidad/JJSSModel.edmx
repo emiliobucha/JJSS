@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -13,6 +13,34 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="45" />
           <Property Name="id_direccion" Type="int" />
           <Property Name="telefono" Type="bigint" />
+        </EntityType>
+        <EntityType Name="administrador">
+          <Key>
+            <PropertyRef Name="id_admin" />
+          </Key>
+          <Property Name="id_admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="sexo" Type="smallint" />
+          <Property Name="dni" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="bigint" />
+          <Property Name="mail" Type="varchar" MaxLength="50" />
+          <Property Name="id_direccion" Type="int" />
+          <Property Name="telefono_emergencia" Type="bigint" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="baja_logica" Type="smallint" />
+          <Property Name="id_tipo_documento" Type="int" />
+          <Property Name="id_pais" Type="int" />
+        </EntityType>
+        <EntityType Name="administrador_imagen">
+          <Key>
+            <PropertyRef Name="id_administradorimagen" />
+          </Key>
+          <Property Name="id_administradorimagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_administrador" Type="int" />
+          <Property Name="imagen" Type="binary" MaxLength="8000" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="alumno">
           <Key>
@@ -1402,6 +1430,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ADMIN_DIRECCION">
+          <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
+          <End Role="administrador" Type="Self.administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_IMAGEN">
+          <End Role="administrador" Type="Self.administrador" Multiplicity="0..1" />
+          <End Role="administrador_imagen" Type="Self.administrador_imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="administrador">
+              <PropertyRef Name="id_admin" />
+            </Principal>
+            <Dependent Role="administrador_imagen">
+              <PropertyRef Name="id_administrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="administrador" Type="Self.administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_TIPODOC">
+          <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="0..1" />
+          <End Role="administrador" Type="Self.administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="id_tipo_documento" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="id_tipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_USUARIO">
+          <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="0..1" />
+          <End Role="administrador" Type="Self.administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ALUMNO_ID_DIRECCION">
           <End Role="direccion" Type="Self.direccion" Multiplicity="0..1" />
           <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
@@ -1584,6 +1672,8 @@
         </Association>
         <EntityContainer Name="JJSSModelStoreContainer">
           <EntitySet Name="academia" EntityType="Self.academia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="administrador" EntityType="Self.administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="administrador_imagen" EntityType="Self.administrador_imagen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumno_imagen" EntityType="Self.alumno_imagen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumnoxfaja" EntityType="Self.alumnoxfaja" Schema="dbo" store:Type="Tables" />
@@ -1910,6 +2000,26 @@
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_DIRECCION" Association="Self.FK_ADMIN_DIRECCION">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_IMAGEN" Association="Self.FK_ADMIN_IMAGEN">
+            <End Role="administrador" EntitySet="administrador" />
+            <End Role="administrador_imagen" EntitySet="administrador_imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_PAIS" Association="Self.FK_ADMIN_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_TIPODOC" Association="Self.FK_ADMIN_TIPODOC">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_USUARIO" Association="Self.FK_ADMIN_USUARIO">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
           <AssociationSet Name="FK_ALUMNO_ID_DIRECCION" Association="Self.FK_ALUMNO_ID_DIRECCION">
             <End Role="direccion" EntitySet="direccion" />
             <End Role="alumno" EntitySet="alumno" />
@@ -1971,8 +2081,7 @@
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2177,6 +2286,7 @@
           <NavigationProperty Name="ciudad" Relationship="Self.FK__direccion__id_ci__26EFBBC6" FromRole="direccion" ToRole="ciudad" />
           <NavigationProperty Name="sede" Relationship="Self.FK__sede__id_direcci__50E5F592" FromRole="direccion" ToRole="sede" />
           <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_DIRECCION" FromRole="direccion" ToRole="profesor" />
+          <NavigationProperty Name="administrador" Relationship="JJSSModel.FK_ADMIN_DIRECCION" FromRole="direccion" ToRole="administrador" />
         </EntityType>
         <EntityType Name="estado">
           <Key>
@@ -2380,6 +2490,7 @@
           <NavigationProperty Name="provincia" Relationship="Self.FK__provincia__id_pa__4944D3CA" FromRole="pais" ToRole="provincia" />
           <NavigationProperty Name="participante" Relationship="Self.FK_PARTICIPANTE_ID_PAIS" FromRole="pais" ToRole="participante" />
           <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_PAIS" FromRole="pais" ToRole="profesor" />
+          <NavigationProperty Name="administrador" Relationship="JJSSModel.FK_ADMIN_PAIS" FromRole="pais" ToRole="administrador" />
         </EntityType>
         <EntityType Name="parametro">
           <Key>
@@ -2597,6 +2708,7 @@
           <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_USUARIO" FromRole="seguridad_usuario" ToRole="profesor" />
           <NavigationProperty Name="reserva" Relationship="Self.FK__reserva__id_usua__4A38F803" FromRole="seguridad_usuario" ToRole="reserva" />
           <NavigationProperty Name="seguridad_usuarioxgrupo" Relationship="Self.FK__seguridad__id_us__54B68676" FromRole="seguridad_usuario" ToRole="seguridad_usuarioxgrupo" />
+          <NavigationProperty Name="administrador" Relationship="JJSSModel.FK_ADMIN_USUARIO" FromRole="seguridad_usuario" ToRole="administrador" />
         </EntityType>
         <EntityType Name="seguridad_usuarioxgrupo">
           <Key>
@@ -2630,6 +2742,7 @@
           <NavigationProperty Name="participante" Relationship="Self.FK_PARTICIPANTE_ID_TIPO_DOCUMENTO" FromRole="tipo_documento" ToRole="participante" />
           <NavigationProperty Name="participante_evento" Relationship="Self.FK_PARTICIPANTE_EV_ID_TIPO_DOCUMENTO" FromRole="tipo_documento" ToRole="participante_evento" />
           <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_TIPO_DOCUMENTO" FromRole="tipo_documento" ToRole="profesor" />
+          <NavigationProperty Name="administrador" Relationship="JJSSModel.FK_ADMIN_TIPODOC" FromRole="tipo_documento" ToRole="administrador" />
         </EntityType>
         <EntityType Name="tipo_evento_especial">
           <Key>
@@ -4109,7 +4222,123 @@
             <End Role="torneo" EntitySet="torneo" />
             <End Role="torneo_imagen" EntitySet="torneo_imagen" />
           </AssociationSet>
+          <EntitySet Name="administrador" EntityType="JJSSModel.administrador" />
+          <AssociationSet Name="FK_ADMIN_DIRECCION" Association="JJSSModel.FK_ADMIN_DIRECCION">
+            <End Role="direccion" EntitySet="direccion" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_PAIS" Association="JJSSModel.FK_ADMIN_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_TIPODOC" Association="JJSSModel.FK_ADMIN_TIPODOC">
+            <End Role="tipo_documento" EntitySet="tipo_documento" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_USUARIO" Association="JJSSModel.FK_ADMIN_USUARIO">
+            <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
+            <End Role="administrador" EntitySet="administrador" />
+          </AssociationSet>
+          <EntitySet Name="administrador_imagen" EntityType="JJSSModel.administrador_imagen" />
+          <AssociationSet Name="FK_ADMIN_IMAGEN" Association="JJSSModel.FK_ADMIN_IMAGEN">
+            <End Role="administrador" EntitySet="administrador" />
+            <End Role="administrador_imagen" EntitySet="administrador_imagen" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="administrador">
+          <Key>
+            <PropertyRef Name="id_admin" />
+          </Key>
+          <Property Name="id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="sexo" Type="Int16" />
+          <Property Name="dni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="Int64" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_direccion" Type="Int32" />
+          <Property Name="telefono_emergencia" Type="Int64" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="baja_logica" Type="Int16" />
+          <Property Name="id_tipo_documento" Type="Int32" />
+          <Property Name="id_pais" Type="Int32" />
+          <NavigationProperty Name="direccion" Relationship="JJSSModel.FK_ADMIN_DIRECCION" FromRole="administrador" ToRole="direccion" />
+          <NavigationProperty Name="pais" Relationship="JJSSModel.FK_ADMIN_PAIS" FromRole="administrador" ToRole="pais" />
+          <NavigationProperty Name="tipo_documento" Relationship="JJSSModel.FK_ADMIN_TIPODOC" FromRole="administrador" ToRole="tipo_documento" />
+          <NavigationProperty Name="seguridad_usuario" Relationship="JJSSModel.FK_ADMIN_USUARIO" FromRole="administrador" ToRole="seguridad_usuario" />
+          <NavigationProperty Name="administrador_imagen" Relationship="JJSSModel.FK_ADMIN_IMAGEN" FromRole="administrador" ToRole="administrador_imagen" />
+        </EntityType>
+        <Association Name="FK_ADMIN_DIRECCION">
+          <End Type="JJSSModel.direccion" Role="direccion" Multiplicity="0..1" />
+          <End Type="JJSSModel.administrador" Role="administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_PAIS">
+          <End Type="JJSSModel.pais" Role="pais" Multiplicity="0..1" />
+          <End Type="JJSSModel.administrador" Role="administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_TIPODOC">
+          <End Type="JJSSModel.tipo_documento" Role="tipo_documento" Multiplicity="0..1" />
+          <End Type="JJSSModel.administrador" Role="administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_documento">
+              <PropertyRef Name="id_tipo_documento" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="id_tipo_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_USUARIO">
+          <End Type="JJSSModel.seguridad_usuario" Role="seguridad_usuario" Multiplicity="0..1" />
+          <End Type="JJSSModel.administrador" Role="administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguridad_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="administrador">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="administrador_imagen">
+          <Key>
+            <PropertyRef Name="id_administradorimagen" />
+          </Key>
+          <Property Name="id_administradorimagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_administrador" Type="Int32" />
+          <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="true" />
+          <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="administrador" Relationship="JJSSModel.FK_ADMIN_IMAGEN" FromRole="administrador_imagen" ToRole="administrador" />
+        </EntityType>
+        <Association Name="FK_ADMIN_IMAGEN">
+          <End Type="JJSSModel.administrador" Role="administrador" Multiplicity="0..1" />
+          <End Type="JJSSModel.administrador_imagen" Role="administrador_imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="administrador">
+              <PropertyRef Name="id_admin" />
+            </Principal>
+            <Dependent Role="administrador_imagen">
+              <PropertyRef Name="id_administrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4693,6 +4922,36 @@
                 <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="administrador">
+            <EntityTypeMapping TypeName="JJSSModel.administrador">
+              <MappingFragment StoreEntitySet="administrador">
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+                <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+                <ScalarProperty Name="baja_logica" ColumnName="baja_logica" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="telefono_emergencia" ColumnName="telefono_emergencia" />
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="administrador_imagen">
+            <EntityTypeMapping TypeName="JJSSModel.administrador_imagen">
+              <MappingFragment StoreEntitySet="administrador_imagen">
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="id_administrador" ColumnName="id_administrador" />
+                <ScalarProperty Name="id_administradorimagen" ColumnName="id_administradorimagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

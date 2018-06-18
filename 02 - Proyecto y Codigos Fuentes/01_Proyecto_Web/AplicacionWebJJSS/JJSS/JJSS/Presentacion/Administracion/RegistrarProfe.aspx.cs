@@ -63,6 +63,8 @@ namespace JJSS.Presentacion
 
                 //CargarComboCiudades(1);
                 CargarComboProvincias();
+                CargarComboTipoDocumentos();
+                CargarComboNacionalidades();
                 if (Session["profesorEditar"] != null)
                 {
                     dniProfesor = Session["profesorEditar"].ToString();
@@ -133,7 +135,7 @@ namespace JJSS.Presentacion
 
         protected void btn_guardar_click(object sender, EventArgs e)
         {
-            var dni = txtDni.Text;
+           
             string nombre = txt_nombres.Text;
             string apellido = txt_apellido.Text;
 
@@ -173,14 +175,30 @@ namespace JJSS.Presentacion
                 ciudad = int.Parse(ddl_localidad.SelectedValue);
             }
 
+            var dni = txtDni.Text;
+
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+            if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
+            {
+                mensaje("El documento debe tener sólo números", false);
+                return;
+            }
+
+            int idPais;
+            int.TryParse(ddl_nacionalidad.SelectedValue, out idPais);
+
+
+
 
             if (txtDni.Enabled == false)
             {
                 //actualiza datos
                 try
                 {
-                    gestorProfes.ModificarProfesor(dni, nombre, apellido,null);
-                    gestorProfes.ModificarProfesor(calle, departamento, numero, piso, tel, telEmergencia, mail, dni, ciudad, torre);
+                    gestorProfes.ModificarProfesor(idTipo, dni, nombre, apellido,null, idPais);
+                    gestorProfes.ModificarProfesorContacto(calle, departamento, numero, piso, tel, telEmergencia, mail, idTipo, dni, ciudad, torre);
                     mensaje("Se modificaron los datos correctamente", true);
                     limpiar();
                 }
@@ -203,7 +221,7 @@ namespace JJSS.Presentacion
                 //registra un nuevo alumno
                 try
                 {
-                    gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad, torre);
+                    gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, idTipo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad, torre);
                     mensaje("Se ha creado el profesor exitosamente", true);
                     limpiar();
                 }
@@ -238,6 +256,7 @@ namespace JJSS.Presentacion
 
         private void limpiar()
         {
+
             txtDni.Text = "";
             txt_apellido.Text = "";
             txt_calle.Text = "";
@@ -250,6 +269,32 @@ namespace JJSS.Presentacion
             txt_telefono_urgencia.Text = "";
             ddl_localidad.SelectedIndex = 0;
             ddl_provincia.SelectedIndex = 0;
+            ddl_tipo.SelectedIndex = 0;
+            ddl_nacionalidad.SelectedIndex = 0;
         }
+
+
+        protected void CargarComboTipoDocumentos()
+        {
+
+            List<tipo_documento> tiposdoc = gestorInscripciones.ObtenerTiposDocumentos();
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+
+        }
+
+        protected void CargarComboNacionalidades()
+        {
+
+            List<pais> paises = gestorInscripciones.ObtenerNacionalidades();
+            ddl_nacionalidad.DataSource = paises;
+            ddl_nacionalidad.DataTextField = "nombre";
+            ddl_nacionalidad.DataValueField = "id_pais";
+            ddl_nacionalidad.DataBind();
+
+        }
+
     }
 }
