@@ -62,6 +62,7 @@ namespace JJSS.Presentacion
 
 
                 if (Session["TorneoPagar"] == null) Response.Redirect("InscripcionTorneo.aspx");
+                Session["TorneoPagar"] = null;
 
                 lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
 

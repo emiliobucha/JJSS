@@ -25,7 +25,7 @@ namespace JJSS.Presentacion
         {
             if (!IsPostBack)
             {
-                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Presentacion/Torneos/MenuTorneo.aspx";
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Presentacion/Torneos/HistoricoTorneos.aspx";
                 else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 gestorResultados = new GestorResultados();
                 gestorTorneos = new GestorTorneos();
@@ -43,7 +43,7 @@ namespace JJSS.Presentacion
                 }
                 else
                 {
-                    Response.Redirect("MenuTorneo.aspx");
+                    Response.Redirect("HistoricoTorneos.aspx");
                 }
             }
         }

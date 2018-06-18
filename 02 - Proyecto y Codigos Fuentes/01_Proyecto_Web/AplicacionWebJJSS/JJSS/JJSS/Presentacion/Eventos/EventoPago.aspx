@@ -127,11 +127,10 @@
                 <div class="col col-auto">
                     <a class="btn btn-outline-dark" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="modal" onreturn="execute_my_onreturn">Pagar</a>
                 </div>
-                <div class="col col-auto">
-                    <asp:Button ID="btn_cancelar" CssClass="btn btn-outline-dark" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btn_cancelar_Click" />
-
+                    <div class="col col-auto">
+                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Evento.aspx"></asp:HyperLink>
+                    </div>
                 </div>
-            </div>
         </div>
     </form>
 

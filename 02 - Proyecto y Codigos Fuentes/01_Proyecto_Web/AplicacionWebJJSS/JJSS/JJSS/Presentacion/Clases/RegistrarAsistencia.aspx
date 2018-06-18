@@ -112,9 +112,11 @@
                             <p>&nbsp;</p>
                         </div>
 
-                        <div class="row pull-left">
-                            <div class="col">
-                                <asp:Button ID="btn_cancelar" runat="server" Text="Volver a inicio" formnovalidate="true" CssClass=" btn btn-link pull-left" CausesValidation="false" OnClick="btn_cancelar_Click" />
+                        <div class="container p-1">
+                            <div class="row centered">
+                                <div class="col col-auto">
+                                    <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Clase.aspx"></asp:HyperLink>
+                                </div>
                             </div>
                         </div>
 

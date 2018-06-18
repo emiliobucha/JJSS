@@ -57,7 +57,7 @@ namespace JJSS.Presentacion
                 //    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
 
                 //}
-                if (Session["EventoPagar"] == null || Session["EventoPagar"].ToString() == "") Response.Redirect("Inicio.aspx");
+                if (Session["EventoPagar"] == null || Session["EventoPagar"].ToString() == "") Response.Redirect("InscripcionEvento.aspx");
 
 
 
@@ -67,6 +67,7 @@ namespace JJSS.Presentacion
 
                     lbl_fecha.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
                     int id = int.Parse(Session["EventoPagar"].ToString());
+                    Session["EventoPagar"] = null;
                     var dni =Session["ParticipanteDNI"].ToString();
                     participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
                     evento_especial eventoPagar = gestorEventos.BuscarEventoPorID(id);
@@ -92,12 +93,10 @@ namespace JJSS.Presentacion
                         else mensaje(sReturn, false);
                     }
                     else mensaje("No hay alumno seleccionado", false);
-                    Session["EventoPagar"] = null;
                 }
                 else
                 {
-                    Session["EventoPagar"] = null;
-                    Response.Redirect("Inicio.aspx");
+                    Response.Redirect("MenuEvento.aspx");
                 }
 
 
