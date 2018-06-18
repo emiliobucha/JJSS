@@ -104,11 +104,11 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 claseExistente = (from cl in db.clase
-                                       where cl.nombre.Equals(nombreClase, StringComparison.OrdinalIgnoreCase)
-                                       && cl.id_ubicacion == idAcademia && cl.baja_logica == Constantes.ConstatesBajaLogica.BAJA_LOGICA
-                                       select cl).FirstOrDefault();
+                                  where cl.nombre.Equals(nombreClase, StringComparison.OrdinalIgnoreCase)
+                                  && cl.id_ubicacion == idAcademia && cl.baja_logica == Constantes.ConstatesBajaLogica.BAJA_LOGICA
+                                  select cl).FirstOrDefault();
             }
-            return claseExistente!=null;
+            return claseExistente != null;
         }
 
 
@@ -131,7 +131,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public List<ClaseHorario> ObtenerTodosLosHorarios(string filtroNombre, string filtroTipoClase, int filtroIDProfesor, 
+        public List<ClaseHorario> ObtenerTodosLosHorarios(string filtroNombre, string filtroTipoClase, int filtroIDProfesor,
             string filtroAcademia)
         {
 
@@ -297,10 +297,16 @@ namespace JJSS_Negocio
                         claseEncontrada.id_profe = pProfe;
                         db.SaveChanges();
 
-                        //agrega los nuevos horarios
                         var horarios = from h in db.horario
                                        where h.id_clase == pId
                                        select h;
+
+                        //elimina los horarios que tengan que ser eliminados
+                        List<horario> horariosAEliminar = getHorariosEliminar(pHorarios, horarios.ToList());
+                        db.horario.RemoveRange(horariosAEliminar);
+                        db.SaveChanges();
+
+                        //agrega los nuevos horarios
                         List<horario> horariosAAgregar = getNuevosHorarios(pHorarios, horarios.ToList(), pId);
 
                         db.horario.AddRange(horariosAAgregar);
@@ -333,34 +339,55 @@ namespace JJSS_Negocio
                 encuentra = false;
                 foreach (horario h in horariosAnteriores)
                 {
-                    if (dr["hora_desde"].ToString().CompareTo(h.hora_desde) == 0)
+                    if (dr["hora_desde"].ToString().CompareTo(h.hora_desde) == 0 && dr["hora_hasta"].ToString().CompareTo(h.hora_hasta) == 0
+                        && Convert.ToInt16(dr["dia"]) == h.dia)
                     {
-                        if (dr["hora_hasta"].ToString().CompareTo(h.hora_hasta) == 0)
-                        {
-                            if (Convert.ToInt16(dr["dia"]) == h.dia)
-                            {
+                        encuentra = true;
+                        break;
 
-                                encuentra = true;
-                                break;
-                            }
-                        }
                     }
-                    if (!encuentra)
+                }
+                if (!encuentra)
+                {
+                    horario nuevoHorario = new horario()
                     {
-                        horario nuevoHorario = new horario()
-                        {
-                            dia = Convert.ToInt16(dr["dia"]),
-                            nombre_dia = dr["nombre_dia"].ToString(),
-                            hora_desde = dr["hora_desde"].ToString(),
-                            hora_hasta = dr["hora_hasta"].ToString(),
-                            id_clase = idClase,
-                        };
-                        horariosAAgregar.Add(nuevoHorario);
+                        dia = Convert.ToInt16(dr["dia"]),
+                        nombre_dia = dr["nombre_dia"].ToString(),
+                        hora_desde = dr["hora_desde"].ToString(),
+                        hora_hasta = dr["hora_hasta"].ToString(),
+                        id_clase = idClase,
+                    };
+                    horariosAAgregar.Add(nuevoHorario);
+                }
+            }
+            return horariosAAgregar;
+        }
+
+        //compara los nuevos horarios con los que estan en la DB para eliminar los que tengan que ser eliminados, 
+        private List<horario> getHorariosEliminar(DataTable nuevosHorarios, List<horario> horariosAnteriores)
+        {
+            List<horario> horariosAEliminar = new List<horario>();
+            Boolean encuentra;
+
+            foreach (horario h in horariosAnteriores)
+            {
+                encuentra = false;
+                foreach(DataRow dr in nuevosHorarios.Rows)
+                {
+                    if (dr["hora_desde"].ToString().CompareTo(h.hora_desde) == 0 && dr["hora_hasta"].ToString().CompareTo(h.hora_hasta) == 0
+                        && Convert.ToInt16(dr["dia"]) == h.dia)
+                    {
+                        encuentra = true;
+                        break;
                     }
+                }
+                if (!encuentra)
+                {
+                    horariosAEliminar.Add(h);
                 }
             }
 
-            return horariosAAgregar;
+            return horariosAEliminar;
         }
 
         /*
