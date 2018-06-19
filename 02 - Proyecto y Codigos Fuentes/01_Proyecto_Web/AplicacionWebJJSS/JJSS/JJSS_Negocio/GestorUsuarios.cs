@@ -93,7 +93,8 @@ namespace JJSS_Negocio
                             login = pLogin,
                             clave = claveMD5,
                             mail = pMail,
-                            nombre = pNombre
+                            nombre = pNombre,
+                            baja_logica = 1
                         };
 
                         db.seguridad_usuario.Add(nuevoUsuario);
@@ -171,7 +172,7 @@ namespace JJSS_Negocio
                                join uxg in db.seguridad_usuarioxgrupo on usu.id_usuario equals uxg.id_usuario
                                join gru in db.seguridad_grupo on uxg.id_grupo equals gru.id_grupo
 
-                               where usu.baja_logica == 1
+                               where usu.baja_logica == 1 
                                select new
                                {
                                    id_usuario = usu.id_usuario,
