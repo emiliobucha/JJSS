@@ -14,6 +14,12 @@ namespace JJSS_Entidad
     
     public partial class inscripcion_evento
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public inscripcion_evento()
+        {
+            this.pago_evento = new HashSet<pago_evento>();
+        }
+    
         public int id_inscripcion { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> id_participante { get; set; }
@@ -22,5 +28,7 @@ namespace JJSS_Entidad
     
         public virtual evento_especial evento_especial { get; set; }
         public virtual participante_evento participante_evento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pago_evento> pago_evento { get; set; }
     }
 }

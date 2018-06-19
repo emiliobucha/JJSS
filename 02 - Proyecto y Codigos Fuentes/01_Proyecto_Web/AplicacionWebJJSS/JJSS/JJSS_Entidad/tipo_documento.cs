@@ -17,17 +17,19 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tipo_documento()
         {
+            this.administrador = new HashSet<administrador>();
             this.alumno = new HashSet<alumno>();
             this.participante = new HashSet<participante>();
             this.participante_evento = new HashSet<participante_evento>();
             this.profesor = new HashSet<profesor>();
-            this.administrador = new HashSet<administrador>();
         }
     
         public int id_tipo_documento { get; set; }
         public string nombre { get; set; }
         public string codigo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<administrador> administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno> alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -36,7 +38,5 @@ namespace JJSS_Entidad
         public virtual ICollection<participante_evento> participante_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<profesor> profesor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<administrador> administrador { get; set; }
     }
 }
