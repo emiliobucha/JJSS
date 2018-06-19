@@ -26,6 +26,16 @@ namespace JJSS_Negocio
                 return participanteEncontrado.FirstOrDefault();            
             }
         }
+        public participante ObtenerParticipantePorDNITipo(int pTipoDoc, string pDni)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var participanteEncontrado = from part in db.participante
+                    where part.dni == pDni && part.id_tipo_documento == pTipoDoc
+                    select part;
+                return participanteEncontrado.FirstOrDefault();
+            }
+        }
 
         public participante obtenerParticipantePorId(int pId)
         {

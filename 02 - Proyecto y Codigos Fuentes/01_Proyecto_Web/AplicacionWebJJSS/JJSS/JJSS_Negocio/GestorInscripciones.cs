@@ -89,7 +89,6 @@ namespace JJSS_Negocio
                     }
 
                     //si es absoluto
-                    categoria categoriaAbsolutoPerteneciente = null;
                     categoria_torneo categoriaTorneoAbs = null;
                     if (pTipoInscripcion == Constantes.ConstantesTipoInscripcion.ABSOLUTO)
                     {
@@ -101,7 +100,7 @@ namespace JJSS_Negocio
                         && categoria.nombre.StartsWith("Absoluto")
                         select categoria;
 
-                        categoriaAbsolutoPerteneciente = abs.First();
+                        var categoriaAbsolutoPerteneciente = abs.First();
                         
                         var catTorneoExistenteAbs = from catTor in db.categoria_torneo
                                                  where (catTor.id_categoria == categoriaAbsolutoPerteneciente.id_categoria)
@@ -134,27 +133,28 @@ namespace JJSS_Negocio
                         return "El participante ya se inscribió a este torneo";
                     }
 
-                    //alumnoExistente = ObtenerAlumnoPorDNI(pDni);
 
-                    participante nuevoParticipante;
+                    var nuevoParticipante = ObtenerParticipanteporDNITipo(pTipoDoc, pDni);
 
-                    nuevoParticipante = new participante()
+                    if (nuevoParticipante == null)
                     {
-                        nombre = pNombre,
-                        apellido = pApellido,
-                        //peso = pPeso,
-                        id_tipo_documento = pTipoDoc,
-                        sexo = pSexo,
-                        fecha_nacimiento = pFechaNacimiento,
-                        dni = pDni,
-                        id_alumno = pIDAlumno,
-                        id_pais = pIdPais
+                        nuevoParticipante = new participante()
+                        {
+                            nombre = pNombre,
+                            apellido = pApellido,
+                            id_tipo_documento = pTipoDoc,
+                            sexo = pSexo,
+                            fecha_nacimiento = pFechaNacimiento,
+                            dni = pDni,
+                            id_alumno = pIDAlumno,
+                            id_pais = pIdPais
 
-                    };
-                    db.participante.Add(nuevoParticipante);
-                    db.SaveChanges();
-                    
-                    string hora = hora = DateTime.Now.ToString("hh:mm tt");
+                        };
+                        db.participante.Add(nuevoParticipante);
+                        db.SaveChanges();
+                    }
+
+                    string hora  = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;
                     inscripcion nuevaInscripcion = new inscripcion()
                     {
@@ -364,7 +364,13 @@ namespace JJSS_Negocio
             return gestorParticipantes.ObtenerParticipantePorDNI(pDni);
         }
 
-        //TODO nacionalidad y tipo dni
+        public participante ObtenerParticipanteporDNITipo(int pTipo, string pDni)
+        {
+            GestorParticipantes gestorParticipantes = new GestorParticipantes();
+            return gestorParticipantes.ObtenerParticipantePorDNITipo(pTipo, pDni);
+        }
+
+
         public participante obtenerParticipanteDeTorneo(int pTipoDoc, string pDni, int pIDTorneo)
         {
             using (var db = new JJSSEntities())
@@ -377,6 +383,7 @@ namespace JJSS_Negocio
             }
         }
 
+      
 
         public inscripcion obtenerInscripcionATorneoPorIdParticipante(int pId, int pIDTorneo)
         {

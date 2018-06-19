@@ -48,6 +48,7 @@
     <Compile Include="Constantes\ConstantesEstado.cs" />
     <Compile Include="Constantes\ConstantesTipoClase.cs" />
     <Compile Include="Constantes\ConstantesTipoInscripcion.cs" />
+    <Compile Include="Constantes\ConstantesTipoPago.cs" />
     <Compile Include="Constantes\ConstatesBajaLogica.cs" />
     <Compile Include="Constantes\Sexo.cs" />
     <Compile Include="Constantes\TipoDocumento.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Resultados\DireccionAlumno.cs" />
     <Compile Include="Resultados\HorariosResultado.cs" />
     <Compile Include="Resultados\ListadoAsistencia.cs" />
+    <Compile Include="Resultados\ObjetoPagable.cs" />
     <Compile Include="Resultados\ParticipantesEventoResultado.cs" />
     <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
     <Compile Include="Resultados\ProductosResultados.cs" />

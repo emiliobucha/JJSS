@@ -59,14 +59,18 @@ namespace JJSS.Presentacion
                 //}
 
 
-                if (Session["EventoPagar"] == null) Response.Redirect("InscripcionEvento.aspx");
+                if (Session["Evento"] == null) Response.Redirect("InscripcionEvento.aspx");
 
                 lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
 
-                int id = int.Parse(Session["EventoPagar"].ToString());
-                Session["EventoPagar"] = null;
-                var dni =Session["ParticipanteDNI"].ToString();
-                participante_eventoElegido = gestorParticipantesEvento.ObtenerParticipantePorDNI(1,dni);
+              
+                int id = int.Parse(Session["Evento"].ToString());
+                var dni = Session["ParticipanteDNI"].ToString();
+                int tipo = int.Parse(Session["ParticipanteTipoDni"].ToString());
+
+                Session["Evento"] = null;
+             
+                participante_eventoElegido = gestorParticipantesEvento.ObtenerParticipantePorDNI(tipo,dni);
                 lbl_participante.Text = participante_eventoElegido.apellido + ", " + participante_eventoElegido.nombre;
 
                 evento_especial evento = gestorEvento.BuscarEventoPorID(id);

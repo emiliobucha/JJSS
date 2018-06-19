@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" AutoEventWireup="true" CodeBehind="PagosPanel.aspx.cs" Inherits="JJSS.Presentacion.Pagos.PagosPanel" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Presentacion/Site.Master"  AutoEventWireup="true" CodeBehind="PagosPanel.aspx.cs" Inherits="JJSS.Presentacion.Pagos.PagosPanel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1>Listado de Alumnos</h1>
+                        <h1>Pendientes de Pago</h1>
                     </div>
 
                     <div class="row centered">
@@ -63,13 +63,13 @@
 
                       
                             <div class="row centered justify-content-center">
-                                <asp:GridView ID="gvPagos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvPagos_PageIndexChanging"
-                                    ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar"
+                                <asp:GridView ID="gvPagos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="Inscripcion" OnPageIndexChanging="gvPagos_PageIndexChanging"
+                                    ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay pagos pendientes para mostrar"
                                     OnRowCommand="gvPagos_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
-                                        <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="tipo" />
+                                        <asp:BoundField DataField="TipoPago.Tipo" HeaderText="Tipo" SortExpression="tipo" />
                                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="fecha" />
+                                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="fecha" DataFormatString="{0:dd/MM/yyyy}" />
                                         <asp:BoundField DataField="Monto" HeaderText="Monto" SortExpression="monto" />
                                         <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />
                                     </Columns>
