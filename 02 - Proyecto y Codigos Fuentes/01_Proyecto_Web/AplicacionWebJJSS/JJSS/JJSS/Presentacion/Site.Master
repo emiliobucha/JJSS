@@ -134,6 +134,8 @@
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item text-white" id="nav_pago" href="/Presentacion/Clases/AlumnoClases.aspx">Pago de Clase </a>
+                              
+                              <a class="dropdown-item text-white" id="nav_pago_panel" href="/Presentacion/Pagos/PagosPanel.aspx">Pagos Pendientes </a>
                           </div>
                       </li>
                        <!-- Sobre Nosotros -->

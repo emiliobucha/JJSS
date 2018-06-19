@@ -73,21 +73,26 @@ namespace JJSS_Negocio
                         return "Participante exitente";
                     }
 
-                    //alumnoExistente = ObtenerAlumnoPorDNI(pDni);
 
-                    var nuevoParticipante = new participante_evento()
+                    var nuevoParticipante = ObtenerParticipanteEventoPorDniTipo(pTipo, pDni);
+
+                    if(nuevoParticipante == null)
                     {
-                        nombre = pNombre,
-                        apellido = pApellido,
-                        sexo = pSexo,
-                        fecha_nacimiento = pFechaNacimiento,
-                        dni = pDni,
-                        id_alumno = pIDAlumno,
-                        id_tipo_documento = pTipo
+                        nuevoParticipante = new participante_evento()
+                        {
+                            nombre = pNombre,
+                            apellido = pApellido,
+                            sexo = pSexo,
+                            fecha_nacimiento = pFechaNacimiento,
+                            dni = pDni,
+                            id_alumno = pIDAlumno,
+                            id_tipo_documento = pTipo
 
-                    };
-                    db.participante_evento.Add(nuevoParticipante);
-                    db.SaveChanges();
+                        };
+                        db.participante_evento.Add(nuevoParticipante);
+                        db.SaveChanges();
+                    }
+                 
 
                     string hora = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;
@@ -99,9 +104,6 @@ namespace JJSS_Negocio
                         fecha = fecha,
                         id_participante = nuevoParticipante.id_participante,
                         id_evento = pEvento
-
-
-
                     };
 
                     db.inscripcion_evento.Add(nuevaInscripcion);
@@ -138,6 +140,17 @@ namespace JJSS_Negocio
                 return participante;
             }
         }
+
+        public participante_evento ObtenerParticipanteEventoPorDniTipo(int pTipo, string pDni)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var participante =
+                    db.participante_evento.FirstOrDefault(x => x.dni == pDni && x.id_tipo_documento == pTipo);
+                return participante;
+            }
+        }
+
 
         public inscripcion_evento obtenerInscripcionAEventoPorIdParticipante(int pId, int pIdEvento)
         {
