@@ -17,11 +17,13 @@ namespace JJSS_Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public seguridad_usuario()
         {
+            this.administrador = new HashSet<administrador>();
             this.alumno = new HashSet<alumno>();
+            this.pago_evento = new HashSet<pago_evento>();
+            this.pago_torneo = new HashSet<pago_torneo>();
             this.profesor = new HashSet<profesor>();
             this.reserva = new HashSet<reserva>();
             this.seguridad_usuarioxgrupo = new HashSet<seguridad_usuarioxgrupo>();
-            this.administrador = new HashSet<administrador>();
         }
     
         public int id_usuario { get; set; }
@@ -32,14 +34,18 @@ namespace JJSS_Entidad
         public Nullable<short> baja_logica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<administrador> administrador { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno> alumno { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pago_evento> pago_evento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pago_torneo> pago_torneo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<profesor> profesor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<reserva> reserva { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<seguridad_usuarioxgrupo> seguridad_usuarioxgrupo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<administrador> administrador { get; set; }
     }
 }

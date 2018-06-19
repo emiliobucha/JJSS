@@ -84,7 +84,7 @@ namespace JJSS.Presentacion
                     {
                         participanteElegido = gestorParticipantes.ObtenerParticipantePorDNI(dni);
 
-                        string sReturn = gestorPago.registrarPago(participanteElegido.id_participante, id, 4);
+                        string sReturn = ""; //gestorPago.registrarPago(participanteElegido.id_participante, id, 4)};
                         if (sReturn.CompareTo("") == 0)
                         {
                             mensaje("Se ha registrado el pago exitosamente", true);

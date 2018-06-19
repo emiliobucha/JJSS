@@ -24,7 +24,7 @@ namespace JJSS_Negocio
          *              El participante no está inscripto a esa torneo
          *              Ya se registró este pago
          */
-        public string registrarPago(int pParticipante, int pTorneo, int pFormaPago)
+        public string registrarPago(int pParticipante, int pTorneo, int pFormaPago, int pUsuario, int pInscripcion)
         {
             string sReturn = "";
 
@@ -35,7 +35,7 @@ namespace JJSS_Negocio
                 try
                 {
                     //validar que el participante este inscripto en ese torneo
-                    if (validarInscripcion(pParticipante, pTorneo) == null)
+                    if (ValidarInscripcion(pParticipante, pTorneo) == null)
                     {
                         return "El participante no está inscripto a ese torneo";
                     }
@@ -48,27 +48,42 @@ namespace JJSS_Negocio
                     forma_pago formaSelect = db.forma_pago.Find(pFormaPago);
 
                     // validar que no pago antes el torneo
-                    if (!validarPago(participanteSelect.id_participante, pTorneo))
+                    if (!ValidarPago(pInscripcion))
                     {
                         return "Ya se registró este pago";
                     }
 
+                    if (torneoSelect == null)
+                    {
+                        return "No existe evento";
+                    }
 
+
+
+                    decimal monto;
+                    if (torneoSelect.precio_absoluto == null)
+                    {
+                        monto = 0;
+                    }
+                    else
+                    {
+                        monto = (decimal)torneoSelect.precio_absoluto;
+                    }
+
+                   
                     //crear pago
                     pago_torneo nuevoPago;
                     nuevoPago = new pago_torneo()
                     {
                         id_participante = pParticipante,
-                        id_torneo = pTorneo,
                         id_forma_pago = pFormaPago,
                         forma_pago = formaSelect,
-                        torneo = torneoSelect,
-                        participante = participanteSelect,
-                        pago_monto = torneoSelect.precio_absoluto,
-                        fecha =  pFecha
-                       
-                                    
-                        
+                        pago_monto = monto,
+                        fecha = pFecha,
+                        id_usuario = pUsuario
+
+
+
                     };
                   
 
@@ -96,17 +111,14 @@ namespace JJSS_Negocio
          *              true si se encontro un pago similar
          * 
          */
-        public bool validarPago(int pParticipante, int pTorneo)
+        public bool ValidarPago(int pInscripcion)
         {
             using (var db = new JJSSEntities())
             {
-                var pagoEncontrado = from pago in db.pago_torneo
-                                     where pago.id_participante == pParticipante && pago.id_torneo == pTorneo
-
-                                     select pago;
+                var pagoEncontrado = db.pago_torneo.FirstOrDefault(x => x.id_inscripcion_torneo == pInscripcion);
 
 
-                return pagoEncontrado.ToList().Count <= 0;
+                return pagoEncontrado != null;
             }
 
         }
@@ -122,7 +134,7 @@ namespace JJSS_Negocio
          *          Inscripcion del participante a dich torneo pudiendo ser nulo el resultado si no estaba inscripto
          *              
          */
-        public inscripcion validarInscripcion(int pParticipante, int pTorneo)
+        public inscripcion ValidarInscripcion(int pParticipante, int pTorneo)
         {
             GestorInscripciones inscripcion = new GestorInscripciones();
 

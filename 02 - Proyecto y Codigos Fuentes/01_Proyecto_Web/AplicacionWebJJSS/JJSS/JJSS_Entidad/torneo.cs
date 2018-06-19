@@ -19,7 +19,6 @@ namespace JJSS_Entidad
         {
             this.inscripcion = new HashSet<inscripcion>();
             this.lucha = new HashSet<lucha>();
-            this.pago_torneo = new HashSet<pago_torneo>();
             this.resultado = new HashSet<resultado>();
             this.torneo_imagen = new HashSet<torneo_imagen>();
         }
@@ -41,8 +40,6 @@ namespace JJSS_Entidad
         public virtual ICollection<inscripcion> inscripcion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lucha> lucha { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pago_torneo> pago_torneo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<resultado> resultado { get; set; }
         public virtual sede sede { get; set; }

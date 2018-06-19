@@ -14,6 +14,12 @@ namespace JJSS_Entidad
     
     public partial class inscripcion
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public inscripcion()
+        {
+            this.pago_torneo = new HashSet<pago_torneo>();
+        }
+    
         public int id_inscripcion { get; set; }
         public string hora { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
@@ -31,5 +37,7 @@ namespace JJSS_Entidad
         public virtual faja faja { get; set; }
         public virtual participante participante { get; set; }
         public virtual torneo torneo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pago_torneo> pago_torneo { get; set; }
     }
 }

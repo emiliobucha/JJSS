@@ -62,6 +62,7 @@
     <Compile Include="GestorInscripcionesEvento.cs" />
     <Compile Include="GestorMercadoPago.cs" />
     <Compile Include="GestorPagoEvento.cs" />
+    <Compile Include="GestorPagos.cs" />
     <Compile Include="GestorPagoTorneo.cs" />
     <Compile Include="GestorPagoClase.cs" />
     <Compile Include="GestorParametro.cs" />

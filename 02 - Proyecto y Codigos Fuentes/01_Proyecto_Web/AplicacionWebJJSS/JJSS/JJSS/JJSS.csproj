@@ -233,6 +233,7 @@
     <Content Include="Presentacion\Eventos\HistoricoEventos.aspx" />
     <Content Include="Presentacion\Eventos\Menu_Evento.aspx" />
     <Content Include="Presentacion\Eventos\VerEvento.aspx" />
+    <Content Include="Presentacion\Pagos\PagosPanel.aspx" />
     <Content Include="Presentacion\PowerBI.aspx">
       <BrowseToURL>~/Presentacion/PowerBI.aspx</BrowseToURL>
     </Content>
@@ -479,6 +480,13 @@
     </Compile>
     <Compile Include="Presentacion\Eventos\VerEvento.aspx.designer.cs">
       <DependentUpon>VerEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagosPanel.aspx.cs">
+      <DependentUpon>PagosPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagosPanel.aspx.designer.cs">
+      <DependentUpon>PagosPanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\PowerBI.aspx.cs">
       <DependentUpon>PowerBI.aspx</DependentUpon>

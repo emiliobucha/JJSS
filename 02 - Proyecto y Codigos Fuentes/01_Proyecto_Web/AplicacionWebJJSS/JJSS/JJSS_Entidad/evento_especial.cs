@@ -19,7 +19,6 @@ namespace JJSS_Entidad
         {
             this.evento_especial_imagen = new HashSet<evento_especial_imagen>();
             this.inscripcion_evento = new HashSet<inscripcion_evento>();
-            this.pago_evento = new HashSet<pago_evento>();
         }
     
         public int id_evento { get; set; }
@@ -40,7 +39,5 @@ namespace JJSS_Entidad
         public virtual tipo_evento_especial tipo_evento_especial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion_evento> inscripcion_evento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pago_evento> pago_evento { get; set; }
     }
 }

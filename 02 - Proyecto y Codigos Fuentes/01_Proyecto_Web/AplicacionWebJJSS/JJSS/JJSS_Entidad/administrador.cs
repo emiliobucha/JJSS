@@ -36,10 +36,10 @@ namespace JJSS_Entidad
         public Nullable<int> id_pais { get; set; }
     
         public virtual direccion direccion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<administrador_imagen> administrador_imagen { get; set; }
         public virtual pais pais { get; set; }
         public virtual tipo_documento tipo_documento { get; set; }
         public virtual seguridad_usuario seguridad_usuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<administrador_imagen> administrador_imagen { get; set; }
     }
 }

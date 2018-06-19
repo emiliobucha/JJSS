@@ -15,14 +15,16 @@ namespace JJSS_Entidad
     public partial class pago_torneo
     {
         public int id_pago_torneo { get; set; }
-        public Nullable<int> id_participante { get; set; }
-        public Nullable<int> id_torneo { get; set; }
-        public Nullable<decimal> pago_monto { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<int> id_forma_pago { get; set; }
+        public int id_inscripcion_torneo { get; set; }
+        public int id_participante { get; set; }
+        public System.DateTime fecha { get; set; }
+        public int id_forma_pago { get; set; }
+        public int id_usuario { get; set; }
+        public decimal pago_monto { get; set; }
     
         public virtual forma_pago forma_pago { get; set; }
+        public virtual inscripcion inscripcion { get; set; }
         public virtual participante participante { get; set; }
-        public virtual torneo torneo { get; set; }
+        public virtual seguridad_usuario seguridad_usuario { get; set; }
     }
 }
