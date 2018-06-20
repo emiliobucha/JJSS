@@ -198,6 +198,10 @@ namespace JJSS_Negocio
                                   && ins.clase.id_tipo_clase == pIdTipoClase
                                   select ins;
                 if (inscripcion == null) return false;
+                if (inscripcion.FirstOrDefault() == null)
+                {
+                    throw new Exception("El alumno no está inscripto a la clase que se da en este horario");
+                }
                 fechaInscripcion = (DateTime)inscripcion.FirstOrDefault().fecha;
 
 

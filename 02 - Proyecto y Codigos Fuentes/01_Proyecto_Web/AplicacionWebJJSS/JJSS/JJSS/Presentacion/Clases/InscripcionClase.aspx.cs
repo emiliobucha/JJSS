@@ -22,6 +22,15 @@ namespace JJSS.Presentacion
         private static int id_Clase;
         private static List<AlumnoConEstado> alumnos;
 
+        enum TipoDocumento : int
+        {
+            DNI = 1,
+            CARNET_EXT = 2,
+            RUC = 3,
+            PASAPORTE = 4,
+            OTRO=5,
+        };
+
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorAlumnos = new GestorAlumnos();
@@ -179,7 +188,8 @@ namespace JJSS.Presentacion
                     alu_apellido = a.apellido,
                     alu_dni = a.dni,
                     alu_nombre = a.nombre,
-                    alu_id= a.id_alumno,
+                    alu_id = a.id_alumno,
+                    alu_tipoDocumento = ((TipoDocumento)a.id_tipo_documento).ToString(),
                 };
                 if (encontro) ae.inscripto = "SI";
                 else ae.inscripto = "NO";
@@ -266,7 +276,8 @@ namespace JJSS.Presentacion
                 string nombre_Alumno = alumnoSeleccionado.alu_nombre;
                 string apellido_Alumno = alumnoSeleccionado.alu_apellido;
                 string dniAlumno = alumnoSeleccionado.alu_dni;
-                cargaDatosAlumno(dniAlumno, nombre_Alumno, apellido_Alumno);
+                string tipoDco = alumnoSeleccionado.alu_tipoDocumento;
+                cargaDatosAlumno(dniAlumno, nombre_Alumno, apellido_Alumno, tipoDco);
 
 
             }else if (e.CommandName.CompareTo("desinscribir") == 0)
@@ -311,11 +322,12 @@ namespace JJSS.Presentacion
         /*
          * Carga de los datos del alumno seleccionado para inscribir.
          */
-        protected void cargaDatosAlumno(string dni, string nombre, string apellido)
+        protected void cargaDatosAlumno(string dni, string nombre, string apellido, string tipoDoc)
         {
             definirVisualizacionDePaneles(true);
             lbl_alumno_apellido.Text = apellido;
             lbl_alumno_dni.Text = dni.ToString();
+            lbl_alumno_tipoDoc.Text = tipoDoc + " - ";
             lbl_alumno_nombre.Text = nombre;
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
@@ -357,7 +369,7 @@ namespace JJSS.Presentacion
                     mensaje("La inscripción se ha realizado correctamente", true);
 
 
-                    definirVisualizacionDePaneles(true);
+                    definirVisualizacionDePaneles(false);
                     CargarGrilla();
 
                 }
