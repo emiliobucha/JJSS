@@ -220,15 +220,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_alumno_apellido;
         
         /// <summary>
-        /// Control lbl_alumno_tipoDoc.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_alumno_tipoDoc;
-        
-        /// <summary>
         /// Control lbl_alumno_dni.
         /// </summary>
         /// <remarks>

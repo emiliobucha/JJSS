@@ -15,6 +15,5 @@ namespace JJSS_Negocio.Resultados
         public int alu_id_estado { get; set; }
         public string inscripto { get; set; }
         public int alu_id { get; set; }
-        public string alu_tipoDocumento { get; set; }
     }
 }

@@ -155,7 +155,7 @@ namespace JJSS_Negocio
                                 where (alu.id_alumno == pIdAlumno) && (tipo.id_tipo_clase == pIdTipoClase)
                                 select tipo;
 
-                if (tipoClase.FirstOrDefault() == null) return false;
+                if (tipoClase.ToList() == null) return false;
                 else return true;
             }
         }

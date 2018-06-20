@@ -56,7 +56,7 @@
                 <p>&nbsp;</p>
             </div>
             <div class="row centered justify-content-center p-4">
-                <h1>Inscripción a Clase</h1>
+                <h1>Incripción a Clase</h1>
             </div>
             <div class="row centered">
                 <p>&nbsp;</p>
@@ -222,10 +222,9 @@
                         <!-- DNI-->
                         <div class="row justify-content-center   pt-1">
                             <div class="col col-sm-1 col-md-2 col-lg-2">
-                                <label>Documento: </label>
+                                <label>DNI: </label>
                             </div>
                             <div class="col col-sm-6 col-md-4 col-lg-4">
-                                <asp:Label ID="lbl_alumno_tipoDoc" class="" runat="server" Text=""></asp:Label>
                                 <asp:Label ID="lbl_alumno_dni" class="" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
