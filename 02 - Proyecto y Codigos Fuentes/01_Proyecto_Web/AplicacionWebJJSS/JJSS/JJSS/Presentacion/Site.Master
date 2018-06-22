@@ -122,10 +122,15 @@
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarAdministracion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Administración &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item text-white" id="nav_ver_seccion" href="/Presentacion/Administracion/Menu_Administracion.aspx">Ver Sección</a>
                               <a class="dropdown-item text-white" id="nav_registrar_alumno" href="/Presentacion/Administracion/RegistrarAlumno.aspx">Registrar Alumno </a>
+                              <a class="dropdown-item text-white" id="nav_administrar_alumno" href="/Presentacion/Administracion/AdministrarAlumnos.aspx">Administrar Alumnos </a>
                               <a class="dropdown-item text-white" id="nav_registrar_profe" href="/Presentacion/Administracion/RegistrarProfe.aspx">Registrar Profesor </a>
+                              <a class="dropdown-item text-white" id="nav_administrar_profe" href="/Presentacion/Administracion/AdministrarProfesores.aspx">Administrar Profesores </a>
                               <a class="dropdown-item text-white" id="nav_crear_categoria" href="/Presentacion/Administracion/CrearCategoria.aspx">Crear Categoria </a>
+                              <a class="dropdown-item text-white" id="nav_administrar_tipo_evento" href="/Presentacion/Administracion/AdministrarTipoEvento.aspx">Administrar Tipos de Evento</a>
                               <a class="dropdown-item text-white " id="nav_crear_sede" href="/Presentacion/Administracion/CrearSede.aspx">Crear Sede </a>
+                              <a class="dropdown-item text-white" id="nav_editar_permisos" href="/Presentacion/Usuarios.aspx">Editar Usuarios</a>
                           </div>
                       </li>
                        <!-- Pagos -->

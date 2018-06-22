@@ -45,6 +45,7 @@
     <Compile Include="Administracion\GestorDireccion.cs" />
     <Compile Include="Administracion\GestorAcademias.cs" />
     <Compile Include="Administracion\GestorEstados.cs" />
+    <Compile Include="Administracion\GestorTipoEvento.cs" />
     <Compile Include="Constantes\ConstantesEstado.cs" />
     <Compile Include="Constantes\ConstantesTipoClase.cs" />
     <Compile Include="Constantes\ConstantesTipoInscripcion.cs" />

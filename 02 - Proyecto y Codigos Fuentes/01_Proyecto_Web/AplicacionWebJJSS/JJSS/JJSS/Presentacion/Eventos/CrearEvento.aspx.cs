@@ -189,7 +189,8 @@ namespace JJSS.Presentacion
 
         protected void CargarComboTipos()
         {
-            List<tipo_evento_especial> tipos = gestorEvento.ObtenerTipos();
+            JJSS_Negocio.Administracion.GestorTipoEvento gte = new JJSS_Negocio.Administracion.GestorTipoEvento();
+            List<tipo_evento_especial> tipos = gte.ObtenerTodosTipoEventosConFiltro("");
             dll_tipo_evento.DataSource = tipos;
             dll_tipo_evento.DataTextField = "nombre";
             dll_tipo_evento.DataValueField = "id_tipo_evento";
