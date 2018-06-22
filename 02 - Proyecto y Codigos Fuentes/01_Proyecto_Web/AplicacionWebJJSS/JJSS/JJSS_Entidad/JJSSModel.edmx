@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -163,6 +163,7 @@
           <Property Name="mes" Type="varchar" MaxLength="20" />
           <Property Name="id_forma_pago" Type="int" Nullable="false" />
           <Property Name="recargo" Type="smallint" />
+          <Property Name="id_pago_multiple" Type="int" />
         </EntityType>
         <EntityType Name="detalle_reserva">
           <Key>
@@ -324,6 +325,7 @@
           <Property Name="id_forma_pago" Type="int" Nullable="false" />
           <Property Name="id_usuario" Type="int" Nullable="false" />
           <Property Name="pago_monto" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_pago_multiple" Type="int" />
         </EntityType>
         <EntityType Name="pago_torneo">
           <Key>
@@ -336,6 +338,7 @@
           <Property Name="id_forma_pago" Type="int" Nullable="false" />
           <Property Name="id_usuario" Type="int" Nullable="false" />
           <Property Name="pago_monto" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_pago_multiple" Type="int" />
         </EntityType>
         <EntityType Name="pais">
           <Key>
@@ -538,6 +541,7 @@
           </Key>
           <Property Name="id_tipo_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="actual" Type="int" />
         </EntityType>
         <EntityType Name="torneo">
           <Key>
@@ -757,32 +761,6 @@
             </Principal>
             <Dependent Role="compra">
               <PropertyRef Name="id_proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__detalle_p__id_fo__231F2AE2">
-          <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="1" />
-          <End Role="detalle_pago_clase" Type="Self.detalle_pago_clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="forma_pago">
-              <PropertyRef Name="id_forma_pago" />
-            </Principal>
-            <Dependent Role="detalle_pago_clase">
-              <PropertyRef Name="id_forma_pago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__detalle_p__id_pa__24134F1B">
-          <End Role="pago_clase" Type="Self.pago_clase" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="detalle_pago_clase" Type="Self.detalle_pago_clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="pago_clase">
-              <PropertyRef Name="id_pago_clase" />
-            </Principal>
-            <Dependent Role="detalle_pago_clase">
-              <PropertyRef Name="id_pago_clase" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1480,6 +1458,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DETALLE_CLASE_FORMA_PAGO">
+          <End Role="forma_pago" Type="Self.forma_pago" Multiplicity="1" />
+          <End Role="detalle_pago_clase" Type="Self.detalle_pago_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forma_pago">
+              <PropertyRef Name="id_forma_pago" />
+            </Principal>
+            <Dependent Role="detalle_pago_clase">
+              <PropertyRef Name="id_forma_pago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_CLASE_PAGO_CLASE">
+          <End Role="pago_clase" Type="Self.pago_clase" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalle_pago_clase" Type="Self.detalle_pago_clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pago_clase">
+              <PropertyRef Name="id_pago_clase" />
+            </Principal>
+            <Dependent Role="detalle_pago_clase">
+              <PropertyRef Name="id_pago_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EVENTO_USUARIO">
           <End Role="seguridad_usuario" Type="Self.seguridad_usuario" Multiplicity="1" />
           <End Role="pago_evento" Type="Self.pago_evento" Multiplicity="*" />
@@ -1814,14 +1818,6 @@
             <End Role="proveedor" EntitySet="proveedor" />
             <End Role="compra" EntitySet="compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__detalle_p__id_fo__231F2AE2" Association="Self.FK__detalle_p__id_fo__231F2AE2">
-            <End Role="forma_pago" EntitySet="forma_pago" />
-            <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK__detalle_p__id_pa__24134F1B" Association="Self.FK__detalle_p__id_pa__24134F1B">
-            <End Role="pago_clase" EntitySet="pago_clase" />
-            <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
-          </AssociationSet>
           <AssociationSet Name="FK__detalle_r__id_pr__25077354" Association="Self.FK__detalle_r__id_pr__25077354">
             <End Role="producto" EntitySet="producto" />
             <End Role="detalle_reserva" EntitySet="detalle_reserva" />
@@ -2042,6 +2038,14 @@
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="alumno" EntitySet="alumno" />
           </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CLASE_FORMA_PAGO" Association="Self.FK_DETALLE_CLASE_FORMA_PAGO">
+            <End Role="forma_pago" EntitySet="forma_pago" />
+            <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_CLASE_PAGO_CLASE" Association="Self.FK_DETALLE_CLASE_PAGO_CLASE">
+            <End Role="pago_clase" EntitySet="pago_clase" />
+            <End Role="detalle_pago_clase" EntitySet="detalle_pago_clase" />
+          </AssociationSet>
           <AssociationSet Name="FK_EVENTO_USUARIO" Association="Self.FK_EVENTO_USUARIO">
             <End Role="seguridad_usuario" EntitySet="seguridad_usuario" />
             <End Role="pago_evento" EntitySet="pago_evento" />
@@ -2115,8 +2119,7 @@
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2325,6 +2328,7 @@
           <Property Name="recargo" Type="Int16" />
           <NavigationProperty Name="forma_pago" Relationship="Self.FK__detalle_p__id_fo__231F2AE2" FromRole="detalle_pago_clase" ToRole="forma_pago" />
           <NavigationProperty Name="pago_clase" Relationship="Self.FK__detalle_p__id_pa__24134F1B" FromRole="detalle_pago_clase" ToRole="pago_clase" />
+          <Property Name="id_pago_multiple" Type="Int32" />
         </EntityType>
         <EntityType Name="detalle_reserva">
           <Key>
@@ -2537,6 +2541,7 @@
           <NavigationProperty Name="inscripcion_evento" Relationship="Self.FK_PAGO_EVENTO_INSCRIPCION" FromRole="pago_evento" ToRole="inscripcion_evento" />
           <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK_EVENTO_USUARIO" FromRole="pago_evento" ToRole="seguridad_usuario" />
           <NavigationProperty Name="participante_evento" Relationship="Self.FK_PAGO_EVENTO_PARTICIPANTE" FromRole="pago_evento" ToRole="participante_evento" />
+          <Property Name="id_pago_multiple" Type="Int32" />
         </EntityType>
         <EntityType Name="pago_torneo">
           <Key>
@@ -2553,6 +2558,7 @@
           <NavigationProperty Name="inscripcion" Relationship="Self.FK_PAGO_TORNEO_INSCRIPCION" FromRole="pago_torneo" ToRole="inscripcion" />
           <NavigationProperty Name="participante" Relationship="Self.FK_PAGO_TORNEO_PARTICIPANTE" FromRole="pago_torneo" ToRole="participante" />
           <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK_PAGO_TORNEO_USUARIO" FromRole="pago_torneo" ToRole="seguridad_usuario" />
+          <Property Name="id_pago_multiple" Type="Int32" />
         </EntityType>
         <EntityType Name="pais">
           <Key>
@@ -2827,6 +2833,7 @@
           <Property Name="id_tipo_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="evento_especial" Relationship="Self.FK__evento_es__id_ti__2BB470E3" FromRole="tipo_evento_especial" ToRole="evento_especial" />
+          <Property Name="actual" Type="Int32" />
         </EntityType>
         <EntityType Name="torneo">
           <Key>
@@ -4581,6 +4588,7 @@
           <EntitySetMapping Name="detalle_pago_clase">
             <EntityTypeMapping TypeName="JJSSModel.detalle_pago_clase">
               <MappingFragment StoreEntitySet="detalle_pago_clase">
+                <ScalarProperty Name="id_pago_multiple" ColumnName="id_pago_multiple" />
                 <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
                 <ScalarProperty Name="id_pago_clase" ColumnName="id_pago_clase" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
@@ -4757,6 +4765,7 @@
           <EntitySetMapping Name="pago_evento">
             <EntityTypeMapping TypeName="JJSSModel.pago_evento">
               <MappingFragment StoreEntitySet="pago_evento">
+                <ScalarProperty Name="id_pago_multiple" ColumnName="id_pago_multiple" />
                 <ScalarProperty Name="id_pago_evento" ColumnName="id_pago_evento" />
                 <ScalarProperty Name="id_inscripcion_evento" ColumnName="id_inscripcion_evento" />
                 <ScalarProperty Name="id_participante" ColumnName="id_participante" />
@@ -4770,6 +4779,7 @@
           <EntitySetMapping Name="pago_torneo">
             <EntityTypeMapping TypeName="JJSSModel.pago_torneo">
               <MappingFragment StoreEntitySet="pago_torneo">
+                <ScalarProperty Name="id_pago_multiple" ColumnName="id_pago_multiple" />
                 <ScalarProperty Name="id_pago_torneo" ColumnName="id_pago_torneo" />
                 <ScalarProperty Name="id_inscripcion_torneo" ColumnName="id_inscripcion_torneo" />
                 <ScalarProperty Name="id_participante" ColumnName="id_participante" />
@@ -4998,6 +5008,7 @@
           <EntitySetMapping Name="tipo_evento_especial">
             <EntityTypeMapping TypeName="JJSSModel.tipo_evento_especial">
               <MappingFragment StoreEntitySet="tipo_evento_especial">
+                <ScalarProperty Name="actual" ColumnName="actual" />
                 <ScalarProperty Name="id_tipo_evento" ColumnName="id_tipo_evento" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
               </MappingFragment>
