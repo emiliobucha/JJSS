@@ -28,6 +28,7 @@ namespace JJSS_Entidad
         public Nullable<int> edad_hasta { get; set; }
         public Nullable<short> sexo { get; set; }
         public Nullable<int> id_tipo_clase { get; set; }
+        public Nullable<int> actual { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<categoria_torneo> categoria_torneo { get; set; }

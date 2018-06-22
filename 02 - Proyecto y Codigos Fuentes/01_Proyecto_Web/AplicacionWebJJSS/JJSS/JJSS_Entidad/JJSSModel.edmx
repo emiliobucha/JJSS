@@ -104,6 +104,7 @@
           <Property Name="edad_hasta" Type="int" />
           <Property Name="sexo" Type="smallint" />
           <Property Name="id_tipo_clase" Type="int" />
+          <Property Name="actual" Type="int" />
         </EntityType>
         <EntityType Name="categoria_producto">
           <Key>
@@ -2250,6 +2251,7 @@
           <Property Name="id_tipo_clase" Type="Int32" />
           <NavigationProperty Name="categoria_torneo" Relationship="Self.FK__categoria__id_ca__1B7E091A" FromRole="categoria" ToRole="categoria_torneo" />
           <NavigationProperty Name="tipo_clase" Relationship="Self.FK__categoria__id_ti__1A89E4E1" FromRole="categoria" ToRole="tipo_clase" />
+          <Property Name="actual" Type="Int32" />
         </EntityType>
         <EntityType Name="categoria_producto">
           <Key>
@@ -4522,6 +4524,7 @@
           <EntitySetMapping Name="categoria">
             <EntityTypeMapping TypeName="JJSSModel.categoria">
               <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="actual" ColumnName="actual" />
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="peso_desde" ColumnName="peso_desde" />

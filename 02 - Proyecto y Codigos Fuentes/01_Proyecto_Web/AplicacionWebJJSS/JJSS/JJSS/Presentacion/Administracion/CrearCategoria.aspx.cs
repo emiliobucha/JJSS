@@ -73,6 +73,7 @@ namespace JJSS.Administracion
 
                 nuevaCategoria.sexo = sexo;
                 nuevaCategoria.id_tipo_clase = int.Parse(ddlDisciplina.SelectedValue);
+                nuevaCategoria.actual = JJSS_Negocio.Constantes.ConstatesBajaLogica.ACTUAL;
 
                 String res = gestorCategorias.crearCategoria(nuevaCategoria);
                 if (res.CompareTo("") == 0)
