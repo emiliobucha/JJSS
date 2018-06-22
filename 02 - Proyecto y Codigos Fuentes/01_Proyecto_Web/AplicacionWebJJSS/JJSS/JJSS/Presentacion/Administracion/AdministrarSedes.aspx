@@ -90,17 +90,13 @@
                             </div>
 
                             <div class="row centered justify-content-center">
-                                <asp:GridView ID="gvCategorias" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id" OnPageIndexChanging="gvCategorias_PageIndexChanging"
+                                <asp:GridView ID="gvCategorias" runat="server" CssClass="table" CellPadding="4" DataKeyNames="idCategoria" OnPageIndexChanging="gvCategorias_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay categorias para mostrar"
                                     OnRowCommand="gvCategorias_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
-                                        <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
-                                        <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                        <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
-                                        <asp:BoundField DataField="alu_estado" HeaderText="Estado" SortExpression="estado" />
+                                        
                                         <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
-                                        <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />

@@ -250,7 +250,7 @@
                                              <label>Torre </label>
                                         </div>
                                         <div class="col col-md-2 col-lg-2 col-sm-10 col-xs-10">
-                                            <asp:TextBox ID="TextBox1" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
                                         </div>
                                     </div>
 
