@@ -15,6 +15,7 @@ namespace JJSS.Administracion
     {
         private static GestorCategoria gestorCategorias;
         private static GestorTipoClase gestorTipoClase;
+        private static int idCategoria = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,8 +25,14 @@ namespace JJSS.Administracion
                 gestorTipoClase = new GestorTipoClase();
 
                 CargarComboTipoClase();
+
+                if (Session["categoria"] != null)
+                {
+                    idCategoria = Convert.ToInt32(Session["categoria"]);
+                    CargarDatosCategoriaSeleccionada();
+                    Session["categoria"] = null;
+                }
             }
-            
         }
 
         public override void VerifyRenderingInServerForm(Control control)
@@ -54,11 +61,11 @@ namespace JJSS.Administracion
             if (validar())
             {
 
-                float pesoMin = float.Parse(txtPesoMinimo.Text, CultureInfo.InvariantCulture);
-                Math.Round(pesoMin, 2);
+                double pesoMin = float.Parse(txtPesoMinimo.Text, CultureInfo.InvariantCulture);
+                pesoMin = Math.Round(pesoMin, 2);
 
-                float pesoMax = float.Parse(txtPesoMaximo.Text, CultureInfo.InvariantCulture);
-                Math.Round(pesoMax, 2);
+                double pesoMax = float.Parse(txtPesoMaximo.Text, CultureInfo.InvariantCulture);
+                pesoMax = Math.Round(pesoMax, 2);
 
                 categoria nuevaCategoria = new categoria();
                 nuevaCategoria.nombre = txt_nombre.Text;
@@ -67,21 +74,37 @@ namespace JJSS.Administracion
                 nuevaCategoria.edad_desde = int.Parse(txtEdadMinima.Text);
                 nuevaCategoria.edad_hasta = int.Parse(txtEdadMaxima.Text);
 
-                short? sexo = null;
-                if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO; 
-                if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO; 
+                short? sexo = Convert.ToInt16(rbSexo.SelectedValue);
 
                 nuevaCategoria.sexo = sexo;
                 nuevaCategoria.id_tipo_clase = int.Parse(ddlDisciplina.SelectedValue);
                 nuevaCategoria.actual = JJSS_Negocio.Constantes.ConstatesBajaLogica.ACTUAL;
 
-                String res = gestorCategorias.crearCategoria(nuevaCategoria);
-                if (res.CompareTo("") == 0)
-                {
-                    limpiar();
-                    mensaje("Se ha creado la categoría exitosamente", true);
+                if (idCategoria == 0)
+                {//crear
+                    String res = gestorCategorias.crearCategoria(nuevaCategoria);
+                    if (res.CompareTo("") == 0)
+                    {
+                        limpiar();
+                        Session["mensaje"] = "Se ha creado la categoría exitosamente";
+                        Session["exito"] = true;
+                        Response.Redirect("AdministrarCategorias.aspx");
+                    }
+                    else mensaje(res, false);
                 }
-                else mensaje(res, false);
+                else
+                {//modificar
+                    nuevaCategoria.id_categoria = idCategoria;
+                    String res = gestorCategorias.ModificarCategoria(nuevaCategoria);
+                    if (res.CompareTo("") == 0)
+                    {
+                        limpiar();
+                        Session["mensaje"] = "Se ha modicado la categoría exitosamente";
+                        Session["exito"] = true;
+                        Response.Redirect("AdministrarCategorias.aspx");
+                    }
+                    else mensaje(res, false);
+                }
             }
 
         }
@@ -129,11 +152,24 @@ namespace JJSS.Administracion
             txtPesoMaximo.Text = "";
             txtPesoMinimo.Text = "";
             txt_nombre.Text = "";
-            
+
             ddlDisciplina.SelectedIndex = 0;
             pnl_mensaje_error.Visible = false;
-            pnl_mensaje_exito.Visible = true;
+            pnl_mensaje_exito.Visible = false;
 
+        }
+
+        private void CargarDatosCategoriaSeleccionada()
+        {
+            limpiar();
+            categoria categoriaSeleccionada = gestorCategorias.ObtenerCategoriaPorID(idCategoria);
+            txt_nombre.Text = categoriaSeleccionada.nombre;
+            txtPesoMinimo.Text = categoriaSeleccionada.peso_desde.ToString().Replace(",", ".");
+            txtPesoMaximo.Text = categoriaSeleccionada.peso_hasta.ToString().Replace(",", ".");
+            txtEdadMinima.Text = categoriaSeleccionada.edad_desde.ToString();
+            txtEdadMaxima.Text = categoriaSeleccionada.edad_hasta.ToString();
+            ddlDisciplina.SelectedValue = categoriaSeleccionada.id_tipo_clase.ToString();
+            rbSexo.SelectedValue = categoriaSeleccionada.sexo.ToString();
         }
     }
 }

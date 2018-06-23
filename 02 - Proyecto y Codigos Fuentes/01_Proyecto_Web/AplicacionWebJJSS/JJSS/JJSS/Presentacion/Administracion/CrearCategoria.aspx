@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="CrearCategoria.aspx.cs" Inherits="JJSS.Administracion.CrearCategoria" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
@@ -47,7 +48,7 @@
             </div>
 
             <div class="row centered justify-content-center">
-                <h1 class=" centered ">Crear Categoria</h1>
+                <h1 class=" centered ">Crear Categoría</h1>
             </div>
 
             <div>
@@ -55,6 +56,10 @@
             </div>
 
             <div class="container">
+
+                <div class="p-2">
+                            <asp:LinkButton runat="server" ID="LinkButton1" class="btn btn-link pull-right" Text="Ir al listado de categorías" href="AdministrarCategorias.aspx"></asp:LinkButton>
+                        </div>
 
                 <div class="border rounded p-1">
 
@@ -85,8 +90,8 @@
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
-                                <asp:ListItem Selected="True" Value="masculino">Masculino</asp:ListItem>
-                                <asp:ListItem Value="femenino">Femenino</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="1">Masculino</asp:ListItem>
+                                <asp:ListItem Value="0">Femenino</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                     </div>
@@ -103,7 +108,7 @@
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:TextBox ID="txtPesoMinimo" class="caja2" type="Number" min="0" max="200" step="0.01" runat="server" required="true"></asp:TextBox>
                         </div>
-                         <!----------------->
+                        <!----------------->
                         <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 pl-lg-5 pl-md-5">
                             <label>Peso máximo <a class="text-danger">*</a></label>
                         </div>
@@ -170,24 +175,24 @@
                     <div>
                         <p>&nbsp;</p>
                     </div>
-                    
+
                 </div>
 
-                 <div>
-                        <p>&nbsp;</p>
-                    </div>
+                <div>
+                    <p>&nbsp;</p>
+                </div>
 
                 <div class="row pull-left">
                     <div class="col">
-                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="" CausesValidation="false" formnovalidate="true" OnClick="btnInicio_Click"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx" CausesValidation="false" formnovalidate="true" OnClick="btnInicio_Click"></asp:LinkButton>
                     </div>
                 </div>
 
-                 <div>
-                        <p>&nbsp;</p>
-                    </div>
+                <div>
+                    <p>&nbsp;</p>
+                </div>
 
-            </div>              
+            </div>
 
 
         </asp:Panel>
