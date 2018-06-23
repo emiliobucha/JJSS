@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="AdministrarSedes.aspx.cs" Inherits="JJSS.Presentacion.Administracion.AdministrarSedes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="AdministrarCategorias.aspx.cs" Inherits="JJSS.Presentacion.Administracion.AdministrarSedes" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
@@ -6,7 +7,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMenu" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
-        <form id="formRegAlumno" runat="server">
+    <form id="formRegAlumno" runat="server">
 
         <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
             <div class="col-md-2"></div>
@@ -49,7 +50,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1>Listado de Categorias</h1>
+                        <h1>Listado de Categorías</h1>
                     </div>
 
                     <div class="row centered">
@@ -67,19 +68,23 @@
                                 </div>
 
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:TextBox ID="txt_filtro_nombre" type="number" CssClass="caja2" min="0" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_filtro_nombre" CssClass="caja2" runat="server"></asp:TextBox>
                                 </div>
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
                                     <strong>Disciplina</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:DropDownList ID ="ddl_filtro_disciplina" runat="server" CssClass="caja2"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddl_filtro_disciplina" runat="server" CssClass="caja2"></asp:DropDownList>
                                 </div>
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <strong>Estado</strong>
+                                    <strong>Sexo</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:DropDownList ID ="ddl_filtro_estado" runat="server" CssClass="caja2"></asp:DropDownList>
+                                    <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
+                                        <asp:ListItem Selected="True" Value="-1">Todos</asp:ListItem>
+                                        <asp:ListItem Value="0">Femenino</asp:ListItem>
+                                        <asp:ListItem Value="1">Masculino</asp:ListItem>
+                                    </asp:RadioButtonList>
                                 </div>
 
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
@@ -91,16 +96,34 @@
 
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvCategorias" runat="server" CssClass="table" CellPadding="4" DataKeyNames="idCategoria" OnPageIndexChanging="gvCategorias_PageIndexChanging"
-                                    ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay categorias para mostrar"
-                                    OnRowCommand="gvCategorias_RowCommand" AllowPaging="True" PageSize="20">
+                                    ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay categorías para mostrar"
+                                    OnRowCommand="gvCategorias_RowCommand" AllowPaging="True" PageSize="10">
                                     <Columns>
-                                        
-                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
+                                        <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                        <asp:BoundField DataField="edadMin" HeaderText="Edad Desde" />
+                                        <asp:BoundField DataField="edadMax" HeaderText="Edad Hasta" />
+                                        <asp:BoundField DataField="pesoMin" HeaderText="Peso Desde (kg)" />
+                                        <asp:BoundField DataField="pesoMax" HeaderText="Peso Hasta (kg)" />
+                                        <asp:BoundField DataField="sexoMostrar" HeaderText="Sexo" />
+                                        <asp:BoundField DataField="disciplina" HeaderText="Disciplina" />
+                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" ItemStyle-ForeColor="#007bff" />
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" ItemStyle-ForeColor="#007bff" />
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
-                                    <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
                                 </asp:GridView>
+                            </div>
+
+                            <div>
+                                <p>&nbsp;</p>
+                            </div>
+
+                            <div class="row pull-left">
+                                <div class="col">
+                                    <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
+                                </div>
+                            </div>
+                            <div>
+                                <p>&nbsp;</p>
                             </div>
 
                         </div>

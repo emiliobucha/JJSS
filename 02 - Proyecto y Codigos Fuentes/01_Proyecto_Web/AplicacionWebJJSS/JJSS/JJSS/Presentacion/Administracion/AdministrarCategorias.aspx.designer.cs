@@ -85,13 +85,13 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_filtro_disciplina;
         
         /// <summary>
-        /// Control ddl_filtro_estado.
+        /// Control rbSexo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_filtro_estado;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
         
         /// <summary>
         /// Control btn_buscar.
@@ -110,5 +110,14 @@ namespace JJSS.Presentacion.Administracion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvCategorias;
+        
+        /// <summary>
+        /// Control lnk_cancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnk_cancelar;
     }
 }

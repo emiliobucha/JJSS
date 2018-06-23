@@ -113,7 +113,7 @@
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Administracion.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Administracion</h4>
+                                <h4 class="mb-5">Administración</h4>
                             </div>
                         </div>
                     </a>
