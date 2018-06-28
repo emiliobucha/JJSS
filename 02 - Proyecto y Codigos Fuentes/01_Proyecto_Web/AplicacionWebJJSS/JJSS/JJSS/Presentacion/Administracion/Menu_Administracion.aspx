@@ -90,7 +90,19 @@
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Categoria.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Crear Categoria</h4>
+                                <h4 class="mb-5">Crear Categoría</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!--administrar categoria-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="AdministrarCategorias.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Administrar Categorías</h4>
                             </div>
                         </div>
                     </a>
@@ -152,6 +164,18 @@
                             <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Administrar Profesores</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!--administrar tipo evento-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="AdministrarTipoEvento.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Administrar Tipo de Evento</h4>
                             </div>
                         </div>
                     </a>

@@ -14,5 +14,7 @@ namespace JJSS_Negocio.Resultados
         public string ciudad { get; set; }
         public string provincia { get; set; }
         public string pais { get; set; }
+        public int? idSede { get; set; }
+        public long? telefono { get; set; }
     }
 }

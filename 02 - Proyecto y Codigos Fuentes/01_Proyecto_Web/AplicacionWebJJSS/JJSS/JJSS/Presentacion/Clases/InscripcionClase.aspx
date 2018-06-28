@@ -56,7 +56,7 @@
                 <p>&nbsp;</p>
             </div>
             <div class="row centered justify-content-center p-4">
-                <h1>Incripción a Clase</h1>
+                <h1>Inscripción a Clase</h1>
             </div>
             <div class="row centered">
                 <p>&nbsp;</p>
@@ -132,8 +132,8 @@
                         <div>
                             <!--Boton-->
                             <div class="row ">
-                                <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-                                    <strong class="text-left">DNI</strong>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                    <strong class="text-left">Documento</strong>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <asp:TextBox ID="txt_filtro_dni" type="number" min="1000000" CssClass="form-control" max="100000000" runat="server"></asp:TextBox>
@@ -141,12 +141,12 @@
                                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <strong class="text-left">Apellido</strong>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <asp:TextBox ID="txt_filtro_apellido" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
 
                                 <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 centered">
-                                    <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar" OnClick="btn_buscar_alumno_Click" ValidationGroup="vgFiltro" CssClass="btn btn-default" />
+                                    <asp:Button ID="btn_buscar_alumno" runat="server" Text="Buscar" OnClick="btn_buscar_alumno_Click" ValidationGroup="vgFiltro" CssClass="btn btn-outline-dark" />
                                 </div>
                             </div>
 
@@ -159,9 +159,10 @@
 
                                     <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20" OnRowDataBound="gvAlumnos_RowDataBound">
                                         <Columns>
-                                            <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" SortExpression="apellido" />
-                                            <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                            <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
+                                            <asp:BoundField DataField="alu_apellido" HeaderText="Apellido"/>
+                                            <asp:BoundField DataField="alu_nombre" HeaderText="Nombre"/>
+                                            <asp:BoundField DataField="alu_tipoDocumento" HeaderText="Tipo de Documento"/>
+                                            <asp:BoundField DataField="alu_dni" HeaderText="Número de Documento"/>
                                             <asp:TemplateField HeaderText="Acciones" HeaderStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Button ID="btn_inscribir" runat="server" class="btn btn-link" CommandName="inscribir" CommandArgument=<%# Eval("alu_id") %>/>
@@ -222,9 +223,10 @@
                         <!-- DNI-->
                         <div class="row justify-content-center   pt-1">
                             <div class="col col-sm-1 col-md-2 col-lg-2">
-                                <label>DNI: </label>
+                                <label>Documento: </label>
                             </div>
                             <div class="col col-sm-6 col-md-4 col-lg-4">
+                                <asp:Label ID="lbl_alumno_tipoDoc" class="" runat="server" Text=""></asp:Label>
                                 <asp:Label ID="lbl_alumno_dni" class="" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
@@ -247,7 +249,7 @@
                         <!--Boton para aceptar inscripcion-->
                         <div class="row centered">
                             <div class=" col-12">
-                                <asp:Button CssClass="btn btn-default" ID="btn_aceptar_inscripcion" runat="server" formnovalidate="true" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
+                                <asp:Button CssClass="btn btn-outline-dark" ID="btn_aceptar_inscripcion" runat="server" formnovalidate="true" Text="Aceptar" OnClick="btn_aceptar_inscripcion_Click" />
                             </div>
                         </div>
                         <div class="row centered">

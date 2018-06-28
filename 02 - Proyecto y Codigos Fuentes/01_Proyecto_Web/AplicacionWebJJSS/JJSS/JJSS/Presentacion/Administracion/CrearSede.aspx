@@ -58,6 +58,10 @@
 
             <div class="container">
 
+                <div class="p-2">
+                            <asp:LinkButton runat="server" ID="l" class="btn btn-link pull-right" Text="Ir al listado de sedes" href="AdministrarSedes.aspx"></asp:LinkButton>
+                        </div>
+
                 <div class="form-group  border rounded p-1">
 
                     <div>
@@ -101,7 +105,7 @@
                             <label class="pull-left">Teléfono</label>
                         </div>
                         <div class="col col-lg-3 col-md-3 col-sm-10">
-                            <asp:TextBox ID="txt_telefono" class="caja2" required="true" type="number" min="0" max="9999999999999" runat="server" placeholder="Ingrese teléfono"></asp:TextBox>
+                            <asp:TextBox ID="txt_telefono" class="caja2" type="number" min="0" max="9999999999999" runat="server" placeholder="Ingrese teléfono"></asp:TextBox>
                         </div>
                     </div>
 
@@ -125,34 +129,34 @@
                             <label>Calle <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-md-4 col-lg-4 col-sm-10">
-                            <asp:TextBox ID="txt_calle" class="caja2" type="text" MaxLength="50" runat="server" placeholder="Ingrese calle"></asp:TextBox>
+                            <asp:TextBox ID="txt_calle" class="caja2" type="text" required="true" MaxLength="50" runat="server" placeholder="Ingrese calle"></asp:TextBox>
                         </div>
 
                         <div class="col-lg-2 col-md-2 col-sm-12 pl-lg-5 pl-md-5">
                             <label>Número <a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
-                            <asp:TextBox ID="txt_numero" type="number" min="0" max="100000" class="caja2" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_numero" type="number" required="true" min="0" max="100000" class="caja2" runat="server"></asp:TextBox>
                         </div>
                     </div>
 
                     <div class="row p-1  pl-lg-5 pl-md-5">
                         <div class="col-lg-2 col-md-2 col-sm-12 ">
-                            <label>Piso <a class="text-danger">*</a></label>
+                            <label>Piso</label>
                         </div>
                         <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
                             <asp:TextBox ID="txt_piso" class="caja2" type="number" min="0" max="100000" runat="server"></asp:TextBox>
                         </div>
 
                         <div class="col-lg-1 col-md-1 col-sm-2">
-                            <label>Dpto <a class="text-danger">*</a></label>
+                            <label>Dpto</label>
                         </div>
                         <div class="col col col-md-2 col-lg-2 col-sm-10 col-xs-10">
                             <asp:TextBox ID="txt_nro_dpto" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
                         </div>
 
                         <div class="col-lg-1 col-md-1 col-sm-2">
-                            <label>Torre <a class="text-danger">*</a></label>
+                            <label>Torre</label>
                         </div>
                         <div class="col col-md-2 col-lg-2 col-sm-10 col-xs-10">
                             <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>

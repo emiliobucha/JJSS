@@ -45,6 +45,7 @@
     <Compile Include="Administracion\GestorDireccion.cs" />
     <Compile Include="Administracion\GestorAcademias.cs" />
     <Compile Include="Administracion\GestorEstados.cs" />
+    <Compile Include="Administracion\GestorTipoEvento.cs" />
     <Compile Include="Constantes\ConstantesEstado.cs" />
     <Compile Include="Constantes\ConstantesFormaPago.cs" />
     <Compile Include="Constantes\ConstantesTipoClase.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="modValidaciones.cs" />
     <Compile Include="Resultados\AlumnoConEstado.cs" />
     <Compile Include="Resultados\AlumnoFaja.cs" />
+    <Compile Include="Resultados\CategoriaResultado.cs" />
     <Compile Include="Resultados\CategoriasTorneoResultado.cs" />
     <Compile Include="Resultados\ClaseHorario.cs" />
     <Compile Include="Resultados\ClasesDisponibles..cs" />

@@ -202,7 +202,7 @@
                                     <!-- E-mail -->
                                     <div class="row p-1  pl-lg-5 pl-md-5">
                                         <div class="col-lg-2 col-md-2 col-sm-12">
-                                            <label class="text-left">E-mail</label>
+                                            <label class="text-left">E-mail<a class="text-danger">*</a></label>
                                         </div>
                                         <div class="col col-md-4 col-lg-4 col-sm-12">
                                             <asp:TextBox ID="txt_email" class="caja2" required="true" MaxLength="80" runat="server" placeholder="Ingrese e-mail"></asp:TextBox>
@@ -217,14 +217,14 @@
                                     <!-- Calle y numero -->
                                     <div class="row p-1  pl-lg-5 pl-md-5">
                                         <div class="col-lg-2 col-md-2 col-sm-12">
-                                            <label>Calle <a class="text-danger">*</a></label>
+                                            <label>Calle </label>
                                         </div>
                                         <div class="col col-md-4 col-lg-4 col-sm-10">
                                             <asp:TextBox ID="txt_calle" class="caja2" type="text" MaxLength="50" runat="server" placeholder="Ingrese calle"></asp:TextBox>
                                         </div>
 
                                         <div class="col-lg-2 col-md-2 col-sm-12 pl-lg-5 pl-md-5">
-                                            <label>Número <a class="text-danger">*</a></label>
+                                            <label>Número </label>
                                         </div>
                                         <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
                                             <asp:TextBox ID="txt_numero" type="number" min="0" max="100000" class="caja2" runat="server"></asp:TextBox>
@@ -233,35 +233,31 @@
 
                                     <div class="row p-1  pl-lg-5 pl-md-5">
                                         <div class="col-lg-2 col-md-2 col-sm-12 ">
-                                            <label>Piso <a class="text-danger">*</a></label>
+                                            <label>Piso </label>
                                         </div>
                                         <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
                                             <asp:TextBox ID="txt_piso" class="caja2" type="number" min="0" max="100000" runat="server"></asp:TextBox>
                                         </div>
 
                                         <div class="col-lg-1 col-md-1 col-sm-2">
-                                            <label>Dpto <a class="text-danger">*</a></label>
+                                            <label>Dpto </label>
                                         </div>
                                         <div class="col col col-md-2 col-lg-2 col-sm-10 col-xs-10">
                                             <asp:TextBox ID="txt_nro_dpto" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
-   <asp:RegularExpressionValidator ID="caracteres_departamento" runat="server" ControlToValidate="txt_nro_dpto" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgAlumnos"> </asp:RegularExpressionValidator>
-                              
                                         </div>
 
                                         <div class="col-lg-1 col-md-1 col-sm-2">
-                                             <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txt_torre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgAlumnos"> </asp:RegularExpressionValidator>
-                            
+                                             <label>Torre </label>
                                         </div>
                                         <div class="col col-md-2 col-lg-2 col-sm-10 col-xs-10">
-                                            <asp:TextBox ID="TextBox1" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txt_torre" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
                                         </div>
                                     </div>
 
                                     <!-- Provincia -->
                                     <div class="row p-1  pl-lg-5 pl-md-5">
                                         <div class="col-lg-2 col-md-2 col-sm-12 ">
-                                            <label>Provincia <a class="text-danger">*</a></label>
+                                            <label>Provincia </label>
                                         </div>
                                         <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
                                             <asp:DropDownList class="caja2" ID="ddl_provincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_provincia_SelectedIndexChanged">
@@ -272,7 +268,7 @@
                                     <!-- Localidad -->
                                     <div class="row p-1  pl-lg-5 pl-md-5">
                                         <div class="col-lg-2 col-md-2 col-sm-12 ">
-                                            <label>Localidad <a class="text-danger">*</a></label>
+                                            <label>Localidad</label>
                                         </div>
                                         <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
                                             <asp:DropDownList class="caja2" ID="ddl_localidad" runat="server">
@@ -285,7 +281,7 @@
                                 <!--Boton-->
                                 <div class="row centered justify-content-center">
 
-                                    <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-default" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgAlumnos" />
+                                    <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-outline-dark" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgAlumnos" />
                                 </div>
                                 
                                 <div class=" p-2 ">

@@ -86,7 +86,7 @@
                                     <asp:DropDownList ID="dll_tipo_evento" runat="server" CssClass="caja2 pull-right"></asp:DropDownList>
                                 </div>
                                 <div class="col col-md-1 col-lg-1 col-sm-2  col-xs-2">
-                                    <asp:HyperLink CssClass="btn btn-outline-dark" runat="server" href="">+</asp:HyperLink>
+                                    <asp:HyperLink CssClass="btn btn-outline-dark" runat="server" href="/Presentacion/Administracion/AdministrarTipoEvento.aspx">+</asp:HyperLink>
 
                                 </div>
                             </div>
