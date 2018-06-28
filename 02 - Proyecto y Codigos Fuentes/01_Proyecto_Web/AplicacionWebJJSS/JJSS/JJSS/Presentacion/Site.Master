@@ -134,6 +134,7 @@
                               <a class="dropdown-item text-white" id="nav_crear_categoria" href="/Presentacion/Administracion/CrearCategoria.aspx">Crear Categoría </a>
                               <a class="dropdown-item text-white" id="nav_administrar_categoria" href="/Presentacion/Administracion/AdministrarCategorias.aspx">Administrar Categorías </a>
                               <a class="dropdown-item text-white" id="nav_administrar_tipo_evento" href="/Presentacion/Administracion/AdministrarTipoEvento.aspx">Administrar Tipos de Evento</a>
+                              <a class="dropdown-item text-white" id="nav_admin_tipo_clase" href="/Presentacion/Administracion/AdministrarTipoClase.aspx">Administrar Tipos de Clase</a>
                               <a class="dropdown-item text-white " id="nav_crear_sede" href="/Presentacion/Administracion/CrearSede.aspx">Crear Sede </a>
                               <a class="dropdown-item text-white " id="nav_administrar_sede" href="/Presentacion/Administracion/AdministrarSedes.aspx">Administrar Sedes </a>
                               <a class="dropdown-item text-white" id="nav_editar_permisos" href="/Presentacion/Usuarios.aspx">Editar Usuarios</a>

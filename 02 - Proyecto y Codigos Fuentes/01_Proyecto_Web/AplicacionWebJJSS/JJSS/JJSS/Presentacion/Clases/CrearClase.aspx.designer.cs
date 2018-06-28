@@ -94,6 +94,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_clase;
         
         /// <summary>
+        /// Control lnk_clase.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnk_clase;
+        
+        /// <summary>
         /// Control ddl_ubicacion.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_profesor;
+        
+        /// <summary>
+        /// Control lnk_profe.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnk_profe;
         
         /// <summary>
         /// Control pnl_horariosClase.

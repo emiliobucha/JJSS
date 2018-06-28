@@ -98,6 +98,9 @@
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:DropDownList ID="ddl_tipo_clase" runat="server" CssClass="caja2"></asp:DropDownList>
                     </div>
+                    <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
+                        <asp:LinkButton ID ="lnk_clase" href="/Presentacion/Administracion/AdministrarTipoClase.aspx" runat="server" CssClass="btn btn-outline-dark">+</asp:LinkButton>
+                        </div>
                 </div>
                 <div>
                     &nbsp;
@@ -128,6 +131,9 @@
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:DropDownList ID="ddl_profesor" runat="server" CssClass="caja2"></asp:DropDownList>
                     </div>
+                    <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
+                        <asp:LinkButton ID ="lnk_profe" href="/Presentacion/Administracion/RegistrarProfe.aspx" runat="server" CssClass="btn btn-outline-dark">+</asp:LinkButton>
+                        </div>
                 </div>
                 <div>
                     &nbsp;
