@@ -191,6 +191,9 @@
     <Compile Include="pago_evento.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="pago_multiple.cs">
+      <DependentUpon>JJSSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="pago_torneo.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>

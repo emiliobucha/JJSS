@@ -25,5 +25,6 @@ namespace JJSS_Entidad
     
         public virtual forma_pago forma_pago { get; set; }
         public virtual pago_clase pago_clase { get; set; }
+        public virtual pago_multiple pago_multiple { get; set; }
     }
 }

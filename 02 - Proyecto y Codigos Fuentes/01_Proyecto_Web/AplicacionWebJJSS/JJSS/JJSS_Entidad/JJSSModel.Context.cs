@@ -54,6 +54,7 @@ namespace JJSS_Entidad
         public virtual DbSet<lucha> lucha { get; set; }
         public virtual DbSet<pago_clase> pago_clase { get; set; }
         public virtual DbSet<pago_evento> pago_evento { get; set; }
+        public virtual DbSet<pago_multiple> pago_multiple { get; set; }
         public virtual DbSet<pago_torneo> pago_torneo { get; set; }
         public virtual DbSet<pais> pais { get; set; }
         public virtual DbSet<parametro> parametro { get; set; }

@@ -10,16 +10,16 @@
 namespace JJSS.Presentacion {
     
     
-    public partial class AlumnoPagoClase {
+    public partial class PagoMultipleFinalizado {
         
         /// <summary>
-        /// Control formPagoClase.
+        /// Control formPagoTorneo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formPagoClase;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formPagoTorneo;
         
         /// <summary>
         /// Control pnl_mensaje_exito.
@@ -76,22 +76,22 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl1;
         
         /// <summary>
-        /// Control lbl_alumno.
+        /// Control lbl_participante.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_alumno;
+        protected global::System.Web.UI.WebControls.Label lbl_participante;
         
         /// <summary>
-        /// Control lbl_clase.
+        /// Control lbl_descripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_clase;
+        protected global::System.Web.UI.WebControls.Label lbl_descripcion;
         
         /// <summary>
         /// Control lbl_fecha.
@@ -112,24 +112,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_fecha1;
         
         /// <summary>
-        /// Control lbl_recargo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_recargo;
-        
-        /// <summary>
-        /// Control lbl_recargoMonto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_recargoMonto;
-        
-        /// <summary>
         /// Control lbl_monto1.
         /// </summary>
         /// <remarks>
@@ -148,21 +130,21 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_monto;
         
         /// <summary>
-        /// Control mp_checkout.
+        /// Control gvPagos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor mp_checkout;
+        protected global::System.Web.UI.WebControls.GridView gvPagos;
         
         /// <summary>
-        /// Control btn_cancelar.
+        /// Control lnk_volver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar;
+        protected global::System.Web.UI.WebControls.HyperLink lnk_volver;
     }
 }

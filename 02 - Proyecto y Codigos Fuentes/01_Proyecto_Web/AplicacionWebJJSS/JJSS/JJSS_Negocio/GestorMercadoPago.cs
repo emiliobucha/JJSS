@@ -5,16 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using mercadopago;
 using System.Collections;
+using JJSS_Negocio.Resultados.Pagos;
+using Newtonsoft.Json;
 
 namespace JJSS_Negocio
 {
     public class GestorMercadoPago
     {
-        private String clientID = "320449594801310";
-        private String clientSecret = "0owd4CTkNJSAunxQuWSFyp72aEqzqOkH";
+        private String clientID = "4309155312672093";
+        private String clientSecret = "QflIW4b4IUeIG9mHM51lTzTc4xEb5zax";
         private MP mp;
+        private string uri = "http://localhost:15787/Presentacion/Pagos/";
 
-        public String NuevoPago(double pMonto, string pConcepto)
+
+        public string NuevoPago(double pMonto, string pConcepto)
         {
             mp = new MP(clientID, clientSecret);
 
@@ -34,6 +38,46 @@ namespace JJSS_Negocio
 
             return response["init_point"].ToString();
         }
+        public string NuevoPagoMultiple(IList<ObjetoPagable> objetosPagables)
+        {
+            mp = new MP(clientID, clientSecret);
+
+            List<Item> items = new List<Item>();
+
+            foreach (var objeto in objetosPagables)
+            {
+                items.Add(new Item
+                {
+                   currency_id = "ARS",
+                    quantity = 1,
+                    unit_price = (double)objeto.Monto,
+                    title = objeto.GetDescripcion()
+                });
+            }
+
+            PreferenceMP preferenceMP =new PreferenceMP
+            {
+                items = items,
+                auto_return = "all",
+                back_urls = new Back_Url
+                {
+                    failure = "http://google.com.ar",
+                    pending = "http://google.com.ar",
+                    success = uri + "PagoMultipleFinalizado.aspx"
+                }
+            };
+
+            string preferenceData = JsonConvert.SerializeObject(preferenceMP);
+
+            
+            Hashtable preference = mp.createPreference(preferenceData);
+           
+
+            var response = preference["response"] as Hashtable;
+
+            return response["init_point"].ToString();
+        }
 
     }
 }
+
