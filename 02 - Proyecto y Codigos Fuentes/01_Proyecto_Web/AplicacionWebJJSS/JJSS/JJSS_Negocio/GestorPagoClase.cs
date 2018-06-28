@@ -101,6 +101,116 @@ namespace JJSS_Negocio
             }
         }
 
+
+        /*
+         *Metodo que registra un pago
+         * Parametros:
+         *              pAlumno : entero que representa el id del alumno
+         *              pClase : entero que representa el id de la clase
+         *              pMonto : decimal que representa el monto 
+         *              pMes : string  que representa el mes de la cuota
+         *              pFormaPago : entero que representa el id de la forma de pago
+         *Retornos:     String
+         *              "" : Transaccion Correcta
+         *              ex.Message : Mensaje de error provocado por una excepción
+         *              El alumno no está inscripto a esa clase
+         *              Ya se registró este pago
+         */
+        public int registrarPagoMultiple(int pAlumno, int pClase, decimal pMonto, string pMes, int pFormaPago, short pPagoRecargo, int? pIdPagoMultiple)
+        {
+            
+
+            DateTime pFecha = DateTime.Now;
+            GestorAlumnos ga = new GestorAlumnos();
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    //validar que el alumno este inscripto en esa clase
+                    if (validarInscripcion(pAlumno, pClase) == null)
+                    {
+                        throw new Exception("El alumno no está inscripto a esa clase");
+                    }
+
+                    //buscar alumno
+                    alumno alumnoSelect = db.alumno.Find(pAlumno);
+                    //buscar clase
+                    clase claseSelect = db.clase.Find(pClase);
+                    //buscar forma pago
+                    forma_pago formaSelect = db.forma_pago.Find(pFormaPago);
+
+                    // validar que no pago antes esa cuota
+                    if (!validarPago(alumnoSelect.id_alumno, pClase, pMes))
+                    {
+                        throw new Exception("Ya se registró este pago");
+                    }
+
+                    //buscar pago
+                    pago_clase pagoRegistrado = buscarPagoSegunAlumnoClase(pAlumno, pClase);
+                    if (pagoRegistrado == null) //no existe pago
+                    {
+                        //crear pago
+                        pago_clase nuevoPago;
+                        nuevoPago = new pago_clase()
+                        {
+                            id_alumno = pAlumno,
+                            id_clase = pClase
+                        };
+                        db.pago_clase.Add(nuevoPago);
+                        db.SaveChanges();
+                        pagoRegistrado = nuevoPago;
+                    }
+
+                    //crear detalle
+                    detalle_pago_clase nuevoDetalle;
+                    nuevoDetalle = new detalle_pago_clase()
+                    {
+                        id_pago_clase = pagoRegistrado.id_pago_clase,
+                        monto = pMonto,
+                        fecha_hora = pFecha,
+                        mes = pMes,
+                        id_forma_pago = pFormaPago,
+                        recargo = pPagoRecargo,
+                        
+                    };
+
+                    //if (pIdPagoMultiple != null)
+                    //{
+                    //    nuevoDetalle.id_pago_multiple = pIdPagoMultiple;
+                    //}
+
+                    db.detalle_pago_clase.Add(nuevoDetalle);
+                   
+                    if (alumnoSelect.id_estado == Constantes.ConstantesEstado.ALUMNOS_MOROSO)
+                    {
+                        ga.cambiarEstadoAActivo(alumnoSelect.id_alumno);
+                    }
+                    db.SaveChanges();
+                    return nuevoDetalle.id_detalle;
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public void actualizarPagoMultiple(int idDetalle, int idPagoMultiple)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var detalle = db.detalle_pago_clase.Find(idDetalle);
+                if (detalle != null)
+                {
+                    detalle.id_pago_multiple = idPagoMultiple;
+                }
+                db.SaveChanges();
+            }
+        }
+
+
+
         /*
          * busca si existe un pago con caracteristicas similares
          * Parametros: pAlumno : entero que representa el id del alumno

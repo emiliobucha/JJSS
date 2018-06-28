@@ -65,6 +65,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -123,9 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\..\..\..\..\Programa\Visual Studio 2017\MSBuild\Sdks\Microsoft.NET.Sdk\tools\net46\Newtonsoft.Json.6.0.4\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -225,8 +225,6 @@
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
     <Content Include="Presentacion\Administracion\CrearSede.aspx" />
-    <Content Include="Presentacion\Clases\AlumnoPagoClase.aspx" />
-    <Content Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx" />
     <Content Include="Presentacion\Clases\VerCalendario.aspx" />
     <Content Include="Presentacion\Clases\VerClase.aspx" />
     <Content Include="Presentacion\Clases\VerListadoAsistencia.aspx" />
@@ -234,6 +232,8 @@
     <Content Include="Presentacion\Eventos\Menu_Evento.aspx" />
     <Content Include="Presentacion\Eventos\VerEvento.aspx" />
     <Content Include="Presentacion\Pagos\PagosPanel.aspx" />
+    <Content Include="Presentacion\Pagos\PagosMultiple.aspx" />
+    <Content Include="Presentacion\Pagos\PagoMultipleFinalizado.aspx" />
     <Content Include="Presentacion\PowerBI.aspx">
       <BrowseToURL>~/Presentacion/PowerBI.aspx</BrowseToURL>
     </Content>
@@ -242,16 +242,12 @@
     <Content Include="Presentacion\Clases\Menu_Clase.aspx" />
     <Content Include="Presentacion\Torneos\CargarResultadosTorneo.aspx" />
     <Content Include="Presentacion\Productos\ComprarProducto.aspx" />
-    <Content Include="Presentacion\Eventos\EventoPago.aspx" />
-    <Content Include="Presentacion\Eventos\EventoPagoFinalizado.aspx" />
     <Content Include="Presentacion\Torneos\HistoricoTorneos.aspx" />
     <Content Include="Presentacion\MenuInicial.aspx" />
     <Content Include="Presentacion\Torneos\MenuTorneo.aspx" />
     <Content Include="Presentacion\Productos\Reservas.aspx" />
     <Content Include="Presentacion\SobreNosotros.aspx" />
-    <Content Include="Presentacion\Torneos\TorneoPagoFinalizado.aspx" />
     <Content Include="Presentacion\Usuarios.aspx" />
-    <Content Include="Presentacion\Clases\AlumnoClases.aspx" />
     <Content Include="Presentacion\Torneos\TorneoPago.aspx" />
     <Content Include="Presentacion\Eventos\CrearEvento.aspx" />
     <Content Include="Presentacion\Eventos\InscripcionEvento.aspx" />
@@ -425,20 +421,6 @@
     <Compile Include="Presentacion\Administracion\CrearSede.aspx.designer.cs">
       <DependentUpon>CrearSede.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Clases\AlumnoPagoClase.aspx.cs">
-      <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Clases\AlumnoPagoClase.aspx.designer.cs">
-      <DependentUpon>AlumnoPagoClase.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx.cs">
-      <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Clases\AlumnoPagoFinalizado.aspx.designer.cs">
-      <DependentUpon>AlumnoPagoFinalizado.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\Clases\VerCalendario.aspx.cs">
       <DependentUpon>VerCalendario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -488,6 +470,20 @@
     <Compile Include="Presentacion\Pagos\PagosPanel.aspx.designer.cs">
       <DependentUpon>PagosPanel.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Pagos\PagosMultiple.aspx.cs">
+      <DependentUpon>PagosMultiple.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagosMultiple.aspx.designer.cs">
+      <DependentUpon>PagosMultiple.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagoMultipleFinalizado.aspx.cs">
+      <DependentUpon>PagoMultipleFinalizado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagoMultipleFinalizado.aspx.designer.cs">
+      <DependentUpon>PagoMultipleFinalizado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\PowerBI.aspx.cs">
       <DependentUpon>PowerBI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -533,20 +529,6 @@
     <Compile Include="Presentacion\Downloader.ashx.cs">
       <DependentUpon>Downloader.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Eventos\EventoPago.aspx.cs">
-      <DependentUpon>EventoPago.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Eventos\EventoPago.aspx.designer.cs">
-      <DependentUpon>EventoPago.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Eventos\EventoPagoFinalizado.aspx.cs">
-      <DependentUpon>EventoPagoFinalizado.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Eventos\EventoPagoFinalizado.aspx.designer.cs">
-      <DependentUpon>EventoPagoFinalizado.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\Torneos\HistoricoTorneos.aspx.cs">
       <DependentUpon>HistoricoTorneos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -582,26 +564,12 @@
     <Compile Include="Presentacion\SobreNosotros.aspx.designer.cs">
       <DependentUpon>SobreNosotros.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Torneos\TorneoPagoFinalizado.aspx.cs">
-      <DependentUpon>TorneoPagoFinalizado.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Torneos\TorneoPagoFinalizado.aspx.designer.cs">
-      <DependentUpon>TorneoPagoFinalizado.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Presentacion\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Clases\AlumnoClases.aspx.cs">
-      <DependentUpon>AlumnoClases.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Clases\AlumnoClases.aspx.designer.cs">
-      <DependentUpon>AlumnoClases.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Torneos\TorneoPago.aspx.cs">
       <DependentUpon>TorneoPago.aspx</DependentUpon>

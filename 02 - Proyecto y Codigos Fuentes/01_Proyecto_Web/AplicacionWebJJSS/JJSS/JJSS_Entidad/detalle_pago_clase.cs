@@ -21,8 +21,10 @@ namespace JJSS_Entidad
         public string mes { get; set; }
         public int id_forma_pago { get; set; }
         public Nullable<short> recargo { get; set; }
+        public Nullable<int> id_pago_multiple { get; set; }
     
         public virtual forma_pago forma_pago { get; set; }
         public virtual pago_clase pago_clase { get; set; }
+        public virtual pago_multiple pago_multiple { get; set; }
     }
 }

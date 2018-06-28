@@ -53,8 +53,38 @@
                         <h1>Pendientes de Pago</h1>
                     </div>
 
-                    <div class="row centered">
-                        <p>&nbsp;</p>
+                    <div runat="server" class="row centered justify-content-center" id="divDNI" Visible="False">
+
+
+                        <!--Ingresar Tipo-->
+                        <div class="col-md-2 col-xl-auto">
+                            <label class="pull-left">Tipo: <a class="text-danger">*</a></label>
+                        </div>
+                        <div class="col-md-3 col-xl-auto">
+                            <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
+
+                        </div>
+
+
+                        <!--Ingresar Numero-->
+                        <div class="col-md-2 col-xl-auto">
+                            <label class="pull-left">Número: <a class="text-danger">*</a></label>
+                        </div>
+                        <div class="col-md-3 col-xl-auto">
+
+                            <asp:TextBox ID="txtDni" class="caja2" required="true"  runat="server" placeholder="Ingrese Número" ValidationGroup="grupoDni"></asp:TextBox>
+
+                        </div>
+
+
+                        <!--Boton-->
+                        <div class="col-md-1 col-xl-auto">
+
+                            <asp:Button ID="btnBuscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscar_Click"  />
+
+                        </div>
+
+
                     </div>
 
                     <div class="container">
@@ -67,15 +97,38 @@
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay pagos pendientes para mostrar"
                                     OnRowCommand="gvPagos_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="chkRow" runat="server" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:BoundField DataField="TipoPago.Tipo" HeaderText="Tipo" SortExpression="tipo" />
                                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="fecha" DataFormatString="{0:dd/MM/yyyy}" />
+                                        <asp:BoundField DataField="DescripcionObjeto"  HeaderText="Descripción" SortExpression="descripcion" />
                                         <asp:BoundField DataField="Monto" HeaderText="Monto" SortExpression="monto" />
-                                        <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />
+                                       <%-- <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />--%>
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
                                 </asp:GridView>
+                               
+
+                            </div>
+                            <div class="row justify-content-center p-1">
+                                <div class="col-xs-2">
+                                    <label>Forma de pago:&nbsp;</label>
+                                </div>
+                                <div class="col-xs-3">
+                                    <asp:DropDownList ID="ddl_forma_pago" runat="server" CssClass="caja2"></asp:DropDownList>
+                                </div>
+                                <div class="col-xs-3">
+                                </div>
+                            </div>
+                            <div class="row centered">
+                                <div class="col-lg-1 col-md-1 col-sm-8 col-xl-auto">
+                                    <asp:Button ID="btnRegistrarPago" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnRegistrarPago_Click" />
+                                </div>
                             </div>
 
                         </div>

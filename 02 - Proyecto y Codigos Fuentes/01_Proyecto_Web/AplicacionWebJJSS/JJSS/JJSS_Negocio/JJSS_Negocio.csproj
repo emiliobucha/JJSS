@@ -46,6 +46,7 @@
     <Compile Include="Administracion\GestorAcademias.cs" />
     <Compile Include="Administracion\GestorEstados.cs" />
     <Compile Include="Constantes\ConstantesEstado.cs" />
+    <Compile Include="Constantes\ConstantesFormaPago.cs" />
     <Compile Include="Constantes\ConstantesTipoClase.cs" />
     <Compile Include="Constantes\ConstantesTipoInscripcion.cs" />
     <Compile Include="Constantes\ConstantesTipoPago.cs" />
@@ -102,7 +103,9 @@
     <Compile Include="Resultados\DireccionAlumno.cs" />
     <Compile Include="Resultados\HorariosResultado.cs" />
     <Compile Include="Resultados\ListadoAsistencia.cs" />
-    <Compile Include="Resultados\ObjetoPagable.cs" />
+    <Compile Include="Resultados\Pagos\PagoMultiple.cs" />
+    <Compile Include="Resultados\Pagos\ObjetoPagable.cs" />
+    <Compile Include="Resultados\Pagos\PreferenceMP.cs" />
     <Compile Include="Resultados\ParticipantesEventoResultado.cs" />
     <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
     <Compile Include="Resultados\ProductosResultados.cs" />
@@ -144,6 +147,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms">
       <HintPath>..\Librerias\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

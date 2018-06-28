@@ -19,6 +19,7 @@ namespace JJSS_Entidad
         {
             this.detalle_pago_clase = new HashSet<detalle_pago_clase>();
             this.pago_evento = new HashSet<pago_evento>();
+            this.pago_multiple = new HashSet<pago_multiple>();
             this.pago_torneo = new HashSet<pago_torneo>();
         }
     
@@ -29,6 +30,8 @@ namespace JJSS_Entidad
         public virtual ICollection<detalle_pago_clase> detalle_pago_clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_evento> pago_evento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pago_multiple> pago_multiple { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_torneo> pago_torneo { get; set; }
     }

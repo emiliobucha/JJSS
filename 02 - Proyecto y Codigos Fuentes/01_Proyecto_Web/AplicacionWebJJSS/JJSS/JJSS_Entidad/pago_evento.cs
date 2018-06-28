@@ -21,10 +21,12 @@ namespace JJSS_Entidad
         public int id_forma_pago { get; set; }
         public int id_usuario { get; set; }
         public decimal pago_monto { get; set; }
+        public Nullable<int> id_pago_multiple { get; set; }
     
         public virtual forma_pago forma_pago { get; set; }
         public virtual inscripcion_evento inscripcion_evento { get; set; }
         public virtual seguridad_usuario seguridad_usuario { get; set; }
+        public virtual pago_multiple pago_multiple { get; set; }
         public virtual participante_evento participante_evento { get; set; }
     }
 }

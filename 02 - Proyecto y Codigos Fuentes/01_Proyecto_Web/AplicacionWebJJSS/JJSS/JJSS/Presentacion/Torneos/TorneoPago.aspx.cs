@@ -20,9 +20,7 @@ namespace JJSS.Presentacion
         private GestorMercadoPago gestorMP;
         private participante participanteElegido;
         private GestorInscripciones gestorInscripciones;
-        private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
-
-
+      
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorTorneo = new GestorTorneos();
@@ -85,7 +83,6 @@ namespace JJSS.Presentacion
                 double monto;
                 if (inscripcion.tipo_inscripcion == 0)
                 {
-
                     monto = (double) torneo.precio_categoria;
                     lbl_tipo_inscripcion.Text = "Inscripción a Categoría";
                 }
@@ -95,12 +92,15 @@ namespace JJSS.Presentacion
                     lbl_tipo_inscripcion.Text = "Inscripción Absoluta";
                 }
 
-                lbl_monto.Text = "$" + monto;
+                lbl_monto.Text = "$ " + monto;
 
-                String sInit_Point = "";
+                var sInit_Point = "";
                 gestorMP = new GestorMercadoPago();
-                sInit_Point = gestorMP.NuevoPago(monto,"Pago de Torneo");
+                sInit_Point = gestorMP.NuevoPago(monto,"Pago de Torneo " + torneo.nombre);
                 mp_checkout.Attributes.Add("href", sInit_Point);
+                mp_checkout.Attributes["href"] = sInit_Point;
+                mp_checkout.DataBind();
+                //mp_checkout.HRef = sInit_Point;
             }
         }
 
@@ -116,7 +116,7 @@ namespace JJSS.Presentacion
 
             lbl_participante.Text = "No hay partiipante seleccionado";
             Session["PagoTorneo"] = "";
-            pagoRecargo = 0;
+           
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
