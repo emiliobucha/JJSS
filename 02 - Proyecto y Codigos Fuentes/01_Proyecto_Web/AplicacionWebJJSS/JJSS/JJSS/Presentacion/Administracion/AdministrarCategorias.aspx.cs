@@ -9,7 +9,7 @@ using JJSS_Negocio.Administracion;
 
 namespace JJSS.Presentacion.Administracion
 {
-    public partial class AdministrarSedes : System.Web.UI.Page
+    public partial class AdministrarCategorias : System.Web.UI.Page
     {
         private GestorCategoria gc;
 

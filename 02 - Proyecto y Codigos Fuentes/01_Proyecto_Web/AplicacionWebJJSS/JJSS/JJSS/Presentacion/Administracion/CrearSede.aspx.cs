@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio.Administracion;
 using JJSS_Negocio;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS.Presentacion.Administracion
 {
@@ -16,10 +17,12 @@ namespace JJSS.Presentacion.Administracion
         private static GestorProvincias gestorProvincias;
         private static GestorSedes gestorSedes;
         private static GestorAcademias gestorAcademias;
+        private static int idSede = 0;
+        private static int idAcademia = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/MenuInicial.aspx";
+            if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Menu_Administracion.aspx";
             else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
             if (!IsPostBack)
             {
@@ -29,7 +32,59 @@ namespace JJSS.Presentacion.Administracion
                 gestorAcademias = new GestorAcademias();
 
                 CargarComboProvincias();
+
+                if (Session["sede"] != null)
+                {
+                    idSede = Convert.ToInt32(Session["sede"]);
+                    CargarDatosSedeSeleccionada();
+                    Session["sede"] = null;
+                    rbCrear.Enabled = false;
+                }
+                else if (Session["academia"] != null)
+                {
+                    idAcademia = Convert.ToInt32(Session["academia"]);
+                    CargarDatosAcademiaSeleccionada();
+                    Session["academia"] = null;
+                    rbCrear.Enabled = false;
+                }
+                else limpiar();
             }
+        }
+
+        private void CargarDatosSedeSeleccionada()
+        {
+            limpiar();
+            sede sedeSeleccionada = gestorSedes.BuscarSedePorID(idSede);
+            DireccionAlumno direccionSede = gestorSedes.ObtenerDireccionSedeCompleta(idSede);
+            txt_calle.Text = direccionSede.calle;
+            txt_nombre.Text = sedeSeleccionada.nombre;
+            txt_numero.Text = Convert.ToString( direccionSede.numero);
+            txt_piso.Text = direccionSede.piso.ToString();
+            txt_nro_dpto.Text = direccionSede.depto;
+            txt_telefono.Text = Convert.ToString( sedeSeleccionada.telefono);
+            txt_torre.Text = direccionSede.torre;
+            rbCrear.SelectedValue = "sede";
+            ddl_provincia.SelectedValue = Convert.ToString( direccionSede.idProvincia);
+            CargarComboCiudades(direccionSede.idProvincia.Value);
+            ddl_localidad.SelectedValue = Convert.ToString(direccionSede.idCiudad);
+        }
+
+        private void CargarDatosAcademiaSeleccionada()
+        {
+            limpiar();
+            academia academiaSeleccionada = gestorAcademias.ObtenerAcademiasPorID(idAcademia);
+            DireccionAlumno direccionAcademia = gestorAcademias.ObtenerDireccionAcademiaCompleta(idAcademia);
+            txt_calle.Text = direccionAcademia.calle;
+            txt_nombre.Text = academiaSeleccionada.nombre;
+            txt_numero.Text = Convert.ToString( direccionAcademia.numero);
+            txt_piso.Text = Convert.ToString( direccionAcademia.piso);
+            txt_nro_dpto.Text =  direccionAcademia.depto;
+            txt_telefono.Text = Convert.ToString( academiaSeleccionada.telefono);
+            txt_torre.Text = direccionAcademia.torre;
+            rbCrear.SelectedValue = "academia";
+            ddl_provincia.SelectedValue = Convert.ToString(direccionAcademia.idProvincia);
+            CargarComboCiudades(direccionAcademia.idProvincia.Value);
+            ddl_localidad.SelectedValue = Convert.ToString(direccionAcademia.idCiudad);
         }
 
         public override void VerifyRenderingInServerForm(Control control)
@@ -87,6 +142,8 @@ namespace JJSS.Presentacion.Administracion
 
         private void limpiar()
         {
+            rbCrear.Enabled = true;
+
             txt_calle.Text = "";
             txt_nombre.Text = "";
             txt_nro_dpto.Text = "";
@@ -98,6 +155,9 @@ namespace JJSS.Presentacion.Administracion
             ddl_provincia.SelectedIndex = 0;
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = true;
+
+            idSede = 0;
+            idAcademia = 0;
 
         }
 
@@ -134,16 +194,55 @@ namespace JJSS.Presentacion.Administracion
             nuevaDireccion.departamento = departamento;
 
             string nombre = txt_nombre.Text;
-
-            if (rbCrear.SelectedValue.CompareTo("sede") == 0)
-            {
-                crearSede(nombre,nuevaDireccion,telefono);
-            }else if (rbCrear.SelectedValue.CompareTo("academia") == 0)
-            {
-                crearAcademia(nombre, nuevaDireccion,telefono);
+            string res = "";
+            if (idSede == 0 && idAcademia == 0)
+            {//creacion
+                if (rbCrear.SelectedValue.CompareTo("sede") == 0)
+                {
+                    crearSede(nombre, nuevaDireccion, telefono);
+                }
+                else if (rbCrear.SelectedValue.CompareTo("academia") == 0)
+                {
+                    crearAcademia(nombre, nuevaDireccion, telefono);
+                }
+            }else if (idSede != 0)
+            {//modificar sede
+                sede sSeleccionada = new sede()
+                {
+                    id_sede = idSede,
+                    direccion = nuevaDireccion,
+                    nombre = nombre,
+                    telefono = telefono,
+                };
+                res = gestorSedes.ModificarSede(sSeleccionada);
+                if (res.CompareTo("") == 0)
+                {
+                    limpiar();
+                    Session["mensaje"] = "Se modificó la sede correctamente";
+                    Session["exito"] = true;
+                    Response.Redirect("AdministrarSedes.aspx");
+                }
+                else mensaje(res, false);
             }
-
-
+            else if (idAcademia != 0)
+            {//modificar academia
+                academia aSeleccionada = new academia()
+                {
+                    id_academia = idAcademia,
+                    direccion = nuevaDireccion,
+                    nombre = nombre,
+                    telefono = telefono,
+                };
+                res = gestorAcademias.ModificarAcademia(aSeleccionada);
+                if (res.CompareTo("") == 0)
+                {
+                    limpiar();
+                    Session["mensaje"] = "Se modificó la academia correctamente";
+                    Session["exito"] = true;
+                    Response.Redirect("AdministrarSedes.aspx");
+                }
+                else mensaje(res, false);
+            }
         }
 
         private void crearSede(String nombre, direccion nuevaDireccion,long? telefono)
@@ -152,8 +251,9 @@ namespace JJSS.Presentacion.Administracion
             if (res.CompareTo("") == 0)
             {
                 limpiar();
-                mensaje("Se ha creado la sede correctamente", true);
-                
+                Session["mensaje"] = "Se creó la sede correctamente";
+                Session["exito"] = true;
+                Response.Redirect("AdministrarSedes.aspx");
             }
             else mensaje(res, false);
         }
@@ -164,8 +264,10 @@ namespace JJSS.Presentacion.Administracion
             if (res.CompareTo("") == 0)
             {
                 limpiar();
-                mensaje("Se ha creado la academia correctamente", true);
-                
+                Session["mensaje"] = "Se creó la academia correctamente";
+                Session["exito"] = true;
+                Response.Redirect("AdministrarSedes.aspx");
+
             }
             else mensaje(res, false);
         }

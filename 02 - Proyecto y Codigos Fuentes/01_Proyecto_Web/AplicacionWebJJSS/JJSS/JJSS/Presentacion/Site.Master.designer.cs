@@ -76,6 +76,15 @@ namespace JJSS {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navbarClase;
         
         /// <summary>
+        /// Control nav_seccion_clase.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_seccion_clase;
+        
+        /// <summary>
         /// Control nav_crear_clase.
         /// </summary>
         /// <remarks>
@@ -83,15 +92,6 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_crear_clase;
-        
-        /// <summary>
-        /// Control nav_inscripcion_clase.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_inscripcion_clase;
         
         /// <summary>
         /// Control nav_registrar_asistencia.
@@ -110,6 +110,24 @@ namespace JJSS {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_graduar_alumno;
+        
+        /// <summary>
+        /// Control nav_ver_clases.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_ver_clases;
+        
+        /// <summary>
+        /// Control nav_listado_asistencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_listado_asistencia;
         
         /// <summary>
         /// Control nav_usuario.

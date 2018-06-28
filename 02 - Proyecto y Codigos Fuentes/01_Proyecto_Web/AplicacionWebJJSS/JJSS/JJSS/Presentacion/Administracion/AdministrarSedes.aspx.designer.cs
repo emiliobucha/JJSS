@@ -10,7 +10,7 @@
 namespace JJSS.Presentacion.Administracion {
     
     
-    public partial class AdministrarCategorias {
+    public partial class AdministrarSedes {
         
         /// <summary>
         /// Control formRegAlumno.
@@ -76,22 +76,22 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.WebControls.TextBox txt_filtro_nombre;
         
         /// <summary>
-        /// Control ddl_filtro_disciplina.
+        /// Control ddl_filtro_ciudad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_filtro_disciplina;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_filtro_ciudad;
         
         /// <summary>
-        /// Control rbSexo.
+        /// Control rbSede.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbSexo;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbSede;
         
         /// <summary>
         /// Control btn_buscar.
@@ -103,13 +103,13 @@ namespace JJSS.Presentacion.Administracion {
         protected global::System.Web.UI.WebControls.Button btn_buscar;
         
         /// <summary>
-        /// Control gvCategorias.
+        /// Control gvSedes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCategorias;
+        protected global::System.Web.UI.WebControls.GridView gvSedes;
         
         /// <summary>
         /// Control lnk_cancelar.

@@ -13,6 +13,7 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="45" />
           <Property Name="id_direccion" Type="int" />
           <Property Name="telefono" Type="bigint" />
+          <Property Name="actual" Type="int" />
         </EntityType>
         <EntityType Name="administrador">
           <Key>
@@ -474,6 +475,7 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="45" />
           <Property Name="id_direccion" Type="int" />
           <Property Name="telefono" Type="bigint" />
+          <Property Name="actual" Type="int" />
         </EntityType>
         <EntityType Name="seguridad_grupo">
           <Key>
@@ -2134,6 +2136,7 @@
           <Property Name="telefono" Type="Int64" />
           <NavigationProperty Name="direccion" Relationship="Self.FK__academia__id_dir__11007AA7" FromRole="academia" ToRole="direccion" />
           <NavigationProperty Name="clase" Relationship="Self.FK__clase__id_ubicac__2042BE37" FromRole="academia" ToRole="clase" />
+          <Property Name="actual" Type="Int32" />
         </EntityType>
         <EntityType Name="administrador">
           <Key>
@@ -2743,6 +2746,7 @@
           <NavigationProperty Name="direccion" Relationship="Self.FK__sede__id_direcci__50E5F592" FromRole="sede" ToRole="direccion" />
           <NavigationProperty Name="evento_especial" Relationship="Self.FK__evento_es__id_se__2AC04CAA" FromRole="sede" ToRole="evento_especial" />
           <NavigationProperty Name="torneo" Relationship="Self.FK__torneo__id_sede__569ECEE8" FromRole="sede" ToRole="torneo" />
+          <Property Name="actual" Type="Int32" />
         </EntityType>
         <EntityType Name="seguridad_grupo">
           <Key>
@@ -4430,6 +4434,7 @@
           <EntitySetMapping Name="academia">
             <EntityTypeMapping TypeName="JJSSModel.academia">
               <MappingFragment StoreEntitySet="academia">
+                <ScalarProperty Name="actual" ColumnName="actual" />
                 <ScalarProperty Name="id_academia" ColumnName="id_academia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
@@ -4933,6 +4938,7 @@
           <EntitySetMapping Name="sede">
             <EntityTypeMapping TypeName="JJSSModel.sede">
               <MappingFragment StoreEntitySet="sede">
+                <ScalarProperty Name="actual" ColumnName="actual" />
                 <ScalarProperty Name="id_sede" ColumnName="id_sede" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
