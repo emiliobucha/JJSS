@@ -111,6 +111,10 @@
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:DropDownList ID="ddl_ubicacion" runat="server" CssClass="caja2"></asp:DropDownList>
                     </div>
+                    
+                    <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
+                        <asp:LinkButton ID ="lnk_sede" href="/Presentacion/Administracion/CrearSede.aspx" runat="server" CssClass="btn btn-outline-dark">+</asp:LinkButton>
+                        </div>
                 </div>
                 <div>
                     &nbsp;

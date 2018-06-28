@@ -103,6 +103,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_ubicacion;
         
         /// <summary>
+        /// Control lnk_sede.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnk_sede;
+        
+        /// <summary>
         /// Control ddl_profesor.
         /// </summary>
         /// <remarks>

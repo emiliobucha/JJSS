@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="AdministrarCategorias.aspx.cs" Inherits="AdministrarCategorias" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="AdministrarSedes.aspx.cs" Inherits="JJSS.Presentacion.Administracion.AdministrarSedes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
@@ -50,7 +49,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1>Listado de Categorías</h1>
+                        <h1>Listado de Sedes</h1>
                     </div>
 
                     <div class="row centered">
@@ -71,19 +70,17 @@
                                     <asp:TextBox ID="txt_filtro_nombre" CssClass="caja2" runat="server"></asp:TextBox>
                                 </div>
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <strong>Disciplina</strong>
+                                    <strong>Ciudad</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:DropDownList ID="ddl_filtro_disciplina" runat="server" CssClass="caja2"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddl_filtro_ciudad" runat="server" CssClass="caja2"></asp:DropDownList>
                                 </div>
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <strong>Sexo</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
-                                        <asp:ListItem Selected="True" Value="-1">Todos</asp:ListItem>
-                                        <asp:ListItem Value="0">Femenino</asp:ListItem>
-                                        <asp:ListItem Value="1">Masculino</asp:ListItem>
+                                    <asp:RadioButtonList ID="rbSede" runat="server" AutoPostBack="False">
+                                        <asp:ListItem Value="0" Selected="True">Sedes</asp:ListItem>
+                                        <asp:ListItem Value="1">Academias</asp:ListItem>
                                     </asp:RadioButtonList>
                                 </div>
 
@@ -91,21 +88,20 @@
                                     <asp:Button ID="btn_buscar" runat="server" Text="Buscar" OnClick="btn_buscar_Click" CssClass="btn btn-outline-dark" />
                                 </div>
 
-                                <asp:HyperLink CssClass="btn btn-link" Text="Ir a registrar" runat="server" href="CrearCategoria.aspx"></asp:HyperLink>
+                                <asp:HyperLink CssClass="btn btn-link" Text="Ir a registrar" runat="server" href="CrearSede.aspx"></asp:HyperLink>
                             </div>
 
                             <div class="row centered justify-content-center">
-                                <asp:GridView ID="gvCategorias" runat="server" CssClass="table" CellPadding="4" DataKeyNames="idCategoria" OnPageIndexChanging="gvCategorias_PageIndexChanging"
-                                    ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay categorías para mostrar"
-                                    OnRowCommand="gvCategorias_RowCommand" AllowPaging="True" PageSize="10">
+                                <asp:GridView ID="gvSedes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="idSede" OnPageIndexChanging="gvSedes_PageIndexChanging"
+                                    ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay sedes para mostrar"
+                                    OnRowCommand="gvSedes_RowCommand" AllowPaging="True" PageSize="10">
                                     <Columns>
-                                        <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                                        <asp:BoundField DataField="edadMin" HeaderText="Edad Desde" />
-                                        <asp:BoundField DataField="edadMax" HeaderText="Edad Hasta" />
-                                        <asp:BoundField DataField="pesoMin" HeaderText="Peso Desde (kg)" />
-                                        <asp:BoundField DataField="pesoMax" HeaderText="Peso Hasta (kg)" />
-                                        <asp:BoundField DataField="sexoMostrar" HeaderText="Sexo" />
-                                        <asp:BoundField DataField="disciplina" HeaderText="Disciplina" />
+                                        <asp:BoundField DataField="sede" HeaderText="Nombre" />
+                                        <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
+                                        <asp:BoundField DataField="calle" HeaderText="Calle" />
+                                        <asp:BoundField DataField="numero" HeaderText="Número" />
+                                        <asp:BoundField DataField="ciudad" HeaderText="Ciudad" />
+                                        
                                         <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" ItemStyle-ForeColor="#007bff" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" ItemStyle-ForeColor="#007bff" />
                                     </Columns>
@@ -133,4 +129,6 @@
         </div>
 
     </form>
+
+
 </asp:Content>
