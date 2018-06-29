@@ -35,6 +35,8 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Menu_Administracion.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
 
                 try
                 {
@@ -296,5 +298,9 @@ namespace JJSS.Presentacion
 
         }
 
+        protected void btn_volver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(ViewState["RefUrl"].ToString());
+        }
     }
 }

@@ -80,7 +80,7 @@
                                     <strong>Estado</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:DropDownList ID ="ddl_filtro_estado" runat="server" CssClass="caja2"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddl_filtro_estado" runat="server" CssClass="caja2"></asp:DropDownList>
                                 </div>
 
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
@@ -112,6 +112,11 @@
                     </div>
                 </div>
             </asp:Panel>
+            <div class="row pull-left">
+                <div class="col">
+                    <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
+                </div>
+            </div>
         </div>
 
     </form>

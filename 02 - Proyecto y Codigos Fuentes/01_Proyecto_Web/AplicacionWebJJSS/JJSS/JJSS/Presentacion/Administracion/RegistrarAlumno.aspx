@@ -293,6 +293,11 @@
                     </div>
                     <!-- /row -->
                 </asp:Panel>
+        <div class="row pull-left">
+                    <div class="col">
+                        <asp:Button ID="btn_volver" class="btn btn-link" runat="server" Text="Volver" OnClick="btn_Cancelar_Click" formnovalidate="true" />
+                    </div>
+                </div>
         </form>
 
 </asp:Content>

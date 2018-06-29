@@ -20,6 +20,10 @@ namespace JJSS.Presentacion.Administracion
             ga = new GestorAcademias();
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Menu_Administracion.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+
+
                 if (Session["mensaje"] != null)
                 {
                     mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
@@ -124,6 +128,11 @@ namespace JJSS.Presentacion.Administracion
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
             }
+        }
+
+        protected void btn_volver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(ViewState["RefUrl"].ToString());
         }
     }
 }

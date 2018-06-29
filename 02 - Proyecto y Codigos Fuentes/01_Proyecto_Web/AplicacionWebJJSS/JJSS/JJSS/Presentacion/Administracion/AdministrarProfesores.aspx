@@ -118,7 +118,7 @@
 
         <div class=" container">
             <div class="row centered">
-                <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="Menu_Administrar.aspx"></asp:HyperLink>
+                <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="Menu_Administracion.aspx"></asp:HyperLink>
             </div>
         </div>
 
