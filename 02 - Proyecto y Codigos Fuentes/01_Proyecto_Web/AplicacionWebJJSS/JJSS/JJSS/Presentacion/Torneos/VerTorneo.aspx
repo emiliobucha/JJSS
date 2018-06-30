@@ -3,6 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
+            <script type='text/javascript'>
+        function openModal(id) {
+            $('[id*=confirmacion]').modal('show');
+            return false;
+    }   
+</script>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContenido" runat="server">
 
@@ -158,7 +165,7 @@
                 <asp:Button ID="btn_cargar_resultados" runat="server" CssClass="btn btn-outline-dark " Text="Cargar Resultados" OnClick="btn_cargar_resultados_Click" Visible="false" />
                 <asp:Button ID="btn_editar_resultados" runat="server" CssClass="btn btn-outline-dark " Text="Editar Resultados" OnClick="btn_editar_resultados_Click" Visible="false" />
                 <asp:Button ID="btn_inscribir" runat="server" CssClass="btn btn-outline-dark" Text="Inscribir" OnClick="btn_inscribir_Click" Visible="false" />
-                <asp:Button ID="btn_cancelar" runat="server" CssClass="btn btn-outline-dark" Text="Cancelar Torneo" OnClick="btn_cancelar_Click" Visible="false" />
+                <asp:Button ID="btn_cancelar" runat="server" CssClass="btn btn-outline-dark" Text="Cancelar Torneo" OnClientClick="return openModal()" Visible="false" />
                 <asp:Button ID="btn_suspender" runat="server" CssClass="btn btn-outline-dark" Text="Suspender Torneo" OnClick="btn_suspender_Click" Visible="false" />
                 <asp:Button ID="btn_editar" runat="server" CssClass="btn btn-outline-dark" Text="Editar Torneo" OnClick="btn_editar_Click" Visible="false" />
                 <asp:Button ID="btn_habilitar" runat="server" CssClass="btn btn-outline-dark" Text="Habilitar Torneo" OnClick="btn_habilitar_Click" Visible="false" />
@@ -172,6 +179,30 @@
             </div>
 
             <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass=" btn btn-link pull-left" OnClick="btn_volver_Click1"/>
+
+                    
+        <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!--Cabecera-->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabe2">¿Seguro que desea eliminar el torneo?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <!--Botonero-->
+                    <div class="modal-footer">
+                        <asp:button ID="btn_si" type="button" runat="server" class="btn btn-outline-dark" OnClick="btn_si_Click1"  TExt="SI"/>
+                        <Button ID="btn_no" type="button" class="btn btn-default"  value="No" data-dismiss="modal">No</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <asp:TextBox ID ="txtIDSeleccionado" runat="server" Text="" hidden="true"></asp:TextBox>
+
+
         </form>
 
         <div class="row centered">

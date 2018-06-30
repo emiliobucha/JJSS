@@ -21,7 +21,10 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
-                return db.tipo_clase.ToList();
+                var tc = from t in db.tipo_clase
+                         where t.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                         select t;
+                return tc.ToList();
             }
         }
 
@@ -57,6 +60,58 @@ namespace JJSS_Negocio
                             where faj.id_tipo_clase==claseSeleccionada.id_tipo_clase
                             select faj;
                 return fajas.ToList();
+            }
+        }
+
+        public string crearTipoClase(string pNombre)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    tipo_clase nuevoTipoClase = new tipo_clase()
+                    {
+                        nombre = pNombre,
+                        actual = Constantes.ConstatesBajaLogica.ACTUAL,
+                    };
+                    db.tipo_clase.Add(nuevoTipoClase);
+                    db.SaveChanges();
+                    return "";
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
+            }
+        }
+
+        public List<tipo_clase> ObtenerTodosTipoClasesConFiltro(string filtroNombre)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var tipoClase = from te in db.tipo_clase
+                                 where te.nombre.StartsWith(filtroNombre) && te.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                                 orderby te.nombre ascending
+                                 select te;
+                return tipoClase.ToList();
+            }
+        }
+
+        public string eliminarTipoClase(int idTipoClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    tipo_clase tipoClase = db.tipo_clase.Find(idTipoClase);
+                    tipoClase.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
+                    db.SaveChanges();
+                    return "";
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
             }
         }
     }

@@ -15,7 +15,7 @@ namespace JJSS_Negocio
         private String clientID = "4309155312672093";
         private String clientSecret = "QflIW4b4IUeIG9mHM51lTzTc4xEb5zax";
         private MP mp;
-        private string uri = "http://localhost:15787/Presentacion/Pagos/";
+        private string uri = "http://ec2-34-228-115-59.compute-1.amazonaws.com:8081/Presentacion/Pagos/";
 
 
         public string NuevoPago(double pMonto, string pConcepto)
@@ -61,8 +61,6 @@ namespace JJSS_Negocio
                 auto_return = "all",
                 back_urls = new Back_Url
                 {
-                    failure = "http://google.com.ar",
-                    pending = "http://google.com.ar",
                     success = uri + "PagoMultipleFinalizado.aspx"
                 }
             };

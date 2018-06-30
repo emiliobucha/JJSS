@@ -22,10 +22,11 @@ namespace JJSS.Presentacion.Administracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Menu_Administracion.aspx";
-            else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Menu_Administracion.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+
                 gestorCiudades = new GestorCiudades();
                 gestorProvincias = new GestorProvincias();
                 gestorSedes = new GestorSedes();
@@ -154,7 +155,7 @@ namespace JJSS.Presentacion.Administracion
 
             ddl_provincia.SelectedIndex = 0;
             pnl_mensaje_error.Visible = false;
-            pnl_mensaje_exito.Visible = true;
+            pnl_mensaje_exito.Visible = false;
 
             idSede = 0;
             idAcademia = 0;
@@ -277,6 +278,11 @@ namespace JJSS.Presentacion.Administracion
             object refUrl = ViewState["RefUrl"];
             if (refUrl != null)
                 Response.Redirect((string)refUrl);
+        }
+
+        protected void btn_volver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(ViewState["RefUrl"].ToString());
         }
     }
 }

@@ -233,7 +233,7 @@ namespace JJSS.Presentacion
             Response.Redirect("InscripcionTorneo.aspx");
         }
 
-        protected void btn_cancelar_Click(object sender, EventArgs e)
+        protected void btn_si_Click1(object sender, EventArgs e)
         {
             limpiarMensaje();
             string res = gestorTorneos.cancelarTorneo(torneoSeleccionado.id_torneo, ConstantesEstado.TORNEO_CANCELADO);

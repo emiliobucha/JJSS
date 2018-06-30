@@ -356,24 +356,26 @@ namespace JJSS.Presentacion
 
 
                 //para usuarios
-                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-
-
-                try
+                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() != "INVITADO")
                 {
-                    string mail = sesionActiva.usuario.mail;
-                    string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(idTipo,dni, idEvento).id_inscripcion, mail);
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
 
-                    pnl_comprobante.Visible = true;
-                    btn_descargar.Attributes.Add("href", "Downloader.ashx?" + "sFile=" + sFile);
+
+                    try
+                    {
+                        string mail = sesionActiva.usuario.mail;
+                        string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(idTipo, dni, idEvento).id_inscripcion, mail);
+
+                        pnl_comprobante.Visible = true;
+                        btn_descargar.Attributes.Add("href", "Downloader.ashx?" + "sFile=" + sFile);
+                    }
+                    catch (Exception ex)
+                    {
+                        mensaje("Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante.Puede fijarse en sus incripciones si es necesario", true);
+
+                    }
                 }
-                catch (Exception ex)
-                {
-                    mensaje("Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante.Puede fijarse en sus incripciones si es necesario", true);
-
-                }
-
-
+                
             }
             else mensaje(sReturn, false);
         }

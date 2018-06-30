@@ -125,9 +125,9 @@
                                 <div class="col-xs-3">
                                 </div>
                             </div>
-                            <div class="row centered">
-                                <div class="col-lg-1 col-md-1 col-sm-8 col-xl-auto">
-                                    <asp:Button ID="btnRegistrarPago" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnRegistrarPago_Click" />
+                            <div class="row centered justify-content-center p-1">
+                                <div class="col-xl-auto">
+                                    <asp:Button ID="btnRegistrarPago" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-default " OnClick="btnRegistrarPago_Click" />
                                 </div>
                             </div>
 

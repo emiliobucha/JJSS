@@ -102,9 +102,9 @@
                         </div>
                     </asp:Panel>
                 </div>
-                <div class=" row">
-                    <div class="col col-auto">
-                        <asp:Button ID="btn_Cancelar" runat="server" Text="Volver a inicio" CssClass="btn btn-link pull-left" CausesValidation="false" formnovalidate="true" OnClick="btn_Cancelar_Click1" />
+                <div class="row pull-left">
+                    <div class="col">
+                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="/Presentacion/Administracion/Menu_Administracion.aspx"></asp:LinkButton>
                     </div>
                 </div>
                 <div>

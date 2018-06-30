@@ -75,10 +75,7 @@ namespace JJSS.Presentacion.Administracion
 
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
-                string res = gc.EliminarCategoria(idCategoria);
-                if (res.CompareTo("") == 0) mensaje("Se eliminó la categoría exitosamente", true);
-                else mensaje(res, false);
-                CargarGrilla();
+                
             }
             else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
@@ -100,6 +97,19 @@ namespace JJSS.Presentacion.Administracion
                 pnl_mensaje_exito.Visible = false;
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
+            }
+        }
+
+        protected void btn_si_Click1(object sender, EventArgs e)
+        {
+            if (txtIDSeleccionado.Text != "")
+            {
+                int idCategoria = Convert.ToInt16(txtIDSeleccionado.Text);
+                string res = gc.EliminarCategoria(idCategoria);
+                if (res.CompareTo("") == 0) mensaje("Se eliminó la categoría exitosamente", true);
+                else mensaje(res, false);
+                CargarGrilla();
+                txtIDSeleccionado.Text = "";
             }
         }
     }

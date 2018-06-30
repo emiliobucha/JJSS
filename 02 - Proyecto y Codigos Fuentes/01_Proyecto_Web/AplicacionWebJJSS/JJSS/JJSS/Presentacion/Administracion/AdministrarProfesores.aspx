@@ -3,6 +3,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
+    <script type='text/javascript'>
+        var x = 0;
+        function button() {
+            var objwordstonum = document.getElementById('<%=txtIDSeleccionado.ClientID%>');
+                objwordstonum.value = x;
+                return true;
+        }
+        function openModal(id) {
+            $('[id*=confirmacion]').modal('show');
+            x = id;
+            return false;
+    }   
+</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMenu" runat="server">
 </asp:Content>
@@ -93,8 +106,13 @@
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
 
-                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("dni") %>' 
+                                                    OnClientClick='<%# Eval("dni", "return openModal({0})") %>' > Eliminar</asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -118,12 +136,34 @@
 
         <div class=" container">
             <div class="row centered">
-                <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="Menu_Administrar.aspx"></asp:HyperLink>
+                <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="Menu_Administracion.aspx"></asp:HyperLink>
             </div>
         </div>
 
         <div class="row centered">
             <p>&nbsp;</p>
         </div>
+
+        
+        <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!--Cabecera-->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabe2">¿Seguro que desea eliminar el profesor?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <!--Botonero-->
+                    <div class="modal-footer">
+                        <asp:button ID="btn_si" type="button" runat="server" class="btn btn-outline-dark" OnClientClick="return button()" OnClick="btn_si_Click1"  TExt="SI"/>
+                        <Button ID="btn_no" type="button" class="btn btn-default"  value="No" data-dismiss="modal">No</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <asp:TextBox ID ="txtIDSeleccionado" runat="server" Text="" hidden="true"></asp:TextBox>
     </form>
 </asp:Content>

@@ -303,11 +303,11 @@
             <p>&nbsp;</p>
         </div>
 
-        <div class=" container">
-            <div class="row centered">
-                <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="Menu_Administracion.aspx"></asp:HyperLink>
-            </div>
-        </div>
+        <div class="row pull-left">
+                    <div class="col">
+                        <asp:Button ID="btn_volver" class="btn btn-link" runat="server" Text="Volver" OnClick="btn_volver_Click" formnovalidate="true" />
+                    </div>
+                </div>
 
         <div class="row centered">
             <p>&nbsp;</p>
