@@ -215,7 +215,7 @@ namespace JJSS.Presentacion.Eventos
             Response.Redirect("InscripcionEvento.aspx");
         }
 
-        protected void btn_cancelar_Click(object sender, EventArgs e)
+        protected void btn_si_Click1(object sender, EventArgs e)
         {
             limpiarMensaje();
             string res = gestorEventos.cancelarEvento(eventoSeleccionado.id_evento, ConstantesEstado.TORNEO_CANCELADO);

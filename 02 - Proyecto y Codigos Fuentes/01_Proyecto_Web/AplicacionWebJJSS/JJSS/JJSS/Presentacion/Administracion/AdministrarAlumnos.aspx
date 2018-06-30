@@ -3,6 +3,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
+    <script type='text/javascript'>
+        var x = 0;
+        function button() {
+            var objwordstonum = document.getElementById('<%=txtIDSeleccionado.ClientID%>');
+                objwordstonum.value = x;
+                return true;
+        }
+        function openModal(id) {
+            $('[id*=confirmacion]').modal('show');
+            x = id;
+            return false;
+    }   
+</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMenu" runat="server">
 </asp:Content>
@@ -80,7 +93,7 @@
                                     <strong>Estado</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:DropDownList ID ="ddl_filtro_estado" runat="server" CssClass="caja2"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddl_filtro_estado" runat="server" CssClass="caja2"></asp:DropDownList>
                                 </div>
 
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
@@ -99,9 +112,14 @@
                                         <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="alu_dni" HeaderText="D.N.I" SortExpression="dni" />
                                         <asp:BoundField DataField="alu_estado" HeaderText="Estado" SortExpression="estado" />
-                                        <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
                                         <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("alu_dni") %>' 
+                                                    OnClientClick='<%# Eval("alu_dni", "return openModal({0})") %>' > Eliminar</asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
@@ -112,7 +130,34 @@
                     </div>
                 </div>
             </asp:Panel>
+            <div class="row pull-left">
+                <div class="col">
+                    <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
+                </div>
+            </div>
         </div>
 
+
+        <!-- VENTANA EMERGENTE CARGA NUEVO PARTICIPANTE-->
+        <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!--Cabecera-->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabe2">¿Seguro que desea eliminar el alumno?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <!--Botonero-->
+                    <div class="modal-footer">
+                        <asp:button ID="btn_si" type="button" runat="server" class="btn btn-outline-dark" OnClientClick="return button()" OnClick="btn_si_Click1"  TExt="SI"/>
+                        <Button ID="btn_no" type="button" class="btn btn-default"  value="No" data-dismiss="modal">No</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <asp:TextBox ID ="txtIDSeleccionado" runat="server" Text="" hidden="true"></asp:TextBox>
     </form>
 </asp:Content>

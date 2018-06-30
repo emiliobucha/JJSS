@@ -2,6 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
+<script type='text/javascript'>
+        function openModal(id) {
+            $('[id*=confirmacion]').modal('show');
+            return false;
+    }   
+</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMenu" runat="server">
 </asp:Content>
@@ -158,6 +164,26 @@
             </div>
 
             <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass=" btn btn-link pull-left" OnClick="btn_volver_Click"/>
+
+            <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!--Cabecera-->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabe2">¿Seguro que desea eliminar el torneo?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <!--Botonero-->
+                    <div class="modal-footer">
+                        <asp:button ID="btn_si" type="button" runat="server" class="btn btn-outline-dark" OnClick="btn_si_Click1"  TExt="SI"/>
+                        <Button ID="btn_no" type="button" class="btn btn-default"  value="No" data-dismiss="modal">No</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
         </form>
 
         <div class="row centered">

@@ -122,7 +122,7 @@
 
                  <!--Registrar Profe-->
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="/Presentacion/Clases/RegistrarProfe.aspx">
+                    <a class="text-dark" href="/Presentacion/Administracion/RegistrarProfe.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
                             <div class="">
@@ -176,6 +176,18 @@
                             <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Administrar Tipo de Evento</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!--administrar tipo clase-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                    <a class="text-dark" href="AdministrarTipoClase.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Administrar Tipo de Clase</h4>
                             </div>
                         </div>
                     </a>

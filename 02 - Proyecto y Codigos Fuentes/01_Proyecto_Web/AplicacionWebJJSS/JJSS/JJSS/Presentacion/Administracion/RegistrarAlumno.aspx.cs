@@ -28,7 +28,7 @@ namespace JJSS.Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
 
             //try
             //{
@@ -55,6 +55,9 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Menu_Administracion.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+
                 try
                 {
                     Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];

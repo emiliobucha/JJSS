@@ -90,5 +90,17 @@ namespace JJSS.Presentacion.Administracion
             gvprofes.DataSource = listaConFiltro;
             gvprofes.DataBind();
         }
+
+        protected void btn_si_Click1(object sender, EventArgs e)
+        {
+            string dni = txtIDSeleccionado.Text;
+            string sReturn = gestorProfes.EliminarProfesor(dni);
+            Boolean estado = true;
+            if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el profesor correctamente";
+            else estado = false;
+            mensaje(sReturn, estado);
+            CargarGrilla();
+            txtIDSeleccionado.Text = "";
+        }
     }
 }

@@ -112,12 +112,12 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.GridView gvUsuarios;
         
         /// <summary>
-        /// Control btn_Cancelar.
+        /// Control lnk_cancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
+        protected global::System.Web.UI.WebControls.LinkButton lnk_cancelar;
     }
 }

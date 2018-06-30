@@ -20,6 +20,10 @@ namespace JJSS.Presentacion.Administracion
             ga = new GestorAcademias();
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Menu_Administracion.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+
+
                 if (Session["mensaje"] != null)
                 {
                     mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
@@ -85,21 +89,7 @@ namespace JJSS.Presentacion.Administracion
 
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
-                string res = "";
-
-                if (filtroSede == 0)
-                {
-                    res = gs.EliminarSede(id);
-                }
-                else if (filtroSede == 1)
-                {
-                    res = ga.EliminarAcademia(id);
-                }
-
-                res = gs.EliminarSede(id);
-                if (res.CompareTo("") == 0) mensaje("Se eliminó la sede exitosamente", true);
-                else mensaje(res, false);
-                CargarGrilla();
+                
             }
             else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
@@ -123,6 +113,36 @@ namespace JJSS.Presentacion.Administracion
                 pnl_mensaje_exito.Visible = false;
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
+            }
+        }
+
+        protected void btn_volver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(ViewState["RefUrl"].ToString());
+        }
+
+        protected void btn_si_Click1(object sender, EventArgs e)
+        {
+            int filtroSede = Convert.ToInt16(rbSede.SelectedItem.Value);
+            if (txtIDSeleccionado.Text != "")
+            {
+                int idSede = Convert.ToInt16(txtIDSeleccionado.Text);
+                string res = "";
+
+                if (filtroSede == 0)
+                {
+                    res = gs.EliminarSede(idSede);
+                }
+                else if (filtroSede == 1)
+                {
+                    res = ga.EliminarAcademia(idSede);
+                }
+
+                res = gs.EliminarSede(idSede);
+                if (res.CompareTo("") == 0) mensaje("Se eliminó la sede exitosamente", true);
+                else mensaje(res, false);
+                CargarGrilla();
+                txtIDSeleccionado.Text = "";
             }
         }
     }

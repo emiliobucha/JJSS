@@ -285,7 +285,7 @@ namespace JJSS_Negocio
                     if (usuarioEncontrado != null)
                     {
                         usuarioEncontrado.nombre = profesorModificar.nombre + " " + profesorModificar.apellido;
-                        if (string.IsNullOrEmpty(pUsuario))
+                        if (!string.IsNullOrEmpty(pUsuario))
                         {
                             usuarioEncontrado.login = pUsuario;
                         }
