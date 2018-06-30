@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
+using JJSS_Negocio.Constantes;
 using JJSS_Negocio.Resultados.Pagos;
 using Newtonsoft.Json;
 
@@ -35,17 +36,25 @@ namespace JJSS.Presentacion.Pagos
                 lbl_participante.Text = PagoMultiple.NombreCompleto;
                 lbl_descripcion.Text  = PagoMultiple.Descripcion;
 
-                double monto =(double) PagoMultiple.MontoTotal;
+                double monto = (double) PagoMultiple.MontoTotal;
                 lbl_monto.Text = "$ " + PagoMultiple.MontoTotal;
 
+                if (PagoMultiple.FormaPago == ConstantesFormaPago.MERCADOPAGO)
+                {
+                    mp_checkout.Visible = true;
+                    var sInit_Point = "";
+                    gestorMP = new GestorMercadoPago();
+                    sInit_Point = gestorMP.NuevoPagoMultiple(PagoMultiple.ObjetosPagables);
+                    mp_checkout.Attributes.Add("href", sInit_Point);
+                    mp_checkout.Attributes["href"] = sInit_Point;
+                    mp_checkout.DataBind();
+                }
+                else
+                {
+                    btn_pagar.Visible = true;
+                }
 
-
-                var sInit_Point = "";
-                gestorMP = new GestorMercadoPago();
-                sInit_Point = gestorMP.NuevoPagoMultiple(PagoMultiple.ObjetosPagables);      
-                mp_checkout.Attributes.Add("href", sInit_Point);
-                mp_checkout.Attributes["href"] = sInit_Point;
-                mp_checkout.DataBind();
+                
                 //mp_checkout.HRef = sInit_Point;
             }
         }
@@ -80,6 +89,11 @@ namespace JJSS.Presentacion.Pagos
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
             }
+        }
+
+        protected void btn_pagar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PagoMultipleFinalizado.aspx?MP=N");
         }
     }
 }
