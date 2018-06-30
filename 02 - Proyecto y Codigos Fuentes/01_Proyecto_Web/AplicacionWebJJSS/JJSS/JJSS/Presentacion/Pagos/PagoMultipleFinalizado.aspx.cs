@@ -87,23 +87,15 @@ namespace JJSS.Presentacion
 
                 }
 
-                    
-                var resultado = Request["collection_status"];
-                if (resultado != "approved" && resultado != "pending") Response.Redirect("PagosPanel.aspx");
 
-
-                if (resultado == "approved" || resultado == "pending")
+                if (Request["MP"] == "N")
                 {
-
-
-                    pagoMultiple.EstadoMP = resultado;
-
                     lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
 
                     lbl_participante.Text = pagoMultiple.NombreCompleto;
                     lbl_descripcion.Text = pagoMultiple.Descripcion;
 
-                    double monto = (double)pagoMultiple.MontoTotal;
+                    double monto = (double) pagoMultiple.MontoTotal;
                     lbl_monto.Text = "$ " + pagoMultiple.MontoTotal;
 
                     string sReturn = gestorPago.RegistrarNuevoPagoMultiple(pagoMultiple);
@@ -114,14 +106,36 @@ namespace JJSS.Presentacion
                         CargarGrilla();
                     }
                     else mensaje(sReturn, false);
-
-
                 }
+                else
+                {
+                    var resultado = Request["collection_status"];
+                    if (resultado != "approved" && resultado != "pending") Response.Redirect("PagosPanel.aspx");
 
 
+                    if (resultado == "approved" || resultado == "pending")
+                    {
+                        pagoMultiple.EstadoMP = resultado;
+
+                        lbl_fecha1.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
+
+                        lbl_participante.Text = pagoMultiple.NombreCompleto;
+                        lbl_descripcion.Text = pagoMultiple.Descripcion;
+
+                        double monto = (double)pagoMultiple.MontoTotal;
+                        lbl_monto.Text = "$ " + pagoMultiple.MontoTotal;
+
+                        string sReturn = gestorPago.RegistrarNuevoPagoMultiple(pagoMultiple);
+
+                        if (string.IsNullOrEmpty(sReturn))
+                        {
+                            mensaje("Se ha registrado el pago exitosamente", true);
+                            CargarGrilla();
+                        }
+                        else mensaje(sReturn, false);
+                    }
+                }
             }
-
-
         }
 
 

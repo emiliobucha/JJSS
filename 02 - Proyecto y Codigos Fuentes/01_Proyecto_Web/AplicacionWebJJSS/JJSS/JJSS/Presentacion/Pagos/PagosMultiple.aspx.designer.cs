@@ -139,6 +139,15 @@ namespace JJSS.Presentacion.Pagos {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor mp_checkout;
         
         /// <summary>
+        /// Control btn_pagar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_pagar;
+        
+        /// <summary>
         /// Control lnk_volver.
         /// </summary>
         /// <remarks>

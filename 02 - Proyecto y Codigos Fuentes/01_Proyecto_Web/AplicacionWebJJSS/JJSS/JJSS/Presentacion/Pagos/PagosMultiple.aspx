@@ -117,7 +117,9 @@
             <!-- BOTONES-->
             <div runat="server" class="row centered justify-content-center p-1">
                 <div class="col col-auto" runat="server">
-                    <a class=" btn btn-outline-dark" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="dftl" onreturn="execute_my_onreturn">Pagar</a>
+                    <a class=" btn btn-outline-dark" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="dftl" onreturn="execute_my_onreturn" Visible="False">Pagar</a>
+                    <asp:Button ID="btn_pagar" formnovalidate="true" CausesValidation="false" runat="server" Text="Pagar" CssClass="btn btn-outline-dark"  Visible="False" OnClick="btn_pagar_Click"/>
+
                 </div>
                     <div runat="server" class="col col-auto">
                         <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="PagosPanel.aspx"></asp:HyperLink>
