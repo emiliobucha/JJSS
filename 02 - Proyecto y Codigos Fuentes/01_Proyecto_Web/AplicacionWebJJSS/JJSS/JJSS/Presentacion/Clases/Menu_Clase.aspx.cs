@@ -109,9 +109,7 @@ namespace JJSS.Presentacion
             }
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
-                gestorDeClases.eliminarClase(id);
-                mensaje("Se eliminó la clase correctamente", true);
-                cargarClasesView();
+                
             }
             if (e.CommandName.CompareTo("seleccionar") == 0)
             {
@@ -133,6 +131,17 @@ namespace JJSS.Presentacion
             {
                 Session["clase"] = id;
                 Response.Redirect("VerClase.aspx");
+            }
+        }
+
+        protected void btn_si_Click1(object sender, EventArgs e)
+        {
+            if (txtIDSeleccionado.Text != "")
+            {
+                int id = Convert.ToInt32(txtIDSeleccionado.Text);
+                gestorDeClases.eliminarClase(id);
+                mensaje("Se eliminó la clase correctamente", true);
+                cargarClasesView();
             }
         }
     }
