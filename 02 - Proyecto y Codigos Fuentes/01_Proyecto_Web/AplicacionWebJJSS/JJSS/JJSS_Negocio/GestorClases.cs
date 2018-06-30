@@ -164,6 +164,7 @@ namespace JJSS_Negocio
                                    academia = h.clase.academia.nombre,
                                    dia = h.dia,
                                    tipoClase = h.clase.tipo_clase.nombre,
+                                   profesor = h.clase.profesor.nombre + " " + h.clase.profesor.nombre,
                                };
                 return horarios.ToList();
             }

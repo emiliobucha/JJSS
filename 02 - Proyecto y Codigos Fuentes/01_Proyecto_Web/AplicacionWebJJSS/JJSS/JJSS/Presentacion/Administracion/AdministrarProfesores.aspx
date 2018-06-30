@@ -100,7 +100,7 @@
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvprofes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvprofes_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay profes para mostrar"
-                                    OnRowCommand="gvprofes_RowCommand">
+                                    OnRowCommand="gvprofes_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
@@ -114,6 +114,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
+                                    <PagerSettings Position="TopAndBottom" />
                                 </asp:GridView>
                             </div>
                             <%--<div class="row">
