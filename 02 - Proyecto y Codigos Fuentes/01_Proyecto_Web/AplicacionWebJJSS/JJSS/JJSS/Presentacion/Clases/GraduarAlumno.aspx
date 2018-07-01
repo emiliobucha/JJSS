@@ -64,9 +64,12 @@
 
                     <div class="col-md-1 col-sm-12 text-left p-1"><strong>Disciplina</strong></div>
                     <div class="col-md-4  col-sm-12 centered p-1">
-                        <asp:RadioButtonList ID="rb_tipo_clase" CssClass="border rounded caja2" runat="server">
-                            <asp:ListItem Selected="True" Value="0">Todos</asp:ListItem>
-                        </asp:RadioButtonList>
+                        <asp:DropDownList ID="ddl_tipo_clase" runat="server" CssClass="border rounded caja2">
+
+                        </asp:DropDownList>
+                       <%-- <asp:RadioButtonList ID="rb_tipo_clase" CssClass="border rounded caja2" runat="server">
+                            <asp:ListItem Selected="True" Value="0">&nbsp;Todos</asp:ListItem>
+                        </asp:RadioButtonList>--%>
                     </div>
                     <div class="col-md-1  col-sm-12 text-left p-1"><strong>Apellido</strong></div>
                     <div class="col-md-3 col-sm-12 ">

@@ -10,6 +10,17 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
     <form runat="server">
 
+        <div>
+            <p>&nbsp;</p>
+        </div>
+
+        <div class="row centered justify-content-center">
+            <h1>Calendario</h1>
+        </div>
+
+        <div>
+            <p>&nbsp;</p>
+        </div>
         <div class="container ">
             <!-- Filtros  -->
             <div class="row centered p-2">
@@ -23,7 +34,8 @@
                 <div class="col-md-2 col-lg-2">
                     <asp:DropDownList ID="ddl_academias" class="caja2" runat="server"></asp:DropDownList>
                 </div>
-
+            </div>
+            <div class="row centered p-2">
                 <div class="col-auto "><a>Profesor</a></div>
                 <div class="col-md-2 col-lg-2">
                     <asp:DropDownList ID="ddl_profesores" class="caja2" runat="server"></asp:DropDownList>

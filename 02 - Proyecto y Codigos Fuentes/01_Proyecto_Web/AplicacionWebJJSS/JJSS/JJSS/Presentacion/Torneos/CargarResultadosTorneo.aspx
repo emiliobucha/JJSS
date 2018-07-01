@@ -222,8 +222,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
-                                            <asp:ListItem>Femenino</asp:ListItem>
-                                            <asp:ListItem>Masculino</asp:ListItem>
+                                            <asp:ListItem>&nbsp;Femenino</asp:ListItem>
+                                            <asp:ListItem>&nbsp;Masculino</asp:ListItem>
                                         </asp:RadioButtonList>
                                     </div>
 
