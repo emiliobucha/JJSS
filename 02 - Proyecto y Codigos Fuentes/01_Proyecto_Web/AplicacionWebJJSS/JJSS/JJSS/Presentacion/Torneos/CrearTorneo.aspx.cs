@@ -27,31 +27,30 @@ namespace JJSS.Presentacion
             {
                 if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Torneos/MenuTorneo.aspx";
                 else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
-                //try
-                //{
-                //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-                //    if (sesionActiva.estado == "INGRESO ACEPTADO")
-                //    {
-                //        int permiso = 0;
-                //        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
-                //        if (drsAux.Length > 0)
-                //        {
-                //            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
 
-                //        }
-                //        if (permiso != 1)
-                //        {
-                //            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o no tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
-                //        }
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+                }
 
-                //    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
-
-                //}
                 CargarComboSedes();
                 torneoAEditar = null;
                 if (Session["idTorneo_editar"] != null)

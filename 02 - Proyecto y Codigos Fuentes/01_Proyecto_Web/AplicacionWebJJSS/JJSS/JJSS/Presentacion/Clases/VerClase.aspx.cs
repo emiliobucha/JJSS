@@ -14,6 +14,7 @@ namespace JJSS.Presentacion.Clases
             gestorClases = new GestorClases();
             if (!IsPostBack)
             {
+
                 if (Session["clase"] == null)
                 {
                     Response.Redirect("Menu_Clase.aspx");

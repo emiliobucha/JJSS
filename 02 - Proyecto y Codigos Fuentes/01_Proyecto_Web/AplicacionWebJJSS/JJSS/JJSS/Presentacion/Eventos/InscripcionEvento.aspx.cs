@@ -349,10 +349,10 @@ namespace JJSS.Presentacion
 
             if (sReturn.CompareTo("") == 0)
             {
-                mensaje("La inscripción se ha realizado exitosamente", true);
-                pnl_pago.Visible = true;
+                mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a Pagos Pendientes", true);
+               /* pnl_pago.Visible = true;
                 Session["EventoPagar"] = idEvento;
-                Session["ParticipanteDNI"] = dni;
+                Session["ParticipanteDNI"] = dni;*/
 
 
                 //para usuarios

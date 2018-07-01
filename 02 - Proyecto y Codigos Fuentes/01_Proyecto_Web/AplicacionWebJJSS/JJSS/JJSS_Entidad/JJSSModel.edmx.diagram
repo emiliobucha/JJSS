@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4b078c6a14c24cc8a319050224424119" Name="Diagram1">
-        <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="6" PointY="45.75" IsExpanded="true" />
+      <Diagram DiagramId="c4aaede11bda419aac3b2ec04f63b3de" Name="Diagram1">
+        <EntityTypeShape EntityType="JJSSModel.academia" Width="1.5" PointX="6" PointY="45.625" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.administrador" Width="1.5" PointX="3" PointY="31" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.administrador_imagen" Width="1.5" PointX="5.25" PointY="37.375" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.alumno" Width="1.5" PointX="6" PointY="30.125" IsExpanded="true" />
@@ -54,7 +54,7 @@
         <EntityTypeShape EntityType="JJSSModel.seguridad_opcion" Width="1.5" PointX="6.75" PointY="20.625" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.seguridad_usuario" Width="1.5" PointX="0.75" PointY="31.5" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.seguridad_usuarioxgrupo" Width="1.5" PointX="6" PointY="27.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="6" PointY="48.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JJSSModel.tipo_clase" Width="1.5" PointX="6" PointY="48.75" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.tipo_documento" Width="1.5" PointX="0.75" PointY="21.5" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.tipo_evento_especial" Width="1.5" PointX="12" PointY="24.125" IsExpanded="true" />
         <EntityTypeShape EntityType="JJSSModel.torneo" Width="1.5" PointX="11.25" PointY="50.125" IsExpanded="true" />

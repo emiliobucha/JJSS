@@ -249,6 +249,18 @@ namespace JJSS_Negocio
             }
         }
 
-       
+
+        public int ObtenerIdUsuarioInvitado()
+        {
+            using (var db = new JJSSEntities())
+            {
+                var usuario = db.seguridad_usuario.FirstOrDefault(x => x.login == "INVITADO");
+                if (usuario != null)
+                {
+                    return usuario.id_usuario;
+                }
+                return -1;
+            }
+        }
     }
 }

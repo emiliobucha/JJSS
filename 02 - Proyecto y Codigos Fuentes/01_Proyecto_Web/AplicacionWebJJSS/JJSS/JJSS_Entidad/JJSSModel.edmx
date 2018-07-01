@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -541,9 +541,9 @@
           <Key>
             <PropertyRef Name="id_tipo_clase" />
           </Key>
-          <Property Name="id_tipo_clase" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="actual" Type="int" />
+          <Property Name="id_tipo_clase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="tipo_documento">
           <Key>
@@ -2234,7 +2234,8 @@
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2949,13 +2950,13 @@
           <Key>
             <PropertyRef Name="id_tipo_clase" />
           </Key>
-          <Property Name="id_tipo_clase" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="actual" Type="Int32" />
+          <Property Name="id_tipo_clase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="categoria" Relationship="Self.FK__categoria__id_ti__1A89E4E1" FromRole="tipo_clase" ToRole="categoria" />
           <NavigationProperty Name="clase" Relationship="Self.FK__clase__id_tipo_c__1F4E99FE" FromRole="tipo_clase" ToRole="clase" />
           <NavigationProperty Name="faja" Relationship="Self.FK__faja__id_tipo_cl__2D9CB955" FromRole="tipo_clase" ToRole="faja" />
           <NavigationProperty Name="torneo" Relationship="Self.FK__torneo__id_tipo___5792F321" FromRole="tipo_clase" ToRole="torneo" />
-          <Property Name="actual" Type="Int32" />
         </EntityType>
         <EntityType Name="tipo_documento">
           <Key>
@@ -5251,9 +5252,9 @@
           <EntitySetMapping Name="tipo_clase">
             <EntityTypeMapping TypeName="JJSSModel.tipo_clase">
               <MappingFragment StoreEntitySet="tipo_clase">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="actual" ColumnName="actual" />
                 <ScalarProperty Name="id_tipo_clase" ColumnName="id_tipo_clase" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

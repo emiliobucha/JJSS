@@ -15,6 +15,7 @@ namespace JJSS_Negocio.Resultados.Pagos
         public decimal Monto { get; set; }
         public int Inscripcion { get; set; }
         public int Participante { get; set; }
+        public string NombreParticipante { get; set; }
         public int IdObjeto { get; set; }
         public string DescripcionObjeto { get; set; }
 

@@ -23,6 +23,7 @@ namespace JJSS.Presentacion.Pagos
         private GestorInscripciones gestorInscripciones;
         private GestorInscripcionesEvento gestorInscripcionesEvento;
         private GestorFormaPago gestorFPago;
+        private GestorUsuarios gestorUsuarios;
 
 
 
@@ -42,9 +43,17 @@ namespace JJSS.Presentacion.Pagos
             gestorProfesores = new GestorProfesores();
             gestorFPago = new GestorFormaPago();
             gestorInscripciones = new GestorInscripciones();
+            gestorUsuarios = new GestorUsuarios();
 
             if (!IsPostBack)
             {
+                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString()== "INVITADO")
+                {
+                    divDNI.Visible = true;
+                }
+                else { 
+
+
                 Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                 if (sesionActiva.estado == "INGRESO ACEPTADO")
                 {
@@ -99,8 +108,8 @@ namespace JJSS.Presentacion.Pagos
                         divDNI.Visible = true;
                     }
                 }
-               
 
+                }
 
                 CargarComboFormaPago();
                 CargarComboTipoDocumentos();
@@ -137,13 +146,28 @@ namespace JJSS.Presentacion.Pagos
                 return;
             }
 
+            int idUsuario;
 
-            Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+            if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+            {
+               
 
+                idUsuario = gestorUsuarios.ObtenerIdUsuarioInvitado();
+                if (idUsuario == -1)
+                {
+                    mensaje("Error, usuario invitado no se puede registrar pago", false);
+                    return;
+                }
+            }
+            else
+            {
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                idUsuario = sesionActiva.usuario.id_usuario;
+            }
             int idFPago;
             int.TryParse(ddl_forma_pago.SelectedValue, out idFPago);
 
-            var pagoMultiple = new PagoMultiple(listaPagables, idFPago, sesionActiva.usuario.id_usuario,tipoDoc,dni,nombre);
+            var pagoMultiple = new PagoMultiple(listaPagables, idFPago,idUsuario,tipoDoc,dni,nombre);
             HttpContext.Current.Session["PagoMultiple"] = JsonConvert.SerializeObject(pagoMultiple);
 
             Response.Redirect("PagosMultiple.aspx");
@@ -215,6 +239,10 @@ namespace JJSS.Presentacion.Pagos
         protected void CargarGrilla()
         {
             objetosGrilla = gestorPagos.ObtenerObjetosPagablesPendientes(tipoDoc, dni);
+            if (objetosGrilla.Count > 0 )
+            {
+                nombre = objetosGrilla[0].NombreParticipante;
+            }
             gvPagos.DataSource = objetosGrilla;
             gvPagos.DataBind();
         }
@@ -227,6 +255,7 @@ namespace JJSS.Presentacion.Pagos
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
             tipoDoc = idTipo;
             dni = txtDni.Text;
+          
             CargarGrilla();
         }
 

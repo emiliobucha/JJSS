@@ -8,8 +8,6 @@ namespace JJSS_Negocio.Constantes
 {
     public class ConstantesFormaPago
     {
-        public const int CREDITO = 1;
-        public const int DEBITO = 2;
         public const int EFECTIVO = 3;
         public const int MERCADOPAGO = 4;
     }
