@@ -149,7 +149,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\AdminAlumno.png" />
+    <Content Include="img\AdminCat.png" />
+    <Content Include="img\AdminClase.png" />
+    <Content Include="img\AdminEvento.png" />
+    <Content Include="img\AdminProfe.png" />
+    <Content Include="img\AdminSede.png" />
     <Content Include="img\Categoria.png" />
+    <Content Include="img\CrearAlu.png" />
+    <Content Include="img\CrearCat.png" />
+    <Content Include="img\CrearProfe.png" />
+    <Content Include="img\CrearSede.png" />
     <Content Include="img\Graduar.png" />
     <Content Include="img\Perfil.png" />
     <Content Include="img\Sede.png" />

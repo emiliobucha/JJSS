@@ -97,6 +97,10 @@
                                 <asp:HyperLink CssClass="btn btn-link" Text="Ir a registrar" runat="server" href="RegistrarProfe.aspx"></asp:HyperLink>
 
                             </div>
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvprofes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvprofes_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay profes para mostrar"

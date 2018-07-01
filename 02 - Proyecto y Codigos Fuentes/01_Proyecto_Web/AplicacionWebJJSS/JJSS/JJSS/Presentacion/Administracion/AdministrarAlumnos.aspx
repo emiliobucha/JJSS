@@ -20,6 +20,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMenu" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
+
     <form id="formRegAlumno" runat="server">
 
         <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
@@ -102,7 +103,9 @@
 
                                 <asp:HyperLink CssClass="btn btn-link" Text="Ir a registrar" runat="server" href="RegistrarAlumno.aspx"></asp:HyperLink>
                             </div>
-
+                            <div>
+                                <p>&nbsp;</p>
+                            </div>
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_dni" OnPageIndexChanging="gvAlumnos_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar"
@@ -116,8 +119,8 @@
                                         <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />
                                         <asp:TemplateField>
                                             <ItemTemplate>
-                                                <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("alu_dni") %>' 
-                                                    OnClientClick='<%# Eval("alu_dni", "return openModal({0})") %>' > Eliminar</asp:LinkButton>
+                                                <asp:LinkButton ID="aa" CommandName="eliminar" runat="server" CommandArgument='<%# Eval("alu_dni") %>'
+                                                    OnClientClick='<%# Eval("alu_dni", "return openModal({0})") %>'> Eliminar</asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
@@ -130,9 +133,18 @@
                     </div>
                 </div>
             </asp:Panel>
-            <div class="row pull-left">
-                <div class="col">
-                    <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
+
+            <div class=" container">
+                <div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row pull-left">
+                    <div class="col">
+                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
+                    </div>
+                </div>
+                <div>
+                    <p>&nbsp;</p>
                 </div>
             </div>
         </div>

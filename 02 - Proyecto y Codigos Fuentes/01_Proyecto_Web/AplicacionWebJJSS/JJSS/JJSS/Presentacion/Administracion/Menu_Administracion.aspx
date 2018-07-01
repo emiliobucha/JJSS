@@ -68,51 +68,36 @@
 
             <div class="row  centered justify-content-center p-2">
 
-                <div class="row centered">
-                    <p>&nbsp;</p>
-                </div>
-
                 <!--Crear Sede-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="../Administracion/CrearSede.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Sede.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/CrearSede.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Crear Sede</h4>
+                                <h4 class="mb-5">Crear Sede/Academia</h4>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <!--Crear Categoria-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="../Administracion/CrearCategoria.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Categoria.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/CrearCat.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Crear Categoría</h4>
                             </div>
                         </div>
                     </a>
                 </div>
-                
-                <!--administrar categoria-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="AdministrarCategorias.aspx">
-                        <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
-                            <div class="">
-                                <h4 class="mb-5">Administrar Categorías</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+           
 
                 <!--Registrar Alumno-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="/Presentacion/Administracion/RegistrarAlumno.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/CrearAlu.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Registrar Alumno</h4>
                             </div>
@@ -121,10 +106,10 @@
                 </div>
 
                  <!--Registrar Profe-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="/Presentacion/Administracion/RegistrarProfe.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/CrearProfe.png" alt="Card image cap">
                             <div class="">
                                 <h4 class="mb-5">Registrar Profesor</h4>
                             </div>
@@ -132,8 +117,71 @@
                     </a>
                 </div>
 
+                <!--administrar sede-->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <a class="text-dark" href="AdministrarSedes.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/AdminSede.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Sedes/Academias</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                     
+                <!--administrar categoria-->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <a class="text-dark" href="AdministrarCategorias.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/AdminCat.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Categorías</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+                <!--administrar alumnos-->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <a class="text-dark" href="AdministrarAlumnos.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/AdminAlumno.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Alumnos</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!--administrar profe-->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <a class="text-dark" href="AdministrarProfesores.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/AdminProfe.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Profesores</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!--administrar tipo evento-->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <a class="text-dark" href="AdministrarTipoEvento.aspx">
+                        <div class="btn " style="width: 10rem;">
+                            <img class=" img-fluid" src="../../img/AdminEvento.png" alt="Card image cap">
+                            <div class="">
+                                <h4 class="mb-5">Tipo de Evento</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                
                  <!--Editar Permisos-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="/Presentacion/Usuarios.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Permisos.png" alt="Card image cap">
@@ -145,49 +193,13 @@
                 </div>
 
 
-                <!--administrar alumnos-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="AdministrarAlumnos.aspx">
-                        <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
-                            <div class="">
-                                <h4 class="mb-5">Administrar Alumnos</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!--administrar profe-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="AdministrarProfesores.aspx">
-                        <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
-                            <div class="">
-                                <h4 class="mb-5">Administrar Profesores</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!--administrar tipo evento-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="AdministrarTipoEvento.aspx">
-                        <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
-                            <div class="">
-                                <h4 class="mb-5">Administrar Tipo de Evento</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
                 <!--administrar tipo clase-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="AdministrarTipoClase.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Administracion.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Administrar Tipo de Clase</h4>
+                                <h4 class="mb-5">Tipo de Clase</h4>
                             </div>
                         </div>
                     </a>

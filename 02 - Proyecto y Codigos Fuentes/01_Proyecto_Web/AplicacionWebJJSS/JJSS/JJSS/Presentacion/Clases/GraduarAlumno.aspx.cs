@@ -34,14 +34,14 @@ namespace JJSS.Presentacion
                         }
                         if (permiso != 1)
                         {
-                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
                 }
                 gestorTipo = new GestorTipoClase();
@@ -59,7 +59,8 @@ namespace JJSS.Presentacion
         protected void cargarGrilla()
         {
             int tipoClase = 0;
-            int.TryParse(rb_tipo_clase.SelectedValue, out tipoClase);
+           // int.TryParse(rb_tipo_clase.SelectedValue, out tipoClase);
+            int.TryParse(ddl_tipo_clase.SelectedValue, out tipoClase);
 
             List<AlumnoFaja> listaAlumnos;
             List<AlumnoFaja> listaAlumnosFiltrada;
@@ -93,11 +94,17 @@ namespace JJSS.Presentacion
             tc.id_tipo_clase = 0;
             tc.nombre = "Todos";
             lista.Add(tc);
-            rb_tipo_clase.DataSource = lista;
-            rb_tipo_clase.DataValueField = "id_tipo_clase";
-            rb_tipo_clase.DataTextField = "nombre";
+            //rb_tipo_clase.DataSource = lista;
+            //rb_tipo_clase.DataValueField = "id_tipo_clase";
+            //rb_tipo_clase.DataTextField = "nombre";
 
-            rb_tipo_clase.DataBind();
+            //rb_tipo_clase.DataBind();
+
+            ddl_tipo_clase.DataSource = lista;
+            ddl_tipo_clase.DataValueField = "id_tipo_clase";
+            ddl_tipo_clase.DataTextField = "nombre";
+
+            ddl_tipo_clase.DataBind();
         }
 
         protected void btn_cancelar_Click(object sender, EventArgs e)
