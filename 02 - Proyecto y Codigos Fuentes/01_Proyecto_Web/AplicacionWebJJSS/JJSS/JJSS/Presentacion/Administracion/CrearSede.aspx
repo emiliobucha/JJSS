@@ -48,7 +48,7 @@
             </div>
 
             <div class="row centered justify-content-center">
-                <h1 class=" centered ">Crear Sede</h1>
+                <h1 class=" centered ">Crear Sede/Academia</h1>
             </div>
 
             <div>
@@ -59,11 +59,10 @@
             <div class="container">
 
                 <div class="p-2">
-                            <asp:LinkButton runat="server" ID="l" class="btn btn-link pull-right" Text="Ir al listado de sedes" href="AdministrarSedes.aspx"></asp:LinkButton>
-                        </div>
+                    <asp:LinkButton runat="server" ID="l" class="btn btn-link pull-right" Text="Ir al listado de sedes" href="AdministrarSedes.aspx"></asp:LinkButton>
+                </div>
 
                 <div class="form-group  border rounded p-1">
-
                     <div>
                         <p>&nbsp;</p>
                     </div>
@@ -74,8 +73,8 @@
                         </div>
                         <div class="col col-auto">
                             <asp:RadioButtonList ID="rbCrear" runat="server" AutoPostBack="False">
-                                <asp:ListItem Selected="True" Value="sede">Sede</asp:ListItem>
-                                <asp:ListItem Value="academia">Academia</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="sede">&nbsp;Sede</asp:ListItem>
+                                <asp:ListItem Value="academia">&nbsp;Academia</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                     </div>

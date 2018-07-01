@@ -58,13 +58,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_error;
         
         /// <summary>
-        /// Control rb_tipo_clase.
+        /// Control ddl_tipo_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rb_tipo_clase;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_clase;
         
         /// <summary>
         /// Control txt_filtro_apellido.

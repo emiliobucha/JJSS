@@ -130,7 +130,7 @@ namespace JJSS.Presentacion.Clases
                 {
                     Appointment newAppointment = new Appointment();
                     newAppointment.ID = h.id;
-                    newAppointment.Subject = h.nombreClase;
+                    newAppointment.Subject = h.nombreClase + "\n"+ h.desde + " - "+ h.hasta + " hs";
 
                     int daysToAdd = buscarDia(Convert.ToInt32(h.dia));
                     newAppointment.Start = DateTime.Parse(h.desde).AddDays(daysToAdd);
@@ -158,6 +158,7 @@ namespace JJSS.Presentacion.Clases
                 }
             }
 
+            RadScheduler1.Culture = new System.Globalization.CultureInfo("es");
             RadScheduler1.DataSource = app;
             RadScheduler1.DataBind();
 
@@ -199,7 +200,7 @@ namespace JJSS.Presentacion.Clases
         {
             try
             {
-                string valorHexa = "#" + string.Format("{0:X}", Convert.ToInt32(e.Appointment.ID) * 1000);
+                string valorHexa = "#" + string.Format("{0:X}", Convert.ToInt32(e.Appointment.Description) * 1000);
                 Color color = ColorTranslator.FromHtml(valorHexa);
                 e.Appointment.BackColor = Color.FromArgb(color.ToArgb());
             }

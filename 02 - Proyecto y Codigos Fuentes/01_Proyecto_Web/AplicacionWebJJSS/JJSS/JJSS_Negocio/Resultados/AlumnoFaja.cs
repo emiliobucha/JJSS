@@ -14,5 +14,6 @@ namespace JJSS_Negocio.Resultados
         public DateTime? fecha { get; set; }
         public string tipo { get; set; }
         public int idAlu { get; set; }
+        public string fechaParaMostrar { get; set; }
     }
 }

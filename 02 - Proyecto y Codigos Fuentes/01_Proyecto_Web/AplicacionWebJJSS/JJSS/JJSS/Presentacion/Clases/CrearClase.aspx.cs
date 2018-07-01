@@ -249,6 +249,9 @@ namespace JJSS.Presentacion
                         estado = true;
                         sReturn = "La clase se actualizó correctamente";
                         limpiar();
+                        Session["mensaje"] = sReturn;
+                        Session["exito"] = true;
+                        Response.Redirect("Menu_Clase.aspx");
                     }
                 }
                 else

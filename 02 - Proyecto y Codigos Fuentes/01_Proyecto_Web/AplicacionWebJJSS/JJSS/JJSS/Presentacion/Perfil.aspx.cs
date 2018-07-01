@@ -444,7 +444,7 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesor(idTipo, dni, nombre, apellido, usuario, null);
+                        gestorProfe.ModificarProfesor(idTipo, dni, nombre, apellido, usuario, null, null, null);
                         mensaje("Se modificaron los datos correctamente", true);
                         Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                         sesionActiva.usuario.nombre = nombre + " " + apellido;

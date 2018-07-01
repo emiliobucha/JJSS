@@ -262,7 +262,8 @@ namespace JJSS_Negocio
          *              ex.Message : Mensaje de error provocado por una excepción
          * 
          */
-        public string ModificarProfesor(int pTipo, string pDni, string pNombre, string pApellido, string pUsuario, int? pPais)
+        public string ModificarProfesor(int pTipo, string pDni, string pNombre, string pApellido, string pUsuario, int? pPais, 
+            DateTime? pFechaNacimiento, short? pSexo)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -271,11 +272,14 @@ namespace JJSS_Negocio
                 try
                 {
                     //+ se tienen que poder modificar mas datos
-                    
-                    profesor profesorModificar = ObtenerProfesorPorDNI(pDni);
+
+                    profesor profesorModificar = db.profesor.FirstOrDefault(x => x.dni == pDni && x.id_tipo_documento == pTipo);
+
                     if (profesorModificar == null) throw new Exception("El usuario no existe");
                     profesorModificar.apellido = pApellido;
                     profesorModificar.nombre = pNombre;
+                    if (pFechaNacimiento != null) profesorModificar.fecha_nacimiento = pFechaNacimiento;
+                    if (pSexo != null) profesorModificar.sexo = pSexo;
                     if (pPais != null)
                         profesorModificar.id_pais = pPais;
                     db.SaveChanges();
@@ -322,7 +326,8 @@ namespace JJSS_Negocio
          *              NO: no encontro el profesor
          * 
          */
-        public string ModificarProfesorContacto(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, string pMail, int pTipo, string pDni, int? pIdCiudad, string pTorre)
+        public string ModificarProfesorContacto(string pCalle, string pDepto, int? pNumero, int? pPiso, long pTelefono, long pTelUrgencia, 
+            string pMail, int pTipo, string pDni, int? pIdCiudad, string pTorre)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -330,7 +335,7 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    profesor profesorModificar = ObtenerProfesorPorDNITipo(pTipo, pDni);
+                    profesor profesorModificar = db.profesor.FirstOrDefault(x => x.dni == pDni && x.id_tipo_documento == pTipo);
                     if (profesorModificar == null) throw new Exception("El usuario no existe");
                     profesorModificar.telefono = pTelefono;
                     profesorModificar.telefono_emergencia = pTelUrgencia;

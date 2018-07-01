@@ -114,5 +114,23 @@ namespace JJSS_Negocio
                 }
             }
         }
+
+        public string modificarTipoClase(int idTipo, string nombre)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    tipo_clase tipoClase = db.tipo_clase.Find(idTipo);
+                    tipoClase.nombre = nombre;
+                    db.SaveChanges();
+                    return "";
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
+            }
+        }
     }
 }

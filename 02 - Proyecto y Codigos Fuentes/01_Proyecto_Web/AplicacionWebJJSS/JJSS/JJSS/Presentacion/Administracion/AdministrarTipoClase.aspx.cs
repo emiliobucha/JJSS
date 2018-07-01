@@ -8,6 +8,7 @@ namespace JJSS.Presentacion.Administracion
     public partial class AdministrarTipoClase : System.Web.UI.Page
     {
         private GestorTipoClase gtc;
+        private static int idTipoClase = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,10 +52,26 @@ namespace JJSS.Presentacion.Administracion
         {
             string nombre = txt_nombre.Text;
 
-            string res = gtc.crearTipoClase(nombre);
-            if (res.CompareTo("") == 0) mensaje("Se ha creado el tipo de clase exitosamente", true);
-            else mensaje(res, false);
-            cargarGrilla();
+            if (idTipoClase == 0)
+            {
+                string res = gtc.crearTipoClase(nombre);
+                if (res.CompareTo("") == 0) mensaje("Se ha creado el tipo de clase exitosamente", true);
+                else mensaje(res, false);
+                cargarGrilla();
+            }
+            else
+            {
+                string res = gtc.modificarTipoClase(idTipoClase, txt_nombre.Text);
+                if (res.CompareTo("") == 0)
+                {
+                    mensaje("Se ha eliminado exitosamente", true);
+                    idTipoClase = 0;
+                }
+                else mensaje(res, false);
+                cargarGrilla();
+            }
+
+            
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -90,6 +107,10 @@ namespace JJSS.Presentacion.Administracion
                 if (res.CompareTo("") == 0) mensaje("Se ha eliminado exitosamente", true);
                 else mensaje(res, false);
                 cargarGrilla();
+            } else if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                txt_nombre.Text = gv_tipo_evento.Rows[index].Cells[0].Text;
+                idTipoClase = idClase;
             }
         }
 

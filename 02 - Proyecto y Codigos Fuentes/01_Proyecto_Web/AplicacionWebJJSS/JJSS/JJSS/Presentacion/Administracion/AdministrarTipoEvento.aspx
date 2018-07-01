@@ -60,12 +60,8 @@
 
             <div class="container">
 
-                <div class="border rounded p-1">
+                <div class="border rounded p-5">
 
-
-                    <div>
-                        <p>&nbsp;</p>
-                    </div>
 
                     <!--Ingresar nombre-->
 
@@ -85,10 +81,11 @@
                         <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
                     </div>
 
-                    <div>
-                        <p>&nbsp;</p>
-                    </div>
 
+                </div>
+
+                <div>
+                    <p>&nbsp;</p>
                 </div>
 
                 <div class="border rounded p-2">
@@ -97,7 +94,7 @@
                         OnRowCommand="gv_tipo_evento_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-
+                            <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" HeaderText="Seleccionar/Editar" />
                             <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
                         </Columns>
                     </asp:GridView>

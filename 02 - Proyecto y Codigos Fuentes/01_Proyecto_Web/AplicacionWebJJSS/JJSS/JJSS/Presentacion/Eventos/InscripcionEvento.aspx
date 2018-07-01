@@ -82,23 +82,23 @@
 
 
                     <asp:Panel ID="pnl_elegirEvento" CssClass="panel panel-default border rounded p-2" runat="server">
+                        <div class="form-group">
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
 
-                        <div class="row centered">
-                            <p>&nbsp;</p>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-1 col-md-2 col-sm-8">
+                                    <label>Evento:</label>
+                                </div>
+                                <div class="col col-lg-3 col-md-3 col-sm-8">
+                                    <asp:DropDownList ID="ddl_evento" class="caja2" runat="server"></asp:DropDownList>
+                                </div>
+                                <div class="col col-lg-2 col-md-2 col-sm-12">
+                                    <asp:Button ID="btnAceptarEvento" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" formnovalidate="true" OnClick="btnAceptarEvento_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="row justify-content-center">
-                            <div class="col-lg-1 col-md-2 col-sm-8">
-                                <label>Evento:</label>
-                            </div>
-                            <div class="col col-lg-3 col-md-3 col-sm-8">
-                                <asp:DropDownList ID="ddl_evento" class="caja2" runat="server"></asp:DropDownList>
-                            </div>
-                            <div class="col col-lg-2 col-md-2 col-sm-12">
-                                <asp:Button ID="btnAceptarEvento" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" formnovalidate="true" OnClick="btnAceptarEvento_Click" OnClientClick="this.disabled=true" UseSubmitBehavior="False" />
-                            </div>
-                        </div>
-
                     </asp:Panel>
 
                     <div>
@@ -315,8 +315,8 @@
                             </div>
                             <div class="col-md-2">
                                 <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False" OnSelectedIndexChanged="rbSexo_SelectedIndexChanged">
-                                    <asp:ListItem>Femenino</asp:ListItem>
-                                    <asp:ListItem>Masculino</asp:ListItem>
+                                    <asp:ListItem>&nbsp;Femenino</asp:ListItem>
+                                    <asp:ListItem>&nbsp;Masculino</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
 

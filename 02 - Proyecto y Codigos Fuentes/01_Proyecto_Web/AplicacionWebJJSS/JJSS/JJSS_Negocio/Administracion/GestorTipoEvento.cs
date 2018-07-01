@@ -63,5 +63,23 @@ namespace JJSS_Negocio.Administracion
             }
         }
 
+        public string modificarTipoEvento(int idTipo, string nombre)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    tipo_evento_especial tipoEvento = db.tipo_evento_especial.Find(idTipo);
+                    tipoEvento.nombre = nombre;
+                    db.SaveChanges();
+                    return "";
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
+            }
+        }
+
     }
 }

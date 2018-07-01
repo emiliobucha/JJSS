@@ -16,5 +16,6 @@ namespace JJSS_Negocio.Resultados
         public int idClase { get; set; }
         public int? dia { get; set; }
         public string tipoClase { get; set; }
+        public string profesor { get; set; }
     }
 }

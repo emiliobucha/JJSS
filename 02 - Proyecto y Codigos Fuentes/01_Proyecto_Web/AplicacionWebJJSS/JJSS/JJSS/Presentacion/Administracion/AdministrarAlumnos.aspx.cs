@@ -65,22 +65,12 @@ namespace JJSS.Presentacion.Administracion
         protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            //var dni = gvAlumnos.DataKeys[index].Value.ToString();
+            var dni = gvAlumnos.DataKeys[index].Value.ToString();
 
-            if (e.CommandName.CompareTo("eliminar") == 0)
+            if (e.CommandName.CompareTo("seleccionar") == 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "openModal("+index+");", true);
-                
-            }
-            else if (e.CommandName.CompareTo("seleccionar") == 0)
-            {
-                //Session["alumnoEditar"] = dni;
+                Session["alumnoEditar"] = dni;
                 Response.Redirect("../Administracion/RegistrarAlumno.aspx");
-            }
-            else if (e.CommandName.CompareTo("pago") == 0)
-            {
-                //Session["PagoClase"] = dni.ToString();
-                Response.Redirect("../Presentacion/PagoClase");
             }
         }
 

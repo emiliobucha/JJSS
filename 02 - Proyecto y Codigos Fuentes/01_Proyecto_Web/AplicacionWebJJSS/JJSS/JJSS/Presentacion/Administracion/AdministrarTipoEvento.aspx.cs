@@ -8,6 +8,7 @@ namespace JJSS.Presentacion.Administracion
     public partial class AdministrarTipoEvento : System.Web.UI.Page
     {
         private GestorTipoEvento gte;
+        private static int idTipoEvento = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,10 +51,24 @@ namespace JJSS.Presentacion.Administracion
         {
             string nombre = txt_nombre.Text;
 
-            string res = gte.crearTipoEvento(nombre);
-            if (res.CompareTo("") == 0) mensaje("Se ha creado el tipo de evento exitosamente", true);
-            else mensaje(res, false);
-            cargarGrilla();
+            if (idTipoEvento == 0)
+            {
+                string res = gte.crearTipoEvento(nombre);
+                if (res.CompareTo("") == 0) mensaje("Se ha creado el tipo de evento exitosamente", true);
+                else mensaje(res, false);
+                cargarGrilla();
+            }
+            else
+            {
+                string res = gte.modificarTipoEvento(idTipoEvento, txt_nombre.Text);
+                if (res.CompareTo("") == 0)
+                {
+                    mensaje("Se ha eliminado exitosamente", true);
+                    idTipoEvento = 0;
+                }
+                else mensaje(res, false);
+                cargarGrilla();
+            }
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
@@ -100,6 +115,11 @@ namespace JJSS.Presentacion.Administracion
                 if (res.CompareTo("") == 0) mensaje("Se ha eliminado exitosamente", true);
                 else mensaje(res, false);
                 cargarGrilla();
+            }
+            else if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                txt_nombre.Text = gv_tipo_evento.Rows[index].Cells[0].Text;
+                idTipoEvento = idEvento;
             }
         }
     }

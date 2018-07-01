@@ -93,21 +93,21 @@
 
                                 <!-- DNI-->
                                 <div class="row p-1  pl-lg-5 pl-md-5">
-                                    
-                                    <div class="col-md-2 col-xl-auto">
+
+                                    <div class="col-lg-2 col-md-2 col-sm-12">
                                         <label class="pull-left">Tipo: <a class="text-danger">*</a></label>
                                     </div>
-                                    <div class="col-md-3 col-xl-auto">
+                                    <div class="col col-lg-3 col-md-3 col-sm-12">
                                         <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Tipo Documento" ValidationGroup="grupoDni"></asp:DropDownList>
 
                                     </div>
-                                        
 
-                                    <div class="col-lg-2 col-md-2 col-sm-12">
-                                        <label class="text-left">DNI <a class="text-danger">*</a></label>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-12 pl-lg-5 pl-md-5">
+                                        <label class="text-left">Número <a class="text-danger">*</a></label>
                                     </div>
                                     <div class="col col-lg-3 col-md-3 col-sm-12">
-                                        <asp:TextBox ID="txtDni" class="caja2" required="true" runat="server" placeholder="Número"></asp:TextBox>
+                                        <asp:TextBox ID="txtDni" class="caja2" required="true" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -128,20 +128,19 @@
                                         <%--<asp:RegularExpressionValidator ID="rev_fecha" runat="server" ControlToValidate="dp_fecha" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inávlido de fecha" ValidationExpression="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20|21)\d{2}$" ValidationGroup="vgProfes"> </asp:RegularExpressionValidator>--%>
                                     </div>
                                 </div>
-                                
-                                 
-                                <div class="row centered">
-                                    <div class="col-md-2"></div>
+
+
+                                <div class="row p-1  pl-lg-5 pl-md-5">
+
                                     <!--Ingresar Nacionalidad-->
-                                    <div class="col-md-2">
+                                    <div class="col-lg-2 col-md-2 col-sm-12">
                                         <label class="pull-left">País: <a class="text-danger">*</a></label>
                                     </div>
-                                    <div class="col-md-4 col-xl-4">
+                                    <div class="col col-lg-3 col-md-3 col-sm-12">
                                         <asp:DropDownList ID="ddl_nacionalidad" class="caja2" runat="server" placeholder="Ingrese Nacionalidad"></asp:DropDownList>
 
                                     </div>
                                 </div>
-                                
 
                                 <!--Sexo-->
                                 <div class="row p-1  pl-lg-5 pl-md-5">
@@ -150,8 +149,8 @@
                                     </div>
                                     <div class="col col-lg-2 col-md-2 col-sm-12">
                                         <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
-                                            <asp:ListItem>Femenino</asp:ListItem>
-                                            <asp:ListItem>Masculino</asp:ListItem>
+                                            <asp:ListItem>&nbsp;Femenino</asp:ListItem>
+                                            <asp:ListItem>&nbsp;Masculino</asp:ListItem>
                                         </asp:RadioButtonList>
                                     </div>
                                 </div>
@@ -227,10 +226,10 @@
                                         <asp:TextBox ID="txt_calle" class="caja2" type="text" MaxLength="50" runat="server" placeholder="Ingrese calle"></asp:TextBox>
                                     </div>
 
-                                    <div class="col-lg-2 col-md-2 col-sm-12 pl-lg-5 pl-md-5">
+                                    <div class="col-lg-1 col-md-1 col-sm-2">
                                         <label>Número</label>
                                     </div>
-                                    <div class="col col-md-1 col-lg-1 col-sm-10 col-xs-10">
+                                    <div class="col col-md-2 col-lg-2 col-sm-10 col-xs-10">
                                         <asp:TextBox ID="txt_numero" type="number" min="0" max="100000" class="caja2" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
@@ -298,21 +297,20 @@
                 <!-- /row -->
             </asp:Panel>
         </div>
+        <div class="container">
+            <div>
+                <p>&nbsp;</p>
+            </div>
 
-        <div class="row centered">
-            <p>&nbsp;</p>
-        </div>
-
-        <div class="row pull-left">
-                    <div class="col">
-                        <asp:Button ID="btn_volver" class="btn btn-link" runat="server" Text="Volver" OnClick="btn_volver_Click" formnovalidate="true" />
-                    </div>
+            <div class="row pull-left">
+                <div class="col">
+                    <asp:Button ID="btn_volver" class="btn btn-link" runat="server" Text="Volver" OnClick="btn_volver_Click" formnovalidate="true" />
                 </div>
-
-        <div class="row centered">
-            <p>&nbsp;</p>
+            </div>
+            <div>
+                <p>&nbsp;</p>
+            </div>
         </div>
-
     </form>
 </asp:Content>
 

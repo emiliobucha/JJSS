@@ -90,8 +90,8 @@
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
-                                <asp:ListItem Selected="True" Value="1">Masculino</asp:ListItem>
-                                <asp:ListItem Value="0">Femenino</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="1">&nbsp;Masculino</asp:ListItem>
+                                <asp:ListItem Value="0">&nbsp;Femenino</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                     </div>
