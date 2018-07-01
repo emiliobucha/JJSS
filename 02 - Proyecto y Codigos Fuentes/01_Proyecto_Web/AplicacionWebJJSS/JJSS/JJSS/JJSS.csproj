@@ -262,7 +262,6 @@
     <Content Include="Presentacion\Productos\Reservas.aspx" />
     <Content Include="Presentacion\SobreNosotros.aspx" />
     <Content Include="Presentacion\Usuarios.aspx" />
-    <Content Include="Presentacion\Torneos\TorneoPago.aspx" />
     <Content Include="Presentacion\Eventos\CrearEvento.aspx" />
     <Content Include="Presentacion\Eventos\InscripcionEvento.aspx" />
     <Content Include="Presentacion\ModificarPerfil.aspx" />
@@ -612,13 +611,6 @@
     </Compile>
     <Compile Include="Presentacion\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Torneos\TorneoPago.aspx.cs">
-      <DependentUpon>TorneoPago.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Torneos\TorneoPago.aspx.designer.cs">
-      <DependentUpon>TorneoPago.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Eventos\CrearEvento.aspx.cs">
       <DependentUpon>CrearEvento.aspx</DependentUpon>

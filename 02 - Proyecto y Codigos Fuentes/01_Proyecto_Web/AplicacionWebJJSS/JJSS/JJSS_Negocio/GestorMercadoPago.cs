@@ -61,6 +61,8 @@ namespace JJSS_Negocio
                 auto_return = "all",
                 back_urls = new Back_Url
                 {
+                    failure = uri + "PagoMultipleFinalizado.aspx",
+                    pending = uri + "PagoMultipleFinalizado.aspx",
                     success = uri + "PagoMultipleFinalizado.aspx"
                 }
             };

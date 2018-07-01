@@ -30,6 +30,35 @@ namespace JJSS.Presentacion
                 gestorResultados = new GestorResultados();
                 gestorTorneos = new GestorTorneos();
                 gestorInscripciones = new GestorInscripciones();
+
+                try
+                {
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                    {
+                        int permiso = 0;
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_RESULTADOS'");
+                        if (drsAux.Length > 0)
+                        {
+                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+
+                        }
+                        if (permiso != 1)
+                        {
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o no tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+
+                }
+
+
+
                 if (Session["idTorneo"] != null)
                 {
                     int idTorneo = int.Parse(Session["idTorneo"].ToString());

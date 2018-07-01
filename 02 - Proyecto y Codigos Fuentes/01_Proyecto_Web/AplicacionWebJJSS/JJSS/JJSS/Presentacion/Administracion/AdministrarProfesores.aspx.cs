@@ -16,6 +16,29 @@ namespace JJSS.Presentacion.Administracion
         private GestorProfesores gestorProfes;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            try
+            {
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                if (sesionActiva.estado == "INGRESO ACEPTADO")
+                {
+                    int permiso = 0;
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'PROFESOR_ADMINISTRACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+            }
+
             gestorProfes = new GestorProfesores();
             if (!IsPostBack)
             {

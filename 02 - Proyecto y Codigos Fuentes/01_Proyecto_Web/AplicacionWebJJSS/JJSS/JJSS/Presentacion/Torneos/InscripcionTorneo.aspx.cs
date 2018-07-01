@@ -243,7 +243,7 @@ namespace JJSS
             if (sReturn.CompareTo("") == 0)
             {
                 limpiar(true);
-                Mensaje("La inscripción se ha realizado exitosamente", true);
+                Mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a Pagos Pendientes", true);
                 //pnl_pago.Visible = true;
                 ////Session["TorneoPagar"] = idTorneo;
                 ////Session["ParticipanteDNI"] = dni;

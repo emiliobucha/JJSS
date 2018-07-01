@@ -86,7 +86,7 @@ namespace JJSS.Presentacion
             }
             catch (Exception ex)
             {
-                Response.Write("<script>window.alert('" + "Ha ocurrido un error, por favor inténtelo más tarde".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+                Response.Write("<script>window.alert('" + "Ha ocurrido un error, por favor inténtelo más tarde".Trim() + "');</script>");
             }
         }
     }

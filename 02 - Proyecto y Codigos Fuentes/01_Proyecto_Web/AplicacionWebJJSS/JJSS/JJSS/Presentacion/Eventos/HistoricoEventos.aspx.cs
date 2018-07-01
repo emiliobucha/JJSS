@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JJSS_Entidad;
 using JJSS_Negocio;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS.Presentacion.Eventos
 {
@@ -18,6 +19,7 @@ namespace JJSS.Presentacion.Eventos
             gestorEventos = new GestorEventos();
             if (!IsPostBack)
             {
+
                 if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Eventos/Menu_Evento.aspx";
                 else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 cargarComboEstados();
@@ -64,7 +66,7 @@ namespace JJSS.Presentacion.Eventos
                 idEstado = int.Parse(ddl_estados.SelectedValue);
             }
             
-            List<JJSS_Negocio.Resultados.TorneoResultado> tr = gestorEventos.BuscarEventosConFiltrosEImagen(filtroNombre, filtroFecha, filtroFechaHasta, idEstado);
+            List<TorneoResultado> tr = gestorEventos.BuscarEventosConFiltrosEImagen(filtroNombre, filtroFecha, filtroFechaHasta, idEstado);
             gv_eventos.DataSource = tr;
             gv_eventos.DataBind();
         }

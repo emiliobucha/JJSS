@@ -27,7 +27,7 @@ namespace JJSS.Presentacion
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
                         int permiso = 0;
-                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CREACION'");
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_ASISTENCIA'");
                         if (drsAux.Length > 0)
                         {
                             int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -35,7 +35,7 @@ namespace JJSS.Presentacion
                         }
                         if (permiso != 1)
                         {
-                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o no tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
                         }
                     }
@@ -43,7 +43,7 @@ namespace JJSS.Presentacion
                 catch (Exception ex)
                 {
 
-                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Presentacion/Login.aspx" + "', 2000);</script>");
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
                 }
 

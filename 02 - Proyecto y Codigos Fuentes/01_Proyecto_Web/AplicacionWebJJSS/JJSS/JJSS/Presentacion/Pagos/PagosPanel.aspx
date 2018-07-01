@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1>Pendientes de Pago</h1>
+                        <h1>Pagos Pendientes</h1>
                     </div>
 
                     <div runat="server" class="row centered justify-content-center" id="divDNI" Visible="False">
