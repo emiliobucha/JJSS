@@ -120,8 +120,8 @@
                                         <asp:BoundField DataField="numero" HeaderText="Número" />
                                         <asp:BoundField DataField="ciudad" HeaderText="Ciudad" />
                                         
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" ItemStyle-ForeColor="#007bff" />
-                                        <asp:TemplateField>
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" HeaderText="Seleccionar" ItemStyle-ForeColor="#007bff" />
+                                        <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("idSede") %>' 
                                                     OnClientClick='<%# Eval("idSede", "return openModal({0})") %>' > Eliminar</asp:LinkButton>

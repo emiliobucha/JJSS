@@ -113,7 +113,14 @@ namespace JJSS_Negocio
                         if (fajaSiguiente == null) throw new Exception("No existe esa faja");
                         int idFajaSiguiente = fajaSiguiente.id_faja;
 
+                        //elimna la faja anterior
+                        alumnoxfaja aluxf = (from axf in db.alumnoxfaja
+                                    where axf.id_alumno == idAlu && axf.id_faja == idFajaActual && axf.faja.id_tipo_clase == tipoClase
+                                    select axf).FirstOrDefault();
+                        aluxf.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
+                        db.SaveChanges();
 
+                        //crea la nueva faja
                         alumnoxfaja nuevoAxF;
                         nuevoAxF = new alumnoxfaja()
                         {
@@ -124,14 +131,7 @@ namespace JJSS_Negocio
                         };
                         db.alumnoxfaja.Add(nuevoAxF);
                         db.SaveChanges();
-
-                        var aluxf = from axf in db.alumnoxfaja
-                                    where axf.id_alumno == idAlu && axf.id_faja == idFajaActual
-                                    select axf;
-                        aluxf.FirstOrDefault().actual = 0;
-                        db.SaveChanges();
-
-
+                        
                     }
                     transaction.Commit();
                     return "";

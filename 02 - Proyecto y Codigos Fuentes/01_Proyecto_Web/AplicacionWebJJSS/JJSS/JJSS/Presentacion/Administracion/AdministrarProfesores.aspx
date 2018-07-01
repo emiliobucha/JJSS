@@ -104,20 +104,21 @@
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvprofes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvprofes_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay profes para mostrar"
-                                    OnRowCommand="gvprofes_RowCommand">
+                                    OnRowCommand="gvprofes_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                        <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
+                                        <asp:BoundField DataField="dni" HeaderText="N° Documento" SortExpression="dni" />
 
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
-                                        <asp:TemplateField>
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" ItemStyle-ForeColor="#007bff"  HeaderText="Seleccionar" />
+                                        <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("dni") %>' 
                                                     OnClientClick='<%# Eval("dni", "return openModal({0})") %>' > Eliminar</asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
+                                    <PagerSettings Position="TopAndBottom" />
                                 </asp:GridView>
                             </div>
                             <%--<div class="row">

@@ -176,7 +176,7 @@
                                             <asp:BoundField DataField="inscripto" HeaderText="" Visible="false"/>
                                         </Columns>
                                         <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
-                                        <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
+                                        <PagerSettings Position="TopAndBottom" />
                                     </asp:GridView>
                                 </div>
                             </div>

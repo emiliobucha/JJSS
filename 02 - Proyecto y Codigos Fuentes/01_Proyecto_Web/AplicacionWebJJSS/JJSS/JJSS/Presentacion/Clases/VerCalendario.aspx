@@ -54,20 +54,24 @@
 
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-        <div class="container">
+        <div class="container p-1">
             <h2><asp:Label ID="lbl_vacio" runat="server" Text=""></asp:Label></h2>
             <telerik:RadScheduler RenderMode="Auto" runat="server" ID="RadScheduler1"
-                ReadOnly="true" AllowDelete="false" AllowEdit="false" AllowInsert="false" ShowFullTime="true" ShowAllDayRow="true"
-                DataKeyField="ID" DataSubjectField="Subject" DataStartField="Start" DataEndField="End" DataRecurrenceField="RecurrenceRule"
-                DataRecurrenceParentKeyField="RecurrenceParentId" OnAppointmentDataBound="RadScheduler1_AppointmentDataBound" 
-                HoursPanelTimeFormat="hh:mm tt">
+                ReadOnly="true" AllowDelete="false" AllowEdit="false" AllowInsert="false" ShowFullTime="false" ShowAllDayRow="false"
+                DataKeyField="ID" DataDescriptionField="Description" DataSubjectField="Subject" DataStartField="Start" DataEndField="End" 
+                DataRecurrenceField="RecurrenceRule" ToolTip="ToolTip" SelectedView="WeekView"
+                DataRecurrenceParentKeyField="RecurrenceParentId" OnAppointmentDataBound="RadScheduler1_AppointmentDataBound"
+                DayView-UserSelectable="false" MonthView-UserSelectable="false" HoursPanelTimeFormat="hh:mm tt"
+                WeekView-DayStartTime="09:00:00" WeekView-DayEndTime="21:00:00" Height="600px" RowHeight="30px" WorkDayStartTime="09:00:00"
+                WorkDayEndTime="21:00:00" EnableDescriptionField="true" >
                 <AdvancedForm Modal="true" ></AdvancedForm>
                 <TimelineView UserSelectable="false"></TimelineView>
                 <TimeSlotContextMenuSettings EnableDefault="true"></TimeSlotContextMenuSettings>
                 <AppointmentContextMenuSettings EnableDefault="true"></AppointmentContextMenuSettings>
                 <Reminders Enabled="false"></Reminders>
                 <WeekView ShowHoursColumn="true" />
-
+                <Localization Show24Hours="Mostrar todo" ShowBusinessHours="Mostrar abierto" HeaderToday="Hoy" HeaderWeek="Semana" />
+                
             </telerik:RadScheduler>
         </div>
 
