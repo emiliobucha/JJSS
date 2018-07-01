@@ -57,13 +57,9 @@
 
             <div class="container">
 
-                <div class="border rounded p-1">
-
-
-                    <div>
-                        <p>&nbsp;</p>
-                    </div>
-
+                
+                <div class="border rounded p-5">
+                    
                     <!--Ingresar nombre-->
 
                     <div class="row  pl-lg-5 pl-md-5 justify-content-center">
@@ -74,18 +70,18 @@
                             <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="60" runat="server"></asp:TextBox>
                         </div>
                         <div class="col col-lg-3 col-md-3 col-sm-10">
-                            <asp:Button ID="btn_aceptar" type="submit" class="btn btn-outline-dark" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" />
+                            <asp:Button ID="btn_aceptar" type="submit" class="btn btn-outline-dark" runat="server" Text="Agregar" OnClick="btn_aceptar_Click" />
                         </div>
                     </div>
 
                     <div class=" p-2 ">
                         <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
                     </div>
+                    
+                </div>
 
-                    <div>
-                        <p>&nbsp;</p>
-                    </div>
-
+                <div>
+                    <p>&nbsp;</p>
                 </div>
 
                 <div class="border rounded p-2">

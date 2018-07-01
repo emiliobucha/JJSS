@@ -80,9 +80,11 @@
                     <%--<asp:Label ID="lbl_Inscripcion" runat="server" Text="INSCRIPCIÓN DE TORNEO" CssClass=" h2 font-weight-light"></asp:Label>--%>
                 </div>
 
+                 <div>
+                    <p>&nbsp;</p>
+                </div>
 
                 <form id="form1" runat="server">
-
 
                     <!--Elegir torneo-->
                    
@@ -90,8 +92,6 @@
                     <asp:Panel ID="pnl_elegirTorneo" CssClass="panel panel-default border rounded p-2" runat="server">
 
                         <div class="form-group">
-
-
                             <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
@@ -104,7 +104,7 @@
                                     <asp:DropDownList ID="ddl_torneos" class="caja2" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="col-lg-1 col-md-1 col-sm-8 col-xl-auto">
-                                    <asp:Button ID="btnAceptarTorneo" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-default" OnClick="btnAceptarTorneo_Click" />
+                                    <asp:Button ID="btnAceptarTorneo" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" OnClick="btnAceptarTorneo_Click" />
                                 </div>
                             </div>
                         </div>
@@ -349,8 +349,8 @@
                             </div>
                             <div class="col-md-2">
                                 <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
-                                    <asp:ListItem>Femenino</asp:ListItem>
-                                    <asp:ListItem>Masculino</asp:ListItem>
+                                    <asp:ListItem>&nbsp;Femenino</asp:ListItem>
+                                    <asp:ListItem>&nbsp;Masculino</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
 

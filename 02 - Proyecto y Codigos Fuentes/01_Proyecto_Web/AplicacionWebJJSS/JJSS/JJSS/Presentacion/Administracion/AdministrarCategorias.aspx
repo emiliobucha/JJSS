@@ -96,8 +96,8 @@
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
                                     <asp:RadioButtonList ID="rbSexo" runat="server" AutoPostBack="False">
                                         <asp:ListItem Selected="True" Value="-1">Todos</asp:ListItem>
-                                        <asp:ListItem Value="0">Femenino</asp:ListItem>
-                                        <asp:ListItem Value="1">Masculino</asp:ListItem>
+                                        <asp:ListItem Value="0">&nbsp;Femenino</asp:ListItem>
+                                        <asp:ListItem Value="1">&nbsp;Masculino</asp:ListItem>
                                     </asp:RadioButtonList>
                                 </div>
 
@@ -106,6 +106,10 @@
                                 </div>
 
                                 <asp:HyperLink CssClass="btn btn-link" Text="Ir a registrar" runat="server" href="CrearCategoria.aspx"></asp:HyperLink>
+                            </div>
+
+                            <div>
+                                <p>&nbsp;</p>
                             </div>
 
                             <div class="row centered justify-content-center">
@@ -130,28 +134,28 @@
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                 </asp:GridView>
-                            </div>
-
-                            <div>
-                                <p>&nbsp;</p>
-                            </div>
-
-                            <div class="row pull-left">
-                                <div class="col">
-                                    <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
-                                </div>
-                            </div>
-                            <div>
-                                <p>&nbsp;</p>
-                            </div>
+                            </div>                         
 
                         </div>
                     </div>
                 </div>
             </asp:Panel>
+            <div class=" container">
+                <div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row pull-left">
+                    <div class="col">
+                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
+                    </div>
+                </div>
+                <div>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
         </div>
 
-        
+
         <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

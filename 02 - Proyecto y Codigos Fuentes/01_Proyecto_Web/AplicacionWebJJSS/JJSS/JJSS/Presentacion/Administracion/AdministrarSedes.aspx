@@ -93,8 +93,8 @@
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
                                     <asp:RadioButtonList ID="rbSede" runat="server" AutoPostBack="False">
-                                        <asp:ListItem Value="0" Selected="True">Sedes</asp:ListItem>
-                                        <asp:ListItem Value="1">Academias</asp:ListItem>
+                                        <asp:ListItem Value="0" Selected="True">&nbsp;Sedes</asp:ListItem>
+                                        <asp:ListItem Value="1">&nbsp;Academias</asp:ListItem>
                                     </asp:RadioButtonList>
                                 </div>
 
@@ -105,8 +105,12 @@
                                 <asp:HyperLink CssClass="btn btn-link" Text="Ir a registrar" runat="server" href="CrearSede.aspx"></asp:HyperLink>
                             </div>
 
+                            <div class="row centered">
+                                <p>&nbsp;</p>
+                            </div>
+
                             <div class="row centered justify-content-center">
-                                <asp:GridView ID="gvSedes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="idSede" OnPageIndexChanging="gvSedes_PageIndexChanging"
+                                <asp:GridView ID="gvSedes" runat="server" CssClass="table table-responsive-xl" CellPadding="4" DataKeyNames="idSede" OnPageIndexChanging="gvSedes_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay sedes para mostrar"
                                     OnRowCommand="gvSedes_RowCommand" AllowPaging="True" PageSize="10">
                                     <Columns>
@@ -128,28 +132,26 @@
                                 </asp:GridView>
                             </div>
 
-                            <div>
-                                <p>&nbsp;</p>
-                            </div>
-
-                            <div class="row pull-left">
-                                <div class="col">
-                                    <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
-                                </div>
-                            </div>
-                            <div>
-                                <p>&nbsp;</p>
-                            </div>
+                           
 
                         </div>
                     </div>
                 </div>
             </asp:Panel>
-            <div class="row pull-left">
+            <div class=" container">
+                <div>
+                    <p>&nbsp;</p>
+                </div>
+
+                <div class="row pull-left">
                     <div class="col">
-                        <asp:Button ID="btn_volver" class="btn btn-link" runat="server" Text="Volver" OnClick="btn_volver_Click" formnovalidate="true" />
+                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx"></asp:LinkButton>
                     </div>
                 </div>
+                <div>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
         </div>
 
         <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
