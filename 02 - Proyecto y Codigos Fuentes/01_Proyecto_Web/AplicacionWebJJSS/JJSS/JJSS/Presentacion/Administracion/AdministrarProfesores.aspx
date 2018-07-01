@@ -108,10 +108,10 @@
                                     <Columns>
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-                                        <asp:BoundField DataField="dni" HeaderText="D.N.I" SortExpression="dni" />
+                                        <asp:BoundField DataField="dni" HeaderText="N° Documento" SortExpression="dni" />
 
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar" HeaderText="Seleccionar" />
-                                        <asp:TemplateField>
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" ItemStyle-ForeColor="#007bff"  HeaderText="Seleccionar" />
+                                        <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("dni") %>' 
                                                     OnClientClick='<%# Eval("dni", "return openModal({0})") %>' > Eliminar</asp:LinkButton>

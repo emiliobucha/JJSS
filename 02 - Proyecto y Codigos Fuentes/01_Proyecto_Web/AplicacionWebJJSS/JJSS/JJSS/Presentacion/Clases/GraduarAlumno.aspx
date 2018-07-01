@@ -98,8 +98,8 @@
                             <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                             <asp:BoundField DataField="tipo" HeaderText="Disciplina" />
                             <asp:BoundField DataField="faja" HeaderText="Faja Actual" />
-                            <asp:BoundField DataField="fecha" HeaderText="Fecha de Última Graduación" />
-                            <asp:TemplateField HeaderText="Grados a aumentar" HeaderStyle-HorizontalAlign="Center">
+                            <asp:BoundField DataField="fechaParaMostrar" HeaderText="Fecha de Última Graduación" />
+                            <asp:TemplateField HeaderText="Grados a Aumentar" HeaderStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txt_grados" runat="server" required="true" type="number" min="0" max="20" CssClass="form-control" Text="0"></asp:TextBox>
 

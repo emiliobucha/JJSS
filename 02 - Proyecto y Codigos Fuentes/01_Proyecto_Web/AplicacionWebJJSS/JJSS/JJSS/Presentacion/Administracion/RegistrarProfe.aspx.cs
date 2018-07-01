@@ -199,7 +199,7 @@ namespace JJSS.Presentacion
                 //actualiza datos
                 try
                 {
-                    gestorProfes.ModificarProfesor(idTipo, dni, nombre, apellido,null, idPais);
+                    gestorProfes.ModificarProfesor(idTipo, dni, nombre, apellido, null, idPais, fechaNac, sexo);
                     gestorProfes.ModificarProfesorContacto(calle, departamento, numero, piso, tel, telEmergencia, mail, idTipo, dni, ciudad, torre);
                     mensaje("Se modificaron los datos correctamente", true);
                     limpiar();
@@ -273,6 +273,8 @@ namespace JJSS.Presentacion
             ddl_provincia.SelectedIndex = 0;
             ddl_tipo.SelectedIndex = 0;
             ddl_nacionalidad.SelectedIndex = 0;
+            txtDni.Enabled = true;
+            dp_fecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
         }
 
 

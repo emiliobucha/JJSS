@@ -47,11 +47,9 @@ namespace JJSS.Presentacion
                 gestorTipo = new GestorTipoClase();
                 gestorGraduacion = new GestorGraduacion();
 
+                cargarRadioButton();
                 cargarGrilla();
                 MultiView1.SetActiveView(view_elegir_graduacion);
-
-                cargarRadioButton();
-
             }
 
         }
@@ -59,7 +57,6 @@ namespace JJSS.Presentacion
         protected void cargarGrilla()
         {
             int tipoClase = 0;
-           // int.TryParse(rb_tipo_clase.SelectedValue, out tipoClase);
             int.TryParse(ddl_tipo_clase.SelectedValue, out tipoClase);
 
             List<AlumnoFaja> listaAlumnos;
@@ -80,6 +77,11 @@ namespace JJSS.Presentacion
             string filtroApellido = txt_filtro_apellido.Text.ToUpper().Trim();
             listaAlumnosFiltrada = listaAlumnos.FindAll(x => x.apellido.ToUpper().StartsWith(filtroApellido));
 
+            foreach (AlumnoFaja t in listaAlumnosFiltrada)
+            {
+                t.fechaParaMostrar = t.fecha?.ToString("dd/MM/yyyy") ?? " - ";
+            }
+
             gv_graduacion.DataSource = listaAlumnosFiltrada;
 
             gv_graduacion.DataBind();
@@ -93,12 +95,7 @@ namespace JJSS.Presentacion
             tipo_clase tc = new tipo_clase();
             tc.id_tipo_clase = 0;
             tc.nombre = "Todos";
-            lista.Add(tc);
-            //rb_tipo_clase.DataSource = lista;
-            //rb_tipo_clase.DataValueField = "id_tipo_clase";
-            //rb_tipo_clase.DataTextField = "nombre";
-
-            //rb_tipo_clase.DataBind();
+            lista.Insert(0,tc);
 
             ddl_tipo_clase.DataSource = lista;
             ddl_tipo_clase.DataValueField = "id_tipo_clase";

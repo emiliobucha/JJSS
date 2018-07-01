@@ -36,6 +36,7 @@ namespace JJSS.Presentacion.Administracion
 
                 if (Session["sede"] != null)
                 {
+                    object a = Session["sede"];
                     idSede = Convert.ToInt32(Session["sede"]);
                     CargarDatosSedeSeleccionada();
                     Session["sede"] = null;
@@ -54,9 +55,9 @@ namespace JJSS.Presentacion.Administracion
 
         private void CargarDatosSedeSeleccionada()
         {
-            limpiar();
             sede sedeSeleccionada = gestorSedes.BuscarSedePorID(idSede);
             DireccionAlumno direccionSede = gestorSedes.ObtenerDireccionSedeCompleta(idSede);
+            limpiar();
             txt_calle.Text = direccionSede.calle;
             txt_nombre.Text = sedeSeleccionada.nombre;
             txt_numero.Text = Convert.ToString( direccionSede.numero);
@@ -72,9 +73,9 @@ namespace JJSS.Presentacion.Administracion
 
         private void CargarDatosAcademiaSeleccionada()
         {
-            limpiar();
             academia academiaSeleccionada = gestorAcademias.ObtenerAcademiasPorID(idAcademia);
             DireccionAlumno direccionAcademia = gestorAcademias.ObtenerDireccionAcademiaCompleta(idAcademia);
+            limpiar();
             txt_calle.Text = direccionAcademia.calle;
             txt_nombre.Text = academiaSeleccionada.nombre;
             txt_numero.Text = Convert.ToString( direccionAcademia.numero);
