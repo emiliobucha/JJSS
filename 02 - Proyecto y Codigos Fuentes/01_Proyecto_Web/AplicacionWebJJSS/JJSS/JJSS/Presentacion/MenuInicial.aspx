@@ -34,7 +34,7 @@
             <div class="row mt centered justify-content-center">
 
                 <!--Torneo-->
-                <div class="col-sm-12 col-md-6 col-lg-3  ">
+                <div class="col-sm-12 col-md-6 col-lg-3  " runat="server" id="menuTorneo">
                     <a class="text-dark" href="Torneos/MenuTorneo.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/torneo.png" alt="Card image cap">
@@ -46,7 +46,7 @@
                 </div>
 
                 <!--Clase-->
-                <div class="col-sm-12 col-md-6 col-lg-3  ">
+                <div class="col-sm-12 col-md-6 col-lg-3  "  runat="server" id="menuClase">
                     <a class="text-dark" href="Clases/Menu_Clase.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Clase.png" alt="Card image cap">
@@ -59,7 +59,7 @@
 
                 <!--Eventos-->
                 <div class="col-sm-12 col-md-6 col-lg-3  ">
-                    <a class="text-dark" href="Eventos/Menu_Evento.aspx">
+                    <a class="text-dark" href="Eventos/Menu_Evento.aspx" runat="server" id="menuEvento">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Evento.png" alt="Card image cap">
                             <div class="">
@@ -71,7 +71,7 @@
 
                 <!--Perfil-->
                 <div class="col-sm-12 col-md-6 col-lg-3  ">
-                    <a class="text-dark" href="/Presentacion/Perfil.aspx">
+                    <a class="text-dark" href="/Presentacion/Perfil.aspx" runat="server" id="menuPerfil">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Perfil.png" alt="Card image cap">
                             <div class="">
@@ -84,7 +84,7 @@
             </div>
             <div class="row mt centered justify-content-center">
                 <!--BI-->
-                <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="col-sm-12 col-md-6 col-lg-3"  runat="server" id="menuBI">
                     <a class="text-dark" href="PowerBI.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/BI.png" alt="Card image cap">
@@ -96,8 +96,8 @@
                 </div>
 
                 <!--Pagos-->
-                <div class="col-sm-12 col-md-6 col-lg-3 ">
-                    <a class="text-dark" href="">
+                <div class="col-sm-12 col-md-6 col-lg-3 "  runat="server" id="menuPagos">
+                    <a class="text-dark" href="Pagos/PagosPanel.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Pago.png" alt="Card image cap">
                             <div class="">
@@ -108,7 +108,7 @@
                 </div>
 
                 <!--Administracion-->
-                <div class="col-sm-12 col-md-6 col-lg-3 ">
+                <div class="col-sm-12 col-md-6 col-lg-3 "  runat="server" id="menuAdministracion">
                     <a class="text-dark" href="Administracion/Menu_Administracion.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Administracion.png" alt="Card image cap">

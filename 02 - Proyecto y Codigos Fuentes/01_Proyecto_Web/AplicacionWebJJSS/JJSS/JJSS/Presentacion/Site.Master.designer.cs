@@ -130,6 +130,42 @@ namespace JJSS {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_ver_clases;
         
         /// <summary>
+        /// Control nav_crear_evento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_crear_evento;
+        
+        /// <summary>
+        /// Control nav_inscribir_evento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_inscribir_evento;
+        
+        /// <summary>
+        /// Control nav_hist_evento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_hist_evento;
+        
+        /// <summary>
+        /// Control navbarAdministracion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor navbarAdministracion;
+        
+        /// <summary>
         /// Control nav_usuario.
         /// </summary>
         /// <remarks>

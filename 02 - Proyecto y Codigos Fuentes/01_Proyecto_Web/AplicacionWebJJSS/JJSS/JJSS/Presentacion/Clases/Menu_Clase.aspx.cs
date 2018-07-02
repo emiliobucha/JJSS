@@ -84,7 +84,7 @@ namespace JJSS.Presentacion
                     //Administración de eventos
 
                     int permiso = 0;
-                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CREACION'");
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'POWER_BI'");
                     if (drsAux.Length > 0)
                     {
                         int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -106,6 +106,17 @@ namespace JJSS.Presentacion
                     if (permiso != 1)
                     {
                         graduar_alumno.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        crear_clase.Style["display"] = "none";
                     }
 
                     permiso = 0;
