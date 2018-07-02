@@ -96,7 +96,7 @@
                 </div>--%>
 
                 <!--Crear-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="crear_clase">
                     <a class="text-dark" href="CrearClase.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Crear2.png" alt="Card image cap">
@@ -108,7 +108,7 @@
                 </div>
 
                  <!--Graduar-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="graduar_alumno" >
                     <a class="text-dark" href="/Presentacion/Clases/GraduarAlumno.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Graduar.png" alt="Card image cap">
@@ -120,7 +120,7 @@
                 </div>
 
                  <!--Asistencia-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="asistencia">
                     <a class="text-dark" href="/Presentacion/Clases/RegistrarAsistencia.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Inscribir.png" alt="Card image cap">
@@ -132,7 +132,7 @@
                 </div>
 
                 <!--Ver clases-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="calendario">
                     <a class="text-dark" href="/Presentacion/Clases/VerCalendario.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Evento.png" alt="Card image cap">
@@ -144,7 +144,7 @@
                 </div>
 
                 <!--Ver listado asistencia-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="listado_asistencia">
                     <a class="text-dark" href="/Presentacion/Clases/VerListadoAsistencia.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
@@ -274,9 +274,9 @@
                             <div class="p-1" runat="server">
                                 <asp:Button ID="lv_btn_inscribir" runat="server" CommandName="inscribir" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Inscribir" />
                       
-                                <asp:Button ID="lv_btn_seleccionar" runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Editar" />
+                                <asp:Button ID="lv_btn_seleccionar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Editar" />
                     
-                                <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark"
+                                <asp:LinkButton id="lv_btn_eliminar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark"
                                                     OnClientClick='<%# Eval("id_clase", "return openModal({0})") %>' > Eliminar</asp:LinkButton>
                             </div>
                         </div>

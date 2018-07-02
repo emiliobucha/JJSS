@@ -46,7 +46,7 @@ namespace JJSS.Presentacion
                 }
                 gestorTipo = new GestorTipoClase();
                 gestorGraduacion = new GestorGraduacion();
-
+                cargarRadioButton();
                 cargarGrilla();
                 MultiView1.SetActiveView(view_elegir_graduacion);
             }

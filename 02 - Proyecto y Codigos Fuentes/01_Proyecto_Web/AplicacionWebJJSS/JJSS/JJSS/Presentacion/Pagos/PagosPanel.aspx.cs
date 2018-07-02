@@ -262,6 +262,28 @@ namespace JJSS.Presentacion.Pagos
         protected void CargarComboFormaPago()
         {
             List<forma_pago> formasPago = gestorFPago.ObtenerFormasPago();
+
+            if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+            {
+
+            }
+            else
+            {
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                int permiso = 0;
+                System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'PAGO_EFECTIVO'");
+                if (drsAux.Length > 0)
+                {
+                    int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                }
+                if (permiso != 1)
+                {
+                    formasPago.RemoveAll(x => x.nombre == "Efectivo");
+                }
+            }
+
+
+
             ddl_forma_pago.DataSource = formasPago;
             ddl_forma_pago.DataTextField = "nombre";
             ddl_forma_pago.DataValueField = "id_forma_pago";

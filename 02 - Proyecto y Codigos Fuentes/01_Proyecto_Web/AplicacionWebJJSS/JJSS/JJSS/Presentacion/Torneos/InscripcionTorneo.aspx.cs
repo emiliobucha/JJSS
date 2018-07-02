@@ -105,7 +105,7 @@ namespace JJSS
                 if (Session["idTorneo_inscribirTorneo"] != null)
                 {
                     int id = (int)Session["idTorneo_inscribirTorneo"];
-
+                    Session["idTorneo_inscribirTorneo"] = null;
                     cargarInfoTorneo(id);
                     pnl_elegirTorneo.Visible = false;
                     pnl_InfoTorneo.Visible = true;
