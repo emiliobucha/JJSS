@@ -79,9 +79,18 @@ namespace JJSS
 
 
             nav_crear_torneo.Style["display"] = "none";
+            nav_historico_torneos.Style["display"] = "none";
 
+            navbarAdministracion.Style["display"] = "none";
+            nav_crear_evento.Style["display"] = "none";
 
+            nav_hist_evento.Style["display"] = "none";
+            nav_registrar_asistencia.Style["display"] = "none";
+            nav_listado_asistencia.Style["display"] = "none";
 
+            nav_graduar_alumno.Style["display"] = "none";
+
+            nav_crear_clase.Style["display"] = "none";
         }
 
         protected void ocultarPermiso()
