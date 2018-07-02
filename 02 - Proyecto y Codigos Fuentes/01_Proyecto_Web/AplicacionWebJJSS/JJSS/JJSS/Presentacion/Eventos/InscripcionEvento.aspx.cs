@@ -36,6 +36,11 @@ namespace JJSS.Presentacion
             {
                 eventoSession = Session["eventoSeleccionado"];
                 Session["eventoSeleccionado"] = null;
+
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Eventos/Menu_Evento.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+
+
                 try
                 {
                     CargarComboTipoDocumentos();

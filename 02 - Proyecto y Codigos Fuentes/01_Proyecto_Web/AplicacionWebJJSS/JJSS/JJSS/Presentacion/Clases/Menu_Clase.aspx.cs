@@ -15,12 +15,47 @@ namespace JJSS.Presentacion
     {
 
         private GestorClases gestorDeClases;
+        public bool MostrarEditar { get; set; } = true;
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorDeClases = new GestorClases();
             if (!IsPostBack)
             {
+
+                try
+                {
+
+
+
+                    if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+                    {
+                        ocultarInvitado();
+
+                    }
+                    else
+                    {
+
+                        Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                        if (sesionActiva.estado != "INGRESO ACEPTADO")
+                        {
+
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+
+                        }
+                        ocultarPermiso();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+
+                }
+
                 cargarComboAcademias();
                 cargarComboProfesores();
                 cargarClasesView();
@@ -32,6 +67,94 @@ namespace JJSS.Presentacion
                 }
             }
         }
+
+
+        protected void ocultarPermiso()
+        {
+            try
+            {
+                muetra_clases_invitado.Style["display"] = "none";
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                if (sesionActiva.estado == "INGRESO ACEPTADO")
+                {
+
+
+
+
+                    //Administración de eventos
+
+                    int permiso = 0;
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        crear_clase.Style["display"] = "none";
+                        MostrarEditar = false;
+                    }
+
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_GRADUAR'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        graduar_alumno.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_ASISTENCIA'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        asistencia.Style["display"] = "none";
+                        listado_asistencia.Style["display"] = "none";
+                    }
+
+                    //permiso = 0;
+                    //drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CALENDARIO'");
+                    //if (drsAux.Length > 0)
+                    //{
+                    //    int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    //}
+                    //if (permiso != 1)
+                    //{
+                    //    calendario.Style["display"] = "none";
+                    //}
+                  
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+
+            }
+        }
+
+        private void ocultarInvitado()
+        {
+            muetra_clases_profe_admin.Style["display"] = "none";
+            crear_clase.Style["display"] = "none";
+            //calendario.Style["display"] = "none";
+            asistencia.Style["display"] = "none";
+            listado_asistencia.Style["display"] = "none";
+            graduar_alumno.Style["display"] = "none";
+            crear_clase.Style["display"] = "none";
+        }
+
+
+
+
 
         private void cargarComboProfesores()
         {
@@ -92,6 +215,8 @@ namespace JJSS.Presentacion
             int filtroProfesor = int.Parse(ddl_profesores.SelectedValue);
 
             List<ClasesDisponibles> clasesDisponibles = gestorDeClases.ObtenerClasesDisponibles(filtroNombre, filtroProfesor, filtroAcademia);
+            clasesDisponibles.ForEach(x => x.MostrarEditar = MostrarEditar);
+
             lv_clasesDisponibles.DataSource = clasesDisponibles;
             lv_clasesDisponibles.DataBind();
 

@@ -20,31 +20,31 @@ namespace JJSS.Presentacion.Clases
         {
             if (!IsPostBack)
             {
-                try
-                {
-                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-                    if (sesionActiva.estado == "INGRESO ACEPTADO")
-                    {
-                        int permiso = 0;
-                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CALENDARIO'");
-                        if (drsAux.Length > 0)
-                        {
-                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                //try
+                //{
+                //    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                //    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                //    {
+                //        int permiso = 0;
+                //        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CALENDARIO'");
+                //        if (drsAux.Length > 0)
+                //        {
+                //            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
 
-                        }
-                        if (permiso != 1)
-                        {
-                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o no tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+                //        }
+                //        if (permiso != 1)
+                //        {
+                //            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o no tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
+                //        }
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
 
-                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+                //    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
-                }
+                //}
 
 
                 cargarComboAcademias();

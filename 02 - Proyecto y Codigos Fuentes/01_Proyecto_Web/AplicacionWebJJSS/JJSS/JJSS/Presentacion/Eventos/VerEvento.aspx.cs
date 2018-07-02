@@ -97,7 +97,7 @@ namespace JJSS.Presentacion.Eventos
 
 
                     int permiso = 0;
-                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION_LISTA'");
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_INSCRIPCION_LISTA'");
                     if (drsAux.Length > 0)
                     {
                         int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -107,22 +107,11 @@ namespace JJSS.Presentacion.Eventos
                         btn_imprimir_listado.Visible = true;
                     }
 
-                    if (idEstado == ConstantesEstado.TORNEO_FINALIZADO || idEstado == ConstantesEstado.TORNEO_EN_CURSO)
-                    {
-
-                        permiso = 0;
-                        drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_RESULTADOS'");
-                        if (drsAux.Length > 0)
-                        {
-                            int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
-                        }
-
-
-                    }
+                
                     if (idEstado != ConstantesEstado.TORNEO_FINALIZADO && idEstado != ConstantesEstado.TORNEO_CANCELADO)
                     {
                         permiso = 0;
-                        drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CANCELAR'");
+                        drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_CANCELAR'");
                         if (drsAux.Length > 0)
                         {
                             int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -133,7 +122,7 @@ namespace JJSS.Presentacion.Eventos
                         }
 
                         permiso = 0;
-                        drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_EDITAR'");
+                        drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_EDITAR'");
                         if (drsAux.Length > 0)
                         {
                             int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -148,7 +137,7 @@ namespace JJSS.Presentacion.Eventos
                         {
 
                             permiso = 0;
-                            drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_SUSPENDER'");
+                            drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_SUSPENDER'");
                             if (drsAux.Length > 0)
                             {
                                 int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -163,7 +152,7 @@ namespace JJSS.Presentacion.Eventos
                         {
 
                             permiso = 0;
-                            drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_HABILITAR'");
+                            drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_HABILITAR'");
                             if (drsAux.Length > 0)
                             {
                                 int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -180,7 +169,7 @@ namespace JJSS.Presentacion.Eventos
                     if (idEstado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA)
                     {
                         permiso = 0;
-                        drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
+                        drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_INSCRIPCION'");
                         if (drsAux.Length > 0)
                         {
                             int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -215,7 +204,7 @@ namespace JJSS.Presentacion.Eventos
             Response.Redirect("InscripcionEvento.aspx");
         }
 
-        protected void btn_si_Click1(object sender, EventArgs e)
+        protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiarMensaje();
             string res = gestorEventos.cancelarEvento(eventoSeleccionado.id_evento, ConstantesEstado.TORNEO_CANCELADO);

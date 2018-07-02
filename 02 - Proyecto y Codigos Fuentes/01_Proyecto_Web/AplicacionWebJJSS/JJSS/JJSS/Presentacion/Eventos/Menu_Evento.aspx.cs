@@ -95,7 +95,7 @@ namespace JJSS.Presentacion
                     //Administración de torneos
 
                     int permiso = 0;
-                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CREACION'");
+                    System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_CREACION'");
                     if (drsAux.Length > 0)
                     {
                         int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -106,9 +106,21 @@ namespace JJSS.Presentacion
                     }
 
 
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_HISTORIAL'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        historial_evento.Style["display"] = "none";
+                    }
+
+
 
                     permiso = 0;
-                    drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION'");
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_INSCRIPCION'");
                     if (drsAux.Length > 0)
                     {
                         int.TryParse(drsAux[0]["perm_ver"].ToString(), out permiso);
