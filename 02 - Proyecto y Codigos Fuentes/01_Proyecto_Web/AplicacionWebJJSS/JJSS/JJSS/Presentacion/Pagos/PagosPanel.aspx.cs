@@ -31,8 +31,8 @@ namespace JJSS.Presentacion.Pagos
         private static string dni;
         private static string nombre;
         private static List<ObjetoPagable> objetosGrilla;
+        private static List<tipo_documento> tiposdoc;
 
-        
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -47,75 +47,88 @@ namespace JJSS.Presentacion.Pagos
 
             if (!IsPostBack)
             {
-                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString()== "INVITADO")
+                CargarComboFormaPago();
+                CargarComboTipoDocumentos();
+                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                 {
                     divDNI.Visible = true;
                 }
-                else { 
-
-
-                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-                if (sesionActiva.estado == "INGRESO ACEPTADO")
+                else
                 {
-                    var usuario = sesionActiva.usuario;
-                    if (usuario != null)
+
+
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
-                        var alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
-
-
-                        if (alumno != null)
+                        var usuario = sesionActiva.usuario;
+                        if (usuario != null)
                         {
-                            if (alumno.id_tipo_documento != null) tipoDoc = (int) alumno.id_tipo_documento;
-                            dni = alumno.dni;
-                            nombre = alumno.nombre + " " + alumno.apellido;
-                            CargarGrilla();
-                        }
-                        else
-                        {
+                            var alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
 
 
-
-                            var profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
-                            if (profesor != null)
+                            if (alumno != null)
                             {
-                                if (profesor.id_tipo_documento != null) tipoDoc = (int) profesor.id_tipo_documento;
-                                dni = profesor.dni;
-
-                                nombre = profesor.nombre + " " + profesor.apellido;
+                                if (alumno.id_tipo_documento != null) tipoDoc = (int)alumno.id_tipo_documento;
+                                dni = alumno.dni;
+                                nombre = alumno.nombre + " " + alumno.apellido;
                                 CargarGrilla();
+                                divDNIAlumno.Visible = true;
+                                lblDni.InnerText = dni;
+                                lblNombre.InnerText = nombre;
+
+                                var td = tiposdoc.FirstOrDefault(x => x.id_tipo_documento == tipoDoc);
+                                if (td != null)
+                                {
+                                    lblTipoDoc.InnerText = td.nombre;
+                                }
+
+
                             }
                             else
                             {
-                                var admin = gestorAdmin.ObtenerAdminPorIdUsuario(usuario.id_usuario);
-                                if (admin != null)
-                                {
-                                    if (admin.id_tipo_documento != null) tipoDoc = (int) admin.id_tipo_documento;
-                                    dni = admin.dni;
 
-                                    nombre = admin.nombre + " " + admin.apellido;
+
+
+                                var profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
+                                if (profesor != null)
+                                {
+                                    if (profesor.id_tipo_documento != null) tipoDoc = (int)profesor.id_tipo_documento;
+                                    dni = profesor.dni;
+
+                                    nombre = profesor.nombre + " " + profesor.apellido;
                                     CargarGrilla();
                                 }
+                                else
+                                {
+                                    var admin = gestorAdmin.ObtenerAdminPorIdUsuario(usuario.id_usuario);
+                                    if (admin != null)
+                                    {
+                                        if (admin.id_tipo_documento != null) tipoDoc = (int)admin.id_tipo_documento;
+                                        dni = admin.dni;
+
+                                        nombre = admin.nombre + " " + admin.apellido;
+                                        CargarGrilla();
+                                    }
+                                }
+
+                                divDNI.Visible = true;
+                                txtDni.Text = dni;
+                                ddl_tipo.SelectedValue = tipoDoc.ToString();
+
                             }
-
+                        }
+                        else
+                        {
                             divDNI.Visible = true;
-                            txtDni.Text = dni;
-                            ddl_tipo.SelectedValue = tipoDoc.ToString();
-
                         }
                     }
-                    else
-                    {
-                        divDNI.Visible = true;
-                    }
-                }
 
                 }
 
-                CargarComboFormaPago();
-                CargarComboTipoDocumentos();
+
 
             }
-           
+
         }
 
         protected void btn_buscar_alumno_Click(object sender, EventArgs e)
@@ -150,7 +163,7 @@ namespace JJSS.Presentacion.Pagos
 
             if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
             {
-               
+
 
                 idUsuario = gestorUsuarios.ObtenerIdUsuarioInvitado();
                 if (idUsuario == -1)
@@ -167,7 +180,7 @@ namespace JJSS.Presentacion.Pagos
             int idFPago;
             int.TryParse(ddl_forma_pago.SelectedValue, out idFPago);
 
-            var pagoMultiple = new PagoMultiple(listaPagables, idFPago,idUsuario,tipoDoc,dni,nombre);
+            var pagoMultiple = new PagoMultiple(listaPagables, idFPago, idUsuario, tipoDoc, dni, nombre);
             HttpContext.Current.Session["PagoMultiple"] = JsonConvert.SerializeObject(pagoMultiple);
 
             Response.Redirect("PagosMultiple.aspx");
@@ -191,7 +204,7 @@ namespace JJSS.Presentacion.Pagos
 
                 var objetoPagable = objetosGrilla[index];
 
-                
+
                 Session["ObjetoPagable"] = objetoPagable;
                 if (objetoPagable.TipoPago.Id == 1)
                 {
@@ -214,7 +227,7 @@ namespace JJSS.Presentacion.Pagos
                     Session["ParticipanteTipoDni"] = tipoDoc;
                     Response.Redirect("../Presentacion/PagoClase");
                 }
-                
+
             }
         }
 
@@ -239,15 +252,16 @@ namespace JJSS.Presentacion.Pagos
         protected void CargarGrilla()
         {
             objetosGrilla = gestorPagos.ObtenerObjetosPagablesPendientes(tipoDoc, dni);
-            if (objetosGrilla.Count > 0 )
+            if (objetosGrilla.Count > 0)
             {
                 nombre = objetosGrilla[0].NombreParticipante;
+                lblNombreBuscado.InnerText = nombre;
             }
             gvPagos.DataSource = objetosGrilla;
             gvPagos.DataBind();
         }
 
-   
+
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -255,7 +269,7 @@ namespace JJSS.Presentacion.Pagos
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
             tipoDoc = idTipo;
             dni = txtDni.Text;
-          
+
             CargarGrilla();
         }
 
@@ -292,7 +306,7 @@ namespace JJSS.Presentacion.Pagos
         protected void CargarComboTipoDocumentos()
         {
 
-            List<tipo_documento> tiposdoc = gestorInscripciones.ObtenerTiposDocumentos();
+            tiposdoc = gestorInscripciones.ObtenerTiposDocumentos();
             ddl_tipo.DataSource = tiposdoc;
             ddl_tipo.DataTextField = "codigo";
             ddl_tipo.DataValueField = "id_tipo_documento";
