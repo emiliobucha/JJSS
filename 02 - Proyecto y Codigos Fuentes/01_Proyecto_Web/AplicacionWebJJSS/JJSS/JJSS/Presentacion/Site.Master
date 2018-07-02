@@ -102,12 +102,12 @@
                           <a runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarClase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Clase &nbsp; 
                           </a>
                           <div runat="server" class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a runat="server" id="nav_seccion_clase" class="dropdown-item text-white" href="/Presentacion/Clases/Menu_Clase.aspx">Ver Sección </a>
-                              <a runat="server" id="nav_crear_clase" class="dropdown-item text-white" href="/Presentacion/Clases/CrearClase.aspx">Crear </a>
-                              <a runat="server" id="nav_registrar_asistencia" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistencia.aspx">Registrar Asistencia </a>
-                              <a runat="server" id="nav_graduar_alumno" class="dropdown-item text-white" href="/Presentacion/Clases/GraduarAlumno.aspx">Graduar Alumnos </a>
-                              <a runat="server" id="nav_listado_asistencia" class="dropdown-item text-white" href="/Presentacion/Clases/VerListadoAsistencia.aspx">Ver Asistencia </a>
-                              <a runat="server" id="nav_ver_clases" class="dropdown-item text-white" href="/Presentacion/Clases/VerCalendario.aspx">Ver Clases </a>
+                              <a runat="server" id="nav_seccion_clase" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/Menu_Clase.aspx">Ver Sección </a>
+                              <a runat="server" id="nav_crear_clase" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/CrearClase.aspx">Crear </a>
+                              <a runat="server" id="nav_registrar_asistencia" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistencia.aspx">Registrar Asistencia </a>
+                              <a runat="server" id="nav_graduar_alumno" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/GraduarAlumno.aspx">Graduar Alumnos </a>
+                              <a runat="server" id="nav_listado_asistencia" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/VerListadoAsistencia.aspx">Ver Asistencia </a>
+                              <a runat="server" id="nav_ver_clases" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/VerCalendario.aspx">Ver Clases </a>
                           </div>
                       </li>
                       <!-- Evento -->
@@ -116,14 +116,14 @@
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item text-white" id="nav_seccion" href="/Presentacion/Eventos/Menu_Evento.aspx">Ver Sección </a>
-                              <a class="dropdown-item text-white" id="nav_crear_evento" href="/Presentacion/Eventos/CrearEvento.aspx">Crear </a>
-                              <a class="dropdown-item text-white" id="nav_inscribir_evento" href="/Presentacion/Eventos/InscripcionEvento.aspx">Inscribir </a>
-                              <a class="dropdown-item text-white" id="nav_hist_evento" href="/Presentacion/Eventos/HistoricoEvento.aspx">Ver Histórico </a>
+                              <a class="dropdown-item text-white" id="nav_crear_evento" runat="server" href="/Presentacion/Eventos/CrearEvento.aspx">Crear </a>
+                              <a class="dropdown-item text-white" id="nav_inscribir_evento" runat="server" href="/Presentacion/Eventos/InscripcionEvento.aspx">Inscribir </a>
+                              <a class="dropdown-item text-white" id="nav_hist_evento"  runat="server" href="/Presentacion/Eventos/HistoricoEvento.aspx">Ver Histórico </a>
                           </div>
                       </li>
                       <!-- Administración -->
-                      <li class="nav-item dropdown">
-                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarAdministracion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Administración &nbsp; 
+                      <li class="nav-item dropdown" >
+                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarAdministracion" runat="server" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Administración &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item text-white" id="nav_ver_seccion" href="/Presentacion/Administracion/Menu_Administracion.aspx">Ver Sección</a>
@@ -145,8 +145,8 @@
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarPagos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Pagos &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item text-white" id="nav_pago" href="/Presentacion/Clases/AlumnoClases.aspx">Pago de Clase </a>
-                              
+                             <%-- <a class="dropdown-item text-white" id="nav_pago" href="/Presentacion/Clases/AlumnoClases.aspx">Pago de Clase </a>
+                              --%>
                               <a class="dropdown-item text-white" id="nav_pago_panel" href="/Presentacion/Pagos/PagosPanel.aspx">Pagos Pendientes </a>
                           </div>
                       </li>

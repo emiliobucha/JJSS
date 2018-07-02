@@ -79,9 +79,18 @@ namespace JJSS
 
 
             nav_crear_torneo.Style["display"] = "none";
+            nav_historico_torneos.Style["display"] = "none";
 
+            navbarAdministracion.Style["display"] = "none";
+            nav_crear_evento.Style["display"] = "none";
 
+            nav_hist_evento.Style["display"] = "none";
+            nav_registrar_asistencia.Style["display"] = "none";
+            nav_listado_asistencia.Style["display"] = "none";
 
+            nav_graduar_alumno.Style["display"] = "none";
+
+            nav_crear_clase.Style["display"] = "none";
         }
 
         protected void ocultarPermiso()
@@ -105,9 +114,6 @@ namespace JJSS
                         nav_crear_torneo.Style["display"] = "none";
                     }
 
-
-
-    
                     permiso = 0;
                     drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_HISTORIAL'");
                     if (drsAux.Length > 0)
@@ -128,6 +134,81 @@ namespace JJSS
                     if (permiso != 1)
                     {
                         nav_inscripcion_torneo.Style["display"] = "none";
+                    }
+
+
+
+                    //Administración
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'ADMINISTRACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        navbarAdministracion.Style["display"] = "none";
+                    }
+
+                    //Administración de Eventos
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        nav_crear_evento.Style["display"] = "none";
+                    }
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'EVENTO_HISTORIAL'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        nav_hist_evento.Style["display"] = "none";
+                    }
+
+                    //Administración de Clases
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'ALUMNO_GRADUAR'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        nav_graduar_alumno.Style["display"] = "none";
+                    }
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_ASISTENCIA'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        nav_registrar_asistencia.Style["display"] = "none";
+                        nav_listado_asistencia.Style["display"] = "none";
+                    }
+
+                   permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_CREACION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        nav_crear_clase.Style["display"] = "none";
                     }
 
                 }
