@@ -75,7 +75,13 @@
                             <asp:TextBox ID="txtDni" class="caja2" required="true"  runat="server" placeholder="Ingrese Número" ValidationGroup="grupoDni"></asp:TextBox>
 
                         </div>
-
+                        
+                        <div class="col-md-2 col-xl-auto">
+                            <label class="pull-left">Nombre Completo:</label>
+                        </div>
+                        <div class="col-md-3 col-xl-auto">
+                            <label class="pull-left" runat="server" id="lblNombreBuscado"></label>
+                        </div>
 
                         <!--Boton-->
                         <div class="col-md-1 col-xl-auto">
@@ -86,6 +92,46 @@
 
 
                     </div>
+                    
+                    <div runat="server" class="row centered justify-content-center" id="divDNIAlumno" Visible="False">
+
+
+                        <!--Ingresar Tipo-->
+                        <div class="col-md-2 col-xl-auto">
+                            <label class="pull-left">Tipo: </label>
+                        </div>
+                        <div class="col-md-2 col-xl-auto">
+                            <label class="pull-left" runat="server" id="lblTipoDoc"></label>
+                        </div>
+
+                        <!--Ingresar Numero-->
+                        <div class="col-md-2 col-xl-auto">
+                            <label class="pull-left">Número:</label>
+                        </div>
+                        <div class="col-md-3 col-xl-auto">
+                            <label class="pull-left" runat="server" id="lblDni">Número:</label>
+                        </div>
+                        
+                        <div class="col-md-2 col-xl-auto">
+                            <label class="pull-left">Nombre Completo:</label>
+                        </div>
+                        <div class="col-md-3 col-xl-auto">
+                            <label class="pull-left" runat="server" id="lblNombre"></label>
+                        </div>
+
+                        <!--Boton-->
+                        <div class="col-md-1 col-xl-auto">
+
+                            <asp:Button ID="Button1" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscar_Click"  />
+
+                        </div>
+
+
+                    </div>
+
+                    
+                    
+
 
                     <div class="container">
 
