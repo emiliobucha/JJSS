@@ -58,7 +58,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string InscribirAEvento(int pEvento, string pNombre, string pApellido, DateTime pFechaNacimiento, short pSexo, int pTipo, string pDni, int? pIDAlumno)
+        public string InscribirAEvento(int pEvento, string pNombre, string pApellido, DateTime pFechaNacimiento, short pSexo, int pTipo, string pDni, int? pIDAlumno, int idPais)
         {
 
             String sReturn = "";
@@ -86,13 +86,44 @@ namespace JJSS_Negocio
                             fecha_nacimiento = pFechaNacimiento,
                             dni = pDni,
                             id_alumno = pIDAlumno,
-                            id_tipo_documento = pTipo
+                            id_tipo_documento = pTipo,
+                            id_pais = idPais
 
                         };
                         db.participante_evento.Add(nuevoParticipante);
                         db.SaveChanges();
                     }
-                 
+                    else
+                    {
+                        if (nuevoParticipante.nombre != pNombre)
+                        {
+                            nuevoParticipante.nombre = pNombre;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.apellido != pApellido)
+                        {
+                            nuevoParticipante.apellido = pApellido;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.fecha_nacimiento != pFechaNacimiento)
+                        {
+                            nuevoParticipante.fecha_nacimiento = pFechaNacimiento;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.id_pais != idPais)
+                        {
+                            nuevoParticipante.id_pais = idPais;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.sexo != pSexo)
+                        {
+                            nuevoParticipante.sexo = pSexo;
+                            db.SaveChanges();
+                        }
+
+
+                    }
+
 
                     string hora = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;

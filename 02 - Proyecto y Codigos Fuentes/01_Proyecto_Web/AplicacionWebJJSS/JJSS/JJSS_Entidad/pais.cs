@@ -20,6 +20,7 @@ namespace JJSS_Entidad
             this.administrador = new HashSet<administrador>();
             this.alumno = new HashSet<alumno>();
             this.provincia = new HashSet<provincia>();
+            this.participante_evento = new HashSet<participante_evento>();
             this.participante = new HashSet<participante>();
             this.profesor = new HashSet<profesor>();
         }
@@ -33,6 +34,8 @@ namespace JJSS_Entidad
         public virtual ICollection<alumno> alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<provincia> provincia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<participante_evento> participante_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<participante> participante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

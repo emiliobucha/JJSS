@@ -153,6 +153,36 @@ namespace JJSS_Negocio
                         db.participante.Add(nuevoParticipante);
                         db.SaveChanges();
                     }
+                    else
+                    {
+                        if (nuevoParticipante.nombre != pNombre)
+                        {
+                            nuevoParticipante.nombre = pNombre;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.apellido != pApellido)
+                        {
+                            nuevoParticipante.apellido = pApellido;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.fecha_nacimiento != pFechaNacimiento)
+                        {
+                            nuevoParticipante.fecha_nacimiento = pFechaNacimiento;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.id_pais != pIdPais)
+                        {
+                            nuevoParticipante.id_pais = pIdPais;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.sexo != pSexo)
+                        {
+                            nuevoParticipante.sexo = pSexo;
+                            db.SaveChanges();
+                        }
+
+
+                    }
 
                     string hora  = DateTime.Now.ToString("hh:mm tt");
                     DateTime fecha = DateTime.Now.Date;
