@@ -282,6 +282,11 @@
                             <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-outline-dark" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgAlumnos" />
                         </div>
 
+                        <div class="row ">
+                            <asp:HyperLink runat="server" Text="Ver Alumnos" CssClass="btn btn-link" href="AdministrarAlumnos.aspx"></asp:HyperLink>
+                        </div>
+
+
                         <div class=" p-2 ">
                             <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
                         </div>

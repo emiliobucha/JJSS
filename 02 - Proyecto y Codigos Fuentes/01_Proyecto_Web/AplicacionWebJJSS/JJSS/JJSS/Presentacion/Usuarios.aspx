@@ -102,11 +102,12 @@
                         </div>
                     </asp:Panel>
                 </div>
-                <div class="row pull-left">
+                <div class="row">
                     <div class="col">
-                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="/Presentacion/Administracion/Menu_Administracion.aspx"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link pull-left " Text="Volver" href="/Presentacion/Administracion/Menu_Administracion.aspx"></asp:LinkButton>
                     </div>
                 </div>
+
                 <div>
                     &nbsp;
                 </div>

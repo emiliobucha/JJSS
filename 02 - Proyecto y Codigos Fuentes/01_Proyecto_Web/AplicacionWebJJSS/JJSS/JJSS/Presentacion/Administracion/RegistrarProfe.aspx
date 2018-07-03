@@ -282,12 +282,16 @@
                             </asp:Panel>
 
                             <!--Boton-->
-                             <div class="row centered justify-content-center">
-                                 <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-outline-dark" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgProfes" />
-                             </div>
+                            <div class="row centered justify-content-center">
+                                <asp:Button ID="btn_guardar" runat="server" CssClass="btn btn-outline-dark" Text="Aceptar" OnClick="btn_guardar_click" ValidationGroup="vgProfes" />
+                            </div>
 
                             <div class="row ">
                                 <asp:HyperLink runat="server" Text="Ver Profesores" CssClass="btn btn-link" href="AdministrarProfesores.aspx"></asp:HyperLink>
+                            </div>
+
+                            <div class=" p-2 ">
+                                <p class="text-danger pull-right " style="font-size: small">* Campo requerido</p>
                             </div>
 
                         </div>
