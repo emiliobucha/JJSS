@@ -398,6 +398,7 @@
           <Property Name="dni" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="id_alumno" Type="int" />
           <Property Name="id_tipo_documento" Type="int" />
+          <Property Name="id_pais" Type="int" />
         </EntityType>
         <EntityType Name="producto">
           <Key>
@@ -1694,6 +1695,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PARTICIPANTE_EV_ID_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="participante_evento" Type="Self.participante_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="participante_evento">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PARTICIPANTE_EV_ID_TIPO_DOCUMENTO">
           <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="0..1" />
           <End Role="participante_evento" Type="Self.participante_evento" Multiplicity="*" />
@@ -2199,6 +2212,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_PARTICIPANTE_EV_ID_ALUMNO" Association="Self.FK_PARTICIPANTE_EV_ID_ALUMNO">
             <End Role="alumno" EntitySet="alumno" />
+            <End Role="participante_evento" EntitySet="participante_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTICIPANTE_EV_ID_PAIS" Association="Self.FK_PARTICIPANTE_EV_ID_PAIS">
+            <End Role="pais" EntitySet="pais" />
             <End Role="participante_evento" EntitySet="participante_evento" />
           </AssociationSet>
           <AssociationSet Name="FK_PARTICIPANTE_EV_ID_TIPO_DOCUMENTO" Association="Self.FK_PARTICIPANTE_EV_ID_TIPO_DOCUMENTO">
@@ -2711,6 +2728,7 @@
           <NavigationProperty Name="administrador" Relationship="Self.FK_ADMIN_PAIS" FromRole="pais" ToRole="administrador" />
           <NavigationProperty Name="alumno" Relationship="Self.FK_ALUMNO_ID_PAIS" FromRole="pais" ToRole="alumno" />
           <NavigationProperty Name="provincia" Relationship="Self.FK__provincia__id_pa__4944D3CA" FromRole="pais" ToRole="provincia" />
+          <NavigationProperty Name="participante_evento" Relationship="Self.FK_PARTICIPANTE_EV_ID_PAIS" FromRole="pais" ToRole="participante_evento" />
           <NavigationProperty Name="participante" Relationship="Self.FK_PARTICIPANTE_ID_PAIS" FromRole="pais" ToRole="participante" />
           <NavigationProperty Name="profesor" Relationship="Self.FK_PROFESOR_ID_PAIS" FromRole="pais" ToRole="profesor" />
         </EntityType>
@@ -2760,9 +2778,11 @@
           <Property Name="dni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_alumno" Type="Int32" />
           <Property Name="id_tipo_documento" Type="Int32" />
+          <Property Name="id_pais" Type="Int32" />
           <NavigationProperty Name="alumno" Relationship="Self.FK_PARTICIPANTE_EV_ID_ALUMNO" FromRole="participante_evento" ToRole="alumno" />
           <NavigationProperty Name="inscripcion_evento" Relationship="Self.FK__inscripci__id_pa__3631FF56" FromRole="participante_evento" ToRole="inscripcion_evento" />
           <NavigationProperty Name="pago_evento" Relationship="Self.FK_PAGO_EVENTO_PARTICIPANTE" FromRole="participante_evento" ToRole="pago_evento" />
+          <NavigationProperty Name="pais" Relationship="Self.FK_PARTICIPANTE_EV_ID_PAIS" FromRole="participante_evento" ToRole="pais" />
           <NavigationProperty Name="tipo_documento" Relationship="Self.FK_PARTICIPANTE_EV_ID_TIPO_DOCUMENTO" FromRole="participante_evento" ToRole="tipo_documento" />
         </EntityType>
         <EntityType Name="producto">
@@ -3952,6 +3972,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PARTICIPANTE_EV_ID_PAIS">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="participante_evento" Type="Self.participante_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="participante_evento">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PARTICIPANTE_ID_PAIS">
           <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
           <End Role="participante" Type="Self.participante" Multiplicity="*" />
@@ -4577,6 +4609,10 @@
             <End Role="pais" EntitySet="pais" />
             <End Role="provincia" EntitySet="provincia" />
           </AssociationSet>
+          <AssociationSet Name="FK_PARTICIPANTE_EV_ID_PAIS" Association="Self.FK_PARTICIPANTE_EV_ID_PAIS">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="participante_evento" EntitySet="participante_evento" />
+          </AssociationSet>
           <AssociationSet Name="FK_PARTICIPANTE_ID_PAIS" Association="Self.FK_PARTICIPANTE_ID_PAIS">
             <End Role="pais" EntitySet="pais" />
             <End Role="participante" EntitySet="participante" />
@@ -5094,6 +5130,7 @@
                 <ScalarProperty Name="dni" ColumnName="dni" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -29,12 +29,14 @@ namespace JJSS_Entidad
         public string dni { get; set; }
         public Nullable<int> id_alumno { get; set; }
         public Nullable<int> id_tipo_documento { get; set; }
+        public Nullable<int> id_pais { get; set; }
     
         public virtual alumno alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion_evento> inscripcion_evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pago_evento> pago_evento { get; set; }
+        public virtual pais pais { get; set; }
         public virtual tipo_documento tipo_documento { get; set; }
     }
 }

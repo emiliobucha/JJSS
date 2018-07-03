@@ -248,6 +248,7 @@ namespace JJSS.Presentacion
 
             pnl_Inscripcion.Visible = true;
 
+
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNITipo(idTipo, txtDni.Text);
             if (alumnoEncontrado != null)
             {
@@ -267,8 +268,8 @@ namespace JJSS.Presentacion
                 txt_apellido.Text = alumnoEncontrado.apellido;
                 txt_nombre.Text = alumnoEncontrado.nombre;
 
-                ddl_nacionalidad.SelectedValue = alumnoEncontrado.id_tipo_documento != null
-                    ? alumnoEncontrado.id_tipo_documento.ToString()
+                ddl_nacionalidad.SelectedValue = alumnoEncontrado.id_pais != null
+                    ? alumnoEncontrado.id_pais.ToString()
                     : "";
 
                 DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
@@ -286,6 +287,37 @@ namespace JJSS.Presentacion
                 if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
 
                 idAlumno = alumnoEncontrado.id_alumno;
+            }
+            else
+            {
+
+                participante_evento partAnterior = gestorInscripciones.ObtenerParticipanteEventoPorDniTipo(idTipo, txtDni.Text);
+
+                if (partAnterior != null)
+                {
+                    //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
+
+
+
+                    txt_apellido.Text = partAnterior.apellido;
+                    txt_nombre.Text = partAnterior.nombre;
+
+
+                    ddl_nacionalidad.SelectedValue = partAnterior.id_pais != null
+                        ? partAnterior.id_pais.ToString()
+                        : "";
+
+                    DateTime fecha = (DateTime)partAnterior.fecha_nacimiento;
+
+                    dp_fecha.Text = fecha.ToShortDateString();
+
+                    if (partAnterior.sexo == 0) rbSexo.SelectedIndex = 0;
+                    if (partAnterior.sexo == 1) rbSexo.SelectedIndex = 1;
+
+
+                }
+
+
             }
 
         }
@@ -349,7 +381,7 @@ namespace JJSS.Presentacion
 
 
             //para todos
-            string sReturn = gestorInscripciones.InscribirAEvento(idEvento, nombre, apellido, fechaNac.Date, sexo, idTipo, dni, idAlumno);
+            string sReturn = gestorInscripciones.InscribirAEvento(idEvento, nombre, apellido, fechaNac.Date, sexo, idTipo, dni, idAlumno, idPais);
 
 
             if (sReturn.CompareTo("") == 0)
