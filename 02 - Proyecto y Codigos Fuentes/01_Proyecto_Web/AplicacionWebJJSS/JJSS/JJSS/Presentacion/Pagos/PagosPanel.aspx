@@ -123,12 +123,7 @@
                             <label class="pull-left" runat="server" id="lblNombre"></label>
                         </div>
 
-                        <!--Boton-->
-                        <div class="col-md-1 col-xl-auto">
-
-                            <asp:Button ID="Button1" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btnBuscar_Click"  />
-
-                        </div>
+                      
                     </div>
 
 
