@@ -279,7 +279,7 @@ namespace JJSS.Presentacion.Pagos
 
             if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
             {
-
+                formasPago.RemoveAll(x => x.nombre == "Efectivo");
             }
             else
             {

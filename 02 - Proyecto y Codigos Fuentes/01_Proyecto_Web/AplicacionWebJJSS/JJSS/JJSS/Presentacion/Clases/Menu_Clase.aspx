@@ -272,7 +272,10 @@
 
                             </div>
                             <div class="p-1" runat="server">
-                                <asp:Button ID="lv_btn_inscribir" runat="server" CommandName="inscribir" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Inscribir" />
+                                
+                                <asp:Button ID="lv_btn_ver" Visible='<%#!(Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Ver" />
+                                
+                                <asp:Button ID="lv_btn_inscribir" Visible='<%#(Convert.ToBoolean(Eval("MostrarInscribir"))) %>' runat="server" CommandName="inscribir" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Inscribir" />
                       
                                 <asp:Button ID="lv_btn_seleccionar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Editar" />
                     
@@ -340,7 +343,7 @@
 
                             </div>
                             <div class="p-1" runat="server">
-                                <asp:Button ID="lv_btn_ver" runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Ver" />
+                                <asp:Button ID="lv_btn_verI" runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Ver" />
                             </div>
                              <div class="row centered">
                                 <p>&nbsp;</p>

@@ -22,6 +22,7 @@ namespace JJSS
         private GestorProfesores gestorProfesores;
         private int? idAlumno = null;
         private seguridad_usuario usuario;
+        private static int idTorneo;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -104,14 +105,14 @@ namespace JJSS
 
                 if (Session["idTorneo_inscribirTorneo"] != null)
                 {
-                    int id = (int)Session["idTorneo_inscribirTorneo"];
+                    idTorneo = (int)Session["idTorneo_inscribirTorneo"];
                     Session["idTorneo_inscribirTorneo"] = null;
-                    cargarInfoTorneo(id);
+                    cargarInfoTorneo(idTorneo);
                     pnl_elegirTorneo.Visible = false;
                     pnl_InfoTorneo.Visible = true;
                     pnl_Inscripcion.Visible = false;
                     pnl_dni.Visible = true;
-                    torneo t = gestorDeTorneos.BuscarTorneoPorID(id);
+                    torneo t = gestorDeTorneos.BuscarTorneoPorID(idTorneo);
                     CargarComboFajas((int)t.id_tipo_clase);
                 }
                 else
@@ -179,17 +180,12 @@ namespace JJSS
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
 
-            int idTorneo;
-            if (Session["idTorneo_inscribirTorneo"] != null)
-            {
-                idTorneo = (int)Session["idTorneo_inscribirTorneo"];
 
-            }
-            else
+            if (idTorneo == 0)
             {
                 idTorneo = int.Parse(ddl_torneos.SelectedValue);
-
             }
+        
 
 
             //solo para invitados
@@ -297,10 +293,9 @@ namespace JJSS
                 ddl_torneos.DataBind();
             }
 
-            if (Session["idTorneo_inscribirTorneo"] != null)
+            if (idTorneo != 0)
             {
-                int id = (int)Session["idTorneo_inscribirTorneo"];
-                ddl_torneos.SelectedValue = id.ToString();
+                ddl_torneos.SelectedValue = idTorneo.ToString();
             }
         }
 
@@ -400,18 +395,14 @@ namespace JJSS
            
 
                 limpiar(false);
-
-                int idTorneo;
-                if (Session["idTorneo_inscribirTorneo"] != null)
+            
+                if (idTorneo == 0)
                 {
-                    idTorneo = (int)Session["idTorneo_inscribirTorneo"];
 
-                }
-                else
-                {
                     idTorneo = int.Parse(ddl_torneos.SelectedValue);
 
                 }
+                
                 int idTipo;
                 int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
