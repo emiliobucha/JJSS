@@ -240,7 +240,6 @@
                         </div>
 
                       
-
                         <!--Ingresar DNI-->
 
                         <div class="row centered justify-content-center">
@@ -252,7 +251,6 @@
                             </div>
                             <div class="col-md-3 col-xl-auto">
                                 <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
-
                             </div>
 
 
@@ -261,21 +259,18 @@
                                 <label class="pull-left">Número: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3 col-xl-auto">
-
                                 <asp:TextBox ID="txtDni" class="caja2" required="true"  runat="server" placeholder="Ingrese Número" ValidationGroup="grupoDni"></asp:TextBox>
-
                             </div>
 
 
                             <!--Boton-->
                             <div class="col-md-1 col-xl-auto">
-
-                                <asp:Button ID="btnBuscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
-
+                                <asp:Button ID="btnBuscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
                             </div>
 
 
                         </div>
+
                         <div class="row centered">
                             <p>&nbsp;</p>
                         </div>
@@ -283,6 +278,7 @@
                         <div class=" p-4 ">
                             <p class="text-danger pull-right  " style="font-size: small">* Campo requerido</p>
                         </div>
+
                     </asp:Panel>
 
 
@@ -459,7 +455,7 @@
                         <!--Boton Aceptar-->
                         <div class="row centered justify-content-center">
 
-                            <asp:Button ID="btn_aceptar"  UseSubmitBehaviour="false" class="btn btn-default" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
+                            <asp:Button ID="btn_aceptar"  UseSubmitBehaviour="false" class="btn btn-outline-dark" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vgDatos" />
 
 
                         </div>

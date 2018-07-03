@@ -116,7 +116,7 @@
                         <div class="row centered ">
                             <div class="col centered col-lg-12 col-md-12 col-sm-12">
                                 <asp:Label ID="Label5" runat="server" Text="Información del Evento: " CssClass=" h3 " Font-Size="Large"></asp:Label>
-                                <asp:Label ID="lbl_nombreEvento" CssClass=" pull-left left" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lbl_nombreEvento" CssClass="centered h3 " runat="server" Text="" Font-Size="Large"></asp:Label>
                             </div>
                         </div>
 
@@ -128,15 +128,12 @@
                         <div class="row centered justify-content-center">
                             <div class="col-md-2 hidden-sm hidden-xs"></div>
                             <div class="col-md-6 col-sm-10 ">
-                                <label class="pull-left">Fecha del evento:&nbsp; </label>
+                                <label class="pull-left h6">Fecha del evento:&nbsp; </label>
                                 <asp:Label ID="lbl_FechaDeEvento" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                 <asp:Label ID="Label1" CssClass="pull-left" runat="server" Text=", "></asp:Label>
                                 <asp:Label ID="lbl_HoraEvento" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                 <asp:Label ID="Label2" CssClass="pull-left" runat="server" Text=" hs"></asp:Label>
                             </div>
-                        </div>
-                        <div class="row centered">
-                            <p>&nbsp;</p>
                         </div>
 
 
@@ -145,15 +142,12 @@
                         <div class="row centered justify-content-center">
                             <div class="col-md-2 hidden-sm hidden-xs"></div>
                             <div class="col-md-6 col-sm-10 ">
-                                <label class="pull-left">Cierre de Inscripción:&nbsp;</label>
+                                <label class="pull-left h6">Cierre de Inscripción:&nbsp;</label>
                                 <asp:Label ID="lbl_FechaCierreInscripcion" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                 <asp:Label ID="Label3" CssClass="pull-left" runat="server" Text=", "></asp:Label>
                                 <asp:Label ID="lbl_HoraCierre" CssClass="pull-left" runat="server" Text=""></asp:Label>
                                 <asp:Label ID="Label8" CssClass="pull-left" runat="server" Text=" hs"></asp:Label>
                             </div>
-                        </div>
-                        <div>
-                            <p>&nbsp;</p>
                         </div>
 
                         <!--direccion de la sede-->
@@ -170,9 +164,6 @@
                                 <label class="pull-left h6">Dirección:&nbsp;</label>
                                 <asp:Label ID="lbl_direccion_sede" CssClass="pull-left" runat="server" Text=""></asp:Label>
                             </div>
-                        </div>
-                        <div class="row centered">
-                            <p>&nbsp;</p>
                         </div>
 
                         <!--Precio-->
@@ -202,6 +193,9 @@
                     <!-- PANEL DNI-->
                     <asp:Panel ID="pnl_dni" CssClass="panel panel-default justify-content-center border rounded p-2" runat="server" Visible="true">
 
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
 
                         <div class="col centered">
                             <asp:Label ID="Label7" runat="server" Text="Identificación" CssClass=" h3 " Font-Size="Large"></asp:Label>
@@ -240,8 +234,12 @@
 
                             <!--Boton-->
                             <div class="col-md-1 col-xl-auto">
-                                <asp:Button ID="btnBuscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
+                                <asp:Button ID="btnBuscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btnBuscarDni_Click" />
                             </div>
+                        </div>
+
+                        <div >
+                            <p>&nbsp;</p>
                         </div>
 
                         <div class=" p-4 ">
