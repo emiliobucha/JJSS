@@ -180,10 +180,14 @@ namespace JJSS
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
 
-
+            int idTorneoCombo = 0;
             if (idTorneo == 0)
             {
-                idTorneo = int.Parse(ddl_torneos.SelectedValue);
+                idTorneoCombo = int.Parse(ddl_torneos.SelectedValue);
+            }
+            else
+            {
+                idTorneoCombo = idTorneo;
             }
         
 
@@ -231,7 +235,7 @@ namespace JJSS
             short tipoInsc = 0;
             if (rb_tipo.SelectedIndex == 0) tipoInsc = 0;//categoria
             if (rb_tipo.SelectedIndex == 1) tipoInsc = 1;//absoluto
-            string sReturn = gestorInscripciones.InscribirATorneo(idTorneo, nombre, apellido, peso, fechaNac.Date,
+            string sReturn = gestorInscripciones.InscribirATorneo(idTorneoCombo, nombre, apellido, peso, fechaNac.Date,
                 idFaja, sexo, idTipo, dni, idAlumno, tipoInsc, idPais);
 
 
@@ -265,7 +269,7 @@ namespace JJSS
 
                     }
                     sFile = gestorInscripciones.ComprobanteInscripcion(
-                        gestorInscripciones.obtenerInscripcionATorneoPorIdParticipantePorDni(idTipo, dni, idTorneo).id_inscripcion, mail);
+                        gestorInscripciones.obtenerInscripcionATorneoPorIdParticipantePorDni(idTipo, dni, idTorneoCombo).id_inscripcion, mail);
                     pnl_comprobante.Visible = true;
                     btn_descargar.Attributes.Add("href", "../Downloader.ashx?" + "sFile=" + sFile);
                 }
@@ -337,10 +341,11 @@ namespace JJSS
             pnl_mensaje_exito.Visible = false;
 
 
-            int idTorneo = 0;
-            int.TryParse(ddl_torneos.SelectedValue, out idTorneo);
-            cargarInfoTorneo(idTorneo);
-            int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
+            int idTorneoCombo = 0;
+            int.TryParse(ddl_torneos.SelectedValue, out idTorneoCombo);
+            cargarInfoTorneo(idTorneoCombo);
+            
+            int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneoCombo).id_tipo_clase;
             CargarComboFajas(idTipoClase);
 
         }
@@ -395,19 +400,25 @@ namespace JJSS
            
 
                 limpiar(false);
-            
-                if (idTorneo == 0)
+
+            int idTorneoCombo = 0;
+            if (idTorneo == 0)
                 {
 
-                    idTorneo = int.Parse(ddl_torneos.SelectedValue);
-
-                }
+                    
+                    int.TryParse(ddl_torneos.SelectedValue, out idTorneoCombo);
+                   
+            }
+            else
+            {
+                idTorneoCombo = idTorneo;
+            }
                 
                 int idTipo;
                 int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
                 participante participanteEncontrado =
-                    gestorInscripciones.obtenerParticipanteDeTorneo(idTipo, txtDni.Text, idTorneo);
+                    gestorInscripciones.obtenerParticipanteDeTorneo(idTipo, txtDni.Text, idTorneoCombo);
 
                 //Partipante ya estaba inscripto con ese dni
                 if (participanteEncontrado != null)
