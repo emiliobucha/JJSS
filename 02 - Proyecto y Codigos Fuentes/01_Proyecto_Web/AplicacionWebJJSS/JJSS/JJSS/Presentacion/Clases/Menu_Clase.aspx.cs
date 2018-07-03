@@ -16,7 +16,7 @@ namespace JJSS.Presentacion
 
         private GestorClases gestorDeClases;
         public bool MostrarEditar { get; set; } = true;
-
+        public bool MostrarInscribir { get; set; } = true;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -77,9 +77,7 @@ namespace JJSS.Presentacion
                 Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                 if (sesionActiva.estado == "INGRESO ACEPTADO")
                 {
-
-
-
+                    
 
                     //Administración de eventos
 
@@ -93,8 +91,22 @@ namespace JJSS.Presentacion
                     {
                         crear_clase.Style["display"] = "none";
                         MostrarEditar = false;
+                       
                     }
 
+
+                     permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        
+                        MostrarInscribir = false;
+
+                    }
 
 
                     permiso = 0;
@@ -215,7 +227,11 @@ namespace JJSS.Presentacion
             int filtroProfesor = int.Parse(ddl_profesores.SelectedValue);
 
             List<ClasesDisponibles> clasesDisponibles = gestorDeClases.ObtenerClasesDisponibles(filtroNombre, filtroProfesor, filtroAcademia);
-            clasesDisponibles.ForEach(x => x.MostrarEditar = MostrarEditar);
+            clasesDisponibles.ForEach(x =>
+            {
+                x.MostrarEditar = MostrarEditar;
+                x.MostrarInscribir = MostrarInscribir;
+            });
 
             lv_clasesDisponibles.DataSource = clasesDisponibles;
             lv_clasesDisponibles.DataBind();

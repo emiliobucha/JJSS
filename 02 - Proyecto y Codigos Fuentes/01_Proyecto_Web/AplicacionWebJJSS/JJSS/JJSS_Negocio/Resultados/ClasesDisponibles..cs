@@ -17,5 +17,6 @@ namespace JJSS_Negocio.Resultados
         public int id_profesor { get; set; }
         public int id_academia { get; set; }
         public bool MostrarEditar { get; set; } = true;
+        public bool MostrarInscribir { get; set; } = true;
     }
 }
