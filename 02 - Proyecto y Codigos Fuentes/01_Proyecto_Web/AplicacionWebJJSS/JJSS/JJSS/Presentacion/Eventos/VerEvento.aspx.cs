@@ -39,7 +39,7 @@ namespace JJSS.Presentacion.Eventos
                 else volverPaginaAnterior();
             }
         }
-
+        
         private void cargarInformacion()
         {
             GestorSedes gestorSede = new GestorSedes();
@@ -306,6 +306,25 @@ namespace JJSS.Presentacion.Eventos
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
             }
+        }
+
+
+        protected void btn_si_Click1(object sender, EventArgs e)
+        {
+            limpiarMensaje();
+            string res = gestorEventos.cancelarEvento(eventoSeleccionado.id_evento, ConstantesEstado.TORNEO_CANCELADO);
+            verBotones();
+            if (res.CompareTo("") == 0)
+            {
+                Session["mensaje"] = "Se ha cancelado el torneo exitosamente";
+                Session["exito"] = true;
+                Response.Redirect("/Presentacion/Torneos/MenuEvento.aspx");
+            }
+            else
+            {
+                mensaje(res, false);
+            }
+
         }
     }
 }
