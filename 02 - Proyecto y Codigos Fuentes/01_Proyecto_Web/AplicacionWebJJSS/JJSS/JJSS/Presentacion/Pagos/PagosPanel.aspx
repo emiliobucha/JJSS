@@ -34,7 +34,7 @@
                     <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
                 </div>
             </div>
-            <div class="row centered">
+            <div>
                 <p>&nbsp;</p>
             </div>
         </asp:Panel>
@@ -53,7 +53,11 @@
                         <h1>Pagos Pendientes</h1>
                     </div>
 
-                    <div runat="server" class="row centered justify-content-center" id="divDNI" Visible="False">
+                    <div>
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <div runat="server" class="row centered justify-content-center" id="divDNI" visible="False">
 
 
                         <!--Ingresar Tipo-->
@@ -86,7 +90,7 @@
                         <!--Boton-->
                         <div class="col-md-1 col-xl-auto">
 
-                            <asp:Button ID="btnBuscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscar_Click"  />
+                            <asp:Button ID="btnBuscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btnBuscar_Click"  />
 
                         </div>
 
@@ -122,16 +126,16 @@
                         <!--Boton-->
                         <div class="col-md-1 col-xl-auto">
 
-                            <asp:Button ID="Button1" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-default" ValidationGroup="grupoDni" OnClick="btnBuscar_Click"  />
+                            <asp:Button ID="Button1" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar" CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btnBuscar_Click"  />
 
                         </div>
-
-
                     </div>
 
-                    
-                    
 
+
+                    <div>
+                        <p>&nbsp;</p>
+                    </div>
 
                     <div class="container">
 
@@ -157,9 +161,7 @@
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
-                                </asp:GridView>
-                               
-
+                                </asp:GridView>     
                             </div>
                             <div class="row justify-content-center p-1">
                                 <div class="col-xs-2">
@@ -173,11 +175,19 @@
                             </div>
                             <div class="row centered justify-content-center p-1">
                                 <div class="col-xl-auto">
-                                    <asp:Button ID="btnRegistrarPago" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-default " OnClick="btnRegistrarPago_Click" />
+                                    <asp:Button ID="btnRegistrarPago" formnovalidate="true" CausesValidation="false" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" OnClick="btnRegistrarPago_Click" />
                                 </div>
                             </div>
-
                         </div>
+
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                        
+                        <div class="row">
+                            <asp:Button ID="btn_volver" formnovalidate="true" class="btn btn-link pull-left" runat="server" Text="Volver" OnClick="btn_volver_Click" />
+                        </div>
+
                     </div>
                 </div>
             </asp:Panel>

@@ -313,5 +313,15 @@ namespace JJSS.Presentacion.Pagos
             ddl_tipo.DataBind();
 
         }
+
+        protected void btn_volver_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
+            else Response.Redirect("/Presentacion/MenuInicial.aspx");
+           
+
+        }
     }
 }
