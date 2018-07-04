@@ -55,6 +55,12 @@ namespace JJSS.Presentacion
                 CargarComboProfes();
                 txt_horadesde.Text = "00:00";
                 txt_horahasta.Text = "01:00";
+
+                if (Session["mensaje"] != null && Session["mensaje"].ToString().Trim() != "")
+                {
+                    mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
+                    Session["mensaje"] = null;
+                }
             }
         }
 

@@ -55,7 +55,10 @@ namespace JJSS.Presentacion.Administracion
             if (idTipoClase == 0)
             {
                 string res = gtc.crearTipoClase(nombre);
-                if (res.CompareTo("") == 0) mensaje("Se ha creado el tipo de clase exitosamente", true);
+                if (res.CompareTo("") == 0)
+                {
+                    redirigirPorExito("Se ha creado el tipo de clase exitosamente");
+                }
                 else mensaje(res, false);
                 cargarGrilla();
             }
@@ -64,14 +67,25 @@ namespace JJSS.Presentacion.Administracion
                 string res = gtc.modificarTipoClase(idTipoClase, txt_nombre.Text);
                 if (res.CompareTo("") == 0)
                 {
-                    mensaje("Se ha eliminado exitosamente", true);
                     idTipoClase = 0;
+                    redirigirPorExito("Se ha modificado el tipo de clase exitosamente");
                 }
                 else mensaje(res, false);
                 cargarGrilla();
             }
+        }
 
-            
+        private void redirigirPorExito(string strMensaje)
+        {
+            string anterior = ViewState["RefUrl"].ToString();
+
+            if (anterior.EndsWith("CrearClase"))
+            {
+                Session["mensaje"] = strMensaje;
+                Session["exito"] = true;
+                Response.Redirect(anterior);
+            }
+            else this.mensaje(strMensaje, true);
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)

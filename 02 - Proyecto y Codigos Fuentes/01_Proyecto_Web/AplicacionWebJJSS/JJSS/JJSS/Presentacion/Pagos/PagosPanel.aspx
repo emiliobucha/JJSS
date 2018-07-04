@@ -155,7 +155,7 @@
                                        <%-- <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />--%>
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
-                                    <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
+                                    <PagerSettings Position="TopAndBottom" />
                                 </asp:GridView>     
                             </div>
                             <div class="row justify-content-center p-1">

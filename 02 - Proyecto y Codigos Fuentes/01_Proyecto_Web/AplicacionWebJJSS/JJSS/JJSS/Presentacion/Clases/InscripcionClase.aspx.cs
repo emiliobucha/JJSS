@@ -66,6 +66,12 @@ namespace JJSS.Presentacion
 
                 }
 
+                if (Session["mensaje"] != null && Session["mensaje"].ToString().Trim() != "")
+                {
+                    mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
+                    Session["mensaje"] = null;
+                }
+
                 if (Session["id_clase"] == null)
                 {
                     Response.Redirect("Menu_Clase.aspx");
@@ -73,7 +79,6 @@ namespace JJSS.Presentacion
                 else
                 {
                     id_Clase = Convert.ToInt32(Session["id_clase"]);
-                    Session["id_clase"] = null;
                 }
 
 

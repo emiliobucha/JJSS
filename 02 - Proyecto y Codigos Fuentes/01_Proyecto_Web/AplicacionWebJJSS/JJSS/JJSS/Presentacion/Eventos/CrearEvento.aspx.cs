@@ -51,6 +51,12 @@ namespace JJSS.Presentacion
                 CargarComboSedes();
                 CargarComboTipos();
 
+                if (Session["mensaje"] != null && Session["mensaje"].ToString().Trim() != "")
+                {
+                    mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
+                    Session["mensaje"] = null;
+                }
+
                 eventoAEditar = null;
                 if (Session["eventoSeleccionado"] != null)
                 {

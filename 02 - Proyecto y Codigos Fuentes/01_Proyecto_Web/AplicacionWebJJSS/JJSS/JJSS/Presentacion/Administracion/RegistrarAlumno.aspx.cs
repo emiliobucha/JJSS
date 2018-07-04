@@ -207,8 +207,10 @@ namespace JJSS.Presentacion
                 {
                     gestorAlumnos.ModificarAlumno(idTipo, dni, nombre, apellido, fechaNac, sexo, null, idPais);
                     gestorAlumnos.ModificarAlumnoContacto(calle, departamento, numero, piso, tel, telEmergencia, mail, idTipo,dni, ciudad, torre);
-                    mensaje("Se modificaron los datos correctamente", true);
+                    Session["mensaje"] = "Se modificaron los datos del alumno correctamente";
+                    Session["exito"] = true;
                     limpiar();
+                    redirigirPorExito();
                 }
                 catch (Exception ex)
                 {
@@ -230,14 +232,24 @@ namespace JJSS.Presentacion
                 try
                 {
                     gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, idTipo,dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad, torre, idPais);
-                    mensaje("Se ha creado el alumno exitosamente", true);
+                    Session["mensaje"] = "Se ha creado el alumno exitosamente";
+                    Session["exito"] = true;
                     limpiar();
+                    redirigirPorExito();
                 }
                 catch (Exception ex)
                 {
                     mensaje(ex.Message, false);
                 }
             }
+        }
+
+        private void redirigirPorExito()
+        {
+            string anterior = ViewState["RefUrl"].ToString();
+
+            if (anterior.EndsWith("InscripcionClase")) Response.Redirect(anterior);
+            else Response.Redirect("AdministrarAlumnos.aspx");
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
