@@ -51,11 +51,7 @@ namespace JJSS.Presentacion
                     Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
                 }
 
-                if (Session["mensaje"] != null && Session["mensaje"].ToString().Trim() != "")
-                {
-                    mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
-                    Session["mensaje"] = null;
-                }
+                
 
                 CargarComboSedes();
                 torneoAEditar = null;
@@ -83,6 +79,12 @@ namespace JJSS.Presentacion
                 else
                 {
                     limpiar();
+                }
+
+                if (Session["mensaje"] != null && Session["mensaje"].ToString().Trim() != "")
+                {
+                    mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
+                    Session["mensaje"] = null;
                 }
             }
         }
