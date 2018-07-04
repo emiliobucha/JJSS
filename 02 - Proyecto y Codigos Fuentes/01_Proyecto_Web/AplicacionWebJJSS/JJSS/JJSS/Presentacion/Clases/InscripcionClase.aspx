@@ -132,11 +132,18 @@
                         <div>
                             <!--Boton-->
                             <div class="row ">
-                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                    <strong class="text-left">Documento</strong>
+                                <div class=" col-lg-1 col-md-1 col-sm-12">
+                                    <strong>Tipo</strong>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12">
+                                    <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
+                                </div>
+
+                                <div class=" col-lg-1 col-md-1 col-sm-12">
+                                    <strong>N° Doc</strong>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txt_filtro_dni" type="number" min="1000000" CssClass="form-control" max="100000000" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_filtro_dni"  CssClass="form-control"  runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <strong class="text-left">Apellido</strong>
@@ -195,11 +202,14 @@
 
 
                     <asp:Panel ID="pnl_datos_alumnos" runat="server">
-
+                        
+                      
                         <div class="centered">
                             <h3>DATOS DEL ALUMNO</h3>
                             <p>&nbsp;</p>
                         </div>
+                        <asp:Label ID="txtIdAlumno" class="" Visible="False" runat="server" Text=""></asp:Label>
+
                         <!--Nombre-->
                         <div class="row justify-content-center pt-1">
                             <div class="col col-sm-1 col-md-2 col-lg-2">

@@ -114,6 +114,75 @@ namespace JJSS_Negocio
         }
 
 
+        public String InscribirAlumnoAClaseID(int id, int pClase, string pHora, DateTime pFecha, int pIdFaja)
+        {
+            String sReturn = "";
+            GestorAlumnos gestorAlumnos = new GestorAlumnos();
+            alumno pAlumno = gestorAlumnos.ObtenerAlumnoPorID(id);
+            if (pAlumno == null)
+            {
+                throw new Exception("El alumno no está registrado");
+            }
+            if (ObtenerAlumnoInscripto(pAlumno.id_alumno, pClase) != null)
+            {
+                throw new Exception("El alumno ya está inscripto a esa clase");
+            }
+
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    /*Probando esta otra forma para luego ver cual forma tiene mayor rendimiento*/
+
+
+                    var transaction = db.Database.BeginTransaction();
+                    try
+                    {
+                        inscripcion_clase nuevaInscripcion = new inscripcion_clase()
+                        {
+                            id_alumno = pAlumno.id_alumno,
+                            id_clase = pClase,
+                            fecha = pFecha,
+                            hora = pHora,
+                            actual = Constantes.ConstatesBajaLogica.ACTUAL,
+                        };
+                        db.inscripcion_clase.Add(nuevaInscripcion);
+                        db.SaveChanges();
+                        if (pIdFaja > 0)
+                        {
+                            alumnoxfaja nuevaFaja = new alumnoxfaja()
+                            {
+                                id_alumno = pAlumno.id_alumno,
+                                id_faja = pIdFaja,
+                                fecha = pFecha,
+                                actual = Constantes.ConstatesBajaLogica.ACTUAL,
+                            };
+                            db.alumnoxfaja.Add(nuevaFaja);
+                            db.SaveChanges();
+                        }
+                        alumno alumnoInscribir = db.alumno.Find(pAlumno.id_alumno);
+                        gestorAlumnos.cambiarEstadoAActivo(alumnoInscribir.id_alumno);
+
+                        db.SaveChanges();
+
+                        transaction.Commit();
+                        return sReturn;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return ex.Message;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+
         /*
          * Obtener inscripcion de un alumno a una clase
          * Parametros:

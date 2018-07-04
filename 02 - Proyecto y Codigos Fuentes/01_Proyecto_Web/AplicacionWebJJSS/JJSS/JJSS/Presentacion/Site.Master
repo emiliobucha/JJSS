@@ -118,7 +118,7 @@
                               <a class="dropdown-item text-white" id="nav_seccion" href="/Presentacion/Eventos/Menu_Evento.aspx">Ver Sección </a>
                               <a class="dropdown-item text-white" id="nav_crear_evento" runat="server" href="/Presentacion/Eventos/CrearEvento.aspx">Crear </a>
                               <a class="dropdown-item text-white" id="nav_inscribir_evento" runat="server" href="/Presentacion/Eventos/InscripcionEvento.aspx">Inscribir </a>
-                              <a class="dropdown-item text-white" id="nav_hist_evento"  runat="server" href="/Presentacion/Eventos/HistoricoEvento.aspx">Ver Histórico </a>
+                              <a class="dropdown-item text-white" id="nav_hist_evento"  runat="server" href="/Presentacion/Eventos/HistoricoEventos.aspx">Ver Histórico </a>
                           </div>
                       </li>
                       <!-- Administración -->

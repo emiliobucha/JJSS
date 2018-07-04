@@ -59,8 +59,8 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var alumnoEncontrado = from alu in db.alumno
-                    where alu.dni == pDni && alu.baja_logica == 1 && alu.id_tipo_documento == pTipo
-                    select alu;
+                                       where alu.dni == pDni && alu.baja_logica == 1 && alu.id_tipo_documento == pTipo
+                                       select alu;
                 return alumnoEncontrado.FirstOrDefault();
             }
         }
@@ -114,7 +114,7 @@ namespace JJSS_Negocio
                     seguridad_usuario usuario = db.seguridad_usuario.Find(idUsuario);
 
 
-                    if (ObtenerAlumnoPorDNITipo(pTipo,pDni) != null)
+                    if (ObtenerAlumnoPorDNITipo(pTipo, pDni) != null)
                     {
                         throw new Exception("El alumno ya existe");
                     }
@@ -312,7 +312,7 @@ namespace JJSS_Negocio
                     return list;
 
 
-                
+
 
                 }
                 catch (Exception ex)
@@ -322,6 +322,82 @@ namespace JJSS_Negocio
                 }
             }
         }
+
+
+        public List<PersonaResultado.AlumnoResultado> BuscarAlumnosFiltradoBasico(string filtroApellido, string filtroDni, int? filtroTipoDoc)
+        {
+            cambiarEstadoAMoroso();
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    List<alumno> listado = new List<alumno>();
+                    if (filtroTipoDoc == null || filtroTipoDoc == 0)
+                    {
+                        if (!string.IsNullOrEmpty(filtroDni))
+                        {
+                            listado = db.alumno.Where(x => x.apellido.StartsWith(filtroApellido) && x.dni == filtroDni).ToList();
+                        }
+                        else
+                        {
+                            listado = db.alumno.Where(x => x.apellido.StartsWith(filtroApellido)).ToList();
+                        }
+
+                    }
+                    else
+                    {
+
+                        if (!string.IsNullOrEmpty(filtroDni))
+                        {
+                            listado = db.alumno.Where(x => x.id_tipo_documento == filtroTipoDoc && x.apellido.StartsWith(filtroApellido) && x.dni == filtroDni).ToList();
+                        }
+                        else
+                        {
+                            listado = db.alumno.Where(x => x.id_tipo_documento == filtroTipoDoc && x.apellido.StartsWith(filtroApellido)).ToList();
+                        }
+                    }
+
+
+
+
+                    var list = new List<PersonaResultado.AlumnoResultado>();
+                    foreach (var a in listado)
+                    {
+                        var tipoDoc =
+                            db.tipo_documento.FirstOrDefault(x => x.id_tipo_documento == a.id_tipo_documento);
+                        var est =
+                            db.estado.FirstOrDefault(x => x.id_estado == a.id_estado);
+
+
+                        var p = new PersonaResultado.AlumnoResultado()
+                        {
+                            id_alumno = a.id_alumno,
+                            nombre = a.nombre,
+                            apellido = a.apellido,
+                            dni = a.dni,
+                            id_tipo_documento = a.id_tipo_documento ?? 1,
+                            tipo_documento = tipoDoc != null ? tipoDoc.codigo : "",
+                            estado = est.nombre,
+                            id_estado = est.id_estado
+                        };
+
+                        list.Add(p);
+                    }
+                    return list;
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    sReturn = ex.Message;
+                    return null;
+                }
+            }
+        }
+
 
         /*Método que permite eliminar alumno
          * 
@@ -387,8 +463,8 @@ namespace JJSS_Negocio
                     db.SaveChanges();
 
                     seguridad_usuario usuario = (from usu in db.seguridad_usuario
-                        where usu.id_usuario == alumnoBorrar.id_usuario
-                        select usu).FirstOrDefault();
+                                                 where usu.id_usuario == alumnoBorrar.id_usuario
+                                                 select usu).FirstOrDefault();
                     if (usuario == null) throw new Exception("El usuario no existe");
                     usuario.baja_logica = 0;
                     db.SaveChanges();
@@ -428,7 +504,7 @@ namespace JJSS_Negocio
                 try
                 {
                     var alumnoModificar = db.alumno.FirstOrDefault(x => x.dni == pDni && x.id_tipo_documento == pTipo);
-                    
+
                     if (alumnoModificar == null) throw new Exception("El usuario no existe");
                     alumnoModificar.apellido = pApellido;
                     alumnoModificar.nombre = pNombre;
@@ -448,7 +524,7 @@ namespace JJSS_Negocio
                         {
                             usuarioEncontrado.login = pUsuario;
                         }
-             
+
                     }
 
 
@@ -697,7 +773,7 @@ namespace JJSS_Negocio
                         {
                             arrayImagen = new byte[0];
                         }
-                      
+
                         var imagenUrl = modUtilidades.SaveImage(pImagen, alumno.dni + alumno.nombre, "alumnos");
 
                         alumnoImagen.imagen = arrayImagen;
@@ -792,7 +868,8 @@ namespace JJSS_Negocio
                         }
                     }
                     transaction.Commit();
-                } catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                     return;

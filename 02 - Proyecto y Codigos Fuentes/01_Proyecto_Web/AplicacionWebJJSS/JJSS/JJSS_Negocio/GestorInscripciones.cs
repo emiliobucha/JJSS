@@ -235,18 +235,44 @@ namespace JJSS_Negocio
                     {
                         return "El participante ya se inscribió a este torneo";
                     }
-                    
-                    participante nuevoParticipante;
 
-                    nuevoParticipante = new participante()
+                    var nuevoParticipante = ObtenerParticipanteporDNITipo(pTipoDoc, pDni);
+
+                    if (nuevoParticipante == null)
                     {
-                        nombre = pNombre,
-                        apellido = pApellido,
-                        dni = pDni,
-                        sexo = pSexo
-                    };
-                    db.participante.Add(nuevoParticipante);
-                    db.SaveChanges();
+                        nuevoParticipante = new participante()
+                        {
+                            nombre = pNombre,
+                            apellido = pApellido,
+                            id_tipo_documento = pTipoDoc,
+                            sexo = pSexo,
+                             dni = pDni,
+
+
+                        };
+                        db.participante.Add(nuevoParticipante);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        if (nuevoParticipante.nombre != pNombre)
+                        {
+                            nuevoParticipante.nombre = pNombre;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.apellido != pApellido)
+                        {
+                            nuevoParticipante.apellido = pApellido;
+                            db.SaveChanges();
+                        }
+                        if (nuevoParticipante.sexo != pSexo)
+                        {
+                            nuevoParticipante.sexo = pSexo;
+                            db.SaveChanges();
+                        }
+
+
+                    }
 
                     short tipoInscripcion;
                     categoria_torneo categoriaAbsoluto = null;

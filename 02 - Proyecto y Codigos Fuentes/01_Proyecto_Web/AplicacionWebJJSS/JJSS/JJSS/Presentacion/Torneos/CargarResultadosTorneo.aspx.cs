@@ -333,6 +333,7 @@ namespace JJSS.Presentacion
             string apellido = txt_apellido.Text;
             var dni = txt_dni.Text;
 
+
             short sexo = 0;
             if (rbSexo.SelectedIndex == 0) sexo = JJSS_Negocio.Constantes.ContantesSexo.FEMENINO;
             if (rbSexo.SelectedIndex == 1) sexo = JJSS_Negocio.Constantes.ContantesSexo.MASCULINO;
