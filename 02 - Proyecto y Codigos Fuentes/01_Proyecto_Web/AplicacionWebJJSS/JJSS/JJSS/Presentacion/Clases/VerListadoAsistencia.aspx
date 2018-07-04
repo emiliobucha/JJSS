@@ -94,6 +94,7 @@
                         <Columns>
                             <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" />
                             <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="alu_tipo_documento" HeaderText="Tipo" />
                             <asp:BoundField DataField="alu_dni" HeaderText="Documento" />
                             <asp:BoundField DataField="alu_telefono" HeaderText="Teléfono" />
                             <asp:BoundField DataField="alu_sexo" HeaderText="Sexo" />
