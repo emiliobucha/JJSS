@@ -90,6 +90,7 @@ namespace JJSS.Presentacion
             txt_telefono.Text = alu.telefono.ToString();
             txt_telefono_urgencia.Text = alu.telefono_emergencia.ToString();
             ddl_tipo.SelectedValue = alu.id_tipo_documento.ToString();
+            ddl_nacionalidad.SelectedValue = alu.id_pais.ToString();
 
             DateTime fecha = (DateTime)alu.fecha_nacimiento;
             dp_fecha.Text = fecha.ToString("dd/MM/yyyy");
