@@ -328,7 +328,7 @@
                                 <label class="pull-left">Apellido: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_apellido" required="true" MaxLength="50" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
+                                <asp:TextBox ID="txt_apellido" required="true" MaxLength="50" class="caja2" runat="server" placeholder="Ingrese apellido" pattern="[A-Za-z]*"></asp:TextBox>
 
                             </div>
                         </div>
