@@ -23,6 +23,7 @@ namespace JJSS.Presentacion
         private GestorCiudades gestorCiudades;
         private GestorProvincias gestorProvincias;
         private static string dniProfesor;
+        private static int idProfesor;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,8 +31,7 @@ namespace JJSS.Presentacion
             gestorInscripciones = new GestorInscripciones();
             gestorCiudades = new GestorCiudades();
             gestorProvincias = new GestorProvincias();
-            dniProfesor = null;
-
+       
 
             if (!IsPostBack)
             {
@@ -68,7 +68,7 @@ namespace JJSS.Presentacion
                 CargarComboNacionalidades();
                 if (Session["profesorEditar"] != null)
                 {
-                    dniProfesor = Session["profesorEditar"].ToString();
+                    idProfesor = int.Parse(Session["profesorEditar"].ToString());
                     Session["profesorEditar"] = null;
                     CargarDatosProfesor();
                 }
@@ -77,13 +77,14 @@ namespace JJSS.Presentacion
 
         private void CargarDatosProfesor()
         {
-            profesor prof = gestorProfes.ObtenerProfesorPorDNI(dniProfesor);
+            profesor prof = gestorProfes.ObtenerProfesorPorID(idProfesor);
             txtDni.Text = prof.dni.ToString();
             txt_apellido.Text = prof.apellido;
             txt_email.Text = prof.mail;
             txt_nombres.Text = prof.nombre;
             txt_telefono.Text = prof.telefono.ToString();
             txt_telefono_urgencia.Text = prof.telefono_emergencia.ToString();
+            ddl_tipo.SelectedValue = prof.id_tipo_documento.ToString();
 
             DateTime fecha = (DateTime)prof.fecha_nacimiento;
             dp_fecha.Text = fecha.ToString("dd/MM/yyyy");

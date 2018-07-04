@@ -66,11 +66,20 @@
                             </div>
                             <!-- DNI-->
                             <div class="row centered justify-content-center ">
-                                <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <label>DNI</label>
+                                
+                                <!--Ingresar Tipo-->
+                                <div class="col-md-2 col-xl-auto">
+                                    <label class="pull-left">Tipo: <a class="text-danger">*</a></label>
+                                </div>
+                                <div class="col-md-3 col-xl-auto">
+                                    <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
+                                </div>
+                                
+                                <div class="col-md-2 col-xl-auto">
+                                    <label class="pull-left">Número: <a class="text-danger">*</a></label>
                                 </div>
                                 <div class=" col col-lg-3 col-md-3 col-sm-12">
-                                    <asp:TextBox ID="txtDni" required="true" min="1000000" max="100000000" type="number" class="caja2" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
+                                    <asp:TextBox ID="txtDni" required="true" class="caja2" runat="server" placeholder="Ingrese Número"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row centered">

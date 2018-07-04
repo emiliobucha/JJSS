@@ -42,8 +42,10 @@ namespace JJSS.Presentacion.Administracion
             gestorProfes = new GestorProfesores();
             if (!IsPostBack)
             {
+                CargarComboTipoDocumentos();
                 CargarGrilla();
             }
+            
         }
 
         protected void btn_buscar_profe_Click(object sender, EventArgs e)
@@ -60,11 +62,11 @@ namespace JJSS.Presentacion.Administracion
         protected void gvprofes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            var dni = gvprofes.DataKeys[index].Value.ToString();
+            var id =int.Parse(gvprofes.DataKeys[index].Value.ToString());
 
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
-                string sReturn = gestorProfes.EliminarProfesor(dni);
+                string sReturn = gestorProfes.EliminarProfesorID(id);
                 Boolean estado = true;
                 if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el profesor correctamente";
                 else estado = false;
@@ -73,7 +75,7 @@ namespace JJSS.Presentacion.Administracion
             }
             else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
-                Session["profesorEditar"] = dni;
+                Session["profesorEditar"] = id;
                 Response.Redirect("../Administracion/RegistrarProfe.aspx");
             }
         }
@@ -93,31 +95,30 @@ namespace JJSS.Presentacion.Administracion
                 lbl_error.Text = pMensaje;
             }
         }
-        
+
         protected void CargarGrilla()
         {
+            
+           
+         
+
             var dni = txt_filtro_dni.Text;
-            List<profesor> listaCompleta = gestorProfes.ObtenerProfesores();
-            List<profesor> listaConFiltro = new List<profesor>();
-
+            
             string filtroApellido = txt_filtro_apellido.Text.ToUpper();
+            int idTipo = 0;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
-            foreach (profesor i in listaCompleta)
-            {
-                string apellido = i.apellido.ToUpper();
-                if (string.IsNullOrEmpty(dni)) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
 
-                if (apellido.StartsWith(filtroApellido) && i.dni == dni) listaConFiltro.Add(i);
-            }
+            List<PersonaResultado.ProfesorResultado> listaCompleta = gestorProfes.ObtenerProfesoresFiltro(idTipo, dni, filtroApellido);
 
-            gvprofes.DataSource = listaConFiltro;
+            gvprofes.DataSource = listaCompleta;
             gvprofes.DataBind();
         }
 
         protected void btn_si_Click1(object sender, EventArgs e)
         {
-            string dni = txtIDSeleccionado.Text;
-            string sReturn = gestorProfes.EliminarProfesor(dni);
+            int id = int.Parse(txtIDSeleccionado.Text) ;
+            string sReturn = gestorProfes.EliminarProfesorID(id);
             Boolean estado = true;
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el profesor correctamente";
             else estado = false;
@@ -125,5 +126,27 @@ namespace JJSS.Presentacion.Administracion
             CargarGrilla();
             txtIDSeleccionado.Text = "";
         }
+
+        protected void CargarComboTipoDocumentos()
+        {
+
+            List<tipo_documento> tiposdoc = gestorProfes.ObtenerTiposDocumentos();
+            tipo_documento primerElemento = new tipo_documento()
+            {
+                id_tipo_documento = 0,
+                codigo = "Todos",
+            };
+            tiposdoc.Insert(0, primerElemento);
+
+
+
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+
+        }
+
+
     }
 }

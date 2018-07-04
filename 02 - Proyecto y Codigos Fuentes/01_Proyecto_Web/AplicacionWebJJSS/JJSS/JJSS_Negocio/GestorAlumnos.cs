@@ -36,6 +36,15 @@ namespace JJSS_Negocio
             }
         }
 
+
+        public alumno ObtenerAlumnoPorID(int id)
+        {
+            using (var db = new JJSSEntities())
+            {
+                return db.alumno.Find(id);
+            }
+        }
+
         /*
 
         /*
@@ -240,7 +249,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public List<AlumnoConEstado> BuscarAlumnoConEstado(int filtroEstados, string filtroApellido, string filtroDni)
+        public List<PersonaResultado.AlumnoResultado> BuscarAlumnoConEstado(int filtroEstados, string filtroApellido, string filtroDni, int? filtroTipoDoc)
         {
             cambiarEstadoAMoroso();
             string sReturn = "";
@@ -248,45 +257,62 @@ namespace JJSS_Negocio
             {
                 try
                 {
-                    if (string.IsNullOrEmpty(filtroDni))
+                    List<alumno> listado = new List<alumno>();
+                    if (filtroTipoDoc == null || filtroTipoDoc == 0)
                     {
-                        var alumnosPorApellido = from alumno in db.alumno
-                                                 join est in db.estado on alumno.id_estado equals est.id_estado
-                                                 where
-                                                 alumno.id_estado == filtroEstados
-                                                 && alumno.apellido.StartsWith(filtroApellido)
-                                                 orderby alumno.apellido
-                                                 select new AlumnoConEstado
-                                                 {
-                                                     alu_apellido = alumno.apellido,
-                                                     alu_nombre = alumno.nombre,
-                                                     alu_dni = alumno.dni,
-                                                     alu_estado = est.nombre,
-                                                     alu_id_estado = est.id_estado,
-                                                 };
-                        return alumnosPorApellido.ToList();
+                        if (!string.IsNullOrEmpty(filtroDni))
+                        {
+                            listado = db.alumno.Where(x => x.id_estado == filtroEstados && x.apellido.StartsWith(filtroApellido) && x.dni == filtroDni).ToList();
+                        }
+                        else
+                        {
+                            listado = db.alumno.Where(x => x.id_estado == filtroEstados && x.apellido.StartsWith(filtroApellido)).ToList();
+                        }
+
                     }
                     else
                     {
-                        var alumnosPorApellido = from alumno in db.alumno
-                                                 join est in db.estado on alumno.id_estado equals est.id_estado
-                                                 where
-                                                 alumno.id_estado == filtroEstados
-                                                 && alumno.apellido.StartsWith(filtroApellido)
-                                                 && alumno.dni == filtroDni
-                                                 orderby alumno.apellido
-                                                 select new AlumnoConEstado
-                                                 {
-                                                     alu_apellido = alumno.apellido,
-                                                     alu_nombre = alumno.nombre,
-                                                     alu_dni = alumno.dni,
-                                                     alu_estado = est.nombre,
-                                                     alu_id_estado = est.id_estado,
-                                                 };
-                        return alumnosPorApellido.ToList<AlumnoConEstado>();
+
+                        if (!string.IsNullOrEmpty(filtroDni))
+                        {
+                            listado = db.alumno.Where(x => x.id_estado == filtroEstados && x.id_tipo_documento == filtroTipoDoc && x.apellido.StartsWith(filtroApellido) && x.dni == filtroDni).ToList();
+                        }
+                        else
+                        {
+                            listado = db.alumno.Where(x => x.id_estado == filtroEstados && x.id_tipo_documento == filtroTipoDoc && x.apellido.StartsWith(filtroApellido)).ToList();
+                        }
                     }
 
 
+
+
+                    var list = new List<PersonaResultado.AlumnoResultado>();
+                    foreach (var a in listado)
+                    {
+                        var tipoDoc =
+                            db.tipo_documento.FirstOrDefault(x => x.id_tipo_documento == a.id_tipo_documento);
+                        var est =
+                            db.estado.FirstOrDefault(x => x.id_estado == a.id_estado);
+
+
+                        var p = new PersonaResultado.AlumnoResultado()
+                        {
+                            id_alumno = a.id_alumno,
+                            nombre = a.nombre,
+                            apellido = a.apellido,
+                            dni = a.dni,
+                            id_tipo_documento = a.id_tipo_documento ?? 1,
+                            tipo_documento = tipoDoc != null ? tipoDoc.codigo : "",
+                            estado = est.nombre,
+                            id_estado = est.id_estado
+                        };
+
+                        list.Add(p);
+                    }
+                    return list;
+
+
+                
 
                 }
                 catch (Exception ex)
@@ -307,7 +333,7 @@ namespace JJSS_Negocio
          *          
          * 
          */
-        public string EliminarAlumno(string pDni)
+        public string EliminarAlumno(string pDni, int tipoDoc)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -316,7 +342,7 @@ namespace JJSS_Negocio
                 try
                 {
                     var alumnoEncontrado = from alu in db.alumno
-                                           where alu.dni == pDni
+                                           where alu.dni == pDni && alu.id_tipo_documento == tipoDoc
                                            select alu;
                     alumno alumnoBorrar = alumnoEncontrado.FirstOrDefault();
 
@@ -328,6 +354,41 @@ namespace JJSS_Negocio
                     seguridad_usuario usuario = (from usu in db.seguridad_usuario
                                                  where usu.id_usuario == alumnoBorrar.id_usuario
                                                  select usu).FirstOrDefault();
+                    if (usuario == null) throw new Exception("El usuario no existe");
+                    usuario.baja_logica = 0;
+                    db.SaveChanges();
+
+
+                    transaction.Commit();
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
+        public string EliminarAlumnoID(int id)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    var alumnoEncontrado = db.alumno.Find(id);
+                    alumno alumnoBorrar = alumnoEncontrado;
+
+                    if (alumnoBorrar == null) throw new Exception("El alumno no existe");
+                    alumnoBorrar.baja_logica = 0;
+                    alumnoBorrar.id_estado = ConstantesEstado.ALUMNOS_DE_BAJA;
+                    db.SaveChanges();
+
+                    seguridad_usuario usuario = (from usu in db.seguridad_usuario
+                        where usu.id_usuario == alumnoBorrar.id_usuario
+                        select usu).FirstOrDefault();
                     if (usuario == null) throw new Exception("El usuario no existe");
                     usuario.baja_logica = 0;
                     db.SaveChanges();
@@ -778,6 +839,25 @@ namespace JJSS_Negocio
                     transaction.Rollback();
                     return;
                 }
+            }
+        }
+
+
+
+        public List<tipo_documento> ObtenerTiposDocumentos()
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+
+                    var list = db.tipo_documento.ToList();
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<tipo_documento>();
             }
         }
     }

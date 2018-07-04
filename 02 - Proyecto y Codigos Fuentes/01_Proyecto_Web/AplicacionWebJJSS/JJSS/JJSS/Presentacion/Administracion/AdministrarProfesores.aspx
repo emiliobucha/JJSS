@@ -77,12 +77,18 @@
 
                             <!--Boton-->
                             <div class="row justify-content-center">
+                                <div class=" col-lg-1 col-md-1 col-sm-12">
+                                    <strong>Tipo</strong>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12">
+                                    <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
+                                </div>
 
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
-                                    <strong>DNI</strong>
+                                    <strong>N° Doc</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
-                                    <asp:TextBox ID="txt_filtro_dni" type="number" CssClass="caja2" min="0" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_filtro_dni"  CssClass="caja2"  runat="server"></asp:TextBox>
                                 </div>
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
                                     <strong>Apellido</strong>
@@ -102,19 +108,21 @@
                             </div>
 
                             <div class="row centered justify-content-center">
-                                <asp:GridView ID="gvprofes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="dni" OnPageIndexChanging="gvprofes_PageIndexChanging"
+                                <asp:GridView ID="gvprofes" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_profesor" OnPageIndexChanging="gvprofes_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay profes para mostrar"
                                     OnRowCommand="gvprofes_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
+                                        <asp:BoundField DataField="id_profesor" HeaderText="ID" SortExpression="id_profesor" Visible="false" />
                                         <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
+                                        <asp:BoundField DataField="tipo_documento" HeaderText="Tipo" SortExpression="tipo" />
                                         <asp:BoundField DataField="dni" HeaderText="N° Documento" SortExpression="dni" />
 
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" ItemStyle-ForeColor="#007bff"  HeaderText="Seleccionar" />
                                         <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
-                                                <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("dni") %>' 
-                                                    OnClientClick='<%# Eval("dni", "return openModal({0})") %>' > Eliminar</asp:LinkButton>
+                                                <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument='<%#Eval("id_profesor")%>'
+                                                    OnClientClick='<%# Eval("id_profesor", "return openModal({0})") %>' > Eliminar</asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

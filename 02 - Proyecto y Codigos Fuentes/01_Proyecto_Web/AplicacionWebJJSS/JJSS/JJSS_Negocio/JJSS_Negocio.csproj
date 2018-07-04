@@ -93,6 +93,7 @@
     <Compile Include="modValidaciones.cs" />
     <Compile Include="Resultados\AlumnoConEstado.cs" />
     <Compile Include="Resultados\AlumnoFaja.cs" />
+    <Compile Include="Resultados\PersonaResultado.cs" />
     <Compile Include="Resultados\CategoriaResultado.cs" />
     <Compile Include="Resultados\CategoriasTorneoResultado.cs" />
     <Compile Include="Resultados\ClaseHorario.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Resultados\ParticipantesEventoResultado.cs" />
     <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
     <Compile Include="Resultados\ProductosResultados.cs" />
+    <Compile Include="Resultados\ProfesorResultado.cs" />
     <Compile Include="Resultados\ResultadoDeTorneo.cs" />
     <Compile Include="Resultados\SedeDireccion.cs" />
     <Compile Include="Resultados\EventoResultado.cs" />

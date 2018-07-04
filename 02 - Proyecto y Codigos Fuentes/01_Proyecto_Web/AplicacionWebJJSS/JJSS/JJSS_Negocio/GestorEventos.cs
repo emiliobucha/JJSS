@@ -198,31 +198,38 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
 
-                var torneos = from eve in db.evento_especial
-                              join est in db.estado on eve.id_estado equals est.id_estado
-                              join i in db.evento_especial_imagen on eve.id_estado equals i.id_evento
-                              into ps
-                              from i in ps.DefaultIfEmpty()
-                              where eve.nombre.StartsWith(filtroNombre) &&
-                              eve.fecha >= filtroFecha && eve.fecha <= filtroFechaHasta &&
-                              (est.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA || est.id_estado == ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA)
-                              orderby eve.fecha ascending
-                              select new TorneoResultado()
-                              {
-                                  id_torneo = eve.id_evento,
-                                  nombre = eve.nombre,
-                                  dtFecha = eve.fecha,
-                                  imagenB = i.imagen,
-                                  estado = est.nombre,
-                                  hora = eve.hora,
-                                  imagen = i.imagen_url
-                              };
-                List<TorneoResultado> tr = torneos.ToList();
-                foreach (TorneoResultado t in tr)
+                var torneosCheck = db.evento_especial.Where(eve =>
+                    eve.nombre.StartsWith(filtroNombre) && eve.fecha >= filtroFecha && eve.fecha <= filtroFechaHasta &&
+                    (eve.id_estado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA ||
+                     eve.id_estado == ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA));
+
+
+                var tr = torneosCheck.ToList();
+                var eventoResultado = new List<TorneoResultado>();
+                foreach (var t in tr)
                 {
-                    t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
+
+                    var imagen = db.evento_especial_imagen.FirstOrDefault(x => x.id_evento == t.id_evento);
+
+
+                    var eventoRe = new TorneoResultado()
+                    {
+                        id_torneo = t.id_evento,
+                        nombre = t.nombre,
+                        dtFecha = t.fecha,
+                        imagenB = imagen.imagen,
+                        estado = t.estado.nombre,
+                        hora = t.hora,
+                        imagen = imagen.imagen_url,
+                        fecha = t.fecha?.ToString("dd/MM/yyyy") ?? " - "
+                };
+
+
+
+                  eventoResultado.Add(eventoRe);
                 }
-                return tr;
+
+                return eventoResultado;
             }
         }
 
