@@ -42,6 +42,12 @@ namespace JJSS.Presentacion.Administracion
             gestorProfes = new GestorProfesores();
             if (!IsPostBack)
             {
+                if (Session["mensaje"] != null && Session["mensaje"].ToString().Trim() != "")
+                {
+                    mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
+                    Session["mensaje"] = null;
+                }
+
                 CargarComboTipoDocumentos();
                 CargarGrilla();
             }
