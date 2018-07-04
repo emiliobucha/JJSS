@@ -219,11 +219,13 @@ namespace JJSS_Negocio
                 {
                     if (!string.IsNullOrEmpty(dni))
                     {
-                        listado = db.profesor.Where(x => x.apellido.StartsWith(apellido) && x.dni == dni).ToList();
+                        listado = db.profesor.Where(x => x.apellido.StartsWith(apellido) && x.dni == dni && 
+                        x.actual==Constantes.ConstatesBajaLogica.ACTUAL).ToList();
                     }
                     else
                     {
-                        listado = db.profesor.Where(x => x.apellido.StartsWith(apellido)).ToList();
+                        listado = db.profesor.Where(x => x.apellido.StartsWith(apellido) &&
+                        x.actual == Constantes.ConstatesBajaLogica.ACTUAL).ToList();
                     }
                    
                 }
@@ -324,12 +326,9 @@ namespace JJSS_Negocio
                         return "Profesor asignado a alguna clase activa, no es posible eliminarlo";
                     }
 
-
-
                     if (prof != null)
                     {
-                        db.profesor.Attach(prof);
-                        db.profesor.Remove(prof);
+                        prof.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
                         db.SaveChanges();
                         transaction.Commit();
                     }
