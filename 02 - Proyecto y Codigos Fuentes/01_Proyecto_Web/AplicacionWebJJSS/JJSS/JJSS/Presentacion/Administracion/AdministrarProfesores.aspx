@@ -118,7 +118,7 @@
                                         <asp:BoundField DataField="tipo_documento" HeaderText="Tipo" SortExpression="tipo" />
                                         <asp:BoundField DataField="dni" HeaderText="N° Documento" SortExpression="dni" />
 
-                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" ItemStyle-ForeColor="#007bff"  HeaderText="Seleccionar" />
+                                        <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" ItemStyle-ForeColor="#007bff"  HeaderText="Seleccionar/Editar" />
                                         <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <asp:LinkButton id="aa" CommandName ="eliminar" runat="server" CommandArgument='<%#Eval("id_profesor")%>'

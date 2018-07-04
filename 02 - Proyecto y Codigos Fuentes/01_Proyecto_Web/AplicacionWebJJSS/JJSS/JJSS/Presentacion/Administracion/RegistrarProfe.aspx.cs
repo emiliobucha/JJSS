@@ -85,6 +85,7 @@ namespace JJSS.Presentacion
             txt_telefono.Text = prof.telefono.ToString();
             txt_telefono_urgencia.Text = prof.telefono_emergencia.ToString();
             ddl_tipo.SelectedValue = prof.id_tipo_documento.ToString();
+            ddl_nacionalidad.SelectedValue = prof.id_pais.ToString();
 
             DateTime fecha = (DateTime)prof.fecha_nacimiento;
             dp_fecha.Text = fecha.ToString("dd/MM/yyyy");
