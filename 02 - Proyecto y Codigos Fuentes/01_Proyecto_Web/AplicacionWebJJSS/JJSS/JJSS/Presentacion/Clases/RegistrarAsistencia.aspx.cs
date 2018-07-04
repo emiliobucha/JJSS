@@ -47,7 +47,7 @@ namespace JJSS.Presentacion
 
                 }
 
-
+                CargarComboTipoDocumentos();
                 cargarComboUbicacion();
             }
 
@@ -164,5 +164,17 @@ namespace JJSS.Presentacion
                 args.IsValid = false;
             }
         }
+
+        protected void CargarComboTipoDocumentos()
+        {
+            gestorAlumno = new GestorAlumnos();
+            List<tipo_documento> tiposdoc = gestorAlumno.ObtenerTiposDocumentos();
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+
+        }
+
     }
 }
