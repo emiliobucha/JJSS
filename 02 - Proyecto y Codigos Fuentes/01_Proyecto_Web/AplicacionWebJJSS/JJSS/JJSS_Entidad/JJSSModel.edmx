@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="JJSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="academia">
           <Key>
             <PropertyRef Name="id_academia" />
@@ -2252,7 +2252,8 @@
             <End Role="profesor" EntitySet="profesor" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JJSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2827,13 +2828,13 @@
           <Property Name="id_direccion" Type="Int32" />
           <Property Name="id_tipo_documento" Type="Int32" />
           <Property Name="id_pais" Type="Int32" />
+          <Property Name="actual" Type="Int32" />
           <NavigationProperty Name="clase" Relationship="Self.FK__clase__id_profe__1E5A75C5" FromRole="profesor" ToRole="clase" />
           <NavigationProperty Name="direccion" Relationship="Self.FK_PROFESOR_ID_DIRECCION" FromRole="profesor" ToRole="direccion" />
           <NavigationProperty Name="pais" Relationship="Self.FK_PROFESOR_ID_PAIS" FromRole="profesor" ToRole="pais" />
           <NavigationProperty Name="profesor_imagen" Relationship="Self.FK__profesor___id_pr__4850AF91" FromRole="profesor" ToRole="profesor_imagen" />
           <NavigationProperty Name="tipo_documento" Relationship="Self.FK_PROFESOR_ID_TIPO_DOCUMENTO" FromRole="profesor" ToRole="tipo_documento" />
           <NavigationProperty Name="seguridad_usuario" Relationship="Self.FK_PROFESOR_ID_USUARIO" FromRole="profesor" ToRole="seguridad_usuario" />
-          <Property Name="actual" Type="Int32" />
         </EntityType>
         <EntityType Name="profesor_imagen">
           <Key>
@@ -5159,7 +5160,6 @@
           <EntitySetMapping Name="profesor">
             <EntityTypeMapping TypeName="JJSSModel.profesor">
               <MappingFragment StoreEntitySet="profesor">
-                <ScalarProperty Name="actual" ColumnName="actual" />
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
@@ -5174,6 +5174,7 @@
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
                 <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
                 <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+                <ScalarProperty Name="actual" ColumnName="actual" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
