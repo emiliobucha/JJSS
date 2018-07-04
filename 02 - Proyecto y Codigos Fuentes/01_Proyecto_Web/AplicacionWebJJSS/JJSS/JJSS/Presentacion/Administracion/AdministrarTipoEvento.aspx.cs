@@ -54,7 +54,7 @@ namespace JJSS.Presentacion.Administracion
             if (idTipoEvento == 0)
             {
                 string res = gte.crearTipoEvento(nombre);
-                if (res.CompareTo("") == 0) mensaje("Se ha creado el tipo de evento exitosamente", true);
+                if (res.CompareTo("") == 0) redirigirPorExito("Se ha creado el tipo de evento exitosamente");
                 else mensaje(res, false);
                 cargarGrilla();
             }
@@ -63,12 +63,25 @@ namespace JJSS.Presentacion.Administracion
                 string res = gte.modificarTipoEvento(idTipoEvento, txt_nombre.Text);
                 if (res.CompareTo("") == 0)
                 {
-                    mensaje("Se ha eliminado exitosamente", true);
                     idTipoEvento = 0;
+                    redirigirPorExito("Se ha modificado el tipo de evento exitosamente");
                 }
                 else mensaje(res, false);
                 cargarGrilla();
             }
+        }
+
+        private void redirigirPorExito(string strMensaje)
+        {
+            string anterior = ViewState["RefUrl"].ToString();
+
+            if (anterior.EndsWith("CrearEvento"))
+            {
+                Session["mensaje"] = strMensaje;
+                Session["exito"] = true;
+                Response.Redirect(anterior);
+            }
+            else this.mensaje(strMensaje, true);
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)

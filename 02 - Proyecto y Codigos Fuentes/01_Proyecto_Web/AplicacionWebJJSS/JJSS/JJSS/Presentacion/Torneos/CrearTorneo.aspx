@@ -86,7 +86,7 @@
                                     <asp:DropDownList ID="ddl_sedes" runat="server" CssClass="caja2"></asp:DropDownList>
                                 </div>
                                 <div class="col col-1">
-                                    <a class="btn btn-outline-dark" runat="server"  formnovalidate="true" href="~/Administracion/CrearSede.aspx" >+ </a>
+                                    <a class="btn btn-outline-dark" runat="server"  formnovalidate="true" href="~/Presentacion/Administracion/CrearSede.aspx" >+ </a>
                                 </div>
 <%--                                 <div class="col col-1"><a class="text-danger">*</a></div>--%>
                             </div>

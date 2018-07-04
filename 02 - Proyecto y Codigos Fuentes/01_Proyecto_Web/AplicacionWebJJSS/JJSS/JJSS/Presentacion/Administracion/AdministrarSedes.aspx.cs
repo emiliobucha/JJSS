@@ -50,7 +50,7 @@ namespace JJSS.Presentacion.Administracion
                 else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
 
 
-                if (Session["mensaje"] != null)
+                if (Session["mensaje"] != null || Session["mensaje"].ToString().Trim()!="")
                 {
                     mensaje(Session["mensaje"].ToString(), Convert.ToBoolean(Session["exito"]));
                     Session["mensaje"] = null;

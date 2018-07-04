@@ -200,8 +200,10 @@ namespace JJSS.Presentacion
                 {
                     gestorProfes.ModificarProfesor(idTipo, dni, nombre, apellido, null, idPais, fechaNac, sexo);
                     gestorProfes.ModificarProfesorContacto(calle, departamento, numero, piso, tel, telEmergencia, mail, idTipo, dni, ciudad, torre);
-                    mensaje("Se modificaron los datos correctamente", true);
+                    Session["mensaje"] = "Se modificaron los datos del profesor correctamente";
+                    Session["exito"] = true;
                     limpiar();
+                    redirigirPorExito();
                 }
                 catch (Exception ex)
                 {
@@ -223,14 +225,24 @@ namespace JJSS.Presentacion
                 try
                 {
                     gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, idTipo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad, torre);
-                    mensaje("Se ha creado el profesor exitosamente", true);
+                    Session["mensaje"] = "Se ha creado el profesor exitosamente";
+                    Session["exito"] = true;
                     limpiar();
+                    redirigirPorExito();
                 }
                 catch (Exception ex)
                 {
                     mensaje(ex.Message, false);
                 }
             }
+        }
+
+        private void redirigirPorExito()
+        {
+            string anterior = ViewState["RefUrl"].ToString();
+
+            if (anterior.EndsWith("CrearClase")) Response.Redirect(anterior);
+            else Response.Redirect("AdministrarProfesores.aspx");
         }
 
         private void mensaje(string pMensaje, Boolean pEstado)
