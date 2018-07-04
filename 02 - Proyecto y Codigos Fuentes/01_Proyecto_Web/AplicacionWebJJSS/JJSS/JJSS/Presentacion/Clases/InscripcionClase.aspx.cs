@@ -90,6 +90,7 @@ namespace JJSS.Presentacion
                 CargarGrilla();
                 CargarDatosDeClase();
                 CargarComboFajas();
+                CargarComboTipoDocumentos();
                 definirVisualizacionDePaneles(false);
             }
         }
@@ -157,12 +158,51 @@ namespace JJSS.Presentacion
             List<AlumnoConEstado> listaConFiltro = new List<AlumnoConEstado>();
             string filtroApellido = txt_filtro_apellido.Text.ToUpper();
 
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
             foreach (AlumnoConEstado i in listaCompleta)
             {
-                string apellido = i.alu_apellido.ToUpper();
-                if (string.IsNullOrEmpty(dni)) if (apellido.StartsWith(filtroApellido)) listaConFiltro.Add(i);
+                if (idTipo == 0)
+                {
+                    if (!string.IsNullOrEmpty(dni))
+                    {
+                        if (i.alu_apellido.ToUpper().StartsWith(filtroApellido) && i.alu_dni == dni)
+                        {
+                            listaConFiltro.Add(i);
+                        }
+                        
+                       
+                    }
+                    else if (i.alu_apellido.ToUpper().StartsWith(filtroApellido))
+                    {
+                        listaConFiltro.Add(i);
+                    }
 
-                if (apellido.StartsWith(filtroApellido) && i.alu_dni == dni) listaConFiltro.Add(i);
+                }
+                else
+                {
+
+                    if (!string.IsNullOrEmpty(dni))
+                    {
+                        if (i.alu_id_tipo_documento == idTipo && i.alu_apellido.ToUpper().StartsWith(filtroApellido) && i.alu_dni == dni)
+                        {
+                            listaConFiltro.Add(i);
+                        }
+                       
+                    }
+                    else
+                    {
+                        if (i.alu_id_tipo_documento == idTipo && i.alu_apellido.ToUpper().StartsWith(filtroApellido))
+                        {
+                            listaConFiltro.Add(i);
+                        }
+                        
+                    }
+                }
+
+
+
             }
 
             gvAlumnos.DataSource = listaConFiltro;
@@ -195,6 +235,7 @@ namespace JJSS.Presentacion
                     alu_nombre = a.nombre,
                     alu_id = a.id_alumno,
                     alu_tipoDocumento = ((TipoDocumento)a.id_tipo_documento).ToString(),
+                    alu_id_tipo_documento = (int)a.id_tipo_documento
                 };
                 if (encontro) ae.inscripto = "SI";
                 else ae.inscripto = "NO";
@@ -268,21 +309,13 @@ namespace JJSS.Presentacion
 
                 //captura de datos de la grilla
                 int id = Convert.ToInt32(e.CommandArgument);
-                AlumnoConEstado alumnoSeleccionado = new AlumnoConEstado();
-                foreach(AlumnoConEstado a in alumnos)
-                {
-                    if (a.alu_id == id)
-                    {
-                        alumnoSeleccionado = a;
-                        break;
-                    }
-                }
+                AlumnoConEstado alumnoSeleccionado = alumnos.FirstOrDefault(x => x.alu_id == id);
                 
                 string nombre_Alumno = alumnoSeleccionado.alu_nombre;
                 string apellido_Alumno = alumnoSeleccionado.alu_apellido;
                 string dniAlumno = alumnoSeleccionado.alu_dni;
                 string tipoDco = alumnoSeleccionado.alu_tipoDocumento;
-                cargaDatosAlumno(dniAlumno, nombre_Alumno, apellido_Alumno, tipoDco);
+                cargaDatosAlumno( id,dniAlumno, nombre_Alumno, apellido_Alumno, tipoDco);
 
 
             }else if (e.CommandName.CompareTo("desinscribir") == 0)
@@ -327,7 +360,7 @@ namespace JJSS.Presentacion
         /*
          * Carga de los datos del alumno seleccionado para inscribir.
          */
-        protected void cargaDatosAlumno(string dni, string nombre, string apellido, string tipoDoc)
+        protected void cargaDatosAlumno(int id, string dni, string nombre, string apellido, string tipoDoc)
         {
             definirVisualizacionDePaneles(true);
             lbl_alumno_apellido.Text = apellido;
@@ -336,6 +369,9 @@ namespace JJSS.Presentacion
             lbl_alumno_nombre.Text = nombre;
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
+
+
+            txtIdAlumno.Text = id.ToString();
         }
 
         /*
@@ -361,6 +397,9 @@ namespace JJSS.Presentacion
         protected void btn_aceptar_inscripcion_Click(object sender, EventArgs e)
         {
             var dniAlumno = lbl_alumno_dni.Text;
+
+            var id = int.Parse(txtIdAlumno.Text);
+
             DateTime pfecha = DateTime.Now;
 
             string phora = pfecha.ToShortTimeString();
@@ -368,7 +407,7 @@ namespace JJSS.Presentacion
             int.TryParse(ddl_fajas.SelectedValue.ToString(), out idFaja);
             try
             {
-                string sReturn = gestorInscripcionClase.InscribirAlumnoAClase(dniAlumno, id_Clase, phora, pfecha, idFaja);
+                string sReturn = gestorInscripcionClase.InscribirAlumnoAClaseID(id, id_Clase, phora, pfecha, idFaja);
                 if (sReturn == "")
                 {
                     mensaje("La inscripción se ha realizado correctamente", true);
@@ -433,6 +472,26 @@ namespace JJSS.Presentacion
                     btnDesInscribir.Text = "Dar de baja";
                 }
             }
+        }
+
+        protected void CargarComboTipoDocumentos()
+        {
+
+            List<tipo_documento> tiposdoc = gestorAlumnos.ObtenerTiposDocumentos();
+            tipo_documento primerElemento = new tipo_documento()
+            {
+                id_tipo_documento = 0,
+                codigo = "Todos",
+            };
+            tiposdoc.Insert(0, primerElemento);
+
+
+
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+
         }
     }
 }

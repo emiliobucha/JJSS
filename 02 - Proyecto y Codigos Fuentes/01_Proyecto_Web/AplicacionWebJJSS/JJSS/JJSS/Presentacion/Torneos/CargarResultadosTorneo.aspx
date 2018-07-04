@@ -203,10 +203,10 @@
                                 <div class="row centered center-block">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-3">
-                                        <label class="pull-left">DNI:</label>
+                                        <label class="pull-left">Número:</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <asp:TextBox ID="txt_dni" required="true" class="form-control" runat="server" placeholder="Ingrese DNI"></asp:TextBox>
+                                        <asp:TextBox ID="txt_dni" required="true" class="form-control" runat="server" placeholder="Ingrese Número"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1"><a class="text-danger">*</a></div>
                                 </div>

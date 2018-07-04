@@ -104,7 +104,7 @@ namespace JJSS.Presentacion.Administracion
         {
             var filtroDni = "";
             if (!string.IsNullOrEmpty(txt_filtro_dni.Text)) filtroDni = txt_filtro_dni.Text;
-            //int[] filtroEstados = new int[5];
+           
 
             int filtroEstados = 8;
             int.TryParse(ddl_filtro_estado.SelectedValue, out filtroEstados);

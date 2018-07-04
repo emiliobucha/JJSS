@@ -148,6 +148,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Panel pnl_listado_alumnos;
         
         /// <summary>
+        /// Control ddl_tipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo;
+        
+        /// <summary>
         /// Control txt_filtro_dni.
         /// </summary>
         /// <remarks>
@@ -200,6 +209,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnl_datos_alumnos;
+        
+        /// <summary>
+        /// Control txtIdAlumno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtIdAlumno;
         
         /// <summary>
         /// Control lbl_alumno_nombre.
