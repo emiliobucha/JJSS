@@ -24,7 +24,7 @@ namespace JJSS.Presentacion.Administracion
         {
             if (!IsPostBack)
             {
-                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Menu_Administracion.aspx";
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/Administracion/Menu_Administracion.aspx";
                 else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
 
                 gestorCiudades = new GestorCiudades();
@@ -83,7 +83,7 @@ namespace JJSS.Presentacion.Administracion
         {
             sede sedeSeleccionada = gestorSedes.BuscarSedePorID(idSede);
             DireccionAlumno direccionSede = gestorSedes.ObtenerDireccionSedeCompleta(idSede);
-            limpiar();
+            
             txt_calle.Text = direccionSede.calle;
             txt_nombre.Text = sedeSeleccionada.nombre;
             txt_numero.Text = Convert.ToString( direccionSede.numero);
@@ -101,7 +101,7 @@ namespace JJSS.Presentacion.Administracion
         {
             academia academiaSeleccionada = gestorAcademias.ObtenerAcademiasPorID(idAcademia);
             DireccionAlumno direccionAcademia = gestorAcademias.ObtenerDireccionAcademiaCompleta(idAcademia);
-            limpiar();
+            
             txt_calle.Text = direccionAcademia.calle;
             txt_nombre.Text = academiaSeleccionada.nombre;
             txt_numero.Text = Convert.ToString( direccionAcademia.numero);
@@ -160,12 +160,6 @@ namespace JJSS.Presentacion.Administracion
         {
             int id_provincia = int.Parse(ddl_provincia.SelectedValue);
             CargarComboCiudades(id_provincia);
-        }
-
-        protected void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx");
         }
 
         private void limpiar()
@@ -248,7 +242,7 @@ namespace JJSS.Presentacion.Administracion
                     limpiar();
                     Session["mensaje"] = "Se modificó la sede correctamente";
                     Session["exito"] = true;
-                    Response.Redirect("AdministrarSedes.aspx");
+                    redirigirPorExito();
                 }
                 else mensaje(res, false);
             }
@@ -267,10 +261,21 @@ namespace JJSS.Presentacion.Administracion
                     limpiar();
                     Session["mensaje"] = "Se modificó la academia correctamente";
                     Session["exito"] = true;
-                    Response.Redirect("AdministrarSedes.aspx");
+                    redirigirPorExito();
                 }
                 else mensaje(res, false);
             }
+        }
+
+        private void redirigirPorExito()
+        {
+            string anterior = ViewState["RefUrl"].ToString();
+            
+            if (anterior.EndsWith("CrearTorneo") || anterior.EndsWith("CrearEvento") || anterior.EndsWith("CrearClase"))
+            {
+                Response.Redirect(anterior);
+            }
+            else Response.Redirect("AdministrarSedes.aspx");
         }
 
         private void crearSede(String nombre, direccion nuevaDireccion,long? telefono)
@@ -281,7 +286,7 @@ namespace JJSS.Presentacion.Administracion
                 limpiar();
                 Session["mensaje"] = "Se creó la sede correctamente";
                 Session["exito"] = true;
-                Response.Redirect("AdministrarSedes.aspx");
+                redirigirPorExito();
             }
             else mensaje(res, false);
         }
@@ -294,7 +299,7 @@ namespace JJSS.Presentacion.Administracion
                 limpiar();
                 Session["mensaje"] = "Se creó la academia correctamente";
                 Session["exito"] = true;
-                Response.Redirect("AdministrarSedes.aspx");
+                redirigirPorExito();
 
             }
             else mensaje(res, false);

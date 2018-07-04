@@ -156,7 +156,7 @@
                         <asp:BoundField DataField="tercero2" HeaderText="Tercer Puesto 2" />
                     </Columns>
                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
-                    <PagerSettings Mode="NextPrevious" Position="TopAndBottom" />
+                    <PagerSettings Position="TopAndBottom" />
                 </asp:GridView>
             </asp:Panel>
 
