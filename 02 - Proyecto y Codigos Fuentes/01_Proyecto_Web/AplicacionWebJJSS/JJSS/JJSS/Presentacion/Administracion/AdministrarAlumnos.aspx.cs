@@ -46,6 +46,7 @@ namespace JJSS.Presentacion.Administracion
                 }
 
                 CargarCheckboxEstados();
+                CargarComboTipoDocumentos();
                 CargarGrilla();
             }
         }
@@ -108,7 +109,10 @@ namespace JJSS.Presentacion.Administracion
             int filtroEstados = 8;
             int.TryParse(ddl_filtro_estado.SelectedValue, out filtroEstados);
 
-            List<AlumnoConEstado> listaCompleta = gestorAlumnos.BuscarAlumnoConEstado(filtroEstados, txt_filtro_apellido.Text, filtroDni);
+            int filtroTipoDoc = 0;
+            int.TryParse(ddl_tipo.SelectedValue, out filtroTipoDoc);
+
+            List<PersonaResultado.AlumnoResultado> listaCompleta = gestorAlumnos.BuscarAlumnoConEstado(filtroEstados, txt_filtro_apellido.Text, filtroDni, filtroTipoDoc);
 
             gvAlumnos.DataSource = listaCompleta;
             gvAlumnos.DataBind();
@@ -116,14 +120,25 @@ namespace JJSS.Presentacion.Administracion
         
         protected void btn_si_Click1(object sender, EventArgs e)
         {
-            string dni = txtIDSeleccionado.Text;
-            string sReturn = gestorAlumnos.EliminarAlumno(dni);
+            int  id  = int.Parse(txtIDSeleccionado.Text) ;
+            string sReturn = gestorAlumnos.EliminarAlumnoID(id);
             Boolean estado = true;
             if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el alumno correctamente";
             else estado = false;
             mensaje(sReturn, estado);
             CargarGrilla();
             txtIDSeleccionado.Text = "";
+        }
+
+        protected void CargarComboTipoDocumentos()
+        {
+
+            List<tipo_documento> tiposdoc = gestorAlumnos.ObtenerTiposDocumentos();
+            ddl_tipo.DataSource = tiposdoc;
+            ddl_tipo.DataTextField = "codigo";
+            ddl_tipo.DataValueField = "id_tipo_documento";
+            ddl_tipo.DataBind();
+
         }
     }
 }

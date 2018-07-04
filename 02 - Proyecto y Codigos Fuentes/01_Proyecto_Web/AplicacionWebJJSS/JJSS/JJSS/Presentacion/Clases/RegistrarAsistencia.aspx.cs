@@ -81,7 +81,21 @@ namespace JJSS.Presentacion
             if (claseActual == null) mensaje("No hay clases disponibles en este horario", false);
             else
             {
-                alumno alu = gestorAlumno.ObtenerAlumnoPorDNI(txtDni.Text);
+
+                var dni = txtDni.Text;
+
+                int idTipo;
+                int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+                if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
+                {
+                    mensaje("El documento debe tener sólo números", false);
+                    return;
+                }
+
+
+
+                alumno alu = gestorAlumno.ObtenerAlumnoPorDNITipo(idTipo, dni);
                 if (alu != null)
                 {
                     string resultado = gestorAsistencia.ValidarTipoClaseAlumno(alu.id_alumno, claseActual.tipoClase);
@@ -103,7 +117,8 @@ namespace JJSS.Presentacion
                     }
                     else mensaje(resultado, false);
                 }
-                else mensaje("No está inscripto el alumno con ese DNI", false);
+               
+                else mensaje("No está inscripto el alumno con ese número de documento", false);
             }
         }
 

@@ -206,6 +206,61 @@ namespace JJSS_Negocio
         }
 
 
+        public List<PersonaResultado.ProfesorResultado> ObtenerProfesoresFiltro(int? tipo, string dni, string apellido)
+        {
+            using (var db = new JJSSEntities())
+            {
+                List<profesor> listado = new List<profesor>();
+                if (tipo == null || tipo == 0)
+                {
+                    if (!string.IsNullOrEmpty(dni))
+                    {
+                        listado = db.profesor.Where(x => x.apellido.StartsWith(apellido) && x.dni == dni).ToList();
+                    }
+                    else
+                    {
+                        listado = db.profesor.Where(x => x.apellido.StartsWith(apellido)).ToList();
+                    }
+                   
+                }
+                else
+                {
+
+                    if (!string.IsNullOrEmpty(dni))
+                    {
+                        listado = db.profesor.Where(x =>x.id_tipo_documento == tipo && x.apellido.StartsWith(apellido) && x.dni == dni).ToList();
+                    }
+                    else
+                    {
+                        listado = db.profesor.Where(x => x.id_tipo_documento == tipo && x.apellido.StartsWith(apellido)).ToList();
+                    }
+                }
+
+
+
+                 
+                var list = new List<PersonaResultado.ProfesorResultado>();
+                foreach (var profesor in listado)
+                {
+                    var tipoDoc =
+                        db.tipo_documento.FirstOrDefault(x => x.id_tipo_documento == profesor.id_tipo_documento);
+
+                    var p = new PersonaResultado.ProfesorResultado()
+                    {
+                        id_profesor = profesor.id_profesor,
+                        nombre = profesor.nombre,
+                        apellido = profesor.apellido,
+                        dni = profesor.dni,
+                        id_tipo_documento = profesor.id_tipo_documento ?? 1,
+                        tipo_documento = tipoDoc != null ? tipoDoc.codigo : ""
+                    };
+
+                    list.Add(p);
+                }
+                return list;
+            }
+        }
+
         /*
          * Método que devuelve un profe segun su id
          * Parametros: pIDProfe: entero que representa el id del tipo de clase a buscar
@@ -228,7 +283,7 @@ namespace JJSS_Negocio
          *              "" : Transaccion Correcta
          *              ex.Message : Mensaje de error provocado por una excepción
          */
-        public string EliminarProfesor(string pDni)
+        public string EliminarProfesor(string pDni, int tipoDoc)
         {
             string sReturn = "";
             using (var db = new JJSSEntities())
@@ -236,7 +291,7 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    profesor profeABorrar = ObtenerProfesorPorDNI(pDni);
+                    profesor profeABorrar = ObtenerProfesorPorDNITipo(tipoDoc,pDni);
                     db.profesor.Attach(profeABorrar);
                     db.profesor.Remove(profeABorrar);
                     db.SaveChanges();
@@ -250,6 +305,42 @@ namespace JJSS_Negocio
                 }
             }
         }
+
+        public string EliminarProfesorID(int id)
+        {
+            string sReturn = "";
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                   var prof = db.profesor.Find(id);
+                    var clases = db.clase.Where(x => x.id_profe == id && x.baja_logica == 1).ToList();
+                    if (clases.Count > 0)
+                    {
+                        return "Profesor asignado a alguna clase activa, no es posible eliminarlo";
+                    }
+
+
+
+                    if (prof != null)
+                    {
+                        db.profesor.Attach(prof);
+                        db.profesor.Remove(prof);
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                   
+                    return sReturn;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ex.Message;
+                }
+            }
+        }
+
 
 
         /*
@@ -570,5 +661,23 @@ namespace JJSS_Negocio
             }
         }
 
+
+
+        public List<tipo_documento> ObtenerTiposDocumentos()
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+
+                    var list = db.tipo_documento.ToList();
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<tipo_documento>();
+            }
+        }
     }
 }
