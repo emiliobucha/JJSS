@@ -22,6 +22,6 @@ namespace JJSS_Negocio
         public string alu_telefono { get; set; }
         public TimeSpan? alu_horaT { get; set; }
         public string alu_hora { get; set; }
-      
+        public string alu_tipo_documento { get; set; }
     }
 }

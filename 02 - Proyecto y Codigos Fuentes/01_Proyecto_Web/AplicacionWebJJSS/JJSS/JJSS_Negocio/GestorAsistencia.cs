@@ -132,8 +132,8 @@ namespace JJSS_Negocio
                                         alu_nombre = asis.alumno.nombre,
                                         alu_sexoI = asis.alumno.sexo,
                                         alu_telefono = asis.alumno.telefono.ToString(),
-                                        alu_horaT = DbFunctions.CreateTime(asis.fecha_hora.Hour, asis.fecha_hora.Minute, 0)
-
+                                        alu_horaT = DbFunctions.CreateTime(asis.fecha_hora.Hour, asis.fecha_hora.Minute, 0),
+                                        alu_tipo_documento = asis.alumno.tipo_documento.codigo
 
                                     };
                 List<ListadoAsistencia> asistenciaList = participantes.ToList();
