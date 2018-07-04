@@ -35,6 +35,7 @@ namespace JJSS_Entidad
         public Nullable<int> id_direccion { get; set; }
         public Nullable<int> id_tipo_documento { get; set; }
         public Nullable<int> id_pais { get; set; }
+        public Nullable<int> actual { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<clase> clase { get; set; }

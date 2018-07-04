@@ -82,6 +82,8 @@ namespace JJSS.Presentacion.Clases
 
         protected void btn_buscar_Click(object sender, EventArgs e)
         {
+            Limpiar();
+
             int idClase = int.Parse(ddl_clases.SelectedValue);
             if (idClase == -1)
             {
@@ -103,6 +105,18 @@ namespace JJSS.Presentacion.Clases
             
         }
 
+        private void Limpiar()
+        {
+            gv_asistencia.DataSource = null;
+            gv_asistencia.DataBind();
+
+            lbl_datos_clase.Text = "";
+            lbl_hora.Text = "";
+
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+        }
+
         private void mensaje(string pMensaje, Boolean pEstado)
         {
             if (pEstado == true)
@@ -121,6 +135,7 @@ namespace JJSS.Presentacion.Clases
 
         protected void btn_imprimir_Click(object sender, EventArgs e)
         {
+            Limpiar();
             try
             {
                 String sFile = gAsistencia.GenerarListado(asistentes);

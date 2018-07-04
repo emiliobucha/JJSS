@@ -153,7 +153,8 @@ namespace JJSS_Negocio
                             fecha_ingreso = DateTime.Today,
                             telefono_emergencia = pTelEmergencia,
                             seguridad_usuario = usuario,
-                            id_tipo_documento = pTipo
+                            id_tipo_documento = pTipo,
+                            actual = Constantes.ConstatesBajaLogica.ACTUAL,
                         };
                     }
 
@@ -201,7 +202,10 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
-                return db.profesor.ToList();
+                var profesores = from p in db.profesor
+                                 where p.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                                 select p;
+                return profesores.ToList();
             }
         }
 
@@ -291,9 +295,8 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    profesor profeABorrar = ObtenerProfesorPorDNITipo(tipoDoc,pDni);
-                    db.profesor.Attach(profeABorrar);
-                    db.profesor.Remove(profeABorrar);
+                    profesor profeABorrar = db.profesor.FirstOrDefault(x => x.dni == pDni && x.id_tipo_documento == tipoDoc);
+                    profeABorrar.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
                     db.SaveChanges();
                     transaction.Commit();
                     return sReturn;

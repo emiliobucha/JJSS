@@ -44,8 +44,10 @@ namespace JJSS.Presentacion
 
         private void cargarTabla()
         {
+            gvResultados.Visible = true;
             gvResultados.DataSource = resultadosTorneo;
             gvResultados.DataBind();
+            if (estadoTorneo.id_estado == ConstantesEstado.TORNEO_CANCELADO) gvResultados.Visible = false;
         }
 
         private void cargarInformacion()
