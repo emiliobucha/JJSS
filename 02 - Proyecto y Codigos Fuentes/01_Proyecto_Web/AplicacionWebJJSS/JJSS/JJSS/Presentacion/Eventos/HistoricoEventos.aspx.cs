@@ -79,10 +79,13 @@ namespace JJSS.Presentacion.Eventos
 
         protected void gv_eventos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            int id = Convert.ToInt32(gv_eventos.DataKeys[index].Value);
-            Session["eventoSeleccionado"] = id;
-            Response.Redirect("VerEvento.aspx");
+            if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int id = Convert.ToInt32(gv_eventos.DataKeys[index].Value);
+                Session["eventoSeleccionado"] = id;
+                Response.Redirect("VerEvento.aspx");
+            }
         }
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)

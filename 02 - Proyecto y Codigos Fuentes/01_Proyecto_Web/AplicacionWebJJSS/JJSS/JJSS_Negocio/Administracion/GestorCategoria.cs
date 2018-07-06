@@ -87,8 +87,8 @@ namespace JJSS_Negocio.Administracion
                                       nombre = c.nombre,
                                       edadMax = c.edad_hasta.ToString(),
                                       edadMin = c.edad_desde.ToString(),
-                                      pesoMax = c.peso_hasta.ToString(),
-                                      pesoMin = c.peso_desde.ToString(),
+                                      pesoMax = c.peso_hasta.ToString() + " kg",
+                                      pesoMin = c.peso_desde.ToString() + " kg",
                                       idCategoria = c.id_categoria,
                                       idDisciplina = c.id_tipo_clase.Value,
                                   }).ToList();

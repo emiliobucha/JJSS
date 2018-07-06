@@ -78,10 +78,13 @@ namespace JJSS.Presentacion
 
         protected void gv_torneo_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            int id = Convert.ToInt32(gv_torneos.DataKeys[index].Value);
-            Session["idTorneo"] = id;
-            Response.Redirect("VerTorneo.aspx");
+            if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int id = Convert.ToInt32(gv_torneos.DataKeys[index].Value);
+                Session["idTorneo"] = id;
+                Response.Redirect("VerTorneo.aspx");
+            }
         }
 
         protected void gv_torneo_PageIndexChanging(object sender, GridViewPageEventArgs e)

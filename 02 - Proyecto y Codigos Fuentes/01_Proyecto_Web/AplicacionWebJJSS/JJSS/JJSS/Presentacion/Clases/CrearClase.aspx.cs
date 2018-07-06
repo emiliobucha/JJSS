@@ -150,7 +150,7 @@ namespace JJSS.Presentacion
             List<tipo_clase> tipo = gestorClases.ObtenerTipoClases();
             tipo_clase primerElemento = new tipo_clase()
             {
-                nombre = "Seleccione un tipo de clase",
+                nombre = "Seleccione una disciplina",
                 id_tipo_clase = 0
             };
             tipo.Insert(0, primerElemento);

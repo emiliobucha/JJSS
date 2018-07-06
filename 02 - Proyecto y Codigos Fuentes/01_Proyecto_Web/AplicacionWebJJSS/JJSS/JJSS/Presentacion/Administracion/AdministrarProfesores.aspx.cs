@@ -67,11 +67,11 @@ namespace JJSS.Presentacion.Administracion
 
         protected void gvprofes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            var id =int.Parse(gvprofes.DataKeys[index].Value.ToString());
-
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                var id = int.Parse(gvprofes.DataKeys[index].Value.ToString());
+
                 string sReturn = gestorProfes.EliminarProfesorID(id);
                 Boolean estado = true;
                 if (sReturn.CompareTo("") == 0) sReturn = "Se ha eliminado el profesor correctamente";
@@ -81,6 +81,9 @@ namespace JJSS.Presentacion.Administracion
             }
             else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                var id = int.Parse(gvprofes.DataKeys[index].Value.ToString());
+
                 Session["profesorEditar"] = id;
                 Response.Redirect("../Administracion/RegistrarProfe.aspx");
             }

@@ -52,7 +52,7 @@ namespace JJSS.Presentacion.Eventos
             lbl_CostoInscripcion.Text = eventoSeleccionado.precio.ToString();
             lbl_HoraCierreTorneo.Text = eventoSeleccionado.hora_cierre.ToString();
             lbl_sede.Text = sede.sede;
-            lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
+            lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - B° " + sede.barrio + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
             int idTipo = 0;
             if (eventoSeleccionado.id_tipo_evento != null)
             {

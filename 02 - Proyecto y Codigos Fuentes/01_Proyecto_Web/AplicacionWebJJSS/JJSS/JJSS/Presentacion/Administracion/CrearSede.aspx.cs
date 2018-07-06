@@ -95,6 +95,7 @@ namespace JJSS.Presentacion.Administracion
             ddl_provincia.SelectedValue = Convert.ToString( direccionSede.idProvincia);
             CargarComboCiudades(direccionSede.idProvincia.Value);
             ddl_localidad.SelectedValue = Convert.ToString(direccionSede.idCiudad);
+            txt_barrio.Text = direccionSede.barrio;
         }
 
         private void CargarDatosAcademiaSeleccionada()
@@ -113,6 +114,7 @@ namespace JJSS.Presentacion.Administracion
             ddl_provincia.SelectedValue = Convert.ToString(direccionAcademia.idProvincia);
             CargarComboCiudades(direccionAcademia.idProvincia.Value);
             ddl_localidad.SelectedValue = Convert.ToString(direccionAcademia.idCiudad);
+            txt_barrio.Text = direccionAcademia.barrio;
         }
 
         public override void VerifyRenderingInServerForm(Control control)
@@ -171,6 +173,7 @@ namespace JJSS.Presentacion.Administracion
             txt_nro_dpto.Text = "";
             txt_numero.Text = "";
             txt_piso.Text = "";
+            txt_barrio.Text = "";
 
             if (ddl_localidad.Items.Count != 0) ddl_localidad.SelectedIndex = 0;
 
@@ -207,6 +210,8 @@ namespace JJSS.Presentacion.Administracion
                 telefono = long.Parse(txt_telefono.Text);
             }
 
+            string barrio = txt_barrio.Text;
+
             direccion nuevaDireccion = new direccion();
             nuevaDireccion.calle = calle;
             nuevaDireccion.id_ciudad = ciudad;
@@ -214,6 +219,7 @@ namespace JJSS.Presentacion.Administracion
             nuevaDireccion.piso = piso;
             nuevaDireccion.torre = torre;
             nuevaDireccion.departamento = departamento;
+            nuevaDireccion.barrio = barrio;
 
             string nombre = txt_nombre.Text;
             string res = "";

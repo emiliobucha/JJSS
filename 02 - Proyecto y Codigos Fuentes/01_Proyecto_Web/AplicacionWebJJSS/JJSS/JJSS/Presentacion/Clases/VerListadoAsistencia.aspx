@@ -105,7 +105,7 @@
                             <asp:BoundField DataField="alu_tipo_documento" HeaderText="Tipo" />
                             <asp:BoundField DataField="alu_dni" HeaderText="Documento" />
                             <asp:BoundField DataField="alu_telefono" HeaderText="Teléfono" />
-                            <asp:BoundField DataField="alu_horaT" HeaderText="Hora Ingreso" />
+                            <asp:BoundField DataField="alu_hora" HeaderText="Hora Ingreso (hs)" />
                         </Columns>
                         <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
 

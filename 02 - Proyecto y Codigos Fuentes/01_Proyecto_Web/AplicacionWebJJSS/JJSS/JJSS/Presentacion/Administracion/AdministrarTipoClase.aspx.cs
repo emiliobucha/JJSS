@@ -112,17 +112,20 @@ namespace JJSS.Presentacion.Administracion
 
         protected void gv_tipo_evento_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            int idClase = Convert.ToInt32(gv_tipo_evento.DataKeys[index].Value);
-
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int idClase = Convert.ToInt32(gv_tipo_evento.DataKeys[index].Value);
+
                 string res = gtc.eliminarTipoClase(idClase);
                 if (res.CompareTo("") == 0) mensaje("Se ha eliminado exitosamente", true);
                 else mensaje(res, false);
                 cargarGrilla();
             } else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int idClase = Convert.ToInt32(gv_tipo_evento.DataKeys[index].Value);
+
                 txt_nombre.Text = gv_tipo_evento.Rows[index].Cells[0].Text;
                 idTipoClase = idClase;
             }

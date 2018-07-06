@@ -242,7 +242,16 @@
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txt_torre" CssClass="text-danger" Display="Dynamic" ErrorMessage="Departamento demasiado largo" ValidationExpression="^[\s\S]{0,20}$" ValidationGroup="vgAlumnos"> </asp:RegularExpressionValidator>
                                 </div>
                             </div>
-
+                            
+                            <!-- Barrio -->
+                            <div class="row p-1   pl-lg-5 pl-md-5 text-left">
+                                <div class="col-lg-2 col-md-2 col-sm-12 ">
+                                    <label>Barrio </label>
+                                </div>
+                                <div class="col col-md-3 col-lg-3 col-sm-10 col-xs-10">
+                                    <asp:TextBox ID="txt_barrio" type="text" MaxLength="20" class="caja2" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
 
                             <!-- Provincia -->
                             <div class="row p-1  pl-lg-5 pl-md-5 text-left">

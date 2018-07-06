@@ -119,11 +119,11 @@ namespace JJSS.Presentacion.Administracion
 
         protected void gv_tipo_evento_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            int idEvento = Convert.ToInt32(gv_tipo_evento.DataKeys[index].Value);
-
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int idEvento = Convert.ToInt32(gv_tipo_evento.DataKeys[index].Value);
+
                 string res = gte.eliminarTipoEvento(idEvento);
                 if (res.CompareTo("") == 0) mensaje("Se ha eliminado exitosamente", true);
                 else mensaje(res, false);
@@ -131,6 +131,9 @@ namespace JJSS.Presentacion.Administracion
             }
             else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int idEvento = Convert.ToInt32(gv_tipo_evento.DataKeys[index].Value);
+
                 txt_nombre.Text = gv_tipo_evento.Rows[index].Cells[0].Text;
                 idTipoEvento = idEvento;
             }

@@ -190,7 +190,7 @@ namespace JJSS.Presentacion
                 lbl_CostoInscripcion.Text = eventoSeleccionado.precio.ToString();
                 lbl_HoraCierre.Text = eventoSeleccionado.hora_cierre.ToString();
                 lbl_sede.Text = sede.sede;
-                lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
+                lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - B° " + sede.barrio + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
             }
 
             pnl_dni.Visible = true;

@@ -104,6 +104,7 @@ namespace JJSS.Presentacion
                 CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
                 ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
                 txt_torre.Text = direccionEncontrada.torre;
+                txt_barrio.Text = direccionEncontrada.barrio;
             }
 
             txtDni.Enabled = false;
@@ -192,7 +193,7 @@ namespace JJSS.Presentacion
             int idPais;
             int.TryParse(ddl_nacionalidad.SelectedValue, out idPais);
 
-
+            string barrio = txt_barrio.Text;
 
 
             if (txtDni.Enabled == false)
@@ -201,7 +202,7 @@ namespace JJSS.Presentacion
                 try
                 {
                     gestorProfes.ModificarProfesor(idTipo, dni, nombre, apellido, null, idPais, fechaNac, sexo);
-                    gestorProfes.ModificarProfesorContacto(calle, departamento, numero, piso, tel, telEmergencia, mail, idTipo, dni, ciudad, torre);
+                    gestorProfes.ModificarProfesorContacto(calle, departamento, numero, piso, tel, telEmergencia, mail, idTipo, dni, ciudad, torre, barrio);
                     Session["mensaje"] = "Se modificaron los datos del profesor correctamente";
                     Session["exito"] = true;
                     limpiar();
@@ -226,7 +227,8 @@ namespace JJSS.Presentacion
                 //registra un nuevo alumno
                 try
                 {
-                    gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, idTipo, dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad, torre);
+                    gestorProfes.RegistrarProfesor(nombre, apellido, fechaNac, sexo, idTipo, dni, tel, mail, telEmergencia, imagenByte, 
+                        calle, numero, departamento, piso, ciudad, torre, barrio);
                     Session["mensaje"] = "Se ha creado el profesor exitosamente";
                     Session["exito"] = true;
                     limpiar();
@@ -282,6 +284,7 @@ namespace JJSS.Presentacion
             txt_piso.Text = "";
             txt_telefono.Text = "";
             txt_telefono_urgencia.Text = "";
+            txt_barrio.Text = "";
             ddl_localidad.SelectedIndex = 0;
             ddl_provincia.SelectedIndex = 0;
             ddl_tipo.SelectedIndex = 0;

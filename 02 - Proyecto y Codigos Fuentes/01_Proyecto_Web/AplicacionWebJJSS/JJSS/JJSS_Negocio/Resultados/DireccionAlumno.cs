@@ -15,5 +15,6 @@ namespace JJSS_Negocio.Resultados
         public int? idCiudad { get; set; }
         public int? idProvincia { get; set; }
         public string torre { get; set; }
+        public string barrio { get; set; }
     }
 }
