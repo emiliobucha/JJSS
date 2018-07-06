@@ -118,7 +118,7 @@
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_alumno" OnPageIndexChanging="gvAlumnos_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar"
-                                    OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
+                                    OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="2">
                                     <Columns>
                                         
                                         <asp:BoundField DataField="id_alumno" HeaderText="ID" SortExpression="id_alumno" Visible="False"/>
@@ -126,7 +126,7 @@
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="tipo_documento" HeaderText="Tipo" SortExpression="tipo" />
                                         
-                                        <asp:BoundField DataField="dni" HeaderText="N° Documento" SortExpression="dni" />
+                                        <asp:BoundField DataField="dni" HeaderText="N° Doc" SortExpression="dni" />
                                         <asp:BoundField DataField="estado" HeaderText="Estado" SortExpression="estado" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" ItemStyle-ForeColor="#007bff" HeaderText="Seleccionar/Editar" />
                                         <asp:TemplateField HeaderText="Eliminar">

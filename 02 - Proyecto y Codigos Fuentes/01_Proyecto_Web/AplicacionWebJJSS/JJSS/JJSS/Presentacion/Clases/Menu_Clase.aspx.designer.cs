@@ -67,13 +67,13 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl crear_clase;
         
         /// <summary>
-        /// Control graduar_alumno.
+        /// Control calendario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl graduar_alumno;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl calendario;
         
         /// <summary>
         /// Control asistencia.
@@ -85,15 +85,6 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl asistencia;
         
         /// <summary>
-        /// Control calendario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl calendario;
-        
-        /// <summary>
         /// Control listado_asistencia.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace JJSS.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl listado_asistencia;
+        
+        /// <summary>
+        /// Control graduar_alumno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl graduar_alumno;
         
         /// <summary>
         /// Control txt_filtro_nombre.

@@ -103,14 +103,14 @@
                     <!-- Peso -->
                     <div class="row  pl-lg-5 pl-md-5">
                         <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                            <label>Peso mínimo <a class="text-danger">*</a></label>
+                            <label>Peso mínimo (kg)<a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:TextBox ID="txtPesoMinimo" class="caja2" type="Number" min="0" max="200" step="0.01" runat="server" required="true"></asp:TextBox>
                         </div>
                         <!----------------->
                         <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 pl-lg-5 pl-md-5">
-                            <label>Peso máximo <a class="text-danger">*</a></label>
+                            <label>Peso máximo (kg)<a class="text-danger">*</a></label>
                         </div>
                         <div class="col col-lg-2 col-md-2 col-sm-10">
                             <asp:TextBox ID="txtPesoMaximo" class="caja2" type="Number" min="0" max="200" step="0.01" runat="server" required="true"></asp:TextBox>
