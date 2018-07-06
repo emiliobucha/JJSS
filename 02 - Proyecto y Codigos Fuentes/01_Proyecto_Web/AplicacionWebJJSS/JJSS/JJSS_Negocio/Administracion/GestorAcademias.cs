@@ -155,6 +155,7 @@ namespace JJSS_Negocio.Administracion
                                                             sede = ac.nombre,
                                                             idSede = ac.id_academia,
                                                             telefono = ac.telefono,
+                                                            barrio = ac.direccion.barrio,
                                                         }).ToList();
                 return academias;
             }
@@ -175,6 +176,7 @@ namespace JJSS_Negocio.Administracion
                                torre = ac.direccion.torre,
                                calle = ac.direccion.calle,
                                numero = (int)ac.direccion.numero,
+                               barrio = ac.direccion.barrio,
                            };
                 return sede.FirstOrDefault();
             }

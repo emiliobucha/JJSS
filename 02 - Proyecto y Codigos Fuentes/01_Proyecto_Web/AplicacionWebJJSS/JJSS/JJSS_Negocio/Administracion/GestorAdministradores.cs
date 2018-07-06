@@ -371,6 +371,7 @@ namespace JJSS_Negocio
                                               idCiudad = dir.id_ciudad,
                                               idProvincia = ciu.id_provincia,
                                               torre = dir.torre,
+                                              barrio = dir.barrio,
                                           };
                 return direccionEncontrada.FirstOrDefault();
             }

@@ -373,7 +373,7 @@ namespace JJSS
                 lbl_CostoInscripcionAbsoluto.Text = torneoSeleccionado.precio_absoluto.ToString();
                 lbl_HoraCierreTorneo.Text = torneoSeleccionado.hora_cierre.ToString();
                 lbl_sede.Text = sede.sede;
-                lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
+                lbl_direccion_sede.Text = sede.calle + " " + sede.numero + " - B° " + sede.barrio + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais;
             }
 
             pnl_dni.Visible = true;

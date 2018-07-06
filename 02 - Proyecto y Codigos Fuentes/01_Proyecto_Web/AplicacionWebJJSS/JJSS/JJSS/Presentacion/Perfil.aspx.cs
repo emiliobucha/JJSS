@@ -117,6 +117,7 @@ namespace JJSS.Presentacion
                                 CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
                                 ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
                                 txt_torre.Text = direccionEncontrada.torre;
+                                txt_barrio.Text = direccionEncontrada.barrio;
 
                             }
                             var img = gestorAdmin.ObtenerImagenPerfil(administrador.id_admin);
@@ -132,7 +133,7 @@ namespace JJSS.Presentacion
 
                     else
                     {
-                        DataTable direccionEncontrada =
+                        DireccionAlumno direccionEncontrada =
                             gestorProfe.ObtenerDireccionProfesor(profeEncontrado.id_profesor);
 
                         txt_dni.Text = profeEncontrado.dni;
@@ -142,17 +143,18 @@ namespace JJSS.Presentacion
                         txt_email.Text = profeEncontrado.mail;
                         txt_telefono.Text = profeEncontrado.telefono.ToString();
                         txt_telefono_urgencia.Text = profeEncontrado.telefono_emergencia.ToString();
-                        if (direccionEncontrada.Rows.Count > 0)
+                        if (direccionEncontrada!=null)
                         {
-                            DataRow row = direccionEncontrada.Rows[0];
-                            txt_calle.Text = row["calle"].ToString();
-                            txt_nro_dpto.Text = row["depto"].ToString();
-                            txt_numero.Text = row["numero"].ToString();
-                            txt_piso.Text = row["piso"].ToString();
-                            ddl_provincia.SelectedValue = row["idProvincia"].ToString();
+                            txt_calle.Text = direccionEncontrada.calle;
+                            txt_nro_dpto.Text = direccionEncontrada.depto;
+                            txt_numero.Text = direccionEncontrada.numero.ToString();
+                            txt_piso.Text = direccionEncontrada.piso.ToString();
+                            ddl_provincia.SelectedValue = direccionEncontrada.idProvincia.ToString();
                             CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
-                            ddl_localidad.SelectedValue = row["idCiudad"].ToString();
-                            txt_torre.Text = row["torre"].ToString();
+                            ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
+                            txt_torre.Text = direccionEncontrada.torre;
+                            txt_barrio.Text = direccionEncontrada.barrio;
+
                         }
 
                         var img = gestorProfe.ObtenerImagenPerfil(profeEncontrado.id_profesor);
@@ -190,7 +192,7 @@ namespace JJSS.Presentacion
                         CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
                         ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
                         txt_torre.Text = direccionEncontrada.torre;
-
+                        txt_barrio.Text = direccionEncontrada.barrio;
                     }
 
                     var img = gestorAlumnos.ObtenerImagenPerfil(alumnoEncontrado.id_alumno);
@@ -241,6 +243,7 @@ namespace JJSS.Presentacion
             txt_telefono.Text = "";
             txt_telefono_urgencia.Text = "";
             txt_usuario.Text = "";
+            txt_barrio.Text = "";
 
         }
 
@@ -283,7 +286,7 @@ namespace JJSS.Presentacion
 
             int idCiudad = int.Parse(ddl_localidad.SelectedValue);
 
-
+            string barrio = txt_barrio.Text;
 
             int idTipo;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
@@ -298,7 +301,7 @@ namespace JJSS.Presentacion
             //modifica los datos
             try
             {
-                gestorAlumnos.ModificarAlumnoContacto(calle, departamento, numero, piso, tel, telUrg, mail, idTipo, txt_dni.Text, idCiudad, torre);
+                gestorAlumnos.ModificarAlumnoContacto(calle, departamento, numero, piso, tel, telUrg, mail, idTipo, txt_dni.Text, idCiudad, torre, barrio);
                 mensaje("Se modificaron los datos correctamente", true);
             }
             catch (Exception ex)
@@ -308,7 +311,7 @@ namespace JJSS.Presentacion
                 {
                     try
                     {
-                        gestorProfe.ModificarProfesorContacto(calle, departamento, numero, piso, tel, telUrg, mail, idTipo, txt_dni.Text, idCiudad, torre);
+                        gestorProfe.ModificarProfesorContacto(calle, departamento, numero, piso, tel, telUrg, mail, idTipo, txt_dni.Text, idCiudad, torre, barrio);
                         mensaje("Se modificaron los datos correctamente", true);
                     }
                     catch (Exception exx)

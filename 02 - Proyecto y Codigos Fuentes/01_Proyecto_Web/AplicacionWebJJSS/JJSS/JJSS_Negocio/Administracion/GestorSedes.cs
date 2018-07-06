@@ -140,6 +140,7 @@ namespace JJSS_Negocio.Administracion
                                ciudad = s.direccion.ciudad.nombre,
                                provincia = s.direccion.ciudad.provincia.nombre,
                                pais = s.direccion.ciudad.provincia.pais.nombre,
+                               barrio = s.direccion.barrio,
                            };
                 return sede.FirstOrDefault();
             }
@@ -160,6 +161,7 @@ namespace JJSS_Negocio.Administracion
                                torre = s.direccion.torre,
                                calle = s.direccion.calle,
                                numero = (int)s.direccion.numero,
+                               barrio = s.direccion.barrio
                            };
                 return sede.FirstOrDefault();
             }
@@ -231,6 +233,7 @@ namespace JJSS_Negocio.Administracion
                                                             sede = se.nombre,
                                                             idSede = se.id_sede,
                                                             telefono = se.telefono,
+                                                            barrio = se.direccion.barrio
                                                         }).ToList();
                 return sedes;
             }

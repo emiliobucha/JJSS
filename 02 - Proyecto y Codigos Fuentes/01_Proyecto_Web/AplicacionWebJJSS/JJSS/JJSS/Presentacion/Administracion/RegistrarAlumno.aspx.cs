@@ -109,6 +109,7 @@ namespace JJSS.Presentacion
                 CargarComboCiudades(int.Parse(ddl_provincia.SelectedValue));
                 ddl_localidad.SelectedValue = direccionEncontrada.idCiudad.ToString();
                 txt_torre.Text = direccionEncontrada.torre;
+                txt_barrio.Text = direccionEncontrada.barrio;
             }
 
             txtDni.Enabled = false;
@@ -200,6 +201,8 @@ namespace JJSS.Presentacion
             int idPais;
             int.TryParse(ddl_nacionalidad.SelectedValue, out idPais);
 
+            string barrio = txt_barrio.Text;
+
 
             if (txtDni.Enabled == false)
             {
@@ -207,7 +210,7 @@ namespace JJSS.Presentacion
                 try
                 {
                     gestorAlumnos.ModificarAlumno(idTipo, dni, nombre, apellido, fechaNac, sexo, null, idPais);
-                    gestorAlumnos.ModificarAlumnoContacto(calle, departamento, numero, piso, tel, telEmergencia, mail, idTipo,dni, ciudad, torre);
+                    gestorAlumnos.ModificarAlumnoContacto(calle, departamento, numero, piso, tel, telEmergencia, mail, idTipo,dni, ciudad, torre, barrio);
                     Session["mensaje"] = "Se modificaron los datos del alumno correctamente";
                     Session["exito"] = true;
                     limpiar();
@@ -232,7 +235,8 @@ namespace JJSS.Presentacion
                 //registra un nuevo alumno
                 try
                 {
-                    gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, idTipo,dni, tel, mail, telEmergencia, imagenByte, calle, numero, departamento, piso, ciudad, torre, idPais);
+                    gestorAlumnos.RegistrarAlumno(nombre, apellido, fechaNac, sexo, idTipo,dni, tel, mail, telEmergencia, imagenByte, 
+                        calle, numero, departamento, piso, ciudad, torre, idPais, barrio);
                     Session["mensaje"] = "Se ha creado el alumno exitosamente";
                     Session["exito"] = true;
                     limpiar();
@@ -286,6 +290,7 @@ namespace JJSS.Presentacion
             txt_piso.Text = "";
             txt_telefono.Text = "";
             txt_telefono_urgencia.Text = "";
+            txt_barrio.Text = "";
 
             if (ddl_localidad.Items.Count!=0) ddl_localidad.SelectedIndex = 0;
 

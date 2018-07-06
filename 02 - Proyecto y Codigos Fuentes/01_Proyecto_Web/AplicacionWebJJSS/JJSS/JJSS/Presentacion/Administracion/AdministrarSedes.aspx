@@ -119,6 +119,7 @@
                                         <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
                                         <asp:BoundField DataField="calle" HeaderText="Calle" />
                                         <asp:BoundField DataField="numero" HeaderText="Número" />
+                                        <asp:BoundField DataField="barrio" HeaderText="Barrio" />
                                         <asp:BoundField DataField="ciudad" HeaderText="Ciudad" />
                                         
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" HeaderText="Seleccionar" ItemStyle-ForeColor="#007bff" />
