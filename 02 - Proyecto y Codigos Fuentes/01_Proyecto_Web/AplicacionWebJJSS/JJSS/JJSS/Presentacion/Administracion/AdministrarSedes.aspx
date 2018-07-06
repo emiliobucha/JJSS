@@ -110,7 +110,8 @@
                             </div>
 
                             <div class="row centered justify-content-center">
-                                <asp:GridView ID="gvSedes" runat="server" CssClass="table table-responsive-xl" CellPadding="4" DataKeyNames="idSede" OnPageIndexChanging="gvSedes_PageIndexChanging"
+                                <asp:GridView ID="gvSedes" runat="server" CssClass="table table-responsive-xl" CellPadding="4" DataKeyNames="idSede" 
+                                    OnPageIndexChanging="gvSedes_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay sedes para mostrar"
                                     OnRowCommand="gvSedes_RowCommand" AllowPaging="True" PageSize="10">
                                     <Columns>
