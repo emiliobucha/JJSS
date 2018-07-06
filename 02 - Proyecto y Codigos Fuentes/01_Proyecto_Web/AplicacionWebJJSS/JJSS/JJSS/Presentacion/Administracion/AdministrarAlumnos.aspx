@@ -126,7 +126,7 @@
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="tipo_documento" HeaderText="Tipo" SortExpression="tipo" />
                                         
-                                        <asp:BoundField DataField="dni" HeaderText="N° Documento" SortExpression="dni" />
+                                        <asp:BoundField DataField="dni" HeaderText="N° Doc" SortExpression="dni" />
                                         <asp:BoundField DataField="estado" HeaderText="Estado" SortExpression="estado" />
                                         <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" ItemStyle-ForeColor="#007bff" HeaderText="Seleccionar/Editar" />
                                         <asp:TemplateField HeaderText="Eliminar">

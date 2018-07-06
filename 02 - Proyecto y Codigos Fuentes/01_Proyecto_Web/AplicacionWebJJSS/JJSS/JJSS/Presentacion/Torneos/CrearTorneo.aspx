@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1 class=" centered ">Alta de Torneo</h1>
+                        <h1 class=" centered ">ACreación de Torneo</h1>
                         <%--<asp:Label ID="lbl_Inscripcion" runat="server" Text="INSCRIPCIÓN DE TORNEO" CssClass=" h2 font-weight-light"></asp:Label>--%>
                     </div>
 

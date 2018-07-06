@@ -46,7 +46,7 @@
         </div>
 
         <div class="row mt centered justify-content-center ">
-            <h1 class="centered">Alta de Clase</h1>
+            <h1 class="centered">Creación de Clase</h1>
         </div>
 
         <div>
@@ -93,7 +93,7 @@
                 <!-- tipoclase-->
                 <div class="row  pl-lg-5 pl-md-5">
                     <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                        <label class="text-left">Tipo de Clase <a class="text-danger">*</a></label>
+                        <label class="text-left">Disciplina<a class="text-danger">*</a></label>
                     </div>
                     <div class="col col-md-3 col-lg-3 col-sm-11 col-xs-11">
                         <asp:DropDownList ID="ddl_tipo_clase" runat="server" CssClass="caja2"></asp:DropDownList>
@@ -186,6 +186,7 @@
                         <asp:TextBox ID="txt_horadesde" runat="server" required="true" type="time" CssClass="caja2" Text="00:00"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="regex_horadesde" runat="server" ControlToValidate="txt_horadesde" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"> </asp:RegularExpressionValidator>
                     </div>
+                    <div class=" col col-auto  p-1">hs</div>
 
                     <div class=" hidden-lg hidden-md">
                         &nbsp;
@@ -198,6 +199,7 @@
                         <asp:RegularExpressionValidator ID="regex_horahasta" runat="server" ControlToValidate="txt_horahasta" CssClass="text-danger" Display="Dynamic" ErrorMessage="Formato inválido. Debe ser hh:mm" ValidationExpression="^(([0-1][0-9])|([2][0-3])):[0-5][0-9]$"> </asp:RegularExpressionValidator>
                         <asp:CompareValidator ID="cmp_hora" ControlToValidate="txt_horadesde" ControlToCompare="txt_horahasta" CssClass="text-danger" Display="Dynamic" runat="server" ErrorMessage="La hora desde debe ser menor que la hora hasta" SetFocusOnError="true" Operator="LessThan"></asp:CompareValidator>
                     </div>
+                    <div class=" col col-auto  p-1">hs</div>
 
                     <div class=" hidden-lg hidden-md">
                         &nbsp;

@@ -107,18 +107,18 @@
                     </a>
                 </div>
 
-                 <!--Graduar-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="graduar_alumno" >
-                    <a class="text-dark" href="/Presentacion/Clases/GraduarAlumno.aspx">
+                <!--Ver clases-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="calendario">
+                    <a class="text-dark" href="/Presentacion/Clases/VerCalendario.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Graduar.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Evento.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Graduar Alumnos</h4>
+                                <h4 class="mb-5">Ver Clases</h4>
                             </div>
                         </div>
                     </a>
                 </div>
-
+                
                  <!--Asistencia-->
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="asistencia">
                     <a class="text-dark" href="/Presentacion/Clases/RegistrarAsistencia.aspx">
@@ -131,65 +131,28 @@
                     </a>
                 </div>
 
-                <!--Ver clases-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="calendario">
-                    <a class="text-dark" href="/Presentacion/Clases/VerCalendario.aspx">
-                        <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Evento.png" alt="Card image cap">
-                            <div class="">
-                                <h4 class="mb-5">Ver Clases</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
                 <!--Ver listado asistencia-->
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="listado_asistencia">
                     <a class="text-dark" href="/Presentacion/Clases/VerListadoAsistencia.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Ver Listado de Asistencia</h4>
+                                <h4 class="mb-5">Ver Asistencias</h4>
                             </div>
                         </div>
                     </a>
                 </div>
-
-                <!--Histórico-->
-                <%-- <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="HistoricoTorneos.aspx">
+                                 <!--Graduar-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="graduar_alumno" >
+                    <a class="text-dark" href="/Presentacion/Clases/GraduarAlumno.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/Graduar.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Histórico</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>--%>
-
-                <%--<!--Ver-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="VerTorneo.aspx">
-                        <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Ver.png" alt="Card image cap">
-                            <div class="">
-                                <h4 class="mb-5">Ver</h4>
+                                <h4 class="mb-5">Graduar Alumnos</h4>
                             </div>
                         </div>
                     </a>
                 </div>
-
-                <!--Pago-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto ">
-                    <a class="text-dark" href="PagoClase.aspx">
-                        <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Pago.png" alt="Card image cap">
-                            <div class="">
-                                <h4 class="mb-5">Pagar</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>--%>
             </div>
 
         </div>

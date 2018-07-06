@@ -48,7 +48,7 @@
                         <p>&nbsp;</p>
                     </div>
                     <div class="row mt centered justify-content-center ">
-                        <h1 class="centered">Alta de Evento Especial</h1>
+                        <h1 class="centered">Creación de Evento Especial</h1>
                     </div>
 
                     <div>
@@ -144,7 +144,7 @@
                             <!--Fecha de cierre de inscripcion-->
                             <div class="row  pl-lg-5 pl-md-5">
                                 <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
-                                    <label class="pull-left ">Cierre de inscripcion <a class="text-danger">*</a></label>
+                                    <label class="pull-left ">Cierre de inscripción <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                                     <!--SOMEE-->

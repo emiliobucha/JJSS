@@ -41,7 +41,7 @@
             <p>&nbsp;</p>
         </div>
         <div class="row centered justify-content-center">
-            <h1>Graduar Alumnos</h1>
+            <h1>Graduación Alumnos</h1>
         </div>
         <div>
             <p>&nbsp;</p>

@@ -41,7 +41,7 @@
                     <asp:DropDownList ID="ddl_profesores" class="caja2" runat="server"></asp:DropDownList>
                 </div>
 
-                <div class="col-auto "><a>Tipo de Clase</a></div>
+                <div class="col-auto "><a>Disciplina</a></div>
                 <div class="col-md-2 col-lg-2">
                     <asp:DropDownList ID="ddl_tipo_clase" class="caja2" runat="server"></asp:DropDownList>
                 </div>
