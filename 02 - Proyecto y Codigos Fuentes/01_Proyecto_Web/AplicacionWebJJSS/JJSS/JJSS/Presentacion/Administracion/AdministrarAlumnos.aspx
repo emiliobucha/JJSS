@@ -118,7 +118,7 @@
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_alumno" OnPageIndexChanging="gvAlumnos_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar"
-                                    OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="2">
+                                    OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
                                     <Columns>
                                         
                                         <asp:BoundField DataField="id_alumno" HeaderText="ID" SortExpression="id_alumno" Visible="False"/>
