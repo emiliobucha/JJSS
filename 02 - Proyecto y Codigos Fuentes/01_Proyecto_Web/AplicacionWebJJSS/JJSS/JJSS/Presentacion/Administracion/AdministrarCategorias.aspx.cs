@@ -95,15 +95,11 @@ namespace JJSS.Presentacion.Administracion
 
         protected void gvCategorias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            int idCategoria = Convert.ToInt32(gvCategorias.DataKeys[index].Value);
+            if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int idCategoria = Convert.ToInt32(gvCategorias.DataKeys[index].Value);
 
-            if (e.CommandName.CompareTo("eliminar") == 0)
-            {
-                
-            }
-            else if (e.CommandName.CompareTo("seleccionar") == 0)
-            {
                 Session["categoria"] = idCategoria;
                 Response.Redirect("CrearCategoria.aspx");
             }

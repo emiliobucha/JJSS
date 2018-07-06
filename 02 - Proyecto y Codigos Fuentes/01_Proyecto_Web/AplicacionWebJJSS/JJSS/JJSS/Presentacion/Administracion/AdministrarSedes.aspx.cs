@@ -109,16 +109,12 @@ namespace JJSS.Presentacion.Administracion
 
         protected void gvSedes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            int id = Convert.ToInt32(gvSedes.DataKeys[index].Value);
-            int filtroSede = Convert.ToInt16(rbSede.SelectedItem.Value);
+            if (e.CommandName.CompareTo("seleccionar") == 0)
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int id = Convert.ToInt32(gvSedes.DataKeys[index].Value);
+                int filtroSede = Convert.ToInt16(rbSede.SelectedItem.Value);
 
-            if (e.CommandName.CompareTo("eliminar") == 0)
-            {
-                
-            }
-            else if (e.CommandName.CompareTo("seleccionar") == 0)
-            {
                 if (filtroSede == 0) Session["sede"] = id;
                 else if (filtroSede == 1) Session["academia"] = id;
 

@@ -196,11 +196,10 @@ namespace JJSS.Presentacion.Pagos
 
         protected void gvPagos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-
-
             if (e.CommandName.CompareTo("pago") == 0)
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+
 
                 var objetoPagable = objetosGrilla[index];
 

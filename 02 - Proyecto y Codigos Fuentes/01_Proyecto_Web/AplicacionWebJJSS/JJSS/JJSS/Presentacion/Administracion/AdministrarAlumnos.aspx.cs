@@ -71,11 +71,11 @@ namespace JJSS.Presentacion.Administracion
 
         protected void gvAlumnos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            var dni = gvAlumnos.DataKeys[index].Value.ToString();
-
             if (e.CommandName.CompareTo("seleccionar") == 0)
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                var dni = gvAlumnos.DataKeys[index].Value.ToString();
+
                 Session["alumnoEditar"] = dni;
                 Response.Redirect("../Administracion/RegistrarAlumno.aspx");
             }

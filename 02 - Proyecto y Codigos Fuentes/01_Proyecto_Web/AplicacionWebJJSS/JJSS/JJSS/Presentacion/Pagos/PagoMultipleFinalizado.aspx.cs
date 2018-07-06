@@ -178,10 +178,10 @@ namespace JJSS.Presentacion
 
         protected void gvPagos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-  
             if (e.CommandName == "imprimir")
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+
                 var pagoImprimir = pagoMultiple.ObjetosPagables[index];
 
 
