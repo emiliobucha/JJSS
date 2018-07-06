@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="Menu_Clase.aspx.cs" Inherits="JJSS.Presentacion.Menu_Clase" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
@@ -8,15 +9,15 @@
         var x = 0;
         function button() {
             var objwordstonum = document.getElementById('<%=txtIDSeleccionado.ClientID%>');
-                objwordstonum.value = x;
-                return true;
+            objwordstonum.value = x;
+            return true;
         }
         function openModal(id) {
             $('[id*=confirmacion]').modal('show');
             x = id;
             return false;
-    }   
-</script>
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
 
@@ -108,7 +109,7 @@
                 </div>
 
                 <!--Ver clases-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="calendario">
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="calendario">
                     <a class="text-dark" href="/Presentacion/Clases/VerCalendario.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Evento.png" alt="Card image cap">
@@ -118,9 +119,9 @@
                         </div>
                     </a>
                 </div>
-                
-                 <!--Asistencia-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="asistencia">
+
+                <!--Asistencia-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="asistencia">
                     <a class="text-dark" href="/Presentacion/Clases/RegistrarAsistencia.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Inscribir.png" alt="Card image cap">
@@ -132,7 +133,7 @@
                 </div>
 
                 <!--Ver listado asistencia-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto "  runat="server" id="listado_asistencia">
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="listado_asistencia">
                     <a class="text-dark" href="/Presentacion/Clases/VerListadoAsistencia.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
@@ -142,8 +143,8 @@
                         </div>
                     </a>
                 </div>
-                                 <!--Graduar-->
-                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="graduar_alumno" >
+                <!--Graduar-->
+                <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="graduar_alumno">
                     <a class="text-dark" href="/Presentacion/Clases/GraduarAlumno.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Graduar.png" alt="Card image cap">
@@ -157,36 +158,44 @@
 
         </div>
 
-            
+
 
         <h2 class=" centered mt  ">Clases Disponibles</h2>
-       
-        
+
+
 
         <div class="container ">
             <!-- Filtros  -->
-                  <div class="row centered p-2">
+            <div class="row centered p-2">
 
-                    <div class=" col-auto"><a>Nombre</a></div>
-                    <div class="col-md-3 col-lg-3">
-                        <asp:TextBox ID="txt_filtro_nombre" class="caja2" runat="server"></asp:TextBox>
-                    </div>
-
-                    <div class="col-auto "><a>Academia</a></div>
-                    <div class="col-md-2 col-lg-2">
-                        <asp:DropDownList ID="ddl_academias" class="caja2" runat="server"></asp:DropDownList>
-                    </div>
-
-                    <div class="col-auto "><a>Profesor</a></div>
-                    <div class="col-md-2 col-lg-2">
-                        <asp:DropDownList ID="ddl_profesores" class="caja2" runat="server"></asp:DropDownList>
-                    </div>
-
-                    <div class="col justify-content-center ">
-                        <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click" />
-                    </div>
+                <div class=" col-auto"><a>Nombre</a></div>
+                <div class="col-md-3 col-lg-3">
+                    <asp:TextBox ID="txt_filtro_nombre" class="caja2" runat="server"></asp:TextBox>
                 </div>
-            
+
+                <div class="col-auto "><a>Disciplina</a></div>
+                <div class="col-md-2  col-sm-12 ">
+                    <asp:DropDownList ID="ddl_tipo_clase" runat="server" CssClass="border rounded caja2">  </asp:DropDownList>
+                </div>
+               
+           
+                <div class="col-auto "><a>Academia</a></div>
+                <div class="col-md-2 col-lg-2">
+                    <asp:DropDownList ID="ddl_academias" class="caja2" runat="server"></asp:DropDownList>
+                </div>
+            </div>
+             <div class="row centered p-2">
+
+                <div class="col-auto "><a>Profesor</a></div>
+                <div class="col-md-2 col-lg-2">
+                    <asp:DropDownList ID="ddl_profesores" class="caja2" runat="server"></asp:DropDownList>
+                </div>
+
+                <div class="col justify-content-center ">
+                    <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click" />
+                </div>
+            </div>
+
 
             <!---------------------------------**************Muestra de Clases************---------------------------------------->
 
@@ -208,7 +217,7 @@
 
                     <ItemTemplate>
 
-                        <div class="col-lg-4 col-md-4  col-sm-12 p-4 "  runat="server">
+                        <div class="col-lg-4 col-md-4  col-sm-12 p-4 " runat="server">
                             <div runat="server">
                                 <asp:Label ID="lv_lbl_nombre_clase" CssClass="h5" runat="server" Text='<%# Eval("nombre") %>' />
                             </div>
@@ -235,15 +244,15 @@
 
                             </div>
                             <div class="p-1" runat="server">
-                                
-                                <asp:Button ID="lv_btn_ver" Visible='<%#!(Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Ver" />
-                                
-                                <asp:Button ID="lv_btn_inscribir" Visible='<%#(Convert.ToBoolean(Eval("MostrarInscribir"))) %>' runat="server" CommandName="inscribir" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Inscribir" />
-                      
+
+                                <asp:Button ID="lv_btn_ver" Visible='<%#!(Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Ver" />
+
+                                <asp:Button ID="lv_btn_inscribir" Visible='<%#(Convert.ToBoolean(Eval("MostrarInscribir"))) %>' runat="server" CommandName="inscribir" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Inscribir" />
+
                                 <asp:Button ID="lv_btn_seleccionar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Editar" />
-                    
-                                <asp:LinkButton id="lv_btn_eliminar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' CommandName ="eliminar" runat="server" CommandArgument ='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark"
-                                                    OnClientClick='<%# Eval("id_clase", "return openModal({0})") %>' > Eliminar</asp:LinkButton>
+
+                                <asp:LinkButton ID="lv_btn_eliminar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' CommandName="eliminar" runat="server" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark"
+                                    OnClientClick='<%# Eval("id_clase", "return openModal({0})") %>'> Eliminar</asp:LinkButton>
                             </div>
                         </div>
 
@@ -260,9 +269,9 @@
 
 
             <!---------------------------------**************Muestra de Clases Invitado************---------------------------------------->
-            
+
             <div class=" row centered mt justify-content-center p-2" id="muetra_clases_invitado" runat="server">
-                <asp:ListView ID="lv_clasesDisponibles_invitado" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase" 
+                <asp:ListView ID="lv_clasesDisponibles_invitado" GroupPlaceholderID="groupPlaceHolder_clase" ItemPlaceholderID="itemPlaceHolder_clase"
                     GroupItemCount="3" runat="server" OnItemCommand="lv_clasesDisponibles_invitado_ItemCommand">
 
                     <LayoutTemplate>
@@ -306,9 +315,9 @@
 
                             </div>
                             <div class="p-1" runat="server">
-                                <asp:Button ID="lv_btn_verI" runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark" Text="Ver" />
+                                <asp:Button ID="lv_btn_verI" runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Ver" />
                             </div>
-                             <div class="row centered">
+                            <div class="row centered">
                                 <p>&nbsp;</p>
                             </div>
 
@@ -322,9 +331,9 @@
 
             </div>
 
-             <!---------------FIN Cuadricula-------------------->
+            <!---------------FIN Cuadricula-------------------->
         </div>
-       
+
 
 
 
@@ -344,15 +353,15 @@
 
                     <!--Botonero-->
                     <div class="modal-footer">
-                        <asp:button ID="btn_si" type="button" runat="server" class="btn btn-outline-dark" OnClientClick="return button()" OnClick="btn_si_Click1"  TExt="SI"/>
-                        <Button ID="btn_no" type="button" class="btn btn-default"  value="No" data-dismiss="modal">No</button>
+                        <asp:Button ID="btn_si" type="button" runat="server" class="btn btn-outline-dark" OnClientClick="return button()" OnClick="btn_si_Click1" Text="SI" />
+                        <button id="btn_no" type="button" class="btn btn-default" value="No" data-dismiss="modal">No</button>
 
                     </div>
 
                 </div>
             </div>
         </div>
-        <asp:TextBox ID ="txtIDSeleccionado" runat="server" Text="" hidden="true"></asp:TextBox>
+        <asp:TextBox ID="txtIDSeleccionado" runat="server" Text="" hidden="true"></asp:TextBox>
 
     </form>
 

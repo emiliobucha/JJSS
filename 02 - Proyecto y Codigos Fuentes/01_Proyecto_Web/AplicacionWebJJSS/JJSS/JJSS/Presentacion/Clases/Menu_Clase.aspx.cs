@@ -15,6 +15,7 @@ namespace JJSS.Presentacion
     {
 
         private GestorClases gestorDeClases;
+        private GestorTipoClase gestorTipo;
         public bool MostrarEditar { get; set; } = true;
         public bool MostrarInscribir { get; set; } = true;
 
@@ -22,6 +23,7 @@ namespace JJSS.Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorDeClases = new GestorClases();
+            gestorTipo = new GestorTipoClase();
             if (!IsPostBack)
             {
 
@@ -58,7 +60,9 @@ namespace JJSS.Presentacion
 
                 cargarComboAcademias();
                 cargarComboProfesores();
+                cargarComboTipoClase();
                 cargarClasesView();
+               
 
                 if (Session["mensaje"] != null)
                 {
@@ -225,8 +229,8 @@ namespace JJSS.Presentacion
             string filtroNombre = txt_filtro_nombre.Text.Trim();
             int filtroAcademia = int.Parse(ddl_academias.SelectedValue);
             int filtroProfesor = int.Parse(ddl_profesores.SelectedValue);
-
-            List<ClasesDisponibles> clasesDisponibles = gestorDeClases.ObtenerClasesDisponibles(filtroNombre, filtroProfesor, filtroAcademia);
+            int filtroTipoClase = int.Parse(ddl_tipo_clase.SelectedValue);
+            List<ClasesDisponibles> clasesDisponibles = gestorDeClases.ObtenerClasesDisponibles(filtroNombre, filtroProfesor, filtroAcademia, filtroTipoClase);
             clasesDisponibles.ForEach(x =>
             {
                 x.MostrarEditar = MostrarEditar;
@@ -289,6 +293,21 @@ namespace JJSS.Presentacion
                 mensaje("Se eliminó la clase correctamente", true);
                 cargarClasesView();
             }
+        }
+
+        protected void cargarComboTipoClase()
+        {
+            List<tipo_clase> lista = gestorTipo.ObtenerTipoClase();
+            tipo_clase tc = new tipo_clase();
+            tc.id_tipo_clase = 0;
+            tc.nombre = "Todos";
+            lista.Insert(0, tc);
+
+            ddl_tipo_clase.DataSource = lista;
+            ddl_tipo_clase.DataValueField = "id_tipo_clase";
+            ddl_tipo_clase.DataTextField = "nombre";
+
+            ddl_tipo_clase.DataBind();
         }
     }
 }

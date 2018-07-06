@@ -79,7 +79,7 @@ namespace JJSS.Presentacion.Pagos
                                 var td = tiposdoc.FirstOrDefault(x => x.id_tipo_documento == tipoDoc);
                                 if (td != null)
                                 {
-                                    lblTipoDoc.InnerText = td.nombre;
+                                    lblTipoDoc.InnerText = td.codigo;
                                 }
 
 

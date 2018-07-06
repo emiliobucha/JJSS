@@ -204,7 +204,7 @@ namespace JJSS_Negocio
          * Retorno: List<clase> 
          *          Listado de todas las clases
          */
-        public List<ClasesDisponibles> ObtenerClasesDisponibles(string filtroNombre, int filtroProfesor, int filtroAcademia)
+        public List<ClasesDisponibles> ObtenerClasesDisponibles(string filtroNombre, int filtroProfesor, int filtroAcademia, int filtroTipoClase)
         {
             List<ClasesDisponibles> claseLista = null;
             using (var db = new JJSSEntities())
@@ -224,32 +224,56 @@ namespace JJSS_Negocio
                                             profesor = profe.nombre + " " + profe.apellido,
                                             id_academia = ubic.id_academia,
                                             id_profesor = profe.id_profesor,
+                                            id_tipo_clase = (int)clases.id_tipo_clase
                                         };
                 claseLista = clasesDisponibles.ToList();
             }
             List<ClasesDisponibles> clasesParaMostrar = new List<ClasesDisponibles>();
-            if (claseLista != null)
+
+            foreach (var clase in claseLista)
             {
-                foreach (ClasesDisponibles clase in claseLista)
+                //000
+                if (filtroAcademia == 0 && filtroProfesor == 0 && filtroTipoClase == 0)
                 {
-                    if (filtroAcademia == 0 && filtroProfesor == 0)
-                    {
-                        clasesParaMostrar.Add(clase);
-                    }
-                    else if (filtroProfesor == 0 && clase.id_academia == filtroAcademia)
-                    {
-                        clasesParaMostrar.Add(clase);
-                    }
-                    else if (filtroAcademia == 0 && clase.id_profesor == filtroProfesor)
-                    {
-                        clasesParaMostrar.Add(clase);
-                    }
-                    else if (clase.id_profesor == filtroProfesor && clase.id_academia == filtroAcademia)
-                    {
-                        clasesParaMostrar.Add(clase);
-                    }
+                    clasesParaMostrar.Add(clase);
+                }            
+                //001
+                else if (filtroAcademia == 0 && filtroProfesor == 0 && clase.id_tipo_clase == filtroTipoClase)
+                {
+                    clasesParaMostrar.Add(clase);
+                }
+                //010
+                else if (filtroAcademia == 0 && clase.id_profesor == filtroProfesor && filtroTipoClase == 0)
+                {
+                    clasesParaMostrar.Add(clase);
+                }
+                //011
+                else if (filtroAcademia == 0 && clase.id_profesor == filtroProfesor && clase.id_tipo_clase == filtroTipoClase)
+                {
+                    clasesParaMostrar.Add(clase);
+                }
+                //100
+                else if (clase.id_academia == filtroAcademia && filtroProfesor == 0 && filtroTipoClase == 0  )
+                {
+                    clasesParaMostrar.Add(clase);
+                }
+                //101
+                else if (clase.id_academia == filtroAcademia && filtroProfesor == 0 && clase.id_tipo_clase == filtroTipoClase)
+                {
+                    clasesParaMostrar.Add(clase);
+                }
+                //110
+                else if (clase.id_academia == filtroAcademia && clase.id_profesor == filtroProfesor && filtroTipoClase == 0)
+                {
+                    clasesParaMostrar.Add(clase);
+                }
+                //111
+                else if (clase.id_profesor == filtroProfesor && clase.id_academia == filtroAcademia && clase.id_tipo_clase == filtroTipoClase)
+                {
+                    clasesParaMostrar.Add(clase);
                 }
             }
+
 
             return clasesParaMostrar;
         }
@@ -373,7 +397,7 @@ namespace JJSS_Negocio
             foreach (horario h in horariosAnteriores)
             {
                 encuentra = false;
-                foreach(DataRow dr in nuevosHorarios.Rows)
+                foreach (DataRow dr in nuevosHorarios.Rows)
                 {
                     if (dr["hora_desde"].ToString().CompareTo(h.hora_desde) == 0 && dr["hora_hasta"].ToString().CompareTo(h.hora_hasta) == 0
                         && Convert.ToInt16(dr["dia"]) == h.dia)

@@ -18,10 +18,14 @@ namespace JJSS_Negocio.Resultados.Pagos
         public string NombreParticipante { get; set; }
         public int IdObjeto { get; set; }
         public string DescripcionObjeto { get; set; }
+        public string MontoString { get; set; }
 
         public string GetDescripcion()
         {
             return TipoPago.Tipo + " " + Nombre + " Fecha:" + Fecha.Date.ToString("dd/MM/yyyy");
         }
+
+
+
     }
 }
