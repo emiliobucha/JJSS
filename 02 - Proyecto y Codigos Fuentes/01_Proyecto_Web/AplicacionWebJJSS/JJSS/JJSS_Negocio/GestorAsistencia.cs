@@ -156,6 +156,7 @@ namespace JJSS_Negocio
                     }
                     asistencia.cla_fecha = asistencia.cla_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
                     asistencia.alu_hora = asistencia.alu_horaT?.ToString(@"hh\:mm") ?? " - ";
+                    asistencia.alu_hora += " hs";
 
                 }
 

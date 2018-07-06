@@ -101,7 +101,10 @@
                                         <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Día" DataField="nombre_dia">
                                             <HeaderStyle CssClass="text-center" />
                                         </asp:BoundField>
-                                        <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Desde" DataField="hora_desde">
+                                        <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Desde (hs)" DataField="hora_desde">
+                                            <HeaderStyle CssClass="text-center" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderStyle-CssClass="text-center" HeaderText="Hasta (hs)" DataField="hora_hasta">
                                             <HeaderStyle CssClass="text-center" />
                                         </asp:BoundField>
                                     </Columns>
