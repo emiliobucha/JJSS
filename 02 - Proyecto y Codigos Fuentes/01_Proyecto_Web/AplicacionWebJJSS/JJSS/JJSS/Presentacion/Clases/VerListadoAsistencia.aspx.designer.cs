@@ -85,6 +85,24 @@ namespace JJSS.Presentacion.Clases {
         protected global::System.Web.UI.WebControls.Label lbl_datos_clase;
         
         /// <summary>
+        /// Control lbl_academina.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_academina;
+        
+        /// <summary>
+        /// Control lbl_direccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_direccion;
+        
+        /// <summary>
         /// Control lbl_hora.
         /// </summary>
         /// <remarks>

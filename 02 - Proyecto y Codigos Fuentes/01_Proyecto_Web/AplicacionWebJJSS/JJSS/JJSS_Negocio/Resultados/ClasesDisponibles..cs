@@ -12,6 +12,7 @@ namespace JJSS_Negocio.Resultados
         public string nombre { get; set; }
         public double? precio { get; set; }
         public string tipo_clase { get; set; }
+        public int id_tipo_clase { get; set; }
         public string ubicacion { get; set; }
         public string profesor { get; set; }
         public int id_profesor { get; set; }

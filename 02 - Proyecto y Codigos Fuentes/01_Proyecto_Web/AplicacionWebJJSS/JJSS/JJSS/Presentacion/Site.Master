@@ -88,7 +88,7 @@
                   <ul class="navbar-nav mr-auto" runat="server">      
                       <!-- Torneo -->
                       <li class="nav-item dropdown" runat="server">
-                          <a runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarTorneo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Torneo &nbsp; 
+                          <a runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarTorneo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Torneos &nbsp; 
                           </a>
                           <div runat="server" class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
                               <a runat="server" id="nav_menu_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/MenuTorneo.aspx">Ver Sección</a>
@@ -99,7 +99,7 @@
                       </li>
                       <!-- Clase -->
                       <li runat="server" class="nav-item dropdown">
-                          <a runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarClase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Clase &nbsp; 
+                          <a runat="server" class=" nav-item dropdown-toggle text-white" href="#" id="navbarClase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Clases &nbsp; 
                           </a>
                           <div runat="server" class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
                               <a runat="server" id="nav_seccion_clase" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/Menu_Clase.aspx">Ver Sección </a>
@@ -112,7 +112,7 @@
                       </li>
                       <!-- Evento -->
                       <li class="nav-item dropdown">
-                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarEvento" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Evento &nbsp; 
+                          <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarEvento" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Eventos &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item text-white" id="nav_seccion" href="/Presentacion/Eventos/Menu_Evento.aspx">Ver Sección </a>

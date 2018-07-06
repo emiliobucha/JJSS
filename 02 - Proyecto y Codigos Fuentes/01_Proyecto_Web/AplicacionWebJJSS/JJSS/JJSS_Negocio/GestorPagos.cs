@@ -89,7 +89,8 @@ namespace JJSS_Negocio
                         Participante = (int)inscTorneo.id_participante,
                         NombreParticipante = inscTorneo.participante.nombre + " " + inscTorneo.participante.apellido,
                         IdObjeto = (int)inscTorneo.id_torneo,
-                        DescripcionObjeto = "Tipo de Inscripción: " + (inscTorneo.id_absoluto != null? "Absoluta":"Categoría") 
+                        DescripcionObjeto = "Tipo de Inscripción: " + (inscTorneo.id_absoluto != null? "Absoluta":"Categoría"),
+                        MontoString = "$ " + montoPagable
                     };
                     lista.Add(pagable);
                 }
@@ -118,7 +119,8 @@ namespace JJSS_Negocio
                         Inscripcion = inscEvento.id_inscripcion,
                         Participante = (int)inscEvento.id_participante,
                         NombreParticipante = inscEvento.participante_evento.nombre + " " + inscEvento.participante_evento.apellido,
-                        IdObjeto = (int)inscEvento.id_evento
+                        IdObjeto = (int)inscEvento.id_evento,
+                        MontoString= "$ " + montoPagable
                     };
                     lista.Add(pagable);
                 }
@@ -163,7 +165,8 @@ namespace JJSS_Negocio
                         Inscripcion = inscClase.id_inscripcion,
                         Participante = (int)inscClase.id_alumno,
                         NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
-                        IdObjeto = (int)inscClase.id_clase 
+                        IdObjeto = (int)inscClase.id_clase,
+                        MontoString = "$ " + montoPagable
                     };
                     if (recargo > 0)
                     {

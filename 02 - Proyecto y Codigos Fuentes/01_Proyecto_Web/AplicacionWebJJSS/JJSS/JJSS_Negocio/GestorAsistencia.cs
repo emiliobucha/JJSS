@@ -127,6 +127,8 @@ namespace JJSS_Negocio
                                         cla_nombre = asis.clase.nombre,
                                         cla_profesor = asis.clase.profesor.apellido + " " + asis.clase.profesor.nombre,
                                         cla_tipo = asis.clase.tipo_clase.nombre,
+                                        cla_academia = asis.clase.academia.nombre,
+                                        cla_direccion = asis.clase.academia.direccion.calle + " " + asis.clase.academia.direccion.numero + ", " + asis.clase.academia.direccion.ciudad.nombre + ", " + asis.clase.academia.direccion.ciudad.provincia.nombre,
                                         alu_apellido = asis.alumno.apellido,
                                         alu_dni = asis.alumno.dni.ToString(),
                                         alu_nombre = asis.alumno.nombre,

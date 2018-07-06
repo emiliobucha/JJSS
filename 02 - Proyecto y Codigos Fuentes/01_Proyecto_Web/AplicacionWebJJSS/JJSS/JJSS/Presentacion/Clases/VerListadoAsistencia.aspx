@@ -82,7 +82,14 @@
             <h2 class=" centered mt  ">
                 <asp:Label ID="lbl_datos_clase" runat="server" Text=""></asp:Label>
             </h2>
-            <p>&nbsp;</p>
+
+            <div class="centered">
+                <asp:Label ID="lbl_academina" runat="server" Text=""></asp:Label>
+            </div>
+            
+            <div class="centered">
+                <asp:Label ID="lbl_direccion" runat="server" Text=""></asp:Label>
+            </div>
             <h3 class="centered mt">
                 <asp:Label ID="lbl_hora" runat="server" Text=""></asp:Label>
             </h3>

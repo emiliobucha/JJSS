@@ -361,10 +361,10 @@
                         <div class="row centered">
                             <div class="col-md-2"></div>
                             <div class="col-md-2">
-                                <label class="pull-left">Peso: <a class="text-danger">*</a></label>
+                                <label class="pull-left">Peso (kg): <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox class="caja2" ID="txt_peso" runat="server" required="true" type="number" min="1" max="200" step="0.01" placeholder="Ingrese peso"></asp:TextBox>
+                                <asp:TextBox class="caja2" ID="txt_peso" runat="server" required="true" type="number" min="1" max="200" step="0.01" placeholder="Ingrese peso (kg)"></asp:TextBox>
 
                             </div>
                         </div>
@@ -379,7 +379,7 @@
                                 <label class="pull-left">País: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-4 col-xl-4">
-                                <asp:DropDownList ID="ddl_nacionalidad" class="caja2" runat="server" placeholder="Ingrese Nacionalidad"></asp:DropDownList>
+                                <asp:DropDownList ID="ddl_nacionalidad" class="caja2" runat="server" placeholder="Ingrese nacionalidad"></asp:DropDownList>
 
                             </div>
                         </div>
@@ -391,7 +391,7 @@
                         <div class="row centered">
                             <div class="col-md-2"></div>
                             <div class="col-md-2">
-                                <label class="pull-left text-left">Fecha de Nacimiento: <a class="text-danger">*</a></label>
+                                <label class="pull-left text-left">Fecha de nacimiento: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
                                 <!--SOMEE-->

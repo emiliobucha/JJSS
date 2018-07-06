@@ -14,6 +14,8 @@ namespace JJSS_Negocio
         public string cla_profesor { get; set; }
         public DateTime? cla_fechaD { get; set; }
         public string cla_fecha { get; set; }
+        public string cla_academia { get; set; }
+        public string cla_direccion { get; set; }
         public string alu_nombre { get; set; }
         public string alu_apellido { get; set; }
         public string alu_dni { get; set; }
