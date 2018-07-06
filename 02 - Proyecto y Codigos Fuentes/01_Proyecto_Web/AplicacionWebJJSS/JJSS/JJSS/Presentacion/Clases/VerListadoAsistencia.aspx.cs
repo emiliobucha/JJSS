@@ -54,7 +54,7 @@ namespace JJSS.Presentacion.Clases
         private void cargarComboClases()
         {
             GestorClases gc = new GestorClases();
-            List<ClasesDisponibles> clases = gc.ObtenerClasesDisponibles("", 0, 0);
+            List<ClasesDisponibles> clases = gc.ObtenerClasesDisponibles("", 0, 0,0);
 
             ClasesDisponibles primerElemento = new ClasesDisponibles()
             {
@@ -97,6 +97,9 @@ namespace JJSS.Presentacion.Clases
                 cargarGrillaAsistencia();
                 lbl_datos_clase.Text = asistentes.First().cla_tipo + " - " + asistentes.First().cla_nombre;
                 lbl_hora.Text = asistentes.First().horario_nombre;
+                lbl_academina.Text = asistentes.First().cla_academia;
+                lbl_direccion.Text = asistentes.First().cla_direccion;
+
                 btn_imprimir.Visible = true;
             } catch (Exception ex)
             {

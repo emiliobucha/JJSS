@@ -84,7 +84,7 @@
                             <label class="pull-left">Nombre Completo:</label>
                         </div>
                         <div class="col-md-3 col-xl-auto">
-                            <label class="pull-left" runat="server" id="lblNombreBuscado"></label>
+                            <label class="pull-left" runat="server" id="lblNombreBuscado"> - </label>
                         </div>
 
                         <!--Boton-->
