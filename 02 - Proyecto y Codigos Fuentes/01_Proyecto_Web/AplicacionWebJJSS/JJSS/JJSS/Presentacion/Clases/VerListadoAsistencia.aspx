@@ -94,10 +94,10 @@
                         <Columns>
                             <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" />
                             <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="alu_sexo" HeaderText="Sexo" />
                             <asp:BoundField DataField="alu_tipo_documento" HeaderText="Tipo" />
                             <asp:BoundField DataField="alu_dni" HeaderText="Documento" />
                             <asp:BoundField DataField="alu_telefono" HeaderText="Teléfono" />
-                            <asp:BoundField DataField="alu_sexo" HeaderText="Sexo" />
                             <asp:BoundField DataField="alu_horaT" HeaderText="Hora Ingreso" />
                         </Columns>
                         <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />

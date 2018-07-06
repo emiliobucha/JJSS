@@ -470,7 +470,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>DNI:</Value>
+                <Value>Documento:</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>Underline</TextDecoration>
@@ -659,7 +659,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Usted se ha inscripto de manera exitosa al torneo indicado. Por favor asista con DNI o comprobante de indentidad en la fecha, horario y ubicación acordados.</Value>
+                <Value>Usted se ha inscripto de manera exitosa al torneo indicado. Por favor asista con comprobante de indentidad en la fecha, horario y ubicación acordados.</Value>
                 <Style />
               </TextRun>
             </TextRuns>

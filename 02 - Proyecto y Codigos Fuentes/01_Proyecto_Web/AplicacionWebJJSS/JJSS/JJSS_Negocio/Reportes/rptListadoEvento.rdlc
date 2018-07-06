@@ -12,13 +12,13 @@
               <Width>3.01453cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.56514cm</Width>
+              <Width>2.60074cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.83354cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.60074cm</Width>
+              <Width>3.56514cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -95,16 +95,16 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
+                                <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox15">
+                    <Textbox Name="Textbox13">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>DNI</Value>
+                              <Value>Sexo</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -115,7 +115,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox15</rd:DefaultName>
+                      <rd:DefaultName>Textbox13</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -167,14 +167,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox13">
+                    <Textbox Name="Textbox15">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Sexo</Value>
+                              <Value>Documento</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -185,7 +185,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox13</rd:DefaultName>
+                      <rd:DefaultName>Textbox15</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -275,14 +275,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox20">
+                    <Textbox Name="par_sexo_nombre">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!par_dni.Value</Value>
+                              <Value>=Fields!par_sexo_nombre.Value</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -293,7 +293,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox20</rd:DefaultName>
+                      <rd:DefaultName>par_sexo_nombre</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -341,16 +341,16 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
+                              <TablixCell>
                   <CellContents>
-                    <Textbox Name="par_sexo_nombre">
+                    <Textbox Name="Textbox20">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!par_sexo_nombre.Value</Value>
+                              <Value>=Fields!par_dni.Value</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -361,7 +361,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>par_sexo_nombre</rd:DefaultName>
+                      <rd:DefaultName>Textbox20</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -375,6 +375,7 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+
               </TablixCells>
             </TablixRow>
           </TablixRows>
