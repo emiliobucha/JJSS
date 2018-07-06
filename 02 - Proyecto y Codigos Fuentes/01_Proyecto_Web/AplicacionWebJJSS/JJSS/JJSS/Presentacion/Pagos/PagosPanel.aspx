@@ -151,7 +151,7 @@
                                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="nombre" />
                                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="fecha" DataFormatString="{0:dd/MM/yyyy}" />
                                         <asp:BoundField DataField="DescripcionObjeto"  HeaderText="Descripción" SortExpression="descripcion" />
-                                        <asp:BoundField DataField="Monto" HeaderText="Monto" SortExpression="monto" />
+                                        <asp:BoundField DataField="MontoString" HeaderText="Monto" SortExpression="monto" />
                                        <%-- <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />--%>
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
