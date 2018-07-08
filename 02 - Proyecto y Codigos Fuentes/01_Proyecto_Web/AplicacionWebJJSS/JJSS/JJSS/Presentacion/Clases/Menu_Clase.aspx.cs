@@ -26,20 +26,14 @@ namespace JJSS.Presentacion
             gestorTipo = new GestorTipoClase();
             if (!IsPostBack)
             {
-
                 try
                 {
-
-
-
                     if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                     {
                         ocultarInvitado();
-
                     }
                     else
                     {
-
                         Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                         if (sesionActiva.estado != "INGRESO ACEPTADO")
                         {
@@ -53,9 +47,7 @@ namespace JJSS.Presentacion
                 }
                 catch (Exception ex)
                 {
-
                     Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
-
                 }
 
                 cargarComboAcademias();
@@ -254,7 +246,7 @@ namespace JJSS.Presentacion
             }
             if (e.CommandName.CompareTo("eliminar") == 0)
             {
-                
+                if (gestorDeClases.ClaseTieneInscriptos(id)) lbl_tiene.Visible = true;
             }
             if (e.CommandName.CompareTo("seleccionar") == 0)
             {
@@ -268,6 +260,7 @@ namespace JJSS.Presentacion
             }
 
         }
+
 
         protected void btn_buscar_Click(object sender, EventArgs e)
         {

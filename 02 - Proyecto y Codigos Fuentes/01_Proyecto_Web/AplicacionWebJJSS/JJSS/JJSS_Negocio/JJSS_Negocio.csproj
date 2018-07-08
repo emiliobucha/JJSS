@@ -93,6 +93,7 @@
     <Compile Include="modValidaciones.cs" />
     <Compile Include="Resultados\AlumnoConEstado.cs" />
     <Compile Include="Resultados\AlumnoFaja.cs" />
+    <Compile Include="Resultados\CompInscripcionClasePago.cs" />
     <Compile Include="Resultados\PersonaResultado.cs" />
     <Compile Include="Resultados\CategoriaResultado.cs" />
     <Compile Include="Resultados\CategoriasTorneoResultado.cs" />
@@ -176,6 +177,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\rptCompInscripcionClasePago.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptCompInscripcionEventoPago.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptCompInscripcionTorneoPago.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>

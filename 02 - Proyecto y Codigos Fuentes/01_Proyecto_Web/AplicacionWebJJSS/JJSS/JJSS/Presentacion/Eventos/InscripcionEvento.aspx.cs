@@ -404,7 +404,7 @@ namespace JJSS.Presentacion
                         string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(idTipo, dni, idEvento).id_inscripcion, mail);
 
                         pnl_comprobante.Visible = true;
-                        btn_descargar.Attributes.Add("href", "Downloader.ashx?" + "sFile=" + sFile);
+                        btn_descargar.Attributes.Add("href", "../Downloader.ashx?" + "sFile=" + sFile);
                     }
                     catch (Exception ex)
                     {

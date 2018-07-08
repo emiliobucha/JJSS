@@ -744,5 +744,18 @@ namespace JJSS_Negocio
         }
 
 
+        public bool ClaseTieneInscriptos(int id)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var clase = db.clase.Find(id);
+                if (clase!=null && clase.inscripcion_clase.ToList().Count > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
     }
 }

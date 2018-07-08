@@ -29,13 +29,13 @@
                     </asp:Panel>
 
                     <br />
-                    <asp:Panel ID="pnl_pago" runat="server" Visible="False">
+<%--                    <asp:Panel ID="pnl_pago" runat="server" Visible="False">
                         <div class="text-center">
                             ¿Desea pagar ahora?<br />
                             <asp:Button ID="btn_pagar" runat="server" class="btn btn-default" Text="Si" formnovalidate="true" OnClientClick="btn_pagar_click()" />
                             <asp:Button ID="btn_no" runat="server" class="btn btn-default" Text="No" formnovalidate="true" OnClientClick="btn_no_click()" />
                         </div>
-                    </asp:Panel>
+                    </asp:Panel>--%>
                 </div>
             </div>
 
@@ -279,7 +279,7 @@
                                 <label class="pull-left">Nombre: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_nombre" class="caja2" required="true" pattern="[A-Za-z]*" MaxLength="50" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
+                                <asp:TextBox ID="txt_nombre" class="caja2" required="true" pattern="^[a-zA-Z\s]+$" MaxLength="50" runat="server" placeholder="Ingrese nombre"></asp:TextBox>
 
                             </div>
                         </div>
@@ -296,7 +296,7 @@
                                 <label class="pull-left">Apellido: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_apellido" required="true" MaxLength="50" pattern="[A-Za-z]*" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
+                                <asp:TextBox ID="txt_apellido" required="true" MaxLength="50" pattern="^[a-zA-Z\s]+$" class="caja2" runat="server" placeholder="Ingrese apellido"></asp:TextBox>
 
                             </div>
                         </div>

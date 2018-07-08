@@ -291,7 +291,7 @@
                                 <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                             </div>--%>
                                     <div>
-                                        Tipo de Clase:
+                                        Disciplina:
                                        
                                         <asp:Label ID="lv_lbl_tipo_clase" runat="server" Text='<%# Eval("tipo_clase") %>' />
                                     </div>
@@ -363,7 +363,7 @@
                                 <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                             </div>--%>
                                     <div>
-                                        Tipo de Clase:
+                                        Disciplina:
                                        
                                         <asp:Label ID="lv_lbl_tipo_clase" runat="server" Text='<%# Eval("tipo_clase") %>' />
                                     </div>

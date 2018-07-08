@@ -48,12 +48,43 @@ namespace JJSS_Negocio
             return sFile;
 
         }
+
+        /*
+        * Método que sirve para generar un Reporte en PDF con el comprobante de evento
+        * Parámetros: Listado de un objeto participante
+        * Retorno: String ruta y nombre completo del archivo generado en PDF
+        */
+        public string GenerarReporteComprInscripcionEventoPago(List<CompInscripcionEvento> pListado)
+        {
+            Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
+
+            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ComprobanteInscripcionEventoPago", "pdf");
+            System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptCompInscripcionEventoPago"));
+            return sFile;
+
+        }
+
+        /*
+        * Método que sirve para generar un Reporte en PDF con el comprobante de evento
+        * Parámetros: Listado de un objeto participante
+        * Retorno: String ruta y nombre completo del archivo generado en PDF
+        */
+        public string GenerarReporteComprInscripcionClasePago(List<CompInscripcionClasePago> pListado)
+        {
+            Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
+
+            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ComprobanteInscripcionClasePago", "pdf");
+            System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptCompInscripcionClasePago"));
+            return sFile;
+
+        }
+
+
         /*
            * Método que sirve para generar un Reporte en PDF con el comprobante de torneo
            * Parámetros: Listado de un objeto participante
            * Retorno: String ruta y nombre completo del archivo generado en PDF
            */
-        //public string GenerarReporteListadoParticipantes(List<Object> pListado, String pTorneoNombre, String pSede, String pDireccion, String pFecha , String pHora)
         public string GenerarReporteComprInscripcionTorneo(List<CompInscripcionTorneo> pListado)
         {
             Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];

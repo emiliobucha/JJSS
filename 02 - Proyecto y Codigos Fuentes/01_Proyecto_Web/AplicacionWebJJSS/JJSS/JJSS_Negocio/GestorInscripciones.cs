@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data.Entity;
 using System.Runtime.InteropServices.ComTypes;
+using JJSS_Negocio.Constantes;
 
 namespace JJSS_Negocio
 {
@@ -479,10 +480,11 @@ namespace JJSS_Negocio
                                         par_apellido = part.apellido,
                                         par_fecha_nacD = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
-                                        par_dni = part.dni.ToString(),
+                                        par_dni = part.dni,
                                         par_faja = inscr.faja.descripcion,
                                         par_categoria = inscr.categoria_torneo.categoria.nombre,
-                                        inscr_tipoI = inscr.tipo_inscripcion
+                                        inscr_tipoI = inscr.tipo_inscripcion,
+                                        par_tipo_documento = part.tipo_documento.codigo
                                        
 
                                     };
@@ -522,12 +524,20 @@ namespace JJSS_Negocio
        * Obtenemos un listado de todos los participantes que estan en un torneo con datos de su categoria a la cual esta inscripto, la faja, y datos
        * propios del participante
        */
-        public string ComprobanteInscripcionPago(int pID, string pMail)
+        public string ComprobanteInscripcionPago(int pID, string pMail, int formaPago)
         {
             GestorReportes gestorReportes = new GestorReportes();
 
             using (var db = new JJSSEntities())
             {
+                var forma = db.forma_pago.Find(formaPago);
+                string formaString= "";
+
+                if (forma!=null)
+                {
+                    formaString = forma.nombre;
+                }
+
                 var participantes = from inscr in db.inscripcion
                                     join part in db.participante on inscr.id_participante equals part.id_participante
                                     join cat_tor in db.categoria_torneo on inscr.id_categoria equals cat_tor.id_categoria_torneo
@@ -546,13 +556,14 @@ namespace JJSS_Negocio
                                         par_apellido = part.apellido,
                                         par_fecha_nacD = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
-                                        par_dni = part.dni.ToString(),
+                                        par_dni = part.dni,
                                         par_faja = inscr.faja.descripcion,
-                                        par_categoria = cat.nombre
-
+                                        par_categoria = cat.nombre,
+                                        pag_forma_pago = formaString,
+                                        par_tipo_documento = part.tipo_documento.codigo
 
                                     };
-                List<CompInscripcionTorneo> participantesList = participantes.ToList<CompInscripcionTorneo>();
+                List<CompInscripcionTorneo> participantesList = participantes.ToList();
 
 
                 foreach (CompInscripcionTorneo part in participantesList)
@@ -566,12 +577,14 @@ namespace JJSS_Negocio
                     {
                         part.par_sexo_nombre = "F";
                     }
+
+                    part.pag_fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm") + " hs";
                     part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
                     part.tor_fecha = part.tor_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
 
                 }
 
-                string sFile = gestorReportes.GenerarReporteComprInscripcionTorneo(participantesList);
+                string sFile = gestorReportes.GenerarReporteComprInscripcionTorneoPago(participantesList);
                 if (pMail != null)
                 {
                     EnviarMail(sFile, pMail);

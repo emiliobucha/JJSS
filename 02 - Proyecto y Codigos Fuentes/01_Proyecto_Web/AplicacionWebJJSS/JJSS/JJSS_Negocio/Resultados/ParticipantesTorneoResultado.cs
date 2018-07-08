@@ -23,5 +23,7 @@ namespace JJSS_Negocio
         public string par_faja { get; set; }
         public string par_categoria { get; set; }
         public string par_dni { get; set; }
+        public string par_tipo_documento { get; set; }
+        public string par_peso { get; set; }
     }
 }

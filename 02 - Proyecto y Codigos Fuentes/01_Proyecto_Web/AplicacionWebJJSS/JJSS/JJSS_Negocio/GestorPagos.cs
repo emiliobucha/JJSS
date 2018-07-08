@@ -14,7 +14,7 @@ namespace JJSS_Negocio
        private static string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
 
 
-        public List<ObjetoPagable> ObtenerObjetosPagablesPendientes(int tipoDoc, string dni)
+        public List<ObjetoPagable> ObtenerObjetosPagablesPendientes(int tipoDoc, string dni, bool invitado)
         {
             using (var db = new JJSSEntities())
             {
@@ -46,6 +46,11 @@ namespace JJSS_Negocio
                 }
                 if (alumno != null)
                 {
+                    if (invitado)
+                    {
+                        return lista;
+                    }
+
                     inscripcionesClases = alumno.inscripcion_clase.ToList();
                 }
 
@@ -260,7 +265,7 @@ namespace JJSS_Negocio
                                 pagoRecargo = 1;
                             }
                             int detalle = gestorPagoClase.registrarPagoMultiple(objeto.Participante, objeto.IdObjeto, objeto.Monto, mesNombre, pagoMultiple.FormaPago, pagoRecargo, nuevoPago.id_pago);
-                            gestorPagoClase.actualizarPagoMultiple(detalle, nuevoPago.id_pago);
+                           // gestorPagoClase.actualizarPagoMultiple(detalle, nuevoPago.id_pago);
                         }
                     }
 

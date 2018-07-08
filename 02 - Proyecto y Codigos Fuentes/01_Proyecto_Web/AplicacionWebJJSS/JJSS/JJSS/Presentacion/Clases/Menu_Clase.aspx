@@ -225,7 +225,7 @@
                                 <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                             </div>--%>
                             <div runat="server">
-                                Tipo de Clase:
+                                Disciplina:
                                        
                                         <asp:Label ID="lv_lbl_tipo_clase" runat="server" Text='<%# Eval("tipo_clase") %>' />
                             </div>
@@ -251,8 +251,8 @@
 
                                 <asp:Button ID="lv_btn_seleccionar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Editar" />
 
-                                <asp:LinkButton ID="lv_btn_eliminar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' CommandName="eliminar" runat="server" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark"
-                                    OnClientClick='<%# Eval("id_clase", "return openModal({0})") %>'> Eliminar</asp:LinkButton>
+                                <asp:Button ID="lv_btn_eliminar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' CommandName="eliminar" runat="server" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark"
+                                    OnClientClick='<%# Eval("id_clase", "return openModal({0});") %>' Text="Eliminar"> </asp:Button>
                             </div>
                         </div>
 
@@ -296,7 +296,7 @@
                                 <asp:Image ID="lv_imagen" ImageUrl='<%# Eval("imagen") %>' runat="server" Width="250" Height="404" />
                             </div>--%>
                             <div>
-                                Tipo de Clase:
+                                Disciplina:
                                        
                                         <asp:Label ID="lv_lbl_tipo_clase" runat="server" Text='<%# Eval("tipo_clase") %>' />
                             </div>
@@ -350,7 +350,10 @@
                         <h4 class="modal-title" id="exampleModalLabe2">¿Seguro que desea eliminar la clase?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
-
+                    <div runat="server" Visible="False" id="lbl_tiene" >
+                        <h5 class="modal-title alert-danger">Cuidado que tiene alumnos inscriptos</h5>
+                    </div>
+                        
                     <!--Botonero-->
                     <div class="modal-footer">
                         <asp:Button ID="btn_si" type="button" runat="server" class="btn btn-outline-dark" OnClientClick="return button()" OnClick="btn_si_Click1" Text="SI" />
