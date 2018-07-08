@@ -57,7 +57,7 @@ namespace JJSS.Presentacion.Administracion
                 string res = gtc.crearTipoClase(nombre);
                 if (res.CompareTo("") == 0)
                 {
-                    redirigirPorExito("Se ha creado el tipo de clase exitosamente");
+                    redirigirPorExito("Se ha creado la disciplina exitosamente");
                 }
                 else mensaje(res, false);
                 cargarGrilla();
@@ -68,7 +68,7 @@ namespace JJSS.Presentacion.Administracion
                 if (res.CompareTo("") == 0)
                 {
                     idTipoClase = 0;
-                    redirigirPorExito("Se ha modificado el tipo de clase exitosamente");
+                    redirigirPorExito("Se ha modificado la disciplina exitosamente");
                 }
                 else mensaje(res, false);
                 cargarGrilla();
