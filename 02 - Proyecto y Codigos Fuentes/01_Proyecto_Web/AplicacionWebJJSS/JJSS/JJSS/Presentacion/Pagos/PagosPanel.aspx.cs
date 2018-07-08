@@ -250,12 +250,16 @@ namespace JJSS.Presentacion.Pagos
 
         protected void CargarGrilla()
         {
-            objetosGrilla = gestorPagos.ObtenerObjetosPagablesPendientes(tipoDoc, dni);
+            //Para validar y permitir que si es invitado no muestre datos del alumno
+            bool invitado = HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO";
+
+            objetosGrilla = gestorPagos.ObtenerObjetosPagablesPendientes(tipoDoc, dni,invitado);
             if (objetosGrilla.Count > 0)
             {
                 nombre = objetosGrilla[0].NombreParticipante;
                 lblNombreBuscado.InnerText = nombre;
             }
+
             gvPagos.DataSource = objetosGrilla;
             gvPagos.DataBind();
         }

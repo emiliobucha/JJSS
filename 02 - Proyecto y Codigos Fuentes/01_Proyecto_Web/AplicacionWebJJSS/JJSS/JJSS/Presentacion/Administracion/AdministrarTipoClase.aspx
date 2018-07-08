@@ -48,7 +48,7 @@
             </div>
 
             <div class="row centered justify-content-center">
-                <h1 class=" centered ">Administrar Tipo de Clase</h1>
+                <h1 class=" centered ">Administrar Disciplinas</h1>
             </div>
 
             <div>

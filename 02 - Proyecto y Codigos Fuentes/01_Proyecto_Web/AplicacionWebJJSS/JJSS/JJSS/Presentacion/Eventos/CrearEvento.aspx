@@ -48,7 +48,7 @@
                         <p>&nbsp;</p>
                     </div>
                     <div class="row mt centered justify-content-center ">
-                        <h1 class="centered">Creación de Evento Especial</h1>
+                        <h1 class="centered">Creación de Evento</h1>
                     </div>
 
                     <div>

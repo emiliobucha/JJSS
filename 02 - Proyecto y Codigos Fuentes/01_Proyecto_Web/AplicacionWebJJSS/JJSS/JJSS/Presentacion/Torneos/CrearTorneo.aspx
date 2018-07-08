@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1 class=" centered ">ACreación de Torneo</h1>
+                        <h1 class=" centered ">Creación de Torneo</h1>
                         <%--<asp:Label ID="lbl_Inscripcion" runat="server" Text="INSCRIPCIÓN DE TORNEO" CssClass=" h2 font-weight-light"></asp:Label>--%>
                     </div>
 
@@ -161,7 +161,7 @@
                             <!--Precio por categoria-->
                             <div class="row pl-lg-5 pl-md-5 ">
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                                    <label class="pull-left left">Precio de inscripción categoria $ <a class="text-danger">*</a></label>
+                                    <label class="pull-left left">Precio de inscripción categoría $ <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-4 col-lg-4 col-sm-10 col-xs-10">
                                     <asp:TextBox ID="txt_precio_cat" required="true" type="number" min="0" max="100000" step="0.01" CssClass=" caja2 form-control" placeholder="Ingrese precio de inscripción categoria" runat="server"></asp:TextBox>

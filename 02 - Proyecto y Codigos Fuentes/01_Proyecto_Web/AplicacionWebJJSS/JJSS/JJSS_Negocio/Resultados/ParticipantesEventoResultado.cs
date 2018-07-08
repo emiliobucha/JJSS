@@ -22,5 +22,6 @@ namespace JJSS_Negocio
         public short? par_sexo { get; set; }
         public string par_sexo_nombre { get; set; }
         public string par_dni { get; set; }
+        public string par_tipo_documento { get; set; }
     }
 }

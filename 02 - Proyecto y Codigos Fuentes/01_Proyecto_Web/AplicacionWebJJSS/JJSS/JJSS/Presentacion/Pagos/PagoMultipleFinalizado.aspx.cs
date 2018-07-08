@@ -26,6 +26,7 @@ namespace JJSS.Presentacion
         private short pagoRecargo = 0; //si es 0 no pago recargo, si es 1 si lo pago
         private static PagoMultiple pagoMultiple;
         private GestorInscripcionesEvento gestorInscripcionesEventos;
+        private GestorInscripcionesClase gestorInscripcionesClase;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,6 +38,7 @@ namespace JJSS.Presentacion
             gestorPago = new GestorPagos();
             gestorInscripciones = new GestorInscripciones();
             gestorInscripcionesEventos = new GestorInscripcionesEvento();
+            gestorInscripcionesClase = new GestorInscripcionesClase();
             if (!IsPostBack)
             {
 
@@ -95,7 +97,7 @@ namespace JJSS.Presentacion
                     lbl_participante.Text = pagoMultiple.NombreCompleto;
                     lbl_descripcion.Text = pagoMultiple.Descripcion;
 
-                    double monto = (double) pagoMultiple.MontoTotal;
+                    double monto = (double)pagoMultiple.MontoTotal;
                     lbl_monto.Text = "$ " + pagoMultiple.MontoTotal;
 
                     string sReturn = gestorPago.RegistrarNuevoPagoMultiple(pagoMultiple);
@@ -186,39 +188,45 @@ namespace JJSS.Presentacion
 
 
                 //para usuarios
-                  Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
 
-                  try
-                  {
-                      string mail = sesionActiva.usuario.mail;
+                try
+                {
+                    string mail = sesionActiva.usuario.mail;
 
-                      if (pagoMultiple.TipoDocumento != null)
-                      {
+                    if (pagoMultiple.TipoDocumento != null)
+                    {
 
-                              if (pagoImprimir.TipoPago.Id == ConstantesTipoPago.TORNEO().Id)
-                              {
-                                  string sFile = gestorInscripciones.ComprobanteInscripcionPago(pagoImprimir.Inscripcion, mail);
-                                  Response.Clear();
-                                  Response.AddHeader("Content-Type", "Application/octet-stream");
-                                  Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
-                                  Response.WriteFile(sFile);
-
-
-                              }
-                              if (pagoImprimir.TipoPago.Id == ConstantesTipoPago.EVENTO().Id)
-                              {
-                                  string sFile = gestorInscripcionesEventos.ComprobanteInscripcion(pagoImprimir.Inscripcion, mail);
-                                  Response.Clear();
-                                  Response.AddHeader("Content-Type", "Application/octet-stream");
-                                  Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
-                                  Response.WriteFile(sFile);
-                              }
+                        if (pagoImprimir.TipoPago.Id == ConstantesTipoPago.TORNEO().Id)
+                        {
+                            string sFile = gestorInscripciones.ComprobanteInscripcionPago(pagoImprimir.Inscripcion, mail, pagoMultiple.FormaPago);
+                            Response.Clear();
+                            Response.AddHeader("Content-Type", "Application/octet-stream");
+                            Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                            Response.WriteFile(sFile);
+                        }
+                        else if (pagoImprimir.TipoPago.Id == ConstantesTipoPago.EVENTO().Id)
+                        {
+                            string sFile = gestorInscripcionesEventos.ComprobanteInscripcionPago(pagoImprimir.Inscripcion, mail, pagoMultiple.FormaPago);
+                            Response.Clear();
+                            Response.AddHeader("Content-Type", "Application/octet-stream");
+                            Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                            Response.WriteFile(sFile);
+                        }
+                        else if (pagoImprimir.TipoPago.Id == ConstantesTipoPago.CLASE().Id)
+                        {
+                            string sFile = gestorInscripcionesClase.ComprobanteInscripcionPago(pagoImprimir.Inscripcion, mail, pagoMultiple.FormaPago);
+                            Response.Clear();
+                            Response.AddHeader("Content-Type", "Application/octet-stream");
+                            Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                            Response.WriteFile(sFile);
+                        }
                     }
-                  }
-                  catch (Exception ex)
-                  {
-                      mensaje("Ocurrió un error al tratar de generar el comprobante",false);
-                  }
+                }
+                catch (Exception ex)
+                {
+                    mensaje("Ocurrió un error al tratar de generar el comprobante", false);
+                }
 
             }
         }

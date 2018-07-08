@@ -233,7 +233,9 @@ namespace JJSS_Negocio
                                         par_apellido = part.apellido,
                                         par_fecha_nacD = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
-                                        par_dni = part.dni.ToString()
+                                        par_dni = part.dni.ToString(),
+                                        par_tipo_documento = part.tipo_documento.codigo
+
 
                                     };
                 List<CompInscripcionEvento> participantesList = participantes.ToList<CompInscripcionEvento>();
@@ -267,6 +269,75 @@ namespace JJSS_Negocio
 
         }
 
+        /*
+* Obtenemos un listado de todos los participantes que estan en un torneo con datos de su categoria a la cual esta inscripto, la faja, y datos
+* propios del participante
+*/
+        public string ComprobanteInscripcionPago(int pID, string pMail,int formaPago)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+
+            using (var db = new JJSSEntities())
+            {
+                var forma = db.forma_pago.Find(formaPago);
+                string formaString = "";
+
+                if (forma != null)
+                {
+                    formaString = forma.nombre;
+                }
+                var participantes = from inscr in db.inscripcion_evento
+                                    join part in db.participante_evento on inscr.id_participante equals part.id_participante
+                                    where inscr.id_inscripcion == pID
+                                    select new CompInscripcionEvento()
+                                    {
+                                        ev_nombre = inscr.evento_especial.nombre,
+                                        ev_sede = inscr.evento_especial.sede.nombre,
+                                        ev_direccion = inscr.evento_especial.sede.direccion.calle + " " + inscr.evento_especial.sede.direccion.numero + " - " + inscr.evento_especial.sede.direccion.ciudad.nombre + " - " + inscr.evento_especial.sede.direccion.ciudad.provincia.nombre + " - " + inscr.evento_especial.sede.direccion.ciudad.provincia.pais.nombre,
+                                        ev_fechaD = inscr.evento_especial.fecha,
+                                        ev_hora = inscr.evento_especial.hora,
+                                        ev_tipo = inscr.evento_especial.tipo_evento_especial.nombre,
+                                        ev_precio = inscr.evento_especial.precio.ToString(),
+                                        par_nombre = part.nombre,
+                                        par_apellido = part.apellido,
+                                        par_fecha_nacD = part.fecha_nacimiento,
+                                        par_sexo = part.sexo,
+                                        par_dni = part.dni,
+                                        pag_forma_pago = formaString,
+                                        par_tipo_documento = part.tipo_documento.codigo
+
+                                    };
+                List<CompInscripcionEvento> participantesList = participantes.ToList();
+
+
+                foreach (CompInscripcionEvento part in participantesList)
+                {
+                    if (part.par_sexo == 1)
+                    {
+                        part.par_sexo_nombre = "M";
+                    }
+                    else
+                    {
+                        part.par_sexo_nombre = "F";
+                    }
+                    part.pag_fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm") + " hs";
+                    part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
+                    part.ev_fecha = part.ev_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
+                }
+
+                string sFile = gestorReportes.GenerarReporteComprInscripcionEventoPago(participantesList);
+                if (pMail != null)
+                {
+                    EnviarMail(sFile, pMail);
+                }
+
+                return sFile;
+
+            }
+
+        }
+
+
         private void EnviarMail(string sFile, string mail)
         {
             modEmails md = new modEmails();
@@ -274,7 +345,6 @@ namespace JJSS_Negocio
             md.Msg_Destinatarios.Add(mail);
             md.Msg_Asunto = "Comprobante de Inscripción a Evento de Lotus Club - Equipo Hinojal";
             md.Enviar();
-
         }
 
 

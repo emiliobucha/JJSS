@@ -13,6 +13,7 @@ namespace JJSS_Negocio.Resultados.Pagos
         public decimal MontoTotal { get; set; }
         public string Descripcion { get; set; }
         public int FormaPago { get; set; }
+        public string FormaPagoString { get; set; }
         public int? IdUsuario { get; set; }
         public int Id { get; set; }
         public IList<ObjetoPagable> ObjetosPagables { get; set; }

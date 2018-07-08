@@ -304,5 +304,95 @@ namespace JJSS_Negocio
                 }
             }
         }
+
+
+
+        /*
+* Obtenemos un listado de todos los participantes que estan en un torneo con datos de su categoria a la cual esta inscripto, la faja, y datos
+* propios del participante
+*/
+
+        private static string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+
+        public string ComprobanteInscripcionPago(int pID, string pMail, int formaPago)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+
+            using (var db = new JJSSEntities())
+            {
+                var forma = db.forma_pago.Find(formaPago);
+                string formaString = "";
+
+                if (forma != null)
+                {
+                    formaString = forma.nombre;
+                }
+                var participantes = from inscr in db.inscripcion_clase
+                                    join alu in db.alumno on inscr.id_alumno equals alu.id_alumno
+                                    where inscr.id_inscripcion == pID
+                                    select new CompInscripcionClasePago()
+                                    {
+                                        cla_nombre = inscr.clase.nombre,
+                                        cla_academia = inscr.clase.academia.nombre,
+                                        cla_direccion = inscr.clase.academia.direccion.calle + " " + inscr.clase.academia.direccion.numero + " - " + inscr.clase.academia.direccion.ciudad.nombre + " - " + inscr.clase.academia.direccion.ciudad.provincia.nombre + " - " + inscr.clase.academia.direccion.ciudad.provincia.pais.nombre,
+                                       
+                                        cla_precio = inscr.clase.precio.ToString(),
+                                        cla_tipo = inscr.clase.tipo_clase.nombre,
+                                     
+                                        par_nombre = alu.nombre,
+                                        par_apellido = alu.apellido,
+                                        par_fecha_nacD = alu.fecha_nacimiento,
+                                        par_sexo = alu.sexo,
+                                        par_dni = alu.dni,
+                                        pag_forma_pago = formaString,
+                                        par_tipo_documento = alu.tipo_documento.codigo
+
+                                    };
+                List<CompInscripcionClasePago> participantesList = participantes.ToList();
+                int mes = DateTime.Today.Month;
+
+                foreach (CompInscripcionClasePago part in participantesList)
+                {
+
+                    
+                    string mesNombre = meses[mes - 1];
+
+                    if (part.par_sexo == 1)
+                    {
+                        part.par_sexo_nombre = "M";
+
+                    }
+                    else
+                    {
+                        part.par_sexo_nombre = "F";
+                    }
+                    part.pag_fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm") + " hs";
+                    part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
+                    part.pag_mes = mesNombre;
+                }
+
+                string sFile = gestorReportes.GenerarReporteComprInscripcionClasePago(participantesList);
+                if (pMail != null)
+                {
+                    EnviarMail(sFile, pMail);
+                }
+
+                return sFile;
+
+            }
+
+        }
+
+
+        private void EnviarMail(string sFile, string mail)
+        {
+            modEmails md = new modEmails();
+            md.Msg_Adjuntos.Add(sFile);
+            md.Msg_Destinatarios.Add(mail);
+            md.Msg_Asunto = "Comprobante de Inscripción a Evento de Lotus Club - Equipo Hinojal";
+            md.Enviar();
+
+        }
+
     }
 }

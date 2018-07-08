@@ -307,7 +307,8 @@ namespace JJSS_Negocio
                                         par_apellido = part.apellido,
                                         par_fecha_nacD = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
-                                        par_dni = part.dni.ToString()
+                                        par_dni = part.dni,
+                                        par_tipo_documento = part.tipo_documento.codigo
                                       
                                     };
                 List<ParticipantesEventoResultado> participantesList = participantes.ToList<ParticipantesEventoResultado>();

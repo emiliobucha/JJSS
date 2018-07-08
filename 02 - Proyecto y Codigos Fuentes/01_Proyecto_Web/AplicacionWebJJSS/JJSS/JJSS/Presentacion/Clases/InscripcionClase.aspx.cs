@@ -131,7 +131,7 @@ namespace JJSS.Presentacion
             profesor profe = gestorClases.ObtenerProfesorPorID((int)datos_clase.id_profe);
             lbl_profesor.Text = "Profesor: " + profe.apellido + ", " + profe.nombre;
             lbl_ubicacion.Text = "Ubicación: " + gestorClases.ObtenerAcademiasPorID((int)datos_clase.id_ubicacion).nombre;
-            lbl_tipo_clase.Text = "Tipo de Clase: " + gestorClases.ObtenerTipoClasesPorID((int)datos_clase.id_tipo_clase).nombre;
+            lbl_tipo_clase.Text = "Disciplina: " + gestorClases.ObtenerTipoClasesPorID((int)datos_clase.id_tipo_clase).nombre;
 
 
 
