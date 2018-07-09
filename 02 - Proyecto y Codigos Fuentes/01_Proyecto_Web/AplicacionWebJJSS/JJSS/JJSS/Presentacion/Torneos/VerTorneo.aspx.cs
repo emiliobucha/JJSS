@@ -19,6 +19,7 @@ namespace JJSS.Presentacion
         private static torneo torneoSeleccionado;
         private static estado estadoTorneo;
         private static List<ResultadoDeTorneo> resultadosTorneo;
+        private static SedeDireccion sede;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,7 +54,7 @@ namespace JJSS.Presentacion
         private void cargarInformacion()
         {
             GestorSedes gestorSede = new GestorSedes();
-            SedeDireccion sede = gestorSede.ObtenerDireccionSede((int)torneoSeleccionado.id_sede);
+            sede = gestorSede.ObtenerDireccionSede((int)torneoSeleccionado.id_sede);
 
             lbl_nombre_torneo.Text = torneoSeleccionado.nombre;
             lbl_FechaCierreInscripcion.Text = torneoSeleccionado.fecha_cierre.Value.ToLongDateString();
@@ -124,6 +125,7 @@ namespace JJSS.Presentacion
                         if (permiso == 1)
                         {
                             btn_cargar_resultados.Visible = true;
+                            btn_imprimir_resultados.Visible = true;
                         }
 
 
@@ -350,6 +352,23 @@ namespace JJSS.Presentacion
         {
             limpiarMensaje();
             volverPaginaAnterior();
+        }
+
+        protected void btn_imprimir_resultados_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String sFile = gestorTorneos.GenerarListadoResultados(torneoSeleccionado,resultadosTorneo,sede);
+
+                Response.Clear();
+                Response.AddHeader("Content-Type", "Application/octet-stream");
+                Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");
+                Response.WriteFile(sFile);
+            }
+            catch (Exception ex)
+            {
+                mensaje("No se encuentran resultados cargados a ese torneo", false);
+            }
         }
     }
 }

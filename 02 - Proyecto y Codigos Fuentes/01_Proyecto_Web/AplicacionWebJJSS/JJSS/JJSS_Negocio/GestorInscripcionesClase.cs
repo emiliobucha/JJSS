@@ -327,11 +327,17 @@ namespace JJSS_Negocio
                 {
                     formaString = forma.nombre;
                 }
+
+                var gestorClases = new GestorClases();
+               
+
                 var participantes = from inscr in db.inscripcion_clase
                                     join alu in db.alumno on inscr.id_alumno equals alu.id_alumno
                                     where inscr.id_inscripcion == pID
                                     select new CompInscripcionClasePago()
                                     {
+                                        cla_id =(int) inscr.id_clase,
+                                        cla_alumno = (int) inscr.id_alumno,
                                         cla_nombre = inscr.clase.nombre,
                                         cla_academia = inscr.clase.academia.nombre,
                                         cla_direccion = inscr.clase.academia.direccion.calle + " " + inscr.clase.academia.direccion.numero + " - " + inscr.clase.academia.direccion.ciudad.nombre + " - " + inscr.clase.academia.direccion.ciudad.provincia.nombre + " - " + inscr.clase.academia.direccion.ciudad.provincia.pais.nombre,
@@ -353,14 +359,15 @@ namespace JJSS_Negocio
 
                 foreach (CompInscripcionClasePago part in participantesList)
                 {
+                    var recargo = gestorClases.calcularRecargo(part.cla_id, part.cla_alumno);
+                    part.cla_precio = part.cla_precio + recargo;
 
-                    
+
                     string mesNombre = meses[mes - 1];
 
                     if (part.par_sexo == 1)
                     {
                         part.par_sexo_nombre = "M";
-
                     }
                     else
                     {
