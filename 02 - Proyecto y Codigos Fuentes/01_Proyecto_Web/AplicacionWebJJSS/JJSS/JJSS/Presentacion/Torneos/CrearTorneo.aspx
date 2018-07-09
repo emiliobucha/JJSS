@@ -164,7 +164,7 @@
                                     <label class="pull-left left">Precio de inscripción categoría $ <a class="text-danger">*</a></label>
                                 </div>
                                 <div class="col col-md-4 col-lg-4 col-sm-10 col-xs-10">
-                                    <asp:TextBox ID="txt_precio_cat" required="true" type="number" min="0" max="100000" step="0.01" CssClass=" caja2 form-control" placeholder="Ingrese precio de inscripción categoria" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_precio_cat" required="true" type="number" min="0" max="100000" step="0.01" CssClass=" caja2 form-control" placeholder="Ingrese precio de inscripción categoría" runat="server"></asp:TextBox>
                                 </div>
 <%--                                <div class="col col-1"><a class="text-danger">*</a></div>--%>
                             </div>

@@ -114,6 +114,7 @@
     <Compile Include="Resultados\ParticipantesTorneoResultado.cs" />
     <Compile Include="Resultados\ProductosResultados.cs" />
     <Compile Include="Resultados\ProfesorResultado.cs" />
+    <Compile Include="Resultados\ReporteResultadosTorneo.cs" />
     <Compile Include="Resultados\ResultadoDeTorneo.cs" />
     <Compile Include="Resultados\SedeDireccion.cs" />
     <Compile Include="Resultados\EventoResultado.cs" />
@@ -196,6 +197,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptListadoEvento.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptListadoResultados.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptListadoTorneo.rdlc">

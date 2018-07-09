@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using JJSS_Entidad;
 using System.Configuration;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 { /*
@@ -112,6 +113,23 @@ namespace JJSS_Negocio
             return sFile;
 
         }
+
+
+        /*
+   * Método que sirve para generar un Reporte en PDF con el comprobante de torneo
+   * Parámetros: Listado de un objeto participante
+   * Retorno: String ruta y nombre completo del archivo generado en PDF
+   */
+        public string GenerarReporteListadoResultadosTorneo(List<ReporteResultadosTorneo> pListado)
+        {
+            Microsoft.Reporting.WinForms.ReportParameter[] oPar = new Microsoft.Reporting.WinForms.ReportParameter[0];
+
+            String sFile = ModReportes.GetTempFileName(ConfigurationManager.AppSettings["temp"], "ResultadosTorneo", "pdf");
+            System.IO.File.WriteAllBytes(sFile, GenerarPDF(pListado, oPar, "rptListadoResultados"));
+            return sFile;
+
+        }
+
 
         /*
          * Método que sirve para generar un Reporte en PDF con el listado de participantes a un torneo

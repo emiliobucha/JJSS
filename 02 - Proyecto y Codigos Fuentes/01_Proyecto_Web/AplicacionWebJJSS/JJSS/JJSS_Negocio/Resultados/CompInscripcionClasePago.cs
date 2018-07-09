@@ -8,6 +8,8 @@ namespace JJSS_Negocio
 {
     public class CompInscripcionClasePago
     {
+        public int cla_id { get; set; }
+        public int cla_alumno { get; set; }
         public string cla_nombre { get; set; }
         public string cla_academia { get; set; }
         public string cla_direccion { get; set; }

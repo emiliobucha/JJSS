@@ -372,10 +372,10 @@ namespace JJSS_Negocio
             cambiarEstadoTorneos();
             using (var db = new JJSSEntities())
             {
-                List<TorneoResultado> tr =new List<TorneoResultado>();
+                List<TorneoResultado> tr = new List<TorneoResultado>();
                 if (filtroEstado == 0)
                 {
-                   var torneos = from tor in db.torneo
+                    var torneos = from tor in db.torneo
                                   join est in db.estado on tor.id_estado equals est.id_estado
                                   join i in db.torneo_imagen on tor.id_torneo equals i.id_torneo
                                   into ps
@@ -397,7 +397,7 @@ namespace JJSS_Negocio
                 }
                 else
                 {
-                   var torneos = from tor in db.torneo
+                    var torneos = from tor in db.torneo
                                   join est in db.estado on tor.id_estado equals est.id_estado
                                   join i in db.torneo_imagen on tor.id_torneo equals i.id_torneo
                                   into ps
@@ -417,7 +417,7 @@ namespace JJSS_Negocio
                                   };
                     tr = torneos.ToList();
                 }
-                
+
                 foreach (TorneoResultado t in tr)
                 {
                     t.fecha = t.dtFecha?.ToString("dd/MM/yyyy") ?? " - ";
@@ -436,7 +436,8 @@ namespace JJSS_Negocio
                     torneoSeleccionado.id_estado = idEstado;
                     db.SaveChanges();
                     return "";
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     return ex.Message;
                 }
@@ -472,6 +473,51 @@ namespace JJSS_Negocio
 
 
         }
+
+
+        /*
+         * Genera listado de resultados a un torneo con su reporte.
+         * Retorno: String del archivo resultante de la generacion del reporte en PDF
+         */
+        public string GenerarListadoResultados(torneo torneoSeleccionado, List<ResultadoDeTorneo> resultadosTorneo, SedeDireccion sede)
+        {
+            GestorReportes gestorReportes = new GestorReportes();
+
+            
+
+            var listado = new List<ReporteResultadosTorneo>();
+            foreach (var resultado in resultadosTorneo)
+            {
+
+
+                var nuevo = new ReporteResultadosTorneo
+                {
+                    sexo = resultado.sexo == 1 ? "M" : "F",
+                    categoria = resultado.categoria,
+                    faja = resultado.faja,
+                    primero = resultado.primero,
+                    segundo = resultado.segundo,
+                    tercero1 = resultado.tercero1,
+                    tercero2 = resultado.tercero2,
+                    tor_direccion = sede.calle + " " + sede.numero + " - B° " + sede.barrio + " - " + sede.ciudad + " - " + sede.provincia + " - " + sede.pais,
+                    tor_sede = sede.sede,
+                    tor_fecha = ((DateTime)torneoSeleccionado.fecha).ToString("dd/MM/yyyy"),
+                    tor_hora = torneoSeleccionado.hora,
+                    tor_nombre = torneoSeleccionado.nombre
+                };
+                listado.Add(nuevo);
+            }
+
+
+
+            if (listado.Count == 0)
+                throw new Exception("No posee inscriptos el torneo seleccionado");
+
+            return gestorReportes.GenerarReporteListadoResultadosTorneo(listado);
+
+
+        }
+
 
 
         public string GenerarDuelos(torneo pTorneo)
@@ -512,7 +558,7 @@ namespace JJSS_Negocio
             {
                 try
                 {
-                   var torneo =  db.torneo.Find(id);
+                    var torneo = db.torneo.Find(id);
                     if (torneo != null)
                     {
 
@@ -536,9 +582,10 @@ namespace JJSS_Negocio
 
                         };
 
-                    }else
+                    }
+                    else
                         return new TorneoResultado();
-                   
+
 
                 }
                 catch (Exception e)
@@ -585,7 +632,7 @@ namespace JJSS_Negocio
                     }
                     else
                     {
-                        if (pImagen != null && pImagen.Length>0)
+                        if (pImagen != null && pImagen.Length > 0)
                         {
                             byte[] arrayImagen = pImagen;
                             if (arrayImagen.Length > 7000)
@@ -599,7 +646,7 @@ namespace JJSS_Negocio
                             imagenAnterior.imagen_url = imagenUrl;
                             db.SaveChanges();
                         }
-                        
+
                     }
 
                     transaction.Commit();
@@ -654,14 +701,14 @@ namespace JJSS_Negocio
                                      segundo = res.participante1.nombre + " " + res.participante1.apellido,
                                      tercero1 = res.participante2.nombre + " " + res.participante2.apellido,
                                      tercero2 = res.participante3.nombre + " " + res.participante3.apellido,
-                                     sexo= catt.categoria.sexo,
+                                     sexo = catt.categoria.sexo,
                                  };
                 List<ResultadoDeTorneo> resu = resultados.ToList();
-                foreach(ResultadoDeTorneo r in resu)
+                foreach (ResultadoDeTorneo r in resu)
                 {
                     string sexo = r.sexo == ContantesSexo.FEMENINO ? " F " : " M ";
                     r.categoria = r.categoria + " " + sexo;
-                    r.faja = r.faja.Split('-')[0]; 
+                    r.faja = r.faja.Split('-')[0];
                 }
                 return resu;
             }
@@ -672,7 +719,7 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var estados = from est in db.estado
-                              where est.ambito == "TORNEOS" && est.id_estado != ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA 
+                              where est.ambito == "TORNEOS" && est.id_estado != ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
                               && est.id_estado != ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA
                               select est;
                 return estados.ToList();

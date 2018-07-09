@@ -312,7 +312,7 @@
                                 <label class="pull-left">Nombre: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="50" runat="server" placeholder="Ingrese nombre" pattern="^[a-zA-Z\s]+$"></asp:TextBox>
+                                <asp:TextBox ID="txt_nombre" class="caja2" required="true" MaxLength="50" runat="server" placeholder="Ingrese nombre" pattern="^[a-zA-ZñáéíóúÑÁÉÍÓÚ\s]+$"></asp:TextBox>
 
                             </div>
                         </div>
@@ -328,7 +328,7 @@
                                 <label class="pull-left">Apellido: <a class="text-danger">*</a></label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_apellido" required="true" MaxLength="50" class="caja2" runat="server" placeholder="Ingrese apellido" pattern="^[a-zA-Z\s]+$"></asp:TextBox>
+                                <asp:TextBox ID="txt_apellido" required="true" MaxLength="50" class="caja2" runat="server" placeholder="Ingrese apellido" pattern="^[a-zA-ZñáéíóúÑÁÉÍÓÚ\s]+$"></asp:TextBox>
 
                             </div>
                         </div>
