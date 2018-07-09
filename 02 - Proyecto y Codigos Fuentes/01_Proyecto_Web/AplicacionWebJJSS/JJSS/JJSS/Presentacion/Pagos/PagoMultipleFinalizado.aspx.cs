@@ -215,7 +215,7 @@ namespace JJSS.Presentacion
                         }
                         else if (pagoImprimir.TipoPago.Id == ConstantesTipoPago.CLASE().Id)
                         {
-                            string sFile = gestorInscripcionesClase.ComprobanteInscripcionPago(pagoImprimir.Inscripcion, mail, pagoMultiple.FormaPago);
+                            string sFile = gestorInscripcionesClase.ComprobanteInscripcionPago(pagoImprimir.Inscripcion, mail, pagoMultiple.FormaPago, pagoImprimir.Monto);
                             Response.Clear();
                             Response.AddHeader("Content-Type", "Application/octet-stream");
                             Response.AddHeader("Content-Disposition", "attachment; filename=\"" + System.IO.Path.GetFileName(sFile) + "\"");

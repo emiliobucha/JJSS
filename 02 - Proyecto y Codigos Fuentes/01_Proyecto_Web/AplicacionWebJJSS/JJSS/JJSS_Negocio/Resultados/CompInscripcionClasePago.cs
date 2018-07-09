@@ -29,5 +29,6 @@ namespace JJSS_Negocio
         public string pag_forma_pago { get; set; }
         public string pag_fecha { get; set; }
         public string pag_mes { get; set; }
+        public string pag_monto { get; set; }
     }
 }

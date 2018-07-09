@@ -564,7 +564,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="$ " &amp; First(Fields!cla_precio.Value, "DATOS")</Value>
+                <Value>="$ " &amp; First(Fields!pag_monto.Value, "DATOS")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -573,7 +573,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
         <Top>0.8734cm</Top>
-        <Left>10.95474cm</Left>
+        <Left>10.99002cm</Left>
         <Height>0.6cm</Height>
         <Width>5.86887cm</Width>
         <ZIndex>18</ZIndex>
@@ -1152,6 +1152,10 @@
       <Fields>
         <Field Name="pag_fecha">
           <DataField>pag_fecha</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="pag_monto">
+          <DataField>pag_monto</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="pag_forma_pago">
