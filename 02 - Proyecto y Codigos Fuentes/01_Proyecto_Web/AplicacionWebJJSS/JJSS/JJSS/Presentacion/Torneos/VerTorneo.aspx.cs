@@ -92,6 +92,7 @@ namespace JJSS.Presentacion
                 {
 
                     Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+
                     if (sesionActiva.estado != "INGRESO ACEPTADO")
                     {
 
@@ -99,8 +100,9 @@ namespace JJSS.Presentacion
 
                     }
 
-                    int idEstado = estadoTorneo.id_estado;
 
+                   int idEstado = estadoTorneo.id_estado;
+      
 
                     int permiso = 0;
                     System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_INSCRIPCION_LISTA'");
@@ -112,6 +114,8 @@ namespace JJSS.Presentacion
                     {
                         btn_imprimir_listado.Visible = true;
                     }
+
+
 
                     if (idEstado == ConstantesEstado.TORNEO_FINALIZADO || idEstado == ConstantesEstado.TORNEO_EN_CURSO)
                     {
@@ -125,6 +129,8 @@ namespace JJSS.Presentacion
                         if (permiso == 1)
                         {
                             btn_cargar_resultados.Visible = true;
+
+
                             btn_imprimir_resultados.Visible = true;
                         }
 
@@ -132,6 +138,8 @@ namespace JJSS.Presentacion
                     }
                     if (idEstado != ConstantesEstado.TORNEO_FINALIZADO && idEstado != ConstantesEstado.TORNEO_CANCELADO)
                     {
+
+                        
                         permiso = 0;
                         drsAux = sesionActiva.permisos.Select("perm_clave = 'TORNEO_CANCELAR'");
                         if (drsAux.Length > 0)
@@ -187,7 +195,7 @@ namespace JJSS.Presentacion
                         }
                     }
 
-
+                    
                     if (idEstado == ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA)
                     {
                         permiso = 0;
@@ -211,6 +219,7 @@ namespace JJSS.Presentacion
             catch (Exception ex)
             {
 
+               
                 Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
             }

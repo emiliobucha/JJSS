@@ -224,7 +224,7 @@ namespace JJSS.Presentacion.Pagos
                     Session["Clase"] = objetoPagable.IdObjeto;
                     Session["ParticipanteDNI"] = dni;
                     Session["ParticipanteTipoDni"] = tipoDoc;
-                    Response.Redirect("../Presentacion/PagoClase");
+                    Response.Redirect("../PagoClase");
                 }
 
             }
