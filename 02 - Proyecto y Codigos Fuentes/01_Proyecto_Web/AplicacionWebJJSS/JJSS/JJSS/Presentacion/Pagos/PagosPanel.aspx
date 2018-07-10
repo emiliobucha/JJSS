@@ -62,7 +62,7 @@
 
                         <!--Ingresar Tipo-->
                         <div class="col-md-2 col-xl-auto">
-                            <label class="pull-left">Tipo: <a class="text-danger">*</a></label>
+                            <label class="pull-left">Tipo Doc: <a class="text-danger">*</a></label>
                         </div>
                         <div class="col-md-3 col-xl-auto">
                             <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
@@ -72,7 +72,7 @@
 
                         <!--Ingresar Numero-->
                         <div class="col-md-2 col-xl-auto">
-                            <label class="pull-left">Número: <a class="text-danger">*</a></label>
+                            <label class="pull-left">Documento: <a class="text-danger">*</a></label>
                         </div>
                         <div class="col-md-3 col-xl-auto">
 
@@ -102,7 +102,7 @@
 
                         <!--Ingresar Tipo-->
                         <div class="col-md-2 col-xl-auto">
-                            <label class="pull-left">Tipo: </label>
+                            <label class="pull-left">Tipo Doc: </label>
                         </div>
                         <div class="col-md-2 col-xl-auto">
                             <label class="pull-left" runat="server" id="lblTipoDoc"></label>
@@ -110,10 +110,10 @@
 
                         <!--Ingresar Numero-->
                         <div class="col-md-2 col-xl-auto">
-                            <label class="pull-left">Número:</label>
+                            <label class="pull-left">Documento:</label>
                         </div>
                         <div class="col-md-3 col-xl-auto">
-                            <label class="pull-left" runat="server" id="lblDni">Número:</label>
+                            <label class="pull-left" runat="server" id="lblDni"></label>
                         </div>
                         
                         <div class="col-md-2 col-xl-auto">
