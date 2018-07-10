@@ -171,7 +171,7 @@
                 <asp:Button ID="btn_habilitar" runat="server" CssClass="btn btn-outline-dark" Text="Habilitar Torneo" OnClick="btn_habilitar_Click" Visible="false" />
                 <asp:Button ID="btn_imprimir_listado" runat="server" CssClass="btn btn-outline-dark" Text="Imprimir Listado de Participantes" OnClick="btn_imprimir_listado_Click" Visible="false" />
                 <asp:Button ID="btn_imprimir_resultados" runat="server" CssClass="btn btn-outline-dark" Text="Imprimir Listado de Resultados" OnClick="btn_imprimir_resultados_Click" Visible="false" />
-
+            
             </asp:Panel>
 
 

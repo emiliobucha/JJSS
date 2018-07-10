@@ -88,7 +88,7 @@ namespace JJSS.Administracion
         protected void btnInicio_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx");
+            Response.Redirect("../Inicio.aspx");
         }
 
         protected void btn_aceptar_Click(object sender, EventArgs e)

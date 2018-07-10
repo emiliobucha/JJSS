@@ -348,7 +348,7 @@ namespace JJSS.Presentacion
         protected void btn_cancelar_Click(object sender, EventArgs e)
         {
             limpiar();
-            Response.Redirect("../Presentacion/Inicio.aspx#section_clases");
+            Response.Redirect("../Inicio.aspx#section_clases");
         }
     }
 

@@ -314,7 +314,7 @@ namespace JJSS_Negocio
 
         private static string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
 
-        public string ComprobanteInscripcionPago(int pID, string pMail, int formaPago)
+        public string ComprobanteInscripcionPago(int pID, string pMail, int formaPago, decimal monto)
         {
             GestorReportes gestorReportes = new GestorReportes();
 
@@ -351,7 +351,8 @@ namespace JJSS_Negocio
                                         par_sexo = alu.sexo,
                                         par_dni = alu.dni,
                                         pag_forma_pago = formaString,
-                                        par_tipo_documento = alu.tipo_documento.codigo
+                                        par_tipo_documento = alu.tipo_documento.codigo,
+                                        pag_monto = monto.ToString()
 
                                     };
                 List<CompInscripcionClasePago> participantesList = participantes.ToList();
@@ -359,8 +360,8 @@ namespace JJSS_Negocio
 
                 foreach (CompInscripcionClasePago part in participantesList)
                 {
-                    var recargo = gestorClases.calcularRecargo(part.cla_id, part.cla_alumno);
-                    part.cla_precio = part.cla_precio + recargo;
+                   
+                    
 
 
                     string mesNombre = meses[mes - 1];

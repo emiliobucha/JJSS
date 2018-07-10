@@ -178,19 +178,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resultados\noimage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Reportes\rptCompInscripcionClasePago.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptCompInscripcionEvento.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptCompInscripcionEventoPago.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptCompInscripcionTorneoPago.rdlc">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptCompInscripcionTorneo.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptCompInscripcionEvento.rdlc">
+    <EmbeddedResource Include="Reportes\rptCompInscripcionTorneoPago.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptListadoAsistencia.rdlc">
@@ -205,9 +208,6 @@
     <EmbeddedResource Include="Reportes\rptListadoTorneo.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resultados\noimage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
