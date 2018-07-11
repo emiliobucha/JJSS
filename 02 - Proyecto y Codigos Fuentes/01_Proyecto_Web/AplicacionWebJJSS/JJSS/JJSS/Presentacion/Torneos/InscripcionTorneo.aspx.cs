@@ -437,16 +437,16 @@ namespace JJSS
                     txt_nombre.ReadOnly = true;
 
 
-                    //dp_fecha.Enabled = false;
-                    dp_fecha.Attributes.Add("disabled", "true");
+                    dp_fecha.Enabled = false;
+                   // dp_fecha.Attributes.Add("disabled", "true");
 
-                    //ddl_nacionalidad.Enabled = false;
+                    ddl_nacionalidad.Enabled = false;
 
-                    ddl_nacionalidad.Attributes.Add("disabled", "true");
+                  //  ddl_nacionalidad.Attributes.Add("disabled", "true");
 
-                    //rbSexo.Enabled = false;
+                    rbSexo.Enabled = false;
 
-                    rbSexo.Attributes.Add("disabled", "true");
+                   // rbSexo.Attributes.Add("disabled", "true");
 
 
                 txt_apellido.Text = alumnoEncontrado.apellido;
