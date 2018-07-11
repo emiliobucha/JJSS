@@ -49,7 +49,9 @@ namespace JJSS.Presentacion.Pagos
             {
                 try
                 {
-                   
+                    CargarComboFormaPago();
+                    CargarComboTipoDocumentos();
+
                     if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                     {
                         divDNI.Visible = true;
@@ -122,8 +124,7 @@ namespace JJSS.Presentacion.Pagos
                             {
                                 divDNI.Visible = true;
                             }
-                            CargarComboFormaPago();
-                            CargarComboTipoDocumentos();
+
                         }
 
                     }
