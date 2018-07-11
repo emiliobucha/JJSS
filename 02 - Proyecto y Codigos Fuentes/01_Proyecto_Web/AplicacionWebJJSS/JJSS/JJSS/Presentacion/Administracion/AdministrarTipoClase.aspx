@@ -90,8 +90,8 @@
                         OnRowCommand="gv_tipo_evento_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-                            <asp:ButtonField CommandName="seleccionar" Text="Seleccionar/Editar" HeaderText="Seleccionar/Editar" />
-                            <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" />
+                            <asp:ButtonField CommandName="seleccionar" Text="Editar" HeaderText="Editar" ItemStyle-ForeColor="#007bff"/>
+                            <asp:ButtonField CommandName="eliminar" Text="Eliminar" HeaderText="Eliminar" ItemStyle-ForeColor="#007bff"/>
                         </Columns>
                     </asp:GridView>
                 </div>

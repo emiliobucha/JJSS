@@ -61,7 +61,7 @@ namespace JJSS
 
                 Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() +
                                "');</script>" + "<script>window.setTimeout(location.href='" +
-                               "../Login.aspx" + "', 2000);</script>");
+                               "Login.aspx" + "', 2000);</script>");
 
             }
 

@@ -57,6 +57,7 @@ namespace JJSS.Presentacion.Administracion
                 if (res.CompareTo("") == 0) redirigirPorExito("Se ha creado el tipo de evento exitosamente");
                 else mensaje(res, false);
                 cargarGrilla();
+                txt_nombre.Text = "";
             }
             else
             {
@@ -68,6 +69,8 @@ namespace JJSS.Presentacion.Administracion
                 }
                 else mensaje(res, false);
                 cargarGrilla();
+                btn_aceptar.Text = "Agregar";
+                txt_nombre.Text = "";
             }
         }
 
@@ -136,6 +139,7 @@ namespace JJSS.Presentacion.Administracion
 
                 txt_nombre.Text = gv_tipo_evento.Rows[index].Cells[0].Text;
                 idTipoEvento = idEvento;
+                btn_aceptar.Text = "Guardar edición";
             }
         }
     }

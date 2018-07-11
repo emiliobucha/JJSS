@@ -76,7 +76,7 @@
                         <div class="form-group border rounded p-4 ">
 
                             <!--Boton-->
-                            <div class="row justify-content-center">
+                            <div class="row p-2">
                                 
                                 <div class=" col-lg-1 col-md-1 col-sm-12">
                                     <strong>Tipo</strong>
@@ -92,8 +92,10 @@
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
                                     <asp:TextBox ID="txt_filtro_dni" type="number" CssClass="caja2" min="0" runat="server"></asp:TextBox>
                                 </div>
-
-                                <div class=" col-lg-1 col-md-1 col-sm-12">
+                            </div>
+                        
+                            <div class="row p-2">
+                                <div class=" -lg-1 col-md-1 col-sm-12">
                                     <strong>Apellido</strong>
                                 </div>
                                 <div class=" col-lg-2 col-md-2 col-sm-12">
