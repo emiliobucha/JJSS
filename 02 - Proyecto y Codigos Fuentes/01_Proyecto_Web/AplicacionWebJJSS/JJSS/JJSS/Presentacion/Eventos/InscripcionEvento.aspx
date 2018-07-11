@@ -16,7 +16,8 @@
                     <div>
                         <a class="ui-icon ui-icon-check"></a>
                         <strong>
-                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label> 
+                            <asp:LinkButton runat="server" href="/Presentacion/Pagos/PagosPanel" Visible="false" ID="lnk_pagos_panel" Text="Pagos Pendientes"></asp:LinkButton>
                             <br />
                         </strong>
                     </div>

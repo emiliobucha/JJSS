@@ -160,7 +160,7 @@ namespace JJSS
             rbSexo.Enabled = true;
             ddl_nacionalidad.Enabled = true;
 
-
+            lnk_pagos_panel.Visible = false;
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
 
@@ -243,14 +243,9 @@ namespace JJSS
             if (sReturn.CompareTo("") == 0)
             {
                 limpiar(true);
-                Mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a Pagos Pendientes", true);
-                //pnl_pago.Visible = true;
-                ////Session["TorneoPagar"] = idTorneo;
-                ////Session["ParticipanteDNI"] = dni;
+                Mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a ", true);
+                lnk_pagos_panel.Visible = true;
                 
-
-
-
                 try
                 {
 

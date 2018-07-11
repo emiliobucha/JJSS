@@ -59,7 +59,7 @@
             <div class="container">
 
                 <div class="p-2">
-                    <asp:LinkButton runat="server" ID="l" class="btn btn-link pull-right" Text="Ir al listado de sedes" href="AdministrarSedes.aspx"></asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="l" class="btn btn-link pull-right" Text="Ir al listado de sedes/academias" href="AdministrarSedes.aspx"></asp:LinkButton>
                 </div>
 
                 <div class="form-group  border rounded p-1">
