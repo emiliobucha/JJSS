@@ -149,6 +149,7 @@ namespace JJSS.Presentacion
 
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
+            lnk_pagos_panel.Visible = false;
 
             if (limpiaTodo)
             {
@@ -386,7 +387,9 @@ namespace JJSS.Presentacion
 
             if (sReturn.CompareTo("") == 0)
             {
-                mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a Pagos Pendientes", true);
+                mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a ", true);
+                lnk_pagos_panel.Visible = true;
+                
                /* pnl_pago.Visible = true;
                 Session["EventoPagar"] = idEvento;
                 Session["ParticipanteDNI"] = dni;*/
