@@ -295,7 +295,7 @@
       <Line Name="Line2">
         <Top>3.28362cm</Top>
         <Height>0cm</Height>
-        <Width>17.02699cm</Width>
+        <Width>17cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -749,7 +749,7 @@
     <Height>8.21168cm</Height>
     <Style />
   </Body>
-  <Width>17.02699cm</Width>
+  <Width>17cm</Width>
   <Page>
     <PageHeader>
       <Height>3.46176cm</Height>
@@ -806,7 +806,7 @@
         <Line Name="Line1">
           <Top>3.36972cm</Top>
           <Height>0cm</Height>
-          <Width>17.02699cm</Width>
+          <Width>17cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
