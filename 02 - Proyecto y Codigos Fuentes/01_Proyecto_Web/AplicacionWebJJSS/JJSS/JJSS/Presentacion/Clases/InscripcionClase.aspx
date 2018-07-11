@@ -134,20 +134,23 @@
 
                         <div>
                             <!--Boton-->
-                            <div class="row ">
-                                <div class=" col-lg-1 col-md-1 col-sm-12">
+                            <div class="row p-2">
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <strong>Tipo</strong>
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-12">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
                                 </div>
 
-                                <div class=" col-lg-1 col-md-1 col-sm-12">
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <strong>N° Doc</strong>
                                 </div>
+                          
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txt_filtro_dni"  CssClass="form-control"  runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_filtro_dni" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
+                            </div>
+                            <div class="row p-2">
                                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <strong class="text-left">Apellido</strong>
                                 </div>

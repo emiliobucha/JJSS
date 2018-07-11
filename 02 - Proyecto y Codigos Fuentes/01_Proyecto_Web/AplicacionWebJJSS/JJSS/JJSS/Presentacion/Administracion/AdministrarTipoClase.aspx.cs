@@ -61,6 +61,7 @@ namespace JJSS.Presentacion.Administracion
                 }
                 else mensaje(res, false);
                 cargarGrilla();
+                txt_nombre.Text = "";
             }
             else
             {
@@ -69,9 +70,12 @@ namespace JJSS.Presentacion.Administracion
                 {
                     idTipoClase = 0;
                     redirigirPorExito("Se ha modificado la disciplina exitosamente");
+
                 }
                 else mensaje(res, false);
                 cargarGrilla();
+                btn_aceptar.Text = "Agregar";
+                txt_nombre.Text = ""; 
             }
         }
 
@@ -123,11 +127,14 @@ namespace JJSS.Presentacion.Administracion
                 cargarGrilla();
             } else if (e.CommandName.CompareTo("seleccionar") == 0)
             {
+
+                
                 int index = Convert.ToInt32(e.CommandArgument);
                 int idClase = Convert.ToInt32(gv_tipo_evento.DataKeys[index].Value);
 
                 txt_nombre.Text = gv_tipo_evento.Rows[index].Cells[0].Text;
                 idTipoClase = idClase;
+                btn_aceptar.Text = "Guardar edición";
             }
         }
 
