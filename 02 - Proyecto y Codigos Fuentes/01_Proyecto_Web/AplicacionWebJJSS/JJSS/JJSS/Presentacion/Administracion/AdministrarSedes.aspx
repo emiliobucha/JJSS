@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1>Listado de Sedes</h1>
+                        <h1>Listado de Sedes/Academias</h1>
                     </div>
 
                     <div class="row centered">
@@ -161,7 +161,7 @@
                 <div class="modal-content">
                     <!--Cabecera-->
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabe2">¿Seguro que desea eliminar la sede?</h4>
+                        <h4 class="modal-title" id="exampleModalLabe2">¿Seguro que desea eliminar la sede/academia?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
 

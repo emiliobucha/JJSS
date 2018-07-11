@@ -127,11 +127,11 @@
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item text-white" id="nav_ver_seccion" href="/Presentacion/Administracion/Menu_Administracion.aspx">Ver Sección</a>
-                              <a class="dropdown-item text-white " id="nav_crear_sede" href="/Presentacion/Administracion/CrearSede.aspx">Crear Sede </a>
+                              <a class="dropdown-item text-white " id="nav_crear_sede" href="/Presentacion/Administracion/CrearSede.aspx">Crear Sede/Academia </a>
                               <a class="dropdown-item text-white" id="nav_crear_categoria" href="/Presentacion/Administracion/CrearCategoria.aspx">Crear Categoría </a>
                               <a class="dropdown-item text-white" id="nav_registrar_alumno" href="/Presentacion/Administracion/RegistrarAlumno.aspx">Registrar Alumno </a>
                               <a class="dropdown-item text-white" id="nav_registrar_profe" href="/Presentacion/Administracion/RegistrarProfe.aspx">Registrar Profesor </a>
-                              <a class="dropdown-item text-white " id="nav_administrar_sede" href="/Presentacion/Administracion/AdministrarSedes.aspx">Administrar Sedes </a>
+                              <a class="dropdown-item text-white " id="nav_administrar_sede" href="/Presentacion/Administracion/AdministrarSedes.aspx">Administrar Sedes/Academias </a>
                               <a class="dropdown-item text-white" id="nav_administrar_categoria" href="/Presentacion/Administracion/AdministrarCategorias.aspx">Administrar Categorías </a>
                               <a class="dropdown-item text-white" id="nav_administrar_alumno" href="/Presentacion/Administracion/AdministrarAlumnos.aspx">Administrar Alumnos </a>
                               <a class="dropdown-item text-white" id="nav_administrar_profe" href="/Presentacion/Administracion/AdministrarProfesores.aspx">Administrar Profesores </a>
