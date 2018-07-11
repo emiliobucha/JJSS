@@ -47,84 +47,91 @@ namespace JJSS.Presentacion.Pagos
 
             if (!IsPostBack)
             {
-                CargarComboFormaPago();
-                CargarComboTipoDocumentos();
-                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+                try
                 {
-                    divDNI.Visible = true;
-                }
-                else
-                {
-
-
-                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-                    if (sesionActiva.estado == "INGRESO ACEPTADO")
+                   
+                    if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                     {
-                        var usuario = sesionActiva.usuario;
-                        if (usuario != null)
+                        divDNI.Visible = true;
+                    }
+                    else
+                    {
+
+
+                        Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                        if (sesionActiva.estado == "INGRESO ACEPTADO")
                         {
-                            var alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
-
-
-                            if (alumno != null)
+                            var usuario = sesionActiva.usuario;
+                            if (usuario != null)
                             {
-                                if (alumno.id_tipo_documento != null) tipoDoc = (int)alumno.id_tipo_documento;
-                                dni = alumno.dni;
-                                nombre = alumno.nombre + " " + alumno.apellido;
-                                CargarGrilla();
-                                divDNIAlumno.Visible = true;
-                                lblDni.InnerText = dni;
-                                lblNombre.InnerText = nombre;
+                                var alumno = gestorAlumnos.ObtenerAlumnoPorIdUsuario(usuario.id_usuario);
 
-                                var td = tiposdoc.FirstOrDefault(x => x.id_tipo_documento == tipoDoc);
-                                if (td != null)
+
+                                if (alumno != null)
                                 {
-                                    lblTipoDoc.InnerText = td.codigo;
-                                }
-
-
-                            }
-                            else
-                            {
-
-
-
-                                var profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
-                                if (profesor != null)
-                                {
-                                    if (profesor.id_tipo_documento != null) tipoDoc = (int)profesor.id_tipo_documento;
-                                    dni = profesor.dni;
-
-                                    nombre = profesor.nombre + " " + profesor.apellido;
+                                    if (alumno.id_tipo_documento != null) tipoDoc = (int)alumno.id_tipo_documento;
+                                    dni = alumno.dni;
+                                    nombre = alumno.nombre + " " + alumno.apellido;
                                     CargarGrilla();
+                                    divDNIAlumno.Visible = true;
+                                    lblDni.InnerText = dni;
+                                    lblNombre.InnerText = nombre;
+
+                                    var td = tiposdoc.FirstOrDefault(x => x.id_tipo_documento == tipoDoc);
+                                    if (td != null)
+                                    {
+                                        lblTipoDoc.InnerText = td.codigo;
+                                    }
+
+
                                 }
                                 else
                                 {
-                                    var admin = gestorAdmin.ObtenerAdminPorIdUsuario(usuario.id_usuario);
-                                    if (admin != null)
-                                    {
-                                        if (admin.id_tipo_documento != null) tipoDoc = (int)admin.id_tipo_documento;
-                                        dni = admin.dni;
 
-                                        nombre = admin.nombre + " " + admin.apellido;
+
+
+                                    var profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
+                                    if (profesor != null)
+                                    {
+                                        if (profesor.id_tipo_documento != null) tipoDoc = (int)profesor.id_tipo_documento;
+                                        dni = profesor.dni;
+
+                                        nombre = profesor.nombre + " " + profesor.apellido;
                                         CargarGrilla();
                                     }
+                                    else
+                                    {
+                                        var admin = gestorAdmin.ObtenerAdminPorIdUsuario(usuario.id_usuario);
+                                        if (admin != null)
+                                        {
+                                            if (admin.id_tipo_documento != null) tipoDoc = (int)admin.id_tipo_documento;
+                                            dni = admin.dni;
+
+                                            nombre = admin.nombre + " " + admin.apellido;
+                                            CargarGrilla();
+                                        }
+                                    }
+
+                                    divDNI.Visible = true;
+                                    txtDni.Text = dni;
+                                    ddl_tipo.SelectedValue = tipoDoc.ToString();
+
                                 }
-
-                                divDNI.Visible = true;
-                                txtDni.Text = dni;
-                                ddl_tipo.SelectedValue = tipoDoc.ToString();
-
                             }
+                            else
+                            {
+                                divDNI.Visible = true;
+                            }
+                            CargarComboFormaPago();
+                            CargarComboTipoDocumentos();
                         }
-                        else
-                        {
-                            divDNI.Visible = true;
-                        }
+
                     }
-
                 }
-
+                catch (Exception ex)
+                {
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+                }
 
 
             }
@@ -253,7 +260,7 @@ namespace JJSS.Presentacion.Pagos
             //Para validar y permitir que si es invitado no muestre datos del alumno
             bool invitado = HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO";
 
-            objetosGrilla = gestorPagos.ObtenerObjetosPagablesPendientes(tipoDoc, dni,invitado);
+            objetosGrilla = gestorPagos.ObtenerObjetosPagablesPendientes(tipoDoc, dni, invitado);
             if (objetosGrilla.Count > 0)
             {
                 nombre = objetosGrilla[0].NombreParticipante;
@@ -280,7 +287,11 @@ namespace JJSS.Presentacion.Pagos
         {
             List<forma_pago> formasPago = gestorFPago.ObtenerFormasPago();
 
-            if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+            if (HttpContext.Current.Session == null)
+            {
+
+            }
+            else if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
             {
                 formasPago.RemoveAll(x => x.nombre == "Efectivo");
             }
@@ -323,7 +334,7 @@ namespace JJSS.Presentacion.Pagos
             if (refUrl != null)
                 Response.Redirect((string)refUrl);
             else Response.Redirect("/Presentacion/MenuInicial.aspx");
-           
+
 
         }
     }
