@@ -65,9 +65,8 @@ namespace JJSS_Negocio
          * Retornos: "" Transaccion correcta de la BD
          *           ex.Message: mensaje de error en la BD
          */
-        public string registrarAsistencia(int pIdAlumno, int pIDClase, int pIdHorario)
+        public string registrarAsistencia(int pIdAlumno, int pIDClase, int pIdHorario, DateTime pFecha)
         {
-            DateTime fechaActual = DateTime.Now;
             try
             {
                 using (var db = new JJSSEntities())
@@ -78,7 +77,7 @@ namespace JJSS_Negocio
                     {
                         id_alumno = pIdAlumno,
                         id_clase = pIDClase,
-                        fecha_hora = fechaActual,
+                        fecha_hora = pFecha,
                         id_horario = pIdHorario
                     };
                     db.asistencia_clase.Add(nuevaAsistencia);
@@ -135,7 +134,8 @@ namespace JJSS_Negocio
                                         alu_sexoI = asis.alumno.sexo,
                                         alu_telefono = asis.alumno.telefono.ToString(),
                                         alu_horaT = DbFunctions.CreateTime(asis.fecha_hora.Hour, asis.fecha_hora.Minute, 0),
-                                        alu_tipo_documento = asis.alumno.tipo_documento.codigo
+                                        alu_tipo_documento = asis.alumno.tipo_documento.codigo,
+                                        alu_id = asis.id_alumno
 
                                     };
                 List<ListadoAsistencia> asistenciaList = participantes.ToList();
@@ -220,6 +220,101 @@ namespace JJSS_Negocio
                 else return null;
             }
         }
+
+        public List<AlumnoAsistencia> BuscarAlumnosConAsistencia(int idClase, DateTime fecha)
+        {
+            List<AlumnoAsistencia> listadoInscriptosConAsistencia = new List<AlumnoAsistencia>();
+            using (var db = new JJSSEntities())
+            {
+                GestorInscripcionesClase gic = new GestorInscripcionesClase();
+                List<ListadoAsistencia> asistentesList = new List<ListadoAsistencia>();
+                try
+                {
+                    asistentesList = ListadoAsistentes(idClase, fecha);
+                } catch(Exception ex)
+                {
+                    if (ex.Message.CompareTo("No hubo asistencias en esta clase") != 0) throw ex;
+                }
+                
+                List<alumno> inscriptosList = gic.ObtenerAlumnosDeUnaClase(idClase);
+                
+                foreach(alumno inscripto in inscriptosList)
+                {
+                    Boolean asistio = false;
+                    foreach(ListadoAsistencia asistente in asistentesList)
+                    {
+                        if (inscripto.id_alumno == asistente.alu_id)
+                        {
+                            asistio = true;
+                            break;
+                        }
+                    }
+                    AlumnoAsistencia alu_agregar = new AlumnoAsistencia()
+                    {
+                        alu_apellido = inscripto.apellido,
+                        alu_documento = inscripto.dni,
+                        alu_id = inscripto.id_alumno,
+                        alu_nombre = inscripto.nombre,
+                        //alu_tipoDocumento = inscripto.tipo_documento.codigo,
+                        asistio = asistio
+                    };
+                    listadoInscriptosConAsistencia.Add(alu_agregar);
+                }
+            }
+            return listadoInscriptosConAsistencia;
+        }
+
+        public void RegistrarMuchasAsistencias(List<AlumnoAsistencia> alumnos, int idClase, DateTime fecha)
+        {
+            using (var db = new JJSSEntities())
+            {
+                horario horario = (from h in db.horario
+                              where h.id_clase == idClase && h.dia == (int)fecha.DayOfWeek
+                              select h).FirstOrDefault();
+
+                DateTime dt = DateTime.Parse(horario.hora_desde);
+
+                foreach (AlumnoAsistencia alu in alumnos)
+                {
+                    string res = "";
+                    asistencia_clase asistencia = (from asis in db.asistencia_clase
+                                                   where asis.id_clase == idClase && DbFunctions.TruncateTime(asis.fecha_hora) == DbFunctions.TruncateTime(fecha)
+                                                   && asis.id_alumno == alu.alu_id
+                                                   select asis).FirstOrDefault();
+
+                    if (alu.asistio && asistencia == null)
+                    {
+                        //registro
+                        res=registrarAsistencia(alu.alu_id, idClase,horario.id_horario,fecha);
+                    }
+                    else if (!alu.asistio && asistencia != null)
+                    {
+                        //elimino
+                        res=eliminarAsistencia(asistencia.id_asistencia);
+                    }
+                    if (res.CompareTo("") != 0) throw new Exception(res);
+                }
+            }
+        }
+
+        private string eliminarAsistencia(int idAsistencia)
+        {
+            using (var db = new JJSSEntities())
+            {
+                try
+                {
+                    asistencia_clase asis = db.asistencia_clase.Find(idAsistencia);
+                    db.asistencia_clase.Remove(asis);
+                    db.SaveChanges();
+                    return "";
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+            }
+        }
+
 
     }
 }

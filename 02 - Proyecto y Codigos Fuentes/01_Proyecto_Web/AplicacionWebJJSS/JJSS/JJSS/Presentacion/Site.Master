@@ -94,7 +94,7 @@
                               <a runat="server" id="nav_menu_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/MenuTorneo.aspx">Ver Sección</a>
                               <a runat="server" id="nav_crear_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/CrearTorneo.aspx">Crear</a>
                               <a runat="server" id="nav_inscripcion_torneo" class="dropdown-item text-white" href="/Presentacion/Torneos/InscripcionTorneo.aspx">Inscribir</a>
-                              <a runat="server" id="nav_historico_torneos" class="dropdown-item text-white" href="/Presentacion/Torneos/HistoricoTorneos.aspx">Ver Histórico</a>
+                              <a runat="server" id="nav_historico_torneos" class="dropdown-item text-white" href="/Presentacion/Torneos/HistoricoTorneos.aspx">Ver Listado</a>
                           </div>
                       </li>
                       <!-- Clase -->
@@ -106,6 +106,7 @@
                               <a runat="server" id="nav_crear_clase" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/CrearClase.aspx">Crear </a>
                               <a runat="server" id="nav_ver_clases" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/VerCalendario.aspx">Ver Clases </a>
                               <a runat="server" id="nav_registrar_asistencia" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistencia.aspx">Registrar Asistencia </a>
+                              <a runat="server" id="nav_asistencias_anteriores" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistenciasAnteriores.aspx">Registrar Asistencias Anteriores </a>
                               <a runat="server" id="nav_listado_asistencia" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/VerListadoAsistencia.aspx">Ver Asistencias </a>
                               <a runat="server" id="nav_graduar_alumno" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/GraduarAlumno.aspx">Graduar Alumnos </a>
                           </div>
@@ -118,7 +119,7 @@
                               <a class="dropdown-item text-white" id="nav_seccion" href="/Presentacion/Eventos/Menu_Evento.aspx">Ver Sección </a>
                               <a class="dropdown-item text-white" id="nav_crear_evento" runat="server" href="/Presentacion/Eventos/CrearEvento.aspx">Crear </a>
                               <a class="dropdown-item text-white" id="nav_inscribir_evento" runat="server" href="/Presentacion/Eventos/InscripcionEvento.aspx">Inscribir </a>
-                              <a class="dropdown-item text-white" id="nav_hist_evento"  runat="server" href="/Presentacion/Eventos/HistoricoEventos.aspx">Ver Histórico </a>
+                              <a class="dropdown-item text-white" id="nav_hist_evento"  runat="server" href="/Presentacion/Eventos/HistoricoEventos.aspx">Ver Listado </a>
                           </div>
                       </li>
                       <!-- Administración -->

@@ -108,7 +108,7 @@ namespace JJSS.Presentacion
                             if (gestorAsistencia.ValidarPagoParaAsistencia(alu.id_alumno, claseActual.tipoClase))
                             {
                                 resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
-                                    claseActual.idHorario);
+                                    claseActual.idHorario, DateTime.Now);
                                 if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
                                 else mensaje(resultado, false);
                             }
