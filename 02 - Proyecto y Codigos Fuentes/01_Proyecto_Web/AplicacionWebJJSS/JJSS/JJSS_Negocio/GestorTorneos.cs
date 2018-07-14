@@ -718,11 +718,7 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
-                var estados = from est in db.estado
-                              where est.ambito == "TORNEOS" && est.id_estado != ConstantesEstado.TORNEO_INSCRIPCION_ABIERTA
-                              && est.id_estado != ConstantesEstado.TORNEO_IN_SCRIPCION_CERRADA
-                              select est;
-                return estados.ToList();
+                return db.estado.Where(x => x.ambito == "TORNEOS").ToList();
             }
         }
     }
