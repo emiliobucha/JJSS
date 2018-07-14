@@ -91,6 +91,7 @@
     <Compile Include="modUtilidades.cs" />
     <Compile Include="modUtilidadesTablas.cs" />
     <Compile Include="modValidaciones.cs" />
+    <Compile Include="Resultados\AlumnoAsistencia.cs" />
     <Compile Include="Resultados\AlumnoConEstado.cs" />
     <Compile Include="Resultados\AlumnoFaja.cs" />
     <Compile Include="Resultados\CompInscripcionClasePago.cs" />

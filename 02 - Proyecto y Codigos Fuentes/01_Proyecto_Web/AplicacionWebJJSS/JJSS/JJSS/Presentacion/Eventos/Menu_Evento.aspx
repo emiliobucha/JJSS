@@ -114,7 +114,7 @@
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/Historial.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Histórico</h4>
+                                <h4 class="mb-5">Listado</h4>
                             </div>
                         </div>
                     </a>
