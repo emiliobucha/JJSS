@@ -9,6 +9,9 @@ using JJSS_Negocio;
 using System.Globalization;
 using JJSS_Negocio.Resultados;
 using JJSS_Negocio.Administracion;
+using JJSS_Negocio.Constantes;
+using JJSS_Negocio.Resultados.Pagos;
+using Newtonsoft.Json;
 
 namespace JJSS
 {
@@ -98,7 +101,12 @@ namespace JJSS
                 }
                 catch
                 {
-                    limpiar(true);
+                    if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+                    {
+                        btn_aceptar.Text = "Pagar";
+                        limpiar(true);
+                    }
+
                 }
 
 
@@ -189,7 +197,7 @@ namespace JJSS
             {
                 idTorneoCombo = idTorneo;
             }
-        
+
 
 
             //solo para invitados
@@ -238,21 +246,30 @@ namespace JJSS
             string sReturn = gestorInscripciones.InscribirATorneo(idTorneoCombo, nombre, apellido, peso, fechaNac.Date,
                 idFaja, sexo, idTipo, dni, idAlumno, tipoInsc, idPais);
 
-
-
-            if (sReturn.CompareTo("") == 0)
+            if (string.IsNullOrEmpty(sReturn))
             {
-                limpiar(true);
-                Mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a ", true);
-                lnk_pagos_panel.Visible = true;
-                
                 try
                 {
-
                     string sFile;
                     string mail = null;
                     if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                     {
+                        limpiar(true);
+
+                        var gestorPagos = new GestorPagos();
+                        var ultimo = gestorPagos.ObtenerUltimoTorneoObjetoPagableInvitado(idTipo, dni);
+
+                        var gestorUsuarios = new GestorUsuarios();
+                        var idUsuario = gestorUsuarios.ObtenerIdUsuarioInvitado();
+                        if (idUsuario == -1)
+                        {
+                            Mensaje("Error, usuario invitado no existe y no se puede registrar pago", false);
+                            return;
+                        }
+                        var pagoMultiple = new PagoMultiple(ultimo, ConstantesFormaPago.MERCADOPAGO, idUsuario, idTipo, dni, nombre+ " " + apellido);
+                        HttpContext.Current.Session["PagoMultiple"] = JsonConvert.SerializeObject(pagoMultiple);
+
+                        Response.Redirect("~/Presentacion/Pagos/PagosMultiple.aspx");
 
                     }
                     else
@@ -261,6 +278,9 @@ namespace JJSS
                         ////para usuarios
                         Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
                         mail = sesionActiva.usuario.mail;
+                        limpiar(true);
+                        Mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a ", true);
+                        lnk_pagos_panel.Visible = true;
 
                     }
                     sFile = gestorInscripciones.ComprobanteInscripcion(
@@ -339,7 +359,7 @@ namespace JJSS
             int idTorneoCombo = 0;
             int.TryParse(ddl_torneos.SelectedValue, out idTorneoCombo);
             cargarInfoTorneo(idTorneoCombo);
-            
+
             int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneoCombo).id_tipo_clase;
             CargarComboFajas(idTipoClase);
 
@@ -392,125 +412,125 @@ namespace JJSS
 
         protected void btnBuscarDni_Click(object sender, EventArgs e)
         {
-           
 
-                limpiar(false);
+
+            limpiar(false);
 
             int idTorneoCombo = 0;
             if (idTorneo == 0)
-                {
+            {
 
-                    
-                    int.TryParse(ddl_torneos.SelectedValue, out idTorneoCombo);
-                   
+
+                int.TryParse(ddl_torneos.SelectedValue, out idTorneoCombo);
+
             }
             else
             {
                 idTorneoCombo = idTorneo;
             }
-                
-                int idTipo;
-                int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
-                participante participanteEncontrado =
-                    gestorInscripciones.obtenerParticipanteDeTorneo(idTipo, txtDni.Text, idTorneoCombo);
+            int idTipo;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
-                //Partipante ya estaba inscripto con ese dni
-                if (participanteEncontrado != null)
-                {
-                    Mensaje("Este participante ya está inscripto a este torneo", false);
-                    return;
-                }
+            participante participanteEncontrado =
+                gestorInscripciones.obtenerParticipanteDeTorneo(idTipo, txtDni.Text, idTorneoCombo);
 
-                pnl_Inscripcion.Visible = true;
+            //Partipante ya estaba inscripto con ese dni
+            if (participanteEncontrado != null)
+            {
+                Mensaje("Este participante ya está inscripto a este torneo", false);
+                return;
+            }
+
+            pnl_Inscripcion.Visible = true;
 
 
 
 
             alumno alumnoEncontrado = gestorInscripciones.ObtenerAlumnoPorDNITipo(idTipo, txtDni.Text);
-                if (alumnoEncontrado != null)
+            if (alumnoEncontrado != null)
+            {
+                //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
+
+
+                txt_apellido.ReadOnly = true;
+                txt_nombre.ReadOnly = true;
+
+
+                dp_fecha.Enabled = false;
+                // dp_fecha.Attributes.Add("disabled", "true");
+
+                ddl_nacionalidad.Enabled = false;
+
+                //  ddl_nacionalidad.Attributes.Add("disabled", "true");
+
+                rbSexo.Enabled = false;
+
+                // rbSexo.Attributes.Add("disabled", "true");
+
+
+                txt_apellido.Text = alumnoEncontrado.apellido;
+                txt_nombre.Text = alumnoEncontrado.nombre;
+
+                ddl_nacionalidad.SelectedValue = alumnoEncontrado.id_pais != null
+                    ? alumnoEncontrado.id_pais.ToString()
+                    : "";
+
+                DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
+                /*FECHA SOMEE
+                string format = "MM/dd/yyyy";
+                dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
+                */
+                //LOCAL
+                dp_fecha.Text = fecha.ToShortDateString();
+
+                // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
+
+
+                int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
+                faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
+                if (fajaAlumno != null)
+                {
+                    ddl_fajas.Enabled = false;
+                    ddl_fajas.SelectedValue = fajaAlumno.id_faja.ToString();
+                }
+
+
+                if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
+                if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
+
+                idAlumno = alumnoEncontrado.id_alumno;
+            }
+            else
+            {
+
+                participante partAnterior = gestorInscripciones.ObtenerParticipanteporDNITipo(idTipo, txtDni.Text);
+
+                if (partAnterior != null)
                 {
                     //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
 
 
-                    txt_apellido.ReadOnly = true;
-                    txt_nombre.ReadOnly = true;
+
+                    txt_apellido.Text = partAnterior.apellido;
+                    txt_nombre.Text = partAnterior.nombre;
 
 
-                    dp_fecha.Enabled = false;
-                   // dp_fecha.Attributes.Add("disabled", "true");
-
-                    ddl_nacionalidad.Enabled = false;
-
-                  //  ddl_nacionalidad.Attributes.Add("disabled", "true");
-
-                    rbSexo.Enabled = false;
-
-                   // rbSexo.Attributes.Add("disabled", "true");
-
-
-                txt_apellido.Text = alumnoEncontrado.apellido;
-                    txt_nombre.Text = alumnoEncontrado.nombre;
-
-                    ddl_nacionalidad.SelectedValue = alumnoEncontrado.id_pais != null
-                        ? alumnoEncontrado.id_pais.ToString()
+                    ddl_nacionalidad.SelectedValue = partAnterior.id_pais != null
+                        ? partAnterior.id_pais.ToString()
                         : "";
 
-                    DateTime fecha = (DateTime)alumnoEncontrado.fecha_nacimiento;
-                    /*FECHA SOMEE
-                    string format = "MM/dd/yyyy";
-                    dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
-                    */
-                    //LOCAL
+                    DateTime fecha = (DateTime)partAnterior.fecha_nacimiento;
+
                     dp_fecha.Text = fecha.ToShortDateString();
 
-                    // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
+                    if (partAnterior.sexo == 0) rbSexo.SelectedIndex = 0;
+                    if (partAnterior.sexo == 1) rbSexo.SelectedIndex = 1;
 
 
-                    int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
-                    faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
-                    if (fajaAlumno != null)
-                    {
-                        ddl_fajas.Enabled = false;
-                        ddl_fajas.SelectedValue = fajaAlumno.id_faja.ToString();
-                    }
-
-
-                    if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
-                    if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
-
-                    idAlumno = alumnoEncontrado.id_alumno;
                 }
-                else
-                {
-
-                participante partAnterior = gestorInscripciones.ObtenerParticipanteporDNITipo(idTipo, txtDni.Text);
-
-                    if (partAnterior != null)
-                    {
-                        //Completa los campos con los datos del alumno, asi luego cuando se va a inscribir, al participante ya le manda los datos y no hay que modificar el metodo de carga de participantes
-
-
-
-                        txt_apellido.Text = partAnterior.apellido;
-                        txt_nombre.Text = partAnterior.nombre;
-
-
-                        ddl_nacionalidad.SelectedValue = partAnterior.id_pais != null
-                            ? partAnterior.id_pais.ToString()
-                            : "";
-
-                        DateTime fecha = (DateTime)partAnterior.fecha_nacimiento;
-
-                        dp_fecha.Text = fecha.ToShortDateString();
-
-                        if (partAnterior.sexo == 0) rbSexo.SelectedIndex = 0;
-                        if (partAnterior.sexo == 1) rbSexo.SelectedIndex = 1;
-
-
-                    }
             }
-            
+
         }
         //}
 

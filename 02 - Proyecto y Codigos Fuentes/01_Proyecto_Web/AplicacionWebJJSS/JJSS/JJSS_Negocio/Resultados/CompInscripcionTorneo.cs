@@ -16,6 +16,12 @@ namespace JJSS_Negocio
         public string tor_hora { get; set; }
         public string tor_tipo { get; set; }
         public string tor_precio { get; set; }
+
+        public string tor_precio_categoria { get; set; }
+
+        public string tor_precio_absoluto { get; set; }
+  
+
         public string par_nombre { get; set; }
         public string par_apellido { get; set; }
         public DateTime? par_fecha_nacD { get; set; }

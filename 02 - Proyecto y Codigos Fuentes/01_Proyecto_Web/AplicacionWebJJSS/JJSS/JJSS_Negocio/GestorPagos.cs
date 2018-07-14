@@ -11,7 +11,7 @@ namespace JJSS_Negocio
 {
     public class GestorPagos
     {
-       private static string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+        private static string[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
 
 
         public List<ObjetoPagable> ObtenerObjetosPagablesPendientes(int tipoDoc, string dni, bool invitado)
@@ -19,6 +19,11 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var lista = new List<ObjetoPagable>();
+
+                if (invitado)
+                {
+                    return lista;
+                }
 
                 var participanteTorneo =
                     db.participante.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
@@ -28,29 +33,26 @@ namespace JJSS_Negocio
 
                 var alumno = db.alumno.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
 
+                var profesor = db.profesor.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
+
 
                 var inscripcionesTorneos = new List<inscripcion>();
                 var inscripcionesEventos = new List<inscripcion_evento>();
                 var inscripcionesClases = new List<inscripcion_clase>();
-               
+
                 var gestorClase = new GestorClases();
 
 
-                if (participanteTorneo != null)
+                if (participanteTorneo != null && (alumno!=null || profesor !=null))
                 {
                     inscripcionesTorneos = participanteTorneo.inscripcion.ToList();
                 }
-                if (participanteEvento != null)
+                if (participanteEvento != null && (alumno != null || profesor != null))
                 {
                     inscripcionesEventos = participanteEvento.inscripcion_evento.ToList();
                 }
                 if (alumno != null)
                 {
-                    if (invitado)
-                    {
-                        return lista;
-                    }
-
                     inscripcionesClases = alumno.inscripcion_clase.ToList();
                 }
 
@@ -72,7 +74,7 @@ namespace JJSS_Negocio
                             {
                                 montoPagable = (decimal)inscTorneo.torneo.precio_absoluto;
                             }
-                               
+
                         }
                         if (inscTorneo.tipo_inscripcion == ConstantesTipoInscripcion.CATEGORIA)
                         {
@@ -80,7 +82,7 @@ namespace JJSS_Negocio
                             {
                                 montoPagable = (decimal)inscTorneo.torneo.precio_categoria;
                             }
-                               
+
                         }
                     }
 
@@ -94,7 +96,7 @@ namespace JJSS_Negocio
                         Participante = (int)inscTorneo.id_participante,
                         NombreParticipante = inscTorneo.participante.nombre + " " + inscTorneo.participante.apellido,
                         IdObjeto = (int)inscTorneo.id_torneo,
-                        DescripcionObjeto = "Tipo de Inscripción: " + (inscTorneo.id_absoluto != null? "Absoluta":"Categoría"),
+                        DescripcionObjeto = "Tipo de Inscripción: " + (inscTorneo.id_absoluto != null ? "Absoluta" : "Categoría"),
                         MontoString = "$ " + montoPagable
                     };
                     lista.Add(pagable);
@@ -112,7 +114,7 @@ namespace JJSS_Negocio
                     decimal montoPagable = 0;
                     if (inscEvento.evento_especial.precio != null)
                     {
-                        montoPagable = (decimal) inscEvento.evento_especial.precio;
+                        montoPagable = (decimal)inscEvento.evento_especial.precio;
                     }
 
                     var pagable = new ObjetoPagable
@@ -125,7 +127,7 @@ namespace JJSS_Negocio
                         Participante = (int)inscEvento.id_participante,
                         NombreParticipante = inscEvento.participante_evento.nombre + " " + inscEvento.participante_evento.apellido,
                         IdObjeto = (int)inscEvento.id_evento,
-                        MontoString= "$ " + montoPagable
+                        MontoString = "$ " + montoPagable
                     };
                     lista.Add(pagable);
                 }
@@ -134,7 +136,7 @@ namespace JJSS_Negocio
                 {
 
                     if (inscClase.id_clase == null) continue;
-                    
+
                     var pago = db.pago_clase.FirstOrDefault(x => x.id_clase == inscClase.id_clase);
 
                     int mes = DateTime.Today.Month;
@@ -158,7 +160,7 @@ namespace JJSS_Negocio
                     decimal montoPagable = 0;
                     if (inscClase.clase.precio != null)
                     {
-                        montoPagable = (decimal) (inscClase.clase.precio + recargo);
+                        montoPagable = (decimal)(inscClase.clase.precio + recargo);
                     }
 
                     var pagable = new ObjetoPagable
@@ -211,14 +213,14 @@ namespace JJSS_Negocio
 
                     foreach (var objeto in pagoMultiple.ObjetosPagables)
                     {
-                        
+
                         if (objeto.TipoPago.Id == ConstantesTipoPago.TORNEO().Id)
                         {
                             var nuevoPagoTorneo = new pago_torneo
                             {
                                 fecha = pagoMultiple.Fecha,
                                 id_forma_pago = pagoMultiple.FormaPago,
-                                
+
                                 id_participante = objeto.Participante,
                                 id_inscripcion_torneo = objeto.Inscripcion,
                                 id_pago_multiple = nuevoPago.id_pago,
@@ -228,8 +230,13 @@ namespace JJSS_Negocio
 
 
                             if (pagoMultiple.IdUsuario != null)
-                                nuevoPagoTorneo.id_usuario = (int) pagoMultiple.IdUsuario;
+                                nuevoPagoTorneo.id_usuario = (int)pagoMultiple.IdUsuario;
 
+                            var inscripcion = db.inscripcion.Find(objeto.Inscripcion);
+                            if (inscripcion != null)
+                            {
+                                inscripcion.pago = 1;
+                            }
 
                             db.pago_torneo.Add(nuevoPagoTorneo);
                             db.SaveChanges();
@@ -249,6 +256,13 @@ namespace JJSS_Negocio
                             if (pagoMultiple.IdUsuario != null)
                                 nuevoPagoEvento.id_usuario = (int)pagoMultiple.IdUsuario;
 
+                            var inscripcion = db.inscripcion_evento.Find(objeto.Inscripcion);
+                            if (inscripcion != null)
+                            {
+                                inscripcion.pago = 1;
+                            }
+
+
                             db.pago_evento.Add(nuevoPagoEvento);
                             db.SaveChanges();
                         }
@@ -265,7 +279,7 @@ namespace JJSS_Negocio
                                 pagoRecargo = 1;
                             }
                             int detalle = gestorPagoClase.registrarPagoMultiple(objeto.Participante, objeto.IdObjeto, objeto.Monto, mesNombre, pagoMultiple.FormaPago, pagoRecargo, nuevoPago.id_pago);
-                           // gestorPagoClase.actualizarPagoMultiple(detalle, nuevoPago.id_pago);
+                            // gestorPagoClase.actualizarPagoMultiple(detalle, nuevoPago.id_pago);
                         }
                     }
 
@@ -278,6 +292,123 @@ namespace JJSS_Negocio
                     transaction.Rollback();
                     return e.Message;
                 }
+            }
+        }
+
+
+        public List<ObjetoPagable> ObtenerUltimoEventoObjetoPagableInvitado(int tipoDoc, string dni)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var lista = new List<ObjetoPagable>();
+
+                var participanteEvento =
+                    db.participante_evento.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
+
+                var inscEvento = new inscripcion_evento();
+
+                if (participanteEvento != null)
+                {
+                    inscEvento = participanteEvento.inscripcion_evento.Last();
+                }
+
+                var pago = db.pago_evento.FirstOrDefault(x => x.id_inscripcion_evento == inscEvento.id_inscripcion);
+                if (pago != null) return new List<ObjetoPagable>();
+
+                var fechaPagable = DateTime.Today;
+                if (inscEvento.evento_especial.fecha != null)
+                {
+                    fechaPagable = (DateTime)inscEvento.evento_especial.fecha;
+                }
+                decimal montoPagable = 0;
+
+
+                var pagable = new ObjetoPagable
+                {
+                    Fecha = fechaPagable,
+                    TipoPago = ConstantesTipoPago.EVENTO(),
+                    Monto = montoPagable,
+                    Nombre = inscEvento.evento_especial.nombre,
+                    Inscripcion = inscEvento.id_inscripcion,
+                    Participante = (int)inscEvento.id_participante,
+                    NombreParticipante = inscEvento.participante_evento.nombre + " " + inscEvento.participante_evento.apellido,
+                    IdObjeto = (int)inscEvento.id_evento,
+                    MontoString = "$ " + montoPagable
+                };
+                lista.Add(pagable);
+
+
+
+                return lista;
+
+            }
+        }
+
+
+        public List<ObjetoPagable> ObtenerUltimoTorneoObjetoPagableInvitado(int tipoDoc, string dni)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var lista = new List<ObjetoPagable>();
+
+                var participanteTorneo =
+                    db.participante.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
+
+                var inscTorneo = new inscripcion();
+
+                if (participanteTorneo != null)
+                {
+                    inscTorneo = participanteTorneo.inscripcion.Last();
+                }
+
+                var pago = db.pago_torneo.FirstOrDefault(x => x.id_inscripcion_torneo == inscTorneo.id_inscripcion);
+                if (pago != null) return new List<ObjetoPagable>();
+
+                var fechaPagable = DateTime.Today;
+                if (inscTorneo.torneo.fecha != null)
+                {
+                    fechaPagable = (DateTime)inscTorneo.torneo.fecha;
+                }
+                decimal montoPagable = 0;
+                if (inscTorneo.tipo_inscripcion != null)
+                {
+                    if (inscTorneo.tipo_inscripcion == ConstantesTipoInscripcion.ABSOLUTO)
+                    {
+                        if (inscTorneo.torneo.precio_absoluto != null)
+                        {
+                            montoPagable = (decimal)inscTorneo.torneo.precio_absoluto;
+                        }
+
+                    }
+                    if (inscTorneo.tipo_inscripcion == ConstantesTipoInscripcion.CATEGORIA)
+                    {
+                        if (inscTorneo.torneo.precio_categoria != null)
+                        {
+                            montoPagable = (decimal)inscTorneo.torneo.precio_categoria;
+                        }
+
+                    }
+                }
+
+                var pagable = new ObjetoPagable
+                {
+                    Fecha = fechaPagable,
+                    TipoPago = ConstantesTipoPago.TORNEO(),
+                    Monto = montoPagable,
+                    Nombre = inscTorneo.torneo.nombre,
+                    Inscripcion = inscTorneo.id_inscripcion,
+                    Participante = (int)inscTorneo.id_participante,
+                    NombreParticipante = inscTorneo.participante.nombre + " " + inscTorneo.participante.apellido,
+                    IdObjeto = (int)inscTorneo.id_torneo,
+                    DescripcionObjeto = "Tipo de Inscripción: " + (inscTorneo.id_absoluto != null ? "Absoluta" : "Categoría"),
+                    MontoString = "$ " + montoPagable
+                };
+                lista.Add(pagable);
+
+
+
+                return lista;
+
             }
         }
     }
