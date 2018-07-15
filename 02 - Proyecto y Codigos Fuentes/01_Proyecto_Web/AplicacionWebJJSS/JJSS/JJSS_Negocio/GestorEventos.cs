@@ -308,8 +308,10 @@ namespace JJSS_Negocio
                                         par_fecha_nacD = part.fecha_nacimiento,
                                         par_sexo = part.sexo,
                                         par_dni = part.dni,
-                                        par_tipo_documento = part.tipo_documento.codigo
-                                      
+                                        par_tipo_documento = part.tipo_documento.codigo,
+                                        inscr_pagoI = inscr.pago,
+                                        id_alumno = part.id_alumno
+
                                     };
                 List<ParticipantesEventoResultado> participantesList = participantes.ToList<ParticipantesEventoResultado>();
 
@@ -327,6 +329,9 @@ namespace JJSS_Negocio
                     }
                     part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
                     part.ev_fecha = part.ev_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
+
+                    part.inscr_pago = part.inscr_pagoI == 1 ? "Si" : "No";
+                    part.par_alumno = part.id_alumno != null ? "Si" : "No";
 
                 }
 

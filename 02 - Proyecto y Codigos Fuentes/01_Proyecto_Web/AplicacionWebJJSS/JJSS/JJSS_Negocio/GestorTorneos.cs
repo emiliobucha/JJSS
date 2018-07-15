@@ -322,7 +322,7 @@ namespace JJSS_Negocio
                                     join part in db.participante on inscr.id_participante equals part.id_participante
                                     join cat_tor in db.categoria_torneo on inscr.id_categoria equals cat_tor.id_categoria_torneo
                                     join cat in db.categoria on cat_tor.id_categoria equals cat.id_categoria
-                                    where inscr.id_torneo == pID
+                                    where inscr.id_torneo == pID && ((inscr.pago == 1 && inscr.participante.id_alumno == null) || inscr.participante.id_alumno !=null)
                                     select new ParticipantesTorneoResultado()
                                     {
                                         tor_nombre = inscr.torneo.nombre,
@@ -338,7 +338,10 @@ namespace JJSS_Negocio
                                         par_categoria = cat.nombre,
                                         par_dni = part.dni,
                                         par_tipo_documento = part.tipo_documento.codigo,
-                                        par_peso = inscr.peso + " Kg"
+                                        par_peso = inscr.peso + " Kg",
+                                        inscr_pagoI = inscr.pago,
+                                        id_alumno = part.id_alumno
+
                                     };
                 List<ParticipantesTorneoResultado> participantesList = participantes.ToList<ParticipantesTorneoResultado>();
 
@@ -356,6 +359,10 @@ namespace JJSS_Negocio
                     }
                     part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
                     part.tor_fecha = part.tor_fechaD?.ToString("dd/MM/yyyy") ?? " - ";
+
+                    part.inscr_pago = part.inscr_pagoI == 1 ? "Si" : "No";
+                    part.par_alumno = part.id_alumno != null ? "Si" : "No";
+
 
                 }
 

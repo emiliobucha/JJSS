@@ -292,13 +292,13 @@ namespace JJSS.Presentacion.Eventos {
         protected global::System.Web.UI.WebControls.Button btn_habilitar;
         
         /// <summary>
-        /// Control btn_imprimir_listado.
+        /// Control btn_ver_listado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_imprimir_listado;
+        protected global::System.Web.UI.WebControls.Button btn_ver_listado;
         
         /// <summary>
         /// Control btn_volver.

@@ -246,6 +246,7 @@
     <Content Include="Presentacion\Eventos\HistoricoEventos.aspx" />
     <Content Include="Presentacion\Eventos\Menu_Evento.aspx" />
     <Content Include="Presentacion\Eventos\VerEvento.aspx" />
+    <Content Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx" />
     <Content Include="Presentacion\Pagos\PagosPanel.aspx" />
     <Content Include="Presentacion\Pagos\PagosMultiple.aspx" />
     <Content Include="Presentacion\Pagos\PagoMultipleFinalizado.aspx" />
@@ -262,6 +263,7 @@
     <Content Include="Presentacion\Torneos\MenuTorneo.aspx" />
     <Content Include="Presentacion\Productos\Reservas.aspx" />
     <Content Include="Presentacion\SobreNosotros.aspx" />
+    <Content Include="Presentacion\Torneos\VerListadoParticipantesTorneo.aspx" />
     <Content Include="Presentacion\Usuarios.aspx" />
     <Content Include="Presentacion\Eventos\CrearEvento.aspx" />
     <Content Include="Presentacion\Eventos\InscripcionEvento.aspx" />
@@ -512,6 +514,13 @@
     <Compile Include="Presentacion\Eventos\VerEvento.aspx.designer.cs">
       <DependentUpon>VerEvento.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx.cs">
+      <DependentUpon>VerListadoParticipantesEvento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx.designer.cs">
+      <DependentUpon>VerListadoParticipantesEvento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Pagos\PagosPanel.aspx.cs">
       <DependentUpon>PagosPanel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -612,6 +621,13 @@
     </Compile>
     <Compile Include="Presentacion\SobreNosotros.aspx.designer.cs">
       <DependentUpon>SobreNosotros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Torneos\VerListadoParticipantesTorneo.aspx.cs">
+      <DependentUpon>VerListadoParticipantesTorneo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Torneos\VerListadoParticipantesTorneo.aspx.designer.cs">
+      <DependentUpon>VerListadoParticipantesTorneo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

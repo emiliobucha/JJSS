@@ -237,7 +237,7 @@ namespace JJSS_Negocio
                             {
                                 inscripcion.pago = 1;
                             }
-
+                           
                             db.pago_torneo.Add(nuevoPagoTorneo);
                             db.SaveChanges();
                         }

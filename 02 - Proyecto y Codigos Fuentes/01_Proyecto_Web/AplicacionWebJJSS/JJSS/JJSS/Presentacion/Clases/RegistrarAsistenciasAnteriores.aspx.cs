@@ -43,6 +43,7 @@ namespace JJSS.Presentacion.Clases
 
         private void CargarGrilla()
         {
+
             int idClase = Convert.ToInt32(ddl_clases.SelectedValue);
             DateTime fecha = DateTime.Parse(dp_fecha.Text);
             try
@@ -76,6 +77,7 @@ namespace JJSS.Presentacion.Clases
                 mensaje("Debe seleccionar una clase", false);
                 return;
             }
+            LimpiarMensaje();
 
             CargarDatosClase();
             CargarGrilla();
@@ -112,6 +114,16 @@ namespace JJSS.Presentacion.Clases
                 pnl_mensaje_error.Visible = true;
                 lbl_error.Text = pMensaje;
             }
+        }
+
+
+        private void LimpiarMensaje()
+        {
+         
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = false;
+                lbl_exito.Text = "";
+          
         }
 
         protected void btn_aceptar_Click(object sender, EventArgs e)

@@ -126,6 +126,7 @@ namespace JJSS.Presentacion
                     {
                         asistencia.Style["display"] = "none";
                         listado_asistencia.Style["display"] = "none";
+                        asistenciaAnteriores.Style["display"] = "none";
                     }
 
                     //permiso = 0;

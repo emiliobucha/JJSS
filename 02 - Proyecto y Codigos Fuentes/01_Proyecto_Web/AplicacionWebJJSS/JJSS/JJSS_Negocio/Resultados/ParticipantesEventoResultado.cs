@@ -23,5 +23,9 @@ namespace JJSS_Negocio
         public string par_sexo_nombre { get; set; }
         public string par_dni { get; set; }
         public string par_tipo_documento { get; set; }
+        public short? inscr_pagoI { get; set; }
+        public int? id_alumno { get; set; }
+        public string inscr_pago { get; set; }
+        public string par_alumno { get; set; }
     }
 }
