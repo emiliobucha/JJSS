@@ -112,7 +112,11 @@ namespace JJSS.Presentacion
                 else
                 {
                     var resultado = Request["collection_status"];
-                    if (resultado != "approved" && resultado != "pending") Response.Redirect("PagosPanel.aspx");
+                    if (resultado != "approved" && resultado != "pending")
+                    {
+
+
+                    }
 
 
                     if (resultado == "approved" || resultado == "pending")
@@ -186,13 +190,25 @@ namespace JJSS.Presentacion
 
                 var pagoImprimir = pagoMultiple.ObjetosPagables[index];
 
+                string mail;
+                
+                try
+                {
+                    //para usuarios
+                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
 
-                //para usuarios
-                Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+                    mail = sesionActiva.usuario.mail;
+
+                }
+                catch (Exception exception)
+                {
+                    mail = null;
+                }
+               
 
                 try
                 {
-                    string mail = sesionActiva.usuario.mail;
+                  
 
                     if (pagoMultiple.TipoDocumento != null)
                     {

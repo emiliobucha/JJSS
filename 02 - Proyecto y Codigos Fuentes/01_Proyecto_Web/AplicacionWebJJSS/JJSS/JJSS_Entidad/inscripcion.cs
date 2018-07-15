@@ -31,6 +31,7 @@ namespace JJSS_Entidad
         public Nullable<int> id_faja { get; set; }
         public Nullable<short> tipo_inscripcion { get; set; }
         public Nullable<int> id_absoluto { get; set; }
+        public Nullable<short> pago { get; set; }
     
         public virtual categoria_torneo categoria_torneo { get; set; }
         public virtual categoria_torneo categoria_torneo1 { get; set; }

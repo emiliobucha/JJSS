@@ -275,6 +275,7 @@
           <Property Name="id_faja" Type="int" />
           <Property Name="tipo_inscripcion" Type="smallint" />
           <Property Name="id_absoluto" Type="int" />
+          <Property Name="pago" Type="smallint" />
         </EntityType>
         <EntityType Name="inscripcion_clase">
           <Key>
@@ -296,6 +297,7 @@
           <Property Name="id_participante" Type="int" />
           <Property Name="id_evento" Type="int" />
           <Property Name="hora" Type="varchar" MaxLength="20" />
+          <Property Name="pago" Type="smallint" />
         </EntityType>
         <EntityType Name="lucha">
           <Key>
@@ -2605,6 +2607,7 @@
           <Property Name="id_faja" Type="Int32" />
           <Property Name="tipo_inscripcion" Type="Int16" />
           <Property Name="id_absoluto" Type="Int32" />
+          <Property Name="pago" Type="Int16" />
           <NavigationProperty Name="categoria_torneo" Relationship="Self.FK__inscripci__id_ca__2F8501C7" FromRole="inscripcion" ToRole="categoria_torneo" />
           <NavigationProperty Name="categoria_torneo1" Relationship="Self.FK_inscripcion_id_absoluto" FromRole="inscripcion" ToRole="categoria_torneo" />
           <NavigationProperty Name="faja" Relationship="Self.FK__inscripci__id_fa__30792600" FromRole="inscripcion" ToRole="faja" />
@@ -2634,6 +2637,7 @@
           <Property Name="id_participante" Type="Int32" />
           <Property Name="id_evento" Type="Int32" />
           <Property Name="hora" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pago" Type="Int16" />
           <NavigationProperty Name="evento_especial" Relationship="Self.FK__inscripci__id_ev__353DDB1D" FromRole="inscripcion_evento" ToRole="evento_especial" />
           <NavigationProperty Name="participante_evento" Relationship="Self.FK__inscripci__id_pa__3631FF56" FromRole="inscripcion_evento" ToRole="participante_evento" />
           <NavigationProperty Name="pago_evento" Relationship="Self.FK_PAGO_EVENTO_INSCRIPCION" FromRole="inscripcion_evento" ToRole="pago_evento" />
@@ -4998,6 +5002,7 @@
                 <ScalarProperty Name="id_faja" ColumnName="id_faja" />
                 <ScalarProperty Name="tipo_inscripcion" ColumnName="tipo_inscripcion" />
                 <ScalarProperty Name="id_absoluto" ColumnName="id_absoluto" />
+                <ScalarProperty Name="pago" ColumnName="pago" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5021,6 +5026,7 @@
                 <ScalarProperty Name="id_participante" ColumnName="id_participante" />
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="pago" ColumnName="pago" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

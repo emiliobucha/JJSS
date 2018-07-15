@@ -25,6 +25,7 @@ namespace JJSS_Entidad
         public Nullable<int> id_participante { get; set; }
         public Nullable<int> id_evento { get; set; }
         public string hora { get; set; }
+        public Nullable<short> pago { get; set; }
     
         public virtual evento_especial evento_especial { get; set; }
         public virtual participante_evento participante_evento { get; set; }

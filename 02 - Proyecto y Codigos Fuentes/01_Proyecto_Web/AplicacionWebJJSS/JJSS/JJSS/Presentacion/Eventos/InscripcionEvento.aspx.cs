@@ -9,6 +9,9 @@ using JJSS_Negocio;
 using System.Globalization;
 using JJSS_Negocio.Resultados;
 using JJSS_Negocio.Administracion;
+using JJSS_Negocio.Constantes;
+using JJSS_Negocio.Resultados.Pagos;
+using Newtonsoft.Json;
 
 namespace JJSS.Presentacion
 {
@@ -65,36 +68,36 @@ namespace JJSS.Presentacion
                             }
 
                             //Por si hace falta que se inscriba otro que no sea alumno ESTA CONTEMPLADO SOLO ALUMNO
-                           /* else
-                            {
-                                profesor profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
-                                if (profesor != null)
-                                {
-                                    txtDni.Text = profesor.dni;
-                                    ddl_tipo.SelectedValue = profesor.id_tipo_documento.ToString();
-                                    limpiar(false);
-                                }
-                                else
-                                {
-                                    administrador admin = gestorAdministradores.ObtenerAdminPorIdUsuario(usuario.id_usuario);
-                                  
-                                    if (admin != null)
-                                    {
-                                        txtDni.Text = admin.dni;
-                                        ddl_tipo.SelectedValue = admin.id_tipo_documento.ToString();
-                                        limpiar(false);
-                                    }
-                                }
-                            }*/
+                            /* else
+                             {
+                                 profesor profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
+                                 if (profesor != null)
+                                 {
+                                     txtDni.Text = profesor.dni;
+                                     ddl_tipo.SelectedValue = profesor.id_tipo_documento.ToString();
+                                     limpiar(false);
+                                 }
+                                 else
+                                 {
+                                     administrador admin = gestorAdministradores.ObtenerAdminPorIdUsuario(usuario.id_usuario);
+
+                                     if (admin != null)
+                                     {
+                                         txtDni.Text = admin.dni;
+                                         ddl_tipo.SelectedValue = admin.id_tipo_documento.ToString();
+                                         limpiar(false);
+                                     }
+                                 }
+                             }*/
 
 
-                           
+
                         }
                         catch (Exception)
                         {
                             limpiar(true);
                         }
-                        
+
                     }
                     else
                     {
@@ -103,7 +106,12 @@ namespace JJSS.Presentacion
                 }
                 catch
                 {
-                    limpiar(true);
+                    if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
+                    {
+                        btn_aceptar.Text = "Pagar";
+                        limpiar(true);
+                    }
+                    
                 }
 
                 if (eventoSession != null)
@@ -124,7 +132,7 @@ namespace JJSS.Presentacion
                     CargarComboEventos();
                 }
                 CargarComboNacionalidades();
-                
+
 
             }
         }
@@ -286,7 +294,7 @@ namespace JJSS.Presentacion
                 dp_fecha.Text = fecha.ToShortDateString();
 
                 // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
-                
+
 
                 if (alumnoEncontrado.sexo == 0) rbSexo.SelectedIndex = 0;
                 if (alumnoEncontrado.sexo == 1) rbSexo.SelectedIndex = 1;
@@ -389,39 +397,59 @@ namespace JJSS.Presentacion
             string sReturn = gestorInscripciones.InscribirAEvento(idEvento, nombre, apellido, fechaNac.Date, sexo, idTipo, dni, idAlumno, idPais);
 
 
-            if (sReturn.CompareTo("") == 0)
+            if (string.IsNullOrEmpty(sReturn))
             {
-                mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a ", true);
-                lnk_pagos_panel.Visible = true;
-                
-               /* pnl_pago.Visible = true;
-                Session["EventoPagar"] = idEvento;
-                Session["ParticipanteDNI"] = dni;*/
-
-
-                //para usuarios
-                if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() != "INVITADO")
+                try
                 {
-                    Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
-
-
-                    try
+                    string sFile;
+                    string mail = null;
+                    if (HttpContext.Current.Session["SEGURIDAD_SESION"].ToString() == "INVITADO")
                     {
-                        string mail = sesionActiva.usuario.mail;
-                        string sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(idTipo, dni, idEvento).id_inscripcion, mail);
+                        limpiar(true);
 
-                        pnl_comprobante.Visible = true;
-                        btn_descargar.Attributes.Add("href", "../Downloader.ashx?" + "sFile=" + sFile);
+                        var gestorPagos = new GestorPagos();
+                        var ultimo = gestorPagos.ObtenerUltimoEventoObjetoPagableInvitado(idTipo, dni);
+
+                        var gestorUsuarios = new GestorUsuarios();
+                        var idUsuario = gestorUsuarios.ObtenerIdUsuarioInvitado();
+                        if (idUsuario == -1)
+                        {
+                            Mensaje("Error, usuario invitado no existe y no se puede registrar pago", false);
+                            return;
+                        }
+                        var pagoMultiple = new PagoMultiple(ultimo, ConstantesFormaPago.MERCADOPAGO, idUsuario, idTipo, dni, nombre + " " + apellido);
+                        HttpContext.Current.Session["PagoMultiple"] = JsonConvert.SerializeObject(pagoMultiple);
+
+                        Response.Redirect("~/Presentacion/Pagos/PagosMultiple.aspx");
+
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        mensaje("Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante.Puede fijarse en sus incripciones si es necesario", true);
+
+                        ////para usuarios
+
+                        Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
+
+                        mail = sesionActiva.usuario.mail;
+                        limpiar(true);
+                        Mensaje("La inscripción se ha realizado exitosamente. Para pagar diríjase a ", true);
+                        lnk_pagos_panel.Visible = true;
 
                     }
+                    sFile = gestorInscripciones.ComprobanteInscripcion(gestorInscripciones.obtenerInscripcionAEventoPorIdParticipantePorDni(idTipo, dni, idEvento).id_inscripcion, mail);
+                    pnl_comprobante.Visible = true;
+                    btn_descargar.Attributes.Add("href", "../Downloader.ashx?" + "sFile=" + sFile);
+
                 }
-                
+                catch (Exception ex)
+                {
+                    //Response.Write("<script>window.alert('" + "Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario".Trim() + "');</script>");
+                    Mensaje("Usted se ha inscripto exitosamente pero no se le pudo generar el comprobante. Puede fijarse en sus incripciones si es necesario", true);
+                }
             }
-            else mensaje(sReturn, false);
+            else Mensaje(sReturn, false);
+
+
         }
 
         protected void CargarComboEventos()
