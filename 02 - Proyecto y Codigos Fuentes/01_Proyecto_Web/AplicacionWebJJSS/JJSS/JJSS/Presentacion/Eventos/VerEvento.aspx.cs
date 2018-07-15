@@ -104,7 +104,8 @@ namespace JJSS.Presentacion.Eventos
                     }
                     if (permiso == 1)
                     {
-                        btn_imprimir_listado.Visible = true;
+                        //btn_imprimir_listado.Visible = true;
+                        btn_ver_listado.Visible = true;
                     }
 
                 
@@ -318,13 +319,20 @@ namespace JJSS.Presentacion.Eventos
             {
                 Session["mensaje"] = "Se ha cancelado el torneo exitosamente";
                 Session["exito"] = true;
-                Response.Redirect("/Presentacion/Torneos/MenuEvento.aspx");
+                Response.Redirect("/Presentacion/Eventos/Menu_Evento.aspx");
             }
             else
             {
                 mensaje(res, false);
             }
 
+        }
+
+        protected void btn_ver_listado_Click(object sender, EventArgs e)
+        {
+            limpiarMensaje();
+            Session["idEvento"] = eventoSeleccionado.id_evento;
+            Response.Redirect("/Presentacion/Eventos/VerListadoParticipantesEvento.aspx");
         }
     }
 }

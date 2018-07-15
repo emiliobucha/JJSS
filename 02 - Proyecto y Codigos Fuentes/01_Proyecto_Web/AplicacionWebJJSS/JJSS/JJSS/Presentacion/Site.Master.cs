@@ -91,6 +91,9 @@ namespace JJSS
             nav_graduar_alumno.Style["display"] = "none";
 
             nav_crear_clase.Style["display"] = "none";
+            navbarPagos.Style["display"] = "none";
+            nav_asistencias_anteriores.Style["display"] = "none";
+
         }
 
         protected void ocultarPermiso()
@@ -198,6 +201,7 @@ namespace JJSS
                     {
                         nav_registrar_asistencia.Style["display"] = "none";
                         nav_listado_asistencia.Style["display"] = "none";
+                        nav_asistencias_anteriores.Style["display"] = "none";
                     }
 
                    permiso = 0;

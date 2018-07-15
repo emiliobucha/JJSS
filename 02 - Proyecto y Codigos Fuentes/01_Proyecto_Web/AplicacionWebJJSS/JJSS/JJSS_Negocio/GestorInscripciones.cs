@@ -193,17 +193,26 @@ namespace JJSS_Negocio
                         hora = hora,
                         fecha = fecha,
                         codigo_barra = 123456789,
-                        participante = nuevoParticipante,
                         id_participante = nuevoParticipante.id_participante,
-                        id_torneo = torneoInscripto.id_torneo,
-                        torneo = torneoInscripto,
                         peso = pPeso,
                         id_faja = pFaja,
-                        faja=fajaElegida,
-                        categoria_torneo = categoriaTorneoCat,
-                        categoria_torneo1 = categoriaTorneoAbs,
-                        tipo_inscripcion = pTipoInscripcion,
+                        tipo_inscripcion = pTipoInscripcion
                     };
+
+                    if (torneoInscripto != null)
+                    {
+                        nuevaInscripcion.id_torneo = torneoInscripto.id_torneo;
+                    }
+                    if (categoriaTorneoAbs != null)
+                    {
+                        nuevaInscripcion.id_absoluto = categoriaTorneoAbs.id_categoria;
+                    }
+                    if (categoriaTorneoCat != null)
+                    {
+                        nuevaInscripcion.id_categoria = categoriaTorneoCat.id_categoria;
+
+                    }
+
                     
                     db.inscripcion.Add(nuevaInscripcion);
                     db.SaveChanges();

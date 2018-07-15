@@ -112,7 +112,8 @@ namespace JJSS.Presentacion
                     }
                     if (permiso == 1)
                     {
-                        btn_imprimir_listado.Visible = true;
+                        //btn_imprimir_listado.Visible = true;
+                        btn_ver_listado.Visible = true;
                     }
 
 
@@ -129,7 +130,7 @@ namespace JJSS.Presentacion
                         if (permiso == 1)
                         {
                             btn_cargar_resultados.Visible = true;
-
+                            
 
                             btn_imprimir_resultados.Visible = true;
                         }
@@ -378,6 +379,14 @@ namespace JJSS.Presentacion
             {
                 mensaje("No se encuentran resultados cargados a ese torneo", false);
             }
+        }
+
+        protected void btn_ver_listado_Click(object sender, EventArgs e)
+        {
+            limpiarMensaje();
+            Session["idTorneo"] = torneoSeleccionado.id_torneo;
+            Response.Redirect("/Presentacion/Torneos/VerListadoParticipantesTorneo.aspx");
+
         }
     }
 }

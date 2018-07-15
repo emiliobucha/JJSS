@@ -16,10 +16,10 @@ namespace JJSS_Negocio
         private String clientSecret = "QflIW4b4IUeIG9mHM51lTzTc4xEb5zax";
         private MP mp;
         //Produccion
-        //private string uri = "http://ec2-34-228-115-59.compute-1.amazonaws.com:8081/Presentacion/Pagos/";
+        private string uri = "http://lotusclub-equipohinojal.com.ar/Presentacion/Pagos/";
 
             //Local
-        private string uri = "http://localhost:15787/Presentacion/Pagos/";
+        //private string uri = "http://localhost:15787/Presentacion/Pagos/";
 
 
         public string NuevoPago(double pMonto, string pConcepto)
