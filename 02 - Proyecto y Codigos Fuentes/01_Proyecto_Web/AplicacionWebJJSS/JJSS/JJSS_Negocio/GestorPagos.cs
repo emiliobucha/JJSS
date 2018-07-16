@@ -320,20 +320,19 @@ namespace JJSS_Negocio
                 {
                     fechaPagable = (DateTime)inscEvento.evento_especial.fecha;
                 }
-                decimal montoPagable = 0;
-
+            
 
                 var pagable = new ObjetoPagable
                 {
                     Fecha = fechaPagable,
                     TipoPago = ConstantesTipoPago.EVENTO(),
-                    Monto = montoPagable,
+                    Monto = inscEvento.evento_especial.precio.Value,
                     Nombre = inscEvento.evento_especial.nombre,
                     Inscripcion = inscEvento.id_inscripcion,
                     Participante = (int)inscEvento.id_participante,
                     NombreParticipante = inscEvento.participante_evento.nombre + " " + inscEvento.participante_evento.apellido,
                     IdObjeto = (int)inscEvento.id_evento,
-                    MontoString = "$ " + montoPagable
+                    MontoString = "$ " + inscEvento.evento_especial.precio.Value
                 };
                 lista.Add(pagable);
 

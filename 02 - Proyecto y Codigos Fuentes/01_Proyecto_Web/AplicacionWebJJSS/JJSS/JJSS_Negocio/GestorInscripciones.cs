@@ -148,7 +148,8 @@ namespace JJSS_Negocio
                             fecha_nacimiento = pFechaNacimiento,
                             dni = pDni,
                             id_alumno = pIDAlumno,
-                            id_pais = pIdPais
+                            id_pais = pIdPais,
+                            
 
                         };
                         db.participante.Add(nuevoParticipante);

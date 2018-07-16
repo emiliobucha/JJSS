@@ -287,6 +287,8 @@
           <Property Name="id_clase" Type="int" />
           <Property Name="id_alumno" Type="int" />
           <Property Name="actual" Type="smallint" />
+          <Property Name="fecha_base" Type="datetime" />
+          <Property Name="proximo_vencimiento" Type="datetime" />
         </EntityType>
         <EntityType Name="inscripcion_evento">
           <Key>
@@ -2625,6 +2627,8 @@
           <Property Name="id_clase" Type="Int32" />
           <Property Name="id_alumno" Type="Int32" />
           <Property Name="actual" Type="Int16" />
+          <Property Name="fecha_base" Type="DateTime" Precision="3" />
+          <Property Name="proximo_vencimiento" Type="DateTime" Precision="3" />
           <NavigationProperty Name="alumno" Relationship="Self.FK__inscripci__id_al__335592AB" FromRole="inscripcion_clase" ToRole="alumno" />
           <NavigationProperty Name="clase" Relationship="Self.FK__inscripci__id_cl__3449B6E4" FromRole="inscripcion_clase" ToRole="clase" />
         </EntityType>
@@ -5015,6 +5019,8 @@
                 <ScalarProperty Name="id_clase" ColumnName="id_clase" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="actual" ColumnName="actual" />
+                <ScalarProperty Name="fecha_base" ColumnName="fecha_base" />
+                <ScalarProperty Name="proximo_vencimiento" ColumnName="proximo_vencimiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
