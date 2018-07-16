@@ -15,8 +15,6 @@ namespace JJSS.Presentacion
         {
             if (!IsPostBack)
             {
-
-
                 if (Request.Cookies["Usuario"] != null && Request.Cookies["Password"] != null)
                 {
                     txt_usuario.Text = Request.Cookies["Usuario"].Value;

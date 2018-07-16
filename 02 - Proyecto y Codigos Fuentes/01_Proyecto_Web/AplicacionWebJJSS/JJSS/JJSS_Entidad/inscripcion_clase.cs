@@ -20,6 +20,8 @@ namespace JJSS_Entidad
         public Nullable<int> id_clase { get; set; }
         public Nullable<int> id_alumno { get; set; }
         public Nullable<short> actual { get; set; }
+        public Nullable<System.DateTime> fecha_base { get; set; }
+        public Nullable<System.DateTime> proximo_vencimiento { get; set; }
     
         public virtual alumno alumno { get; set; }
         public virtual clase clase { get; set; }
