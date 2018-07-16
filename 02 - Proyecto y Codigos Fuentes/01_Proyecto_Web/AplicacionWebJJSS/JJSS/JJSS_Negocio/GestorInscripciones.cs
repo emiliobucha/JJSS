@@ -206,11 +206,11 @@ namespace JJSS_Negocio
                     }
                     if (categoriaTorneoAbs != null)
                     {
-                        nuevaInscripcion.id_absoluto = categoriaTorneoAbs.id_categoria;
+                        nuevaInscripcion.id_absoluto = categoriaTorneoAbs.id_categoria_torneo;
                     }
                     if (categoriaTorneoCat != null)
                     {
-                        nuevaInscripcion.id_categoria = categoriaTorneoCat.id_categoria;
+                        nuevaInscripcion.id_categoria = categoriaTorneoCat.id_categoria_torneo;
 
                     }
 

@@ -487,7 +487,7 @@ namespace JJSS
                 // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 
 
-                int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneo).id_tipo_clase;
+                int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneoCombo).id_tipo_clase;
                 faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
                 if (fajaAlumno != null)
                 {
