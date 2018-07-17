@@ -132,35 +132,53 @@ namespace JJSS_Negocio
                     lista.Add(pagable);
                 }
 
-                foreach (var inscClase in inscripcionesClases)
+                foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1 ))
                 {
-
+                    //Validaciones al vicio pero por la estructura de la base
                     if (inscClase.id_clase == null) continue;
 
-                    var pago = db.pago_clase.FirstOrDefault(x => x.id_clase == inscClase.id_clase);
+                    if (!inscClase.proximo_vencimiento.HasValue) continue;
 
+                    if (inscClase.clase.precio == null) continue;
+
+
+
+                    //Si la fecha de vencimiento menos 10 dias es superior a hoy no puede pagar aun
+                    if (inscClase.proximo_vencimiento.Value.AddDays(-10) > DateTime.Today) continue;
+
+                   
                     int mes = DateTime.Today.Month;
                     string mesNombre = meses[mes - 1];
 
-                    double recargo = gestorClase.calcularRecargo((int)inscClase.id_clase, alumno.id_alumno);
 
+                    var pago = db.pago_clase.FirstOrDefault(x => x.id_clase == inscClase.id_clase && x.id_alumno == inscClase.id_alumno);
                     if (pago != null)
                     {
                         var detallePago =
                             db.detalle_pago_clase.FirstOrDefault(x =>
-                                x.id_pago_clase == pago.id_pago_clase && x.mes == mesNombre);
+                                x.id_pago_clase == pago.id_pago_clase && x.fecha_vencimiento_cumple == inscClase.proximo_vencimiento);
                         if (detallePago != null)
                         {
                             continue;
                         }
                     }
 
-                    var fechaPagable = DateTime.Today;
+                    var recargoParametro = db.parametro.Find(1);
+
+                    var recargo = recargoParametro == null ? 0 : (double)recargoParametro.valor;
+
+                    var fechaPagable = inscClase.proximo_vencimiento.Value;
 
                     decimal montoPagable = 0;
-                    if (inscClase.clase.precio != null)
+
+                    if (inscClase.recargo == 1)
                     {
                         montoPagable = (decimal)(inscClase.clase.precio + recargo);
+
+                    }
+                    else
+                    {
+                        montoPagable = (decimal) inscClase.clase.precio;
                     }
 
                     var pagable = new ObjetoPagable
@@ -175,7 +193,8 @@ namespace JJSS_Negocio
                         IdObjeto = (int)inscClase.id_clase,
                         MontoString = "$ " + montoPagable
                     };
-                    if (recargo > 0)
+
+                    if (inscClase.recargo == 1)
                     {
                         pagable.DescripcionObjeto = "Pago con recargo por demora: $" + recargo;
                     }
@@ -268,18 +287,60 @@ namespace JJSS_Negocio
                         }
                         if (objeto.TipoPago.Id == ConstantesTipoPago.CLASE().Id)
                         {
-                            double recargo = gestorClase.calcularRecargo(objeto.IdObjeto, objeto.Participante);
 
-                            int mes = DateTime.Today.Month;
+                            var inscClase =
+                                db.inscripcion_clase.FirstOrDefault(x => x.id_alumno == objeto.Participante && x.id_clase == objeto.IdObjeto);
+
+                            if (inscClase == null)
+                            {
+                                throw new Exception("El alumno no está inscripto a esta clase");
+                            }
+                            if (!inscClase.proximo_vencimiento.HasValue)
+                            {
+                                throw new Exception("Hay un problema en la inscripción del alumno");
+                            }
+
+                            var pago = db.pago_clase.FirstOrDefault(x => x.id_alumno == objeto.Participante && x.id_clase == objeto.IdObjeto);
+
+                            if (pago == null)
+                            {
+                                //crear pago
+                                pago = new pago_clase()
+                                {
+                                    id_alumno = objeto.Participante,
+                                    id_clase = objeto.IdObjeto
+                                };
+                                db.pago_clase.Add(pago);
+                                db.SaveChanges();
+                            }
+
+
+                            int mes = inscClase.proximo_vencimiento.Value.Month;
                             string mesNombre = meses[mes - 1];
 
-                            short pagoRecargo = 0;
-                            if (recargo > 0)
+
+                            //crear detalle
+                            var nuevoDetalle = new detalle_pago_clase()
                             {
-                                pagoRecargo = 1;
-                            }
-                            int detalle = gestorPagoClase.registrarPagoMultiple(objeto.Participante, objeto.IdObjeto, objeto.Monto, mesNombre, pagoMultiple.FormaPago, pagoRecargo, nuevoPago.id_pago);
-                            // gestorPagoClase.actualizarPagoMultiple(detalle, nuevoPago.id_pago);
+                                id_pago_clase = pago.id_pago_clase,
+                                monto = objeto.Monto,
+                                fecha_hora = DateTime.Now,
+                                mes = mesNombre,
+                                fecha_vencimiento_cumple = inscClase.proximo_vencimiento,
+                                id_forma_pago = pagoMultiple.FormaPago,
+                                recargo = inscClase.recargo,
+                                id_pago_multiple = nuevoPago.id_pago
+                            };
+                            db.detalle_pago_clase.Add(nuevoDetalle);
+
+                            inscClase.fecha_desde = inscClase.proximo_vencimiento.Value;
+                            inscClase.proximo_vencimiento = inscClase.proximo_vencimiento.Value.AddMonths(1);
+                            inscClase.recargo = 0;
+                            inscClase.actual = 1;
+
+                            db.SaveChanges();
+
+
                         }
                     }
 
@@ -410,5 +471,7 @@ namespace JJSS_Negocio
 
             }
         }
+
+        
     }
 }

@@ -22,6 +22,8 @@ namespace JJSS_Entidad
         public Nullable<short> actual { get; set; }
         public Nullable<System.DateTime> fecha_base { get; set; }
         public Nullable<System.DateTime> proximo_vencimiento { get; set; }
+        public Nullable<short> recargo { get; set; }
+        public Nullable<System.DateTime> fecha_desde { get; set; }
     
         public virtual alumno alumno { get; set; }
         public virtual clase clase { get; set; }

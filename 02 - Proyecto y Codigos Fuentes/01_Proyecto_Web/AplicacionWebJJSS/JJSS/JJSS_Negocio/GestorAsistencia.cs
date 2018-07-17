@@ -221,6 +221,23 @@ namespace JJSS_Negocio
             }
         }
 
+        public asistencia_clase ValidarAsistenciaClaseAnterior(int pAlumno, int pClase)
+        {
+            DateTime fechaActual = DateTime.Today;
+            using (var db = new JJSSEntities())
+            {
+
+                var asistenciaHoy = db.asistencia_clase.FirstOrDefault(x =>
+                    x.id_alumno == pAlumno && x.id_clase == pClase && DbFunctions.TruncateTime(x.fecha_hora) ==
+                    DbFunctions.TruncateTime(fechaActual));
+
+                return asistenciaHoy;
+
+            }
+        }
+
+
+
         public List<AlumnoAsistencia> BuscarAlumnosConAsistencia(int idClase, DateTime fecha)
         {
             List<AlumnoAsistencia> listadoInscriptosConAsistencia = new List<AlumnoAsistencia>();

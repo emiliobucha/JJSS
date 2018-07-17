@@ -15,15 +15,8 @@ namespace JJSS.Soporte
 
 
             var gestor = new GestorVencimientos();
-            var dt = new DateTime(2018,1,31);
-            gestor.CalcularProxVto(dt);
-         gestor.CalcularProximaFechaVencimientoInscripcion();
-            
-
-
-
-
-
+            gestor.ActualizarEstadosInscripcion();
+            gestor.ActualizarEstadosAlumno();
 
         }
     }
