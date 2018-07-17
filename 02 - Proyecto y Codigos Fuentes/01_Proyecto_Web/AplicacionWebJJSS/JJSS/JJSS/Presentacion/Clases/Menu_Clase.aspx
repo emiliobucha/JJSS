@@ -136,9 +136,9 @@
                 <div class="col-sm-12 col-md-6 col-lg-2 col-xl-auto " runat="server" id="asistenciaAnteriores">
                     <a class="text-dark" href="/Presentacion/Clases/RegistrarAsistenciasAnteriores.aspx">
                         <div class="btn " style="width: 10rem;">
-                            <img class=" img-fluid" src="../../img/Inscribir.png" alt="Card image cap">
+                            <img class=" img-fluid" src="../../img/AsistenciasAnteriores.png" alt="Card image cap">
                             <div class="">
-                                <h4 class="mb-5">Registrar Asistencia</h4>
+                                <h4 class="mb-5">Asistencias Anteriores</h4>
                             </div>
                         </div>
                     </a>

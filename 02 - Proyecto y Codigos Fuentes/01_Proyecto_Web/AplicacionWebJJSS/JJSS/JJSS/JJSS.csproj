@@ -155,6 +155,7 @@
     <Content Include="img\AdminEvento.png" />
     <Content Include="img\AdminProfe.png" />
     <Content Include="img\AdminSede.png" />
+    <Content Include="img\AsistenciasAnteriores.png" />
     <Content Include="img\Categoria.png" />
     <Content Include="img\CrearAlu.png" />
     <Content Include="img\CrearCat.png" />
