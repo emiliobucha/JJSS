@@ -93,28 +93,32 @@
             <h1 class=" centered">Registrar Asistencias</h1>
         </div>
 
+        <div>
+            <p>&nbsp;</p>
+        </div>
 
+        <div class="container  ">
+            <div class="border rounded p-4">
 
-        <div class="container ">
+                <div class="row centered p-2">
+                    <div class="col col-1">
+                          <a>Clase</a>  
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12">
+                        <asp:DropDownList ID="ddl_clases" class="caja2" runat="server"></asp:DropDownList>
+                    </div>
 
-            <div class="row centered p-2">
+                    <div class="col col-auto text-left "><a>Fecha</a></div>
+                    <div class="col-md-2 col-lg-2 col-sm-12">
+                        <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$"></asp:TextBox>
+                    </div>
 
-                <div class=" col-auto"><a>Clase</a></div>
-                <div class="col-md-3 col-lg-3">
-                    <asp:DropDownList ID="ddl_clases" class="caja2" runat="server"></asp:DropDownList>
+                    <div class="col-md-2 col-lg-2 col-sm-12 centered p-sm-1">
+                        <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click" />
+                    </div>
                 </div>
 
-                <div class="col-auto "><a>Fecha</a></div>
-                <div class="col-md-2 col-lg-2">
-                    <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$"></asp:TextBox>
-                </div>
-
-                <div class="col justify-content-center ">
-                    <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-outline-dark" OnClick="btn_buscar_Click" />
-                </div>
-            </div>
-
-            <%--<div class=" row mt centered justify-content-center  p-1" runat="server">
+                <%--<div class=" row mt centered justify-content-center  p-1" runat="server">
                 <h2 class=" centered mt  ">
                     <asp:Label ID="lbl_datos_clase" runat="server" Text=""></asp:Label>
                 </h2>
@@ -131,37 +135,44 @@
                 </h3>
             </div>--%>
 
-            <div class="row mt pull-right">
-                <input type="checkbox" id="chkSelectAll" runat="server" onclick="SelectAll('chkSelectAll')" visible="false" value="Seleccionar Todos" />
-                <asp:Label ID="lbl_select_all" runat="server" Visible="false" Text="Seleccionar Todos"></asp:Label>
-            </div>
-            <br />
+                <div class="row pull-right">
+                    <div class="col col-auto">
+                        <input type="checkbox" id="chkSelectAll" runat="server" onclick="SelectAll('chkSelectAll')" visible="false" value="Seleccionar Todos" />
+                        <asp:Label ID="lbl_select_all" runat="server" Visible="false" Text="Seleccionar Todos"></asp:Label>
+                    </div>
+                </div>
 
-            <div class=" row mt centered justify-content-center  p-1" runat="server">
-                <div class="col-12">
-                    <asp:GridView ID="gv_inscriptos" runat="server" CssClass="table table-hover" CellPadding="4" ForeColor="#333333" GridLines="None"
-                        AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" AllowPaging="True"
-                        OnPageIndexChanging="gv_inscriptos_PageIndexChanging" PageSize="20" OnRowDataBound="gv_inscriptos_RowDataBound" DataKeyNames="alu_id">
-                        <Columns>
-                            <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" />
-                            <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" />
-                            <%--<asp:BoundField DataField="alu_tipo_documento" HeaderText="Tipo" />--%>
-                            <asp:BoundField DataField="alu_documento" HeaderText="Documento" />
-                            <asp:TemplateField HeaderText="Asistió" HeaderStyle-HorizontalAlign="Center">
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chk_asistio" runat="server"/>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
+                <div>
+                    <p>&nbsp;</p>
+                </div>
 
-                    </asp:GridView>
+                <div class="row centered justify-content-center  p-1" runat="server">
+                    <div class="col-12">
+                        <asp:GridView ID="gv_inscriptos" runat="server" CssClass="table table-hover" CellPadding="4" ForeColor="#333333" GridLines="None"
+                            AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" AllowPaging="True"
+                            OnPageIndexChanging="gv_inscriptos_PageIndexChanging" PageSize="20" OnRowDataBound="gv_inscriptos_RowDataBound" DataKeyNames="alu_id">
+                            <Columns>
+                                <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" />
+                                <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" />
+                                <%--<asp:BoundField DataField="alu_tipo_documento" HeaderText="Tipo" />--%>
+                                <asp:BoundField DataField="alu_documento" HeaderText="Documento" />
+                                <asp:TemplateField HeaderText="Asistió" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chk_asistio" runat="server"/>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                            <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
+
+                        </asp:GridView>
+                    </div>
+                    <div class="col justify-content-center ">
+                        <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" OnClick="btn_aceptar_Click" />
+                    </div>
                 </div>
             </div>
-            <div class="col justify-content-center ">
-                    <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" OnClick="btn_aceptar_Click"/>
-                </div>
-            <div class="row centered p-2">
+
+            <div class="row pull-left p-2">
                 <div class="row centered">
                     <div class="col col-auto">
                         <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="VerListadoAsistencia.aspx"></asp:HyperLink>
@@ -169,7 +180,12 @@
                 </div>
 
             </div>
+            <div>
+                <p>&nbsp;</p>
+            </div>
 
         </div>
+
+
     </form>
 </asp:Content>
