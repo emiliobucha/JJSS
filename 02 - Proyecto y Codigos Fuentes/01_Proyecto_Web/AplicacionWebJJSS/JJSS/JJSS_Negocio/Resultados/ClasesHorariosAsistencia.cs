@@ -14,5 +14,6 @@ namespace JJSS_Negocio.Resultados
         public string desde { get; set; }
         public string hasta { get; set; }
         public int tipoClase { get; set; }
+        public string nombreClase { get;set; }
     }
 }

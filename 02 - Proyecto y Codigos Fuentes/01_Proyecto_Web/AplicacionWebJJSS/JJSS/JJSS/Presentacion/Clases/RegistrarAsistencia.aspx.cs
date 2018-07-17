@@ -16,6 +16,7 @@ namespace JJSS.Presentacion
         private GestorAcademias gestorAcademias;
         private GestorAsistencia gestorAsistencia;
         private GestorAlumnos gestorAlumno;
+        private GestorInscripcionesClase gestorInscripcionesClase;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -72,54 +73,71 @@ namespace JJSS.Presentacion
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
-            gestorAsistencia = new GestorAsistencia();
-            gestorAlumno = new GestorAlumnos();
-            int ubicacion = int.Parse(ddl_ubicacion.SelectedValue);
-
-            ClasesHorariosAsistencia claseActual = gestorAsistencia.buscarClaseSegunHoraActual(ubicacion);
-
-            if (claseActual == null) mensaje("No hay clases disponibles en este horario", false);
-            else
+            try
             {
+                gestorAsistencia = new GestorAsistencia();
+                gestorAlumno = new GestorAlumnos();
+                gestorInscripcionesClase = new GestorInscripcionesClase();
+                int ubicacion = int.Parse(ddl_ubicacion.SelectedValue);
 
-                var dni = txtDni.Text;
+                ClasesHorariosAsistencia claseActual = gestorAsistencia.buscarClaseSegunHoraActual(ubicacion);
 
-                int idTipo;
-                int.TryParse(ddl_tipo.SelectedValue, out idTipo);
-
-                if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
+                if (claseActual == null) mensaje("No hay clases disponibles en este horario", false);
+                else
                 {
-                    mensaje("El documento debe tener sólo números", false);
-                    return;
-                }
 
+                    var dni = txtDni.Text;
 
+                    int idTipo;
+                    int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
-                alumno alu = gestorAlumno.ObtenerAlumnoPorDNITipo(idTipo, dni);
-                if (alu != null)
-                {
-                    string resultado = gestorAsistencia.ValidarTipoClaseAlumno(alu.id_alumno, claseActual.tipoClase);
-                    if (resultado == "")
+                    if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
                     {
-                        asistencia_clase asistenciaDeHoy = gestorAsistencia.ValidarAsistenciaAnterior(alu.id_alumno);
-                        if (asistenciaDeHoy !=null) mensaje("Este alumno ya asistió a una clase hoy",false);
-                        else
-                        {
-                            if (gestorAsistencia.ValidarPagoParaAsistencia(alu.id_alumno, claseActual.tipoClase))
-                            {
-                                resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
-                                    claseActual.idHorario, DateTime.Now);
-                                if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
-                                else mensaje(resultado, false);
-                            }
-                            else mensaje("Falta pago", false);
-                        }
+                        mensaje("El documento debe tener sólo números", false);
+                        return;
                     }
-                    else mensaje(resultado, false);
+
+                    alumno alu = gestorAlumno.ObtenerAlumnoPorDNITipo(idTipo, dni);
+
+
+                    if (alu == null)
+                    {
+                        mensaje("No se encuentra ningún alumno registrado con ese tipo y número de documento", false);
+                        return;
+                    }
+
+                    inscripcion_clase inscripcionClase =
+                        gestorInscripcionesClase.ObtenerAlumnoInscripto(alu.id_alumno, claseActual.idClase);
+
+                    if (inscripcionClase == null)
+                    {
+                        mensaje("No se encuentra el alumno " + alu.apellido + ", " + alu.nombre + " inscripto a la clase " + claseActual.nombreClase, false);
+                        return;
+                    }
+
+                    asistencia_clase asistenciaDeHoy = gestorAsistencia.ValidarAsistenciaClaseAnterior(alu.id_alumno, claseActual.idClase);
+
+                    if (asistenciaDeHoy != null) mensaje("El alumno " + alu.apellido + ", " + alu.nombre + " ya asistió a la clase " + claseActual.nombreClase + " de hoy", false);
+
+
+                    var hoy = DateTime.Today;
+
+                    if (inscripcionClase.proximo_vencimiento.Value.AddDays(10) >= hoy && hoy >= inscripcionClase.fecha_desde)
+                    {
+                        var resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
+                            claseActual.idHorario, DateTime.Now);
+                        if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
+                        else mensaje(resultado, false);
+                    }
+                    else mensaje("El alumno tiene vencida la inscripción a la clase", false);
+
                 }
-               
-                else mensaje("No está inscripto el alumno con ese número de documento", false);
             }
+            catch (Exception)
+            {
+                mensaje("Ha ocurrido un error al tratar de registrar una nueva asistencia", false);
+            }
+       
         }
 
         /*Resumen:

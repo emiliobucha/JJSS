@@ -651,6 +651,7 @@ namespace JJSS_Negocio
                                           desde = horario.hora_desde,
                                           hasta = horario.hora_hasta,
                                           tipoClase = tipo.id_tipo_clase,
+                                          nombreClase = clase.nombre
 
                                       };
                 //dtClases = modUtilidadesTablas.ToDataTable(claseEncontrada.ToList());

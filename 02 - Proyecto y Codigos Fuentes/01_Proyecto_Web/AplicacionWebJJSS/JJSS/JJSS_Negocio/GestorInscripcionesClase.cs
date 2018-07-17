@@ -76,6 +76,11 @@ namespace JJSS_Negocio
                             fecha = pFecha,
                             hora = pHora,
                             actual = Constantes.ConstatesBajaLogica.ACTUAL,
+                            fecha_desde = pFecha,
+                            proximo_vencimiento = pFecha,
+                            fecha_base = pFecha,
+                            recargo = 0
+                           
                         };
                         db.inscripcion_clase.Add(nuevaInscripcion);
                         db.SaveChanges();
@@ -224,8 +229,7 @@ namespace JJSS_Negocio
                                 where (alu.id_alumno == pIdAlumno) && (tipo.id_tipo_clase == pIdTipoClase)
                                 select tipo;
 
-                if (tipoClase.FirstOrDefault() == null) return false;
-                else return true;
+                return tipoClase.FirstOrDefault() != null;
             }
         }
 

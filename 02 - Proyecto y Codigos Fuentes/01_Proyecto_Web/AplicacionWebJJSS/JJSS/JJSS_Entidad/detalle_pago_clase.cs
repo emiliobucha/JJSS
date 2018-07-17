@@ -22,6 +22,7 @@ namespace JJSS_Entidad
         public int id_forma_pago { get; set; }
         public Nullable<short> recargo { get; set; }
         public Nullable<int> id_pago_multiple { get; set; }
+        public Nullable<System.DateTime> fecha_vencimiento_cumple { get; set; }
     
         public virtual forma_pago forma_pago { get; set; }
         public virtual pago_clase pago_clase { get; set; }
