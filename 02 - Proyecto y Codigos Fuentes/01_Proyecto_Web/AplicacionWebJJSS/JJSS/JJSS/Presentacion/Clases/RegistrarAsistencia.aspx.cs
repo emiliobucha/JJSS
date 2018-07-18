@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -120,9 +121,9 @@ namespace JJSS.Presentacion
                     if (asistenciaDeHoy != null) mensaje("El alumno " + alu.apellido + ", " + alu.nombre + " ya asistió a la clase " + claseActual.nombreClase + " de hoy", false);
 
 
-                    var hoy = DateTime.Today;
+                    var hoy = DateTime.Now;
 
-                    if (inscripcionClase.proximo_vencimiento.Value.AddDays(10) >= hoy && hoy >= inscripcionClase.fecha_desde)
+                    if (inscripcionClase.proximo_vencimiento.Value.AddDays(10).Date >= hoy && hoy >= inscripcionClase.fecha_desde.Value.Date )
                     {
                         var resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
                             claseActual.idHorario, DateTime.Now);
@@ -133,7 +134,7 @@ namespace JJSS.Presentacion
 
                 }
             }
-            catch (Exception)
+            catch (Exception )
             {
                 mensaje("Ha ocurrido un error al tratar de registrar una nueva asistencia", false);
             }
