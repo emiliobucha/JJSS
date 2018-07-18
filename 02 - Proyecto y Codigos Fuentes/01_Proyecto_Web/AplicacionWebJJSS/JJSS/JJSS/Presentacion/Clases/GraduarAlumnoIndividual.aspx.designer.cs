@@ -7,19 +7,19 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace JJSS.Presentacion {
+namespace JJSS.Presentacion.Clases {
     
     
-    public partial class GraduarAlumno {
+    public partial class GraduarAlumnoIndividual {
         
         /// <summary>
-        /// Control formGraduacion.
+        /// Control formRegAlumno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formGraduacion;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formRegAlumno;
         
         /// <summary>
         /// Control pnl_mensaje_exito.
@@ -58,66 +58,66 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.Label lbl_error;
         
         /// <summary>
-        /// Control ddl_tipo_clase.
+        /// Control pnl_mostrar_alumnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo_clase;
+        protected global::System.Web.UI.WebControls.Panel pnl_mostrar_alumnos;
         
         /// <summary>
-        /// Control txt_filtro_apellido.
+        /// Control lblDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDni;
         
         /// <summary>
-        /// Control btn_buscar.
+        /// Control lblNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_buscar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombre;
         
         /// <summary>
-        /// Control MultiView1.
+        /// Control lbl_disciplina.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_disciplina;
         
         /// <summary>
-        /// Control view_elegir_graduacion.
+        /// Control lbl_faja_actual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View view_elegir_graduacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_faja_actual;
         
         /// <summary>
-        /// Control gv_graduacion.
+        /// Control txt_grados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_graduacion;
+        protected global::System.Web.UI.WebControls.TextBox txt_grados;
         
         /// <summary>
-        /// Control lnk_volver.
+        /// Control btnAceptar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnk_volver;
+        protected global::System.Web.UI.WebControls.Button btnAceptar;
     }
 }

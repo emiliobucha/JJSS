@@ -34,7 +34,8 @@ namespace JJSS_Negocio
                                      faja = faj.descripcion,
                                      fecha = axf.fecha,
                                      tipo = tip.nombre,
-                                     idAlu = alu.id_alumno
+                                     idAlu = alu.id_alumno,
+                                     idTipo = tip.id_tipo_clase,
                                  };
 
                 return graduacion.ToList();
@@ -66,7 +67,8 @@ namespace JJSS_Negocio
                                      faja = faj.descripcion,
                                      fecha = axf.fecha,
                                      tipo = tip.nombre,
-                                     idAlu = alu.id_alumno
+                                     idAlu = alu.id_alumno,
+                                     idTipo = tip.id_tipo_clase,
                                  };
                 return graduacion.ToList();
             }
@@ -116,7 +118,8 @@ namespace JJSS_Negocio
                         //elimna la faja anterior
                         alumnoxfaja aluxf = (from axf in db.alumnoxfaja
                                     where axf.id_alumno == idAlu && axf.id_faja == idFajaActual && axf.faja.id_tipo_clase == tipoClase
-                                    select axf).FirstOrDefault();
+                                    && axf.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                                             select axf).FirstOrDefault();
                         aluxf.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
                         db.SaveChanges();
 
@@ -140,6 +143,90 @@ namespace JJSS_Negocio
                 {
                     transaction.Rollback();
                     return ex.Message;
+                }
+            }
+        }
+
+        public AlumnoFaja buscarAlumnoFajaPorID(int idAlumno, int idTipoClase)
+        {
+                using (var db = new JJSSEntities())
+                {
+                    var graduacion = from alu in db.alumno
+                                     join axf in db.alumnoxfaja on alu.id_alumno equals axf.id_alumno
+                                     where alu.id_alumno==idAlumno && axf.faja.id_tipo_clase == idTipoClase 
+                                     && axf.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                                     orderby alu.apellido, axf.faja.tipo_clase.nombre
+                                     select new AlumnoFaja
+                                     {
+                                         apellido = alu.apellido,
+                                         nombre = alu.nombre,
+                                         faja = axf.faja.descripcion,
+                                         fecha = axf.fecha,
+                                         tipo = axf.faja.tipo_clase.nombre,
+                                         idAlu = alu.id_alumno,
+                                         idTipo = axf.faja.tipo_clase.id_tipo_clase,
+                                         dni = alu.tipo_documento.codigo + " - " + alu.dni
+                                     };
+                
+                    return graduacion.FirstOrDefault();
+                }
+            
+        }
+
+        public void graduarIndividual(int idAlumno, int idTipoClase, int grados)
+        {
+
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {       DateTime fecha = DateTime.Now;
+
+                        faja fajaActual = (from faj in db.faja
+                                           join axf in db.alumnoxfaja on faj.id_faja equals axf.id_faja
+                                           join tc in db.tipo_clase on faj.id_tipo_clase equals tc.id_tipo_clase
+                                           where axf.id_alumno == idAlumno && axf.actual == Constantes.ConstatesBajaLogica.ACTUAL 
+                                           && tc.id_tipo_clase==idTipoClase
+                                           select faj).FirstOrDefault();
+
+
+                        int ordenSiguiente = (int)fajaActual.orden + grados;
+                        int idFajaActual = (int)fajaActual.id_faja;
+
+                        faja fajaSiguiente = (from faj in db.faja
+                                              where faj.orden == ordenSiguiente && faj.id_tipo_clase == idTipoClase
+                                              select faj).FirstOrDefault();
+                        if (fajaSiguiente == null) throw new Exception("No existe esa faja");
+                        int idFajaSiguiente = fajaSiguiente.id_faja;
+
+                        //elimna la faja anterior
+                        alumnoxfaja aluxf = (from axf in db.alumnoxfaja
+                                             where axf.id_alumno == idAlumno && axf.id_faja == idFajaActual && axf.faja.id_tipo_clase == idTipoClase
+                                             && axf.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                                             select axf).FirstOrDefault();
+                        aluxf.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
+                        db.SaveChanges();
+
+                        //crea la nueva faja
+                        alumnoxfaja nuevoAxF;
+                        nuevoAxF = new alumnoxfaja()
+                        {
+                            id_alumno = idAlumno,
+                            id_faja = idFajaSiguiente,
+                            fecha = fecha,
+                            actual = Constantes.ConstatesBajaLogica.ACTUAL,
+                        };
+                        db.alumnoxfaja.Add(nuevoAxF);
+                        db.SaveChanges();
+
+                    
+                    transaction.Commit();
+                    
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
                 }
             }
         }

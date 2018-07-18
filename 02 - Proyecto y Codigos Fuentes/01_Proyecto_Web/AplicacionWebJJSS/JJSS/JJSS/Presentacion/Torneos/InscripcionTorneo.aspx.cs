@@ -25,7 +25,7 @@ namespace JJSS
         private GestorProfesores gestorProfesores;
         private int? idAlumno = null;
         private seguridad_usuario usuario;
-        private static int idTorneo;
+        private static int idTorneoSeleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -113,14 +113,14 @@ namespace JJSS
 
                 if (Session["idTorneo_inscribirTorneo"] != null)
                 {
-                    idTorneo = (int)Session["idTorneo_inscribirTorneo"];
+                    idTorneoSeleccionado = (int)Session["idTorneo_inscribirTorneo"];
                     Session["idTorneo_inscribirTorneo"] = null;
-                    cargarInfoTorneo(idTorneo);
+                    cargarInfoTorneo(idTorneoSeleccionado);
                     pnl_elegirTorneo.Visible = false;
                     pnl_InfoTorneo.Visible = true;
                     pnl_Inscripcion.Visible = false;
                     pnl_dni.Visible = true;
-                    torneo t = gestorDeTorneos.BuscarTorneoPorID(idTorneo);
+                    torneo t = gestorDeTorneos.BuscarTorneoPorID(idTorneoSeleccionado);
                     CargarComboFajas((int)t.id_tipo_clase);
                 }
                 else
@@ -189,13 +189,13 @@ namespace JJSS
             pnl_mensaje_exito.Visible = false;
 
             int idTorneoCombo = 0;
-            if (idTorneo == 0)
+            if (idTorneoSeleccionado == 0)
             {
                 idTorneoCombo = int.Parse(ddl_torneos.SelectedValue);
             }
             else
             {
-                idTorneoCombo = idTorneo;
+                idTorneoCombo = idTorneoSeleccionado;
             }
 
 
@@ -312,9 +312,9 @@ namespace JJSS
                 ddl_torneos.DataBind();
             }
 
-            if (idTorneo != 0)
+            if (idTorneoSeleccionado != 0)
             {
-                ddl_torneos.SelectedValue = idTorneo.ToString();
+                ddl_torneos.SelectedValue = idTorneoSeleccionado.ToString();
             }
         }
 
@@ -359,6 +359,7 @@ namespace JJSS
             int idTorneoCombo = 0;
             int.TryParse(ddl_torneos.SelectedValue, out idTorneoCombo);
             cargarInfoTorneo(idTorneoCombo);
+            idTorneoSeleccionado = idTorneoCombo;
 
             int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneoCombo).id_tipo_clase;
             CargarComboFajas(idTipoClase);
@@ -412,28 +413,19 @@ namespace JJSS
 
         protected void btnBuscarDni_Click(object sender, EventArgs e)
         {
-
-
             limpiar(false);
-
-            int idTorneoCombo = 0;
-            if (idTorneo == 0)
-            {
-
-
-                int.TryParse(ddl_torneos.SelectedValue, out idTorneoCombo);
-
-            }
-            else
-            {
-                idTorneoCombo = idTorneo;
-            }
-
+            
             int idTipo;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
+            if (!modValidaciones.validarFormatoDocumento(txtDni.Text, idTipo))
+            {
+                Mensaje("El documento debe tener sólo números", false);
+                return;
+            }
+
             participante participanteEncontrado =
-                gestorInscripciones.obtenerParticipanteDeTorneo(idTipo, txtDni.Text, idTorneoCombo);
+                gestorInscripciones.obtenerParticipanteDeTorneo(idTipo, txtDni.Text, idTorneoSeleccionado);
 
             //Partipante ya estaba inscripto con ese dni
             if (participanteEncontrado != null)
@@ -482,12 +474,12 @@ namespace JJSS
                 dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
                 */
                 //LOCAL
-                dp_fecha.Text = fecha.ToShortDateString();
+                dp_fecha.Text = fecha.ToString("dd/MM/yyyy");
 
                 // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 
 
-                int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneoCombo).id_tipo_clase;
+                int idTipoClase = (int)gestorDeTorneos.BuscarTorneoPorID(idTorneoSeleccionado).id_tipo_clase;
                 faja fajaAlumno = gestorAlumnos.ObtenerFajaAlumno(alumnoEncontrado.id_alumno, idTipoClase);
                 if (fajaAlumno != null)
                 {

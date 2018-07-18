@@ -110,7 +110,7 @@
 
                     <div class="col col-auto text-left "><a>Fecha</a></div>
                     <div class="col-md-2 col-lg-2 col-sm-12">
-                        <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$"></asp:TextBox>
+                        <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" required="true" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$"></asp:TextBox>
                     </div>
 
                     <div class="col-md-2 col-lg-2 col-sm-12 centered p-sm-1">
@@ -167,7 +167,7 @@
                         </asp:GridView>
                     </div>
                     <div class="col justify-content-center ">
-                        <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" OnClick="btn_aceptar_Click" />
+                        <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" CssClass="btn btn-outline-dark" OnClick="btn_aceptar_Click" Visible="false" />
                     </div>
                 </div>
             </div>
@@ -175,7 +175,7 @@
             <div class="row pull-left p-2">
                 <div class="row centered">
                     <div class="col col-auto">
-                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="VerListadoAsistencia.aspx"></asp:HyperLink>
+                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Clase.aspx"></asp:HyperLink>
                     </div>
                 </div>
 

@@ -245,6 +245,12 @@ namespace JJSS.Presentacion
             int idTipo;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
 
+            if (!modValidaciones.validarFormatoDocumento(txtDni.Text, idTipo))
+            {
+                Mensaje("El documento debe tener sólo números", false);
+                return;
+            }
+
             participante_evento participanteEncontrado =
                 gestorInscripciones.obtenerParticipanteEvento(idTipo, txtDni.Text, idEvento);
 
@@ -291,7 +297,7 @@ namespace JJSS.Presentacion
                 dp_fecha.Text = fecha.ToString(format, new CultureInfo("en-US"));
                 */
                 //LOCAL
-                dp_fecha.Text = fecha.ToShortDateString();
+                dp_fecha.Text = fecha.ToString("dd/MM/yyyy");
 
                 // txt_edad.Text = calcularEdad(alumnoEncontrado.fecha_nacimiento);
 

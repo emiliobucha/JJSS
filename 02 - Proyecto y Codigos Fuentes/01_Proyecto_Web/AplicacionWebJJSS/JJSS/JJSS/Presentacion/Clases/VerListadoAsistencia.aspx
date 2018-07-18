@@ -76,7 +76,7 @@
 
                     <div class="col col-auto text-left "><a>Fecha</a></div>
                     <div class="col-md-2 col-lg-2 col-sm-12">
-                        <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$"></asp:TextBox>
+                        <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" required="true" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$"></asp:TextBox>
                     </div>
 
                     <div class="col-md-2 col-lg-2 col-sm-12 centered p-sm-1">
@@ -119,9 +119,6 @@
                     <div class=" row">
                         <div class="col justify-content-center ">
                             <asp:Button ID="btn_imprimir" runat="server" Text="Imprimir" CssClass="btn btn-outline-dark" OnClick="btn_imprimir_Click" Visible="false" />
-                        </div>
-                        <div class="col justify-content-center ">
-                            <asp:HyperLink runat="server" href="RegistrarAsistenciasAnteriores.aspx" CssClass="btn btn-outline-dark">Registrar asistencias</asp:HyperLink>
                         </div>
                     </div>
                 </div>
