@@ -92,26 +92,21 @@
                         </div>
                     </div>
 
-                    <asp:GridView ID="gv_graduacion" runat="server" CssClass="table table-hover" AutoGenerateColumns="False" DataKeyNames="idAlu" EmptyDataText="No existen elementos para esta selección" AllowPaging="True" OnPageIndexChanging="gv_graduacion_PageIndexChanging" PageSize="20">
+                    <asp:GridView ID="gv_graduacion" runat="server" CssClass="table table-hover" AutoGenerateColumns="False" DataKeyNames="idAlu, idTipo" 
+                        EmptyDataText="No hay alumnos para mostrar" AllowPaging="True" OnPageIndexChanging="gv_graduacion_PageIndexChanging" 
+                        PageSize="20" OnRowCommand="gv_graduacion_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="apellido" HeaderText="Apellido" />
                             <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                             <asp:BoundField DataField="tipo" HeaderText="Disciplina" />
                             <asp:BoundField DataField="faja" HeaderText="Faja Actual" />
                             <asp:BoundField DataField="fechaParaMostrar" HeaderText="Fecha de Última Graduación" />
-                            <asp:TemplateField HeaderText="Grados a Aumentar" HeaderStyle-HorizontalAlign="Center">
-                                <ItemTemplate>
-                                    <asp:TextBox ID="txt_grados" runat="server" required="true" type="number" min="0" max="20" CssClass="form-control" Text="0"></asp:TextBox>
-
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                            <asp:ButtonField CommandName="graduar" Text="Graduar" ItemStyle-ForeColor="#007bff" HeaderText="Graduar" />
                         </Columns>
+                        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                         <EmptyDataRowStyle CssClass="table" />
                     </asp:GridView>
 
-                    <div class="row centered justify-content-center">
-                        <asp:Button ID="btn_aceptar" CssClass="btn btn-outline-dark" runat="server" Text="Aceptar" OnClick="btn_aceptar_Click" ValidationGroup="vg_grados" />
-                    </div>
                 </asp:View>
 
             </asp:MultiView>

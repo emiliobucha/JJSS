@@ -15,5 +15,7 @@ namespace JJSS_Negocio.Resultados
         public string tipo { get; set; }
         public int idAlu { get; set; }
         public string fechaParaMostrar { get; set; }
+        public int? idTipo { get; set; }
+        public string dni { get; set; }
     }
 }

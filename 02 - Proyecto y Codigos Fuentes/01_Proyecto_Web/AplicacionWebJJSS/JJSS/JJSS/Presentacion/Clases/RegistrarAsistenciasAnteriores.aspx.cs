@@ -16,6 +16,7 @@ namespace JJSS.Presentacion.Clases
         private GestorAsistencia ga;
         protected void Page_Load(object sender, EventArgs e)
         {
+            dp_fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             ga = new GestorAsistencia();
             if (!IsPostBack)
             {
@@ -50,12 +51,26 @@ namespace JJSS.Presentacion.Clases
             {
                 gv_inscriptos.DataSource = ga.BuscarAlumnosConAsistencia(idClase, fecha);
                 gv_inscriptos.DataBind();
-                chkSelectAll.Visible = true;
-                lbl_select_all.Visible = true;
+                if (gv_inscriptos.Rows.Count > 0)
+                {
+                    chkSelectAll.Visible = true;
+                    lbl_select_all.Visible = true;
+                    btn_aceptar.Visible = true;
+                }
+                else
+                {
+                    chkSelectAll.Visible = false;
+                    lbl_select_all.Visible = false;
+                    btn_aceptar.Visible = false;
+                }
+                
             }
             catch (Exception ex)
             {
                 mensaje(ex.Message, false);
+                chkSelectAll.Visible = false;
+                lbl_select_all.Visible = false;
+                btn_aceptar.Visible = false;
             }
         }
 

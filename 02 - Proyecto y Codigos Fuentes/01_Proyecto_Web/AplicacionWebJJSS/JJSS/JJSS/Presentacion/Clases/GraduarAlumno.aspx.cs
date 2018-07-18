@@ -172,5 +172,19 @@ namespace JJSS.Presentacion
             gv_graduacion.PageIndex = e.NewPageIndex;
             cargarGrilla();
         }
+
+        protected void gv_graduacion_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.CompareTo("graduar") == 0)
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                var idAlumno = gv_graduacion.DataKeys[index].Values["idAlu"];
+                var idTipo = gv_graduacion.DataKeys[index].Values["idTipo"];
+                
+                Session["alumnoGraduar"] = idAlumno;
+                Session["tipoGraduar"] = idTipo;
+                Response.Redirect("GraduarAlumnoIndividual.aspx");
+            }
+        }
     }
 }
