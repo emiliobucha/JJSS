@@ -134,7 +134,8 @@ namespace JJSS.Presentacion.Pagos
                     Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
                 }
 
-
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "/Presentacion/MenuInicial.aspx";
+                else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
             }
 
         }
@@ -332,11 +333,7 @@ namespace JJSS.Presentacion.Pagos
         protected void btn_volver_Click(object sender, EventArgs e)
         {
             object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
-            else Response.Redirect("/Presentacion/MenuInicial.aspx");
-
-
+            Response.Redirect((string)refUrl);
         }
     }
 }
