@@ -44,7 +44,6 @@ namespace JJSS_Negocio
 
                             if (detalles.FirstOrDefault(x => x.fecha_vencimiento_cumple == inscripcionClase.proximo_vencimiento) != null)
                             {
-                                
                                 inscripcionClase.fecha_desde = inscripcionClase.proximo_vencimiento;
                                 inscripcionClase.proximo_vencimiento =
                                     CalcularProxVto(inscripcionClase.proximo_vencimiento.Value);

@@ -259,6 +259,11 @@ namespace JJSS.Presentacion
                 Session["clase"] = id;
                 Response.Redirect("VerClase.aspx");
             }
+            if (e.CommandName.CompareTo("inscriptos") == 0)
+            {
+                Session["idClase"] = id;
+                Response.Redirect("VerInscriptos.aspx");
+            }
 
         }
 

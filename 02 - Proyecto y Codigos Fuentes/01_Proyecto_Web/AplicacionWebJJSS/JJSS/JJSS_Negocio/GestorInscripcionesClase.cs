@@ -81,7 +81,7 @@ namespace JJSS_Negocio
                             proximo_vencimiento = pFecha,
                             fecha_base = pFecha,
                             recargo = 0
-                           
+
                         };
                         db.inscripcion_clase.Add(nuevaInscripcion);
                         db.SaveChanges();
@@ -99,7 +99,7 @@ namespace JJSS_Negocio
                         }
                         alumno alumnoInscribir = db.alumno.Find(pAlumno.id_alumno);
                         gestorAlumnos.cambiarEstadoAActivo(alumnoInscribir.id_alumno);
-                        
+
                         db.SaveChanges();
 
                         transaction.Commit();
@@ -208,7 +208,7 @@ namespace JJSS_Negocio
             {
                 var inscripcion = from ic in db.inscripcion_clase
                                   where ic.id_clase == pIDClase &&
-                                         ic.id_alumno == pIDAlumno 
+                                         ic.id_alumno == pIDAlumno
                                          && ic.actual == Constantes.ConstatesBajaLogica.ACTUAL
                                   select ic;
                 return inscripcion.FirstOrDefault();
@@ -251,7 +251,7 @@ namespace JJSS_Negocio
 
         public List<faja> ObtenerFajasPorTipoClase(int pIdTipoClase)
         {
-            using (var db= new JJSSEntities())
+            using (var db = new JJSSEntities())
             {
                 var fajasEncontradas = from faj in db.faja
                                        where faj.id_tipo_clase == pIdTipoClase
@@ -262,7 +262,7 @@ namespace JJSS_Negocio
 
         /*
          * metodo que obtiene todos los alumnos inscriptos a una clase particular
-         */ 
+         */
         public List<alumno> ObtenerAlumnosDeUnaClase(int pIDClase)
         {
             using (var db = new JJSSEntities())
@@ -302,7 +302,7 @@ namespace JJSS_Negocio
                         alumnoSeleccionado.id_estado = Constantes.ConstantesEstado.ALUMNOS_INACTIVO;
                         db.SaveChanges();
                     }
-                    
+
                     transaction.Commit();
                     return "";
                 }
@@ -338,19 +338,19 @@ namespace JJSS_Negocio
                 }
 
                 var gestorClases = new GestorClases();
-               
+
 
                 var participantes = from inscr in db.inscripcion_clase
                                     join alu in db.alumno on inscr.id_alumno equals alu.id_alumno
                                     where inscr.id_inscripcion == pID
                                     select new CompInscripcionClasePago()
                                     {
-                                        cla_id =(int) inscr.id_clase,
-                                        cla_alumno = (int) inscr.id_alumno,
+                                        cla_id = (int)inscr.id_clase,
+                                        cla_alumno = (int)inscr.id_alumno,
                                         cla_nombre = inscr.clase.nombre,
                                         cla_academia = inscr.clase.academia.nombre,
                                         cla_direccion = inscr.clase.academia.direccion.calle + " " + inscr.clase.academia.direccion.numero + " - " + inscr.clase.academia.direccion.ciudad.nombre + " - " + inscr.clase.academia.direccion.ciudad.provincia.nombre + " - " + inscr.clase.academia.direccion.ciudad.provincia.pais.nombre,
-                                       
+
                                         cla_precio = inscr.clase.precio.ToString(),
                                         cla_tipo = inscr.clase.tipo_clase.nombre,
                                      
@@ -369,8 +369,8 @@ namespace JJSS_Negocio
 
                 foreach (CompInscripcionClasePago part in participantesList)
                 {
-                   
-                    
+
+
 
 
                     string mesNombre = meses[mes - 1];
@@ -412,7 +412,94 @@ namespace JJSS_Negocio
         }
 
 
-        public List<MisInscripciones> ObtenerInscripcionesDeAlumno(int pIDAlumno, Boolean verTodos)
+
+        public List<AlumnoFajaInscripciones> ObtenerAlumnosInscriptosClase(int idClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                List<AlumnoFajaInscripciones> list = new List<AlumnoFajaInscripciones>();
+                var inscripciones = db.inscripcion_clase.Where(x => x.id_clase == idClase && x.actual ==  1);
+                foreach (var inscripcion in inscripciones)
+                {
+                    var alumno = new AlumnoFajaInscripciones
+                    {
+                        inscr_apellido = inscripcion.alumno.apellido,
+                        inscr_dni = inscripcion.alumno.dni,
+                        inscr_tipoI = inscripcion.alumno.id_tipo_documento,
+                        inscr_fecha_nac = inscripcion.alumno.fecha_nacimiento?.ToString("dd/MM/yyyy") ?? "01/01/2000",
+                        inscr_fecha_nacD = inscripcion.alumno.fecha_nacimiento,
+                        inscr_nombre = inscripcion.alumno.nombre,
+                        inscr_tipo = inscripcion.alumno.tipo_documento.codigo,
+                        recargo = inscripcion.recargo,
+                        inscr_recargo = inscripcion.recargo == 1 ? "Si" : "No",
+
+                    };
+
+                    var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1)
+                        .OrderByDescending(x => x.fecha).FirstOrDefault();
+
+                    alumno.inscr_faja = faja != null ? faja.faja.descripcion : "Faja no clasificada";
+
+                    var hoy = DateTime.Now;
+
+
+
+                    if (inscripcion.proximo_vencimiento == null)
+                    {
+                        alumno.inscr_pago = "No";
+                        alumno.inscr_fecha_vto_mensual = " - ";
+
+                        list.Add(alumno);
+                        continue;
+                    }
+                    if (inscripcion.fecha_desde == null)
+                    {
+                        alumno.inscr_pago = "No";
+                        alumno.inscr_fecha_vto_mensual = " - ";
+
+                        list.Add(alumno);
+                        continue;
+                    }
+
+                    if (inscripcion.proximo_vencimiento.Value.Month > hoy.Month)
+                    {
+
+                        alumno.inscr_fecha_vto_mensual = inscripcion.fecha_desde.Value.ToString("dd/MM/yyyy");
+                        alumno.inscr_fecha_vto = inscripcion.fecha_desde.Value;
+
+
+                    }
+                    else
+                    {
+                        alumno.inscr_fecha_vto_mensual = inscripcion.proximo_vencimiento.Value.ToString("dd/MM/yyyy");
+                        alumno.inscr_fecha_vto = inscripcion.proximo_vencimiento.Value;
+
+                    }
+
+
+
+
+                    if (inscripcion.proximo_vencimiento.Value.AddDays(10).Date >= hoy )
+                    {
+                        alumno.inscr_pago = "Si";
+                    }
+                    else
+                    {
+                        alumno.inscr_pago = "No";
+                    }
+                    list.Add(alumno);
+
+
+                }
+                return list.OrderBy(x=>x.inscr_fecha_vto).ToList();
+            }
+
+
+
+
+        }
+
+ public List<MisInscripciones> ObtenerInscripcionesDeAlumno(int pIDAlumno, Boolean verTodos)
         {
             using (var db = new JJSSEntities())
             {
@@ -437,6 +524,5 @@ namespace JJSS_Negocio
                 return inscripcionesList;
             }
         }
-
     }
 }

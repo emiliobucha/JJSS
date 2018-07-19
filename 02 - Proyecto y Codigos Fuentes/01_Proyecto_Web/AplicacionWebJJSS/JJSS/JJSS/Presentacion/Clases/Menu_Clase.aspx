@@ -258,13 +258,16 @@
                             <div class="p-1" runat="server">
 
                                 <asp:Button ID="lv_btn_ver" Visible='<%#!(Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="ver" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Ver" />
+                                
+                                <asp:Button ID="lv_btn_inscriptos" Visible='<%# (Convert.ToBoolean(Eval("MostrarInscribir"))) %>' runat="server" CommandName="inscriptos" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Ver Inscriptos" />
 
                                 <asp:Button ID="lv_btn_inscribir" Visible='<%#(Convert.ToBoolean(Eval("MostrarInscribir"))) %>' runat="server" CommandName="inscribir" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Inscribir" />
 
                                 <asp:Button ID="lv_btn_seleccionar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' runat="server" CommandName="seleccionar" CommandArgument='<%# Eval("id_clase") %>' CssClass=" btn btn-outline-dark" Text="Editar" />
-
+                                
                                 <asp:Button ID="lv_btn_eliminar" Visible='<%# (Convert.ToBoolean(Eval("MostrarEditar"))) %>' CommandName="eliminar" runat="server" CommandArgument='<%# Eval("id_clase") %>'  CssClass=" btn btn-outline-dark"
                                     OnClientClick='<%# Eval("id_clase", "return openModal({0});") %>' Text="Eliminar"> </asp:Button>
+                            
                             </div>
                         </div>
 
