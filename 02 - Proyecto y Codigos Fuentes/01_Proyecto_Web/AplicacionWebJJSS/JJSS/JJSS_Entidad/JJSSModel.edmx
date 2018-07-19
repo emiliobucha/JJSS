@@ -168,6 +168,7 @@
           <Property Name="recargo" Type="smallint" />
           <Property Name="id_pago_multiple" Type="int" />
           <Property Name="fecha_vencimiento_cumple" Type="datetime" />
+          <Property Name="fecha_desde_cumple" Type="datetime" />
         </EntityType>
         <EntityType Name="detalle_reserva">
           <Key>
@@ -2491,6 +2492,7 @@
           <Property Name="recargo" Type="Int16" />
           <Property Name="id_pago_multiple" Type="Int32" />
           <Property Name="fecha_vencimiento_cumple" Type="DateTime" Precision="3" />
+          <Property Name="fecha_desde_cumple" Type="DateTime" Precision="3" />
           <NavigationProperty Name="forma_pago" Relationship="Self.FK_DETALLE_CLASE_FORMA_PAGO" FromRole="detalle_pago_clase" ToRole="forma_pago" />
           <NavigationProperty Name="pago_clase" Relationship="Self.FK_DETALLE_CLASE_PAGO_CLASE" FromRole="detalle_pago_clase" ToRole="pago_clase" />
           <NavigationProperty Name="pago_multiple" Relationship="Self.FK_DETALLE_CLASE_PAGO_MULTIPLE" FromRole="detalle_pago_clase" ToRole="pago_multiple" />
@@ -4931,6 +4933,7 @@
                 <ScalarProperty Name="recargo" ColumnName="recargo" />
                 <ScalarProperty Name="id_pago_multiple" ColumnName="id_pago_multiple" />
                 <ScalarProperty Name="fecha_vencimiento_cumple" ColumnName="fecha_vencimiento_cumple" />
+                <ScalarProperty Name="fecha_desde_cumple" ColumnName="fecha_desde_cumple" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

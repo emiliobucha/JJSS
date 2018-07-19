@@ -327,6 +327,7 @@ namespace JJSS_Negocio
                                 fecha_hora = DateTime.Now,
                                 mes = mesNombre,
                                 fecha_vencimiento_cumple = inscClase.proximo_vencimiento,
+                                fecha_desde_cumple = inscClase.fecha_desde,
                                 id_forma_pago = pagoMultiple.FormaPago,
                                 recargo = inscClase.recargo,
                                 id_pago_multiple = nuevoPago.id_pago

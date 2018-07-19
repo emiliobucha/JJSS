@@ -105,6 +105,8 @@
                               <a runat="server" id="nav_seccion_clase" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/Menu_Clase.aspx">Ver Sección </a>
                               <a runat="server" id="nav_crear_clase" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/CrearClase.aspx">Crear </a>
                               <a runat="server" id="nav_ver_clases" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/VerCalendario.aspx">Ver Clases </a>
+                              <a runat="server" id="nav_ver_inscriptos" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/VerInscriptos.aspx">Ver Inscriptos </a>
+                             
                               <a runat="server" id="nav_registrar_asistencia" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistencia.aspx">Registrar Asistencia </a>
                               <a runat="server" id="nav_asistencias_anteriores" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/RegistrarAsistenciasAnteriores.aspx">Registrar Asistencias Anteriores </a>
                               <a runat="server" id="nav_listado_asistencia" runat="server" class="dropdown-item text-white" href="/Presentacion/Clases/VerListadoAsistencia.aspx">Ver Asistencias </a>

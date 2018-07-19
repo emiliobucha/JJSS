@@ -244,11 +244,13 @@
     <Content Include="Presentacion\Clases\RegistrarAsistenciasAnteriores.aspx" />
     <Content Include="Presentacion\Clases\VerCalendario.aspx" />
     <Content Include="Presentacion\Clases\VerClase.aspx" />
+    <Content Include="Presentacion\Clases\VerInscriptos.aspx" />
     <Content Include="Presentacion\Clases\VerListadoAsistencia.aspx" />
     <Content Include="Presentacion\Eventos\HistoricoEventos.aspx" />
     <Content Include="Presentacion\Eventos\Menu_Evento.aspx" />
     <Content Include="Presentacion\Eventos\VerEvento.aspx" />
     <Content Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx" />
+    <Content Include="Presentacion\Pagos\PagosMes.aspx" />
     <Content Include="Presentacion\Pagos\PagosPanel.aspx" />
     <Content Include="Presentacion\Pagos\PagosMultiple.aspx" />
     <Content Include="Presentacion\Pagos\PagoMultipleFinalizado.aspx" />
@@ -496,6 +498,13 @@
     <Compile Include="Presentacion\Clases\VerClase.aspx.designer.cs">
       <DependentUpon>VerClase.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Clases\VerInscriptos.aspx.cs">
+      <DependentUpon>VerInscriptos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Clases\VerInscriptos.aspx.designer.cs">
+      <DependentUpon>VerInscriptos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Clases\VerListadoAsistencia.aspx.cs">
       <DependentUpon>VerListadoAsistencia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -530,6 +539,13 @@
     </Compile>
     <Compile Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx.designer.cs">
       <DependentUpon>VerListadoParticipantesEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagosMes.aspx.cs">
+      <DependentUpon>PagosMes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagosMes.aspx.designer.cs">
+      <DependentUpon>PagosMes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Pagos\PagosPanel.aspx.cs">
       <DependentUpon>PagosPanel.aspx</DependentUpon>

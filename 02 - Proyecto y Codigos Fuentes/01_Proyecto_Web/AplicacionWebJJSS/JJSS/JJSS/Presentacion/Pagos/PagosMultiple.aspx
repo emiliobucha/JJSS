@@ -122,7 +122,7 @@
 
                 </div>
                     <div runat="server" class="col col-auto">
-                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="MenuTorneo.aspx"></asp:HyperLink>
+                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="../MenuInicial.aspx"></asp:HyperLink>
                     </div>
                 </div>
         </div>

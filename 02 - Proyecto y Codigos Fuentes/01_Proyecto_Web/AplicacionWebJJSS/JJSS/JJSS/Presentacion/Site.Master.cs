@@ -91,6 +91,7 @@ namespace JJSS
             nav_graduar_alumno.Style["display"] = "none";
 
             nav_crear_clase.Style["display"] = "none";
+            nav_ver_inscriptos.Style["display"] = "none";
             navbarPagos.Style["display"] = "none";
             nav_asistencias_anteriores.Style["display"] = "none";
 
@@ -213,6 +214,18 @@ namespace JJSS
                     if (permiso != 1)
                     {
                         nav_crear_clase.Style["display"] = "none";
+                    }
+
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASE_INSCRIPCION'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        nav_ver_inscriptos.Style["display"] = "none";
                     }
 
                 }
