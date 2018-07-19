@@ -106,9 +106,9 @@
                     </div>
 
                 </div>
-                <div class="row centered justify-content-center ">
+               <%-- <div class="row centered justify-content-center ">
                     <asp:Button ID="btn_imprimir" runat="server" Text="Imprimir" CssClass="btn btn-outline-dark" OnClick="btn_imprimir_Click" Visible="true" />
-                </div>
+                </div>--%>
                 <div class="row centered p-2">
                     <div class="row centered">
                         <div class="col col-auto">

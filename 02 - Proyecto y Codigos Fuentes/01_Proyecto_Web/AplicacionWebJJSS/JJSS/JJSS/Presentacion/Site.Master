@@ -167,6 +167,7 @@
                           <a class=" fa fa-user pt-1"></a>
                           <div class="dropdown-menu text-white" id="nav_conf_usuario" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item text-white" id="nav_editar_perfil" href="/Presentacion/Perfil.aspx">Editar Perfil </a>
+                              <a class="dropdown-item text-white" id="nav_mis_inscripciones" href="/Presentacion/MisInscripciones.aspx">Mis Inscripciones</a>
                               <a class="btn btn-link dropdown-item text-white" id="nav_cerrar_sesion" onclick="cerrar_sesion_Click()" href="/Presentacion/Login.aspx"  runat="server">Cerrar Sesión </a>
                           </div>
                       </li>

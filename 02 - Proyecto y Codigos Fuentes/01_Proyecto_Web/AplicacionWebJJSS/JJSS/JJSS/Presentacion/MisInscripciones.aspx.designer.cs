@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace JJSS.Presentacion.Clases {
+namespace JJSS.Presentacion {
     
     
-    public partial class VerInscriptos {
+    public partial class MisInscripciones {
         
         /// <summary>
         /// Control pnl_mensaje_exito.
@@ -49,75 +49,102 @@ namespace JJSS.Presentacion.Clases {
         protected global::System.Web.UI.WebControls.Label lbl_error;
         
         /// <summary>
-        /// Control div_nombre_clase.
+        /// Control pnlFormulario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_nombre_clase;
+        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
-        /// Control lbl_nombre_clase.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_nombre_clase;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control div_combo_clase.
+        /// Control pnl_clase.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_combo_clase;
+        protected global::System.Web.UI.WebControls.Panel pnl_clase;
         
         /// <summary>
-        /// Control ddl_clase.
+        /// Control gv_clases.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_clase;
+        protected global::System.Web.UI.WebControls.GridView gv_clases;
         
         /// <summary>
-        /// Control btn_buscar.
+        /// Control btn_todos_clases.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_buscar;
+        protected global::System.Web.UI.WebControls.Button btn_todos_clases;
         
         /// <summary>
-        /// Control pnl_listado.
+        /// Control pnl_torneos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_listado;
+        protected global::System.Web.UI.WebControls.Panel pnl_torneos;
         
         /// <summary>
-        /// Control gv_inscripciones.
+        /// Control gv_torneos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_inscripciones;
+        protected global::System.Web.UI.WebControls.GridView gv_torneos;
         
         /// <summary>
-        /// Control lnk_volver.
+        /// Control btn_todos_torneos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnk_volver;
+        protected global::System.Web.UI.WebControls.Button btn_todos_torneos;
+        
+        /// <summary>
+        /// Control pnl_eventos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_eventos;
+        
+        /// <summary>
+        /// Control gv_eventos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_eventos;
+        
+        /// <summary>
+        /// Control btn_todos_eventos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_todos_eventos;
     }
 }

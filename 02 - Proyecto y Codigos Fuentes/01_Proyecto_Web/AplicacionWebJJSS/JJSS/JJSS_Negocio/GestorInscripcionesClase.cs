@@ -269,7 +269,7 @@ namespace JJSS_Negocio
             {
                 var alumnos = from alu in db.alumno
                               join ins in db.inscripcion_clase on alu.id_alumno equals ins.id_alumno
-                              where ins.id_clase == pIDClase && alu.baja_logica == 1
+                              where ins.id_clase == pIDClase && alu.baja_logica==1 && alu.id_estado != Constantes.ConstantesEstado.ALUMNOS_DE_BAJA
                               && ins.actual == Constantes.ConstatesBajaLogica.ACTUAL
                               orderby alu.apellido
                               select alu;
@@ -353,7 +353,7 @@ namespace JJSS_Negocio
 
                                         cla_precio = inscr.clase.precio.ToString(),
                                         cla_tipo = inscr.clase.tipo_clase.nombre,
-
+                                     
                                         par_nombre = alu.nombre,
                                         par_apellido = alu.apellido,
                                         par_fecha_nacD = alu.fecha_nacimiento,
@@ -432,7 +432,7 @@ namespace JJSS_Negocio
                         inscr_tipo = inscripcion.alumno.tipo_documento.codigo,
                         recargo = inscripcion.recargo,
                         inscr_recargo = inscripcion.recargo == 1 ? "Si" : "No",
-                        
+
                     };
 
                     var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1)
@@ -442,7 +442,7 @@ namespace JJSS_Negocio
 
                     var hoy = DateTime.Now;
 
-                    
+
 
                     if (inscripcion.proximo_vencimiento == null)
                     {
@@ -469,7 +469,7 @@ namespace JJSS_Negocio
 
 
                     }
-                    else 
+                    else
                     {
                         alumno.inscr_fecha_vto_mensual = inscripcion.proximo_vencimiento.Value.ToString("dd/MM/yyyy");
                         alumno.inscr_fecha_vto = inscripcion.proximo_vencimiento.Value;
@@ -499,6 +499,30 @@ namespace JJSS_Negocio
 
         }
 
-
+ public List<MisInscripciones> ObtenerInscripcionesDeAlumno(int pIDAlumno, Boolean verTodos)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var inscripcion = from ic in db.inscripcion_clase
+                                  where ic.id_alumno == pIDAlumno && (verTodos || ic.actual == Constantes.ConstatesBajaLogica.ACTUAL)
+                                  select new MisInscripciones()
+                                  {
+                                      nombre = ic.clase.nombre,
+                                      tipo_clase = ic.clase.tipo_clase.nombre,
+                                      dtProxVencimiento = ic.proximo_vencimiento,
+                                      id_inscripcion = ic.id_inscripcion,
+                                      dtFechaInscripcion = ic.fecha,
+                                      idClase = ic.id_clase,
+                                      insActual = ic.actual,
+                                  };
+                List<MisInscripciones> inscripcionesList = inscripcion.ToList();
+                foreach(MisInscripciones ins in inscripcionesList)
+                {
+                    ins.fecha_inscripcion = ((DateTime)ins.dtFechaInscripcion).ToString("dd/MM/yyyy");
+                    ins.prox_vencimiento = ((DateTime)ins.dtProxVencimiento).ToString("dd/MM/yyyy");
+                }
+                return inscripcionesList;
+            }
+        }
     }
 }

@@ -97,6 +97,7 @@
     <Compile Include="Resultados\AlumnoFajaInscripciones.cs" />
     <Compile Include="Resultados\AlumnoFaja.cs" />
     <Compile Include="Resultados\CompInscripcionClasePago.cs" />
+    <Compile Include="Resultados\MisInscripciones.cs" />
     <Compile Include="Resultados\PersonaResultado.cs" />
     <Compile Include="Resultados\CategoriaResultado.cs" />
     <Compile Include="Resultados\CategoriasTorneoResultado.cs" />
