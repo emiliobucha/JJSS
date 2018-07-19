@@ -3,40 +3,53 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphP" runat="server">
+    <script type='text/javascript'>
+        var x = 0;
+        function button() {
+            var objwordstonum = document.getElementById('<%=txtIDSeleccionado.ClientID%>');
+            objwordstonum.value = x;
+            return true;
+        }
+        function openModal(id) {
+            $('[id*=confirmacion]').modal('show');
+            x = id;
+            return false;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMenu" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
 
     <asp:Panel ID="pnl_mensaje_exito" runat="server" Visible="false">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <a class="ui-icon ui-icon-check"></a>
-                    <strong>
-                        <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
-                </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a class="ui-icon ui-icon-check"></a>
+                <strong>
+                    <asp:Label ID="lbl_exito" runat="server" Text=""></asp:Label></strong>
             </div>
-            <div class="row centered">
-                <p>&nbsp;</p>
-            </div>
-        </asp:Panel>
+        </div>
+        <div class="row centered">
+            <p>&nbsp;</p>
+        </div>
+    </asp:Panel>
 
-        <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <a class="ui-icon ui-icon-alert"></a>
-                    <strong>Error! </strong>
-                    <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
-                </div>
+    <asp:Panel ID="pnl_mensaje_error" runat="server" Visible="false">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a class="ui-icon ui-icon-alert"></a>
+                <strong>Error! </strong>
+                <asp:Label ID="lbl_error" runat="server" Text=""></asp:Label>
             </div>
-            <div class="row centered">
-                <p>&nbsp;</p>
-            </div>
-        </asp:Panel>
+        </div>
+        <div class="row centered">
+            <p>&nbsp;</p>
+        </div>
+    </asp:Panel>
 
     <asp:Panel ID="pnlFormulario" runat="server" CssClass="justify-content-center" ValidateRequestMode="Disabled">
         <div class=" container">
@@ -62,27 +75,29 @@
 
                         <div class="row centered justify-content-center">
                             <h2 class=" centered ">Mis inscripciones de clases</h2>
-                        </div><br />
+                        </div>
+                        <br />
 
                         <div class="col-12">
                             <asp:GridView ID="gv_clases" runat="server" CssClass="table table-hover" CellPadding="4" ForeColor="#333333" GridLines="None"
                                 AutoGenerateColumns="False" EmptyDataText="No tenés inscripciones a clases" AllowPaging="True"
                                 OnPageIndexChanging="gv_clases_PageIndexChanging" PageSize="7" DataKeyNames="id_inscripcion" OnRowCommand="gv_clases_RowCommand"
-                                 OnRowDataBound="gv_clases_RowDataBound">
+                                OnRowDataBound="gv_clases_RowDataBound">
                                 <Columns>
                                     <asp:BoundField DataField="nombre" HeaderText="Clase" />
                                     <asp:BoundField DataField="tipo_clase" HeaderText="Disciplina" />
                                     <asp:BoundField DataField="fecha_inscripcion" HeaderText="Fecha Inscripción" />
                                     <asp:BoundField DataField="prox_vencimiento" HeaderText="Próximo Vencimiento" />
-                                    
-                                    <asp:TemplateField HeaderText="Pagar" HeaderStyle-HorizontalAlign="Center">
+
+                                    <asp:TemplateField HeaderText="Pagado" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:HyperLink runat="server" ID="lnk_pago_clase" href="/Presentacion/Pagos/PagosPanel.aspx" Text="Pagar"></asp:HyperLink>
+                                            <asp:Label runat="server" ID="lbl_pagado"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Dar de Baja" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:Button runat="server" Text="Dar de Baja" ID="btn_baja" CommandName ="baja" CssClass="btn btn-link" CommandArgument='<%#Eval("idClase") %>' />
+                                            <asp:LinkButton ID="aa" CommandName="baja" runat="server" CommandArgument='<%#Eval("id_inscripcion") %>'
+                                                OnClientClick='<%# Eval("id_inscripcion", "return openModal({0})") %>'> Dar de Baja</asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -95,7 +110,8 @@
                         </div>
                         <div class="row pull-right ">
                             <asp:Button runat="server" ID="btn_todos_clases" CssClass="btn btn-link" OnClick="btn_todos_clases_Click" />
-                        </div><br />
+                        </div>
+                        <br />
 
                     </div>
                 </asp:Panel>
@@ -110,7 +126,8 @@
 
                         <div class="row centered justify-content-center">
                             <h2 class=" centered ">Mis inscripciones de torneos</h2>
-                        </div><br />
+                        </div>
+                        <br />
 
                         <div class="col-12">
                             <asp:GridView ID="gv_torneos" runat="server" CssClass="table table-hover" CellPadding="4" ForeColor="#333333" GridLines="None"
@@ -121,10 +138,10 @@
                                     <asp:BoundField DataField="fecha" HeaderText="Fecha Torneo" />
                                     <asp:BoundField DataField="hora" HeaderText="Hora Torneo" />
                                     <asp:BoundField DataField="fecha_inscripcion" HeaderText="Fecha Inscripción" />
-                                    
-                                    <asp:TemplateField HeaderText="Pagar" HeaderStyle-HorizontalAlign="Center">
+
+                                    <asp:TemplateField HeaderText="Pagado" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:HyperLink runat="server" ID="lnk_pago" href="/Presentacion/Pagos/PagosPanel.aspx" Text="Pagar"></asp:HyperLink>
+                                            <asp:Label runat="server" ID="lbl_pagado"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -133,10 +150,11 @@
 
                             </asp:GridView>
                         </div>
-                        
+
                         <div class="row pull-right ">
                             <asp:Button runat="server" ID="btn_todos_torneos" CssClass="btn btn-link" OnClick="btn_todos_torneos_Click" />
-                        </div><br />
+                        </div>
+                        <br />
 
                     </div>
                 </asp:Panel>
@@ -151,7 +169,8 @@
 
                         <div class="row centered justify-content-center">
                             <h2 class=" centered ">Mis inscripciones de eventos</h2>
-                        </div><br />
+                        </div>
+                        <br />
 
                         <div class="col-12">
                             <asp:GridView ID="gv_eventos" runat="server" CssClass="table table-hover" CellPadding="4" ForeColor="#333333" GridLines="None"
@@ -163,10 +182,10 @@
                                     <asp:BoundField DataField="fecha" HeaderText="Fecha Evento" />
                                     <asp:BoundField DataField="hora" HeaderText="Hora Evento" />
                                     <asp:BoundField DataField="fecha_inscripcion" HeaderText="Fecha Inscripción" />
-                                    
-                                    <asp:TemplateField HeaderText="Pagar" HeaderStyle-HorizontalAlign="Center">
+
+                                    <asp:TemplateField HeaderText="Pagado" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:HyperLink runat="server" ID="lnk_pago" href="/Presentacion/Pagos/PagosPanel.aspx" Text="Pagar"></asp:HyperLink>
+                                            <asp:Label runat="server" ID="lbl_pagado"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -175,10 +194,11 @@
                             </asp:GridView>
                         </div>
 
-                        
+
                         <div class="row pull-right ">
                             <asp:Button runat="server" ID="btn_todos_eventos" CssClass="btn btn-link" OnClick="btn_todos_eventos_Click" />
-                        </div><br />
+                        </div>
+                        <br />
                     </div>
                 </asp:Panel>
 
@@ -188,6 +208,33 @@
                 </div>
 
                 <asp:HyperLink runat="server" href="/Presentacion/MenuInicial.aspx" CssClass="btn btn-link" Text="Volver"></asp:HyperLink>
+                <asp:TextBox ID="txtIDSeleccionado" runat="server" Text="" hidden="true"></asp:TextBox>
+
+
+                <!-- VENTANA EMERGENTE CARGA NUEVO PARTICIPANTE-->
+                <div class="modal fade col-lg-12 col-md-12 col-xs-8 col-sm-8" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <!--Cabecera-->
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabe2">¿Seguro que desea darse de baja a esta clase? </h4>
+                                
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5> Si lo hace no podrá asistir más a la clase y deberá contactarse con el administrador de la academia</h5>
+                            </div>
+
+                            <!--Botonero-->
+                            <div class="modal-footer">
+                                <asp:Button ID="btn_si" type="button" runat="server" class="btn btn-outline-dark" OnClientClick="return button()" OnClick="btn_si_Click" Text="SI" />
+                                <button id="btn_no" type="button" class="btn btn-default" value="No" data-dismiss="modal">No</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
             </form>
 

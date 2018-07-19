@@ -51,24 +51,7 @@ namespace JJSS.Presentacion
                         }
                         else
                         {
-
-                            var profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
-                            if (profesor != null)
-                            {
-
-                            }
-                            else
-                            {
-                                //var admin = gestorAdmin.ObtenerAdminPorIdUsuario(usuario.id_usuario);
-                                //if (admin != null)
-                                //{
-                                //    if (admin.id_tipo_documento != null) tipoDoc = (int)admin.id_tipo_documento;
-                                //    dni = admin.dni;
-
-                                //    nombre = admin.nombre + " " + admin.apellido;
-                                //    CargarGrilla();
-                                //}
-                            }
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "/Presentacion/Login.aspx" + "', 2000);</script>");
                         }
                     }
                 }
@@ -115,12 +98,12 @@ namespace JJSS.Presentacion
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink lnkPago = (HyperLink)e.Row.FindControl("lnk_pago");
+                Label lblPago = (Label)e.Row.FindControl("lbl_pagado");
 
                 Boolean pago = DataBinder.Eval(e.Row.DataItem, "pago") != null;
                 DateTime? fechaTorneo = Convert.ToDateTime( DataBinder.Eval(e.Row.DataItem, "dtFecha") );
-                if (pago || fechaTorneo<=DateTime.Now) lnkPago.Visible = false;
-                else lnkPago.Visible = true;
+                if (pago || fechaTorneo <= DateTime.Now) lblPago.Text = "SI";
+                else lblPago.Text = "NO";
             }
         }
 
@@ -212,13 +195,32 @@ namespace JJSS.Presentacion
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Button btnBaja = (Button)e.Row.FindControl("btn_baja");
+                /*
+                Label lblPago = (Label)e.Row.FindControl("lbl_pagado");
 
-                int actual = Convert.ToInt16( DataBinder.Eval(e.Row.DataItem, "insActual"));
-                
-                if (actual == 0) btnBaja.Visible = false;
-                else btnBaja.Visible = true;
+                Boolean pago = DataBinder.Eval(e.Row.DataItem, "pago") != null;
+                DateTime? fechaTorneo = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "dtFecha"));
+                if (pago || fechaTorneo <= DateTime.Now) lblPago.Text = "SI";
+                else lblPago.Text = "NO";*/
             }
+        }
+
+        protected void btn_si_Click(object sender, EventArgs e)
+        {
+            int idClase = int.Parse(txtIDSeleccionado.Text);
+            string res = gic.DarDeBajaInscripcion(idAlumno, idClase);
+
+            if (res.CompareTo("") == 0)
+            {
+                mensaje("Se dió de baja a la inscripción correctamente", true);
+                verTodosClase = false;
+                CargarGrillaClases();
+            }
+            else
+            {
+                mensaje(res, false);
+            }
+            txtIDSeleccionado.Text = "";
         }
     }
 }
