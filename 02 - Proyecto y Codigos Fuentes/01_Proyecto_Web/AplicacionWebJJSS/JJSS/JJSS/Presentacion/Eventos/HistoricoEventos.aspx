@@ -22,7 +22,7 @@
         <div class=" col-md-4"></div>
         <div class="col-md-4">
             <p>&nbsp;</p>
-            <h1>Listado de Eventos</h1>
+            <h1>Todos los Eventos</h1>
         </div>
     </div>
 

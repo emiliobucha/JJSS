@@ -7,6 +7,7 @@ using JJSS_Entidad;
 using System.Data.Entity;
 using System.Runtime.InteropServices.ComTypes;
 using JJSS_Negocio.Constantes;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -661,6 +662,34 @@ namespace JJSS_Negocio
             catch (Exception e)
             {
                 return new List<pais>();
+            }
+        }
+
+        public List<MisInscripciones> ObtenerInscripcionesDeAlumno(int pIDAlumno, Boolean verTodos)
+        {
+            DateTime fechaActual = DateTime.Now;
+            using (var db = new JJSSEntities())
+            {
+
+                var inscripcion = from it in db.inscripcion
+                                  where it.participante.id_alumno == pIDAlumno && (verTodos || it.torneo.fecha >= fechaActual)
+                                  select new MisInscripciones()
+                                  {
+                                      nombre = it.torneo.nombre,
+                                      dtFecha = it.torneo.fecha,
+                                      hora = it.torneo.hora,
+                                      id_inscripcion = it.id_inscripcion,
+                                      dtFechaInscripcion = it.fecha,
+                                      pago = it.pago
+                                  };
+                List<MisInscripciones> inscripcionesList = inscripcion.ToList();
+                foreach (MisInscripciones ins in inscripcionesList)
+                {
+                    ins.fecha_inscripcion = ((DateTime)ins.dtFechaInscripcion).ToString("dd/MM/yyyy");
+                    ins.fecha = ((DateTime)ins.dtFecha).ToString("dd/MM/yyyy");
+                    ins.hora = ins.hora + " hs";
+                }
+                return inscripcionesList;
             }
         }
 

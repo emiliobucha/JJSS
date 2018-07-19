@@ -30,6 +30,7 @@ namespace JJSS.Presentacion.Clases
                     idTipo = Convert.ToInt32(Session["tipoGraduar"]);
                     CargarDatos();
                 }
+                else Response.Redirect("GraduarAlumno.aspx");
 
                 
             }

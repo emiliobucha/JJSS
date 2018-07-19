@@ -62,8 +62,8 @@
                 DataRecurrenceField="RecurrenceRule" ToolTip="ToolTip" SelectedView="WeekView"
                 DataRecurrenceParentKeyField="RecurrenceParentId" OnAppointmentDataBound="RadScheduler1_AppointmentDataBound"
                 DayView-UserSelectable="false" MonthView-UserSelectable="false" HoursPanelTimeFormat="hh:mm tt"
-                WeekView-DayStartTime="09:00:00" WeekView-DayEndTime="21:00:00" Height="600px" RowHeight="30px" WorkDayStartTime="09:00:00"
-                WorkDayEndTime="21:00:00" EnableDescriptionField="true" >
+                WeekView-DayStartTime="09:00:00" WeekView-DayEndTime="23:00:00" Height="600px" RowHeight="30px" WorkDayStartTime="09:00:00"
+                WorkDayEndTime="23:00:00" EnableDescriptionField="true" >
                 <AdvancedForm Modal="true" ></AdvancedForm>
                 <TimelineView UserSelectable="false"></TimelineView>
                 <TimeSlotContextMenuSettings EnableDefault="true"></TimeSlotContextMenuSettings>
