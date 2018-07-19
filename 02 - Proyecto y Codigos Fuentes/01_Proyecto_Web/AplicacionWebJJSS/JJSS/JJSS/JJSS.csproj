@@ -249,6 +249,7 @@
     <Content Include="Presentacion\Eventos\Menu_Evento.aspx" />
     <Content Include="Presentacion\Eventos\VerEvento.aspx" />
     <Content Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx" />
+    <Content Include="Presentacion\MisInscripciones.aspx" />
     <Content Include="Presentacion\Pagos\PagosPanel.aspx" />
     <Content Include="Presentacion\Pagos\PagosMultiple.aspx" />
     <Content Include="Presentacion\Pagos\PagoMultipleFinalizado.aspx" />
@@ -530,6 +531,13 @@
     </Compile>
     <Compile Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx.designer.cs">
       <DependentUpon>VerListadoParticipantesEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\MisInscripciones.aspx.cs">
+      <DependentUpon>MisInscripciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\MisInscripciones.aspx.designer.cs">
+      <DependentUpon>MisInscripciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Pagos\PagosPanel.aspx.cs">
       <DependentUpon>PagosPanel.aspx</DependentUpon>

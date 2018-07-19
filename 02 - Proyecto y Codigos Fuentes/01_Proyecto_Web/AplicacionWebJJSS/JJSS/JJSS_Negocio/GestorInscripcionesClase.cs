@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data.Entity;
 using System.Data;
+using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
 {
@@ -268,7 +269,7 @@ namespace JJSS_Negocio
             {
                 var alumnos = from alu in db.alumno
                               join ins in db.inscripcion_clase on alu.id_alumno equals ins.id_alumno
-                              where ins.id_clase == pIDClase && alu.baja_logica==1
+                              where ins.id_clase == pIDClase && alu.baja_logica==1 && alu.id_estado != Constantes.ConstantesEstado.ALUMNOS_DE_BAJA
                               && ins.actual == Constantes.ConstatesBajaLogica.ACTUAL
                               orderby alu.apellido
                               select alu;
@@ -408,6 +409,33 @@ namespace JJSS_Negocio
             md.Msg_Asunto = "Comprobante de Inscripción a Evento de Lotus Club - Equipo Hinojal";
             md.Enviar();
 
+        }
+
+
+        public List<MisInscripciones> ObtenerInscripcionesDeAlumno(int pIDAlumno, Boolean verTodos)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var inscripcion = from ic in db.inscripcion_clase
+                                  where ic.id_alumno == pIDAlumno && (verTodos || ic.actual == Constantes.ConstatesBajaLogica.ACTUAL)
+                                  select new MisInscripciones()
+                                  {
+                                      nombre = ic.clase.nombre,
+                                      tipo_clase = ic.clase.tipo_clase.nombre,
+                                      dtProxVencimiento = ic.proximo_vencimiento,
+                                      id_inscripcion = ic.id_inscripcion,
+                                      dtFechaInscripcion = ic.fecha,
+                                      idClase = ic.id_clase,
+                                      insActual = ic.actual,
+                                  };
+                List<MisInscripciones> inscripcionesList = inscripcion.ToList();
+                foreach(MisInscripciones ins in inscripcionesList)
+                {
+                    ins.fecha_inscripcion = ((DateTime)ins.dtFechaInscripcion).ToString("dd/MM/yyyy");
+                    ins.prox_vencimiento = ((DateTime)ins.dtProxVencimiento).ToString("dd/MM/yyyy");
+                }
+                return inscripcionesList;
+            }
         }
 
     }

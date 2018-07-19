@@ -234,7 +234,7 @@ namespace JJSS_Negocio
                 {
                     var alumnosPorApellido = from alumno in db.alumno
 
-                                             where alumno.baja_logica == 1
+                                             where alumno.baja_logica == 1 && alumno.id_estado != ConstantesEstado.ALUMNOS_DE_BAJA
                                              orderby alumno.apellido
                                              select alumno;
                     return alumnosPorApellido.ToList<alumno>();

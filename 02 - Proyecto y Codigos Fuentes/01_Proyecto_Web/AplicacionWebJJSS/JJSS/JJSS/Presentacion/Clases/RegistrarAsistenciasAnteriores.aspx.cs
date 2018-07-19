@@ -16,12 +16,11 @@ namespace JJSS.Presentacion.Clases
         private GestorAsistencia ga;
         protected void Page_Load(object sender, EventArgs e)
         {
-            dp_fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             ga = new GestorAsistencia();
             if (!IsPostBack)
             {
+                dp_fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 CargarComboClases();
-                
             }
         }
 
