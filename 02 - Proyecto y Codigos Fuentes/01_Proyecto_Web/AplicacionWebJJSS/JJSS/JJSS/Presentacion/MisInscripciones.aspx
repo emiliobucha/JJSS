@@ -81,22 +81,17 @@
                         <div class="col-12">
                             <asp:GridView ID="gv_clases" runat="server" CssClass="table table-hover" CellPadding="4" ForeColor="#333333" GridLines="None"
                                 AutoGenerateColumns="False" EmptyDataText="No tenés inscripciones a clases" AllowPaging="True"
-                                OnPageIndexChanging="gv_clases_PageIndexChanging" PageSize="7" DataKeyNames="id_inscripcion" OnRowCommand="gv_clases_RowCommand"
-                                OnRowDataBound="gv_clases_RowDataBound">
+                                OnPageIndexChanging="gv_clases_PageIndexChanging" PageSize="7" DataKeyNames="id_inscripcion">
                                 <Columns>
                                     <asp:BoundField DataField="nombre" HeaderText="Clase" />
                                     <asp:BoundField DataField="tipo_clase" HeaderText="Disciplina" />
-                                    <asp:BoundField DataField="fecha_inscripcion" HeaderText="Fecha Inscripción" />
-                                    <asp:BoundField DataField="prox_vencimiento" HeaderText="Próximo Vencimiento" />
-
-                                    <asp:TemplateField HeaderText="Pagado" HeaderStyle-HorizontalAlign="Center">
-                                        <ItemTemplate>
-                                            <asp:Label runat="server" ID="lbl_pagado"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="inscr_faja" HeaderText="Faja" />
+                                    <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Próximo Vencimiento" />
+                                    <asp:BoundField DataField="inscr_pago" HeaderText="Pagado" />
+                                    
                                     <asp:TemplateField HeaderText="Dar de Baja" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="aa" CommandName="baja" runat="server" CommandArgument='<%#Eval("id_inscripcion") %>'
+                                            <asp:LinkButton ID="lnk_baja" CommandName="baja" runat="server" CommandArgument='<%#Eval("id_inscripcion") %>'
                                                 OnClientClick='<%# Eval("id_inscripcion", "return openModal({0})") %>'> Dar de Baja</asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -108,11 +103,6 @@
 
 
                         </div>
-                        <div class="row pull-right ">
-                            <asp:Button runat="server" ID="btn_todos_clases" CssClass="btn btn-link" OnClick="btn_todos_clases_Click" />
-                        </div>
-                        <br />
-
                     </div>
                 </asp:Panel>
                 <br />
