@@ -432,7 +432,7 @@ namespace JJSS_Negocio
                         inscr_tipo = inscripcion.alumno.tipo_documento.codigo,
                         recargo = inscripcion.recargo,
                         inscr_recargo = inscripcion.recargo == 1 ? "Si" : "No",
-
+                        inscr_sexo = inscripcion.alumno.sexo == 1? "M":"F"
                     };
 
                     var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1)
