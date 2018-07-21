@@ -251,7 +251,9 @@ namespace JJSS_Negocio
 
         public List<PersonaResultado.AlumnoResultado> BuscarAlumnoConEstado(int filtroEstados, string filtroApellido, string filtroDni, int? filtroTipoDoc)
         {
-            cambiarEstadoAMoroso();
+            GestorVencimientos gv = new GestorVencimientos();
+            gv.ActualizarEstadosInscripcion();
+            gv.ActualizarEstadosAlumno();
             string sReturn = "";
             using (var db = new JJSSEntities())
             {
@@ -326,7 +328,10 @@ namespace JJSS_Negocio
 
         public List<PersonaResultado.AlumnoResultado> BuscarAlumnosFiltradoBasico(string filtroApellido, string filtroDni, int? filtroTipoDoc)
         {
-            cambiarEstadoAMoroso();
+            GestorVencimientos gv = new GestorVencimientos();
+            gv.ActualizarEstadosInscripcion();
+            gv.ActualizarEstadosAlumno();
+
             string sReturn = "";
             using (var db = new JJSSEntities())
             {
@@ -939,6 +944,16 @@ namespace JJSS_Negocio
             catch (Exception e)
             {
                 return new List<tipo_documento>();
+            }
+        }
+
+        public void activarAlumno(int idAlumno)
+        {
+            using (var db = new JJSSEntities())
+            {
+                alumno alumnoS = db.alumno.Find(idAlumno);
+                alumnoS.id_estado = ConstantesEstado.ALUMNOS_ACTIVO;
+                db.SaveChanges();
             }
         }
     }

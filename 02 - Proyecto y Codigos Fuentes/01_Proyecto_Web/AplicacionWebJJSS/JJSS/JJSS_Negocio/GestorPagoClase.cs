@@ -83,10 +83,6 @@ namespace JJSS_Negocio
                         recargo = pPagoRecargo
                     };
                     db.detalle_pago_clase.Add(nuevoDetalle);
-                    if (alumnoSelect.id_estado == Constantes.ConstantesEstado.ALUMNOS_MOROSO)
-                    {
-                       ga.cambiarEstadoAActivo(alumnoSelect.id_alumno);
-                    }
                     
                     db.SaveChanges();
                     transaction.Commit();

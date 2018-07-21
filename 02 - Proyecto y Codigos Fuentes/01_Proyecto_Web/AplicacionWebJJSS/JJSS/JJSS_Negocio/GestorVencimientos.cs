@@ -108,14 +108,17 @@ namespace JJSS_Negocio
                         if (inscripciones.Any(x=>x.recargo == 1 && x.actual == 1))
                         {
                             alumno.id_estado = ConstantesEstado.ALUMNOS_MOROSO;
+                            db.SaveChanges();
                         }
                         if (inscripciones.All(x => x.actual == 0))
                         {
                             alumno.id_estado = ConstantesEstado.ALUMNOS_INACTIVO;
+                            db.SaveChanges();
                         }
                         if (inscripciones.Where( x=>x.recargo == 1).All(x=> x.actual == 0) && inscripciones.Where(x=> x.actual ==1).All(x=>x.recargo == 0))
                         {
                             alumno.id_estado = ConstantesEstado.ALUMNOS_ACTIVO;
+                            db.SaveChanges();
                         }
                     }
 
