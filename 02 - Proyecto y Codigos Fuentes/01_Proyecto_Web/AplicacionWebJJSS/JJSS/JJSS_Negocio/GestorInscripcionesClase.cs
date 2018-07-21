@@ -435,7 +435,7 @@ namespace JJSS_Negocio
                         inscr_sexo = inscripcion.alumno.sexo == 1? "M":"F"
                     };
 
-                    var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1)
+                    var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1 && x.faja.id_tipo_clase == inscripcion.clase.id_tipo_clase)
                         .OrderByDescending(x => x.fecha).FirstOrDefault();
 
                     alumno.inscr_faja = faja != null ? faja.faja.descripcion : "Faja no clasificada";
