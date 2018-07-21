@@ -120,7 +120,7 @@
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_alumno" OnPageIndexChanging="gvAlumnos_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar"
-                                    OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20">
+                                    OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20" OnRowDataBound="gvAlumnos_RowDataBound">
                                     <Columns>
                                         
                                         <asp:BoundField DataField="id_alumno" HeaderText="ID" SortExpression="id_alumno" Visible="False"/>
@@ -135,6 +135,11 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="aa" CommandName="eliminar" runat="server" CommandArgument='<%#Eval("id_alumno") %>'
                                                     OnClientClick='<%# Eval("id_alumno", "return openModal({0})") %>'> Eliminar</asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Activar">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnk_activar" CommandName="activar" runat="server"  CommandArgument='<%#Eval("id_alumno") %>'> Activar</asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

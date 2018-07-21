@@ -98,7 +98,6 @@ namespace JJSS_Negocio
                             db.SaveChanges();
                         }
                         alumno alumnoInscribir = db.alumno.Find(pAlumno.id_alumno);
-                        gestorAlumnos.cambiarEstadoAActivo(alumnoInscribir.id_alumno);
 
                         db.SaveChanges();
 
@@ -170,8 +169,6 @@ namespace JJSS_Negocio
                             db.alumnoxfaja.Add(nuevaFaja);
                             db.SaveChanges();
                         }
-                        alumno alumnoInscribir = db.alumno.Find(pAlumno.id_alumno);
-                        gestorAlumnos.cambiarEstadoAActivo(alumnoInscribir.id_alumno);
 
                         db.SaveChanges();
 

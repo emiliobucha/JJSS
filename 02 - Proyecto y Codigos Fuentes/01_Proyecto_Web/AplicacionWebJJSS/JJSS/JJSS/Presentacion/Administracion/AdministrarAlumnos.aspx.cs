@@ -59,6 +59,8 @@ namespace JJSS.Presentacion.Administracion
 
         protected void btn_buscar_alumno_Click(object sender, EventArgs e)
         {
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
             CargarGrilla();
         }
 
@@ -78,6 +80,20 @@ namespace JJSS.Presentacion.Administracion
 
                 Session["alumnoEditar"] = dni;
                 Response.Redirect("../Administracion/RegistrarAlumno.aspx");
+            }else if (e.CommandName.CompareTo("activar") == 0)
+            {
+                int idAlu = Convert.ToInt32(e.CommandArgument);
+
+                try
+                {
+                    gestorAlumnos.activarAlumno(idAlu);
+                    CargarGrilla();
+                    mensaje("Se activó el alumno correctamente", true);
+                }catch(Exception ex)
+                {
+                    mensaje("Hubo un error en la activación", false);
+                }
+                
             }
         }
 
@@ -145,6 +161,28 @@ namespace JJSS.Presentacion.Administracion
             ddl_tipo.DataValueField = "id_tipo_documento";
             ddl_tipo.DataBind();
 
+        }
+
+        protected void gvAlumnos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkActivar = (LinkButton)e.Row.FindControl("lnk_activar");
+                LinkButton lnkEliminar = (LinkButton)e.Row.FindControl("aa");
+
+                int estado = Convert.ToInt32( DataBinder.Eval(e.Row.DataItem, "id_estado"));
+
+                if (estado == JJSS_Negocio.Constantes.ConstantesEstado.ALUMNOS_DE_BAJA)
+                {
+                    lnkActivar.Visible = true;
+                    lnkEliminar.Visible = false;
+                }
+                else
+                {
+                    lnkActivar.Visible = false;
+                    lnkEliminar.Visible = true;
+                }
+            }
         }
     }
 }
