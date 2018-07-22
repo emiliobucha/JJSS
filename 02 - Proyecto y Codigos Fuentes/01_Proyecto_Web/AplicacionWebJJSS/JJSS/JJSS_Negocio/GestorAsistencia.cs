@@ -289,7 +289,8 @@ namespace JJSS_Negocio
                               where h.id_clase == idClase && h.dia == (int)fecha.DayOfWeek
                               select h).FirstOrDefault();
 
-                DateTime dt = DateTime.Parse(horario.hora_desde);
+                TimeSpan horaHasta = TimeSpan.Parse( horario.hora_hasta);
+                DateTime fechaHora = fecha.Add(horaHasta);
 
                 foreach (AlumnoAsistencia alu in alumnos)
                 {
@@ -302,7 +303,7 @@ namespace JJSS_Negocio
                     if (alu.asistio && asistencia == null)
                     {
                         //registro
-                        res=registrarAsistencia(alu.alu_id, idClase,horario.id_horario,fecha);
+                        res=registrarAsistencia(alu.alu_id, idClase,horario.id_horario,fechaHora);
                     }
                     else if (!alu.asistio && asistencia != null)
                     {

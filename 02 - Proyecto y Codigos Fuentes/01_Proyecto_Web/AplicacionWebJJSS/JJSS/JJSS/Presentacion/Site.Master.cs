@@ -228,6 +228,17 @@ namespace JJSS
                         nav_ver_inscriptos.Style["display"] = "none";
                     }
 
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'CLASES_MIS_CLASES'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        nav_mis_inscripciones.Style["display"] = "none";
+                    }
+
                 }
             }
             catch (Exception ex)

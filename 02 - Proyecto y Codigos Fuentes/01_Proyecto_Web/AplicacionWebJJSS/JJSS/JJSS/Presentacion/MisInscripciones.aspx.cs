@@ -16,7 +16,6 @@ namespace JJSS.Presentacion
         private GestorInscripciones git;
         private GestorInscripcionesEvento gie;
         private static Boolean verTodosTorneo = false;
-        private static Boolean verTodosClase = false;
         private static Boolean verTodosEvento = false;
         private static int idAlumno = 0;
 
@@ -30,7 +29,6 @@ namespace JJSS.Presentacion
 
             if (!IsPostBack)
             {
-                btn_todos_clases.Text = "Ver Todas";
                 btn_todos_eventos.Text = "Ver Todas";
                 btn_todos_torneos.Text = "Ver Todas";
 
@@ -51,24 +49,7 @@ namespace JJSS.Presentacion
                         }
                         else
                         {
-
-                            var profesor = gestorProfesores.ObtenerProfesorPorIdUsuario(usuario.id_usuario);
-                            if (profesor != null)
-                            {
-
-                            }
-                            else
-                            {
-                                //var admin = gestorAdmin.ObtenerAdminPorIdUsuario(usuario.id_usuario);
-                                //if (admin != null)
-                                //{
-                                //    if (admin.id_tipo_documento != null) tipoDoc = (int)admin.id_tipo_documento;
-                                //    dni = admin.dni;
-
-                                //    nombre = admin.nombre + " " + admin.apellido;
-                                //    CargarGrilla();
-                                //}
-                            }
+                            Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "/Presentacion/Login.aspx" + "', 2000);</script>");
                         }
                     }
                 }
@@ -77,7 +58,7 @@ namespace JJSS.Presentacion
 
         private void CargarGrillaClases()
         {
-            gv_clases.DataSource = gic.ObtenerInscripcionesDeAlumno(idAlumno, verTodosClase);
+            gv_clases.DataSource = gic.ObtenerInscripcionesDeAlumno(idAlumno);
             gv_clases.DataBind();
         }
 
@@ -115,31 +96,12 @@ namespace JJSS.Presentacion
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink lnkPago = (HyperLink)e.Row.FindControl("lnk_pago");
+                Label lblPago = (Label)e.Row.FindControl("lbl_pagado");
 
                 Boolean pago = DataBinder.Eval(e.Row.DataItem, "pago") != null;
                 DateTime? fechaTorneo = Convert.ToDateTime( DataBinder.Eval(e.Row.DataItem, "dtFecha") );
-                if (pago || fechaTorneo<=DateTime.Now) lnkPago.Visible = false;
-                else lnkPago.Visible = true;
-            }
-        }
-
-        protected void gv_clases_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName.CompareTo("baja") == 0)
-            {
-                int idClase = Convert.ToInt32(e.CommandArgument);
-               string res = gic.DarDeBajaInscripcion(idAlumno, idClase);
-                if (res.CompareTo("") == 0)
-                {
-                    mensaje("Se dió de baja a la inscripción correctamente", true);
-                    verTodosClase = false;
-                    CargarGrillaClases();
-                }else
-                {
-                    mensaje(res, false);
-                }
-
+                if (pago || fechaTorneo <= DateTime.Now) lblPago.Text = "SI";
+                else lblPago.Text = "NO";
             }
         }
 
@@ -158,24 +120,7 @@ namespace JJSS.Presentacion
                 lbl_error.Text = pMensaje;
             }
         }
-
-        protected void btn_todos_clases_Click(object sender, EventArgs e)
-        {
-            if (btn_todos_clases.Text.CompareTo("Ver Todas") == 0)
-            {
-                verTodosClase = true;
-                CargarGrillaClases();
-                btn_todos_clases.Text = "Ver Menos";
-            }
-            else
-            {
-                verTodosClase = false;
-                CargarGrillaClases();
-                btn_todos_clases.Text = "Ver Todas";
-            }
-            
-        }
-
+        
         protected void btn_todos_torneos_Click(object sender, EventArgs e)
         {
             if (btn_todos_torneos.Text.CompareTo("Ver Todas") == 0)
@@ -208,17 +153,21 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void gv_clases_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void btn_si_Click(object sender, EventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Button btnBaja = (Button)e.Row.FindControl("btn_baja");
+            int inscripcion = int.Parse(txtIDSeleccionado.Text);
+            string res = gic.DarDeBajaInscripcionPorId(inscripcion, idAlumno);
 
-                int actual = Convert.ToInt16( DataBinder.Eval(e.Row.DataItem, "insActual"));
-                
-                if (actual == 0) btnBaja.Visible = false;
-                else btnBaja.Visible = true;
+            if (res.CompareTo("") == 0)
+            {
+                mensaje("Se dió de baja a la inscripción correctamente", true);
+                CargarGrillaClases();
             }
+            else
+            {
+                mensaje(res, false);
+            }
+            txtIDSeleccionado.Text = "";
         }
     }
 }

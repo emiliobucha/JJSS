@@ -88,7 +88,11 @@
             <div class="container">
                 <div class=" row centered justify-content-center" runat="server">
                     <div class="form-group border rounded p-4">
-                        <asp:GridView ID="gv_inscripciones" runat="server" CssClass="table table-hover" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" AllowPaging="True" OnPageIndexChanging="gv_participantes_PageIndexChanging" PageSize="30">
+                        <asp:GridView ID="gv_inscripciones" runat="server" DataKeyNames="inscr_id_alumno" CssClass="table table-hover" 
+                                      OnRowCommand="gv_inscripciones_RowCommand"
+                            CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" 
+                            EmptyDataText="No hay alumnos para mostrar" AllowPaging="True" 
+                            OnPageIndexChanging="gv_participantes_PageIndexChanging" PageSize="30">
                             <Columns>
                                 <asp:BoundField DataField="inscr_apellido" HeaderText="Apellido" />
                                 <asp:BoundField DataField="inscr_nombre" HeaderText="Nombre" />
@@ -99,6 +103,7 @@
                                 <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Vto del Mes" />
                                 <asp:BoundField DataField="inscr_pago" HeaderText="Pagó" />
                                 <asp:BoundField DataField="inscr_recargo" HeaderText="Moroso" />
+                                <asp:ButtonField CommandName="modificar" Text="Modificar Vto" HeaderText="" />
                             </Columns>
                             <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
 

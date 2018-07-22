@@ -165,5 +165,23 @@ namespace JJSS.Presentacion.Clases
             ddl_clase.DataBind();
 
         }
+
+        protected void gv_inscripciones_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.CompareTo("modificar") == 0)
+            {
+
+
+                int index = Convert.ToInt32(e.CommandArgument);
+                var id = int.Parse(gv_inscripciones.DataKeys[index].Value.ToString());
+
+                Session["idClase"] = idClaseGlobal;
+                Session["idAlumno"] = id;
+               
+                Response.Redirect("../Pagos/PagosCambioVto");
+
+
+            }
+        }
     }
 }

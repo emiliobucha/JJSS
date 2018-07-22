@@ -108,14 +108,17 @@ namespace JJSS_Negocio
                         if (inscripciones.Any(x=>x.recargo == 1 && x.actual == 1))
                         {
                             alumno.id_estado = ConstantesEstado.ALUMNOS_MOROSO;
+                            db.SaveChanges();
                         }
                         if (inscripciones.All(x => x.actual == 0))
                         {
                             alumno.id_estado = ConstantesEstado.ALUMNOS_INACTIVO;
+                            db.SaveChanges();
                         }
                         if (inscripciones.Where( x=>x.recargo == 1).All(x=> x.actual == 0) && inscripciones.Where(x=> x.actual ==1).All(x=>x.recargo == 0))
                         {
                             alumno.id_estado = ConstantesEstado.ALUMNOS_ACTIVO;
+                            db.SaveChanges();
                         }
                     }
 
@@ -145,6 +148,25 @@ namespace JJSS_Negocio
             {
                 Console.WriteLine(e);
                 throw;
+            }
+        }
+
+        public string ModificarFechaVto(int idInscripcion, DateTime nuevaFecha)
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                   var inscripcion = db.inscripcion_clase.Find(idInscripcion);
+                    inscripcion.proximo_vencimiento = nuevaFecha;
+                    inscripcion.fecha_desde = nuevaFecha.AddMonths(-1);
+                    db.SaveChanges();
+                    return "";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
             }
         }
 

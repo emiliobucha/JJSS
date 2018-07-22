@@ -251,7 +251,9 @@ namespace JJSS_Negocio
 
         public List<PersonaResultado.AlumnoResultado> BuscarAlumnoConEstado(int filtroEstados, string filtroApellido, string filtroDni, int? filtroTipoDoc)
         {
-            cambiarEstadoAMoroso();
+            GestorVencimientos gv = new GestorVencimientos();
+            gv.ActualizarEstadosInscripcion();
+            gv.ActualizarEstadosAlumno();
             string sReturn = "";
             using (var db = new JJSSEntities())
             {
@@ -326,7 +328,10 @@ namespace JJSS_Negocio
 
         public List<PersonaResultado.AlumnoResultado> BuscarAlumnosFiltradoBasico(string filtroApellido, string filtroDni, int? filtroTipoDoc)
         {
-            cambiarEstadoAMoroso();
+            GestorVencimientos gv = new GestorVencimientos();
+            gv.ActualizarEstadosInscripcion();
+            gv.ActualizarEstadosAlumno();
+
             string sReturn = "";
             using (var db = new JJSSEntities())
             {
@@ -941,5 +946,54 @@ namespace JJSS_Negocio
                 return new List<tipo_documento>();
             }
         }
+
+        public void activarAlumno(int idAlumno)
+        {
+            using (var db = new JJSSEntities())
+            {
+                alumno alumnoS = db.alumno.Find(idAlumno);
+                alumnoS.id_estado = ConstantesEstado.ALUMNOS_ACTIVO;
+                db.SaveChanges();
+            }
+        }
+
+        public PersonaResultado.AlumnoResultado ObtenerAlumnoResultadoId(int id)
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    var alumno = db.alumno.Find(id);
+
+                    if (alumno == null) return null;
+
+                    var alumnoResultado = new PersonaResultado.AlumnoResultado()
+                    {
+                        nombre = alumno.nombre,
+                        apellido = alumno.apellido,
+                        dni = alumno.dni,
+                        estado = "",
+                        id_alumno = alumno.id_alumno,
+                        id_estado = 0,
+                        id_tipo_documento = alumno.id_tipo_documento.Value,
+                        inscripto = "S",
+                        tipo_documento = alumno.tipo_documento.codigo
+
+                    };
+                    return alumnoResultado;
+
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                return null;
+            
+            }
+        }
+
     }
 }
