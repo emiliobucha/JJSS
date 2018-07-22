@@ -151,5 +151,24 @@ namespace JJSS_Negocio
             }
         }
 
+        public string ModificarFechaVto(int idInscripcion, DateTime nuevaFecha)
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                   var inscripcion = db.inscripcion_clase.Find(idInscripcion);
+                    inscripcion.proximo_vencimiento = nuevaFecha;
+                    inscripcion.fecha_desde = nuevaFecha.AddMonths(-1);
+                    db.SaveChanges();
+                    return "";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
     }
 }

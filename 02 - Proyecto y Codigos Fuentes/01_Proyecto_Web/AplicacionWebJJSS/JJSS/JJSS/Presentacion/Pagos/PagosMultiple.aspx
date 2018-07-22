@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="PagosMultiple.aspx.cs" Inherits="JJSS.Presentacion.Pagos.PagosMultiple" %>
-<%@ PreviousPageType VirtualPath="PagosPanel.aspx" %> 
+
+<%@ PreviousPageType VirtualPath="PagosPanel.aspx" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
@@ -113,43 +114,43 @@
                     </div>
                 </div>
             </asp:Panel>
-            
+
             <!-- BOTONES-->
             <div runat="server" class="row centered justify-content-center p-1">
                 <div class="col col-auto" runat="server">
-                    <a class=" btn btn-outline-dark" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="dftl" onreturn="execute_my_onreturn" Visible="False">Pagar</a>
-                    <asp:Button ID="btn_pagar" formnovalidate="true" CausesValidation="false" runat="server" Text="Pagar" CssClass="btn btn-outline-dark"  Visible="False" OnClick="btn_pagar_Click"/>
+                    <a class=" btn btn-outline-dark" runat="server" id="mp_checkout" name="MP-Checkout" mp-mode="dftl" onreturn="execute_my_onreturn" visible="False">Pagar</a>
+                    <asp:Button ID="btn_pagar" formnovalidate="true" CausesValidation="false" runat="server" Text="Pagar" CssClass="btn btn-outline-dark" Visible="False" OnClick="btn_pagar_Click" />
 
                 </div>
-                    <div runat="server" class="col col-auto">
-                        <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="../MenuInicial.aspx"></asp:HyperLink>
-                    </div>
+                <div runat="server" class="col col-auto">
+                    <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="../MenuInicial.aspx"></asp:HyperLink>
                 </div>
+            </div>
         </div>
     </form>
 
-<%--    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>--%>
+    <%--    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>--%>
     <script type="text/javascript" src="https://www.mercadopago.com/org-img/jsapi/mptools/buttons/render.js"></script>
-   <%--  <script type="text/javascript">
+    <%--  <script type="text/javascript">
      (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
     </script>--%>
-  <script type="text/javascript">
-      function execute_my_onreturn(json) {
-          if (json.collection_status === 'approved') {
-              alert('Me pintó este alert');
-             // location.href = "TorneoPagoFinalizado.aspx?Estado=ok";
-          } else if (json.collection_status === 'pending') {
-              alert('El usuario no completó el pago');
-          } else if (json.collection_status === 'in_process') {
-              alert('El pago está siendo revisado');
-          } else if (json.collection_status === 'rejected') {
-              alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
-          } else if (json.collection_status === null) {
-              alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
-          }
-      }
-</script>
+    <script type="text/javascript">
+        function execute_my_onreturn(json) {
+            if (json.collection_status === 'approved') {
+                alert('Me pintó este alert');
+                // location.href = "TorneoPagoFinalizado.aspx?Estado=ok";
+            } else if (json.collection_status === 'pending') {
+                alert('El usuario no completó el pago');
+            } else if (json.collection_status === 'in_process') {
+                alert('El pago está siendo revisado');
+            } else if (json.collection_status === 'rejected') {
+                alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
+            } else if (json.collection_status === null) {
+                alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
+            }
+        }
+    </script>
 
-   
+
 
 </asp:Content>

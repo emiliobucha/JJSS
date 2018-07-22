@@ -23,5 +23,6 @@ namespace JJSS_Negocio.Resultados
         public string nombre { get; set; }
         public string tipo_clase { get; set; }
         public int actual { get; set; }
+        public int id_clase { get; set; }
     }
 }

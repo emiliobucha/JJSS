@@ -250,6 +250,7 @@
     <Content Include="Presentacion\Eventos\Menu_Evento.aspx" />
     <Content Include="Presentacion\Eventos\VerEvento.aspx" />
     <Content Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx" />
+    <Content Include="Presentacion\Pagos\PagosCambioVto.aspx" />
     <Content Include="Presentacion\Pagos\PagosMes.aspx" />
     <Content Include="Presentacion\MisInscripciones.aspx" />
     <Content Include="Presentacion\Pagos\PagosPanel.aspx" />
@@ -541,20 +542,27 @@
     <Compile Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx.designer.cs">
       <DependentUpon>VerListadoParticipantesEvento.aspx</DependentUpon>
     </Compile>
-      <Compile Include="Presentacion\Pagos\PagosMes.aspx.cs">
-          <DependentUpon>PagosMes.aspx</DependentUpon>
-          <SubType>ASPXCodeBehind</SubType>
-        </Compile>
-        <Compile Include="Presentacion\Pagos\PagosMes.aspx.designer.cs">
-          <DependentUpon>PagosMes.aspx</DependentUpon>
-        </Compile>
-         <Compile Include="Presentacion\MisInscripciones.aspx.cs">
-              <DependentUpon>MisInscripciones.aspx</DependentUpon>
-              <SubType>ASPXCodeBehind</SubType>
-            </Compile>
-            <Compile Include="Presentacion\MisInscripciones.aspx.designer.cs">
-              <DependentUpon>MisInscripciones.aspx</DependentUpon>
-            </Compile>
+    <Compile Include="Presentacion\Pagos\PagosCambioVto.aspx.cs">
+      <DependentUpon>PagosCambioVto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagosCambioVto.aspx.designer.cs">
+      <DependentUpon>PagosCambioVto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagosMes.aspx.cs">
+      <DependentUpon>PagosMes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\PagosMes.aspx.designer.cs">
+      <DependentUpon>PagosMes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\MisInscripciones.aspx.cs">
+      <DependentUpon>MisInscripciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\MisInscripciones.aspx.designer.cs">
+      <DependentUpon>MisInscripciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Pagos\PagosPanel.aspx.cs">
       <DependentUpon>PagosPanel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

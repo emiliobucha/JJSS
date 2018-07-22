@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JJSS_Entidad;
 using System.Data.Entity;
 using System.Data;
+using JJSS_Negocio.Constantes;
 using JJSS_Negocio.Resultados;
 
 namespace JJSS_Negocio
@@ -266,7 +267,7 @@ namespace JJSS_Negocio
             {
                 var alumnos = from alu in db.alumno
                               join ins in db.inscripcion_clase on alu.id_alumno equals ins.id_alumno
-                              where ins.id_clase == pIDClase && alu.baja_logica==1 && alu.id_estado != Constantes.ConstantesEstado.ALUMNOS_DE_BAJA
+                              where ins.id_clase == pIDClase && alu.baja_logica == 1 && alu.id_estado != Constantes.ConstantesEstado.ALUMNOS_DE_BAJA
                               && ins.actual == Constantes.ConstatesBajaLogica.ACTUAL
                               orderby alu.apellido
                               select alu;
@@ -281,19 +282,16 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    var ins = from i in db.inscripcion_clase
-                              where i.id_alumno == idAlumno && i.id_clase == idClase
-                              && i.actual == Constantes.ConstatesBajaLogica.ACTUAL
-                              select i;
+                    var ins = db.inscripcion_clase.Where(x=> x.id_clase == idClase && x.id_alumno== idAlumno && x.actual == ConstatesBajaLogica.ACTUAL).OrderByDescending(x=>x.fecha);
                     inscripcion_clase inscripcionSeleccionada = ins.FirstOrDefault();
                     inscripcionSeleccionada.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
                     db.SaveChanges();
 
-                    ins = from i in db.inscripcion_clase
+                    var inscripciones = from i in db.inscripcion_clase
                           where i.id_alumno == idAlumno
                           && i.actual == Constantes.ConstatesBajaLogica.ACTUAL
                           select i;
-                    if (ins.Count() == 0)
+                    if (!inscripciones.Any())
                     {
                         alumno alumnoSeleccionado = db.alumno.Find(idAlumno);
                         alumnoSeleccionado.id_estado = Constantes.ConstantesEstado.ALUMNOS_INACTIVO;
@@ -311,6 +309,38 @@ namespace JJSS_Negocio
             }
         }
 
+        public string DarDeBajaInscripcionPorId(int idInscripcion, int idAlumno)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    var ins = db.inscripcion_clase.Find(idInscripcion);
+                    ins.actual = Constantes.ConstatesBajaLogica.NO_ACTUAL;
+                    db.SaveChanges();
+
+                    var inscripciones = from i in db.inscripcion_clase
+                        where i.id_alumno == idAlumno
+                              && i.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                        select i;
+                    if (!inscripciones.Any())
+                    {
+                        alumno alumnoSeleccionado = db.alumno.Find(idAlumno);
+                        alumnoSeleccionado.id_estado = Constantes.ConstantesEstado.ALUMNOS_INACTIVO;
+                        db.SaveChanges();
+                    }
+
+                    transaction.Commit();
+                    return "";
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return e.Message;
+                }
+            }
+        }
 
 
         /*
@@ -350,7 +380,7 @@ namespace JJSS_Negocio
 
                                         cla_precio = inscr.clase.precio.ToString(),
                                         cla_tipo = inscr.clase.tipo_clase.nombre,
-                                     
+
                                         par_nombre = alu.nombre,
                                         par_apellido = alu.apellido,
                                         par_fecha_nacD = alu.fecha_nacimiento,
@@ -415,7 +445,7 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 List<AlumnoFajaInscripciones> list = new List<AlumnoFajaInscripciones>();
-                var inscripciones = db.inscripcion_clase.Where(x => x.id_clase == idClase && x.actual ==  1);
+                var inscripciones = db.inscripcion_clase.Where(x => x.id_clase == idClase && x.actual == 1);
                 foreach (var inscripcion in inscripciones)
                 {
                     var alumno = new AlumnoFajaInscripciones
@@ -429,14 +459,11 @@ namespace JJSS_Negocio
                         inscr_tipo = inscripcion.alumno.tipo_documento.codigo,
                         recargo = inscripcion.recargo,
                         inscr_recargo = inscripcion.recargo == 1 ? "Si" : "No",
-
+                        inscr_sexo = inscripcion.alumno.sexo == 1 ? "M" : "F",
+                        inscr_id_alumno = inscripcion.alumno.id_alumno
                     };
 
-                    var clase = db.clase.Find(idClase);
-                    var tipo_clase = db.tipo_clase.Find(clase.id_tipo_clase);
-
-                    var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1 &&
-                    x.faja.id_tipo_clase == tipo_clase.id_tipo_clase)
+                    var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1 && x.faja.id_tipo_clase == inscripcion.clase.id_tipo_clase)
                         .OrderByDescending(x => x.fecha).FirstOrDefault();
 
                     alumno.inscr_faja = faja != null ? faja.faja.descripcion : "Faja no clasificada";
@@ -480,7 +507,7 @@ namespace JJSS_Negocio
 
 
 
-                    if (inscripcion.proximo_vencimiento.Value.AddDays(10).Date >= hoy )
+                    if (inscripcion.proximo_vencimiento.Value.AddDays(10).Date >= hoy)
                     {
                         alumno.inscr_pago = "Si";
                     }
@@ -492,7 +519,7 @@ namespace JJSS_Negocio
 
 
                 }
-                return list.OrderBy(x=>x.inscr_fecha_vto).ToList();
+                return list.OrderBy(x => x.inscr_fecha_vto).ToList();
             }
 
 
@@ -519,11 +546,12 @@ namespace JJSS_Negocio
 
                     var clase = db.clase.Find(inscripcion.id_clase);
                     alumno.nombre = clase.nombre;
+                    alumno.id_clase = clase.id_clase;
 
                     var tipo_clase = db.tipo_clase.Find(clase.id_tipo_clase);
                     alumno.tipo_clase = tipo_clase.nombre;
 
-                    var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1 && 
+                    var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1 &&
                     x.faja.id_tipo_clase == tipo_clase.id_tipo_clase)
                         .OrderByDescending(x => x.fecha).FirstOrDefault();
 
@@ -581,6 +609,80 @@ namespace JJSS_Negocio
 
                 }
                 return list.OrderBy(x => x.inscr_fecha_vto).ToList();
+            }
+
+
+
+
+        }
+
+        public InscripcionesClase ObtenerInscripcionClaseAlumno(int pIDAlumno, int pIDClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+
+                var inscripcion = db.inscripcion_clase.Where(x => x.id_alumno == pIDAlumno && x.actual == 1 && x.id_clase == pIDClase).OrderByDescending(x => x.fecha).FirstOrDefault();
+
+                var alumno = new InscripcionesClase
+                {
+                    recargo = inscripcion.recargo,
+                    inscr_recargo = inscripcion.recargo == 1 ? "Si" : "No",
+
+                };
+
+                alumno.id_inscripcion = inscripcion.id_inscripcion;
+
+                var clase = db.clase.Find(inscripcion.id_clase);
+                alumno.nombre = clase.nombre;
+                alumno.id_clase = clase.id_clase;
+
+                var tipo_clase = db.tipo_clase.Find(clase.id_tipo_clase);
+                alumno.tipo_clase = tipo_clase.nombre;
+
+                var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1 &&
+                                                     x.faja.id_tipo_clase == tipo_clase.id_tipo_clase)
+                    .OrderByDescending(x => x.fecha).FirstOrDefault();
+
+                alumno.inscr_faja = faja != null ? faja.faja.descripcion : "Faja no clasificada";
+
+                var hoy = DateTime.Now;
+
+
+
+                if (inscripcion.proximo_vencimiento == null)
+                {
+                    alumno.inscr_pago = "No";
+                    alumno.inscr_fecha_vto_mensual = " - ";
+
+
+                }
+                if (inscripcion.fecha_desde == null)
+                {
+                    alumno.inscr_pago = "No";
+                    alumno.inscr_fecha_vto_mensual = " - ";
+
+
+                }
+
+
+                alumno.inscr_fecha_vto_mensual = inscripcion.proximo_vencimiento.Value.ToString("dd/MM/yyyy");
+                alumno.inscr_fecha_vto = inscripcion.proximo_vencimiento.Value;
+
+
+
+
+                if (inscripcion.proximo_vencimiento.Value.AddDays(10).Date >= hoy)
+                {
+                    alumno.inscr_pago = "Si";
+                }
+                else
+                {
+                    alumno.inscr_pago = "No";
+                }
+                return alumno;
+
+
+
             }
         }
     }

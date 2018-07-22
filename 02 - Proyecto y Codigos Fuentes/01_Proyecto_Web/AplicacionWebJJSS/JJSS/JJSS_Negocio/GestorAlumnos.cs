@@ -956,5 +956,44 @@ namespace JJSS_Negocio
                 db.SaveChanges();
             }
         }
+
+        public PersonaResultado.AlumnoResultado ObtenerAlumnoResultadoId(int id)
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    var alumno = db.alumno.Find(id);
+
+                    if (alumno == null) return null;
+
+                    var alumnoResultado = new PersonaResultado.AlumnoResultado()
+                    {
+                        nombre = alumno.nombre,
+                        apellido = alumno.apellido,
+                        dni = alumno.dni,
+                        estado = "",
+                        id_alumno = alumno.id_alumno,
+                        id_estado = 0,
+                        id_tipo_documento = alumno.id_tipo_documento.Value,
+                        inscripto = "S",
+                        tipo_documento = alumno.tipo_documento.codigo
+
+                    };
+                    return alumnoResultado;
+
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                return null;
+            
+            }
+        }
+
     }
 }

@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="VerInscriptos.aspx.cs" Inherits="JJSS.Presentacion.Clases.VerInscriptos" %>
-
+﻿<%@ Page Language="C#" MasterPageFile="~/Presentacion/Site.Master" AutoEventWireup="true" CodeBehind="PagosCambioVto.aspx.cs" Inherits="JJSS.Presentacion.Pagos.PagosCambioVto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
@@ -57,18 +56,36 @@
 
 
         <div class="row centered justify-content-center ">
-            <h1 class=" centered">Listado de Inscripciones</h1>
+            <h1 class=" centered">Cambio de Fecha de Vencimiento</h1>
+        </div>
+
+        <div runat="server" id="div_nombre_alumno">
+            <div class="row centered justify-content-center ">
+                <div>
+                    <asp:Label ID="lbl_nombre_alumno" runat="server" Text="AAAAAAA" />
+                </div>
+            </div>
+            <div class="row centered justify-content-center " runat="server" id="div1">
+                <div>
+                    <asp:Label ID="lbl_tipo_dni" runat="server" Text="AAAAAAA" />
+                </div>
+            </div>
+            <div class="row centered justify-content-center " runat="server" id="div2">
+                <div>
+                    <asp:Label ID="lbl_dni" runat="server" Text="AAAAAAA" />
+                </div>
+            </div>
         </div>
 
         <div class="row centered justify-content-center " runat="server" id="div_nombre_clase">
             <div>
-                <asp:Label ID="lbl_nombre_clase" CssClass="h3" runat="server" />
+                <asp:Label ID="lbl_clase_nombre" runat="server" Text="AAAAAAA" />
             </div>
         </div>
 
 
         <!--Boton-->
-        <div class="row centered justify-content-center " runat="server" id="div_combo_clase" Visible="false">
+        <div class="row centered justify-content-center " runat="server" id="div_combo_clase" Visible="False">
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                 <strong>Clase</strong>
             </div>
@@ -77,51 +94,39 @@
             </div>
 
             <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 centered">
-                <asp:Button ID="btn_buscar" runat="server" Text="Buscar" OnClick="btn_buscar_Click" ValidationGroup="vgFiltro" CssClass="btn btn-outline-dark" />
+                <asp:Button ID="btn_buscar" runat="server" Text="Buscar" ValidationGroup="vgFiltro" CssClass="btn btn-outline-dark" />
             </div>
         </div>
 
 
-        
 
-        <asp:Panel ID="pnl_listado" runat="server">
-            <div class="container">
-                <div class=" row centered justify-content-center" runat="server">
-                    <div class="form-group border rounded p-4">
-                        <asp:GridView ID="gv_inscripciones" runat="server" DataKeyNames="inscr_id_alumno" CssClass="table table-hover" 
-                                      OnRowCommand="gv_inscripciones_RowCommand"
-                            CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" 
-                            EmptyDataText="No hay alumnos para mostrar" AllowPaging="True" 
-                            OnPageIndexChanging="gv_participantes_PageIndexChanging" PageSize="30">
-                            <Columns>
-                                <asp:BoundField DataField="inscr_apellido" HeaderText="Apellido" />
-                                <asp:BoundField DataField="inscr_nombre" HeaderText="Nombre" />
-                                <asp:BoundField DataField="inscr_sexo" HeaderText="Sexo" />
-                                <asp:BoundField DataField="inscr_tipo" HeaderText="Tipo" />
-                                <asp:BoundField DataField="inscr_dni" HeaderText="Documento" />
-                                <asp:BoundField DataField="inscr_faja" HeaderText="Faja" />              
-                                <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Vto del Mes" />
-                                <asp:BoundField DataField="inscr_pago" HeaderText="Pagó" />
-                                <asp:BoundField DataField="inscr_recargo" HeaderText="Moroso" />
-                                <asp:ButtonField CommandName="modificar" Text="Modificar Vto" HeaderText="" />
-                            </Columns>
-                            <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
-
-                        </asp:GridView>
-                    </div>
-
+        <br />
+        <br/>
+        <asp:Panel ID="pnl_fecha_vto" runat="server">
+            <div class="row centered justify-content-center">
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <label class="text-left">Fecha de Vencimiento <a class="text-danger">*</a></label>
                 </div>
-               <%-- <div class="row centered justify-content-center ">
-                    <asp:Button ID="btn_imprimir" runat="server" Text="Imprimir" CssClass="btn btn-outline-dark" OnClick="btn_imprimir_Click" Visible="true" />
-                </div>--%>
-                <div class="row centered p-2">
-                    <div class="row centered">
-                        <div class="col col-auto">
-                            <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Clase.aspx"></asp:HyperLink>
-                        </div>
-                    </div>
+                <div class="col col-lg-3 col-md-3 col-sm-12">
+
+                    <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
                 </div>
             </div>
+
+
+            <br/>
+            <div runat="server" class="row centered justify-content-center p-1">
+                <div class="col col-auto" runat="server">
+                    <asp:Button ID="btn_guardar" formnovalidate="true" CausesValidation="false" runat="server" Text="Guardar" CssClass="btn btn-outline-dark" OnClick="btn_guardar_OnClick"/>
+
+                </div>
+                <div runat="server" class="col col-auto">
+                    <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="../Clases/VerInscriptos.aspx"></asp:HyperLink>
+                </div>
+            </div>
+
         </asp:Panel>
     </form>
 </asp:Content>
+
+

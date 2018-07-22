@@ -155,8 +155,8 @@ namespace JJSS.Presentacion
 
         protected void btn_si_Click(object sender, EventArgs e)
         {
-            int idClase = int.Parse(txtIDSeleccionado.Text);
-            string res = gic.DarDeBajaInscripcion(idAlumno, idClase);
+            int inscripcion = int.Parse(txtIDSeleccionado.Text);
+            string res = gic.DarDeBajaInscripcionPorId(inscripcion, idAlumno);
 
             if (res.CompareTo("") == 0)
             {
