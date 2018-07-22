@@ -116,6 +116,11 @@ namespace JJSS.Presentacion.Pagos
 
                 DateTime fecha = DateTime.Parse(dp_fecha.Text);
                 var inscripcion = gestorInscripcionesClase.ObtenerInscripcionClaseAlumno(idAlumno, idClase);
+                if (fecha <= inscripcion.inscr_fecha_vto)
+                {
+                    Mensaje("No se puede cambiar la fecha de vencimiento por una fecha anterior", false);
+                }
+
                 gestorVencimientos.ModificarFechaVto(inscripcion.id_inscripcion, fecha);
                 Mensaje("Se ha modificado correctamente la fecha de vencimiento" , true);
             }

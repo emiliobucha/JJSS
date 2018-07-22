@@ -43,7 +43,7 @@ namespace JJSS_Negocio
                 var gestorClase = new GestorClases();
 
 
-                if (participanteTorneo != null && (alumno!=null || profesor !=null))
+                if (participanteTorneo != null && (alumno != null || profesor != null))
                 {
                     inscripcionesTorneos = participanteTorneo.inscripcion.ToList();
                 }
@@ -132,7 +132,7 @@ namespace JJSS_Negocio
                     lista.Add(pagable);
                 }
 
-                foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1 ))
+                foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1))
                 {
                     //Validaciones al vicio pero por la estructura de la base
                     if (inscClase.id_clase == null) continue;
@@ -146,7 +146,7 @@ namespace JJSS_Negocio
                     //Si la fecha de vencimiento menos 10 dias es superior a hoy no puede pagar aun
                     if (inscClase.proximo_vencimiento.Value.AddDays(-10) > DateTime.Today) continue;
 
-                   
+
                     int mes = DateTime.Today.Month;
                     string mesNombre = meses[mes - 1];
 
@@ -178,7 +178,7 @@ namespace JJSS_Negocio
                     }
                     else
                     {
-                        montoPagable = (decimal) inscClase.clase.precio;
+                        montoPagable = (decimal)inscClase.clase.precio;
                     }
 
                     var pagable = new ObjetoPagable
@@ -256,7 +256,7 @@ namespace JJSS_Negocio
                             {
                                 inscripcion.pago = 1;
                             }
-                           
+
                             db.pago_torneo.Add(nuevoPagoTorneo);
                             db.SaveChanges();
                         }
@@ -382,7 +382,7 @@ namespace JJSS_Negocio
                 {
                     fechaPagable = (DateTime)inscEvento.evento_especial.fecha;
                 }
-            
+
 
                 var pagable = new ObjetoPagable
                 {
@@ -473,6 +473,303 @@ namespace JJSS_Negocio
             }
         }
 
-        
+        public List<ObjetoPagable> ObtenerObjetosPagablesHistoricos(int tipoDoc, string dni)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var lista = new List<ObjetoPagable>();
+
+
+                var participanteTorneo =
+                    db.participante.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
+
+                var participanteEvento =
+                    db.participante_evento.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
+
+                var alumno = db.alumno.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
+
+                var profesor = db.profesor.FirstOrDefault(x => x.id_tipo_documento == tipoDoc && x.dni == dni);
+
+
+                var inscripcionesTorneos = new List<inscripcion>();
+                var inscripcionesEventos = new List<inscripcion_evento>();
+                var inscripcionesClases = new List<inscripcion_clase>();
+
+                var gestorClase = new GestorClases();
+
+
+                if (participanteTorneo != null && (alumno != null || profesor != null))
+                {
+                    inscripcionesTorneos = participanteTorneo.inscripcion.ToList();
+                }
+                if (participanteEvento != null && (alumno != null || profesor != null))
+                {
+                    inscripcionesEventos = participanteEvento.inscripcion_evento.ToList();
+                }
+                if (alumno != null)
+                {
+                    inscripcionesClases = alumno.inscripcion_clase.ToList();
+                }
+
+                foreach (var inscTorneo in inscripcionesTorneos)
+                {
+                    var pago = db.pago_torneo.FirstOrDefault(x => x.id_inscripcion_torneo == inscTorneo.id_inscripcion);
+
+                    if (pago == null)
+                    {
+                        var fechaPagable = DateTime.Today;
+                        if (inscTorneo.torneo.fecha != null)
+                        {
+                            fechaPagable = (DateTime)inscTorneo.torneo.fecha;
+                        }
+                        decimal montoPagable = 0;
+                        if (inscTorneo.tipo_inscripcion != null)
+                        {
+                            if (inscTorneo.tipo_inscripcion == ConstantesTipoInscripcion.ABSOLUTO)
+                            {
+                                if (inscTorneo.torneo.precio_absoluto != null)
+                                {
+                                    montoPagable = (decimal)inscTorneo.torneo.precio_absoluto;
+                                }
+
+                            }
+                            if (inscTorneo.tipo_inscripcion == ConstantesTipoInscripcion.CATEGORIA)
+                            {
+                                if (inscTorneo.torneo.precio_categoria != null)
+                                {
+                                    montoPagable = (decimal)inscTorneo.torneo.precio_categoria;
+                                }
+
+                            }
+                        }
+
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = fechaPagable,
+                            TipoPago = ConstantesTipoPago.TORNEO(),
+                            Monto = montoPagable,
+                            Nombre = inscTorneo.torneo.nombre,
+                            Inscripcion = inscTorneo.id_inscripcion,
+                            Participante = (int)inscTorneo.id_participante,
+                            NombreParticipante = inscTorneo.participante.nombre + " " + inscTorneo.participante.apellido,
+                            IdObjeto = (int)inscTorneo.id_torneo,
+                            DescripcionObjeto = "Tipo de Inscripción: " + (inscTorneo.id_absoluto != null ? "Absoluta" : "Categoría"),
+                            MontoString = "$ " + montoPagable,
+                            Pago = 0,
+                            PagoString = "No"
+                        };
+                        lista.Add(pagable);
+                    }
+                    else
+                    {
+                        var fechaPagable = DateTime.Today;
+                        if (inscTorneo.torneo.fecha != null)
+                        {
+                            fechaPagable = (DateTime)inscTorneo.torneo.fecha;
+                        }
+
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = fechaPagable,
+                            TipoPago = ConstantesTipoPago.TORNEO(),
+                            Monto = pago.pago_monto,
+                            Nombre = inscTorneo.torneo.nombre,
+                            Inscripcion = inscTorneo.id_inscripcion,
+                            Participante = (int)inscTorneo.id_participante,
+                            NombreParticipante = inscTorneo.participante.nombre + " " + inscTorneo.participante.apellido,
+                            IdObjeto = (int)inscTorneo.id_torneo,
+                            DescripcionObjeto = "Tipo de Inscripción: " + (inscTorneo.id_absoluto != null ? "Absoluta" : "Categoría"),
+                            MontoString = "$ " + pago.pago_monto,
+                            FechaPago = pago.fecha,
+                            Pago = 1,
+                            PagoString = "Si"
+                        };
+                        lista.Add(pagable);
+
+
+
+                    }
+                }
+
+                foreach (var inscEvento in inscripcionesEventos)
+                {
+                    var pago = db.pago_evento.FirstOrDefault(x => x.id_inscripcion_evento == inscEvento.id_inscripcion);
+                    if (pago == null)
+                    {
+                        var fechaPagable = DateTime.Today;
+                        if (inscEvento.evento_especial.fecha != null)
+                        {
+                            fechaPagable = (DateTime)inscEvento.evento_especial.fecha;
+                        }
+                        decimal montoPagable = 0;
+                        if (inscEvento.evento_especial.precio != null)
+                        {
+                            montoPagable = (decimal)inscEvento.evento_especial.precio;
+                        }
+
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = fechaPagable,
+                            TipoPago = ConstantesTipoPago.EVENTO(),
+                            Monto = montoPagable,
+                            Nombre = inscEvento.evento_especial.nombre,
+                            Inscripcion = inscEvento.id_inscripcion,
+                            Participante = (int)inscEvento.id_participante,
+                            NombreParticipante = inscEvento.participante_evento.nombre + " " +
+                                                 inscEvento.participante_evento.apellido,
+                            IdObjeto = (int)inscEvento.id_evento,
+                            MontoString = "$ " + montoPagable,
+                            Pago = 0,
+                            PagoString = "N"
+                        };
+                        lista.Add(pagable);
+                    }
+                    else
+                    {
+
+                        var fechaPagable = DateTime.Today;
+                        if (inscEvento.evento_especial.fecha != null)
+                        {
+                            fechaPagable = (DateTime)inscEvento.evento_especial.fecha;
+                        }
+
+
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = fechaPagable,
+                            TipoPago = ConstantesTipoPago.EVENTO(),
+                            Monto = pago.pago_monto,
+                            Nombre = inscEvento.evento_especial.nombre,
+                            Inscripcion = inscEvento.id_inscripcion,
+                            Participante = (int)inscEvento.id_participante,
+                            NombreParticipante = inscEvento.participante_evento.nombre + " " +
+                                                 inscEvento.participante_evento.apellido,
+                            IdObjeto = (int)inscEvento.id_evento,
+                            MontoString = "$ " + pago.pago_monto,
+                            FechaPago = pago.fecha,
+                            Pago = 1,
+                            PagoString = "Si"
+
+                        };
+                        lista.Add(pagable);
+                    }
+                }
+
+                //Clases sin Pagar
+                foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1))
+                {
+                    //Validaciones al vicio pero por la estructura de la base
+                    if (inscClase.id_clase == null) continue;
+
+                    if (!inscClase.proximo_vencimiento.HasValue) continue;
+
+                    if (inscClase.clase.precio == null) continue;
+
+
+                    var pago = db.pago_clase.FirstOrDefault(x => x.id_clase == inscClase.id_clase && x.id_alumno == inscClase.id_alumno);
+                    if (pago != null)
+                    {
+                        var detallePago =
+                            db.detalle_pago_clase.FirstOrDefault(x =>
+                                x.id_pago_clase == pago.id_pago_clase && x.fecha_vencimiento_cumple == inscClase.proximo_vencimiento);
+                        if (detallePago != null)
+                        {
+                            continue;
+                        }
+                    }
+
+                    var recargoParametro = db.parametro.Find(1);
+
+                    var recargo = recargoParametro == null ? 0 : (double)recargoParametro.valor;
+
+                    var fechaPagable = inscClase.proximo_vencimiento.Value;
+
+                    decimal montoPagable = 0;
+
+                    if (inscClase.recargo == 1)
+                    {
+                        montoPagable = (decimal)(inscClase.clase.precio + recargo);
+
+                    }
+                    else
+                    {
+                        montoPagable = (decimal)inscClase.clase.precio;
+                    }
+
+                    var pagable = new ObjetoPagable
+                    {
+                        Fecha = fechaPagable,
+                        TipoPago = ConstantesTipoPago.CLASE(),
+                        Monto = montoPagable,
+                        Nombre = inscClase.clase.nombre,
+                        Inscripcion = inscClase.id_inscripcion,
+                        Participante = (int)inscClase.id_alumno,
+                        NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
+                        IdObjeto = (int)inscClase.id_clase,
+                        MontoString = "$ " + montoPagable,
+                        Pago = 0,
+                        PagoString = "No"
+                    };
+
+                    if (inscClase.recargo == 1)
+                    {
+                        pagable.DescripcionObjeto = "Pago con recargo por demora: $" + recargo;
+                    }
+                    lista.Add(pagable);
+                }
+
+                //Clases pagadas
+                foreach (var inscClase in inscripcionesClases)
+                {
+                    //Validaciones al vicio pero por la estructura de la base
+                    if (inscClase.id_clase == null) continue;
+
+                    if (!inscClase.proximo_vencimiento.HasValue) continue;
+
+                    if (inscClase.clase.precio == null) continue;
+
+
+                    var pago = db.pago_clase.FirstOrDefault(x => x.id_clase == inscClase.id_clase && x.id_alumno == inscClase.id_alumno);
+                    if (pago != null)
+                    {
+                        var detallesPago =
+                            db.detalle_pago_clase.Where(x =>
+                                x.id_pago_clase == pago.id_pago_clase);
+                        if (detallesPago.Any())
+                        {
+                            foreach (var detallePago in detallesPago)
+                            {
+                                var pagable = new ObjetoPagable
+                                {
+                                    Fecha = detallePago.fecha_vencimiento_cumple.Value,
+                                    TipoPago = ConstantesTipoPago.CLASE(),
+                                    Monto = detallePago.monto.Value,
+                                    Nombre = inscClase.clase.nombre,
+                                    Inscripcion = inscClase.id_inscripcion,
+                                    Participante = (int)inscClase.id_alumno,
+                                    NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
+                                    IdObjeto = (int)inscClase.id_clase,
+                                    MontoString = "$ " + detallePago.monto.Value,
+                                    Pago = 1,
+                                    PagoString = "Si",
+                                    FechaPago = detallePago.fecha_hora
+                                };
+                                if (detallePago.recargo == 1)
+                                {
+                                    pagable.DescripcionObjeto = "Pago con recargo por demora";
+                                }
+
+                                lista.Add(pagable);
+                            }
+                        }
+                    }
+                }
+                return lista.OrderBy(x => x.Fecha).ToList();
+
+            }
+        }
+
+
+
     }
 }

@@ -19,6 +19,9 @@ namespace JJSS_Negocio.Resultados.Pagos
         public int IdObjeto { get; set; }
         public string DescripcionObjeto { get; set; }
         public string MontoString { get; set; }
+        public DateTime? FechaPago { get; set; }
+        public short? Pago { get; set; }
+        public string PagoString { get; set; }
 
         public string GetDescripcion()
         {
