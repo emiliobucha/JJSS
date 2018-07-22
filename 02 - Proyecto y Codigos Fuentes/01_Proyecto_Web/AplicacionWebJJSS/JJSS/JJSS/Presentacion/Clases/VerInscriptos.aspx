@@ -100,10 +100,16 @@
                                 <asp:BoundField DataField="inscr_tipo" HeaderText="Tipo" />
                                 <asp:BoundField DataField="inscr_dni" HeaderText="Documento" />
                                 <asp:BoundField DataField="inscr_faja" HeaderText="Faja" />              
-                                <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Vto del Mes" />
-                                <asp:BoundField DataField="inscr_pago" HeaderText="Pagó" />
+                                <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Prox Vto" />
+                                <asp:BoundField DataField="inscr_pago" HeaderText="Pagó mes" />
                                 <asp:BoundField DataField="inscr_recargo" HeaderText="Moroso" />
-                                <asp:ButtonField CommandName="modificar" Text="Modificar Vto" HeaderText="" />
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="aa" CommandName="modificar" runat="server" CommandArgument='<%#Eval("inscr_id_alumno") %>'
+                                                      > Modificar Vto</asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+<%--                                <asp:ButtonField CommandName="modificar" Text="Modificar Vto" HeaderText="" />--%>
                             </Columns>
                             <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
 

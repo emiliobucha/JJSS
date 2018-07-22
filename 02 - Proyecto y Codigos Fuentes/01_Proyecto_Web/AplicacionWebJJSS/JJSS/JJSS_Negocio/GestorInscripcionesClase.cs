@@ -489,20 +489,20 @@ namespace JJSS_Negocio
                         continue;
                     }
 
-                    if (inscripcion.proximo_vencimiento.Value.Month > hoy.Month)
-                    {
+                    //if (inscripcion.proximo_vencimiento.Value.Month > hoy.Month)
+                    //{
 
-                        alumno.inscr_fecha_vto_mensual = inscripcion.fecha_desde.Value.ToString("dd/MM/yyyy");
-                        alumno.inscr_fecha_vto = inscripcion.fecha_desde.Value;
+                    //    alumno.inscr_fecha_vto_mensual = inscripcion.fecha_desde.Value.ToString("dd/MM/yyyy");
+                    //    alumno.inscr_fecha_vto = inscripcion.fecha_desde.Value;
 
 
-                    }
-                    else
-                    {
+                    //}
+                    //else
+                    //{
                         alumno.inscr_fecha_vto_mensual = inscripcion.proximo_vencimiento.Value.ToString("dd/MM/yyyy");
                         alumno.inscr_fecha_vto = inscripcion.proximo_vencimiento.Value;
 
-                    }
+                 //   }
 
 
 
@@ -578,20 +578,20 @@ namespace JJSS_Negocio
                         continue;
                     }
 
-                    if (inscripcion.proximo_vencimiento.Value.Month > hoy.Month)
-                    {
+                    //if (inscripcion.proximo_vencimiento.Value.Month > hoy.Month)
+                    //{
 
-                        alumno.inscr_fecha_vto_mensual = inscripcion.fecha_desde.Value.ToString("dd/MM/yyyy");
-                        alumno.inscr_fecha_vto = inscripcion.fecha_desde.Value;
+                    //    alumno.inscr_fecha_vto_mensual = inscripcion.fecha_desde.Value.ToString("dd/MM/yyyy");
+                    //    alumno.inscr_fecha_vto = inscripcion.fecha_desde.Value;
 
 
-                    }
-                    else
-                    {
+                    //}
+                    //else
+                    //{
                         alumno.inscr_fecha_vto_mensual = inscripcion.proximo_vencimiento.Value.ToString("dd/MM/yyyy");
                         alumno.inscr_fecha_vto = inscripcion.proximo_vencimiento.Value;
 
-                    }
+                    //}
 
 
 

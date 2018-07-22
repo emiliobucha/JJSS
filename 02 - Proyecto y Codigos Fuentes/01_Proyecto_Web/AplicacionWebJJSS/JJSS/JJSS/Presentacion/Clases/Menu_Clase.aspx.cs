@@ -159,6 +159,7 @@ namespace JJSS.Presentacion
             listado_asistencia.Style["display"] = "none";
             graduar_alumno.Style["display"] = "none";
             crear_clase.Style["display"] = "none";
+            asistenciaAnteriores.Style["display"] = "none";
         }
 
 

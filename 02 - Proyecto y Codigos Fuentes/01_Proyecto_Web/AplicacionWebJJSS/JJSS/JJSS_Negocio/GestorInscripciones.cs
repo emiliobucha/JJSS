@@ -495,8 +495,10 @@ namespace JJSS_Negocio
                                         par_faja = inscr.faja.descripcion,
                                         par_categoria = inscr.categoria_torneo.categoria.nombre,
                                         inscr_tipoI = inscr.tipo_inscripcion,
-                                        par_tipo_documento = part.tipo_documento.codigo
-                                       
+                                        par_tipo_documento = part.tipo_documento.codigo,
+                                        tor_precio_absoluto = inscr.torneo.precio_absoluto.ToString(),
+                                        tor_precio_categoria = inscr.torneo.precio_categoria.ToString()
+
 
                                     };
                 List<CompInscripcionTorneo> participantesList = participantes.ToList();
@@ -511,7 +513,16 @@ namespace JJSS_Negocio
                         part.par_categoria = "Sin categoría";
                     }
 
-                    part.inscr_tipo = part.inscr_tipoI == 0 ? "Inscripción a categoria" : "Inscripción absoluta";
+                    if (part.inscr_tipoI != null && part.inscr_tipoI == ConstantesTipoInscripcion.CATEGORIA)
+                    {
+                        part.tor_precio = part.tor_precio_categoria;
+                    }
+                    else if (part.inscr_tipoI != null && part.inscr_tipoI == ConstantesTipoInscripcion.ABSOLUTO)
+                    {
+                        part.tor_precio = part.tor_precio_absoluto;
+                    }
+
+                    part.inscr_tipo = part.inscr_tipoI == ConstantesTipoInscripcion.CATEGORIA ? "Inscripción a categoria" : "Inscripción absoluta";
 
 
                     part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
