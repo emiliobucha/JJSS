@@ -951,9 +951,24 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
-                alumno alumnoS = db.alumno.Find(idAlumno);
-                alumnoS.id_estado = ConstantesEstado.ALUMNOS_ACTIVO;
-                db.SaveChanges();
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    alumno alumnoS = db.alumno.Find(idAlumno);
+                    alumnoS.id_estado = ConstantesEstado.ALUMNOS_ACTIVO;
+                    db.SaveChanges();
+
+                    seguridad_usuario usuario = db.seguridad_usuario.Find(alumnoS.id_usuario);
+                    usuario.baja_logica = ConstatesBajaLogica.ACTUAL;
+                    db.SaveChanges();
+
+                    transaction.Commit();
+
+                }catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
             }
         }
 
