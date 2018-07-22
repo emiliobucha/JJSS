@@ -173,10 +173,10 @@ namespace JJSS.Presentacion.Clases
 
 
                 int index = Convert.ToInt32(e.CommandArgument);
-                var id = int.Parse(gv_inscripciones.DataKeys[index].Value.ToString());
+                //var id = int.Parse(gv_inscripciones.DataKeys[index].Value.ToString());
 
                 Session["idClase"] = idClaseGlobal;
-                Session["idAlumno"] = id;
+                Session["idAlumno"] = index;
                
                 Response.Redirect("../Pagos/PagosCambioVto");
 

@@ -97,6 +97,7 @@ namespace JJSS.Presentacion
             menuPerfil.Style["display"] = "none";
             menuAdministracion.Style["display"] = "none";
             menuBI.Style["display"] = "none";
+            menuPagos.Style["display"] = "none";
         }
     }
 }
