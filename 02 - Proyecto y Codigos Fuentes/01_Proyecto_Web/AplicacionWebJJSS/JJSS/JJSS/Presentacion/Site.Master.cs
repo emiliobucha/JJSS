@@ -250,7 +250,20 @@ namespace JJSS
                         nav_pago_alumno.Style["display"] = "none";
                     }
 
-                    
+
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'PAGO_MES'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        nav_pago_mes.Style["display"] = "none";
+                    }
+                   
+
+
 
                 }
             }
