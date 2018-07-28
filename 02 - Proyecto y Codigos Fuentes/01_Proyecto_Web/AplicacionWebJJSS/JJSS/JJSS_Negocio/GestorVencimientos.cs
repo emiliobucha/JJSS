@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJSS_Entidad;
 using JJSS_Negocio.Constantes;
+using JJSS_Negocio.Herramientas;
 
 namespace JJSS_Negocio
 {
@@ -18,66 +19,136 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
+                var logger = new Logger("ActualizarEstadoInscripcion-" + DateTime.Today.ToString("ddMMyyyy"));
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
+                    logger.AgregarMensaje("Inicio", "Inicio de actualizacion de estado");
 
-                    foreach (var inscripcionClase in db.inscripcion_clase.Where(x=>x.actual == 1))
+                    var inscripcionesActivas = db.inscripcion_clase.Where(x => x.actual == 1);
+                    foreach (var inscripcion in inscripcionesActivas)
                     {
-                        if (!inscripcionClase.proximo_vencimiento.HasValue) continue;
-
-                        //Si la fecha de vencimiento es hoy o ya paso
-                        if (inscripcionClase.proximo_vencimiento.Value.AddDays(10) <= DateTime.Today)
+                        //Veo si la fecha de vencimiento ya pasó
+                        if (inscripcion.fecha_vencimiento < DateTime.Today)
                         {
-
-                            //Si realizo pagos dentro la fecha que se vencia (10 dias siguientes) se actualiza su fecha de vencimiento
-                            var pagos = db.pago_clase.FirstOrDefault(x =>
-                                x.id_alumno == inscripcionClase.id_alumno && x.id_clase == inscripcionClase.id_clase);
-
-                           List<detalle_pago_clase> detalles = new List<detalle_pago_clase>();
-
-
-                            if (pagos != null) detalles = pagos.detalle_pago_clase.ToList(); 
-                            
-                            ////Los pagos tienen el mes en un string
-                            //var mesToday = meses[DateTime.Today.Month - 1];
-
-                            if (detalles.FirstOrDefault(x => x.fecha_vencimiento_cumple == inscripcionClase.proximo_vencimiento) != null)
+                            //Si la inscripción vencida estaba paga, genero una nueva inscripción
+                            if (inscripcion.pago_clase.Count > 0)
                             {
-                                inscripcionClase.fecha_desde = inscripcionClase.proximo_vencimiento;
-                                inscripcionClase.proximo_vencimiento =
-                                    CalcularProxVto(inscripcionClase.proximo_vencimiento.Value);
-                                inscripcionClase.recargo = 0;
-                                inscripcionClase.actual = 1;
-                                db.SaveChanges();
-                            }
-                            else
-                            {
+                                var proximoVto = inscripcion.fecha_vencimiento.Value.AddMonths(1);
 
-                                var asistencias = db.asistencia_clase.Where(x => x.id_clase == inscripcionClase.id_clase && x.id_alumno == inscripcionClase.id_alumno);
-
-                                //Verifico si asistio en ese periodo de tiempo
-                                var asistio = asistencias.Any(asistencia => DbFunctions.TruncateTime(asistencia.fecha_hora) > DbFunctions.TruncateTime(inscripcionClase.proximo_vencimiento) &&
-                                                                            DbFunctions.TruncateTime(asistencia.fecha_hora) <= DbFunctions.TruncateTime(DbFunctions.AddDays(inscripcionClase.proximo_vencimiento,10)));
-
-                             
-                                if (asistio)
+                                //Si no hay una inscripcion ya en ese periodo
+                                var inscripcionFutura = db.inscripcion_clase.Where(
+                                    x => x.id_clase == inscripcion.id_clase &&
+                                    x.id_alumno == inscripcion.id_alumno &&
+                                  DbFunctions.TruncateTime(x.fecha_vencimiento) >= DbFunctions.TruncateTime(proximoVto)
+                                );
+                                //Si no hay una inscripcion ya en ese periodo creo una nueva
+                                if (!inscripcionFutura.Any())
                                 {
-                                    inscripcionClase.recargo = 1;
+                                    var newInscripcion = new inscripcion_clase
+                                    {
+
+                                        fecha = DateTime.Now,
+                                        hora = DateTime.Now.TimeOfDay.ToString("HH:mm"),
+                                        fecha_desde = inscripcion.fecha_vencimiento,
+                                        fecha_vencimiento = proximoVto,
+                                        actual = 1,
+                                        provisoria = 1,
+                                        moroso_si = 0,
+                                        recargo = 0,
+                                        id_clase = inscripcion.id_clase,
+                                        id_alumno = inscripcion.id_alumno
+                                    };
+
+                                    db.inscripcion_clase.Add(newInscripcion);
                                     db.SaveChanges();
                                 }
-                                else
-                                {
-                                    //Si no asistio dentro de los dias de vencimiento y 10 dias despues y no pagó se da de baja
-                                    inscripcionClase.actual = 0;
-                                    db.SaveChanges();                                   
-                                }
 
+
+                                //Doy de baja la vencida
+                                inscripcion.actual = 0;
+                                db.SaveChanges();
 
                             }
+                            //Si la inscripción de este mes le permite ingresar como moroso
+                            //NO doy de baja la vencida y genero una nueva
+                            else if (inscripcion.moroso_si == 1)
+                            {
+                                var proximoVto = inscripcion.fecha_vencimiento.Value.AddMonths(1);
+
+                                //Si no hay una inscripcion ya en ese periodo
+                                var inscripcionFutura = db.inscripcion_clase.Where(
+                                    x => x.id_clase == inscripcion.id_clase &&
+                                         x.id_alumno == inscripcion.id_alumno &&
+                                         DbFunctions.TruncateTime(x.fecha_vencimiento) >= DbFunctions.TruncateTime(proximoVto)
+                                );
+                                //Si no hay una inscripcion ya en ese periodo creo una nueva
+                                if (!inscripcionFutura.Any())
+                                {
+                                    var newInscripcion = new inscripcion_clase
+                                    {
+
+                                        fecha = DateTime.Now,
+                                        hora = DateTime.Now.TimeOfDay.ToString("HH:mm"),
+                                        fecha_desde = inscripcion.fecha_vencimiento,
+                                        fecha_vencimiento = proximoVto,
+                                        actual = 1,
+                                        provisoria = 1,
+                                        moroso_si = 0,
+                                        recargo = 0,
+                                        id_clase = inscripcion.id_clase,
+                                        id_alumno = inscripcion.id_alumno
+                                    };
+                                
+                                db.inscripcion_clase.Add(newInscripcion);
+                                db.SaveChanges();
+                                }
+                            }
+
+                            //No pagó, vencida, era provisoria y sin recargo por asistencia vencida. Baja
+                            else if (inscripcion.provisoria == 1 && inscripcion.recargo == 0)
+                            {     
+                                inscripcion.actual = 0;
+                                db.SaveChanges();
+                            }
+                            //Si no pagó, vencida, provisoria, con recargo y asistencias, se queda como una inscripcion activa para poder luego registrar pago.
+
                         }
-                    
+                        //Verifico si es provisoria y si ya cumplió con los 10 dias de vencimiento
+                        else if (inscripcion.provisoria == 1 && inscripcion.fecha_desde.Value.AddDays(10)> DateTime.Today)
+                        {
+                            //Si habia pagado, deja de ser provisoria
+                            if (inscripcion.pago_clase.Count > 0)
+                            {
+                                inscripcion.provisoria = 0;
+                                inscripcion.moroso_si = 0;
+                                db.SaveChanges();
+                            }
+                            //Si no habia pagado
+                            else
+                            {
+                                // y tenia asistencias, se le suma el recargo
+                                if (inscripcion.asistencia_clase.Count > 0)
+                                { 
+                                    inscripcion.recargo = 1;
+                                    db.SaveChanges();
+                                }
+                                //Si no puede ser moroso y no asistio nunca se da de baja
+                                else if (inscripcion.moroso_si == 0)
+                                {
+                                    inscripcion.actual = 0;
+                                    db.SaveChanges();
+                                }
+                                
+                            }
+                        }
+
+
+
                     }
+
+
+
                     transaction.Commit();
                     return "OK";
                 }
@@ -99,13 +170,13 @@ namespace JJSS_Negocio
                 var transaction = db.Database.BeginTransaction();
                 try
                 {
-                    var alumnosActivos = db.alumno.Where(x=>x.baja_logica == 1 && x.id_estado != ConstantesEstado.ALUMNOS_DE_BAJA);
+                    var alumnosActivos = db.alumno.Where(x => x.baja_logica == 1 && x.id_estado != ConstantesEstado.ALUMNOS_DE_BAJA);
                     foreach (var alumno in alumnosActivos)
                     {
                         var inscripciones = alumno.inscripcion_clase;
                         if (inscripciones.Count == 0) continue;
-  
-                        if (inscripciones.Any(x=>x.recargo == 1 && x.actual == 1))
+
+                        if (inscripciones.Any(x => x.recargo == 1 && x.actual == 1))
                         {
                             alumno.id_estado = ConstantesEstado.ALUMNOS_MOROSO;
                             db.SaveChanges();
@@ -115,7 +186,7 @@ namespace JJSS_Negocio
                             alumno.id_estado = ConstantesEstado.ALUMNOS_INACTIVO;
                             db.SaveChanges();
                         }
-                        if (inscripciones.Where( x=>x.recargo == 1).All(x=> x.actual == 0) && inscripciones.Where(x=> x.actual ==1).All(x=>x.recargo == 0))
+                        if (inscripciones.Where(x => x.recargo == 1).All(x => x.actual == 0) && inscripciones.Where(x => x.actual == 1).All(x => x.recargo == 0))
                         {
                             alumno.id_estado = ConstantesEstado.ALUMNOS_ACTIVO;
                             db.SaveChanges();
@@ -151,24 +222,7 @@ namespace JJSS_Negocio
             }
         }
 
-        public string ModificarFechaVto(int idInscripcion, DateTime nuevaFecha)
-        {
-            try
-            {
-                using (var db = new JJSSEntities())
-                {
-                   var inscripcion = db.inscripcion_clase.Find(idInscripcion);
-                    inscripcion.proximo_vencimiento = nuevaFecha;
-                    inscripcion.fecha_desde = nuevaFecha.AddMonths(-1);
-                    db.SaveChanges();
-                    return "";
-                }
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-        }
+      
 
     }
 }

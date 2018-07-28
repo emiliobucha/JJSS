@@ -21,7 +21,6 @@ namespace JJSS_Entidad
             this.asistencia_clase1 = new HashSet<asistencia_clase>();
             this.horario = new HashSet<horario>();
             this.inscripcion_clase = new HashSet<inscripcion_clase>();
-            this.pago_clase = new HashSet<pago_clase>();
         }
     
         public int id_clase { get; set; }
@@ -43,7 +42,5 @@ namespace JJSS_Entidad
         public virtual ICollection<horario> horario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inscripcion_clase> inscripcion_clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pago_clase> pago_clase { get; set; }
     }
 }

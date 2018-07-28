@@ -84,7 +84,7 @@ namespace JJSS.Presentacion
             {
                 alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
 
-                string sReturn = gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago, pagoRecargo);
+                string sReturn = "";//gestorPago.registrarPago(alumnoElegido.id_alumno, idClase, monto, mes, idFormaPago, pagoRecargo);
                 if (string.IsNullOrEmpty(sReturn))
                 {
                     mensaje("Se ha registrado el pago exitosamente", true);
@@ -156,7 +156,7 @@ namespace JJSS.Presentacion
             var dni =Session["PagoClase"].ToString();
             alumnoElegido = gestorAlumnos.ObtenerAlumnoPorDNI(dni);
 
-            double recargo = gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno);
+            double recargo = 0;// gestorClase.calcularRecargo(int.Parse(ddl_clase.SelectedValue), alumnoElegido.id_alumno);
             if (recargo == -1) mensaje("El alumno no está inscripto a esa clase", false);
             else
             {

@@ -38,7 +38,6 @@ namespace JJSS_Entidad
         public virtual DbSet<ciudad> ciudad { get; set; }
         public virtual DbSet<clase> clase { get; set; }
         public virtual DbSet<compra> compra { get; set; }
-        public virtual DbSet<detalle_pago_clase> detalle_pago_clase { get; set; }
         public virtual DbSet<detalle_reserva> detalle_reserva { get; set; }
         public virtual DbSet<direccion> direccion { get; set; }
         public virtual DbSet<estado> estado { get; set; }

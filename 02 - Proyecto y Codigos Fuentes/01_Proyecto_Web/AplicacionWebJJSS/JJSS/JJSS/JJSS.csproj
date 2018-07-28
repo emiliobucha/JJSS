@@ -343,7 +343,6 @@
     <Content Include="js\main.js" />
     <Content Include="js\smoothscroll.js" />
     <Content Include="Presentacion\Torneos\CrearTorneo.aspx" />
-    <Content Include="Presentacion\Inicio.aspx" />
     <Content Include="Presentacion\Login.aspx" />
     <Content Include="Presentacion\PagoClase.aspx" />
     <Content Include="Presentacion\Perfil.aspx" />
@@ -744,13 +743,6 @@
     </Compile>
     <Compile Include="Presentacion\Torneos\CrearTorneo.aspx.designer.cs">
       <DependentUpon>CrearTorneo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

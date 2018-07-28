@@ -55,7 +55,7 @@ namespace JJSS_Negocio
         public Boolean ValidarPagoParaAsistencia(int pIdAlumno, int pIdTipoClase)
         {
             gestorPago = new GestorPagoClase();
-            return gestorPago.validarPagoParaAsistencia(pIdAlumno, pIdTipoClase);
+            return false;
         }
 
         /*

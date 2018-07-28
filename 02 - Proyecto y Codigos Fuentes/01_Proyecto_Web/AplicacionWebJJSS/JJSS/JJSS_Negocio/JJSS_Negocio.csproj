@@ -87,6 +87,7 @@
     <Compile Include="GestorTorneos.cs" />
     <Compile Include="GestorUsuarios.cs" />
     <Compile Include="GestorVencimientos.cs" />
+    <Compile Include="Herramientas\Logger.cs" />
     <Compile Include="modEmails.cs" />
     <Compile Include="modReportes.cs" />
     <Compile Include="modUtilidades.cs" />
