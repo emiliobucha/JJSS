@@ -139,65 +139,74 @@ namespace JJSS_Negocio
                     //Validaciones al vicio pero por la estructura de la base
                     if (inscClase.id_clase == null) continue;
 
-                    if (!inscClase.proximo_vencimiento.HasValue) continue;
+                    if (!inscClase.fecha_vencimiento.HasValue) continue;
+
+                    if (!inscClase.fecha_desde.HasValue) continue;
 
                     if (inscClase.clase.precio == null) continue;
 
+                    var pago = inscClase.pago_clase.FirstOrDefault();
 
-
-                    //Si la fecha de vencimiento menos 10 dias es superior a hoy no puede pagar aun
-                    if (inscClase.proximo_vencimiento.Value.AddDays(-10) > DateTime.Today) continue;
-
-
-                    int mes = DateTime.Today.Month;
-                    string mesNombre = meses[mes - 1];
-
-
-                   
-                        var pago =
-                            db.pago_clase.FirstOrDefault(x => x.id_inscripcion_clase == inscClase.id_inscripcion);
-                        if (pago != null)
-                        {
-                            continue;
-                        }
-                    
 
                     var recargoParametro = db.parametro.Find(1);
 
                     var recargo = recargoParametro == null ? 0 : (double)recargoParametro.valor;
 
-                    var fechaPagable = inscClase.proximo_vencimiento.Value;
-
-                    decimal montoPagable = 0;
-
-                    if (inscClase.recargo == 1)
+                    //Generamos un pago para el periodo siguiente si estamos a 10 dias de vencimiento del periodo
+                    if (inscClase.fecha_vencimiento.Value.AddDays(-10) <= DateTime.Today && pago != null)
                     {
-                        montoPagable = (decimal)(inscClase.clase.precio + recargo);
+                        var fechaPagable = inscClase.fecha_vencimiento.Value.AddDays(10);
 
+                        var montoPagable = (decimal)inscClase.clase.precio;
+
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = fechaPagable,
+                            TipoPago = ConstantesTipoPago.CLASE(),
+                            Monto = montoPagable,
+                            Nombre = inscClase.clase.nombre,
+                            Inscripcion = inscClase.id_inscripcion,
+                            Participante = (int)inscClase.id_alumno,
+                            NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
+                            IdObjeto = (int)inscClase.id_clase,
+                            MontoString = "$ " + montoPagable.ToString("N2"),
+                            MesSiguiente = true
+                        };
+
+                        lista.Add(pagable);
                     }
-                    else
+                    else if (inscClase.provisoria == 1 && pago == null)
                     {
-                        montoPagable = (decimal)inscClase.clase.precio;
+                        var fechaPagable = inscClase.fecha_desde.Value.AddDays(10);
+
+                        decimal montoPagable;
+
+                        if (inscClase.recargo == 1)
+                        {
+                            montoPagable = (decimal)(inscClase.clase.precio + recargo);
+
+                        }
+                        else
+                        {
+                            montoPagable = (decimal)inscClase.clase.precio;
+                        }
+
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = fechaPagable,
+                            TipoPago = ConstantesTipoPago.CLASE(),
+                            Monto = montoPagable,
+                            Nombre = inscClase.clase.nombre,
+                            Inscripcion = inscClase.id_inscripcion,
+                            Participante = (int)inscClase.id_alumno,
+                            NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
+                            IdObjeto = (int)inscClase.id_clase,
+                            MontoString = "$ " + montoPagable.ToString("N2")
+                        };
+
+                        lista.Add(pagable);
                     }
 
-                    var pagable = new ObjetoPagable
-                    {
-                        Fecha = fechaPagable,
-                        TipoPago = ConstantesTipoPago.CLASE(),
-                        Monto = montoPagable,
-                        Nombre = inscClase.clase.nombre,
-                        Inscripcion = inscClase.id_inscripcion,
-                        Participante = (int)inscClase.id_alumno,
-                        NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
-                        IdObjeto = (int)inscClase.id_clase,
-                        MontoString = "$ " + montoPagable.ToString("N2")
-                    };
-
-                    if (inscClase.recargo == 1)
-                    {
-                        pagable.DescripcionObjeto = "Pago con recargo por demora: $" + recargo;
-                    }
-                    lista.Add(pagable);
                 }
 
                 return lista;
@@ -285,64 +294,51 @@ namespace JJSS_Negocio
                             db.SaveChanges();
                         }
 
-                        //if (objeto.TipoPago.Id == ConstantesTipoPago.CLASE().Id)
-                        //{
+                        if (objeto.TipoPago.Id == ConstantesTipoPago.CLASE().Id)
+                        {
 
-                        //    var inscClase =
-                        //        db.inscripcion_clase.FirstOrDefault(x => x.id_alumno == objeto.Participante && x.id_clase == objeto.IdObjeto);
+                            var inscClase =
+                                db.inscripcion_clase.Find(objeto.Inscripcion);
 
-                        //    if (inscClase == null)
-                        //    {
-                        //        throw new Exception("El alumno no está inscripto a esta clase");
-                        //    }
-                        //    if (!inscClase.proximo_vencimiento.HasValue)
-                        //    {
-                        //        throw new Exception("Hay un problema en la inscripción del alumno");
-                        //    }
+                            if (inscClase == null)
+                            {
+                                throw new Exception("El alumno no está inscripto a esta clase para ese periodo a pagar");
+                            }
+                            if (!inscClase.fecha_vencimiento.HasValue)
+                            {
+                                throw new Exception("Hay un problema en la inscripción del alumno");
+                            }
 
-                        //    var pago = db.pago_clase.FirstOrDefault(x => x.id_alumno == objeto.Participante && x.id_clase == objeto.IdObjeto);
+                            var pago = db.pago_clase.FirstOrDefault(x => x.id_inscripcion_clase == inscClase.id_inscripcion);
 
-                        //    if (pago == null)
-                        //    {
-                        //        //crear pago
-                        //        pago = new pago_clase()
-                        //        {
-                        //            id_alumno = objeto.Participante,
-                        //            id_clase = objeto.IdObjeto
-                        //        };
-                        //        db.pago_clase.Add(pago);
-                        //        db.SaveChanges();
-                        //    }
+                            if (pago != null)
+                            {
+                                throw new Exception("Ya hay un pago de esa inscripción");
+                            }
 
+                            //crear pago
+                            var nuevoPagoClase = new pago_clase()
+                            {
+                                monto = objeto.Monto,
+                                fecha_hora = DateTime.Now,
+                                fecha_vencimiento_cumple = inscClase.fecha_vencimiento,
+                                fecha_desde_cumple = inscClase.fecha_desde,
+                                id_forma_pago = pagoMultiple.FormaPago,
+                                recargo = inscClase.recargo,
+                                id_pago_multiple = nuevoPago.id_pago,
+                                id_inscripcion_clase = objeto.Inscripcion
+                            };
+                            db.pago_clase.Add(nuevoPagoClase);
 
-                        //    int mes = inscClase.proximo_vencimiento.Value.Month;
-                        //    string mesNombre = meses[mes - 1];
+                            inscClase.recargo = 0;
+                            inscClase.actual = 1;
+                            inscClase.provisoria = 0;
+                            inscClase.moroso_si = 0;
 
-
-                        //    //crear detalle
-                        //    var nuevoDetalle = new detalle_pago_clase()
-                        //    {
-                        //        id_pago_clase = pago.id_pago_clase,
-                        //        monto = objeto.Monto,
-                        //        fecha_hora = DateTime.Now,
-                        //        mes = mesNombre,
-                        //        fecha_vencimiento_cumple = inscClase.proximo_vencimiento,
-                        //        fecha_desde_cumple = inscClase.fecha_desde,
-                        //        id_forma_pago = pagoMultiple.FormaPago,
-                        //        recargo = inscClase.recargo,
-                        //        id_pago_multiple = nuevoPago.id_pago
-                        //    };
-                        //    db.detalle_pago_clase.Add(nuevoDetalle);
-
-                        //    inscClase.fecha_desde = inscClase.proximo_vencimiento.Value;
-                        //    inscClase.proximo_vencimiento = inscClase.proximo_vencimiento.Value.AddMonths(1);
-                        //    inscClase.recargo = 0;
-                        //    inscClase.actual = 1;
-
-                        //    db.SaveChanges();
+                            db.SaveChanges();
 
 
-                        //}
+                        }
                     }
 
 
@@ -653,115 +649,105 @@ namespace JJSS_Negocio
                     }
                 }
 
-                ////Clases sin Pagar
-                //foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1))
-                //{
-                //    //Validaciones al vicio pero por la estructura de la base
-                //    if (inscClase.id_clase == null) continue;
+                //Clases sin Pagar
+                foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1))
+                {
+                    //Validaciones al vicio pero por la estructura de la base
+                    if (inscClase.id_clase == null) continue;
 
-                //    if (!inscClase.proximo_vencimiento.HasValue) continue;
+                    if (!inscClase.fecha_vencimiento.HasValue) continue;
 
-                //    if (inscClase.clase.precio == null) continue;
-
-
-                //    var pago = db.pago_clase.FirstOrDefault(x => x.id_clase == inscClase.id_clase && x.id_alumno == inscClase.id_alumno);
-                //    if (pago != null)
-                //    {
-                //        var detallePago =
-                //            db.detalle_pago_clase.FirstOrDefault(x =>
-                //                x.id_pago_clase == pago.id_pago_clase && x.fecha_vencimiento_cumple == inscClase.proximo_vencimiento);
-                //        if (detallePago != null)
-                //        {
-                //            continue;
-                //        }
-                //    }
-
-                //    var recargoParametro = db.parametro.Find(1);
-
-                //    var recargo = recargoParametro == null ? 0 : (double)recargoParametro.valor;
-
-                //    var fechaPagable = inscClase.proximo_vencimiento.Value;
-
-                //    decimal montoPagable = 0;
-
-                //    if (inscClase.recargo == 1)
-                //    {
-                //        montoPagable = (decimal)(inscClase.clase.precio + recargo);
-
-                //    }
-                //    else
-                //    {
-                //        montoPagable = (decimal)inscClase.clase.precio;
-                //    }
-
-                //    var pagable = new ObjetoPagable
-                //    {
-                //        Fecha = fechaPagable,
-                //        TipoPago = ConstantesTipoPago.CLASE(),
-                //        Monto = montoPagable,
-                //        Nombre = inscClase.clase.nombre,
-                //        Inscripcion = inscClase.id_inscripcion,
-                //        Participante = (int)inscClase.id_alumno,
-                //        NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
-                //        IdObjeto = (int)inscClase.id_clase,
-                //        MontoString = "$ " + montoPagable.ToString("N2"),
-                //        Pago = 0,
-                //        PagoString = "No"
-                //    };
-
-                //    if (inscClase.recargo == 1)
-                //    {
-                //        pagable.DescripcionObjeto = "Pago con recargo por demora: $" + recargo;
-                //    }
-                //    lista.Add(pagable);
-                //}
-
-                ////Clases pagadas
-                //foreach (var inscClase in inscripcionesClases)
-                //{
-                //    //Validaciones al vicio pero por la estructura de la base
-                //    if (inscClase.id_clase == null) continue;
-
-                //    if (!inscClase.proximo_vencimiento.HasValue) continue;
-
-                //    if (inscClase.clase.precio == null) continue;
+                    if (inscClase.clase.precio == null) continue;
 
 
-                //    var pago = db.pago_clase.FirstOrDefault(x => x.id_clase == inscClase.id_clase && x.id_alumno == inscClase.id_alumno);
-                //    if (pago != null)
-                //    {
-                //        var detallesPago =
-                //            db.detalle_pago_clase.Where(x =>
-                //                x.id_pago_clase == pago.id_pago_clase);
-                //        if (detallesPago.Any())
-                //        {
-                //            foreach (var detallePago in detallesPago)
-                //            {
-                //                var pagable = new ObjetoPagable
-                //                {
-                //                    Fecha = detallePago.fecha_vencimiento_cumple.Value,
-                //                    TipoPago = ConstantesTipoPago.CLASE(),
-                //                    Monto = detallePago.monto.Value,
-                //                    Nombre = inscClase.clase.nombre,
-                //                    Inscripcion = inscClase.id_inscripcion,
-                //                    Participante = (int)inscClase.id_alumno,
-                //                    NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
-                //                    IdObjeto = (int)inscClase.id_clase,
-                //                    MontoString = "$ " + detallePago.monto.Value.ToString("N2"),
-                //                    Pago = 1,
-                //                    PagoString = "Si",
-                //                    FechaPago = detallePago.fecha_hora
-                //                };
-                //                if (detallePago.recargo == 1)
-                //                {
-                //                    pagable.DescripcionObjeto = "Pago con recargo por demora";
-                //                }
+                    var pago = inscClase.pago_clase;
+                    if (pago != null)
+                    {
 
-                //                lista.Add(pagable);
-                //            }
-                //        }
-                //    }
-                //}
+                        continue;
+
+                    }
+
+                    var recargoParametro = db.parametro.Find(1);
+
+                    var recargo = recargoParametro == null ? 0 : (double)recargoParametro.valor;
+
+                    var fechaPagable = inscClase.fecha_vencimiento.Value;
+
+                    decimal montoPagable = 0;
+
+                    if (inscClase.recargo == 1)
+                    {
+                        montoPagable = (decimal)(inscClase.clase.precio + recargo);
+
+                    }
+                    else
+                    {
+                        montoPagable = (decimal)inscClase.clase.precio;
+                    }
+
+                    var pagable = new ObjetoPagable
+                    {
+                        Fecha = fechaPagable,
+                        TipoPago = ConstantesTipoPago.CLASE(),
+                        Monto = montoPagable,
+                        Nombre = inscClase.clase.nombre,
+                        Inscripcion = inscClase.id_inscripcion,
+                        Participante = (int)inscClase.id_alumno,
+                        NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
+                        IdObjeto = (int)inscClase.id_clase,
+                        MontoString = "$ " + montoPagable.ToString("N2"),
+                        Pago = 0,
+                        PagoString = "No"
+                    };
+
+                    if (inscClase.recargo == 1)
+                    {
+                        pagable.DescripcionObjeto = "Pago con recargo por demora: $" + recargo;
+                    }
+                    lista.Add(pagable);
+                }
+
+                //Clases pagadas
+                foreach (var inscClase in inscripcionesClases)
+                {
+                    //Validaciones al vicio pero por la estructura de la base
+                    if (inscClase.id_clase == null) continue;
+
+                    if (!inscClase.fecha_vencimiento.HasValue) continue;
+
+                    if (inscClase.clase.precio == null) continue;
+
+
+                    var pago = inscClase.pago_clase.FirstOrDefault();
+                    if (pago != null)
+                    {
+
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = pago.fecha_vencimiento_cumple.Value,
+                            TipoPago = ConstantesTipoPago.CLASE(),
+                            Monto = pago.monto.Value,
+                            Nombre = inscClase.clase.nombre,
+                            Inscripcion = inscClase.id_inscripcion,
+                            Participante = (int)inscClase.id_alumno,
+                            NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
+                            IdObjeto = (int)inscClase.id_clase,
+                            MontoString = "$ " + pago.monto.Value.ToString("N2"),
+                            Pago = 1,
+                            PagoString = "Si",
+                            FechaPago = pago.fecha_hora
+                        };
+                        if (pago.recargo == 1)
+                        {
+                            pagable.DescripcionObjeto = "Pago con recargo por demora";
+                        }
+
+                        lista.Add(pagable);
+                    }
+
+
+                }
                 return lista.OrderBy(x => x.Fecha).ToList();
 
             }
@@ -782,15 +768,15 @@ namespace JJSS_Negocio
                 var inscripcionesTorneoSp = db.inscripcion.Where(x =>
                     DbFunctions.TruncateTime(x.torneo.fecha) >= desde &&
                     DbFunctions.TruncateTime(x.torneo.fecha) <= hasta &&
-                    x.pago==0 && x.participante.id_alumno != null);
+                    x.pago == 0 && x.participante.id_alumno != null);
                 var inscripcionesEventosSp = db.inscripcion_evento.Where(x =>
                     DbFunctions.TruncateTime(x.evento_especial.fecha) >= desde &&
                     DbFunctions.TruncateTime(x.evento_especial.fecha) <= hasta &&
                     x.pago == 0 && x.participante_evento.id_alumno != null);
 
                 var inscripcionesClases = db.inscripcion_clase.Where(x =>
-                    DbFunctions.TruncateTime(x.proximo_vencimiento) >= desde &&
-                    DbFunctions.TruncateTime(x.proximo_vencimiento) <= hasta);
+                    DbFunctions.TruncateTime(x.fecha_vencimiento) >= desde &&
+                    DbFunctions.TruncateTime(x.fecha_vencimiento) <= hasta);
 
 
                 foreach (var inscTorneo in inscripcionesTorneoSp)
@@ -800,7 +786,7 @@ namespace JJSS_Negocio
                     var fechaPagable = DateTime.Today;
                     if (inscTorneo.torneo.fecha != null)
                     {
-                        fechaPagable = (DateTime) inscTorneo.torneo.fecha;
+                        fechaPagable = (DateTime)inscTorneo.torneo.fecha;
                     }
                     decimal montoPagable = 0;
                     if (inscTorneo.tipo_inscripcion != null)
@@ -809,7 +795,7 @@ namespace JJSS_Negocio
                         {
                             if (inscTorneo.torneo.precio_absoluto != null)
                             {
-                                montoPagable = (decimal) inscTorneo.torneo.precio_absoluto;
+                                montoPagable = (decimal)inscTorneo.torneo.precio_absoluto;
                             }
 
                         }
@@ -817,7 +803,7 @@ namespace JJSS_Negocio
                         {
                             if (inscTorneo.torneo.precio_categoria != null)
                             {
-                                montoPagable = (decimal) inscTorneo.torneo.precio_categoria;
+                                montoPagable = (decimal)inscTorneo.torneo.precio_categoria;
                             }
 
                         }
@@ -830,9 +816,9 @@ namespace JJSS_Negocio
                         Monto = montoPagable,
                         Nombre = inscTorneo.torneo.nombre,
                         Inscripcion = inscTorneo.id_inscripcion,
-                        Participante = (int) inscTorneo.id_participante,
+                        Participante = (int)inscTorneo.id_participante,
                         NombreParticipante = inscTorneo.participante.apellido + ", " + inscTorneo.participante.nombre,
-                        IdObjeto = (int) inscTorneo.id_torneo,
+                        IdObjeto = (int)inscTorneo.id_torneo,
                         DescripcionObjeto = "Tipo de Inscripción: " +
                                             (inscTorneo.id_absoluto != null ? "Absoluta" : "Categoría"),
                         MontoString = "$ " + montoPagable.ToString("N2"),
@@ -849,12 +835,12 @@ namespace JJSS_Negocio
                     var fechaPagable = DateTime.Today;
                     if (inscEvento.evento_especial.fecha != null)
                     {
-                        fechaPagable = (DateTime) inscEvento.evento_especial.fecha;
+                        fechaPagable = (DateTime)inscEvento.evento_especial.fecha;
                     }
                     decimal montoPagable = 0;
                     if (inscEvento.evento_especial.precio != null)
                     {
-                        montoPagable = (decimal) inscEvento.evento_especial.precio;
+                        montoPagable = (decimal)inscEvento.evento_especial.precio;
                     }
 
                     var pagable = new ObjetoPagable
@@ -864,10 +850,10 @@ namespace JJSS_Negocio
                         Monto = montoPagable,
                         Nombre = inscEvento.evento_especial.nombre,
                         Inscripcion = inscEvento.id_inscripcion,
-                        Participante = (int) inscEvento.id_participante,
+                        Participante = (int)inscEvento.id_participante,
                         NombreParticipante = inscEvento.participante_evento.apellido + ", " +
                                              inscEvento.participante_evento.nombre,
-                        IdObjeto = (int) inscEvento.id_evento,
+                        IdObjeto = (int)inscEvento.id_evento,
                         MontoString = "$ " + montoPagable.ToString("N2"),
                         TipoDocumento = inscEvento.participante_evento.tipo_documento.codigo,
                         Numero = inscEvento.participante_evento.dni
@@ -875,73 +861,66 @@ namespace JJSS_Negocio
                     lista.Add(pagable);
                 }
 
-                //foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1))
-                //{
-                //    //Validaciones al vicio pero por la estructura de la base
-                //    if (inscClase.id_clase == null) continue;
+                foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1))
+                {
+                    //Validaciones al vicio pero por la estructura de la base
+                    if (inscClase.id_clase == null) continue;
 
-                //    if (!inscClase.proximo_vencimiento.HasValue) continue;
+                    if (!inscClase.fecha_vencimiento.HasValue) continue;
 
-                //    if (inscClase.clase.precio == null) continue;
-                    
+                    if (inscClase.clase.precio == null) continue;
 
-                //    var pago = db.pago_clase.FirstOrDefault(x =>
-                //        x.id_clase == inscClase.id_clase && x.id_alumno == inscClase.id_alumno);
-                //    if (pago != null)
-                //    {
-                //        var detallePago =
-                //            db.detalle_pago_clase.FirstOrDefault(x =>
-                //                x.id_pago_clase == pago.id_pago_clase &&
-                //                x.fecha_vencimiento_cumple == inscClase.proximo_vencimiento);
-                //        if (detallePago != null)
-                //        {
-                //            continue;
-                //        }
-                //    }
 
-                //    var recargoParametro = db.parametro.Find(1);
+                    var pago = inscClase.pago_clase;
+                    if (pago != null)
+                    {
+                        continue;
 
-                //    var recargo = recargoParametro == null ? 0 : (double) recargoParametro.valor;
+                    }
 
-                //    var fechaPagable = inscClase.proximo_vencimiento.Value;
+                    var recargoParametro = db.parametro.Find(1);
 
-                //    decimal montoPagable = 0;
+                    var recargo = recargoParametro == null ? 0 : (double)recargoParametro.valor;
 
-                //    if (inscClase.recargo == 1)
-                //    {
-                //        montoPagable = (decimal) (inscClase.clase.precio + recargo);
+                    var fechaPagable = inscClase.fecha_vencimiento.Value;
 
-                //    }
-                //    else
-                //    {
-                //        montoPagable = (decimal) inscClase.clase.precio;
-                //    }
+                    decimal montoPagable = 0;
 
-                //    var pagable = new ObjetoPagable
-                //    {
-                //        Fecha = fechaPagable,
-                //        TipoPago = ConstantesTipoPago.CLASE(),
-                //        Monto = montoPagable,
-                //        Nombre = inscClase.clase.nombre,
-                //        Inscripcion = inscClase.id_inscripcion,
-                //        Participante = (int) inscClase.id_alumno,
-                //        NombreParticipante = inscClase.alumno.apellido + ", " + inscClase.alumno.nombre,
-                //        IdObjeto = (int) inscClase.id_clase,
-                //        MontoString = "$ " + montoPagable.ToString("N2"),
-                //        TipoDocumento = inscClase.alumno.tipo_documento.codigo,
-                //        Numero= inscClase.alumno.dni
-                //    };
+                    if (inscClase.recargo == 1)
+                    {
+                        montoPagable = (decimal)(inscClase.clase.precio + recargo);
 
-                //    if (inscClase.recargo == 1)
-                //    {
-                //        pagable.DescripcionObjeto = "Pago con recargo por demora";
-                //    }
-                //    lista.Add(pagable);
-                //}
+                    }
+                    else
+                    {
+                        montoPagable = (decimal)inscClase.clase.precio;
+                    }
+
+                    var pagable = new ObjetoPagable
+                    {
+                        Fecha = fechaPagable,
+                        TipoPago = ConstantesTipoPago.CLASE(),
+                        Monto = montoPagable,
+                        Nombre = inscClase.clase.nombre,
+                        Inscripcion = inscClase.id_inscripcion,
+                        Participante = (int)inscClase.id_alumno,
+                        NombreParticipante = inscClase.alumno.apellido + ", " + inscClase.alumno.nombre,
+                        IdObjeto = (int)inscClase.id_clase,
+                        MontoString = "$ " + montoPagable.ToString("N2"),
+                        TipoDocumento = inscClase.alumno.tipo_documento.codigo,
+                        Numero = inscClase.alumno.dni
+                    };
+
+                    if (inscClase.recargo == 1)
+                    {
+                        pagable.DescripcionObjeto = "Pago con recargo por demora";
+                    }
+                    lista.Add(pagable);
+                }
 
 
 
-               
+
                 return lista.OrderBy(x => x.Fecha).ToList();
             }
         }
@@ -964,9 +943,9 @@ namespace JJSS_Negocio
                     DbFunctions.TruncateTime(x.fecha) >= desde &&
                     DbFunctions.TruncateTime(x.fecha) <= hasta);
 
-                //var detallesPagoClase = db.detalle_pago_clase.Where(x =>
-                //    DbFunctions.TruncateTime(x.fecha_hora) >= desde &&
-                //    DbFunctions.TruncateTime(x.fecha_hora) <= hasta);
+                var pagoClases = db.pago_clase.Where(x =>
+                    DbFunctions.TruncateTime(x.fecha_hora) >= desde &&
+                    DbFunctions.TruncateTime(x.fecha_hora) <= hasta);
 
                 foreach (var pago in pagosTorneos)
                 {
@@ -998,7 +977,7 @@ namespace JJSS_Negocio
                     };
 
                     lista.Add(pagable);
-                    
+
                 }
 
                 foreach (var pago in pagosEventos)
@@ -1032,42 +1011,41 @@ namespace JJSS_Negocio
 
                 }
 
-                //foreach (var detalle in detallesPagoClase)
-                //{
-                //    var fechaPagable = DateTime.Today;
-                //    if (detalle.fecha_vencimiento_cumple != null)
-                //    {
-                //        fechaPagable = (DateTime)detalle.fecha_vencimiento_cumple;
-                //    }
+                foreach (var detalle in pagoClases)
+                {
+                    var fechaPagable = DateTime.Today;
+                    if (detalle.fecha_vencimiento_cumple != null)
+                    {
+                        fechaPagable = (DateTime)detalle.fecha_vencimiento_cumple;
+                    }
 
 
-                //    var inscripcion = db.inscripcion_clase.FirstOrDefault(x =>
-                //        x.id_clase == detalle.pago_clase.id_clase && x.id_alumno == detalle.pago_clase.id_clase);
+                    var inscripcion = detalle.inscripcion_clase;
 
-                //    var pagable = new ObjetoPagable
-                //    {
-                //        Fecha = fechaPagable,
-                //        TipoPago = ConstantesTipoPago.CLASE(),
-                //        Monto = detalle.monto??0,
-                //        Nombre = detalle.pago_clase.clase.nombre,
-                //        Inscripcion =inscripcion?.id_inscripcion?? 0 ,
-                //        Participante = detalle.pago_clase.id_alumno??0,
-                //        NombreParticipante = detalle.pago_clase.alumno.apellido + ", " +
-                //                             detalle.pago_clase.alumno.nombre,
-                //        IdObjeto = detalle.pago_clase.id_clase ?? 0,
-                //        MontoString = "$ " + detalle.monto.Value.ToString("N2"),
-                //        FechaPago = detalle.fecha_hora,
-                //        Pago = 1,
-                //        PagoString = "Si",
-                //        TipoDocumento = detalle.pago_clase.alumno.tipo_documento.codigo,
-                //        Numero = detalle.pago_clase.alumno.dni
+                    var pagable = new ObjetoPagable
+                    {
+                        Fecha = fechaPagable,
+                        TipoPago = ConstantesTipoPago.CLASE(),
+                        Monto = detalle.monto ?? 0,
+                        Nombre = inscripcion.clase.nombre,
+                        Inscripcion = inscripcion?.id_inscripcion ?? 0,
+                        Participante = inscripcion.id_alumno ?? 0,
+                        NombreParticipante = inscripcion.alumno.apellido + ", " +
+                                             inscripcion.alumno.nombre,
+                        IdObjeto = inscripcion.id_clase ?? 0,
+                        MontoString = "$ " + detalle.monto.Value.ToString("N2"),
+                        FechaPago = detalle.fecha_hora,
+                        Pago = 1,
+                        PagoString = "Si",
+                        TipoDocumento = inscripcion.alumno.tipo_documento.codigo,
+                        Numero = inscripcion.alumno.dni
 
-                //    };
+                    };
 
-                //    lista.Add(pagable);
-                //}
+                    lista.Add(pagable);
+                }
 
-                return lista.OrderBy(x=>x.FechaPago).ThenBy(x=>x.Fecha).ToList();
+                return lista.OrderBy(x => x.FechaPago).ThenBy(x => x.Fecha).ToList();
             }
 
         }

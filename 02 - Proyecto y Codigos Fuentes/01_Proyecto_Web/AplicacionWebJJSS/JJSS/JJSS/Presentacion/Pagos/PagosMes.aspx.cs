@@ -130,7 +130,7 @@ namespace JJSS.Presentacion.Pagos
             }
             if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TipoPago.Tipo")) == "Clase")
             {
-                e.Row.BackColor = System.Drawing.Color.LightGreen;
+                e.Row.BackColor = System.Drawing.Color.LightYellow;
             }
         }
     }

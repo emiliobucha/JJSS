@@ -119,7 +119,7 @@ namespace JJSS.Presentacion.Pagos
                     return;
                 }
 
-                gestorVencimientos.ModificarFechaVto(inscripcion.id_inscripcion, fecha);
+                //gestorVencimientos.ModificarFechaVto(inscripcion.id_inscripcion, fecha);
                 Mensaje("Se ha modificado correctamente la fecha de vencimiento" , true);
             }
             catch (Exception exception)

@@ -85,6 +85,33 @@ namespace JJSS.Presentacion.Clases {
         protected global::System.Web.UI.WebControls.DropDownList ddl_clase;
         
         /// <summary>
+        /// Control divFiltros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFiltros;
+        
+        /// <summary>
+        /// Control dp_fecha_desde.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_fecha_desde;
+        
+        /// <summary>
+        /// Control dp_fecha_hasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_fecha_hasta;
+        
+        /// <summary>
         /// Control btn_buscar.
         /// </summary>
         /// <remarks>

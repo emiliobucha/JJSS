@@ -170,20 +170,20 @@
                             <div class="row centered">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
 
-                                    <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="alu_id" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20" OnRowDataBound="gvAlumnos_RowDataBound">
+                                    <asp:GridView ID="gvAlumnos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="id_alumno" OnPageIndexChanging="gvAlumnos_PageIndexChanging" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay alumnos para mostrar" OnRowCommand="gvAlumnos_RowCommand" AllowPaging="True" PageSize="20" OnRowDataBound="gvAlumnos_RowDataBound">
                                         <Columns>
-                                            <asp:BoundField DataField="alu_apellido" HeaderText="Apellido"/>
-                                            <asp:BoundField DataField="alu_nombre" HeaderText="Nombre"/>
-                                            <asp:BoundField DataField="alu_tipoDocumento" HeaderText="Tipo de Documento"/>
-                                            <asp:BoundField DataField="alu_dni" HeaderText="Número de Documento"/>
+                                            <asp:BoundField DataField="apellido" HeaderText="Apellido"/>
+                                            <asp:BoundField DataField="nombre" HeaderText="Nombre"/>
+                                            <asp:BoundField DataField="tipo_documento" HeaderText="Tipo de Documento"/>
+                                            <asp:BoundField DataField="dni" HeaderText="Número de Documento"/>
                                             <asp:TemplateField HeaderText="Acciones" HeaderStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btn_inscribir" runat="server" class="btn btn-link" CommandName="inscribir" CommandArgument=<%# Eval("alu_id") %>/>
+                                                    <asp:Button ID="btn_inscribir" runat="server" class="btn btn-link" CommandName="inscribir" CommandArgument=<%# Eval("id_alumno") %>/>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Acciones" HeaderStyle-HorizontalAlign="Center">
+                                            <asp:TemplateField HeaderText="" HeaderStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btn_desinscribir" runat="server" class="btn btn-link" CommandName="desinscribir" CommandArgument=<%# Eval("alu_id") %>/>
+                                                    <asp:Button ID="btn_desinscribir" runat="server" class="btn btn-link" CommandName="desinscribir" CommandArgument=<%# Eval("id_alumno") %>/>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="inscripto" HeaderText="" Visible="false"/>

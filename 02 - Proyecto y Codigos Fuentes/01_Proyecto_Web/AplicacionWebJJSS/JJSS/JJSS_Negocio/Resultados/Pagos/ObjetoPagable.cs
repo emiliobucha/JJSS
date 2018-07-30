@@ -19,6 +19,8 @@ namespace JJSS_Negocio.Resultados.Pagos
         public string TipoDocumento { get; set; }
         public string Numero { get; set; }
 
+        public bool MesSiguiente { get; set; }
+
         public int IdObjeto { get; set; }
         public string DescripcionObjeto { get; set; }
         public string MontoString { get; set; }

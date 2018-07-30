@@ -20,7 +20,7 @@ namespace JJSS.Presentacion
         private GestorInscripcionesClase gestorInscripcionClase;
         private DataTable dtHorarios;
         private static int id_Clase;
-        private static List<AlumnoConEstado> alumnos;
+        private static List<AlumnoInscripcionClase> alumnos;
 
         enum TipoDocumento : int
         {
@@ -150,103 +150,115 @@ namespace JJSS.Presentacion
         /*
          * Carga de la Grilla del listado de alumnos
          */
+        //protected void CargarGrilla()
+        //{
+        //    var dni = txt_filtro_dni.Text;
+        //    List<AlumnoConEstado> listaCompleta = mostrarAlumnosNoInscriptos();
+        //    alumnos = listaCompleta;
+        //    List<AlumnoConEstado> listaConFiltro = new List<AlumnoConEstado>();
+        //    string filtroApellido = txt_filtro_apellido.Text.ToUpper();
+
+        //    int idTipo;
+        //    int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+        //    foreach (AlumnoConEstado i in listaCompleta)
+        //    {
+        //        if (idTipo == 0)
+        //        {
+        //            if (!string.IsNullOrEmpty(dni))
+        //            {
+        //                if (i.alu_apellido.ToUpper().StartsWith(filtroApellido) && i.alu_dni == dni)
+        //                {
+        //                    listaConFiltro.Add(i);
+        //                }
+                        
+                       
+        //            }
+        //            else if (i.alu_apellido.ToUpper().StartsWith(filtroApellido))
+        //            {
+        //                listaConFiltro.Add(i);
+        //            }
+
+        //        }
+        //        else
+        //        {
+
+        //            if (!string.IsNullOrEmpty(dni))
+        //            {
+        //                if (i.alu_id_tipo_documento == idTipo && i.alu_apellido.ToUpper().StartsWith(filtroApellido) && i.alu_dni == dni)
+        //                {
+        //                    listaConFiltro.Add(i);
+        //                }
+                       
+        //            }
+        //            else
+        //            {
+        //                if (i.alu_id_tipo_documento == idTipo && i.alu_apellido.ToUpper().StartsWith(filtroApellido))
+        //                {
+        //                    listaConFiltro.Add(i);
+        //                }
+                        
+        //            }
+        //        }
+
+
+
+        //    }
+
+        //    gvAlumnos.DataSource = listaConFiltro;
+        //    gvAlumnos.DataBind();
+        //}
+
+        //private List<AlumnoConEstado> mostrarAlumnosNoInscriptos()
+        //{
+        //    List<alumno> alumnosInscriptos = gestorInscripcionClase.ObtenerAlumnosDeUnaClase(id_Clase);
+        //    List<alumno> alumnos = gestorAlumnos.BuscarAlumno();
+        //    List<AlumnoConEstado> alumnoParaMostrar=new List<AlumnoConEstado>();
+        //    Boolean encontro = false;
+
+        //    foreach (alumno a in alumnos)
+        //    {
+        //        foreach (alumno alumnoInscripto in alumnosInscriptos)
+        //        {
+        //            if (a.dni == alumnoInscripto.dni)
+        //            {
+        //                encontro = true;
+        //                break;
+        //            }
+        //            else encontro = false;
+        //        }
+
+        //        AlumnoConEstado ae = new AlumnoConEstado()
+        //        {
+        //            alu_apellido = a.apellido,
+        //            alu_dni = a.dni,
+        //            alu_nombre = a.nombre,
+        //            alu_id = a.id_alumno,
+        //            alu_tipoDocumento = ((TipoDocumento)a.id_tipo_documento).ToString(),
+        //            alu_id_tipo_documento = (int)a.id_tipo_documento
+        //        };
+        //        if (encontro) ae.inscripto = "SI";
+        //        else ae.inscripto = "NO";
+                
+        //        alumnoParaMostrar.Add(ae);
+        //    }
+            
+        //    return alumnoParaMostrar;
+        //}
+
+
+
+        //____________     Mensajes de error    __________
+
         protected void CargarGrilla()
         {
-            var dni = txt_filtro_dni.Text;
-            List<AlumnoConEstado> listaCompleta = mostrarAlumnosNoInscriptos();
-            alumnos = listaCompleta;
-            List<AlumnoConEstado> listaConFiltro = new List<AlumnoConEstado>();
-            string filtroApellido = txt_filtro_apellido.Text.ToUpper();
-
-            int idTipo;
-            int.TryParse(ddl_tipo.SelectedValue, out idTipo);
-
-            foreach (AlumnoConEstado i in listaCompleta)
-            {
-                if (idTipo == 0)
-                {
-                    if (!string.IsNullOrEmpty(dni))
-                    {
-                        if (i.alu_apellido.ToUpper().StartsWith(filtroApellido) && i.alu_dni == dni)
-                        {
-                            listaConFiltro.Add(i);
-                        }
-                        
-                       
-                    }
-                    else if (i.alu_apellido.ToUpper().StartsWith(filtroApellido))
-                    {
-                        listaConFiltro.Add(i);
-                    }
-
-                }
-                else
-                {
-
-                    if (!string.IsNullOrEmpty(dni))
-                    {
-                        if (i.alu_id_tipo_documento == idTipo && i.alu_apellido.ToUpper().StartsWith(filtroApellido) && i.alu_dni == dni)
-                        {
-                            listaConFiltro.Add(i);
-                        }
-                       
-                    }
-                    else
-                    {
-                        if (i.alu_id_tipo_documento == idTipo && i.alu_apellido.ToUpper().StartsWith(filtroApellido))
-                        {
-                            listaConFiltro.Add(i);
-                        }
-                        
-                    }
-                }
-
-
-
-            }
-
-            gvAlumnos.DataSource = listaConFiltro;
+            alumnos = gestorInscripcionClase.ObtenerAlumnosInscribibles(id_Clase,null,null,null);
+            gvAlumnos.DataSource = alumnos;
             gvAlumnos.DataBind();
         }
 
-        private List<AlumnoConEstado> mostrarAlumnosNoInscriptos()
-        {
-            List<alumno> alumnosInscriptos = gestorInscripcionClase.ObtenerAlumnosDeUnaClase(id_Clase);
-            List<alumno> alumnos = gestorAlumnos.BuscarAlumno();
-            List<AlumnoConEstado> alumnoParaMostrar=new List<AlumnoConEstado>();
-            Boolean encontro = false;
 
-            foreach (alumno a in alumnos)
-            {
-                foreach (alumno alumnoInscripto in alumnosInscriptos)
-                {
-                    if (a.dni == alumnoInscripto.dni)
-                    {
-                        encontro = true;
-                        break;
-                    }
-                    else encontro = false;
-                }
 
-                AlumnoConEstado ae = new AlumnoConEstado()
-                {
-                    alu_apellido = a.apellido,
-                    alu_dni = a.dni,
-                    alu_nombre = a.nombre,
-                    alu_id = a.id_alumno,
-                    alu_tipoDocumento = ((TipoDocumento)a.id_tipo_documento).ToString(),
-                    alu_id_tipo_documento = (int)a.id_tipo_documento
-                };
-                if (encontro) ae.inscripto = "SI";
-                else ae.inscripto = "NO";
-                
-                alumnoParaMostrar.Add(ae);
-            }
-            
-            return alumnoParaMostrar;
-        }
-
-        //____________     Mensajes de error    __________
         /*
          * Administracion de visualizaciones de mensajes
          */
@@ -275,7 +287,16 @@ namespace JJSS.Presentacion
          */
         protected void btn_buscar_alumno_Click(object sender, EventArgs e)
         {
-            CargarGrilla();
+
+            var apellido = txt_filtro_apellido.Text;
+            int idTipoDoc = 0;
+            int.TryParse(ddl_tipo.SelectedValue, out idTipoDoc);
+
+            var dni = txt_filtro_dni.Text;  
+           
+            alumnos = gestorInscripcionClase.ObtenerAlumnosInscribibles(id_Clase, idTipoDoc, dni, apellido);
+            gvAlumnos.DataSource = alumnos;
+            gvAlumnos.DataBind();
             //Session["alumnos"] = "Administrar";
             pnl_mensaje_error.Visible = false;
             pnl_mensaje_exito.Visible = false;
@@ -309,12 +330,12 @@ namespace JJSS.Presentacion
 
                 //captura de datos de la grilla
                 int id = Convert.ToInt32(e.CommandArgument);
-                AlumnoConEstado alumnoSeleccionado = alumnos.FirstOrDefault(x => x.alu_id == id);
+                var alumnoSeleccionado = alumnos.FirstOrDefault(x => x.id_alumno == id);
                 
-                string nombre_Alumno = alumnoSeleccionado.alu_nombre;
-                string apellido_Alumno = alumnoSeleccionado.alu_apellido;
-                string dniAlumno = alumnoSeleccionado.alu_dni;
-                string tipoDco = alumnoSeleccionado.alu_tipoDocumento;
+                string nombre_Alumno = alumnoSeleccionado.nombre;
+                string apellido_Alumno = alumnoSeleccionado.apellido;
+                string dniAlumno = alumnoSeleccionado.dni;
+                string tipoDco = alumnoSeleccionado.tipo_documento;
                 cargaDatosAlumno( id,dniAlumno, nombre_Alumno, apellido_Alumno, tipoDco);
 
 
@@ -461,7 +482,7 @@ namespace JJSS.Presentacion
                 Button btnInscribir = ((Button)e.Row.FindControl("btn_inscribir"));
                 Button btnDesInscribir = ((Button)e.Row.FindControl("btn_desinscribir"));
                 string inscripto =DataBinder.Eval(e.Row.DataItem, "inscripto").ToString();
-                if (inscripto == "NO")//no esta inscripto
+                if (inscripto == "N")//no esta inscripto
                 {
                     btnInscribir.Text = "Inscribir";
                     btnDesInscribir.Text = "";

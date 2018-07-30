@@ -91,7 +91,7 @@
                 <div class="row centered p-2">
                     <div class="row centered">
                         <div class="col col-auto">
-                            <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="MenuTorneo.aspx"></asp:HyperLink>
+                            <asp:HyperLink ID="lnk_volver" runat="server" Text="Volver" class="btn btn-link" href="Menu_Evento.aspx"></asp:HyperLink>
                         </div>
                        </div>
                 </div>

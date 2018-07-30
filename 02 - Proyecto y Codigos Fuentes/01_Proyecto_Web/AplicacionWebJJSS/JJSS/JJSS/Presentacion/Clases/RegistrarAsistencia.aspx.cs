@@ -123,7 +123,7 @@ namespace JJSS.Presentacion
 
                     var hoy = DateTime.Now;
 
-                    if (inscripcionClase.proximo_vencimiento.Value.AddDays(10).Date >= hoy && hoy >= inscripcionClase.fecha_desde.Value.Date )
+                    if (inscripcionClase.fecha.Value.AddDays(10).Date >= hoy && hoy >= inscripcionClase.fecha_desde.Value.Date )
                     {
                         var resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
                             claseActual.idHorario, DateTime.Now);
