@@ -107,36 +107,56 @@ namespace JJSS.Presentacion
                         return;
                     }
 
-                    inscripcion_clase inscripcionClase =
-                        gestorInscripcionesClase.ObtenerAlumnoInscripto(alu.id_alumno, claseActual.idClase);
+                    //ACA!
 
-                    if (inscripcionClase == null)
+                    List<inscripcion_clase> inscripcionClase =
+                        gestorInscripcionesClase.ObtenerAlumnoInscriptoList(alu.id_alumno, claseActual.idClase);
+
+                    if (inscripcionClase == null || inscripcionClase.Count == 0)
                     {
                         mensaje("No se encuentra el alumno " + alu.apellido + ", " + alu.nombre + " inscripto a la clase " + claseActual.nombreClase, false);
                         return;
                     }
 
-                    asistencia_clase asistenciaDeHoy = gestorAsistencia.ValidarAsistenciaClaseAnterior(alu.id_alumno, claseActual.idClase);
+                   
+                    var hoy = DateTime.Now;
+
+                    //Filtro las inscripciones por las que estan dentro del periodo y son activas o las que te permiten pasar como moroso
+
+                    var inscripcion = inscripcionClase.Where(x =>(
+                        x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 0 && x.recargo == 0) 
+                        || (x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 1 && x.recargo == 1 && x.moroso_si == 1)).OrderBy(x=>x.fecha_vencimiento);
+
+                    if (!inscripcion.Any())
+                    {
+                        mensaje("El alumno tiene vencida la inscripción a la clase", false);
+                        return;
+                    }
+
+                    var inscripcionARegistrar = inscripcion.FirstOrDefault();
+
+                    asistencia_clase asistenciaDeHoy = gestorAsistencia.ValidarAsistenciaAnteriorInscripcionClase(inscripcionARegistrar.id_inscripcion);
 
                     if (asistenciaDeHoy != null) mensaje("El alumno " + alu.apellido + ", " + alu.nombre + " ya asistió a la clase " + claseActual.nombreClase + " de hoy", false);
 
-
-                    var hoy = DateTime.Now;
-
-                    if (inscripcionClase.fecha.Value.AddDays(10).Date >= hoy && hoy >= inscripcionClase.fecha_desde.Value.Date )
+                    var resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
+                        claseActual.idHorario, DateTime.Now, inscripcionARegistrar.id_inscripcion);
+                    if (resultado == "")
                     {
-                        var resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
-                            claseActual.idHorario, DateTime.Now);
-                        if (resultado == "") mensaje("Asistencia registrada exitosamente", true);
-                        else mensaje(resultado, false);
+                        mensaje("Asistencia registrada exitosamente", true);
+                        return;
                     }
-                    else mensaje("El alumno tiene vencida la inscripción a la clase", false);
+
+                    mensaje(resultado, false);
+
+
+                   
 
                 }
             }
-            catch (Exception )
+            catch (Exception ex)
             {
-                mensaje("Ha ocurrido un error al tratar de registrar una nueva asistencia", false);
+                mensaje("Ha ocurrido un error al tratar de registrar una nueva asistencia. Error: " + ex.Message, false);
             }
        
         }
@@ -164,11 +184,6 @@ namespace JJSS.Presentacion
             }
         }
 
-
-        protected void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("../Inicio.aspx#section_clases");
-        }
 
         protected void cstm_ubicacion_ServerValidate(object source, ServerValidateEventArgs args)
         {

@@ -19,6 +19,9 @@ namespace JJSS_Negocio.Resultados
         public DateTime? inscr_fecha_vto { get; set; }
         public string inscr_fecha_vto_mensual { get; set; }
 
+        public DateTime? inscr_fecha_desde { get; set; }
+        public string inscr_fecha_desde_mensual { get; set; }
+
         public int id_inscripcion { get; set; }
         public string nombre { get; set; }
         public string tipo_clase { get; set; }

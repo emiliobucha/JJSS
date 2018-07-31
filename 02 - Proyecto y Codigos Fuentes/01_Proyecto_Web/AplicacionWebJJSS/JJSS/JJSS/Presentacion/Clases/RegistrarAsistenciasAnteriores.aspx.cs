@@ -14,6 +14,7 @@ namespace JJSS.Presentacion.Clases
     public partial class RegistrarAsistenciasAnteriores : System.Web.UI.Page
     {
         private GestorAsistencia ga;
+        private static List<AlumnoAsistenciaInscripcion> list;
         protected void Page_Load(object sender, EventArgs e)
         {
             ga = new GestorAsistencia();
@@ -75,7 +76,8 @@ namespace JJSS.Presentacion.Clases
             DateTime fecha = DateTime.Parse(dp_fecha.Text);
             try
             {
-                gv_inscriptos.DataSource = ga.BuscarAlumnosConAsistencia(idClase, fecha);
+                list = ga.BuscarAlumnosConAsistenciaInscripcion(idClase, fecha);
+                gv_inscriptos.DataSource = list;
                 gv_inscriptos.DataBind();
                 if (gv_inscriptos.Rows.Count > 0)
                 {
@@ -169,16 +171,18 @@ namespace JJSS.Presentacion.Clases
 
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
-            List<AlumnoAsistencia> alumnos = new List<AlumnoAsistencia>();
+            List<AlumnoAsistenciaInscripcion> alumnos = new List<AlumnoAsistenciaInscripcion>();
             for (int i = 0; i < gv_inscriptos.Rows.Count; i++)
             {
                 int idAlu = Convert.ToInt32(gv_inscriptos.DataKeys[i].Value);
-                CheckBox chk = (CheckBox)gv_inscriptos.Rows[i].Cells[3].FindControl("chk_asistio");
-                //CheckBox chk = (CheckBox)gv_inscriptos.Rows[i].Cells[4].FindControl("chk_asistio");
-                AlumnoAsistencia alu_agregar = new AlumnoAsistencia()
+              
+                CheckBox chk = (CheckBox)gv_inscriptos.Rows[i].Cells[4].FindControl("chk_asistio");
+                int idInscr = list[i].inscr_id;
+                AlumnoAsistenciaInscripcion alu_agregar = new AlumnoAsistenciaInscripcion()
                 {
                     alu_id = idAlu,
                     asistio = chk.Checked,
+                    inscr_id = idInscr
                 };
                 alumnos.Add(alu_agregar);
             }

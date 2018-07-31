@@ -94,6 +94,7 @@
     <Compile Include="modUtilidadesTablas.cs" />
     <Compile Include="modValidaciones.cs" />
     <Compile Include="Resultados\AlumnoAsistencia.cs" />
+    <Compile Include="Resultados\AlumnoAsistenciaInscripcion.cs" />
     <Compile Include="Resultados\AlumnoConEstado.cs" />
     <Compile Include="Resultados\AlumnoFajaInscripciones.cs" />
     <Compile Include="Resultados\AlumnoFaja.cs" />

@@ -154,13 +154,14 @@
                             <Columns>
                                 <asp:BoundField DataField="alu_apellido" HeaderText="Apellido" />
                                 <asp:BoundField DataField="alu_nombre" HeaderText="Nombre" />
-                                <%--<asp:BoundField DataField="alu_tipo_documento" HeaderText="Tipo" />--%>
-                                <asp:BoundField DataField="alu_documento" HeaderText="Documento" />
+                               <asp:BoundField DataField="alu_tipo_documento" HeaderText="Tipo" />
+                                <asp:BoundField DataField="alu_documento" HeaderText="Documento" />                
                                 <asp:TemplateField HeaderText="Asistió" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chk_asistio" runat="server"/>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:BoundField DataField="inscr_id" HeaderText="Documento"  Visible="False"/>
                             </Columns>
                             <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
 

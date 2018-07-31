@@ -67,7 +67,7 @@
         </div>
 
 
-        <div class="row centered justify-content-center " runat="server" id="div_combo_clase" visible="false">
+        <div class="row centered justify-content-center " runat="server" id="div_combo_clase" visible="False">
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                 <strong>Clase</strong>
             </div>
@@ -98,10 +98,8 @@
 
             <!--Boton-->
             <div class="col-md-1 col-xl-auto">
-
                 <asp:Button ID="btn_buscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar"
                     CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btn_buscar_Click" />
-
             </div>
 
 
@@ -133,7 +131,8 @@
                                 <asp:BoundField DataField="inscr_tipo" HeaderText="Tipo" />
                                 <asp:BoundField DataField="inscr_dni" HeaderText="Documento" />
                                 <asp:BoundField DataField="inscr_faja" HeaderText="Faja" />
-                                <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Prox Vto" />
+                                <asp:BoundField DataField="inscr_fecha_desde_mensual" HeaderText="Fecha desde" />
+                                <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Fecha vto" />
                                 <asp:BoundField DataField="inscr_pago" HeaderText="Pagó mes" />
                                 <asp:BoundField DataField="inscr_recargo" HeaderText="Moroso" />
                                 <asp:TemplateField>

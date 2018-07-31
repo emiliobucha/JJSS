@@ -86,7 +86,8 @@
                                     <asp:BoundField DataField="nombre" HeaderText="Clase" />
                                     <asp:BoundField DataField="tipo_clase" HeaderText="Disciplina" />
                                     <asp:BoundField DataField="inscr_faja" HeaderText="Faja" />
-                                    <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Próximo Vencimiento" />
+                                    <asp:BoundField DataField="inscr_fecha_desde_mensual" HeaderText="Fecha desde" />
+                                    <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Fecha vencimiento" />
                                     <asp:BoundField DataField="inscr_pago" HeaderText="Pagado" />
                                     
                                     <asp:TemplateField HeaderText="Dar de Baja" HeaderStyle-HorizontalAlign="Center">

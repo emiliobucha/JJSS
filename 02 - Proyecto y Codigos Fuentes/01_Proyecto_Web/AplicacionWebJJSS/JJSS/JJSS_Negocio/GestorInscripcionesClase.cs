@@ -297,6 +297,28 @@ namespace JJSS_Negocio
         }
 
         /*
+        * Obtener inscripciones de un alumno a una clase
+        * Parametros:
+        *              pIDAlumno: entero que representa el id del alumno
+        *              pIDClase: entero que representa el id de la clase 
+        * Retornos:Inscripcion_clase
+        *          Inscripcion del alumno a dicha clase pudiendo ser nulo el resultado si no estaba inscripto
+        *              
+        */
+        public List<inscripcion_clase> ObtenerAlumnoInscriptoList(int pIDAlumno, int pIDClase)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var inscripcion = from ic in db.inscripcion_clase
+                    where ic.id_clase == pIDClase &&
+                          ic.id_alumno == pIDAlumno
+                          && ic.actual == Constantes.ConstatesBajaLogica.ACTUAL
+                    select ic;
+                return inscripcion.OrderByDescending(x=>x.fecha).ToList();
+            }
+        }
+
+        /*
          * Metodo que valida si el alumno esta inscripto a ese tipo de clase
          * Parametros:  pIdAlumno: entero - ID del alumno
          *              pIdTipoClase: entero - ID tipo clase
@@ -580,6 +602,10 @@ namespace JJSS_Negocio
                     alumno.inscr_fecha_vto = inscripcion.fecha_vencimiento.Value;
                     alumno.inscr_pago = inscripcion.pago_clase.FirstOrDefault() != null ? "Si" : "No";
 
+
+                    alumno.inscr_fecha_desde_mensual = inscripcion.fecha_desde.Value.ToString("dd/MM/yyyy");
+                    alumno.inscr_fecha_desde = inscripcion.fecha_vencimiento.Value;
+
                     list.Add(alumno);
 
                 }
@@ -644,21 +670,17 @@ namespace JJSS_Negocio
                     alumno.inscr_fecha_vto_mensual = inscripcion.fecha_vencimiento.Value.ToString("dd/MM/yyyy");
                     alumno.inscr_fecha_vto = inscripcion.fecha_vencimiento.Value;
 
-
-
+                    alumno.inscr_fecha_desde_mensual = inscripcion.fecha_desde.Value.ToString("dd/MM/yyyy");
+                    alumno.inscr_fecha_desde = inscripcion.fecha_vencimiento.Value;
 
                     alumno.inscr_pago = inscripcion.pago_clase.FirstOrDefault() != null ? "Si" : "No";
 
                     list.Add(alumno);
 
-
                 }
                 return list.OrderBy(x => x.inscr_fecha_vto).ToList();
             }
-
-
-
-
+           
         }
 
         public InscripcionesClase ObtenerInscripcionClaseAlumno(int pIDAlumno, int pIDClase)
