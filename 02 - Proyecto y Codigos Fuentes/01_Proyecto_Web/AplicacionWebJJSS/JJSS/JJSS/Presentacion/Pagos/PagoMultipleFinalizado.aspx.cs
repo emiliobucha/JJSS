@@ -86,6 +86,33 @@ namespace JJSS.Presentacion
                 {
                     Response.Redirect("PagosPanel.aspx");
                     return;
+                }
+
+                DateTime pfecha = DateTime.Now;
+
+                string phora = pfecha.ToShortTimeString();
+
+                foreach (var clase in pagoMultiple.ObjetosPagables.Where(x => x.TipoPago.Id == 3 && x.MesSiguiente))
+                {
+                    try
+                    {
+                        var retorno = gestorInscripcionesClase.InscribirAlumnoAClaseIdReinscripcion(clase.Participante, clase.IdObjeto, clase.Inscripcion, pfecha, phora);
+                        if (retorno == 0)
+                        {
+                            mensaje("Ha ocurrido un problema al realizar el pago y reinscripción de una clase. Error: " + retorno, false);
+                            return;
+                        }
+                        
+                        //Cambio por el id de la inscripcion que pagué
+                        clase.Inscripcion = retorno;
+
+                    }
+                    catch (Exception exception)
+                    {
+                        mensaje("Ha ocurrido un problema al realizar el pago y reinscripción de una clase. Error: " + exception.Message, false);
+                     
+                    }
+
 
                 }
 
@@ -191,7 +218,7 @@ namespace JJSS.Presentacion
                 var pagoImprimir = pagoMultiple.ObjetosPagables[index];
 
                 string mail;
-                
+
                 try
                 {
                     //para usuarios
@@ -204,11 +231,11 @@ namespace JJSS.Presentacion
                 {
                     mail = null;
                 }
-               
+
 
                 try
                 {
-                  
+
 
                     if (pagoMultiple.TipoDocumento != null)
                     {

@@ -39,6 +39,11 @@ namespace JJSS.Presentacion.Pagos
                 double monto = (double) PagoMultiple.MontoTotal;
                 lbl_monto.Text = "$ " + PagoMultiple.MontoTotal;
 
+
+
+
+
+
                 if (PagoMultiple.FormaPago == ConstantesFormaPago.MERCADOPAGO)
                 {
                     mp_checkout.Visible = true;

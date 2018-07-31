@@ -845,88 +845,88 @@ namespace JJSS_Negocio
             }
         }
 
-        public void cambiarEstadoAMoroso()
-        {
-            GestorPagoClase gpc = new GestorPagoClase();
-            using (var db = new JJSSEntities())
-            {
-                var transaction = db.Database.BeginTransaction();
-                try
-                {
-                    List<alumno> alumnosActivos = (from a in db.alumno
-                                                   where a.id_estado == ConstantesEstado.ALUMNOS_ACTIVO
-                                                   select a).ToList();
-                    foreach (alumno a in alumnosActivos)
-                    {
-                        List<inscripcion_clase> inscripciones = (from i in db.inscripcion_clase
-                                                                 where i.id_alumno == a.id_alumno && i.actual == ConstatesBajaLogica.ACTUAL
-                                                                 select i).ToList();
+        //public void cambiarEstadoAMoroso()
+        //{
+        //    GestorPagoClase gpc = new GestorPagoClase();
+        //    using (var db = new JJSSEntities())
+        //    {
+        //        var transaction = db.Database.BeginTransaction();
+        //        try
+        //        {
+        //            List<alumno> alumnosActivos = (from a in db.alumno
+        //                                           where a.id_estado == ConstantesEstado.ALUMNOS_ACTIVO
+        //                                           select a).ToList();
+        //            foreach (alumno a in alumnosActivos)
+        //            {
+        //                List<inscripcion_clase> inscripciones = (from i in db.inscripcion_clase
+        //                                                         where i.id_alumno == a.id_alumno && i.actual == ConstatesBajaLogica.ACTUAL
+        //                                                         select i).ToList();
 
-                        Boolean esMoroso = false;
+        //                Boolean esMoroso = false;
 
-                        foreach (inscripcion_clase ins in inscripciones)
-                        {
-                            int? idTipoClase = ins.clase.id_tipo_clase;
-                            esMoroso = !gpc.validarPagoParaAsistencia(a.id_alumno, idTipoClase == null ? 0 : Convert.ToInt32(idTipoClase));
-                            if (esMoroso)
-                            {
-                                a.id_estado = ConstantesEstado.ALUMNOS_MOROSO;
-                                db.SaveChanges();
-                                break;
-                            }
-                        }
-                    }
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    return;
-                }
-            }
-        }
+        //                foreach (inscripcion_clase ins in inscripciones)
+        //                {
+        //                    int? idTipoClase = ins.clase.id_tipo_clase;
+        //                    esMoroso = !gpc.validarPagoParaAsistencia(a.id_alumno, idTipoClase == null ? 0 : Convert.ToInt32(idTipoClase));
+        //                    if (esMoroso)
+        //                    {
+        //                        a.id_estado = ConstantesEstado.ALUMNOS_MOROSO;
+        //                        db.SaveChanges();
+        //                        break;
+        //                    }
+        //                }
+        //            }
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            transaction.Rollback();
+        //            return;
+        //        }
+        //    }
+        //}
 
 
-        public void cambiarEstadoAActivo(int idAlumno)
-        {
-            GestorPagoClase gpc = new GestorPagoClase();
-            using (var db = new JJSSEntities())
-            {
-                var transaction = db.Database.BeginTransaction();
-                try
-                {
-                    alumno alumnoSeleccionado = db.alumno.Find(idAlumno);
+        //public void cambiarEstadoAActivo(int idAlumno)
+        //{
+        //    GestorPagoClase gpc = new GestorPagoClase();
+        //    using (var db = new JJSSEntities())
+        //    {
+        //        var transaction = db.Database.BeginTransaction();
+        //        try
+        //        {
+        //            alumno alumnoSeleccionado = db.alumno.Find(idAlumno);
 
-                    List<inscripcion_clase> inscripciones = (from i in db.inscripcion_clase
-                                                             where i.id_alumno == idAlumno && i.actual == ConstatesBajaLogica.ACTUAL
-                                                             select i).ToList();
+        //            List<inscripcion_clase> inscripciones = (from i in db.inscripcion_clase
+        //                                                     where i.id_alumno == idAlumno && i.actual == ConstatesBajaLogica.ACTUAL
+        //                                                     select i).ToList();
 
-                    Boolean esMoroso = false;
-                    int count = 0;
-                    foreach (inscripcion_clase ins in inscripciones)
-                    {
-                        int? idTipoClase = ins.clase.id_tipo_clase;
-                        esMoroso = !gpc.validarPagoParaAsistencia(idAlumno, idTipoClase == null ? 0 : Convert.ToInt32(idTipoClase));
-                        if (esMoroso)
-                        {
-                            count++;
-                        }
-                    }
-                    if (count == 1)
-                    {
-                        alumnoSeleccionado.id_estado = Constantes.ConstantesEstado.ALUMNOS_ACTIVO;
-                        db.SaveChanges();
-                    }
+        //            Boolean esMoroso = false;
+        //            int count = 0;
+        //            foreach (inscripcion_clase ins in inscripciones)
+        //            {
+        //                int? idTipoClase = ins.clase.id_tipo_clase;
+        //                esMoroso = !gpc.validarPagoParaAsistencia(idAlumno, idTipoClase == null ? 0 : Convert.ToInt32(idTipoClase));
+        //                if (esMoroso)
+        //                {
+        //                    count++;
+        //                }
+        //            }
+        //            if (count == 1)
+        //            {
+        //                alumnoSeleccionado.id_estado = Constantes.ConstantesEstado.ALUMNOS_ACTIVO;
+        //                db.SaveChanges();
+        //            }
 
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    return;
-                }
-            }
-        }
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            transaction.Rollback();
+        //            return;
+        //        }
+        //    }
+        //}
 
 
 
@@ -956,6 +956,7 @@ namespace JJSS_Negocio
                 {
                     alumno alumnoS = db.alumno.Find(idAlumno);
                     alumnoS.id_estado = ConstantesEstado.ALUMNOS_ACTIVO;
+                    alumnoS.baja_logica = 1;
                     db.SaveChanges();
 
                     seguridad_usuario usuario = db.seguridad_usuario.Find(alumnoS.id_usuario);

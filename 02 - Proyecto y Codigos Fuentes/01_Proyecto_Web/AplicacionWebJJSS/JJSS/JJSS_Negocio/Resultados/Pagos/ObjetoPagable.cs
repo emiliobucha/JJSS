@@ -16,9 +16,17 @@ namespace JJSS_Negocio.Resultados.Pagos
         public int Inscripcion { get; set; }
         public int Participante { get; set; }
         public string NombreParticipante { get; set; }
+        public string TipoDocumento { get; set; }
+        public string Numero { get; set; }
+
+        public bool MesSiguiente { get; set; }
+
         public int IdObjeto { get; set; }
         public string DescripcionObjeto { get; set; }
         public string MontoString { get; set; }
+        public DateTime? FechaPago { get; set; }
+        public short? Pago { get; set; }
+        public string PagoString { get; set; }
 
         public string GetDescripcion()
         {

@@ -7,10 +7,19 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace JJSS.Presentacion.Clases {
+namespace JJSS.Presentacion.Pagos {
     
     
-    public partial class VerInscriptos {
+    public partial class PagosAlumno {
+        
+        /// <summary>
+        /// Control formRegAlumno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm formRegAlumno;
         
         /// <summary>
         /// Control pnl_mensaje_exito.
@@ -49,102 +58,102 @@ namespace JJSS.Presentacion.Clases {
         protected global::System.Web.UI.WebControls.Label lbl_error;
         
         /// <summary>
-        /// Control div_nombre_clase.
+        /// Control pnl_mostrar_alumnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_nombre_clase;
+        protected global::System.Web.UI.WebControls.Panel pnl_mostrar_alumnos;
         
         /// <summary>
-        /// Control lbl_nombre_clase.
+        /// Control divDNI.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_nombre_clase;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDNI;
         
         /// <summary>
-        /// Control div_combo_clase.
+        /// Control ddl_tipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_combo_clase;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo;
         
         /// <summary>
-        /// Control ddl_clase.
+        /// Control txtDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_clase;
+        protected global::System.Web.UI.WebControls.TextBox txtDni;
         
         /// <summary>
-        /// Control divFiltros.
+        /// Control lblNombreBuscado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFiltros;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombreBuscado;
         
         /// <summary>
-        /// Control dp_fecha_desde.
+        /// Control btnBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dp_fecha_desde;
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
-        /// Control dp_fecha_hasta.
+        /// Control divDNIAlumno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dp_fecha_hasta;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDNIAlumno;
         
         /// <summary>
-        /// Control btn_buscar.
+        /// Control lblTipoDoc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_buscar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTipoDoc;
         
         /// <summary>
-        /// Control pnl_listado.
+        /// Control lblDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_listado;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDni;
         
         /// <summary>
-        /// Control gv_inscripciones.
+        /// Control lblNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_inscripciones;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombre;
         
         /// <summary>
-        /// Control lnk_volver.
+        /// Control gvPagos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnk_volver;
+        protected global::System.Web.UI.WebControls.GridView gvPagos;
     }
 }

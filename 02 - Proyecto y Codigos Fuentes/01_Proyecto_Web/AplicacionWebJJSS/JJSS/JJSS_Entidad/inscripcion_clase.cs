@@ -14,18 +14,30 @@ namespace JJSS_Entidad
     
     public partial class inscripcion_clase
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public inscripcion_clase()
+        {
+            this.asistencia_clase = new HashSet<asistencia_clase>();
+            this.pago_clase = new HashSet<pago_clase>();
+        }
+    
         public int id_inscripcion { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public string hora { get; set; }
         public Nullable<int> id_clase { get; set; }
         public Nullable<int> id_alumno { get; set; }
         public Nullable<short> actual { get; set; }
-        public Nullable<System.DateTime> fecha_base { get; set; }
-        public Nullable<System.DateTime> proximo_vencimiento { get; set; }
-        public Nullable<short> recargo { get; set; }
         public Nullable<System.DateTime> fecha_desde { get; set; }
+        public Nullable<System.DateTime> fecha_vencimiento { get; set; }
+        public Nullable<short> recargo { get; set; }
+        public Nullable<short> moroso_si { get; set; }
+        public Nullable<short> provisoria { get; set; }
     
         public virtual alumno alumno { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<asistencia_clase> asistencia_clase { get; set; }
         public virtual clase clase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pago_clase> pago_clase { get; set; }
     }
 }

@@ -14,19 +14,19 @@ namespace JJSS_Entidad
     
     public partial class pago_clase
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public pago_clase()
-        {
-            this.detalle_pago_clase = new HashSet<detalle_pago_clase>();
-        }
-    
         public int id_pago_clase { get; set; }
-        public Nullable<int> id_alumno { get; set; }
-        public Nullable<int> id_clase { get; set; }
+        public Nullable<decimal> monto { get; set; }
+        public Nullable<System.DateTime> fecha_hora { get; set; }
+        public string mes { get; set; }
+        public int id_forma_pago { get; set; }
+        public Nullable<short> recargo { get; set; }
+        public Nullable<int> id_pago_multiple { get; set; }
+        public Nullable<System.DateTime> fecha_vencimiento_cumple { get; set; }
+        public Nullable<System.DateTime> fecha_desde_cumple { get; set; }
+        public Nullable<int> id_inscripcion_clase { get; set; }
     
-        public virtual alumno alumno { get; set; }
-        public virtual clase clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_pago_clase> detalle_pago_clase { get; set; }
+        public virtual forma_pago forma_pago { get; set; }
+        public virtual inscripcion_clase inscripcion_clase { get; set; }
+        public virtual pago_multiple pago_multiple { get; set; }
     }
 }

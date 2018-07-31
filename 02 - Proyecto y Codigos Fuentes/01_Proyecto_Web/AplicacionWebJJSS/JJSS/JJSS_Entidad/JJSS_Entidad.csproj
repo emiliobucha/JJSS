@@ -128,9 +128,6 @@
     <Compile Include="compra.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="detalle_pago_clase.cs">
-      <DependentUpon>JJSSModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="detalle_reserva.cs">
       <DependentUpon>JJSSModel.tt</DependentUpon>
     </Compile>

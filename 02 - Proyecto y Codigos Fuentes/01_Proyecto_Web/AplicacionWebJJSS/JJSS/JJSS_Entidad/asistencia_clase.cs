@@ -20,10 +20,12 @@ namespace JJSS_Entidad
         public int id_alumno { get; set; }
         public Nullable<int> id_horario { get; set; }
         public Nullable<int> id_clase_asistencia { get; set; }
+        public Nullable<int> id_inscripcion_clase { get; set; }
     
         public virtual alumno alumno { get; set; }
         public virtual clase clase { get; set; }
         public virtual horario horario { get; set; }
         public virtual clase clase1 { get; set; }
+        public virtual inscripcion_clase inscripcion_clase { get; set; }
     }
 }

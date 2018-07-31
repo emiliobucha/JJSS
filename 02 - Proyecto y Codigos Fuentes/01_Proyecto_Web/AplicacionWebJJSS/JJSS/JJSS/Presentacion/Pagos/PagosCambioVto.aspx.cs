@@ -104,9 +104,6 @@ namespace JJSS.Presentacion.Pagos
             ddl_clase.DataTextField = "nombre";
             ddl_clase.DataValueField = "id_clase";
             ddl_clase.DataBind();
-
-            
-
         }
 
         protected void btn_guardar_OnClick(object sender, EventArgs e)
@@ -116,7 +113,13 @@ namespace JJSS.Presentacion.Pagos
 
                 DateTime fecha = DateTime.Parse(dp_fecha.Text);
                 var inscripcion = gestorInscripcionesClase.ObtenerInscripcionClaseAlumno(idAlumno, idClase);
-                gestorVencimientos.ModificarFechaVto(inscripcion.id_inscripcion, fecha);
+                if (fecha <= inscripcion.inscr_fecha_vto)
+                {
+                    Mensaje("No se puede cambiar la fecha de vencimiento por una fecha anterior", false);
+                    return;
+                }
+
+                //gestorVencimientos.ModificarFechaVto(inscripcion.id_inscripcion, fecha);
                 Mensaje("Se ha modificado correctamente la fecha de vencimiento" , true);
             }
             catch (Exception exception)

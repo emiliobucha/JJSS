@@ -522,7 +522,7 @@ namespace JJSS_Negocio
                         part.tor_precio = part.tor_precio_absoluto;
                     }
 
-                    part.inscr_tipo = part.inscr_tipoI == ConstantesTipoInscripcion.CATEGORIA ? "Inscripción a categoria" : "Inscripción absoluta";
+                    part.inscr_tipo = part.inscr_tipoI == ConstantesTipoInscripcion.CATEGORIA ? "Inscripción a categoría" : "Inscripción absoluta";
 
 
                     part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
@@ -612,7 +612,7 @@ namespace JJSS_Negocio
                         part.tor_precio = part.tor_precio_absoluto;
                     }
 
-                    part.inscr_tipo = part.inscr_tipoI == ConstantesTipoInscripcion.CATEGORIA ? "Inscripción a categoria" : "Inscripción absoluta";
+                    part.inscr_tipo = part.inscr_tipoI == ConstantesTipoInscripcion.CATEGORIA ? "Inscripción a categoría" : "Inscripción absoluta";
 
                     part.pag_fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm") + " hs";
                     part.par_fecha_nac = part.par_fecha_nacD?.ToString("dd/MM/yyyy") ?? " - ";
