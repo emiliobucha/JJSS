@@ -265,6 +265,15 @@ namespace JJSS.Presentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddl_fajas;
         
         /// <summary>
+        /// Control dp_fecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_fecha;
+        
+        /// <summary>
         /// Control btn_aceptar_inscripcion.
         /// </summary>
         /// <remarks>

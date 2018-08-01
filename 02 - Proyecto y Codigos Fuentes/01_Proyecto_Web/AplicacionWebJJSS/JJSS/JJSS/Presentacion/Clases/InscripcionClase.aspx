@@ -4,6 +4,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphEncabezado" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphP" runat="server">
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".datepicker").datepicker({
+                    dateFormat: "dd/mm/yy",
+                    monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
+                });
+            }
+        ); txt_nro_dpto
+    </script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphContenido" runat="server">
 
@@ -256,6 +267,18 @@
                             <div class="col col-sm-6 col-md-4 col-lg-4">
                                 <asp:DropDownList class="caja2" ID="ddl_fajas" runat="server">
                                 </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="row centered">
+                            <p>&nbsp;</p>
+                        </div>
+
+                        <div class="row justify-content-center   pt-1">
+                            <div class="col col-sm-1 col-md-2 col-lg-2">
+                                <label>Fecha:</label>
+                            </div>
+                            <div class="col col-sm-6 col-md-4 col-lg-4">
+                                <asp:TextBox ID="dp_fecha" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" required="true"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row centered">
