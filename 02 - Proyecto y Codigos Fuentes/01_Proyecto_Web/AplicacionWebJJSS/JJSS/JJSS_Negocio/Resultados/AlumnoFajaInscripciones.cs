@@ -8,6 +8,9 @@ namespace JJSS_Negocio.Resultados
 {
     public class AlumnoFajaInscripciones
     {
+
+        public int inscr_id { get; set; }
+
         public string inscr_apellido { get; set; }
         public string inscr_nombre { get; set; }
         public string inscr_sexo { get; set; }
@@ -37,6 +40,8 @@ namespace JJSS_Negocio.Resultados
         public DateTime? inscr_fecha_desde { get; set; }
         public string inscr_fecha_desde_mensual { get; set; }
 
+        public int? moroso_si { get; set; }
+        
 
     }
 }

@@ -549,16 +549,44 @@ namespace JJSS_Negocio
 
 
 
-        public List<AlumnoFajaInscripciones> ObtenerAlumnosInscriptosClase(int idClase)
+        public List<AlumnoFajaInscripciones> ObtenerAlumnosInscriptosClase(int idClase, int? idTipoDoc, string dni, string apellido, DateTime? desde, DateTime? hasta)
         {
             using (var db = new JJSSEntities())
             {
                 List<AlumnoFajaInscripciones> list = new List<AlumnoFajaInscripciones>();
                 var inscripciones = db.inscripcion_clase.Where(x => x.id_clase == idClase && x.actual == 1);
+
+                if (idTipoDoc != null && idTipoDoc > 0 )
+                {
+                    inscripciones = inscripciones.Where(x => x.alumno.id_tipo_documento == idTipoDoc);
+                }
+
+                if (!string.IsNullOrEmpty(dni))
+                {
+                    inscripciones = inscripciones.Where(x => x.alumno.dni == dni);
+                }
+
+                if (!string.IsNullOrEmpty(apellido))
+                {
+                    inscripciones = inscripciones.Where(x => x.alumno.apellido == apellido);
+                }
+
+                if (desde != null)
+                {
+                    inscripciones = inscripciones.Where(x => x.fecha_desde >= desde);
+                }
+                if (hasta != null)
+                {
+                    inscripciones = inscripciones.Where(x => x.fecha_desde <= hasta);
+                }
+
+
+
                 foreach (var inscripcion in inscripciones)
                 {
                     var alumno = new AlumnoFajaInscripciones
                     {
+                        inscr_id = inscripcion.id_inscripcion,
                         inscr_apellido = inscripcion.alumno.apellido,
                         inscr_dni = inscripcion.alumno.dni,
                         inscr_tipoI = inscripcion.alumno.id_tipo_documento,
@@ -569,7 +597,9 @@ namespace JJSS_Negocio
                         recargo = inscripcion.recargo,
                         inscr_recargo = inscripcion.recargo == 1 ? "Si" : "No",
                         inscr_sexo = inscripcion.alumno.sexo == 1 ? "M" : "F",
-                        inscr_id_alumno = inscripcion.alumno.id_alumno
+                        inscr_id_alumno = inscripcion.alumno.id_alumno,
+                        moroso_si = inscripcion.moroso_si
+
                     };
 
                     var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1 && x.faja.id_tipo_clase == inscripcion.clase.id_tipo_clase)
@@ -577,10 +607,7 @@ namespace JJSS_Negocio
 
                     alumno.inscr_faja = faja != null ? faja.faja.descripcion : "Faja no clasificada";
 
-                    var hoy = DateTime.Now;
-
-
-
+                  
                     if (inscripcion.fecha_vencimiento == null)
                     {
                         alumno.inscr_pago = "No";
@@ -808,6 +835,30 @@ namespace JJSS_Negocio
             catch (Exception e)
             {
                 return new List<AlumnoInscripcionClase>();
+            }
+        }
+
+        public string HabilitarDeshabilitarMoroso(int idInscripcion)
+        {
+            try
+            {
+                using (var db = new JJSSEntities())
+                {
+                    var inscripcion = db.inscripcion_clase.Find(idInscripcion);
+                    if (inscripcion == null)
+                        return "No existe inscripción con ese id";
+                    if (inscripcion.moroso_si == 0)               
+                        inscripcion.moroso_si = 1;
+                    else
+                        inscripcion.moroso_si = 0;
+                    db.SaveChanges();
+                }
+
+                return "";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
             }
         }
 

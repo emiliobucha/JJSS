@@ -67,6 +67,24 @@ namespace JJSS.Presentacion.Clases {
         protected global::System.Web.UI.WebControls.Label lbl_nombre_clase;
         
         /// <summary>
+        /// Control divFiltros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFiltros;
+        
+        /// <summary>
+        /// Control div_label_clase.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_label_clase;
+        
+        /// <summary>
         /// Control div_combo_clase.
         /// </summary>
         /// <remarks>
@@ -85,15 +103,6 @@ namespace JJSS.Presentacion.Clases {
         protected global::System.Web.UI.WebControls.DropDownList ddl_clase;
         
         /// <summary>
-        /// Control divFiltros.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFiltros;
-        
-        /// <summary>
         /// Control dp_fecha_desde.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,33 @@ namespace JJSS.Presentacion.Clases {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dp_fecha_hasta;
+        
+        /// <summary>
+        /// Control ddl_tipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipo;
+        
+        /// <summary>
+        /// Control txt_filtro_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_filtro_dni;
+        
+        /// <summary>
+        /// Control txt_filtro_apellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_filtro_apellido;
         
         /// <summary>
         /// Control btn_buscar.
