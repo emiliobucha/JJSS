@@ -65,43 +65,72 @@
                 <asp:Label ID="lbl_nombre_clase" CssClass="h3" runat="server" />
             </div>
         </div>
+        <br/>
 
 
-        <div class="row centered justify-content-center " runat="server" id="div_combo_clase" visible="False">
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <strong>Clase</strong>
+
+
+        <div runat="server" id="divFiltros">
+
+            <div class="row centered justify-content-center p-2">
+                
+
+                    <div runat="server" id="div_label_clase" class="col-lg-1 col-md-1 col-sm-12"  Visible="False">
+                        <strong>Clase:</strong>
+                    </div>
+                    <div runat="server" id="div_combo_clase" class="col-lg-2 col-md-2 col-sm-12 col-xl-2"  Visible="False">
+                        <asp:DropDownList ID="ddl_clase" class="caja2" runat="server" placeholder="Clases"></asp:DropDownList>
+                    </div>
+              
+                <div class="col-md-2 col-xl-2">
+                    <strong>Fecha desde:</strong>
+                </div>
+                <div class="col col-lg-2 col-md-2 col-sm-12 ">
+
+                    <asp:TextBox ID="dp_fecha_desde" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
+                </div>
+
+
+                <div class="col-md-1 col-xl-1">
+                    <strong>Fecha hasta: </strong>
+                </div>
+                <div class="col col-lg-2 col-md-2 col-sm-12">
+                    <asp:TextBox ID="dp_fecha_hasta" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <asp:DropDownList ID="ddl_clase" class="caja2" runat="server" placeholder="Clases"></asp:DropDownList>
+            <div class="row centered justify-content-center p-2">
+
+                <div class=" col-lg-1 col-md-1 col-sm-12">
+                    <strong>Tipo:</strong>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
+                </div>
+
+                <div class=" col-lg-1 col-md-1 col-sm-12">
+                    <strong>N° Doc:</strong>
+                </div>
+
+                <div class=" col-lg-2 col-md-2 col-sm-12">
+                    <asp:TextBox ID="txt_filtro_dni" type="number" CssClass="caja2" min="0" runat="server"></asp:TextBox>
+                </div>
+
+                <div class=" col-lg-1 col-md-1 col-sm-12">
+                    <strong>Apellido:</strong>
+                </div>
+
+                <div class=" col-lg-2 col-md-2 col-sm-12">
+                    <asp:TextBox ID="txt_filtro_apellido" CssClass="caja2" min="0" runat="server"></asp:TextBox>
+                </div>
+
             </div>
-        </div>
-
-        <div runat="server" class="row centered justify-content-center" id="divFiltros">
-
-
-            <div class="col-md-2 col-xl-auto">
-                <label class="pull-left">Fecha desde:</label>
+            <div class="row centered justify-content-center">
+                <!--Boton-->
+                <div class="col-md-1 col-xl-auto">
+                    <asp:Button ID="btn_buscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar"
+                        CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btn_buscar_Click" />
+                </div>
             </div>
-            <div class="col col-lg-3 col-md-3 col-sm-12">
-
-                <asp:TextBox ID="dp_fecha_desde" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
-            </div>
-
-
-            <div class="col-md-2 col-xl-auto">
-                <label class="pull-left">Fecha hasta: </label>
-            </div>
-            <div class="col col-lg-3 col-md-3 col-sm-12">
-
-                <asp:TextBox ID="dp_fecha_hasta" runat="server" class="datepicker caja2" pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20|21)\d{2}$" value="01/01/2000" required="true" placeholder="Seleccione fecha "></asp:TextBox>
-            </div>
-
-            <!--Boton-->
-            <div class="col-md-1 col-xl-auto">
-                <asp:Button ID="btn_buscar" runat="server" formnovalidate="true" UseSubmitBehaviour="false" CausesValidation="false" Text="Buscar"
-                    CssClass="btn btn-outline-dark" ValidationGroup="grupoDni" OnClick="btn_buscar_Click" />
-            </div>
-
 
         </div>
 
@@ -119,11 +148,11 @@
             <div class="container">
                 <div class=" row centered justify-content-center" runat="server">
                     <div class="form-group border rounded p-4">
-                        <asp:GridView ID="gv_inscripciones" runat="server" DataKeyNames="inscr_id_alumno" CssClass="table table-hover"
+                        <asp:GridView ID="gv_inscripciones" runat="server" DataKeyNames="inscr_id" CssClass="table table-hover"
                             OnRowCommand="gv_inscripciones_RowCommand"
                             CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False"
                             EmptyDataText="No hay alumnos para mostrar" AllowPaging="True"
-                            OnPageIndexChanging="gv_participantes_PageIndexChanging" PageSize="30">
+                            OnPageIndexChanging="gv_participantes_PageIndexChanging" PageSize="30" OnRowDataBound="gv_inscripciones_RowDataBound">
                             <Columns>
                                 <asp:BoundField DataField="inscr_apellido" HeaderText="Apellido" />
                                 <asp:BoundField DataField="inscr_nombre" HeaderText="Nombre" />
@@ -133,14 +162,20 @@
                                 <asp:BoundField DataField="inscr_faja" HeaderText="Faja" />
                                 <asp:BoundField DataField="inscr_fecha_desde_mensual" HeaderText="Fecha desde" />
                                 <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Fecha vto" />
-                                <asp:BoundField DataField="inscr_pago" HeaderText="Pagó mes" />
-                                <asp:BoundField DataField="inscr_recargo" HeaderText="Moroso" />
-                                <asp:TemplateField>
+                                <asp:BoundField DataField="inscr_pago" HeaderText="Pagó periodo" />
+                                <asp:BoundField DataField="inscr_recargo" HeaderText="Recargo" />
+                                <asp:TemplateField HeaderText="Permitir moroso">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="aa" CommandName="modificar" runat="server" CommandArgument='<%#Eval("inscr_id_alumno") %>'> Modificar Vto</asp:LinkButton>
+                                        <asp:LinkButton ID="habilitar" CommandName="moroso" runat="server" CommandArgument='<%#Eval("inscr_id") %>' Text="Habilitar"> </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <%--                                <asp:ButtonField CommandName="modificar" Text="Modificar Vto" HeaderText="" />--%>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="aa" CommandName="modificar" runat="server" CommandArgument='<%#Eval("inscr_id") %>'> Mod. periodo</asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                               
+                                
                             </Columns>
                             <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
 
