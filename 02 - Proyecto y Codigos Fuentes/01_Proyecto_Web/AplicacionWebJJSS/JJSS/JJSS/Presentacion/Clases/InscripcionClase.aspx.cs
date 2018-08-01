@@ -59,6 +59,7 @@ namespace JJSS.Presentacion
 
                         }
                     }
+                    dp_fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 }
                 catch (Exception ex)
                 {
@@ -421,7 +422,7 @@ namespace JJSS.Presentacion
 
             var id = int.Parse(txtIdAlumno.Text);
 
-            DateTime pfecha = DateTime.Now;
+            DateTime pfecha = Convert.ToDateTime(dp_fecha.Text);
 
             string phora = pfecha.ToShortTimeString();
             int idFaja = 0;

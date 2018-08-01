@@ -76,6 +76,9 @@ namespace JJSS.Presentacion
         {
             try
             {
+                pnl_mensaje_exito.Visible = false;
+                pnl_mensaje_error.Visible = false;
+
                 gestorAsistencia = new GestorAsistencia();
                 gestorAlumno = new GestorAlumnos();
                 gestorInscripcionesClase = new GestorInscripcionesClase();
@@ -118,47 +121,29 @@ namespace JJSS.Presentacion
                         return;
                     }
 
-                   
-                    var hoy = DateTime.Now;
-
-                    //Filtro las inscripciones por las que estan dentro del periodo y son activas o las que te permiten pasar como moroso
-
-                    var inscripcion = inscripcionClase.Where(x =>(
-                        x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 0 && x.recargo == 0) 
-                        || (x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 1 && x.recargo == 1 && x.moroso_si == 1)).OrderBy(x=>x.fecha_vencimiento);
-
-                    if (!inscripcion.Any())
-                    {
-                        mensaje("El alumno tiene vencida la inscripción a la clase", false);
-                        return;
-                    }
-
-                    var inscripcionARegistrar = inscripcion.FirstOrDefault();
-
-                    asistencia_clase asistenciaDeHoy = gestorAsistencia.ValidarAsistenciaAnteriorInscripcionClase(inscripcionARegistrar.id_inscripcion);
-
-                    if (asistenciaDeHoy != null) mensaje("El alumno " + alu.apellido + ", " + alu.nombre + " ya asistió a la clase " + claseActual.nombreClase + " de hoy", false);
-
-                    var resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
-                        claseActual.idHorario, DateTime.Now, inscripcionARegistrar.id_inscripcion);
-                    if (resultado == "")
-                    {
-                        mensaje("Asistencia registrada exitosamente", true);
-                        return;
-                    }
-
-                    mensaje(resultado, false);
-
-
-                   
+                    cargarDatos(claseActual,alu);
 
                 }
             }
             catch (Exception ex)
             {
-                mensaje("Ha ocurrido un error al tratar de registrar una nueva asistencia. Error: " + ex.Message, false);
+                mensaje("Ha ocurrido un error al tratar de buscar los datos del alumno. Error: " + ex.Message, false);
             }
-       
+
+        }
+
+        private void cargarDatos(ClasesHorariosAsistencia claseActual, alumno alumnoIngresado)
+        {
+            divConfirmacion.Visible = true;
+            divIngreso.Visible = false;
+
+            lblAcademia.InnerText = ddl_ubicacion.SelectedItem.Text;
+            lblClase.InnerText = claseActual.nombreClase;
+            lblDni.InnerText = alumnoIngresado.dni;
+            lblNombre.InnerText = alumnoIngresado.nombre + " " + alumnoIngresado.apellido;
+            lblTipoDoc.InnerText = ddl_tipo.SelectedItem.Text;
+            
+
         }
 
         /*Resumen:
@@ -210,5 +195,114 @@ namespace JJSS.Presentacion
 
         }
 
+        protected void btnSI_Click(object sender, EventArgs e)
+        {
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+
+            try
+            {
+                gestorAsistencia = new GestorAsistencia();
+                gestorAlumno = new GestorAlumnos();
+                gestorInscripcionesClase = new GestorInscripcionesClase();
+                int ubicacion = int.Parse(ddl_ubicacion.SelectedValue);
+
+                ClasesHorariosAsistencia claseActual = gestorAsistencia.buscarClaseSegunHoraActual(ubicacion);
+
+                if (claseActual == null) mensaje("No hay clases disponibles en este horario", false);
+                else
+                {
+
+                    var dni = txtDni.Text;
+
+                    int idTipo;
+                    int.TryParse(ddl_tipo.SelectedValue, out idTipo);
+
+                    if (!modValidaciones.validarFormatoDocumento(dni, idTipo))
+                    {
+                        mensaje("El documento debe tener sólo números", false);
+                        return;
+                    }
+
+                    alumno alu = gestorAlumno.ObtenerAlumnoPorDNITipo(idTipo, dni);
+
+
+                    if (alu == null)
+                    {
+                        mensaje("No se encuentra ningún alumno registrado con ese tipo y número de documento", false);
+                        return;
+                    }
+
+                    //ACA!
+
+                    List<inscripcion_clase> inscripcionClase =
+                        gestorInscripcionesClase.ObtenerAlumnoInscriptoList(alu.id_alumno, claseActual.idClase);
+
+                    if (inscripcionClase == null || inscripcionClase.Count == 0)
+                    {
+                        mensaje("No se encuentra el alumno " + alu.apellido + ", " + alu.nombre + " inscripto a la clase " + claseActual.nombreClase, false);
+                        return;
+                    }
+
+
+                    var hoy = DateTime.Now;
+
+                    //Filtro las inscripciones por las que estan dentro del periodo y son activas o las que te permiten pasar como moroso
+
+                    var inscripcion = inscripcionClase.Where(x => (
+                        x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 0 && x.recargo == 0)
+                        || (x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 1 && x.recargo == 1 && x.moroso_si == 1)).OrderBy(x => x.fecha_vencimiento);
+
+                    if (!inscripcion.Any())
+                    {
+                        mensaje("El alumno tiene vencida la inscripción a la clase", false);
+                        return;
+                    }
+
+                    var inscripcionARegistrar = inscripcion.FirstOrDefault();
+
+                    asistencia_clase asistenciaDeHoy = gestorAsistencia.ValidarAsistenciaAnteriorInscripcionClase(inscripcionARegistrar.id_inscripcion);
+
+                    if (asistenciaDeHoy != null) mensaje("El alumno " + alu.apellido + ", " + alu.nombre + " ya asistió a la clase " + claseActual.nombreClase + " de hoy", false);
+
+                    var resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
+                        claseActual.idHorario, DateTime.Now, inscripcionARegistrar.id_inscripcion);
+                    if (resultado == "")
+                    {
+                        mensaje("Asistencia registrada exitosamente", true);
+                        divConfirmacion.Visible = false;
+                        divIngreso.Visible = true;
+                        return;
+                    }
+
+                    mensaje(resultado, false);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                mensaje("Ha ocurrido un error al tratar de registrar una nueva asistencia. Error: " + ex.Message, false);
+            }
+        }
+
+        protected void btnNo_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+
+        private void limpiar()
+        {
+            divConfirmacion.Visible = false;
+            divIngreso.Visible = true;
+
+            lblAcademia.InnerText = "";
+            lblClase.InnerText = "";
+            lblDni.InnerText = "";
+            lblNombre.InnerText = "";
+            lblTipoDoc.InnerText = "";
+
+            pnl_mensaje_error.Visible = false;
+            pnl_mensaje_exito.Visible = false;
+        }
     }
 }

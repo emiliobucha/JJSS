@@ -120,6 +120,9 @@
                         <div class="col justify-content-center ">
                             <asp:Button ID="btn_imprimir" runat="server" Text="Imprimir" CssClass="btn btn-outline-dark" OnClick="btn_imprimir_Click" Visible="false" />
                         </div>
+                        <div class="col justify-content-center ">
+                            <asp:HyperLink runat="server" Text="Registrar Asistencias Anteriores" CssClass="btn btn-outline-dark" href="RegistrarAsistenciasAnteriores.aspx" ></asp:HyperLink>
+                        </div>
                     </div>
                 </div>
             </div>
