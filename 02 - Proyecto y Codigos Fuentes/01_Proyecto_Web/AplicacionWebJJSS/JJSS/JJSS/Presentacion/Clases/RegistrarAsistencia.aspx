@@ -60,13 +60,13 @@
                     </div>
 
                     <div class="container">
-                        <div class=" justify-content-center centered  border rounded p-4">
+                        <div class=" justify-content-center centered  border rounded p-4" runat="server" id="divIngreso" visible="true">
                             <div>
                                 &nbsp;
                             </div>
                             <!-- DNI-->
                             <div class="row centered justify-content-center ">
-                                
+
                                 <!--Ingresar Tipo-->
                                 <div class="col-md-2 col-xl-auto">
                                     <label class="pull-left">Tipo: <a class="text-danger">*</a></label>
@@ -74,7 +74,7 @@
                                 <div class="col-md-3 col-xl-auto">
                                     <asp:DropDownList ID="ddl_tipo" class="caja2" runat="server" placeholder="Ingrese Tipo" ValidationGroup="grupoDni"></asp:DropDownList>
                                 </div>
-                                
+
                                 <div class="col-md-2 col-xl-auto">
                                     <label class="pull-left">Número: <a class="text-danger">*</a></label>
                                 </div>
@@ -108,6 +108,61 @@
                             <div class="row centered">
                                 <div class="col">
                                     <asp:Button ID="btn_aceptar" runat="server" CssClass="btn btn-outline-dark" Text="Aceptar" ValidationGroup="vgRegistro" OnClick="btn_aceptar_Click" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <p>&nbsp;</p>
+                            </div>
+
+                        </div>
+
+                        <div class=" justify-content-center centered  border rounded p-4" id="divConfirmacion" runat="server" visible="false">
+
+                            <div class=" justify-content-center centered">
+                                <h2><label runat="server" id="lblNombre"></label></h2>
+                            </div>
+
+                            <div class="row justify-content-center centered">
+                                <div class="col-md-2 col-xl-auto">
+                                    <strong>Tipo Doc:</strong>
+                                </div>
+                                <div class="col-md-2 col-xl-auto">
+                                    <label class="pull-left" runat="server" id="lblTipoDoc"></label>
+                                </div>
+
+                                <div class="col-md-2 col-xl-auto">
+                                    <strong>Número:</strong>
+                                </div>
+                                <div class="col-md-3 col-xl-auto">
+                                    <label class="pull-left" runat="server" id="lblDni"></label>
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center centered">
+                                <div class="col-md-2 col-xl-auto">
+                                    <strong>Clase:</strong>
+                                </div>
+                                <div class="col-md-2 col-xl-auto">
+                                    <label class="pull-left" runat="server" id="lblClase"></label>
+                                </div>
+
+                                <div class="col-md-2 col-xl-auto">
+                                    <strong>Academia:</strong>
+                                </div>
+                                <div class="col-md-3 col-xl-auto">
+                                    <label class="pull-left" runat="server" id="lblAcademia"></label>
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center centered">
+                                <div class="col-md-2 col-xl-auto">
+                                    <asp:Button ID="btnSI" runat="server" CssClass="btn btn-outline-dark" Text="Si" formnovalidate="true" CausesValidation="false" OnClick="btnSI_Click" />
+                                </div>
+                                <div class="col-md-2 col-xl-auto">
+                                    <asp:Button ID="btnNo" runat="server" CssClass="btn btn-outline-dark" Text="No" formnovalidate="true" CausesValidation="false" OnClick="btnNo_Click"/>
                                 </div>
                             </div>
 
