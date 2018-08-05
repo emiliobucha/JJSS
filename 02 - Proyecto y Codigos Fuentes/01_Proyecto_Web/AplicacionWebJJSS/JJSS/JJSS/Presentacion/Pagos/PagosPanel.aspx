@@ -140,7 +140,7 @@
                             <div class="row centered justify-content-center">
                                 <asp:GridView ID="gvPagos" runat="server" CssClass="table" CellPadding="4" DataKeyNames="Inscripcion" OnPageIndexChanging="gvPagos_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" EmptyDataText="No hay pagos pendientes para mostrar"
-                                    OnRowCommand="gvPagos_RowCommand" AllowPaging="True" PageSize="20">
+                                    OnRowCommand="gvPagos_RowCommand" AllowPaging="True" PageSize="20" OnRowDataBound="gvPagos_RowDataBound">
                                     <Columns>
                                         <asp:TemplateField>
                                             <ItemTemplate>
@@ -152,7 +152,11 @@
                                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="fecha" DataFormatString="{0:dd/MM/yyyy}" />
                                         <asp:BoundField DataField="DescripcionObjeto"  HeaderText="Descripción" SortExpression="descripcion" />
                                         <asp:BoundField DataField="MontoString" HeaderText="Monto" SortExpression="monto" />
-                                       <%-- <asp:ButtonField CommandName="pago" Text="Registrar pago" HeaderText="Registrar Pago" />--%>
+                                        <asp:TemplateField HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Button ID="btn_anular" runat="server" class="btn btn-link" CommandName="anular" Text="Anular pago" Visible="False" CommandArgument=<%# Eval("Inscripcion") %>/>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Position="TopAndBottom" />

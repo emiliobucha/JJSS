@@ -79,8 +79,6 @@ namespace JJSS.Presentacion.Pagos
                                 }
                             }
 
-
-
                         }
                         if (permiso != 1)
                         {
@@ -134,8 +132,15 @@ namespace JJSS.Presentacion.Pagos
             objetosGrilla = gestorPagos.ObtenerObjetosPagablesHistoricos(tipoDoc, dni);
             if (objetosGrilla.Count > 0)
             {
-                nombre = objetosGrilla[0].NombreParticipante;
-                lblNombreBuscado.InnerText = nombre;
+                if (!string.IsNullOrEmpty(objetosGrilla[0].NombreParticipante))
+                {
+                    nombre = objetosGrilla[0].NombreParticipante;
+                    lblNombreBuscado.InnerText = nombre;
+                }
+                else
+                {
+                    lblNombreBuscado.InnerText = "No se encuentra el alumno";
+                }
             }
 
             gvPagos.DataSource = objetosGrilla;
@@ -144,6 +149,8 @@ namespace JJSS.Presentacion.Pagos
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            lblNombreBuscado.InnerText = "";
+
             int idTipo;
             int.TryParse(ddl_tipo.SelectedValue, out idTipo);
             tipoDoc = idTipo;

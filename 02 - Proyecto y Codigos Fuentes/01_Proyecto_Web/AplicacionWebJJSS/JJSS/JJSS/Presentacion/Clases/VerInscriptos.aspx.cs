@@ -206,7 +206,7 @@ namespace JJSS.Presentacion.Clases
             List<tipo_documento> tiposdoc = gestorAlumnos.ObtenerTiposDocumentos();
             tipo_documento tc = new tipo_documento();
             tc.id_tipo_documento = 0;
-            tc.nombre = "Todos";
+            tc.codigo = "Todos";
             tiposdoc.Insert(0, tc);
 
            
@@ -224,7 +224,7 @@ namespace JJSS.Presentacion.Clases
 
                 int index = Convert.ToInt32(e.CommandArgument);
                 //var id = int.Parse(gv_inscripciones.DataKeys[index].Value.ToString());
-                Session["idClase"] = idClaseGlobal;
+                //Session["idClase"] = idClaseGlobal;
 
                 Session["idInscripcion"] = index;
 

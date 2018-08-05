@@ -228,6 +228,53 @@ namespace JJSS_Negocio
             }
         }
 
+        public string ActualizarPeriodo(int idInscripcion, DateTime fecha)
+        {
+            using (var db = new JJSSEntities())
+            {
+                var transaction = db.Database.BeginTransaction();
+                try
+                {
 
+                    var inscripcion = db.inscripcion_clase.Find(idInscripcion);
+
+                    if (inscripcion == null) return "Inscripción inválida";
+
+                    inscripcion.actual = 0;
+
+                    var nuevaInscripcion = new inscripcion_clase
+                    {
+                        fecha = DateTime.Now,
+                        hora = DateTime.Now.TimeOfDay.ToString("HH:mm"),
+                        fecha_desde = fecha,
+                        fecha_vencimiento = fecha.AddMonths(1),
+                        actual = 1,
+                        provisoria = inscripcion.provisoria,
+                        moroso_si = inscripcion.moroso_si,
+                        recargo = inscripcion.recargo,
+                        id_clase = inscripcion.id_clase,
+                        id_alumno = inscripcion.id_alumno
+                    };
+                    db.SaveChanges();
+
+
+                    if (inscripcion.pago_clase.Any())
+                    {
+                        var pago = inscripcion.pago_clase.FirstOrDefault();
+                        if (pago != null) pago.id_inscripcion_clase = nuevaInscripcion.id_inscripcion;
+                    }
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return "";
+
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return e.Message;
+                }
+            }
+
+        }
     }
 }

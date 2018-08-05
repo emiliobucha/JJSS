@@ -17,6 +17,7 @@ namespace JJSS.Presentacion.Pagos
         private static GestorInscripcionesClase gestorInscripcionesClase;
         private static int idAlumno;
         private static int idClase;
+        private static int idInscripcion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,22 +54,27 @@ namespace JJSS.Presentacion.Pagos
 
                 }
 
-             
 
-                if (Session["idAlumno"] != null)
+                if (Session["idInscripcion"]!=null)
                 {
-                    idAlumno = int.Parse(Session["idAlumno"].ToString());
+                    idInscripcion = int.Parse(Session["idInscripcion"].ToString());
+                    var inscripcion = gestorInscripcionesClase.ObtenerInscripcionClasePorId(idInscripcion);
+
+                    if (inscripcion?.id_alumno == null || inscripcion?.id_clase == null)
+                    {
+                        Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
+                        return;
+                    }
+
+                    idAlumno = inscripcion.id_alumno.Value;
+                    idClase = inscripcion.id_clase.Value;
                     CargarDatosAlumno();
-                }
-                if (Session["idClase"] != null)
-                {
-                    idClase = int.Parse(Session["idClase"].ToString());
                     CargarDatosClase();
+
                 }
                 else
                 {
-                    div_combo_clase.Visible = true;
-                    CargarComboClases();
+                    Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
                 }
             }
 
@@ -89,22 +95,15 @@ namespace JJSS.Presentacion.Pagos
         {
             var clase = gestorClases.ObtenerClasePorId(idClase);
             lbl_clase_nombre.Text = "Clase: " + clase.nombre;
+            var inscripcion = gestorInscripcionesClase.ObtenerInscripcionClasePorId(idInscripcion);
 
-            var inscripcion = gestorInscripcionesClase.ObtenerInscripcionClaseAlumno(idAlumno, idClase);
 
-            dp_fecha.Text = inscripcion.inscr_fecha_vto.Value.ToString("dd/MM/yyyy");
+            dp_fecha.Text = inscripcion.fecha_desde.Value.ToString("dd/MM/yyyy");
 
 
         }
 
-        private void CargarComboClases()
-        {
-            var clases = gestorInscripcionesClase.ObtenerInscripcionesDeAlumno(idAlumno);
-            ddl_clase.DataSource = clases;
-            ddl_clase.DataTextField = "nombre";
-            ddl_clase.DataValueField = "id_clase";
-            ddl_clase.DataBind();
-        }
+
 
         protected void btn_guardar_OnClick(object sender, EventArgs e)
         {
@@ -112,14 +111,8 @@ namespace JJSS.Presentacion.Pagos
             {
 
                 DateTime fecha = DateTime.Parse(dp_fecha.Text);
-                var inscripcion = gestorInscripcionesClase.ObtenerInscripcionClaseAlumno(idAlumno, idClase);
-                if (fecha <= inscripcion.inscr_fecha_vto)
-                {
-                    Mensaje("No se puede cambiar la fecha de vencimiento por una fecha anterior", false);
-                    return;
-                }
 
-                //gestorVencimientos.ModificarFechaVto(inscripcion.id_inscripcion, fecha);
+                gestorVencimientos.ActualizarPeriodo(idInscripcion, fecha);
                 Mensaje("Se ha modificado correctamente la fecha de vencimiento" , true);
             }
             catch (Exception exception)
