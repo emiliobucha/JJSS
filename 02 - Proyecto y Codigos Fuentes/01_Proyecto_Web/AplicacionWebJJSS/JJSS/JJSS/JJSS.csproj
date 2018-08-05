@@ -162,6 +162,10 @@
     <Content Include="img\CrearProfe.png" />
     <Content Include="img\CrearSede.png" />
     <Content Include="img\Graduar.png" />
+    <Content Include="img\MisPagos2.png" />
+    <Content Include="img\PagoPendiente2.png" />
+    <Content Include="img\PagoPorPeriodo2.png" />
+    <Content Include="img\PagoRealizados2.png" />
     <Content Include="img\Perfil.png" />
     <Content Include="img\Sede.png" />
     <Content Include="Presentacion\Administracion\AdministrarAlumnos.aspx" />
@@ -250,6 +254,7 @@
     <Content Include="Presentacion\Eventos\Menu_Evento.aspx" />
     <Content Include="Presentacion\Eventos\VerEvento.aspx" />
     <Content Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx" />
+    <Content Include="Presentacion\Pagos\Menu_Pagos.aspx" />
     <Content Include="Presentacion\Pagos\PagosAlumno.aspx" />
     <Content Include="Presentacion\Pagos\PagosCambioVto.aspx" />
     <Content Include="Presentacion\MisInscripciones.aspx" />
@@ -541,6 +546,13 @@
     </Compile>
     <Compile Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx.designer.cs">
       <DependentUpon>VerListadoParticipantesEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\Menu_Pagos.aspx.cs">
+      <DependentUpon>Menu_Pagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\Menu_Pagos.aspx.designer.cs">
+      <DependentUpon>Menu_Pagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Pagos\PagosAlumno.aspx.cs">
       <DependentUpon>PagosAlumno.aspx</DependentUpon>

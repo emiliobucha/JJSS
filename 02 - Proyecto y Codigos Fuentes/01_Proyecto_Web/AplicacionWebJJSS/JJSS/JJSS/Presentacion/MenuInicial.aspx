@@ -97,7 +97,7 @@
 
                 <!--Pagos-->
                 <div class="col-sm-12 col-md-6 col-lg-3 "  runat="server" id="menuPagos">
-                    <a class="text-dark" href="Pagos/PagosPanel.aspx">
+                    <a class="text-dark" href="Pagos/Menu_Pagos.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/Pago.png" alt="Card image cap">
                             <div class="">
