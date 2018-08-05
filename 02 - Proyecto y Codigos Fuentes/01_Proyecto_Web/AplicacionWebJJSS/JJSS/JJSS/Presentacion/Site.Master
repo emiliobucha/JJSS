@@ -148,13 +148,13 @@
                           <a class=" nav-item dropdown-toggle text-white" href="#" id="navbarPagos" runat="server" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; Pagos &nbsp; 
                           </a>
                           <div class="dropdown-menu text-white" style="background-color: #2f2f2f;" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item text-white" id="nav_ver_seccion_pago" href="/Presentacion/Pagos/Menu_Pagos.aspx">Ver Sección </a>
                               <a class="dropdown-item text-white" runat="server" id="nav_pago_alumno" href="/Presentacion/Pagos/PagosAlumno.aspx">Pagos de Alumno </a>
-                              
                               <a class="dropdown-item text-white" id="nav_pago_panel" href="/Presentacion/Pagos/PagosPanel.aspx">Pagos Pendientes </a>
                               <a class="dropdown-item text-white" runat="server" id="nav_pago_mes" href="/Presentacion/Pagos/PagosMes.aspx">Pagos por Periodo</a>
                           </div>
                       </li>
-                       <!-- Sobre Nosotros -->
+                      <!-- Sobre Nosotros -->
                       <li class="nav-item" runat="server">
                           <a runat="server" class=" nav-item  text-white" href="/Presentacion/SobreNosotros.aspx">&nbsp; Sobre Nosotros &nbsp; </a>
                       </li>
