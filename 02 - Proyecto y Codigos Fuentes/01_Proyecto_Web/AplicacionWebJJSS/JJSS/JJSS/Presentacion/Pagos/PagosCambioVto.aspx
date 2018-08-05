@@ -56,7 +56,7 @@
 
 
         <div class="row centered justify-content-center ">
-            <h1 class=" centered">Cambio de Fecha de Vencimiento</h1>
+            <h1 class=" centered">Cambio de Periodo</h1>
         </div>
 
         <div runat="server" id="div_nombre_alumno">
@@ -84,28 +84,12 @@
         </div>
 
 
-        <!--Boton-->
-        <div class="row centered justify-content-center " runat="server" id="div_combo_clase" Visible="False">
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <strong>Clase</strong>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <asp:DropDownList ID="ddl_clase" class="caja2" runat="server" placeholder="Clases"></asp:DropDownList>
-            </div>
-
-            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 centered">
-                <asp:Button ID="btn_buscar" runat="server" Text="Buscar" ValidationGroup="vgFiltro" CssClass="btn btn-outline-dark" />
-            </div>
-        </div>
-
-
-
         <br />
         <br/>
         <asp:Panel ID="pnl_fecha_vto" runat="server">
             <div class="row centered justify-content-center">
                 <div class="col-lg-2 col-md-2 col-sm-12">
-                    <label class="text-left">Fecha de Vencimiento <a class="text-danger">*</a></label>
+                    <label class="text-left">Fecha inicio de periodo de inscripción <a class="text-danger">*</a></label>
                 </div>
                 <div class="col col-lg-3 col-md-3 col-sm-12">
 

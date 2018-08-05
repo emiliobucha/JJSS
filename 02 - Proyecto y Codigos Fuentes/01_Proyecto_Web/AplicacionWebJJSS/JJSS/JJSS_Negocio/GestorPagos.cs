@@ -753,7 +753,7 @@ namespace JJSS_Negocio
             }
         }
 
-
+        //public string AnularPagoClase()
 
         /*Pagos del mes*/
         public List<ObjetoPagable> ObtenerObjetosPagablesIntervaloPendientes(DateTime fechaDesde, DateTime fechaHasta)
@@ -924,7 +924,6 @@ namespace JJSS_Negocio
                 return lista.OrderBy(x => x.Fecha).ToList();
             }
         }
-
 
         public List<ObjetoPagable> ObtenerObjetosPagablesPagados(DateTime fechaDesde, DateTime fechaHasta)
         {

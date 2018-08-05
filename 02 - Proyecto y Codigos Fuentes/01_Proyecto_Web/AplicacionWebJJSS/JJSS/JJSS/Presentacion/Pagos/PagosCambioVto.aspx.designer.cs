@@ -121,33 +121,6 @@ namespace JJSS.Presentacion.Pagos {
         protected global::System.Web.UI.WebControls.Label lbl_clase_nombre;
         
         /// <summary>
-        /// Control div_combo_clase.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_combo_clase;
-        
-        /// <summary>
-        /// Control ddl_clase.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_clase;
-        
-        /// <summary>
-        /// Control btn_buscar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_buscar;
-        
-        /// <summary>
         /// Control pnl_fecha_vto.
         /// </summary>
         /// <remarks>
