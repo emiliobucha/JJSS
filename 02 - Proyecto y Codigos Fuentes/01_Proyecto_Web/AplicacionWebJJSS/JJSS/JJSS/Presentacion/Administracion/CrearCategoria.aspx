@@ -184,7 +184,7 @@
 
                 <div class="row pull-left">
                     <div class="col">
-                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx" CausesValidation="false" formnovalidate="true" OnClick="btnInicio_Click"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lnk_cancelar" class="btn btn-link " Text="Volver" href="Menu_Administracion.aspx" CausesValidation="false" formnovalidate="true"></asp:LinkButton>
                     </div>
                 </div>
 

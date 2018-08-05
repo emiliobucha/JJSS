@@ -263,7 +263,11 @@ namespace JJSS.Presentacion
 
                     asistencia_clase asistenciaDeHoy = gestorAsistencia.ValidarAsistenciaAnteriorInscripcionClase(inscripcionARegistrar.id_inscripcion);
 
-                    if (asistenciaDeHoy != null) mensaje("El alumno " + alu.apellido + ", " + alu.nombre + " ya asistió a la clase " + claseActual.nombreClase + " de hoy", false);
+                    if (asistenciaDeHoy != null)
+                    {
+                        mensaje("El alumno " + alu.apellido + ", " + alu.nombre + " ya asistió a la clase " + claseActual.nombreClase + " de hoy", false);
+                        return;
+                    }
 
                     var resultado = gestorAsistencia.registrarAsistencia(alu.id_alumno, claseActual.idClase,
                         claseActual.idHorario, DateTime.Now, inscripcionARegistrar.id_inscripcion);
