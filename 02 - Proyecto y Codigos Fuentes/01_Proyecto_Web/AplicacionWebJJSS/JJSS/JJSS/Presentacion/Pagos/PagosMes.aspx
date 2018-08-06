@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1>Panel Pagos</h1>
+                        <h1>Pagos por Periodo</h1>
                     </div>
 
                     <div>

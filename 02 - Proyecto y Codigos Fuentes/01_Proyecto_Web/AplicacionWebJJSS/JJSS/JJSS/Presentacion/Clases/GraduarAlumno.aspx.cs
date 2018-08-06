@@ -103,11 +103,6 @@ namespace JJSS.Presentacion
             ddl_tipo_clase.DataBind();
         }
 
-        protected void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("../Inicio.aspx#section_alumnos");
-        }
-
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();

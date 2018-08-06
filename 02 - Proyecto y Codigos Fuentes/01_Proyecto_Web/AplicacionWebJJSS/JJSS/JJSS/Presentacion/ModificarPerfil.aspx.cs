@@ -51,7 +51,7 @@ namespace JJSS.Presentacion
                 {
                     Response.Write("<script>window.alert('" + "No hay usuario para editar correctamente".Trim() +
                                    "');</script>" + "<script>window.setTimeout(location.href='" +
-                                   "../Presentacion/Inicio.aspx" + "', 2000);</script>");
+                                   "../Presentacion/MenuInicial.aspx" + "', 2000);</script>");
 
                 }
                 else

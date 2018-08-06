@@ -254,7 +254,7 @@ namespace JJSS_Negocio
             {
 
                 var asistenciaHoy = db.asistencia_clase.FirstOrDefault(x =>
-                    x.id_asistencia == pInscripcion && DbFunctions.TruncateTime(x.fecha_hora) ==
+                    x.id_inscripcion_clase == pInscripcion && DbFunctions.TruncateTime(x.fecha_hora) ==
                     DbFunctions.TruncateTime(fechaActual));
 
                 return asistenciaHoy;

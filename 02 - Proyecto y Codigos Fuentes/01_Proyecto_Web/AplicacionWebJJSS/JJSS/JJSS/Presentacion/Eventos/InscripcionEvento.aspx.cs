@@ -497,12 +497,6 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            limpiar(true);
-            Response.Redirect("../Inicio.aspx#section_eventos");
-        }
-
         protected void CargarComboNacionalidades()
         {
 
