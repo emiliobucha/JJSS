@@ -112,8 +112,16 @@ namespace JJSS.Presentacion.Pagos
 
                 DateTime fecha = DateTime.Parse(dp_fecha.Text);
 
-                gestorVencimientos.ActualizarPeriodo(idInscripcion, fecha);
-                Mensaje("Se ha modificado correctamente la fecha de vencimiento" , true);
+                var retorno = gestorVencimientos.ActualizarPeriodo(idInscripcion, fecha);
+                if (string.IsNullOrEmpty(retorno))
+                {
+                    Mensaje("Se ha modificado correctamente la fecha de vencimiento", true);
+                }
+                else
+                {
+                    Mensaje("Ha ocurrido un error. " + retorno, false);
+                }
+               
             }
             catch (Exception exception)
             {

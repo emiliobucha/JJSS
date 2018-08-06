@@ -814,8 +814,8 @@ namespace JJSS_Negocio
                             dni = alumno.dni
                         };
 
-                        var hoy = DateTime.Today;
-                        if (alumno.inscripcion_clase.Any(x => x.id_clase == idClase && x.actual == 1 && DbFunctions.TruncateTime(x.fecha_vencimiento) <= hoy ))
+                        var manana = DateTime.Today.AddDays(1);
+                        if (alumno.inscripcion_clase.Any(x => x.id_clase == idClase && x.actual == 1 && x.fecha_vencimiento < manana ))
                         {
                             alumnoInscripcion.inscripto = "S";
                             foreach (var inscr in alumno.inscripcion_clase.Where(x => x.id_clase == idClase))

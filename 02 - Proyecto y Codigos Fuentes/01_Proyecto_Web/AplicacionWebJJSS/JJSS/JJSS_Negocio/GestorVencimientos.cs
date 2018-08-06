@@ -58,7 +58,7 @@ namespace JJSS_Negocio
                                     {
 
                                         fecha = DateTime.Now,
-                                        hora = DateTime.Now.TimeOfDay.ToString("HH:mm"),
+                                        hora = DateTime.Now.ToString("HH:mm"),
                                         fecha_desde = inscripcion.fecha_vencimiento,
                                         fecha_vencimiento = proximoVto,
                                         actual = 1,
@@ -242,12 +242,14 @@ namespace JJSS_Negocio
 
                     inscripcion.actual = 0;
 
+                    var proximo = fecha.AddMonths(1);
+
                     var nuevaInscripcion = new inscripcion_clase
                     {
                         fecha = DateTime.Now,
-                        hora = DateTime.Now.TimeOfDay.ToString("HH:mm"),
+                        hora = DateTime.Now.ToString("HH:mm"),
                         fecha_desde = fecha,
-                        fecha_vencimiento = fecha.AddMonths(1),
+                        fecha_vencimiento =proximo ,
                         actual = 1,
                         provisoria = inscripcion.provisoria,
                         moroso_si = inscripcion.moroso_si,
@@ -255,6 +257,7 @@ namespace JJSS_Negocio
                         id_clase = inscripcion.id_clase,
                         id_alumno = inscripcion.id_alumno
                     };
+                    db.inscripcion_clase.Add(nuevaInscripcion);
                     db.SaveChanges();
 
 
@@ -263,6 +266,8 @@ namespace JJSS_Negocio
                         var pago = inscripcion.pago_clase.FirstOrDefault();
                         if (pago != null) pago.id_inscripcion_clase = nuevaInscripcion.id_inscripcion;
                     }
+
+
                     db.SaveChanges();
                     transaction.Commit();
                     return "";
