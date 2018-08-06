@@ -207,12 +207,6 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            limpiarDatos();
-            Response.Redirect("~/Presentacion/Inicio.aspx");
-        }
-
         private void mensaje(string pMensaje, Boolean pEstado)
         {
             // Response.Write("<script>window.alert('" + pMensaje.Trim() + "');</script>");

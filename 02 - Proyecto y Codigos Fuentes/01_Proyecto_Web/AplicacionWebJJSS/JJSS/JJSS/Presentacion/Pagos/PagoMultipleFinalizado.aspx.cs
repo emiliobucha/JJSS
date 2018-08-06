@@ -203,12 +203,6 @@ namespace JJSS.Presentacion
             }
         }
 
-        protected void btn_volver_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            Response.Redirect("Inicio.aspx");
-        }
-
         protected void gvPagos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "imprimir")

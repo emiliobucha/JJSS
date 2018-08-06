@@ -84,13 +84,7 @@ namespace JJSS.Administracion
             ddlDisciplina.DataValueField = "id_tipo_clase";
             ddlDisciplina.DataBind();
         }
-
-        protected void btnInicio_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            Response.Redirect("../Inicio.aspx");
-        }
-
+        
         protected void btn_aceptar_Click(object sender, EventArgs e)
         {
             if (validar())

@@ -344,12 +344,6 @@ namespace JJSS.Presentacion
                 lbl_error.Text = pMensaje;
             }
         }
-
-        protected void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            Response.Redirect("../Inicio.aspx#section_clases");
-        }
     }
 
 }
