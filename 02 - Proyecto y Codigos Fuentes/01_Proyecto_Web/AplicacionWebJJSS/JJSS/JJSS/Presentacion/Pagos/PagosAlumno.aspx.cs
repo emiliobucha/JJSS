@@ -142,7 +142,10 @@ namespace JJSS.Presentacion.Pagos
                     lblNombreBuscado.InnerText = "No se encuentra el alumno";
                 }
             }
-
+            else
+            {
+                lblNombreBuscado.InnerText = "";
+            }
             gvPagos.DataSource = objetosGrilla;
             gvPagos.DataBind();
         }

@@ -252,10 +252,20 @@ namespace JJSS.Presentacion.Pagos
             objetosGrilla = gestorPagos.ObtenerObjetosPagablesPendientes(tipoDoc, dni, invitado);
             if (objetosGrilla.Count > 0)
             {
-                nombre = objetosGrilla[0].NombreParticipante;
-                lblNombreBuscado.InnerText = nombre;
+                if (!string.IsNullOrEmpty(objetosGrilla[0].NombreParticipante))
+                {
+                    nombre = objetosGrilla[0].NombreParticipante;
+                    lblNombreBuscado.InnerText = nombre;
+                }
+                else
+                {
+                    lblNombreBuscado.InnerText = "No se encuentra el alumno";
+                }
             }
-
+            else
+            {
+                lblNombreBuscado.InnerText = "";
+            }
             gvPagos.DataSource = objetosGrilla;
             gvPagos.DataBind();
         }
