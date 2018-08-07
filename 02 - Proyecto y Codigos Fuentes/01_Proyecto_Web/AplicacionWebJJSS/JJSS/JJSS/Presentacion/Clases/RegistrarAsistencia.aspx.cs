@@ -251,7 +251,8 @@ namespace JJSS.Presentacion
 
                     var inscripcion = inscripcionClase.Where(x => (
                         x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 0 && x.recargo == 0)
-                        || (x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 1 && x.recargo == 1 && x.moroso_si == 1)).OrderBy(x => x.fecha_vencimiento);
+                        || (x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.provisoria == 1 && x.recargo == 1 && x.moroso_si == 1) || 
+                        (x.fecha_vencimiento.Value.Date >= hoy && hoy >= x.fecha_desde.Value.Date && x.moroso_si == 1)).OrderBy(x => x.fecha_vencimiento);
 
                     if (!inscripcion.Any())
                     {
