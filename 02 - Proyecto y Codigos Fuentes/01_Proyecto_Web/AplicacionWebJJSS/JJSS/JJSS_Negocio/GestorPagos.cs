@@ -331,7 +331,9 @@ namespace JJSS_Negocio
                             db.pago_clase.Add(nuevoPagoClase);
 
                             inscClase.recargo = 0;
-                            inscClase.actual = 1;
+                            short esActual = 1;
+                            if (inscClase.fecha_vencimiento < DateTime.Now) esActual = 0;
+                            inscClase.actual = esActual;
                             inscClase.provisoria = 0;
                             inscClase.moroso_si = 0;
 
@@ -795,22 +797,14 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 var lista = new List<ObjetoPagable>();
-                var desde = fechaDesde.Date;
-                var hasta = fechaHasta.Date;
+                DateTime fechaActual = DateTime.Now;
 
                 //Sin pagar 
                 var inscripcionesTorneoSp = db.inscripcion.Where(x =>
-                    DbFunctions.TruncateTime(x.torneo.fecha) >= desde &&
-                    DbFunctions.TruncateTime(x.torneo.fecha) <= hasta &&
-                    x.pago == 0 && x.participante.id_alumno != null);
+                    x.participante.id_alumno != null);
                 var inscripcionesEventosSp = db.inscripcion_evento.Where(x =>
-                    DbFunctions.TruncateTime(x.evento_especial.fecha) >= desde &&
-                    DbFunctions.TruncateTime(x.evento_especial.fecha) <= hasta &&
-                    x.pago == 0 && x.participante_evento.id_alumno != null);
-
-                var inscripcionesClases = db.inscripcion_clase.Where(x =>
-                    DbFunctions.TruncateTime(x.fecha_vencimiento) >= desde &&
-                    DbFunctions.TruncateTime(x.fecha_vencimiento) <= hasta);
+                    x.participante_evento.id_alumno != null);
+                var inscripcionesClases = db.inscripcion_clase.Where(x => x.actual == 1);
 
 
                 foreach (var inscTorneo in inscripcionesTorneoSp)
@@ -821,7 +815,8 @@ namespace JJSS_Negocio
                     if (inscTorneo.torneo.fecha != null)
                     {
                         fechaPagable = (DateTime)inscTorneo.torneo.fecha;
-                    }
+                    } 
+
                     decimal montoPagable = 0;
                     if (inscTorneo.tipo_inscripcion != null)
                     {
@@ -895,7 +890,7 @@ namespace JJSS_Negocio
                     lista.Add(pagable);
                 }
 
-                foreach (var inscClase in inscripcionesClases.Where(x => x.actual == 1))
+                foreach (var inscClase in inscripcionesClases)
                 {
                     //Validaciones al vicio pero por la estructura de la base
                     if (inscClase.id_clase == null) continue;
@@ -906,7 +901,7 @@ namespace JJSS_Negocio
 
 
                     var pago = inscClase.pago_clase;
-                    if (pago != null)
+                    if (pago != null && pago.Count > 0)
                     {
                         continue;
 
@@ -916,45 +911,67 @@ namespace JJSS_Negocio
 
                     var recargo = recargoParametro == null ? 0 : (double)recargoParametro.valor;
 
-                    var fechaPagable = inscClase.fecha_vencimiento.Value;
-
-                    decimal montoPagable = 0;
-
-                    if (inscClase.recargo == 1)
+                    //Generamos un pago para el periodo siguiente si estamos a 10 dias de vencimiento del periodo
+                    if (inscClase.fecha_vencimiento.Value.AddDays(-10) <= DateTime.Today && pago != null)
                     {
-                        montoPagable = (decimal)(inscClase.clase.precio + recargo);
+                        var fechaPagable = inscClase.fecha_vencimiento.Value.AddDays(10);
+                        var montoPagable = (decimal)inscClase.clase.precio;
 
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = fechaPagable,
+                            TipoPago = ConstantesTipoPago.CLASE(),
+                            Monto = montoPagable,
+                            Nombre = inscClase.clase.nombre,
+                            Inscripcion = inscClase.id_inscripcion,
+                            Participante = (int)inscClase.id_alumno,
+                            NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
+                            IdObjeto = (int)inscClase.id_clase,
+                            MontoString = "$ " + montoPagable.ToString("N2"),
+                            MesSiguiente = true,
+                            TipoDocumento = inscClase.alumno.tipo_documento.codigo,
+                            Numero = inscClase.alumno.dni
+                        };
+
+                        lista.Add(pagable);
                     }
-                    else
+                    else if (inscClase.provisoria == 1 && pago == null)
                     {
-                        montoPagable = (decimal)inscClase.clase.precio;
-                    }
+                        var fechaPagable = inscClase.fecha_desde.Value.AddDays(10);
 
-                    var pagable = new ObjetoPagable
-                    {
-                        Fecha = fechaPagable,
-                        TipoPago = ConstantesTipoPago.CLASE(),
-                        Monto = montoPagable,
-                        Nombre = inscClase.clase.nombre,
-                        Inscripcion = inscClase.id_inscripcion,
-                        Participante = (int)inscClase.id_alumno,
-                        NombreParticipante = inscClase.alumno.apellido + ", " + inscClase.alumno.nombre,
-                        IdObjeto = (int)inscClase.id_clase,
-                        MontoString = "$ " + montoPagable.ToString("N2"),
-                        TipoDocumento = inscClase.alumno.tipo_documento.codigo,
-                        Numero = inscClase.alumno.dni
-                    };
+                        decimal montoPagable;
 
-                    if (inscClase.recargo == 1)
-                    {
-                        pagable.DescripcionObjeto = "Pago con recargo por demora";
-                    }
-                    lista.Add(pagable);
+                        if (inscClase.recargo == 1)
+                        {
+                            montoPagable = (decimal)(inscClase.clase.precio + recargo);
+                        }
+                        else
+                        {
+                            montoPagable = (decimal)inscClase.clase.precio;
+                        }
+
+                        var pagable = new ObjetoPagable
+                        {
+                            Fecha = fechaPagable,
+                            TipoPago = ConstantesTipoPago.CLASE(),
+                            Monto = montoPagable,
+                            Nombre = inscClase.clase.nombre,
+                            Inscripcion = inscClase.id_inscripcion,
+                            Participante = (int)inscClase.id_alumno,
+                            NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
+                            IdObjeto = (int)inscClase.id_clase,
+                            MontoString = "$ " + montoPagable.ToString("N2"),
+                            TipoDocumento = inscClase.alumno.tipo_documento.codigo,
+                            Numero = inscClase.alumno.dni
+                        };
+
+                        if (inscClase.recargo == 1)
+                        {
+                            pagable.DescripcionObjeto = "Pago con recargo por demora";
+                        }
+                        lista.Add(pagable);
+                    }                    
                 }
-
-
-
-
                 return lista.OrderBy(x => x.Fecha).ToList();
             }
         }

@@ -105,14 +105,35 @@
                     </div>
 
                     <div class="container">
-                        <div class="row centered justify-content-center">
-                            <h3>Total cobrado: $ <strong><asp:Label ID="lbl_total" runat="server" Text=""></asp:Label></strong></h3> 
-                        </div>
-                        <div class="row centered justify-content-center">
-                            <h3>Total pendiente: $ <strong><asp:Label ID="lbl_total_pendiente" runat="server" Text=""></asp:Label></strong></h3>
+                            <div class="row centered justify-content-center">
+                                <h3>Total cobrado: $ <strong>
+                                    <asp:Label ID="lbl_total" runat="server" Text=""></asp:Label></strong></h3>
+                            </div>
+                            <div class="row centered justify-content-center">
+                                <h3>Total pendiente: $ <strong>
+                                    <asp:Label ID="lbl_total_pendiente" runat="server" Text=""></asp:Label></strong></h3>
+                            </div>
+                    </div>
+                    <div class="container">
+                    <div class="form-group border rounded p-4 ">
+                        <div class="row centered justify-content-center"><strong>Referencias:</strong></div><br />
+                        <div class="row col-md-12 centered justify-content-center">
+                            <div class="row col-md-4 centered justify-content-center">
+                                <div class="col-md-2"><div class="foo torneo"></div></div>
+                                <div class="col-md-2"><a>Torneos</a></div>
+                            </div>
+                            <div class="row col-md-4 centered justify-content-center">
+                                <div class="col-md-2"><div class="foo evento"></div></div>
+                                <div class="col-md-2"><a>Eventos</a></div>
+                            </div>
+                            <div class="row col-md-4 centered justify-content-center">
+                                <div class="col-md-2"><div class="foo clase"></div></div>
+                                <div class="col-md-2"><a>Clase</a></div>
+                            </div>
                         </div>
                     </div>
-                    
+                    </div>
+
                     <div>
                         <p>&nbsp;</p>
                     </div>
@@ -140,7 +161,7 @@
                                         <asp:BoundField DataField="Nombre" HeaderText="Nombre Act." SortExpression="nombre" />
                                         <asp:BoundField DataField="Fecha" HeaderText="Fecha Act." SortExpression="fecha" DataFormatString="{0:dd/MM/yyyy}" />
                                         <%-- <asp:BoundField DataField="DescripcionObjeto"  HeaderText="Descripción" SortExpression="descripcion" />--%>
-                                        <asp:BoundField DataField="MontoString" HeaderText="Monto" SortExpression="monto"  />
+                                        <asp:BoundField DataField="MontoString" HeaderText="Monto" SortExpression="monto" />
                                     </Columns>
                                     <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" Wrap="True" />
                                     <PagerSettings Position="TopAndBottom" />
