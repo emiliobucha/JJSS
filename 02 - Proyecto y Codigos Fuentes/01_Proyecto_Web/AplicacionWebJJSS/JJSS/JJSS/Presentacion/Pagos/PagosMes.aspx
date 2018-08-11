@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1>Pagos por Periodo</h1>
+                        <h1>Pagos por Período</h1>
                     </div>
 
                     <div>
@@ -193,7 +193,7 @@
 
                     </div>
                     <div class="row">
-                        <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="../MenuInicial.aspx"></asp:HyperLink>
+                        <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="Menu_Pagos.aspx"></asp:HyperLink>
 
                     </div>
                 </div>

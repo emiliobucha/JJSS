@@ -160,7 +160,7 @@
                         </div>
                         
                         <div class="row">
-                            <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="MenuInicial.aspx"></asp:HyperLink>
+                            <asp:HyperLink runat="server" Text="Volver" CssClass="btn btn-link" href="Menu_Pagos.aspx"></asp:HyperLink>
 
                         </div>
 
