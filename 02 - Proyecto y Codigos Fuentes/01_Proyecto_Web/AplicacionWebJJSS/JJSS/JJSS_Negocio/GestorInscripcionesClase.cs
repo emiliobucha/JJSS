@@ -287,12 +287,9 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
-                var inscripcion = from ic in db.inscripcion_clase
-                                  where ic.id_clase == pIDClase &&
-                                         ic.id_alumno == pIDAlumno
-                                         && ic.actual == Constantes.ConstatesBajaLogica.ACTUAL
-                                  select ic;
-                return inscripcion.FirstOrDefault();
+                alumno alumno = db.alumno.Find(pIDAlumno);
+                var manana = DateTime.Today.AddDays(1);
+                return alumno.inscripcion_clase.FirstOrDefault(x => x.id_clase == pIDClase && x.actual == 1 && x.fecha_vencimiento > manana);
             }
         }
 

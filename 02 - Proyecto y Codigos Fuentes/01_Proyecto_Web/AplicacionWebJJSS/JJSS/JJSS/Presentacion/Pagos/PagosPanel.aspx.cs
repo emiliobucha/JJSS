@@ -268,6 +268,9 @@ namespace JJSS.Presentacion.Pagos
             }
             gvPagos.DataSource = objetosGrilla;
             gvPagos.DataBind();
+
+            if (objetosGrilla != null && objetosGrilla.Count > 0) divReferencias.Visible = true;
+            else divReferencias.Visible = false;
         }
 
 
@@ -336,33 +339,18 @@ namespace JJSS.Presentacion.Pagos
         protected void gvPagos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             // To check condition on integer value
-            //Anular pagos
-
-            //int permiso = 0;
-            //if (sesionActiva == null) return;
-          
-            //System.Data.DataRow[] drsAux =
-            //    sesionActiva.permisos.Select("perm_clave = 'PAGO_ANULAR'");
-            //if (drsAux.Length > 0)
-            //{
-            //    int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
-            //}
-
-            //if (permiso == 1)
-            //{
-            //    var btn = e.Row.FindControl("btn_anular");
-            //    if (btn !=null)
-            //    {
-            //        if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TipoPago.Tipo")) == "Clase")
-            //        {
-            //            btn.Visible = true;
-            //        }
-                    
-            //    }
-                    
-                    
-                   
-            //}
+            if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TipoPago.Tipo")) == "Torneo")
+            {
+                e.Row.BackColor = System.Drawing.Color.LightGray;
+            }
+            if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TipoPago.Tipo")) == "Evento")
+            {
+                e.Row.BackColor = System.Drawing.Color.LightBlue;
+            }
+            if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TipoPago.Tipo")) == "Clase")
+            {
+                e.Row.BackColor = System.Drawing.Color.LightYellow;
+            }
         }
     }
 }

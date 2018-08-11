@@ -151,7 +151,7 @@
                               <a class="dropdown-item text-white" id="nav_ver_seccion_pago" href="/Presentacion/Pagos/Menu_Pagos.aspx">Ver Sección </a>
                               <a class="dropdown-item text-white" runat="server" id="nav_pago_alumno" href="/Presentacion/Pagos/PagosAlumno.aspx">Pagos de Alumno </a>
                               <a class="dropdown-item text-white" id="nav_pago_panel" href="/Presentacion/Pagos/PagosPanel.aspx">Pagos Pendientes </a>
-                              <a class="dropdown-item text-white" runat="server" id="nav_pago_mes" href="/Presentacion/Pagos/PagosMes.aspx">Pagos por Periodo</a>
+                              <a class="dropdown-item text-white" runat="server" id="nav_pago_mes" href="/Presentacion/Pagos/PagosMes.aspx">Pagos por Período</a>
                           </div>
                       </li>
                       <!-- Sobre Nosotros -->

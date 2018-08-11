@@ -132,6 +132,27 @@
                         <p>&nbsp;</p>
                     </div>
 
+                    <div runat="server" class="container" id="divReferencias" visible="false">
+                    <div class="form-group border rounded p-4 ">
+                        <div class="row centered justify-content-center"><strong>Referencias:</strong></div><br />
+                        <div class="row col-md-12 centered justify-content-center">
+                            <div class="row col-md-4 centered justify-content-center">
+                                <div class="col-md-2"><div class="foo torneo"></div></div>
+                                <div class="col-md-2"><a>Torneos</a></div>
+                            </div>
+                            <div class="row col-md-4 centered justify-content-center">
+                                <div class="col-md-2"><div class="foo evento"></div></div>
+                                <div class="col-md-2"><a>Eventos</a></div>
+                            </div>
+                            <div class="row col-md-4 centered justify-content-center">
+                                <div class="col-md-2"><div class="foo clase"></div></div>
+                                <div class="col-md-2"><a>Clase</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+
                     <div class="container">
 
                         <div class="form-group border rounded p-4 ">

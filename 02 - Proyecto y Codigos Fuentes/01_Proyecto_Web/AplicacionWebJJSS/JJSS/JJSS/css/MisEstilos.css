@@ -103,3 +103,29 @@
 .fondoOscuro {
     background-color: #2f2f2f;
 }
+
+.foo {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    float: left;
+}
+
+.torneo {
+    background: #D3D3D3;
+}
+
+.evento {
+    background: #ADD8E6;
+}
+
+.clase {
+    background: #FFFFE0;
+}
+
+.explanation {
+    margin-left: 5px;
+    vertical-align: middle;
+    float:right;
+}
