@@ -255,6 +255,7 @@
     <Content Include="Presentacion\Eventos\VerEvento.aspx" />
     <Content Include="Presentacion\Eventos\VerListadoParticipantesEvento.aspx" />
     <Content Include="Presentacion\Pagos\Menu_Pagos.aspx" />
+    <Content Include="Presentacion\Pagos\MisPagos.aspx" />
     <Content Include="Presentacion\Pagos\PagosAlumno.aspx" />
     <Content Include="Presentacion\Pagos\PagosCambioVto.aspx" />
     <Content Include="Presentacion\MisInscripciones.aspx" />
@@ -553,6 +554,13 @@
     </Compile>
     <Compile Include="Presentacion\Pagos\Menu_Pagos.aspx.designer.cs">
       <DependentUpon>Menu_Pagos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\MisPagos.aspx.cs">
+      <DependentUpon>MisPagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Pagos\MisPagos.aspx.designer.cs">
+      <DependentUpon>MisPagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Pagos\PagosAlumno.aspx.cs">
       <DependentUpon>PagosAlumno.aspx</DependentUpon>

@@ -109,7 +109,7 @@
 
                 <!--Mis Pagos-->
                 <div class="col-sm-6 col-md-6 col-lg-3">
-                    <a class="text-dark" href="../Pagos/PagosPanel.aspx">
+                    <a class="text-dark" href="../Pagos/MisPagos.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/MisPagos2.png" alt="Card image cap">
                             <div class="">

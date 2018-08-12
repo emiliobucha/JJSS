@@ -1099,5 +1099,109 @@ namespace JJSS_Negocio
             }
 
         }
+
+
+        public List<ObjetoPagable> ObtenerObjetosPagablesPagadosPorAlumno(DateTime fechaDesde, DateTime fechaHasta, int idAlumno)
+        {
+            //Pagados
+            using (var db = new JJSSEntities())
+            {
+                var lista = new List<ObjetoPagable>();
+                var desde = fechaDesde.Date;
+                var hasta = fechaHasta.Date;
+
+                var pagosTorneos = db.pago_torneo.Where(x =>
+                    DbFunctions.TruncateTime(x.fecha) >= desde &&
+                    DbFunctions.TruncateTime(x.fecha) <= hasta && x.inscripcion.participante.id_alumno == idAlumno);
+
+                var pagosEventos = db.pago_evento.Where(x =>
+                    DbFunctions.TruncateTime(x.fecha) >= desde &&
+                    DbFunctions.TruncateTime(x.fecha) <= hasta && x.inscripcion_evento.participante_evento.id_alumno == idAlumno);
+
+                var pagoClases = db.pago_clase.Where(x =>
+                    DbFunctions.TruncateTime(x.fecha_hora) >= desde &&
+                    DbFunctions.TruncateTime(x.fecha_hora) <= hasta && x.inscripcion_clase.id_alumno == idAlumno);
+
+                foreach (var pago in pagosTorneos)
+                {
+                    var fechaPagable = DateTime.Today;
+                    if (pago.inscripcion?.torneo?.fecha != null)
+                    {
+                        fechaPagable = (DateTime)pago.inscripcion.torneo.fecha;
+                    }
+
+                    var pagable = new ObjetoPagable
+                    {
+                        Fecha = fechaPagable,
+                        TipoPago = ConstantesTipoPago.TORNEO(),
+                        Monto = pago.pago_monto,
+                        Nombre = pago.inscripcion?.torneo?.nombre,
+                        Inscripcion = pago.id_inscripcion_torneo,
+                        IdObjeto = pago.inscripcion?.id_torneo ?? 0,
+                        DescripcionObjeto = "Tipo de Inscripción: " + (pago.inscripcion?.id_absoluto != null ? "Absoluta" : "Categoría"),
+                        MontoString = "$ " + pago.pago_monto.ToString("N2"),
+                        FechaPago = pago.fecha,
+
+                    };
+
+                    lista.Add(pagable);
+
+                }
+
+                foreach (var pago in pagosEventos)
+                {
+                    var fechaPagable = DateTime.Today;
+                    if (pago.inscripcion_evento?.evento_especial?.fecha != null)
+                    {
+                        fechaPagable = (DateTime)pago.inscripcion_evento.evento_especial.fecha;
+                    }
+
+                    var pagable = new ObjetoPagable
+                    {
+                        Fecha = fechaPagable,
+                        TipoPago = ConstantesTipoPago.EVENTO(),
+                        Monto = pago.pago_monto,
+                        Nombre = pago.inscripcion_evento?.evento_especial?.nombre,
+                        Inscripcion = pago.id_inscripcion_evento,
+                        IdObjeto = pago.inscripcion_evento?.id_evento ?? 0,
+                        MontoString = "$ " + pago.pago_monto.ToString("N2"),
+                        FechaPago = pago.fecha,
+
+                    };
+                    lista.Add(pagable);
+
+                }
+
+                foreach (var detalle in pagoClases)
+                {
+                    var fechaPagable = DateTime.Today;
+                    if (detalle.fecha_vencimiento_cumple != null)
+                    {
+                        fechaPagable = (DateTime)detalle.fecha_vencimiento_cumple;
+                    }
+
+
+                    var inscripcion = detalle.inscripcion_clase;
+
+                    var pagable = new ObjetoPagable
+                    {
+                        Fecha = fechaPagable,
+                        TipoPago = ConstantesTipoPago.CLASE(),
+                        Monto = detalle.monto ?? 0,
+                        Nombre = inscripcion.clase.nombre,
+                        Inscripcion = inscripcion?.id_inscripcion ?? 0,
+                        IdObjeto = inscripcion.id_clase ?? 0,
+                        MontoString = "$ " + detalle.monto.Value.ToString("N2"),
+                        FechaPago = detalle.fecha_hora,
+
+                    };
+
+                    lista.Add(pagable);
+                }
+
+                return lista.OrderBy(x => x.FechaPago).ThenBy(x => x.Fecha).ToList();
+            }
+
+        }
     }
 }
