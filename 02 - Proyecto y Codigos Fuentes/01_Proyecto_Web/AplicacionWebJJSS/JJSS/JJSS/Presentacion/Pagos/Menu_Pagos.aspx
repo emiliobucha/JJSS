@@ -70,7 +70,7 @@
               
 
                   <!--Pagos de Alumnos-->
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div id="pagos_alumno" runat="server" class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="../Pagos/PagosAlumno.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/PagoRealizados2.png" alt="Card image cap">
@@ -82,7 +82,7 @@
                 </div>
 
                   <!--Pagos Pendientes-->
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div id="pagos_pendientes" runat="server" class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="../Pagos/PagosPanel.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/PagoPendiente2.png" alt="Card image cap">
@@ -94,7 +94,7 @@
                 </div>
 
                 <!--Pagos por Período-->
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div id="pagos_mes" runat="server" class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="../Pagos/PagosMes.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/PagoPorPeriodo2.png" alt="Card image cap">
@@ -108,7 +108,7 @@
               
 
                 <!--Mis Pagos-->
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div id="mis_pagos" runat="server" class="col-sm-6 col-md-6 col-lg-3">
                     <a class="text-dark" href="../Pagos/MisPagos.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../../img/MisPagos2.png" alt="Card image cap">
