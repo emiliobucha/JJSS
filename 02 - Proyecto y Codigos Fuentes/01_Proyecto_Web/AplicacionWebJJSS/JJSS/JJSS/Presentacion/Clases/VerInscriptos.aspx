@@ -168,6 +168,7 @@
                                 <asp:BoundField DataField="inscr_fecha_vto_mensual" HeaderText="Fecha vto" />
                                 <asp:BoundField DataField="inscr_pago" HeaderText="Pagó periodo" />
                                 <asp:BoundField DataField="inscr_recargo" HeaderText="Recargo" />
+                                <asp:BoundField DataField="asistio" HeaderText="Asistió" />
                                 <asp:TemplateField HeaderText="Permitir moroso">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="habilitar" CommandName="moroso" runat="server" CommandArgument='<%#Eval("inscr_id") %>' Text="Habilitar"> </asp:LinkButton>
