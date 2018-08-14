@@ -68,6 +68,17 @@ namespace JJSS.Presentacion.Pagos
                         pagos_mes.Style["display"] = "none";
                     }
 
+                    permiso = 0;
+                    drsAux = sesionActiva.permisos.Select("perm_clave = 'PAGO_MIS_PAGOS'");
+                    if (drsAux.Length > 0)
+                    {
+                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    }
+                    if (permiso != 1)
+                    {
+                        mis_pagos.Style["display"] = "none";
+                    }
+
                 }
             }
             catch (Exception ex)

@@ -43,7 +43,7 @@ namespace JJSS.Presentacion.Pagos
                     if (sesionActiva.estado == "INGRESO ACEPTADO")
                     {
                         int permiso = 0;
-                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'PAGO_ALUMNO'");
+                        System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'PAGO_ALUMNO' OR perm_clave = 'PAGO_MIS_PAGOS'");
                         if (drsAux.Length > 0)
                         {
                             int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
@@ -63,6 +63,7 @@ namespace JJSS.Presentacion.Pagos
                                     divDNI.Visible = false;
                                     lblDni.InnerText = dni;
                                     lblNombre.InnerText = nombre;
+                                    lbl_pago.InnerText = "Mis Pagos";
 
                                     var td = tiposdoc.FirstOrDefault(x => x.id_tipo_documento == tipoDoc);
                                     if (td != null)
@@ -85,6 +86,8 @@ namespace JJSS.Presentacion.Pagos
                             Response.Write("<script>window.alert('" + "No se encuentra logueado correctamente o tiene los permisos para estar aquí".Trim() + "');</script>" + "<script>window.setTimeout(location.href='" + "../Login.aspx" + "', 2000);</script>");
 
                         }
+
+                      
 
 
 
