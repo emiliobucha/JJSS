@@ -544,6 +544,16 @@ namespace JJSS_Negocio
 
         }
 
+        private String validarAsistenciaAPeriodo(inscripcion_clase inscripcion)
+        {
+            using (var db = new JJSSEntities())
+            {
+                List<asistencia_clase> asistencias = db.asistencia_clase.Where(x => x.id_inscripcion_clase == inscripcion.id_inscripcion).ToList();
+
+                if (asistencias != null && asistencias.Count > 0) return "Si";
+                return "No";
+            }
+        }
 
 
         public List<AlumnoFajaInscripciones> ObtenerAlumnosInscriptosClase(int idClase, int? idTipoDoc, string dni, string apellido, DateTime? desde, DateTime? hasta)
@@ -551,7 +561,7 @@ namespace JJSS_Negocio
             using (var db = new JJSSEntities())
             {
                 List<AlumnoFajaInscripciones> list = new List<AlumnoFajaInscripciones>();
-                var inscripciones = db.inscripcion_clase.Where(x => x.id_clase == idClase && x.actual == 1);
+                var inscripciones = db.inscripcion_clase.Where(x => x.id_clase == idClase);
 
                 if (idTipoDoc != null && idTipoDoc > 0 )
                 {
@@ -581,6 +591,7 @@ namespace JJSS_Negocio
 
                 foreach (var inscripcion in inscripciones)
                 {
+                    String asistencias = validarAsistenciaAPeriodo(inscripcion);
                     var alumno = new AlumnoFajaInscripciones
                     {
                         inscr_id = inscripcion.id_inscripcion,
@@ -595,8 +606,8 @@ namespace JJSS_Negocio
                         inscr_recargo = inscripcion.recargo == 1 ? "Si" : "No",
                         inscr_sexo = inscripcion.alumno.sexo == 1 ? "M" : "F",
                         inscr_id_alumno = inscripcion.alumno.id_alumno,
-                        moroso_si = inscripcion.moroso_si
-
+                        moroso_si = inscripcion.moroso_si,
+                        asistio = asistencias,
                     };
 
                     var faja = db.alumnoxfaja.Where(x => x.id_alumno == inscripcion.alumno.id_alumno && x.actual == 1 && x.faja.id_tipo_clase == inscripcion.clase.id_tipo_clase)

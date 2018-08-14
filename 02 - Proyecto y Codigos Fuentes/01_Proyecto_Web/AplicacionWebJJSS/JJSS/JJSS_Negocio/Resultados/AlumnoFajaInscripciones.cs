@@ -42,6 +42,6 @@ namespace JJSS_Negocio.Resultados
 
         public int? moroso_si { get; set; }
         
-
+        public String asistio { get; set; }
     }
 }

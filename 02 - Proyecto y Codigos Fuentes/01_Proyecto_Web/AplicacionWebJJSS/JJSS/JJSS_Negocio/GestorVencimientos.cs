@@ -257,6 +257,8 @@ namespace JJSS_Negocio
                         id_clase = inscripcion.id_clase,
                         id_alumno = inscripcion.id_alumno
                     };
+                    if (validarInscripcionExistenteEnPeriodo(nuevaInscripcion) != null) return "Ya existe una inscripción en ese período";
+
                     db.inscripcion_clase.Add(nuevaInscripcion);
                     db.SaveChanges();
 
@@ -280,6 +282,25 @@ namespace JJSS_Negocio
                 }
             }
 
+        }
+
+        private inscripcion_clase validarInscripcionExistenteEnPeriodo(inscripcion_clase inscripcionNueva)
+        {
+            using (var db = new JJSSEntities())
+            {
+                List<inscripcion_clase> inscripciones = db.inscripcion_clase.Where(x => x.id_alumno == inscripcionNueva.id_alumno
+                && x.id_clase == inscripcionNueva.id_clase).ToList();
+
+                foreach(inscripcion_clase insClase in inscripciones)
+                {
+                    if (insClase.fecha_desde >= inscripcionNueva.fecha_desde && insClase.fecha_desde <= inscripcionNueva.fecha_vencimiento
+                        || insClase.fecha_vencimiento >= inscripcionNueva.fecha_desde && insClase.fecha_vencimiento <= inscripcionNueva.fecha_vencimiento)
+                    {
+                        return insClase;
+                    }
+                }
+                return null;
+            }
         }
     }
 }

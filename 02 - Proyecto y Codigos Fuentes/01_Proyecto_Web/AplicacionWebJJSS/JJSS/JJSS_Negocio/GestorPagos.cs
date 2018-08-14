@@ -616,7 +616,7 @@ namespace JJSS_Negocio
                             IdObjeto = (int)inscEvento.id_evento,
                             MontoString = "$ " + montoPagable.ToString("N2"),
                             Pago = 0,
-                            PagoString = "N"
+                            PagoString = "No"
                         };
                         lista.Add(pagable);
                     }
@@ -747,7 +747,8 @@ namespace JJSS_Negocio
                             NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
                             IdObjeto = (int) inscClase.id_clase,
                             MontoString = "$ " + montoPagable.ToString("N2"),
-                            MesSiguiente = true
+                            MesSiguiente = true,
+                            PagoString = "Si",
                         };
 
                         lista.Add(pagable);
@@ -778,7 +779,8 @@ namespace JJSS_Negocio
                             Participante = (int) inscClase.id_alumno,
                             NombreParticipante = inscClase.alumno.nombre + " " + inscClase.alumno.apellido,
                             IdObjeto = (int) inscClase.id_clase,
-                            MontoString = "$ " + montoPagable.ToString("N2")
+                            MontoString = "$ " + montoPagable.ToString("N2"),
+                            PagoString = "Si",
                         };
 
                         lista.Add(pagable);
