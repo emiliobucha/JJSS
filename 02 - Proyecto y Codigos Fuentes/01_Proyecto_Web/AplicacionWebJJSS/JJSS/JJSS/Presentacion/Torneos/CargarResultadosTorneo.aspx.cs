@@ -25,7 +25,7 @@ namespace JJSS.Presentacion
         {
             if (!IsPostBack)
             {
-                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Presentacion/Torneos/HistoricoTorneos.aspx";
+                if (Request.UrlReferrer == null) ViewState["RefUrl"] = "Presentacion/Torneos/VerTorneo.aspx";
                 else ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 gestorResultados = new GestorResultados();
                 gestorTorneos = new GestorTorneos();
@@ -62,7 +62,7 @@ namespace JJSS.Presentacion
                 if (Session["idTorneo"] != null)
                 {
                     int idTorneo = int.Parse(Session["idTorneo"].ToString());
-                    Session["idTorneo"] = null;
+                    //Session["idTorneo"] = null;
                     torneoSeleccionado = gestorTorneos.BuscarTorneoPorID(idTorneo);
 
                     categoriasConInscriptos = gestorResultados.mostrarCategoriasConInscriptos(idTorneo);
@@ -110,6 +110,7 @@ namespace JJSS.Presentacion
             DatosParticipanteTorneo dpt = new DatosParticipanteTorneo();
             dpt.participante = "Seleccione un participante";
             dpt.idParticipante = 0;
+            dpt.posicion = 0;
             participantes.Insert(0, dpt);
 
             ddl_1.DataSource = participantes;
@@ -131,6 +132,14 @@ namespace JJSS.Presentacion
             ddl_3_2.DataTextField = "participante";
             ddl_3_2.DataValueField = "idParticipante";
             ddl_3_2.DataBind();
+
+            foreach (DatosParticipanteTorneo p in participantes)
+            {
+                if (p.posicion == 1) ddl_1.SelectedValue = p.idParticipante.ToString();
+                else if (p.posicion == 2) ddl_2.SelectedValue = p.idParticipante.ToString();
+                else if (p.posicion == 3) ddl_3_1.SelectedValue = p.idParticipante.ToString();
+                else if (p.posicion == 4) ddl_3_2.SelectedValue = p.idParticipante.ToString();
+            }
         }
 
         protected void btn_mas_Click(object sender, EventArgs e)

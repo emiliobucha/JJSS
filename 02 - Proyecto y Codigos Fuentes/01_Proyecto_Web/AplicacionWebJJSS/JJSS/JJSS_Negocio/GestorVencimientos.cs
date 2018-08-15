@@ -257,7 +257,7 @@ namespace JJSS_Negocio
                         id_clase = inscripcion.id_clase,
                         id_alumno = inscripcion.id_alumno
                     };
-                    if (validarInscripcionExistenteEnPeriodo(nuevaInscripcion) != null) return "Ya existe una inscripción en ese período";
+                    if (validarInscripcionExistenteEnPeriodo(nuevaInscripcion, idInscripcion) != null) return "Ya existe una inscripción en ese período";
 
                     db.inscripcion_clase.Add(nuevaInscripcion);
                     db.SaveChanges();
@@ -284,7 +284,7 @@ namespace JJSS_Negocio
 
         }
 
-        private inscripcion_clase validarInscripcionExistenteEnPeriodo(inscripcion_clase inscripcionNueva)
+        private inscripcion_clase validarInscripcionExistenteEnPeriodo(inscripcion_clase inscripcionNueva, int idInscripcion)
         {
             using (var db = new JJSSEntities())
             {
@@ -293,8 +293,8 @@ namespace JJSS_Negocio
 
                 foreach(inscripcion_clase insClase in inscripciones)
                 {
-                    if (insClase.fecha_desde >= inscripcionNueva.fecha_desde && insClase.fecha_desde <= inscripcionNueva.fecha_vencimiento
-                        || insClase.fecha_vencimiento >= inscripcionNueva.fecha_desde && insClase.fecha_vencimiento <= inscripcionNueva.fecha_vencimiento)
+                    if (insClase.id_inscripcion != idInscripcion && (insClase.fecha_desde >= inscripcionNueva.fecha_desde && insClase.fecha_desde <= inscripcionNueva.fecha_vencimiento
+                        || insClase.fecha_vencimiento >= inscripcionNueva.fecha_desde && insClase.fecha_vencimiento <= inscripcionNueva.fecha_vencimiento))
                     {
                         return insClase;
                     }

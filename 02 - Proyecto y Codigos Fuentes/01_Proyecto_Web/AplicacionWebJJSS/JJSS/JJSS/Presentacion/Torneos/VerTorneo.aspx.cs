@@ -291,6 +291,10 @@ namespace JJSS.Presentacion
         private void volverPaginaAnterior()
         {
             object refUrl = ViewState["RefUrl"];
+            if (((string)refUrl).Contains("CargarResultadosTorneo"))
+            {
+                refUrl = "HistoricoTorneos.aspx";
+            }
             if (refUrl != null)
                 Response.Redirect((string)refUrl);
         }
