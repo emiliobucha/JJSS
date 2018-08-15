@@ -109,14 +109,43 @@ namespace JJSS_Negocio
                 var participantes = from part in db.participante
                                     join ins in db.inscripcion on part.id_participante equals ins.id_participante
                                     where ins.id_torneo == idTorneo && ins.id_categoria == idCategoria
-                                    select new DatosParticipanteTorneo
-                                    {
-                                        participante = part.nombre + " " + part.apellido,
-                                        idParticipante = part.id_participante,
-                                    };
-                return participantes.ToList<DatosParticipanteTorneo>();
+                                    select part;
+                
+                List<DatosParticipanteTorneo> participantesMostrar = new List<DatosParticipanteTorneo>();
+                foreach (participante part in participantes)
+                {
+                    DatosParticipanteTorneo nuevoParticipante = new DatosParticipanteTorneo()
+                    {
+                        participante = part.nombre + " " + part.apellido,
+                        idParticipante = part.id_participante,
+                    };
+
+                    if (part.resultado.Any(x => x.id_categoria_torneo == idCategoria && x.id_torneo == idTorneo))
+                    {
+                        nuevoParticipante.posicion = 1;
+                    }
+                    else if (part.resultado1.Any(x => x.id_categoria_torneo == idCategoria && x.id_torneo == idTorneo))
+                    {
+                        nuevoParticipante.posicion = 2;
+                    }
+                    else if (part.resultado2.Any(x => x.id_categoria_torneo == idCategoria && x.id_torneo == idTorneo))
+                    {
+                        nuevoParticipante.posicion = 3;
+                    }
+                    else if (part.resultado3.Any(x => x.id_categoria_torneo == idCategoria && x.id_torneo == idTorneo))
+                    {
+                        nuevoParticipante.posicion = 4;
+                    }
+                    else nuevoParticipante.posicion = 0;
+
+                    participantesMostrar.Add(nuevoParticipante);
+                }
+
+
+                return participantesMostrar;
             }
         }
+
 
         public String cargarResultado(int idTorneo, int idCategoria, int idPrimerPuesto, int idSegundoPuesto, int? idTercerPuesto1, int? idTercerPuesto2)
         {
