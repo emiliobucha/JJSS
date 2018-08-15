@@ -10,5 +10,6 @@ namespace JJSS_Negocio.Resultados
     {
         public string participante { get; set; }
         public int idParticipante { get; set; }
+        public int posicion { get; set; }
     }
 }

@@ -644,7 +644,7 @@ namespace JJSS_Negocio
                     list.Add(alumno);
 
                 }
-                return list.OrderBy(x => x.inscr_fecha_vto).ToList();
+                return list.OrderByDescending(x => x.inscr_fecha_vto).ToList();
             }
 
 
