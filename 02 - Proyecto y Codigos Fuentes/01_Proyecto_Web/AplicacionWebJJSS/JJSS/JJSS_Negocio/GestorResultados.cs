@@ -17,28 +17,22 @@ namespace JJSS_Negocio
         {
             using (var db = new JJSSEntities())
             {
-                var categorias = (from catt in db.categoria_torneo
-                                  join ins in db.inscripcion on catt.id_categoria_torneo equals ins.id_categoria
-                                  join tor in db.torneo on ins.id_torneo equals tor.id_torneo
-                                  join cat in db.categoria on catt.id_categoria equals cat.id_categoria
-                                  join faj in db.faja on catt.id_faja equals faj.id_faja
-                                  join resu in db.resultado on catt.id_categoria_torneo equals resu.id_categoria_torneo
-                                  where tor.id_torneo == idTorneo && cat.id_tipo_clase == ConstantesTipoClase.JIU_JITSU
-                                  orderby cat.nombre
-                                  select new CategoriasTorneoResultado
-                                  {
-                                      nombreCategoria = cat.nombre,
-                                      nombreFaja = faj.descripcion,
-                                      idCategoriaTorneo = catt.id_categoria_torneo,
-                                      sexo = cat.sexo
-
-                                  }).Distinct();
-                List<CategoriasTorneoResultado> res = categorias.ToList();
+                var cattor = from catt in db.categoria_torneo
+                             join ins in db.inscripcion on catt.id_categoria_torneo equals ins.id_categoria
+                             where ins.id_torneo == idTorneo
+                             select new CategoriasTorneoResultado
+                             {
+                                 nombreCategoria = catt.categoria.nombre,
+                                 nombreFaja = catt.faja.descripcion,
+                                 idCategoriaTorneo=catt.id_categoria_torneo,
+                                 sexo = catt.categoria.sexo
+                             };
+                List<CategoriasTorneoResultado> res = cattor.Distinct().ToList();
                 
                 foreach (CategoriasTorneoResultado cat in res)
                 {
                     cat.nombreFaja = cat.nombreFaja.Split(new char[] { '-' })[0];
-                    string sexo = cat.sexo.Equals(ContantesSexo.FEMENINO) ? "F" : "M";
+                    string sexo = cat.sexo==ContantesSexo.FEMENINO ? "F" : "M";
                     cat.nombreParaMostrar = cat.nombreCategoria.Trim() + " " + sexo + " " + cat.nombreFaja.Trim();
                 }
                 res.OrderBy(x => x.nombreParaMostrar);
