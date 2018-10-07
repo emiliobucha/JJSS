@@ -12,14 +12,14 @@ namespace JJSS_Negocio
 {
     public class GestorMercadoPago
     {
-        private String clientID = "4309155312672093";
-        private String clientSecret = "QflIW4b4IUeIG9mHM51lTzTc4xEb5zax";
+        private String clientID = "3431590997103708";
+        private String clientSecret = "0KB2l3zlqVAHz5jzQ0G7kBZX8eMaloEf";
         private MP mp;
         //Produccion
-        //private string uri = "http://lotusclub-equipohinojal.com.ar/Presentacion/Pagos/";
+        private string uri = "http://lotusclub-equipohinojal.com.ar/Presentacion/Pagos/";
 
             //Local
-        private string uri = "http://localhost:15787/Presentacion/Pagos/";
+        //private string uri = "http://localhost:15787/Presentacion/Pagos/";
 
 
         public string NuevoPago(double pMonto, string pConcepto)

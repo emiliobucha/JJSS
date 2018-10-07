@@ -202,6 +202,15 @@ namespace JJSS {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_pago_alumno;
         
         /// <summary>
+        /// Control nav_pago_mis_pagos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor nav_pago_mis_pagos;
+        
+        /// <summary>
         /// Control nav_pago_mes.
         /// </summary>
         /// <remarks>

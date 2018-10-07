@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="row centered justify-content-center">
-                        <h1>Pagos de Alumno</h1>
+                        <h1 runat="server" ID="lbl_pago">Pagos de Alumno</h1>
                     </div>
 
                     <div>
