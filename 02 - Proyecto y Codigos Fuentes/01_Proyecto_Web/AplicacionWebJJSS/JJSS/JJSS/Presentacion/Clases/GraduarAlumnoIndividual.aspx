@@ -94,7 +94,7 @@
 
                     <div runat="server" class="row centered justify-content-center">
                         <div class="col-md-2 col-xl-auto">
-                            <label class="pull-left">Grados a aumentar: </label>
+                            <label class="pull-left">Grados a modificar: </label>
                         </div>
                         <div class="col-md-2 col-xl-auto">
                             <asp:TextBox runat="server" ID="txt_grados" CssClass="caja2" type="number" step="1" Text="0" required="true"> </asp:TextBox>

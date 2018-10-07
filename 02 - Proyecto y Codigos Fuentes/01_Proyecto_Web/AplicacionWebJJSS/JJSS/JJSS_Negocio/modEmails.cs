@@ -10,9 +10,9 @@ namespace JJSS_Negocio
     public class modEmails
     {
         private String MAIL_SERVIDOR = "smtp.gmail.com";
-        private String MAIL_USUARIO = "jjss.hinojal";
-        private String MAIL_CLAVE = "jjssmariano";
-        private String MAIL_REMITENTE = "jjss.hinojal@gmail.com";
+        private String MAIL_USUARIO = "sistema.equipohinojal";
+        private String MAIL_CLAVE = "lotusclub";
+        private String MAIL_REMITENTE = "sistema.equipohinojal@gmail.com";
         private long MAIL_PUERTO = 465;
         private long MAIL_AUT = 1;
         private bool MAIL_SSL = true;
