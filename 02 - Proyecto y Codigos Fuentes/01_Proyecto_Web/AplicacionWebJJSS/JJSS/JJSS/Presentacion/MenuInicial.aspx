@@ -84,7 +84,7 @@
             </div>
             <div class="row mt centered justify-content-center">
                 <!--BI-->
-                <div class="col-sm-12 col-md-6 col-lg-3"  runat="server" id="menuBI">
+                <%--<div class="col-sm-12 col-md-6 col-lg-3"  runat="server" id="menuBI">
                     <a class="text-dark" href="PowerBI.aspx">
                         <div class="btn " style="width: 10rem;">
                             <img class=" img-fluid" src="../img/BI.png" alt="Card image cap">
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div>--%>
 
                 <!--Pagos-->
                 <div class="col-sm-12 col-md-6 col-lg-3 "  runat="server" id="menuPagos">

@@ -12,6 +12,8 @@ namespace JJSS.Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Response.Redirect("MenuInicial.aspx");
             try
             {
                 Sesion sesionActiva = (Sesion)HttpContext.Current.Session["SEGURIDAD_SESION"];
