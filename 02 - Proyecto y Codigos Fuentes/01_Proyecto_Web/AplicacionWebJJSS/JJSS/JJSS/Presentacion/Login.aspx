@@ -261,7 +261,7 @@
                     <p>&nbsp;</p>
                 </div>
                 <p>
-                    <small>mail: emiliobuchaillot@gmail.com<br />
+                    <small>mail: hinojalbjj@gmail.com<br />
                         Teléfono: 0351 15-307-8384</small>
                 </p>
             </div>
