@@ -59,14 +59,14 @@ namespace JJSS.Presentacion
 
                     int permiso = 0;
                     System.Data.DataRow[] drsAux = sesionActiva.permisos.Select("perm_clave = 'POWER_BI'");
-                    if (drsAux.Length > 0)
-                    {
-                        int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
-                    }
-                    if (permiso != 1)
-                    {
-                        menuBI.Style["display"] = "none";
-                    }
+                    //if (drsAux.Length > 0)
+                    //{
+                    //    int.TryParse(drsAux[0]["perm_ejecutar"].ToString(), out permiso);
+                    //}
+                    //if (permiso != 1)
+                    //{
+                    //    menuBI.Style["display"] = "none";
+                    //}
 
 
                     permiso = 0;
@@ -96,7 +96,7 @@ namespace JJSS.Presentacion
         {
             menuPerfil.Style["display"] = "none";
             menuAdministracion.Style["display"] = "none";
-            menuBI.Style["display"] = "none";
+            //menuBI.Style["display"] = "none";
             menuPagos.Style["display"] = "none";
         }
     }
